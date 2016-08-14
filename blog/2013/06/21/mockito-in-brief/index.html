@@ -1,0 +1,910 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mockito,ut,powermock,stub,mock," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。   
+项目地址:https://code.google.com/p/mockito/
+##powermock 简介##EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mockito简介">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2013/06/21/mockito-in-brief/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。   
+项目地址:https://code.google.com/p/mockito/
+##powermock 简介##EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mockito简介">
+<meta name="twitter:description" content="Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。   
+项目地址:https://code.google.com/p/mockito/
+##powermock 简介##EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Mockito简介 | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mockito简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-06-21T21:29:00+08:00" content="2013-06-21">
+              2013-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ut/" itemprop="url" rel="index">
+                    <span itemprop="name">ut</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/06/21/mockito-in-brief/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/06/21/mockito-in-brief/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。   </p>
+<p>项目地址:<a href="https://code.google.com/p/mockito/" target="_blank" rel="external">https://code.google.com/p/mockito/</a></p>
+<p>##powermock 简介##<br>EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程而被许多人应用在自己的工作中，但是这两种 Mock 工具都不可以实现对静态函数、构造函数、私有函数、Final 函数以及系统函数的模拟，但是这些方法往往是我们在大型系统中需要的功能。PowerMock 是在 EasyMock 以及 Mockito 基础上的扩展，通过定制类加载器等技术，PowerMock 实现了之前提到的所有模拟功能，使其成为大型系统上单元测试中的必备工具。缺点是缺少文档。   </p>
+<p>项目地址:<a href="https://code.google.com/p/powermock/" target="_blank" rel="external">https://code.google.com/p/powermock/</a><br><a id="more"></a></p>
+<p>##Mock 和Stub##</p>
+<p>###Mock###<br>所谓的mock，即模拟，模仿的意思。Mock 技术的主要作用是使用mock工具模拟一些在应用中不容易构造或者比较复杂的对象，从而把测试目标与测试边界以外的对象隔离开。</p>
+<p>###Stub###<br>Stub,桩。单元测试过程中，对于在应用中不容易构造或者比较复杂的对象，用一个虚拟的对象来代替它。从类的实现方式上看，stub有一个显式的类实现，按照stub类的复用层次可以实现为普通类(被多个测试案例复用)，内部类(被同一个测试案例的多个测试方法复用)乃至内部匿名类(只用于当前测试方法)。stub的方法也会有具体的实现，哪怕简单到只有一个简单的return语句。</p>
+<p>###Stub 与 Mock 的区别###<br>Stub 是在单元测试过程中去代替某些对象来提供所需的测试数据，适用于基于状态的（state-based）测试，关注的是输入和输出。而Mock适用于基于交互的（interaction-based）测试，关注的是交互过程，不只是模拟状态，还能够模拟模块或对象的行为逻辑并能验证其正确性，Mock不需要类的显示实现，直接用工具模拟。</p>
+<p>##Mockito 的使用##</p>
+<p>###Maven###<br>通过Maven管理的，需要在项目的Pom.xml中增加如下的依赖：</p>
+<pre><code>&lt;dependencies&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.mockito&lt;/groupId&gt;
+&lt;artifactId&gt;mockito-all&lt;/artifactId&gt;
+&lt;version&gt;1.9.0&lt;/version&gt;
+&lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><p>在程序中可以<code>import org.mockito.Mockito</code>，然后调用它的static方法。</p>
+<p>###Maven 程序###</p>
+<p>####1.模拟对象####<br>创建 Mock 对象的语法为 mock(class or interface)。</p>
+<p>####2.设置对象调用的预期返回值####<br>通过 when(mock.someMethod()).thenReturn(value) 来设定 Mock 对象某个方法调用时的返回值。或者使用 when(mock.someMethod()).thenThrow(new RuntimeException) 的方式来设定当调用某个方法时抛出的异常。</p>
+<p>####3.验证被测试类方法####<br>Mock 对象一旦建立便会自动记录自己的交互行为，所以我们可以有选择的对它的 交互行为进行验证。在 Mockito 中验证 Mock 对象交互行为的方法是 verify(mock).someMethod(…)。最后 Assert() 验证返回值是否和预期一样。</p>
+<p>###Demo###</p>
+<p>##Mock 对象的创建##<br>    mock(Class<t> classToMock);<br>    mock(Class<t> classToMock, String name)<br>    mock(Class<t> classToMock, Answer defaultAnswer)<br>    mock(Class<t> classToMock, MockSettings mockSettings)<br>    mock(Class<t> classToMock, ReturnValues returnValues)</t></t></t></t></t></p>
+<p>可以对类和接口进行mock对象的创建，创建时可以为mock对象命名。对mock对象命名的好处是调试的时候容易辨认mock对象。</p>
+<p>##Mock对象的期望行为和返回值设定##<br>假设我们创建了LinkedList类的mock对象：</p>
+<pre><code>LinkedList mockedList = mock(LinkedList.class);
+</code></pre><p>###对方法进行设定返回值和异常###</p>
+<p>####对包含返回值的方法的设定####</p>
+<pre><code>when(mockedList.get(0)).thenReturn(&quot;first&quot;);
+when(mockedList.get(1)).thenThrow(new RuntimeException());   
+</code></pre><p>Mockito支持迭代风格的返回值设定</p>
+<pre><code>when(mockedList.get(anyInt()).thenReturn(&quot;first&quot;).thenThrow(new RuntimeException());
+when(mockedList.get(anyInt()).thenReturn(&quot;first&quot;,&quot;second&quot;);
+</code></pre><p>Stubbing的另一种风格   </p>
+<pre><code>doReturn(&quot;Hello&quot;).when(mockedList).get(0);
+doReturn(&quot;Hello&quot;).doReturn(&quot;world&quot;).when(mockedList).get(anyInt());
+</code></pre><p>抛出异常   </p>
+<pre><code>doThrow(new RuntimeException()).when(mockedList).get(0);
+</code></pre><p>####对void方法进行方法预期设定####</p>
+<pre><code>doNothing().when(mockedClass).SomeVoidMethod();
+ doThrow(new RuntimeException()).when(mockedClass).SomeVoidMethod();
+</code></pre><p>迭代风格</p>
+<pre><code>doNothing().doThrow(new RuntimeException()).when(mockedClass).SomeVoidMethod();
+</code></pre><p>##参数匹配器##<br>在Stubbing和Verify的时候，有时需要更加灵活的参数需求。参数匹配器(Argument Matcher)能够满足需求。   </p>
+<pre><code>//stubbing using anyInt() argument matcher
+when(mockedList.get(anyInt())).thenReturn(&quot;element&quot;);
+
+//following prints &quot;element&quot;
+System.out.println(mockedList.get(999));
+
+//you can also verify using argument matcher
+verify(mockedList).get(anyInt());   
+</code></pre><p>需要注意的是，如果使用了参数匹配器，所有的参数都需要由匹配器提供。如下eq(“third argument”)，直接修改为“third argument”会报错。   </p>
+<pre><code>verify(mockedClass).someMethod(anyObject(), anyString(), eq(&quot;third argument&quot;));
+</code></pre><p>##Mock对象行为的验证##<br>Mock 对象行为的验证，关注其交互行为，如mock对象调用的参数，调用次数，调用顺序等。   </p>
+<p>###调用次数验证###<br>    public static <t> T verify(T mock).someMethod()<br>    public static <t> T verify(T mock, VerificationMode mode).someMethod()</t></t></p>
+<pre><code>Parameters:
+    mock - to be verified
+    mode - times(M), atLeastOnce() , atLeast(N) , atMost(X) , never() 
+Returns:
+    mock object itself
+</code></pre><p>###调用顺序验证 ###<br>    public static InOrder inOrder(java.lang.Object… mocks)</p>
+<p>创建mock对象  </p>
+<pre><code>// Multiple mocks that must be used in a particular order
+List firstMock = mock(List.class);
+List secondMock = mock(List.class);
+</code></pre><p>调用mock对象的方法   </p>
+<pre><code>//using mocks
+firstMock.add(&quot;was called first&quot;);
+secondMock.add(&quot;was called second&quot;);
+</code></pre><p>创建InOrder对象   </p>
+<pre><code>//create inOrder object passing any mocks that need to be verified in order
+InOrder inOrder = inOrder(firstMock, secondMock);
+</code></pre><p>验证方法调用   </p>
+<pre><code>//following will make sure that firstMock was called before secondMock
+inOrder.verify(firstMock).add(&quot;was called first&quot;);
+inOrder.verify(secondMock).add(&quot;was called second&quot;);
+</code></pre><p>##<code>RETURN_SMART_NULLS和RETURN_DEEP_STUBS</code>##<br><code>RETURN_SMART_NULLS</code> 是实现了Answer 接口的对象，它是创建mock对象时的一个可选参数， <code>mock(class,answer)</code>。在创建mock对象时，使用该参数，调用没有stubbed的方法会返回 SmartNull 。如返回类型为String的，会返回空””, int 会返回 0,List 会返回 null。   </p>
+<p>mock对象使用RETURN_DEEP_STUBS 参数，会自动mock该对象中包含的对象。   </p>
+<p>##注解##<br>Mockito支持对变量进行注解，如将mock对象设为测试类的属性，然后通过注解的方式@Mock来定义它，可以减少重复代码，增强可维护性。Mockito支持的注解有@Mock，@Spy，@Captor，@InjectMocks   </p>
+<p>###Annotation 的初始化 ###<br>初始化方法为调用MockitoAnnotations.initMocks(testClass)，可以放到@Before中。</p>
+<pre><code>public class ArticleManagerTest {
+
+    @Mock private ArticleCalculator calculator;
+    @Mock private ArticleDatabase database;
+    @Mock private UserProvider userProvider;
+
+     @Before public void setup() {
+        MockitoAnnotations.initMocks(testClass);
+    }
+}
+</code></pre><p>使用Mockito提供的Junit Runner可以省略上述步骤。</p>
+<pre><code>@RunWith(MockitoJUnitRunner.class)
+public class ExampleTest {
+    @Mock private List list;
+
+    @Test public void shouldDoSomething() {
+        list.add(100);
+    }
+}
+</code></pre><h2 id="powermock-的使用"><a href="#powermock-的使用" class="headerlink" title="powermock 的使用"></a>powermock 的使用</h2><p>###Maven配置###<br>    <dependency><br>        <groupid>org.powermock</groupid><br>        <artifactid>powermock-module-junit4</artifactid><br>        <version>1.4.10</version><br>        <scope>test</scope><br>    </dependency><br>    <dependency><br>        <groupid>org.powermock</groupid><br>        <artifactid>powermock-api-mockito</artifactid><br>        <version>1.4.10</version><br>        <scope>test</scope><br>    </dependency></p>
+<p>##PowerMock 在单元测试中的应用##</p>
+<p>###模拟 Static 方法###<br>在任何需要用到 PowerMock 的类开始之前，首先我们要做如下声明：   </p>
+<pre><code>@RunWith(PowerMockRunner.class)   
+</code></pre><p>然后，还需要用注释的形式将需要测试的静态方法提供给 PowerMock：   </p>
+<pre><code>@PrepareForTest( { YourClassWithEgStaticMethod.class })   
+</code></pre><p>然后就可以开始写测试代码：</p>
+<pre><code>1，首先，需要有一个含有 static 方法的代码 , 如
+public class IdGenerator { 
+    ... 
+    public static long generateNewId() { 
+        ... 
+    } 
+    ... 
+ } 
+2，然后，在被测代码中，引用了以上方法
+public class ClassUnderTest { 
+    ... 
+    public void methodToTest() { 
+    .. 
+    final long id = IdGenerator.generateNewId(); 
+    .. 
+     } 
+    ... 
+ } 
+
+3，为了达到单元测试的目的，需要让静态方法 generateNewId()返回各种值
+来达到对被测试方法 methodToTest()的覆盖测试，实现方式如下：
+
+ @RunWith(PowerMockRunner.class) 
+ @PrepareForTest(IdGenerator.class) 
+ public class MyTestClass { 
+    @Test 
+    public void demoStaticMethodMocking() throws Exception { 
+        PowerMockito.mockStatic(IdGenerator.class);  
+        when(IdGenerator.generateNewId()).thenReturn(2L); 
+
+        new ClassUnderTest().methodToTest(); 
+
+        verifyStatic(); 
+        IdGenerator.generateNewId(); 
+    } 
+ }
+</code></pre><p>###模拟构造函数###<br>有时候，能模拟构造函数，从而使被测代码中 new 操作返回的对象可以被随意定制，会很大程度的提高单元测试的效率，考虑如下：</p>
+<pre><code>public class DirectoryStructure { 
+    public boolean create(String directoryPath) { 
+        File directory = new File(directoryPath); 
+
+        if (directory.exists()) { 
+            throw new IllegalArgumentException(
+            &quot;\&quot;&quot; + directoryPath + &quot;\&quot; already exists.&quot;); 
+        } 
+
+        return directory.mkdirs(); 
+    } 
+ }    
+</code></pre><p>为了充分测试 create()函数，我们需要被 new 出来的 File 对象返回文件存在和不存在两种结果。在 PowerMock 出现之前，实现这个单元测试的方式通常都会需要在实际的文件系统中去创建对应的路径以及文件。然而，在 PowerMock 的帮助下，本函数的测试可以和实际的文件系统彻底独立开来：使用 PowerMock 来模拟 File 类的构造函数，使其返回指定的模拟 File 对象而不是实际的 File 对象，然后只需要通过修改指定的模拟 File 对象的实现，即可实现对被测试代码的覆盖测试，参考如下：   </p>
+<pre><code>@RunWith(PowerMockRunner.class) 
+@PrepareForTest(DirectoryStructure.class) 
+public class DirectoryStructureTest { 
+   @Test 
+   public void createDirectoryStructureWhenPathDoesntExist() 
+   throws Exception { 
+       final String directoryPath = &quot;mocked path&quot;; 
+
+       File directoryMock = mock(File.class); 
+
+       //File的初始化函数的mock
+       whenNew(File.class).withArguments(directoryPath)
+           .thenReturn(directoryMock); 
+
+       // Standard expectations 
+       when(directoryMock.exists()).thenReturn(false); 
+       when(directoryMock.mkdirs()).thenReturn(true); 
+
+       assertTrue(new NewFileExample()
+           .createDirectoryStructure(directoryPath)); 
+
+       // Optionally verify that a new File was &quot;created&quot;. 
+       verifyNew(File.class).withArguments(directoryPath); 
+   } 
+} 
+</code></pre><p>使用 whenNew().withArguments().thenReturn() 语句即可实现对具体类的构造函数的模拟操作。然后对于之前创建的模拟对象 directoryMock使用 When().thenReturn() 语句，即可实现需要的所有功能，从而实现对被测对象的覆盖测试。在本测试中，因为实际的模拟操作是在类 DirectoryStructureTest 中实现，所以需要指定的 @PrepareForTest 对象是 DirectoryStructureTest.class。</p>
+<p>###模拟私有以及 Final 方法###<br>为了实现对类的私有方法或者是 Final 方法的模拟操作，需要 PowerMock 提供的另外一项技术：局部模拟。   </p>
+<p>在之前的介绍的模拟操作中，我们总是去模拟一整个类或者对象，然后使用 When().thenReturn()语句去指定其中值得关心的部分函数的返回值，从而达到搭建各种测试环境的目标。对于没有使用 When().thenReturn()方法指定的函数，系统会返回各种类型的默认值。</p>
+<p>局部模拟则提供了另外一种方式，在使用局部模拟时，被创建出来的模拟对象依然是原系统对象，虽然可以使用方法 When().thenReturn()来指定某些具体方法的返回值，但是没有被用此函数修改过的函数依然按照系统原始类的方式来执行。   </p>
+<p>这种局部模拟的方式的强大之处在于，除开一般方法可以使用之外，Final 方法和私有方法一样可以使用。<br>参考如下所示的被测代码：</p>
+<pre><code>public final class PrivatePartialMockingExample { 
+   public String methodToTest() { 
+       return methodToMock(&quot;input&quot;); 
+   } 
+
+   private String methodToMock(String input) { 
+       return &quot;REAL VALUE = &quot; + input; 
+   } 
+} 
+</code></pre><p>为了保持单元测试的纯洁性，在测试方法 methodToTest()时，我们不希望受到私有函数 methodToMock()实现的干扰，为了达到这个目的，我们使用刚提到的局部模拟方法来实现 , 实现方式如下：   </p>
+<pre><code>@RunWith(PowerMockRunner.class) 
+@PrepareForTest(PrivatePartialMockingExample.class) 
+public class PrivatePartialMockingExampleTest { 
+   @Test 
+   public void demoPrivateMethodMocking() throws Exception { 
+       final String expected = &quot;TEST VALUE&quot;; 
+       final String nameOfMethodToMock = &quot;methodToMock&quot;; 
+       final String input = &quot;input&quot;; 
+
+       PrivatePartialMockingExample underTest = spy(new PrivatePartialMockingExample()); 
+
+       /* 
+        * Setup the expectation to the private method using the method name 
+        */ 
+       when(underTest, nameOfMethodToMock, input).thenReturn(expected); 
+
+       assertEquals(expected, underTest.methodToTest()); 
+
+       // Optionally verify that the private method was actually called 
+       verifyPrivate(underTest).invoke(nameOfMethodToMock, input); 
+   } 
+} 
+</code></pre><p>可以发现，为了实现局部模拟操作，用来创建模拟对象的函数从 mock() 变成了 spy()，操作对象也从类本身变成了一个具体的对象。同时，When() 函数也使用了不同的版本：在模拟私有方法或者是 Final 方法时，When() 函数需要依次指定模拟对象、被指定的函数名字以及针对该函数的输入参数列表。</p>
+<p>参考文献:<a href="http://www.ibm.com/developerworks/cn/java/j-lo-powermock/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-powermock/</a></p>
+<hr>
+<p>Thanks to：lizejun</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mockito/" rel="tag">#mockito</a>
+          
+            <a href="/tags/ut/" rel="tag">#ut</a>
+          
+            <a href="/tags/powermock/" rel="tag">#powermock</a>
+          
+            <a href="/tags/stub/" rel="tag">#stub</a>
+          
+            <a href="/tags/mock/" rel="tag">#mock</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/06/19/publishing-from-github-to-maven-central/" rel="next" title="从Github发布jar包到Maven Central">
+                <i class="fa fa-chevron-left"></i> 从Github发布jar包到Maven Central
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/06/27/usage-dbunit/" rel="prev" title="DbUnit使用入门">
+                DbUnit使用入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#powermock-的使用"><span class="nav-number">1.</span> <span class="nav-text">powermock 的使用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2013/06/21/mockito-in-brief/';
+      var disqus_title = 'Mockito简介';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2013/06/21/mockito-in-brief/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

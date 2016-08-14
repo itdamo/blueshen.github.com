@@ -1,0 +1,761 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="webdriver,selenium,Firefox,Chrome,Driver," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="##Selenium WebDriver支持哪儿些浏览器？按照官方文档的说法，现阶段有以下的drivers: 
+
+
+ChromeDriver  
+InternetExplorerDriver   
+FirefoxDriver   
+OperaDriver   
+HtmlUnitDriver   
+AndroidDriver(mobile testing)  
+OperaMobileDriver(m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium WebDriver的多浏览器支持">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="##Selenium WebDriver支持哪儿些浏览器？按照官方文档的说法，现阶段有以下的drivers: 
+
+
+ChromeDriver  
+InternetExplorerDriver   
+FirefoxDriver   
+OperaDriver   
+HtmlUnitDriver   
+AndroidDriver(mobile testing)  
+OperaMobileDriver(m">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Selenium WebDriver的多浏览器支持">
+<meta name="twitter:description" content="##Selenium WebDriver支持哪儿些浏览器？按照官方文档的说法，现阶段有以下的drivers: 
+
+
+ChromeDriver  
+InternetExplorerDriver   
+FirefoxDriver   
+OperaDriver   
+HtmlUnitDriver   
+AndroidDriver(mobile testing)  
+OperaMobileDriver(m">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Selenium WebDriver的多浏览器支持 | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Selenium WebDriver的多浏览器支持
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-10-12T14:56:00+08:00" content="2012-10-12">
+              2012-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/selenium/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/10/12/selenium-multiple-browser-support/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/10/12/selenium-multiple-browser-support/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##Selenium WebDriver支持哪儿些浏览器？<br>按照官方文档的说法，现阶段有以下的drivers: </p>
+<blockquote>
+<ul>
+<li>ChromeDriver  </li>
+<li>InternetExplorerDriver   </li>
+<li>FirefoxDriver   </li>
+<li>OperaDriver   </li>
+<li>HtmlUnitDriver   </li>
+<li>AndroidDriver(mobile testing)  </li>
+<li>OperaMobileDriver(mobile testing)  </li>
+<li>IPhoneDriver(mobile testing)   <a id="more"></a>   
+</li>
+</ul>
+</blockquote>
+<p>##为什么selenium自动化case在一个浏览器运行的很好，换为另外一个浏览器则不行？   </p>
+<p>###一个Driver可以打开浏览器，另外一个Driver却不行？<br>WebDriver是通过调用native浏览器来操作的，浏览器之间的差异注定会出现一些问题。下面以InternetExplorer,Firefox,Chrome为例进行说明：  </p>
+<p>####InternetExplorer：  </p>
+<blockquote>
+<p>1.它分不同的版本，版本之间差异很大。InternetExplorerDriver支持IE6、7、8、9。操作系统支持XP、Vista、Windows 7。<br>2.InternetExplorerDriver同时支持32/64bit的浏览器，这个取决于你用的是什么版本的<a href="http://code.google.com/p/selenium/downloads/list" target="_blank" rel="external">IEDriverServer.exe</a>。<br>3.要求条件如下：</p>
+<blockquote>
+<ul>
+<li><a href="http://code.google.com/p/selenium/downloads/list" target="_blank" rel="external">IEDriverServer</a>在系统环境的PATH内（selenium2.26.0+版本推荐方式）。或者设置<code>webdriver.ie.driver</code>系统属性。<br>   <code>System.setProperty(&quot;webdriver.ie.driver&quot;, &quot;D:\\IEDriverServer.exe&quot;);</code><br>  <code>WebDriver driver = new InternetExplorerDriver();</code></li>
+<li>在windows vista、windows7操作系统中，如果使用IE7+的浏览器，应该保证浏览器的<strong>保护模式</strong>都处于<strong>同一状态</strong>[开启或者关闭]。如果不一致，那么报错信息类似于<code>Caused by: org.openqa.selenium.WebDriverException: Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)</code><br>不会设置吗？<br>操作如下：打开浏览器-&gt;Internet选项 -&gt;安全-&gt;启用保护模式。保证Internet、本地Intranet、受信任的站点、受限制的站点4个zone保护模式一致就OK   </li>
+<li>为了确保能获得正确的坐标点，要把浏览器的缩放设为100%。<br>设置方法：打开浏览器-&gt;页面-&gt;缩放(Z)-&gt;100%   </li>
+</ul>
+</blockquote>
+</blockquote>
+<p>参考<a href="http://code.google.com/p/selenium/wiki/InternetExplorerDriver" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/InternetExplorerDriver</a></p>
+<h4 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox:"></a>Firefox:</h4><blockquote>
+<p>1.Firefox不像InternetExplorer一样，用户可以自定义安装路径。因此使用时，需要制定firefox.exe的安装路径。<br>怎么指定?</p>
+<blockquote>
+<ul>
+<li>java code: <code>System.setProperty()</code>   </li>
+<li>命令行：<code>-DpropertyName=&#39;value&#39;</code>   </li>
+</ul>
+</blockquote>
+<p>2.系统变量的值为：<code>webdriver.firefox.bin</code>，以及其他的key值，详见参考页面。webdriver.firefox.bin用来指定Firefox的安装路径。如不设置，默认从%PROGRAMFILES%\Mozilla Firefox\firefox.exe加载。<strong>个人强烈建议，即使安装在默认路径也进行指定</strong>。<br>3.Java代码如下：<br>    System.setProperty(“webdriver.firefox.bin”, “C://Mozila/firefox.exe”);<br>    WebDriver driver = new FirefoxDriver();<br>其中firefox的安装路径，按情况自行替换。</p>
+</blockquote>
+<p>参考<a href="http://code.google.com/p/selenium/wiki/FirefoxDriver" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/FirefoxDriver</a>   </p>
+<p>####Chrome:<br>chrome要求条件如下：</p>
+<blockquote>
+<p>1.Chrome应当安装在默认路径下（如果是从官方下载的，安装后直接都是默认路径）。</p>
+<p>&lt;table border=”1px”&gt;</p>
+<p><tbody></tbody></p>
+<p><tr><td>OS</td><td>默认位置</td></tr></p>
+<p><tr><td>Linux</td><td>/usr/bin/google-chrome</td></tr></p>
+<p><tr><td>Mac</td><td>/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome</td></tr></p>
+<p><tr><td>Windwos XP</td><td>%HOMEPATH%\Local Settings\Application Data\Google\Chrome\Application\chrome.exe</td></tr></p>
+<p><tr><td>Windwos Vista</td><td>C:\Users\%USERNAME%\AppData\Local\Google\Chrome\Application\chrome.exe</td></tr><br><br><br>2.需要下载相应版本的<a href="http://code.google.com/p/chromedriver/downloads/list" target="_blank" rel="external">chromedriver</a>，用来架起chrome浏览器与webdriver之间的桥梁。<br>3.与FirefoxDriver差不多，需要设置chromedriver的路径。key值为：webdriver.chrome.driver.<br>4.Java代码如下：<br>    System.setProperty(“webdriver.chrome.driver”, “C://drivers/chromedriver.exe”);<br>    WebDriver driver = new ChromeDriver();<br>需要注意的是，chrome浏览器会自动更新，而<a href="http://code.google.com/p/chromedriver/downloads/list" target="_blank" rel="external">chromedriver</a>也是不断更新的。如果chrome版本太新，而chromedriver没有相应的更换，会造成只是打开chrome浏览器，而不进行任何操作的问题。另外，ChromeDriver只适用于chrome 12.0.712.0+,如果需要使用更老的版本，见参考页面的详细描述。   </p>
+</blockquote>
+<p>参考<a href="http://code.google.com/p/selenium/wiki/ChromeDriver" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/ChromeDriver</a>   </p>
+<p>###在一个浏览器里，元素可以找到或者可以操作，而在另外一个浏览器内则不行，为什么？<br>不同浏览器之间解析DOM以及响应事件的机制不同，难免会有一些不兼容性。解决方法：</p>
+<blockquote>
+<p>1.元素定位，通常是由于DOM解析不同造成的，可以使用不同的findElement方法进行实验，如id,class,xpath等。这个没有统一的结论，大多数情况下id是最靠谱的。<strong>推荐！</strong><br>2.事件的响应，这个如果存在问题，一般比较难解决。通常是由于浏览器之间的差异造成的。可以通过使用selenium更高的版本，或者更换浏览器的版本来解决。或者想一下，有没有其他的方式，换个事件来绕过去，总有办法的。如果实在解决不了，那也只能暂时是这样了。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webdriver/" rel="tag">#webdriver</a>
+          
+            <a href="/tags/selenium/" rel="tag">#selenium</a>
+          
+            <a href="/tags/Firefox/" rel="tag">#Firefox</a>
+          
+            <a href="/tags/Chrome/" rel="tag">#Chrome</a>
+          
+            <a href="/tags/Driver/" rel="tag">#Driver</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2012/10/12/selenium-faq-alerts-and-prompts/" rel="next" title="selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口">
+                <i class="fa fa-chevron-left"></i> selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2012/10/16/pageobjects-design-pattern/" rel="prev" title="PageObjects 设计模式">
+                PageObjects 设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Firefox"><span class="nav-number">1.</span> <span class="nav-text">Firefox:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2012/10/12/selenium-multiple-browser-support/';
+      var disqus_title = 'Selenium WebDriver的多浏览器支持';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

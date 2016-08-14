@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="karma,testacular,mocha,idea," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+##什么时候使用Karma？##">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Karma来驱动mocha测试">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+##什么时候使用Karma？##">
+<meta property="og:image" content="http://www.shenyanchao.cn/images/blog/karma-chrome.png">
+<meta property="og:image" content="http://www.shenyanchao.cn/images/blog/karma-node-server.png">
+<meta property="og:image" content="http://www.shenyanchao.cn/images/blog/karma-node-run.png">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Karma来驱动mocha测试">
+<meta name="twitter:description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+##什么时候使用Karma？##">
+<meta name="twitter:image" content="http://www.shenyanchao.cn/images/blog/karma-chrome.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 使用Karma来驱动mocha测试 | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Karma来驱动mocha测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-03-27T19:00:00+08:00" content="2013-03-27">
+              2013-03-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/03/27/use-karma-to-run-mocha-test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/03/27/use-karma-to-run-mocha-test/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##从Testacular到Karma的变化##<br>2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。<br>安装：<br>    npm install -g karma</p>
+<p>##什么时候使用Karma？##</p>
+<ul>
+<li>在真实浏览器里测试。</li>
+<li>在多种浏览器里进行测试（包括桌面、移动）。</li>
+<li>在本地开发环境执行测试。</li>
+<li>想在持续集成CI内运行测试。</li>
+<li>想在每次保存代码时，自动执行测试。</li>
+<li>热衷于terminal小黑屏。</li>
+<li>不想陷入令人厌烦的测试生活。</li>
+<li>想使用Istanbul自动生成coverage报告。</li>
+<li>想在源码中使用RequireJS。</li>
+</ul>
+<p>##Karma不是Testing Framework##<br>Karma自从出现，就是一直作为一个Test Runner而存在的，只是用来驱动测试的框架。不过到目前为止，它支持以下流行的测试框架。  </p>
+<ul>
+<li>Mocha</li>
+<li>Jasmine</li>
+<li><p>QUnit</p>
+<a id="more"></a>
+<p>##Karma与Test Framework集成##<br>Karma对各种Test Framework的支持是以插件的模式进行支持的。<br>只需要在karma.conf.js进行以下配置（mocha为例）：  </p>
+<p>  frameworks = [‘mocha’];</p>
+<p>  plugins = [<br>  ‘karma-mocha’<br>  ];<br>在此处只是配置了一下，具体支持的plugin要在当前目录下进行安装：    </p>
+<p>  npm install karma-mocha<br>其他框架依此类推。</p>
+</li>
+</ul>
+<p>##Karma报告##<br>Karma的报告（reporter）也是以插件模式进行的。 </p>
+<p>####JUnit Reporter####<br>首先，要定义reporter类型，在karma.conf.js添加：  </p>
+<pre><code>reporters = [&apos;junit&apos;];
+</code></pre><p>如果想更近一步的话，可以配置一下报告的位置。   </p>
+<pre><code>junitReporter = {
+    outputFile: &apos;junit-report/test-results.xml&apos;
+};
+</code></pre><p>报告配置完了，自然要有依赖啊。执行<code>npm install karma-junit-reporter</code>来安装。然后在加上这个plugin:   </p>
+<pre><code>plugins = [
+    &apos;karma-junit-reporter&apos;
+];
+</code></pre><p>####Coverage Reporter####<br>同JUnit Reporter一样，首先添加：  </p>
+<pre><code>reporters = [&apos;coverage&apos;];
+</code></pre><p>进一步的配置coverage report:   </p>
+<pre><code>coverageReporter = {
+    type : &apos;cobertura&apos;,
+    dir : &apos;coverage/&apos;
+};
+</code></pre><p>其中，type用于指出报告类型；dir用于指出生成报告的存放目录。<br>type包括：  </p>
+<ul>
+<li>html (default)</li>
+<li>lcov (lcov and html)</li>
+<li>lcovonly</li>
+<li>text (standard output)</li>
+<li>text-summary (standard output)</li>
+<li>cobertura (xml format supported by Jenkins)</li>
+</ul>
+<p>下面，需要安装依赖<code>npm install karma-coverage</code>。并在配置文件内添加：  </p>
+<pre><code>plugins = [
+    &apos;karma-coverage&apos;
+];
+</code></pre><p>##创建一个样例##<br>1.执行‘karma init’,然后根据提示按Tab键进行相关选择。先生成一个默认的配置文件，这个是可以再修改的。    </p>
+<p>2.创建一个src文件夹，用于存放待测试的JS代码。然后在创建一个test文件夹，用于存放自己写的单元测试代码。</p>
+<p>3.以mocha为例，将mocha集成到karma中，使用karma来驱动测试。这需要在karma.conf.js里进行如下配置：  </p>
+<pre><code>// Karma configuration
+// Generated on Tue Mar 19 2013 20:46:08 GMT+0800 (CST)
+
+// base path, that will be used to resolve files and exclude
+basePath = &apos;./&apos;;
+
+frameworks = [&apos;mocha&apos;];
+
+// list of files / patterns to load in the browser
+files = [
+    {pattern: &apos;node_modules/chai/chai.js&apos;,include: true},
+    &apos;src/*.js&apos;,
+    &apos;test/*.js&apos;
+];
+
+
+// list of files to exclude
+exclude = [
+    &apos;karma.conf.js&apos;
+];
+
+
+// use dots reporter, as travis terminal does not support escaping sequences
+// possible values: &apos;dots&apos;, &apos;progress&apos;, &apos;junit&apos;, &apos;teamcity&apos;
+// CLI --reporters progress
+reporters = [&apos;progress&apos;,&apos;junit&apos;,&apos;coverage&apos;];
+
+junitReporter = {
+    // will be resolved to basePath (in the same way as files/exclude patterns)
+    outputFile: &apos;junit-report/test-results.xml&apos;
+};
+
+preprocessors = {
+    &apos;src/*.js&apos;: &apos;coverage&apos;
+};
+
+//Code Coverage options. report type available:
+//- html (default)
+//- lcov (lcov and html)
+//- lcovonly
+//- text (standard output)
+//- text-summary (standard output)
+//- cobertura (xml format supported by Jenkins)
+coverageReporter = {
+    // cf. http://gotwarlost.github.com/istanbul/public/apidocs/
+    type : &apos;cobertura&apos;,
+    dir : &apos;coverage/&apos;
+};
+
+
+// web server port
+port = 9876;
+
+
+// cli runner port
+runnerPort = 9100;
+
+
+// enable / disable colors in the output (reporters and logs)
+colors = true;
+
+
+// level of logging
+// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+logLevel = LOG_DEBUG;
+
+
+// enable / disable watching file and executing tests whenever any file changes
+autoWatch = true;
+
+
+// Start these browsers, currently available:
+// - Chrome
+// - ChromeCanary
+// - Firefox
+// - Opera
+// - Safari (only Mac)
+// - PhantomJS
+// - IE (only Windows)
+// CLI --browsers Chrome,Firefox,Safari
+browsers = [&apos;Chrome&apos;];
+
+
+// If browser does not capture in given timeout [ms], kill it
+captureTimeout = 6000;
+
+
+// Continuous Integration mode
+// if true, it capture browsers, run tests and exit
+singleRun = true;
+
+
+plugins = [
+    &apos;karma-mocha&apos;,
+    &apos;karma-chrome-launcher&apos;,
+    &apos;karma-firefox-launcher&apos;,
+    &apos;karma-junit-reporter&apos;,
+    &apos;karma-coverage&apos;
+];
+</code></pre><p>4.放入相应的代码到src以及test目录里。执行’karma start’命令, 浏览器将会被打开，然后执行相应的Test。效果如下图：<br><img src="/images/blog/karma-chrome.png" alt="Karma in Chrome"></p>
+<p>完整样例代码：<br><a href="https://github.com/blueshen/Karma-mocha-example" target="_blank" rel="external">https://github.com/blueshen/Karma-mocha-example</a></p>
+<p>##IntelliJ IDEA集成##<br>为了在项目中开发方便，那么在开发中集成到IDE中，会节省N多时间的。下面就先来说说于IDEA的集成。<br>1.安装NodeJS插件： Settings –&gt; IDE Settings –&gt; Plugins –&gt; Browse repositories –&gt; NodeJS  选中，然后右键Download and Install进行安装。重启后成功安装。<br>2.配置Karma Server: 从菜单Run –&gt; Edit Configurations… –&gt;点击 ‘+’新建一个Node.js类型的配置。出现以下的界面：<br><img src="/images/blog/karma-node-server.png" alt="karma-node-server"></p>
+<p>其中：<br>Name： 任意，本处为Karma node Server<br>Path to Node: node可执行全路径。$NODE_PATH/bin/node<br>Working Directory: 当前项目的跟路径<br>Path to Node App JS File: 此处为karma的可执行全路径。<br>Application Parameters: 要执行的命令，此处为start<br>Environment variables: 就是环境变量了。此处我定义了CHROME_BIN来指出CHROME浏览器路径。  </p>
+<p>3.配置Karma run<br>同Karma Server，只是修改Application Parameters为run<br><img src="/images/blog/karma-node-run.png" alt="karma-node-run"></p>
+<p>配置成功后，运行Karma node Server可以看到浏览器就可以正常启动了。console也正确的输出。如同在terminal里执行一般。需要注意的是，本地开发时，需要将<code>singleRun=false</code>,也就是说执行完测试之后不退出。只有在CI环境下才用true。   </p>
+<p>在浏览器启动之后，如果修改了源代码，Test能否自动执行呢？可以将<code>autoWatch=true</code>,这样当你修改代码后，保存后能自动执行，方便开发了。如果‘autoWatch=false’了，那么这时间就要执行Karma run了，用于在Karma Server上重新执行。   </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/karma/" rel="tag">#karma</a>
+          
+            <a href="/tags/testacular/" rel="tag">#testacular</a>
+          
+            <a href="/tags/mocha/" rel="tag">#mocha</a>
+          
+            <a href="/tags/idea/" rel="tag">#idea</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/03/22/jenkins-plugin-start/" rel="next" title="开始第一个Jenkins Plugin">
+                <i class="fa fa-chevron-left"></i> 开始第一个Jenkins Plugin
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/04/01/run-karma-in-jenkins-ci/" rel="prev" title="Karma与Jenkins-CI集成">
+                Karma与Jenkins-CI集成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2013/03/27/use-karma-to-run-mocha-test/';
+      var disqus_title = '使用Karma来驱动mocha测试';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

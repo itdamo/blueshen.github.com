@@ -1,0 +1,744 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="selenium,grid," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="###为什么要使用Selenium Grid ?###
+
+分布式运行大规模的Test
+能够通过一个中央点，很容易的运行不同OS上的不同browser
+最小化对Grid的维护时间，并能充分利用虚拟设备
+
+###Selenium Grid 部署与启动###Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium-Grid2 配置">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="###为什么要使用Selenium Grid ?###
+
+分布式运行大规模的Test
+能够通过一个中央点，很容易的运行不同OS上的不同browser
+最小化对Grid的维护时间，并能充分利用虚拟设备
+
+###Selenium Grid 部署与启动###Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta property="og:image" content="http://www.shenyanchao.cn/images/blog/selenium-grid-console.png">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Selenium-Grid2 配置">
+<meta name="twitter:description" content="###为什么要使用Selenium Grid ?###
+
+分布式运行大规模的Test
+能够通过一个中央点，很容易的运行不同OS上的不同browser
+最小化对Grid的维护时间，并能充分利用虚拟设备
+
+###Selenium Grid 部署与启动###Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta name="twitter:image" content="http://www.shenyanchao.cn/images/blog/selenium-grid-console.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Selenium-Grid2 配置 | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Selenium-Grid2 配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-01-10T19:37:00+08:00" content="2013-01-10">
+              2013-01-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/selenium/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/01/10/selenium-grid2-config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/01/10/selenium-grid2-config/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###为什么要使用Selenium Grid ?###</p>
+<ul>
+<li>分布式运行大规模的Test</li>
+<li>能够通过一个中央点，很容易的运行不同OS上的不同browser</li>
+<li>最小化对Grid的维护时间，并能充分利用虚拟设备</li>
+</ul>
+<p>###Selenium Grid 部署与启动###<br>Hub :总控节点，连接调用Node。<br>Node: 负责执行Tests,调用浏览器。<br><a id="more"></a><br>下面以selenium-server-standalone-2.27.0.jar版本为例：<br>使用这样3台机器：   </p>
+<ul>
+<li>10.81.14.170    </li>
+<li>10.81.14.180     </li>
+<li>10.81.14.190    </li>
+</ul>
+<p>启动Hub（10.81.14.180）:</p>
+<pre><code>java  -jar  selenium-server-standalone-2.27.0.jar -role hub 
+</code></pre><p>在浏览器内打开：<a href="http://10.81.14.180:4444/grid/console" target="_blank" rel="external">http://10.81.14.180:4444/grid/console</a>可以查看Hub状态。也就是说Grid默认启动端口是4444，如果想切换为其他端口，则加<code>-port</code>参数。比如要切换为8888：</p>
+<pre><code>java  -jar  selenium-server-standalone-2.27.0.jar -role hub  -port 8888
+</code></pre><p>启动Node（10.81.14.170）: </p>
+<pre><code>java -jar selenium-server-standalone-2.27.0.jar -role node -hub http://10.81.14.180:8888/grid/register
+</code></pre><p>同样的，也可以使用<code>-port</code>切换node端口，默认端口是5555.<br>此处的node节点，也可以作为一个单机的远程节点存在，并同时支持RC,WebDriver。浏览器输入<a href="http://10.81.14.180:8877/wd/hub" target="_blank" rel="external">http://10.81.14.180:8877/wd/hub</a>可以看到session信息。</p>
+<p>然后，同样的启动10.81.14.180、10.81.14.190上的Node节点。</p>
+<p>打开浏览器<a href="http://10.81.14.180:8888/grid/console" target="_blank" rel="external">http://10.81.14.180:8888/grid/console</a>,可以看到如下的界面：   </p>
+<p><img src="/images/blog/selenium-grid-console.png" alt="">    </p>
+<p>至此，Selenium Grid2已经配置成功了。</p>
+<p>###使用Grid运行Tests###<br>Selenium Grid2是向后兼容的，同时支持RC,WebDriver。<br>如果使用RC,即Selenium1，使用以下的方法：   </p>
+<pre><code>Selenium selenium = new DefaultSelenium(“10.81.14.180”, 8888, “*firefox”, “http://www.baidu.com”);
+</code></pre><p>使用WebDriver的话，使用以下的方法：   </p>
+<pre><code>DesiredCapabilities capability = DesiredCapabilities.firefox();
+WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd/hub&quot;), capability);
+</code></pre><p>可以看出所有的请求都发给了Hub,然后由Hub分配给匹配的节点来执行。<br>那么，Hub是如何来分配的呢？往下看   </p>
+<p>###Node配置###<br>默认，Node会启动11个浏览器实例:5 Firefox,5 Chrome, 1 Internet Explorer. 从Grid Console界面看出来，为什么每个机器上有22个实例呢？是这样的，Node为了同时支持RC与WebDriver两种协议，所以就是2＊11了。把鼠标放到各个浏览器图标上，就可以看出里面的配置区别了。<br>内容类似：   </p>
+<pre><code>{
+      &quot;browserName&quot;: &quot;*firefox&quot;,
+      &quot;maxInstances&quot;: 5,
+      &quot;seleniumProtocol&quot;: &quot;Selenium&quot;
+    }
+</code></pre><p>或者</p>
+<pre><code>{
+     &quot;browserName&quot;: &quot;firefox&quot;,
+     &quot;maxInstances&quot;: 5,
+     &quot;seleniumProtocol&quot;: &quot;WebDriver&quot;
+   }
+</code></pre><p>其中，seleniumProtocol就是定义的不同协议了。</p>
+<p>如何修改Driver配置呢？可以从启动参数里操作。   </p>
+<pre><code>-browser browserName=firefox,version=3.6,maxInstances=5,platform=LINUX
+</code></pre><p>那Node默认启动的配置是什么呢？<br>由于如果从启动参数里，配置这个多东西，很难写的。因此，官方很人性化的提供了JSON文件来配置。也就是说默认启动的配置如下：<br><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json</a>   </p>
+<p><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json</a>    </p>
+<p>如果想自定义配置，直接对json文件修改，启动时，指定配置文件就可以了。   </p>
+<pre><code>java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json 
+</code></pre><p>仅仅就这样就行了？从博文<a href="http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/">http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</a>知道，浏览器的启动是要制定一些driver位置的，否则Node不知道怎么启动浏览器实例。因此需要进行指定：  </p>
+<pre><code>java -jar selenium-server-standalone-2.27.0.jar -port 8877 -role node -hub http://10.81.14.180:8888/grid/register  -nodeConfig nodeconfig.json -Dwebdriver.chrome.driver=&quot;E:/selenium/chromedriver.exe&quot; -Dwebdriver.ie.driver=&quot;E:/selenium/IEDriverServer.exe&quot;
+</code></pre><p>参考文档：<br><a href="http://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/Grid2</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/selenium/" rel="tag">#selenium</a>
+          
+            <a href="/tags/grid/" rel="tag">#grid</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/01/10/mysql-monitor/" rel="next" title="MySql性能监控">
+                <i class="fa fa-chevron-left"></i> MySql性能监控
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/01/17/most-rated-20-software-in-ubuntu-softcenter/" rel="prev" title="Ubuntu软件中心最受欢迎的20个软件">
+                Ubuntu软件中心最受欢迎的20个软件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2013/01/10/selenium-grid2-config/';
+      var disqus_title = 'Selenium-Grid2 配置';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

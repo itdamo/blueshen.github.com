@@ -1,0 +1,806 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="maven,github,jar,sonatype," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
+下面介绍下如何做：   
+###准备工作
+1.添加source code management信息到pom.xml:
+&amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Github发布jar包到Maven Central">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2013/06/19/publishing-from-github-to-maven-central/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
+下面介绍下如何做：   
+###准备工作
+1.添加source code management信息到pom.xml:
+&amp;l">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Github发布jar包到Maven Central">
+<meta name="twitter:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
+下面介绍下如何做：   
+###准备工作
+1.添加source code management信息到pom.xml:
+&amp;l">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 从Github发布jar包到Maven Central | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从Github发布jar包到Maven Central
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-06-19T19:50:00+08:00" content="2013-06-19">
+              2013-06-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/06/19/publishing-from-github-to-maven-central/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/06/19/publishing-from-github-to-maven-central/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  </p>
+<p>下面介绍下如何做：   </p>
+<p>###准备工作</p>
+<p>1.添加source code management信息到pom.xml:</p>
+<pre><code>&lt;scm&gt;
+    &lt;connection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/connection&gt;
+    &lt;developerConnection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/developerConnection&gt;
+    &lt;url&gt;git@github.com:blueshen/ut-maven-plugin.git&lt;/url&gt;
+&lt;/scm&gt;
+</code></pre><p>2.创建GPG的密钥对并发布公钥。参看<a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven" target="_blank" rel="external">Sonatype documentation</a>的具体步骤.推荐使用Linux,Mac来发布。    </p>
+<blockquote>
+<p><code>gpg --gen-key</code> 创建key<br><code>gpg --list-keys</code> 查看所有的key<br><code>gpg --send-keys --keyserver pool.sks-keyservers.net yourkey</code>   发布你的key到服务器上</p>
+</blockquote>
+<p>3.确保你的工程POM符合<a href="https://docs.sonatype.org/display/Repository/Central+Sync+Requirements" target="_blank" rel="external">要求</a><br>4.创建一个<a href="https://issues.sonatype.org/" target="_blank" rel="external">Sonatype JIRA</a>账户，并发布一个ticket来让Nexus repository建立。用户名，密码后面要用的。这中间牵涉到人工操作，会花费一些时间。<br><a id="more"></a></p>
+<p>###使用Maven来发布到Sonatype Nexus repository</p>
+<p>####pom.xml配置有2种方法：   </p>
+<p>1.添加maven-release-plugin到pom.xml:</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2.2&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;arguments&gt;-Dgpg.passphrase=${gpg.passphrase}&lt;/arguments&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre><p>添加Sonatype repositories:</p>
+<pre><code>&lt;distributionManagement&gt;
+    &lt;snapshotRepository&gt;
+        &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
+        &lt;name&gt;Sonatype Nexus snapshot repository&lt;/name&gt;
+        &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;
+    &lt;/snapshotRepository&gt;
+    &lt;repository&gt;
+        &lt;id&gt;sonatype-nexus-staging&lt;/id&gt;
+        &lt;name&gt;Sonatype Nexus release repository&lt;/name&gt;
+        &lt;url&gt;https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/distributionManagement&gt;
+</code></pre><p>设置artifact signing:</p>
+<pre><code>&lt;profiles&gt;
+    &lt;profile&gt;
+        &lt;id&gt;release-sign-artifacts&lt;/id&gt;
+        &lt;activation&gt;
+            &lt;property&gt;
+                &lt;name&gt;performRelease&lt;/name&gt;
+                &lt;value&gt;true&lt;/value&gt;
+            &lt;/property&gt;
+        &lt;/activation&gt;
+        &lt;build&gt;
+            &lt;plugins&gt;
+                &lt;plugin&gt;
+                    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                    &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;
+                    &lt;version&gt;1.4&lt;/version&gt;
+                    &lt;configuration&gt;
+                        &lt;passphrase&gt;${gpg.passphrase}&lt;/passphrase&gt;
+                    &lt;/configuration&gt;
+                    &lt;executions&gt;
+                        &lt;execution&gt;
+                            &lt;id&gt;sign-artifacts&lt;/id&gt;
+                            &lt;phase&gt;verify&lt;/phase&gt;
+                            &lt;goals&gt;
+                                &lt;goal&gt;sign&lt;/goal&gt;
+                            &lt;/goals&gt;
+                        &lt;/execution&gt;
+                    &lt;/executions&gt;
+                &lt;/plugin&gt;
+            &lt;/plugins&gt;
+        &lt;/build&gt;
+    &lt;/profile&gt;
+&lt;/profiles&gt;
+</code></pre><p>2.直接添加sonatype parent到POM.XML（推荐）</p>
+<pre><code>&lt;parent&gt;
+    &lt;groupId&gt;org.sonatype.oss&lt;/groupId&gt;
+    &lt;artifactId&gt;oss-parent&lt;/artifactId&gt;
+    &lt;version&gt;7&lt;/version&gt;
+&lt;/parent&gt;
+</code></pre><p>####maven settings.xml配置<br>编辑或者创建~/.m2/settings.xml并包含验证信息:</p>
+<pre><code>&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
+            &lt;username&gt;myusername&lt;/username&gt;
+            &lt;password&gt;mypassword&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;id&gt;sonatype-nexus-staging&lt;/id&gt;
+            &lt;username&gt;myusername&lt;/username&gt;
+            &lt;password&gt;mypassword&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;sign&lt;/id&gt;
+            &lt;activation&gt;
+                &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+            &lt;/activation&gt;
+            &lt;properties&gt;
+                &lt;gpg.passphrase&gt;mypassphrase&lt;/gpg.passphrase&gt;
+            &lt;/properties&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+&lt;/settings&gt;
+</code></pre><p>Maven有一个<a href="http://maven.apache.org/guides/mini/guide-encryption.html" target="_blank" rel="external">避免使用明文的方法</a>,但我还没试用过。    </p>
+<p>###准备一个release版本    </p>
+<p>为了准备一个release版本, 执行:    </p>
+<pre><code>$ mvn release:clean    
+$ mvn release:prepare
+</code></pre><p><a href="http://maven.apache.org/plugins/maven-release-plugin/examples/prepare-release.html" target="_blank" rel="external">参考这个</a>.这里具体做了以下工作：如果你的工程的版本是0.1-SNAPSHOT. 准备一个发布版本会去掉-SNAPSHOT后缀，然后提交到github，并将这时的代码打一个tag。同时，更新本地项目到0.2-SNAPSHOT版本.</p>
+<p>如果你要撤销release,可以使用<code>git reset --hard HEAD~2</code>进行<a href="http://stackoverflow.com/a/6866485/150884" target="_blank" rel="external">回退</a>,使用<code>git tag -d ut-maven-plugin-0.1</code><a href="http://nathanhoad.net/how-to-delete-a-remote-git-tag" target="_blank" rel="external">删除Tag</a>,然后使用<code>git push origin :refs/tags/ut-maven-plugin-0.1</code>提交.</p>
+<p>###发布到Sonatype</p>
+<p>1.如果一切OK，你就可以使用<a href="http://maven.apache.org/plugins/maven-release-plugin/examples/perform-release.html" target="_blank" rel="external">mvn release:perform</a>来发布工程到Sonatype。<br>2.登录到Sonatype Nexus，在Staging Repositories找到你的artifacts。<br>3.点击close,关闭后，点击Release发布artifacts。Sonatype有一些<a href="https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt" target="_blank" rel="external">很好的指引</a>. 你可以使用<a href="http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html" target="_blank" rel="external">Maven repository management plugin</a>来自动化这些步骤,尽管我自己还没有试过。<br>4.在你的JIRA ticket下添加一个评论，说你已经推了release版本。下次Sonatype同步的时候，就会将你的artifacts放到Maven Central了。以后再发布新版本的时候，就不用添加评论了，会自动同步的。</p>
+<p>参考文档<a href="http://datumedge.blogspot.jp/2012/05/publishing-from-github-to-maven-central.html" target="_blank" rel="external">http://datumedge.blogspot.jp/2012/05/publishing-from-github-to-maven-central.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/maven/" rel="tag">#maven</a>
+          
+            <a href="/tags/github/" rel="tag">#github</a>
+          
+            <a href="/tags/jar/" rel="tag">#jar</a>
+          
+            <a href="/tags/sonatype/" rel="tag">#sonatype</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/" rel="next" title="使用Eclipse AST来解析Java">
+                <i class="fa fa-chevron-left"></i> 使用Eclipse AST来解析Java
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/06/21/mockito-in-brief/" rel="prev" title="Mockito简介">
+                Mockito简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2013/06/19/publishing-from-github-to-maven-central/';
+      var disqus_title = '从Github发布jar包到Maven Central';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2013/06/19/publishing-from-github-to-maven-central/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

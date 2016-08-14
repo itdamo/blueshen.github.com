@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jenkins,hudson,ci,plugins," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Blues小站" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+xxx.hpi
++- META-INF
+|    +-MANIFEST.MF
++- WEB-INF
+|    +- classes
+|        +- index.jelly
+|        +- XXXX.class
+|    +- lib
++-    (static resour">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开始第一个Jenkins Plugin">
+<meta property="og:url" content="http://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/index.html">
+<meta property="og:site_name" content="Blues小站">
+<meta property="og:description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+xxx.hpi
++- META-INF
+|    +-MANIFEST.MF
++- WEB-INF
+|    +- classes
+|        +- index.jelly
+|        +- XXXX.class
+|    +- lib
++-    (static resour">
+<meta property="og:updated_time" content="2016-08-14T13:19:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开始第一个Jenkins Plugin">
+<meta name="twitter:description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+xxx.hpi
++- META-INF
+|    +-MANIFEST.MF
++- WEB-INF
+|    +- classes
+|        +- index.jelly
+|        +- XXXX.class
+|    +- lib
++-    (static resour">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 开始第一个Jenkins Plugin | Blues小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Blues小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">搜索引擎与NLP</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                开始第一个Jenkins Plugin
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-03-22T16:48:00+08:00" content="2013-03-22">
+              2013-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jenkins/" itemprop="url" rel="index">
+                    <span itemprop="name">jenkins</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/03/22/jenkins-plugin-start/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/03/22/jenkins-plugin-start/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##一，Jenkins插件的结构<br>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   </p>
+<pre><code>xxx.hpi
++- META-INF
+|    +-MANIFEST.MF
++- WEB-INF
+|    +- classes
+|        +- index.jelly
+|        +- XXXX.class
+|    +- lib
++-    (static resources)
+</code></pre><p>说明：   </p>
+<ul>
+<li>1.插件的后缀为”.hpi”,文件名（xxx部分）是插件的简写名字，用来区分插件。</li>
+<li>2.如上图结构所示，它与war包类似，只是缺少web.xml。</li>
+<li>3.MANIFEST.MF包含一些入口的配置信息。其中有继承自Jenkins插件的类，用作实例化的入口。类的全名，用作我们去区分其他插件。</li>
+<li>4.WEB-INF/classes 用来包含插件需要的.class，jelly页面等内容。它们可以封装成jar包放到WEB-INF/lib下面</li>
+<li>5.WEB-INF/lib 包含插件中需要的.jar文件</li>
+<li><p>6.插件需要的静态文件如图片，HTML，css样式文件，JS文件等可以放到文件的根目录下面。</p>
+<a id="more"></a>
+<p>##二，Jenkins-Plugins的开发<br>Jenkins插件的开发，使用maven来进行项目的管理和构建。如下罗列了其中需要的步骤。<br>###2.1 Jenkins插件开发时的环境配置<br>Jenkins插件开发，需要JDK和Maven环境。下面以windows下的环境配置为例说明。<br>####2.1.1 JDK配置<br>JDK的版本要求在1.6以上，需要在配置文件中配置JDK的变量：   </p>
+<p>  JAVA_HOME = C:\Program Files (x86)\Java\jdk1.6.0_38<br>  CLASSPATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>  PATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;   </p>
+</li>
+</ul>
+<p>####2.1.2 Maven的配置   </p>
+<pre><code>M2_HOME =  D:\maven
+M2 = %M2_HOME%\bin
+MAVEN_OPTS  = -Xms256m -Xmx512m
+
+CLASSPATH = ...;%M2%   
+PATH = ...;%M2%   
+</code></pre><p>可以通过<code>mvn --version</code>,查看maven是否配置成功。</p>
+<p>####2.1.3 Maven开发环境的配置<br>在~/.m2/settings.xml中，或者/maven/conf/settings.xml中，配置如下的Jenkins库依赖：   </p>
+<pre><code>&lt;settings&gt;
+  &lt;pluginGroups&gt;
+    &lt;pluginGroup&gt;org.jenkins-ci.tools&lt;/pluginGroup&gt;
+  &lt;/pluginGroups&gt;
+
+  &lt;profiles&gt;
+    &lt;!-- Give access to Jenkins plugins --&gt;
+    &lt;profile&gt;
+      &lt;id&gt;jenkins&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;!-- change this to false, if you don&apos;t like to have it on per default --&gt;
+      &lt;/activation&gt;
+      &lt;repositories&gt;
+        &lt;repository&gt;
+          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
+          &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
+        &lt;/repository&gt;
+      &lt;/repositories&gt;
+      &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
+          &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
+        &lt;/pluginRepository&gt;
+      &lt;/pluginRepositories&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+  &lt;mirrors&gt;
+    &lt;mirror&gt;
+      &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
+      &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
+      &lt;mirrorOf&gt;m.g.o-public&lt;/mirrorOf&gt;
+    &lt;/mirror&gt;
+  &lt;/mirrors&gt;
+&lt;/settings&gt;
+</code></pre><p>###2.2 生成插件的框架程序<br>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：   </p>
+<pre><code>mvn hpi:create
+
+Enter the groupId of your plugin: com.baidu.ite.hudson
+Enter the artifactId of your plugin: samplePlugin
+</code></pre><p>这样会建立一个工程，名字为<code>samplePlugin</code>,包路径<code>com.baidu.ite.hudson</code>。<br>或者使用如下的命令：   </p>
+<pre><code>mvn -U org.jenkins-ci.tools:maven-hpi-plugin:create -DgroupId={your.gound.id} -DartifactId={your.plugin.id}
+</code></pre><p>说明：<br>1，-u代表jenkins需要更新自己所有的插件内容。<br>2，jenkins中提供的archetype-resources，文件的名字为<code>HelloWorldBuilder.java</code>。我们需要手工修改成自己需要的内容。</p>
+<p>####2.2.1 代码结构<br>使用 hpi:create生成的文件结构如下：   </p>
+<pre><code>+- src 
+|    +- main 
+|    |    +- java
+|    |    |    +- groupId.HelloWorldBuilder.java 
+|    |    +- resources 
+|    |    |    +-  groupId.HelloWorldBuilder
+   |    |    |    |    +- config.jelly
+|    |    |    |    +- help-name.html 
+|    |    |    +- index.jelly 
+</code></pre><p>Jenkins定义了一些扩展点（Extension Points）,这些扩展点是接口或者抽象类。你可以根据自己的需要来修改文件的名字和扩展点。我们使用命令生成的框架程序中，HelloWorldBuilder继承了Builder。 </p>
+<p>####2.2.2 代码的解释<br>    数据的绑定：   </p>
+<pre><code>&lt;!--config.jelly--&gt;
+&lt;f:entry title=&quot;Name&quot; field=&quot;name&quot;&gt;
+    &lt;f:textbox /&gt;
+  &lt;/f:entry&gt;
+
+//--HelloWorldBuilder.java--
+@DataBoundConstructor
+public HelloWorldBuilder(String name) {
+    this.name = name;
+}
+</code></pre><p>首先，在config.jelly中包含需要传入的参数配置信息的文本框，field为name，这样可以在Jenkins中进行配置，然后通过DataBoundConstructor的方式，传到类中。</p>
+<pre><code>Jenkins插件任务的执行
+
+@Override
+public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
+    // This is where you &apos;build&apos; the project.
+
+    // This also shows how you can consult the global configuration of the builder
+        listener.getLogger().println(&quot;Hello, &quot;+name+&quot;!&quot;);
+    return true;
+}
+</code></pre><p>根据注释可以了解：该处是你在Job进行构建时进行操作的地方，并且这里可以根据你在配置中的设置执行你需要的工作。通常，根据需要修改perform函数即可。</p>
+<pre><code>传入数据的检查
+
+ public FormValidation doCheckName(@QueryParameter String value)
+                throws IOException, ServletException {
+            if (value.length() == 0)
+                return FormValidation.error(&quot;Please set a name&quot;);
+            if (value.length() &lt; 4)
+                return FormValidation.warning(&quot;Isn&apos;t the name too short?&quot;);
+            return FormValidation.ok();
+        }
+</code></pre><p>在该函数中，实现在配置页面中填写内容时，进行校验的过程。如函数所述，当填入内容为空时，提示：Please set a name。你可以根据你的需要进行逻辑的控制。</p>
+<p>###2.3 转换为eclipse工程<br>为了便于在编辑器中进行修改，我们需要将生成的maven代码转化为eclipse工程，使用的命令如下：   </p>
+<pre><code>mvn eclipse:eclipse
+或者
+mvn -DdownloadSources=true -DdownloadJavadocs=true -DoutputDirectory=target/eclipse-classes eclipse:eclipse
+</code></pre><p>第二条较长的命令中，参数是可选的。</p>
+<p>###2.4 生成hpi文件<br>使用如下命令可以生成<code>./target/pluginname.hpi</code>:   </p>
+<pre><code>mvn install
+或者
+mvn package 
+</code></pre><p>其中mvn install 生成hpi文件，并放置到本地maven仓库中，mvn package只进行打包操作。</p>
+<p>###2.5 使用.hpl进行调试<br>maven中使用<code>.hpl（hudson plugin link）</code>格式来进行插件的调试。hpl文件中只包含一个链接，链接到类似<code>META-INF/MANIFEST.MF</code>的说明文件<code>../path/to/your/plugin/workspace/manifest-debug.mf</code>。该文件其中额外定义了一些属性来指定文件目录位置,这样资源的修改可以立即生效（需要配置stapler.jelly.noCache=true），不需要重新打包安装。<br>在maven中可以使用命令：    </p>
+<pre><code>mvn hpi:hpl -DhudsonHome=/...
+</code></pre><p>###2.6 使用.hpi进行测试<br>在调试通过后，可以使用.hpi文件来启动jenkins,查看结果，命令如下：   </p>
+<pre><code>mvn hpi:run -DhudsonHome=/...
+</code></pre><p>说明：-DhudsonHome可以不选，默认Jenkins安装到工程的./target目录中。</p>
+<hr>
+<p>致谢:lizejun</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jenkins/" rel="tag">#jenkins</a>
+          
+            <a href="/tags/hudson/" rel="tag">#hudson</a>
+          
+            <a href="/tags/ci/" rel="tag">#ci</a>
+          
+            <a href="/tags/plugins/" rel="tag">#plugins</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2013/03/22/jstestdriver-in-brief/" rel="next" title="JsTestDriver 简介">
+                <i class="fa fa-chevron-left"></i> JsTestDriver 简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2013/03/27/use-karma-to-run-mocha-test/" rel="prev" title="使用Karma来驱动mocha测试">
+                使用Karma来驱动mocha测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shenyanchao" />
+          <p class="site-author-name" itemprop="name">shenyanchao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2012 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shenyanchao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'blueshen';
+      var disqus_identifier = 'blog/2013/03/22/jenkins-plugin-start/';
+      var disqus_title = '开始第一个Jenkins Plugin';
+      var disqus_url = 'http://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
