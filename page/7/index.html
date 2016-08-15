@@ -117,6 +117,15 @@
   
 
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123-12', 'auto');
+  ga('send', 'pageview');
+</script>
+
 
   <script type="text/javascript">
     var _hmt = _hmt || [];
@@ -156,7 +165,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">搜索引擎与NLP</p>
+  <p class="site-subtitle">搜索引擎与自然语言处理</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -1304,6 +1313,134 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2012/11/02/state-in-java/" itemprop="url">
+                  设计模式：状态（state） in java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-11-02T20:11:00+08:00" content="2012-11-02">
+              2012-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/02/state-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/state-in-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>定义：</strong>当一个对象内在状态改变时允许其改变行为，这个对象看起来想改变了其类。<br>状态模式的核心是封装，状态的变更引起了行为的变更，从外部看起来就好像这个对象对应的类发生了改变一样。    </p>
+<p>状态模式有3个角色：    </p>
+<ul>
+<li>State抽象状态角色<br>接口或抽象类，负责对象状态定义，并且封装环境角色以实现状态转换。    </li>
+<li>ConcreteState具体状态角色<br>每一个具体状态必须完成2个职责：本状态的行为管理以及趋向状态处理。简单说，就是本状态下要做的事情，以及本状态如何过渡到其他状态。       </li>
+<li>Context环境角色<br>定义客户端需要的接口，并且负责具体状态的切换。    </li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2012/11/02/state-in-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2012/11/02/strategy-in-java/" itemprop="url">
                   设计模式：策略（strategy） in java
                 </a>
@@ -1383,134 +1520,6 @@
 <p>下面借用刘备江东娶亲，诸葛亮给赵云3个妙计的故事来说明这个问题。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2012/11/02/strategy-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2012/11/02/state-in-java/" itemprop="url">
-                  设计模式：状态（state） in java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:11:00+08:00" content="2012-11-02">
-              2012-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/state-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/state-in-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>定义：</strong>当一个对象内在状态改变时允许其改变行为，这个对象看起来想改变了其类。<br>状态模式的核心是封装，状态的变更引起了行为的变更，从外部看起来就好像这个对象对应的类发生了改变一样。    </p>
-<p>状态模式有3个角色：    </p>
-<ul>
-<li>State抽象状态角色<br>接口或抽象类，负责对象状态定义，并且封装环境角色以实现状态转换。    </li>
-<li>ConcreteState具体状态角色<br>每一个具体状态必须完成2个职责：本状态的行为管理以及趋向状态处理。简单说，就是本状态下要做的事情，以及本状态如何过渡到其他状态。       </li>
-<li>Context环境角色<br>定义客户端需要的接口，并且负责具体状态的切换。    </li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2012/11/02/state-in-java/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
