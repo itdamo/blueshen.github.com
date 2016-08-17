@@ -2228,9 +2228,9 @@ private static String getEncoding(String text) {
     
       <category term="编码" scheme="http://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
-      <category term="jenkins" scheme="http://www.shenyanchao.cn/tags/jenkins/"/>
-    
       <category term="dom4j" scheme="http://www.shenyanchao.cn/tags/dom4j/"/>
+    
+      <category term="jenkins" scheme="http://www.shenyanchao.cn/tags/jenkins/"/>
     
       <category term="java" scheme="http://www.shenyanchao.cn/tags/java/"/>
     
