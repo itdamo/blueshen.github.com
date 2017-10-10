@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Blues小站</title>
+  <title>申艳超-个人站</title>
   <subtitle>搜索引擎、自然语言处理、ElasticSearch、Solr</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -2228,9 +2228,9 @@ private static String getEncoding(String text) {
     
       <category term="编码" scheme="http://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
-      <category term="dom4j" scheme="http://www.shenyanchao.cn/tags/dom4j/"/>
-    
       <category term="jenkins" scheme="http://www.shenyanchao.cn/tags/jenkins/"/>
+    
+      <category term="dom4j" scheme="http://www.shenyanchao.cn/tags/dom4j/"/>
     
       <category term="java" scheme="http://www.shenyanchao.cn/tags/java/"/>
     
