@@ -282,6 +282,275 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/" itemprop="url">
+                  微服务下的API设计原则
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-08-23T17:05:00+08:00" content="2018-08-23">
+              2018-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/encode/" itemprop="url" rel="index">
+                    <span itemprop="name">encode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2018/08/23/the-principle-of-api-design-in-mircoservice/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/">Github API</a></p>
+<h2 id="1-为了安全，请使用HTTPS"><a href="#1-为了安全，请使用HTTPS" class="headerlink" title="1. 为了安全，请使用HTTPS"></a>1. 为了安全，请使用HTTPS</h2><p>与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。</p>
+<h2 id="2-API-地址和版本"><a href="#2-API-地址和版本" class="headerlink" title="2. API 地址和版本"></a>2. API 地址和版本</h2><p>在 <code>url</code> 中指定 API 的版本是个很好地做法。<br>如果 API 变化比较大，可以把API设计为子域名，比如 <code>https://api.ke.com/v3</code>；<br>也可以简单地把版本放在路径中，比如 <code>https://ke.com/api/v1</code>。<br><strong>不建议放入Header</strong>，不直观。</p>
+<h2 id="3-schema请使用JSON"><a href="#3-schema请使用JSON" class="headerlink" title="3. schema请使用JSON"></a>3. schema请使用JSON</h2><p>对于响应返回的格式，JSON 因为它的可读性、紧凑性以及多种语言支持等优点，成为了 HTTP API 最常用的返回格式。因此，最好采用<strong>JSON</strong>作为返回内容的格式。</p>
+<p><strong>不推荐其他格式</strong>，如果必须使用，比如 <code>xml</code>，应该在请求头部 <code>Accept</code> 中指定。<br>对于不支持的格式，服务端需要返回正确的 <code>status code</code>，并给出详细的说明。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2018/07/23/spring-cache-redis-annotation/" itemprop="url">
+                  Spring Redis 注解式Cache那些事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-07-23T17:05:00+08:00" content="2018-07-23">
+              2018-07-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2018/07/23/spring-cache-redis-annotation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2018/07/23/spring-cache-redis-annotation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><blockquote>
+<p>spring-data-redis使得Spring项目可以快速简单的通过RedisTemplate来操作Redis。而spring-boot-starter-data-redis更是让redis集成更加的方便。</p>
+</blockquote>
+<h3 id="SpringBoot如何与Redis集成，作为cache"><a href="#SpringBoot如何与Redis集成，作为cache" class="headerlink" title="SpringBoot如何与Redis集成，作为cache"></a>SpringBoot如何与Redis集成，作为cache</h3><p>application.xml里如下配置：</p>
+<pre><code>spring:
+     redis:
+       host: 127.0.0.1
+       port: 6379
+       database: 0
+       timeout: 1000
+       pool:
+             max-idle: 200
+             min-idle: 0
+             max-active: 200
+             max-wait: 1000
+</code></pre><p>spring boot可以自动组装相关配置，注意其中使用到了jedis pool，用于提升性能，非必须。<br>通过以下的annotation加入方法名上，可以无侵入的使用cache。</p>
+<ul>
+<li>@Cacheable   缓存</li>
+<li>@CachePut    设置缓存</li>
+<li>@CacheEvict  失效或更新缓存</li>
+<li><p>@Caching   组合操作</p>
+<p>以上annotation不做详细展开。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2018/07/23/spring-cache-redis-annotation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2017/10/10/about-interface-define/" itemprop="url">
                   关于接口定义的一些想法
                 </a>
@@ -1828,272 +2097,6 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/10/22/tie-breaker-in-solr/" itemprop="url">
-                  solr中的tie breaker
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-10-22T17:14:00+08:00" content="2014-10-22">
-              2014-10-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/solr/" itemprop="url" rel="index">
-                    <span itemprop="name">solr</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2014/10/22/tie-breaker-in-solr/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/10/22/tie-breaker-in-solr/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>solr 查询参数中有tie这样的一个参数，下面是它的官方解释：</p>
-<p><strong>The tie (Tie Breaker) Parameter</strong></p>
-<p>The tie parameter specifies a float value (which should be something much less than 1) to use as tiebreaker in DisMax queries.</p>
-<p>When a term from the user’s input is tested against multiple fields, more than one field may match. If so, each field will generate a different score based on how common that word is in that field (for each document relative to all other documents). The tie parameter lets you control how much the final score of the query will be influenced by the scores of the lower scoring fields compared to the highest scoring field.</p>
-<p>A value of “0.0” makes the query a pure “disjunction max query”: that is, only the maximum scoring subquery contributes to the final score. A value of “1.0” makes the query a pure “disjunction sum query” where it doesn’t matter what the maximum scoring sub query is, because the final score will be the sum of the subquery scores. Typically a low value, such as 0.1, is useful.</p>
-<p>读起来比较令人费解。</p>
-<p>简单解释就是：</p>
-<p>这个tie参数通常是一个小于1的浮点数，用于defType=disMax的solr查询。当查询命中多个field的时候，最终的score获得多少将由这个tie参数来进行调节。比如命中了field1，field2这2个field。</p>
-<p>如果field1.score= 10，field2.score=3。那么 score = 10 + tie * 3.</p>
-<p>也就是说，如果tie=1的话，最终的score就相当于多个字段得分总和;如果tie=0,那么最终的score就相当于是命中的field的最高分。</p>
-<p>通常情况下呢，官方推荐tie=0.1。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/08/27/java-new-feature/" itemprop="url">
-                  Java新特性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-08-27T14:43:00+08:00" content="2014-08-27">
-              2014-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2014/08/27/java-new-feature/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2014/08/27/java-new-feature/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>##Java7新特性</p>
-<p>###Java7语法特性<br>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
-<p>####1. switch可以消化String</p>
-<p>比如：</p>
-<pre><code>public static void switchString(String s){
-    switch (s){
-    case &quot;db&quot;: ...
-    case &quot;wls&quot;: ...
-    case &quot;ibm&quot;: ...
-    case &quot;soa&quot;: ...
-    case &quot;fa&quot;: ...
-    default: ...
-    }
-}
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2014/08/27/java-new-feature/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2139,7 +2142,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2156,7 +2159,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-count">196</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2211,7 +2214,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
         <div class="copyright" >
   
   &copy;  2012 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

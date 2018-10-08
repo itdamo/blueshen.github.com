@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shenyanchao.cn/"/>
-  <updated>2017-10-10T12:39:52.622Z</updated>
+  <updated>2018-10-08T06:07:39.959Z</updated>
   <id>http://www.shenyanchao.cn/</id>
   
   <author>
@@ -14,6 +14,921 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微服务下的API设计原则</title>
+    <link href="http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
+    <id>http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</id>
+    <published>2018-08-23T09:05:00.000Z</published>
+    <updated>2018-10-08T06:07:39.959Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/" target="_blank" rel="external">Github API</a></p>
+<h2 id="1-为了安全，请使用HTTPS"><a href="#1-为了安全，请使用HTTPS" class="headerlink" title="1. 为了安全，请使用HTTPS"></a>1. 为了安全，请使用HTTPS</h2><p>与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。</p>
+<h2 id="2-API-地址和版本"><a href="#2-API-地址和版本" class="headerlink" title="2. API 地址和版本"></a>2. API 地址和版本</h2><p>在 <code>url</code> 中指定 API 的版本是个很好地做法。<br>如果 API 变化比较大，可以把API设计为子域名，比如 <code>https://api.ke.com/v3</code>；<br>也可以简单地把版本放在路径中，比如 <code>https://ke.com/api/v1</code>。<br><strong>不建议放入Header</strong>，不直观。</p>
+<h2 id="3-schema请使用JSON"><a href="#3-schema请使用JSON" class="headerlink" title="3. schema请使用JSON"></a>3. schema请使用JSON</h2><p>对于响应返回的格式，JSON 因为它的可读性、紧凑性以及多种语言支持等优点，成为了 HTTP API 最常用的返回格式。因此，最好采用<strong>JSON</strong>作为返回内容的格式。</p>
+<p><strong>不推荐其他格式</strong>，如果必须使用，比如 <code>xml</code>，应该在请求头部 <code>Accept</code> 中指定。<br>对于不支持的格式，服务端需要返回正确的 <code>status code</code>，并给出详细的说明。</p>
+<a id="more"></a>
+<h2 id="4-以资源为中心的URL设计"><a href="#4-以资源为中心的URL设计" class="headerlink" title="4. 以资源为中心的URL设计"></a>4. 以资源为中心的URL设计</h2><p>资源是 <code>Restful API</code> 的核心元素，所有的操作都是针对特定资源进行的。而资源就是 <code>URL</code>（Uniform Resoure Locator）表示的，所以简洁、清晰、结构化的 URL 设计是至关重要的。Github 可以说是这方面的典范，下面我们就拿 <code>repository</code> 来说明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/users/:username/repos</div><div class="line">/users/:org/repos</div><div class="line">/repos/:owner/:repo</div><div class="line">/repos/:owner/:repo/tags</div><div class="line">/repos/:owner/:repo/branches/:branch</div></pre></td></tr></table></figure>
+<p>我们可以看到几个特性：</p>
+<ul>
+<li>资源分为单个文档和集合，尽量使用复数来表示资源，单个资源通过添加 id 或者 name 等来表示</li>
+<li>一个资源可以有多个不同的 URL</li>
+<li>资源可以嵌套，通过类似目录路径的方式来表示，以体现它们之间的关系</li>
+</ul>
+<p><strong>NOTE</strong>: 根据RFC3986定义，URL是大小写敏感的。<strong>建议全部使用小写字母</strong>。</p>
+<h2 id="5-使用正确的HTTP-Method"><a href="#5-使用正确的HTTP-Method" class="headerlink" title="5. 使用正确的HTTP Method"></a>5. 使用正确的HTTP Method</h2><p>有了资源的 URL 设计，所有针对资源的操作都是使用 HTTP 方法指定的。比较常用的方法有：</p>
+<table>
+<thead>
+<tr>
+<th>METHOD</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HEAD</td>
+<td>只获取某个资源的头部信息。比如只想了解某个文件的大小，某个资源的修改日期等</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>获取资源</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>创建资源</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>更新资源的部分属性。因为 PATCH 比较新，而且规范比较复杂，所以真正实现的比较少，一般都是用 POST 替代</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>替换资源，客户端需要提供新建资源的所有属性。如果新内容为空，要设置 <code>Content-Length</code> 为 0，以区别错误信息</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除资源</td>
+</tr>
+</tbody>
+</table>
+<p>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">GET /repos/:owner/:repo/issues</div><div class="line">GET /repos/:owner/:repo/issues/:number</div><div class="line">POST /repos/:owner/:repo/issues</div><div class="line">PATCH /repos/:owner/:repo/issues/:number</div><div class="line">DELETE /repos/:owner/:repo</div></pre></td></tr></table></figure>
+<p>建议：依据公司的实际情况，不可能所有的服务都能符合RESTFUL标准。请重点学习使用<code>GET,POST,DELETE</code></p>
+<h3 id="不符合-CRUD-的情况"><a href="#不符合-CRUD-的情况" class="headerlink" title="不符合 CRUD 的情况"></a>不符合 CRUD 的情况</h3><p>在实际资源操作中，总会有一些不符合 <code>CRUD</code>（Create-Read-Update-Delete） 的情况，一般有几种处理方法。</p>
+<h4 id="使用-POST"><a href="#使用-POST" class="headerlink" title="使用 POST"></a>使用 POST</h4><p>为需要的动作增加一个 endpoint，使用 POST 来执行动作，比如 <code>POST /resend</code> 重新发送邮件。</p>
+<h4 id="增加控制参数"><a href="#增加控制参数" class="headerlink" title="增加控制参数"></a>增加控制参数</h4><p>添加动作相关的参数，通过修改参数来控制动作。比如一个博客网站，会有把写好的文章“发布”的功能，可以用上面的 <code>POST /articles/{:id}/publish</code> 方法，也可以在文章中增加 <code>published:boolean</code> 字段，发布的时候就是更新该字段 <code>PUT /articles/{:id}?published=true</code></p>
+<h4 id="把动作转换成资源"><a href="#把动作转换成资源" class="headerlink" title="把动作转换成资源"></a>把动作转换成资源</h4><p>把动作转换成可以执行 <code>CRUD</code> 操作的资源， github 就是用了这种方法。</p>
+<p>比如“喜欢”一个 gist，就增加一个 <code>/gists/:id/star</code> 子资源，然后对其进行操作：“喜欢”使用 <code>PUT /gists/:id/star</code>，“取消喜欢”使用 <code>DELETE /gists/:id/star</code>。</p>
+<p>另外一个例子是 <code>Fork</code>，这也是一个动作，但是在 gist 下面增加 <code>forks</code>资源，就能把动作变成 <code>CRUD</code> 兼容的：<code>POST /gists/:id/forks</code> 可以执行用户 fork 的动作。</p>
+<h2 id="6-Query-让查询更自由"><a href="#6-Query-让查询更自由" class="headerlink" title="6. Query 让查询更自由"></a>6. Query 让查询更自由</h2><p>比如查询某个 repo 下面 issues 的时候，可以通过以下参数来控制返回哪些结果：</p>
+<ul>
+<li>state：issue 的状态，可以是 <code>open</code>，<code>closed</code>，<code>all</code></li>
+<li>since：在指定时间点之后更新过的才会返回</li>
+<li>assignee：被 assign 给某个 user 的 issues</li>
+<li>sort：选择排序的值，可以是 <code>created</code>、<code>updated</code>、<code>comments</code></li>
+<li>direction：排序的方向，升序（asc）还是降序（desc）</li>
+<li>……</li>
+</ul>
+<h2 id="7-分页-Pagination"><a href="#7-分页-Pagination" class="headerlink" title="7. 分页 Pagination"></a>7. 分页 Pagination</h2><p>当返回某个资源的列表时，如果要返回的数目特别多，比如 github 的 <code>/users</code>，就需要使用分页分批次按照需要来返回特定数量的结果。</p>
+<p>分页的实现会用到上面提到的 url query，通过两个参数来控制要返回的资源结果：</p>
+<ul>
+<li>size：每页返回多少资源，如果没提供会使用预设的默认值；这个数量也是有一个最大值，不然用户把它设置成一个非常大的值（比如 <code>99999999</code>）也失去了设计的初衷</li>
+<li>page：要获取哪一页的资源，默认是第一页</li>
+</ul>
+<p>返回的资源列表为 <code>[(page-1)*size, page*size)</code>。</p>
+<h2 id="8-选择合适的HTTP状态码"><a href="#8-选择合适的HTTP状态码" class="headerlink" title="8. 选择合适的HTTP状态码"></a>8. 选择合适的HTTP状态码</h2><p>HTTP 应答中，需要带一个很重要的字段：<code>status code</code>。它说明了请求的大致情况，是否正常完成、需要进一步处理、出现了什么错误，对于客户端非常重要。状态码都是三位的整数，大概分成了几个区间：</p>
+<ul>
+<li><code>2XX</code>：请求正常处理并返回</li>
+<li><code>3XX</code>：重定向，请求的资源位置发生变化</li>
+<li><code>4XX</code>：客户端发送的请求有错误</li>
+<li><code>5XX</code>：服务器端错误</li>
+</ul>
+<p>在 HTTP API 设计中，经常用到的状态码以及它们的意义如下表：</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>Label</th>
+<th>重点关注</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Y</td>
+<td>请求成功接收并处理，一般响应中都会有 body</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+<td>请求已完成，并导致了一个或者多个资源被创建，最常用在 POST 创建资源的时候</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td></td>
+<td>请求已经接收并开始处理，但是处理还没有完成。一般用在异步处理的情况，响应 body 中应该告诉客户端去哪里查看任务的状态</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td></td>
+<td>请求已经处理完成，但是没有信息要返回，经常用在 PUT 更新资源的时候（客户端提供资源的所有属性，因此不需要服务端返回）。如果有重要的 metadata，可以放到头部返回</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>Y</td>
+<td>请求的资源已经永久性地移动到另外一个地方，后续所有的请求都应该直接访问新地址。服务端会把新地址写在 <code>Location</code> 头部字段，方便客户端使用。允许客户端把 POST 请求修改为 GET。</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>Y</td>
+<td>请求的资源和之前的版本一样，没有发生改变。用来缓存资源，和条件性请求（conditional request）一起出现</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+<td></td>
+<td>目标资源暂时性地移动到新的地址，客户端需要去新地址进行操作，但是<strong>不能</strong>修改请求的方法。</td>
+</tr>
+<tr>
+<td>308</td>
+<td>Permanent Redirect</td>
+<td></td>
+<td>和 301 类似，除了客户端<strong>不能</strong>修改原请求的方法</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Y</td>
+<td>客户端发送的请求有错误（请求语法错误，body 数据格式有误，body 缺少必须的字段等），导致服务端无法处理</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Y</td>
+<td>请求的资源需要认证，客户端没有提供认证信息或者认证信息不正确</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Y</td>
+<td>服务器端接收到并理解客户端的请求，但是客户端的权限不足。比如，普通用户想操作只有管理员才有权限的资源。为了安全考虑，避免攻击，对外服务，可将这个状态码改写为<strong>404</strong>返回给客户端</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Y</td>
+<td>客户端要访问的资源不存在，链接失效或者客户端伪造 URL 的时候回遇到这个情况</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td></td>
+<td>服务端接收到了请求，而且要访问的资源也存在，但是不支持对应的方法。服务端<strong>必须</strong>返回 <code>Allow</code> 头部，告诉客户端哪些方法是允许的</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+<td></td>
+<td>服务端不支持客户端请求的资源格式，一般是因为客户端在 <code>Content-Type</code> 或者 <code>Content-Encoding</code> 中申明了希望的返回格式，但是服务端没有实现。比如，客户端希望收到 <code>xml</code>返回，但是服务端支持 <code>Json</code></td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>Y</td>
+<td>客户端在规定的时间里发送了太多请求，在进行限流的时候会用到</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Y</td>
+<td>服务器内部错误，导致无法完成请求的内容</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>Y</td>
+<td>服务器因为负载过高或者维护，暂时无法提供服务。服务器端应该返回 <code>Retry-After</code> 头部，告诉客户端过一段时间再来重试</td>
+</tr>
+</tbody>
+</table>
+<p>上面这些状态码覆盖了 API 设计中大部分的情况，如果对某个状态码不清楚或者希望查看更完整的列表，可以参考 <a href="https://httpstatuses.com/" target="_blank" rel="external">HTTP Status Code</a> 这个网站，或者 <a href="https://tools.ietf.org/html/rfc7231#section-6" target="_blank" rel="external">RFC7231 Response Status Codes</a> 的内容。<br>在实际应用中，<strong>不建议再使用更多的状态码</strong>。</p>
+<h2 id="9-错误处理码设计"><a href="#9-错误处理码设计" class="headerlink" title="9. 错误处理码设计"></a>9. 错误处理码设计</h2><p>除了使用好HTTP状态码，必须有良好的错误码设计。一个良好的状态码设计应同事给出<code>状态码</code>和对应<code>错误消息</code>。<br>HTTP请求返回格式(建议)：</p>
+<pre><code>{
+    &quot;code&quot;:XXX,
+    &quot;message&quot;:&quot;ABCDE...&quot;,
+    &quot;data&quot;:{
+        ...
+    }
+}
+</code></pre><p>在正常请求时，约定<code>code=0,message=&quot;ok&quot;</code>。</p>
+<p>错误时，错误码规则为<code>ABBBBCCCC</code>，共9位。</p>
+<p>A:错误级别。如1代表系统级错误，2代表服务级错误；<br>B:项目或模块名称代码；9999个项目或模块，够用了；<br>C:具体错误编号。单个项目/模块有999种错误应该够用；</p>
+<p>A错误级别码：</p>
+<table>
+<thead>
+<tr>
+<th>级别码</th>
+<th>错误说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>依赖组件级错误</td>
+</tr>
+<tr>
+<td>2</td>
+<td>服务级错误</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>请求错误</td>
+</tr>
+<tr>
+<td>5</td>
+<td>系统级错误</td>
+</tr>
+<tr>
+<td>…</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>BBBB项目代码：</p>
+<table>
+<thead>
+<tr>
+<th>级别码</th>
+<th>错误说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0001</td>
+<td>search-ershou</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>basic-search</td>
+</tr>
+<tr>
+<td>…</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>CCCC错误编号：</p>
+<table>
+<thead>
+<tr>
+<th>错误编号</th>
+<th>错误说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>权限认证相关错误</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>连接类错误</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>超时类错误</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>参数错误</td>
+</tr>
+<tr>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-验证和授权"><a href="#10-验证和授权" class="headerlink" title="10. 验证和授权"></a>10. 验证和授权</h2><p>一般来说，让任何人随意访问公开的 API 是不好的做法。验证和授权是两件事情：</p>
+<ul>
+<li>验证（Authentication）是为了确定用户是其申明的身份，比如提供账户的密码。不然的话，任何人伪造成其他身份（比如其他用户或者管理员）是非常危险的</li>
+<li>授权（Authorization）是为了保证用户有对请求资源特定操作的权限。比如用户的私人信息只能自己能访问，其他人无法看到；有些特殊的操作只能管理员可以操作，其他用户有只读的权限等等</li>
+</ul>
+<p>如果没有通过验证（提供的用户名和密码不匹配，token 不正确等），需要返回 <a href="https://httpstatuses.com/401" target="_blank" rel="external"><strong>401 Unauthorized</strong></a>状态码，并在 body 中说明具体的错误信息；而没有被授权访问的资源操作，需要返回 <a href="https://httpstatuses.com/403" target="_blank" rel="external"><strong>403 Forbidden</strong></a> 状态码，还有详细的错误信息。</p>
+<p><strong>NOTE</strong>：Github API 对某些用户未被授权访问的资源操作返回 <a href="https://httpstatuses.com/404" target="_blank" rel="external"><strong>404 Not Found</strong></a>，目的是为了防止私有资源的泄露（比如黑客可以自动化试探用户的私有资源，返回 403 的话，就等于告诉黑客用户有这些私有的资源）。</p>
+<h2 id="11-限流rate-limit"><a href="#11-限流rate-limit" class="headerlink" title="11. 限流rate limit"></a>11. 限流rate limit</h2><p>如果对访问的次数不加控制，很可能会造成 API 被滥用，甚至被 <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" target="_blank" rel="external">DDos 攻击</a>。根据使用者不同的身份对其进行限流，可以防止这些情况，减少服务器的压力。</p>
+<p>对用户的请求限流之后，要有方法告诉用户它的请求使用情况，<code>Github API</code> 使用的三个相关的头部可以借鉴：</p>
+<ul>
+<li><code>X-RateLimit-Limit</code>: 用户每个小时允许发送请求的最大值</li>
+<li><code>X-RateLimit-Remaining</code>：当前时间窗口剩下的可用请求数目</li>
+<li><code>X-RateLimit-Rest</code>: 时间窗口重置的时候，到这个时间点可用的请求数量就会变成 X-RateLimit-Limit的值</li>
+</ul>
+<p>如果允许没有登录的用户使用 API（可以让用户试用），可以把 <code>X-RateLimit-Limit</code> 的值设置得很小，比如 Github 使用的 <code>60</code>。没有登录的用户是按照请求的 IP 来确定的，而登录的用户按照认证后的信息来确定身份。<br>对于超过流量的请求，可以返回 <a href="https://httpstatuses.com/429" target="_blank" rel="external"><strong>429 Too many requests</strong></a> 状态码，并附带错误信息。而 <code>Github API</code> 返回的是 <a href="https://httpstatuses.com/403" target="_blank" rel="external"><strong>403 Forbidden</strong></a>，虽然没有 <code>429</code> 更准确，也是可以理解的。</p>
+<h2 id="12-Hypermedia-API"><a href="#12-Hypermedia-API" class="headerlink" title="12. Hypermedia API"></a>12. Hypermedia API</h2><p>Restful API 的设计最好做到 Hypermedia：在返回结果中提供相关资源的链接。这种设计也被称为 <a href="http://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="external">HATEOAS</a>。这样做的好处是，用户可以根据返回结果就能得到后续操作需要访问的地址。<br>比如访问 <a href="https://api.github.com/" target="_blank" rel="external">api.github.com</a>，就可以看到 Github API 支持的资源操作。<br>Spring技术栈，可以使用<a href="https://spring.io/projects/spring-hateoas" target="_blank" rel="external">Spring Hateoas</a>；由于需要在返回body内增加内容，内部服务使用起来颇有难度，不建议。外部服务强烈推荐。</p>
+<h2 id="13-编写优秀的文档"><a href="#13-编写优秀的文档" class="headerlink" title="13. 编写优秀的文档"></a>13. 编写优秀的文档</h2><p>API 最终是给人使用的，不管是公司内部，还是公开的 API 都是一样。即使我们遵循了上面提到的所有规范，设计的 API 非常优雅，用户还是不知道怎么使用我们的 API。最后一步，但非常重要的一步是：为你的 API 编写优秀的文档。</p>
+<p>对每个请求以及返回的参数给出说明，最好给出一个详细而完整地示例，提醒用户需要注意的地方……反正目标就是用户可以根据你的文档就能直接使用API，而不是要发邮件给你，或者跑到你的座位上问你一堆问题。<br>文档生成：<strong>建议使用<a href="https://swagger.io/" target="_blank" rel="external">SWAGGER</a></strong><br>与Spring集成：使用<a href="http://springfox.github.io/springfox/" target="_blank" rel="external">SpringFox</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;微服务下的API设计原则&quot;&gt;&lt;a href=&quot;#微服务下的API设计原则&quot; class=&quot;headerlink&quot; title=&quot;微服务下的API设计原则&quot;&gt;&lt;/a&gt;微服务下的API设计原则&lt;/h1&gt;&lt;p&gt;目的：&lt;br&gt;规范团队乃至公司的API设计。&lt;br&gt;主要参考： &lt;a href=&quot;https://developer.github.com/v3/&quot;&gt;Github API&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-为了安全，请使用HTTPS&quot;&gt;&lt;a href=&quot;#1-为了安全，请使用HTTPS&quot; class=&quot;headerlink&quot; title=&quot;1. 为了安全，请使用HTTPS&quot;&gt;&lt;/a&gt;1. 为了安全，请使用HTTPS&lt;/h2&gt;&lt;p&gt;与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。&lt;/p&gt;
+&lt;h2 id=&quot;2-API-地址和版本&quot;&gt;&lt;a href=&quot;#2-API-地址和版本&quot; class=&quot;headerlink&quot; title=&quot;2. API 地址和版本&quot;&gt;&lt;/a&gt;2. API 地址和版本&lt;/h2&gt;&lt;p&gt;在 &lt;code&gt;url&lt;/code&gt; 中指定 API 的版本是个很好地做法。&lt;br&gt;如果 API 变化比较大，可以把API设计为子域名，比如 &lt;code&gt;https://api.ke.com/v3&lt;/code&gt;；&lt;br&gt;也可以简单地把版本放在路径中，比如 &lt;code&gt;https://ke.com/api/v1&lt;/code&gt;。&lt;br&gt;&lt;strong&gt;不建议放入Header&lt;/strong&gt;，不直观。&lt;/p&gt;
+&lt;h2 id=&quot;3-schema请使用JSON&quot;&gt;&lt;a href=&quot;#3-schema请使用JSON&quot; class=&quot;headerlink&quot; title=&quot;3. schema请使用JSON&quot;&gt;&lt;/a&gt;3. schema请使用JSON&lt;/h2&gt;&lt;p&gt;对于响应返回的格式，JSON 因为它的可读性、紧凑性以及多种语言支持等优点，成为了 HTTP API 最常用的返回格式。因此，最好采用&lt;strong&gt;JSON&lt;/strong&gt;作为返回内容的格式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不推荐其他格式&lt;/strong&gt;，如果必须使用，比如 &lt;code&gt;xml&lt;/code&gt;，应该在请求头部 &lt;code&gt;Accept&lt;/code&gt; 中指定。&lt;br&gt;对于不支持的格式，服务端需要返回正确的 &lt;code&gt;status code&lt;/code&gt;，并给出详细的说明。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="encode" scheme="http://www.shenyanchao.cn/categories/encode/"/>
+    
+    
+      <category term="微服务" scheme="http://www.shenyanchao.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="API" scheme="http://www.shenyanchao.cn/tags/API/"/>
+    
+      <category term="设计" scheme="http://www.shenyanchao.cn/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Redis 注解式Cache那些事</title>
+    <link href="http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/"/>
+    <id>http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/</id>
+    <published>2018-07-23T09:05:00.000Z</published>
+    <updated>2018-10-08T06:09:26.363Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><blockquote>
+<p>spring-data-redis使得Spring项目可以快速简单的通过RedisTemplate来操作Redis。而spring-boot-starter-data-redis更是让redis集成更加的方便。</p>
+</blockquote>
+<h3 id="SpringBoot如何与Redis集成，作为cache"><a href="#SpringBoot如何与Redis集成，作为cache" class="headerlink" title="SpringBoot如何与Redis集成，作为cache"></a>SpringBoot如何与Redis集成，作为cache</h3><p>application.xml里如下配置：</p>
+<pre><code>spring:
+     redis:
+       host: 127.0.0.1
+       port: 6379
+       database: 0
+       timeout: 1000
+       pool:
+             max-idle: 200
+             min-idle: 0
+             max-active: 200
+             max-wait: 1000
+</code></pre><p>spring boot可以自动组装相关配置，注意其中使用到了jedis pool，用于提升性能，非必须。<br>通过以下的annotation加入方法名上，可以无侵入的使用cache。</p>
+<ul>
+<li>@Cacheable   缓存</li>
+<li>@CachePut    设置缓存</li>
+<li>@CacheEvict  失效或更新缓存</li>
+<li><p>@Caching   组合操作</p>
+<p>以上annotation不做详细展开。</p>
+<a id="more"></a>
+<p>做到上面似乎已经可以了，但有一些问题需要我们来解决。</p>
+</li>
+</ul>
+<ul>
+<li>a.redis连接报错\超时怎么办？此时应该是可降级的。</li>
+<li>b.使用连接池，连接不可用如何破？</li>
+</ul>
+<p>下面贴一个比较成熟的做法，继承<code>CachingConfigurerSupport</code>：</p>
+<pre><code>@Configuration
+@EnableCaching //启用
+public class RedisConfig extends CachingConfigurerSupport {
+
+    // 过期时间
+    private static final long expire = 600;
+
+    // application.yml配置参数有限，注入并扩展用。
+    @Autowired
+    private RedisProperties redisProperties;
+
+    //此处自定义jedis pool配置，设置TestOnBrrow等等
+    @Bean
+    public JedisPoolConfig jedisPoolConfig() {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        RedisProperties.Pool pool = redisProperties.getPool();
+        jedisPoolConfig.setMaxIdle(pool.getMaxIdle());
+        jedisPoolConfig.setMaxTotal(pool.getMaxActive());
+        jedisPoolConfig.setMinIdle(pool.getMinIdle());
+        jedisPoolConfig.setMaxWaitMillis(pool.getMaxWait());
+        jedisPoolConfig.setTestOnBorrow(true);
+        jedisPoolConfig.setTestWhileIdle(true);
+        return jedisPoolConfig;
+    }
+
+   //生成redisConnectionFactory，使用自定义的jedis pool
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+        jedisConnectionFactory.setHostName(redisProperties.getHost());
+        jedisConnectionFactory.setPort(redisProperties.getPort());
+        jedisConnectionFactory.setDatabase(redisProperties.getDatabase());
+        jedisConnectionFactory.setTimeout(redisProperties.getTimeout());
+        if (null != redisProperties.getPassword()) {
+            jedisConnectionFactory.setPassword(redisProperties.getPassword());
+        }
+        jedisConnectionFactory.setPoolConfig(jedisPoolConfig);
+        return jedisConnectionFactory;
+    }
+
+    // 设置cacheManager相关，主要涉及默认过期时间。
+    @Bean
+    public CacheManager cacheManager(RedisTemplate redisTemplate) {
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        //设置缓存过期时间，可单独对某个cache制定过期时间
+        cacheManager.setDefaultExpiration(expire);
+        //设置redis key是否使用前缀，默认前缀是cacheName
+        cacheManager.setUsePrefix(true);
+        return cacheManager;
+    }
+
+    //定义redisTemplate，主要是定义key\value的序列化器
+    @Bean
+    public RedisTemplate&lt;String, String&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
+        template.setValueSerializer(getValueSerializer());
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    private RedisSerializer getValueSerializer() {
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        return jackson2JsonRedisSerializer;
+    }
+
+    // 设置redis key生成策略
+    @Bean
+    @Override
+    public KeyGenerator keyGenerator() {
+        return new RequestKeyGenerator();
+    }
+
+    // 重点：设置和redis交互报错时的错误处理器。
+    @Bean
+    @Override
+    public CacheErrorHandler errorHandler() {
+        return new CallbackCacheErrorHandler();
+    }
+</code></pre><p>下面看一下<code>CallbackCacheErrorHandler</code>    :</p>
+<pre><code>public class CallbackCacheErrorHandler implements CacheErrorHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CallbackCacheErrorHandler.class);
+
+    @Override
+    public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
+        LOGGER.error(&quot;cache get error, cacheName:{}, key:{}, msg:&quot;, cache.getName(), key, exception);
+    }
+
+    @Override
+    public void handleCachePutError(RuntimeException exception, Cache cache, Object key, Object value) {
+        LOGGER.error(&quot;cache put error, cacheName:{}, key:{}, msg:&quot;, cache.getName(), key, exception);
+
+    }
+
+    @Override
+    public void handleCacheEvictError(RuntimeException exception, Cache cache, Object key) {
+        LOGGER.error(&quot;cache evict error, cacheName:{}, key:{}, msg:&quot;, cache.getName(), key, exception);
+
+    }
+
+    @Override
+    public void handleCacheClearError(RuntimeException exception, Cache cache) {
+        LOGGER.error(&quot;cache clear error, cacheName:{}, msg:&quot;, cache.getName(), exception);
+    }
+}
+</code></pre><p>此处当报错的时候只进行了日志记录，当然如果有其他需求，都可以在这里扩展。自此，spring boot与redis集成大功告成，一切都是那么的完美。</p>
+<h3 id="关于RedisCacheManager是否setUsePrefix的坑"><a href="#关于RedisCacheManager是否setUsePrefix的坑" class="headerlink" title="关于RedisCacheManager是否setUsePrefix的坑"></a>关于RedisCacheManager是否<code>setUsePrefix</code>的坑</h3><p>首先，我们要知道是否使用<code>prefix</code>的区别是什么？<br>区别如下：</p>
+<ul>
+<li><ol>
+<li>使用<code>prefix</code>的时候，redis cache的key都会默认添加上cacheName，用于区分不同的cache。</li>
+</ol>
+</li>
+<li><ol>
+<li>使用<code>prefix</code>的时候，当清除或者失效所有的key的时候，使用的是key prefix*获取所有的key,然后依次清楚。而不使用<code>prefix</code>的时候，需要清除或者失效所有key的时候，则是从一个维护了所有key的zset中获取的，这个zset通常叫做<code>${cacheName}~keys</code>。</li>
+</ol>
+</li>
+</ul>
+<p>下面通过源代码来证实一下：<br>RedisCache.java内<code>RedisWriteThroughCallback</code>负责往redis设置缓存：</p>
+<pre><code>    static class RedisWriteThroughCallback extends AbstractRedisCacheCallback&lt;byte[]&gt; {
+
+    public RedisWriteThroughCallback(BinaryRedisCacheElement element, RedisCacheMetadata metadata) {
+        super(element, metadata);
+    }
+
+    @Override
+    public byte[] doInRedis(BinaryRedisCacheElement element, RedisConnection connection) throws DataAccessException {
+
+        try {
+          //加锁
+            lock(connection);
+
+            try {
+
+                byte[] value = connection.get(element.getKeyBytes());
+
+                if (value != null) {
+                    return value;
+                }
+
+                if (!isClusterConnection(connection)) {
+
+                    connection.watch(element.getKeyBytes());
+                    // 开始事务
+                    connection.multi();
+                }
+
+                value = element.get();
+
+                if (value.length == 0) {
+                    connection.del(element.getKeyBytes());
+                } else {
+                   // 设置缓存key-value
+                    connection.set(element.getKeyBytes(), value);
+                    // 设置失效日期
+                    processKeyExpiration(element, connection);
+                    // 维护key到已知zset内
+                    maintainKnownKeys(element, connection);
+                }
+
+                if (!isClusterConnection(connection)) {
+                    connection.exec();
+                }
+
+                return value;
+            } catch (RuntimeException e) {
+                if (!isClusterConnection(connection)) {
+                    connection.discard();
+                }
+                throw e;
+            }
+        } finally {
+           // 释放锁
+            unlock(connection);
+        }
+    }
+};
+
+ protected void maintainKnownKeys(RedisCacheElement element, RedisConnection connection) {
+
+        if (!element.hasKeyPrefix()) { //不使用prefix
+          // 则zadd到已知的key集合内
+            connection.zAdd(cacheMetadata.getSetOfKnownKeysKey(), 0, element.getKeyBytes());
+
+            if (!element.isEternal()) {
+                connection.expire(cacheMetadata.getSetOfKnownKeysKey(), element.getTimeToLive());
+            }
+        }
+    }
+</code></pre><p>从上面分析得知，设置缓存的时候有以下几步：</p>
+<ul>
+<li>1.设置key-value</li>
+<li>2.设置key的过期时间</li>
+<li>3.维护key到已知key的zset列表</li>
+</ul>
+<p>清理所有key的时候，是怎么操作的呢？</p>
+<pre><code>public void clear() {
+    redisOperations.execute(cacheMetadata.usesKeyPrefix() ? new RedisCacheCleanByPrefixCallback(cacheMetadata)
+            : new RedisCacheCleanByKeysCallback(cacheMetadata));
+}
+</code></pre><p>可以看出依据是否使用前缀，使用不同的回调方法。</p>
+<pre><code>/**
+ * @author Christoph Strobl
+ * @since 1.5
+ */
+static class RedisCacheCleanByKeysCallback extends LockingRedisCacheCallback&lt;Void&gt; {
+
+    private static final int PAGE_SIZE = 128;
+    private final RedisCacheMetadata metadata;
+
+    RedisCacheCleanByKeysCallback(RedisCacheMetadata metadata) {
+        super(metadata);
+        this.metadata = metadata;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.springframework.data.redis.cache.RedisCache.LockingRedisCacheCallback#doInLock(org.springframework.data.redis.connection.RedisConnection)
+     */
+    @Override
+    public Void doInLock(RedisConnection connection) {
+
+        int offset = 0;
+        boolean finished = false;
+
+        do {
+            // need to paginate the keys
+            Set&lt;byte[]&gt; keys = connection.zRange(metadata.getSetOfKnownKeysKey(), (offset) * PAGE_SIZE,
+                    (offset + 1) * PAGE_SIZE - 1);  //使用zrange遍历，删除
+            finished = keys.size() &lt; PAGE_SIZE;
+            offset++;
+            if (!keys.isEmpty()) {
+                connection.del(keys.toArray(new byte[keys.size()][]));
+            }
+        } while (!finished);
+
+        connection.del(metadata.getSetOfKnownKeysKey());
+        return null;
+    }
+}
+
+/**
+ * @author Christoph Strobl
+ * @since 1.5
+ */
+static class RedisCacheCleanByPrefixCallback extends LockingRedisCacheCallback&lt;Void&gt; {
+
+    private static final byte[] REMOVE_KEYS_BY_PATTERN_LUA = new StringRedisSerializer().serialize(
+            &quot;local keys = redis.call(&apos;KEYS&apos;, ARGV[1]); local keysCount = table.getn(keys); if(keysCount &gt; 0) then for _, key in ipairs(keys) do redis.call(&apos;del&apos;, key); end; end; return keysCount;&quot;);
+    private static final byte[] WILD_CARD = new StringRedisSerializer().serialize(&quot;*&quot;);
+    private final RedisCacheMetadata metadata;
+
+    public RedisCacheCleanByPrefixCallback(RedisCacheMetadata metadata) {
+        super(metadata);
+        this.metadata = metadata;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.springframework.data.redis.cache.RedisCache.LockingRedisCacheCallback#doInLock(org.springframework.data.redis.connection.RedisConnection)
+     */
+    @Override
+    public Void doInLock(RedisConnection connection) throws DataAccessException {
+
+        byte[] prefixToUse = Arrays.copyOf(metadata.getKeyPrefix(), metadata.getKeyPrefix().length + WILD_CARD.length);
+        System.arraycopy(WILD_CARD, 0, prefixToUse, metadata.getKeyPrefix().length, WILD_CARD.length);
+
+        if (isClusterConnection(connection)) {
+
+            // load keys to the client because currently Redis Cluster connections do not allow eval of lua scripts.
+            Set&lt;byte[]&gt; keys = connection.keys(prefixToUse);  //集群模式下，使用keys获取所有的key
+            if (!keys.isEmpty()) {
+                connection.del(keys.toArray(new byte[keys.size()][]));
+            }
+        } else {
+           // 非集群模式下，使用LUA脚本，keys删除。
+            connection.eval(REMOVE_KEYS_BY_PATTERN_LUA, ReturnType.INTEGER, 0, prefixToUse);
+        }
+
+        return null;
+    }
+}
+</code></pre><p>从以上源码可以看出使用prefix的区别。总结下，坑在哪儿，应该如何根据业务来选择。</p>
+<ul>
+<li>坑1：不使用<code>prefix</code>,需要额外的zset来保存已知key集合，风险点是zset有可能很大，占用空间，如果被置换出去，功能则不一致</li>
+<li>坑2：使用<code>prefix</code>, 没有额外的zset。但是失效或者清理所有key的时候，使用<code>keys *</code>可能导致redis被拖死，清理时间内无响应。</li>
+<li>坑3：设置缓存，使用了multi，对redis压力不小，高并发下尤其明显，需要注意。</li>
+</ul>
+<h3 id="关于Redis-Cache默认使用lock的问题"><a href="#关于Redis-Cache默认使用lock的问题" class="headerlink" title="关于Redis Cache默认使用lock的问题"></a>关于Redis Cache默认使用lock的问题</h3><p>在高并发下，发现spring redis cache的put效率并不高，经过排查发现put操作有lock机制，切lock时间无法更改。</p>
+<p>如上<code>RedisWriteThroughCallback</code>所示，有lock和unlock操作，其实就是往redis写一个key作为lock, 删除这个key作为unlock。这个操作在分布式系统中，可以保证其一致性，但是也损失了性能。尤其在仅作为缓存使用的场景，key对应的value具备幂等性，完全可以忽略。</p>
+<p>源码重点在这个<code>waitForLock</code>方法里：</p>
+<pre><code>  protected boolean waitForLock(RedisConnection connection) {
+
+      boolean retry;
+      boolean foundLock = false;
+      do {
+          retry = false;
+          if (connection.exists(cacheMetadata.getCacheLockKey())) {
+              foundLock = true;
+              try {
+                  Thread.sleep(WAIT_FOR_LOCK_TIMEOUT); //此处WAIT_FOR_LOCK_TIMEOUT=300ms
+              } catch (InterruptedException ex) {
+                  Thread.currentThread().interrupt();
+              }
+              retry = true;
+          }
+      } while (retry);
+
+      return foundLock;
+  }
+
+ // 加锁
+  protected void lock(RedisConnection connection) {
+      waitForLock(connection);
+      connection.set(cacheMetadata.getCacheLockKey(), &quot;locked&quot;.getBytes());
+  }
+// 解锁
+  protected void unlock(RedisConnection connection) {
+      connection.del(cacheMetadata.getCacheLockKey());
+  }
+</code></pre><p>可以看出每次加锁，如果lock已经存在的情况下，会额外sleep 300ms,这在高并发、高性能的缓存场景是<strong>极其低效</strong>的。并且在极端情况下，unlock删除key没成功，将会导致所有key都无法设置或更新,并陷入死循环。spring内部也没有提供相关的行为覆盖机制，这是一个较大的坑。</p>
+<h3 id="Spring-Data-Redis-2-0-RC1的优化"><a href="#Spring-Data-Redis-2-0-RC1的优化" class="headerlink" title="Spring-Data-Redis 2.0 RC1的优化"></a>Spring-Data-Redis 2.0 RC1的优化</h3><p><a href="https://jira.spring.io/browse/DATAREDIS-481" target="_blank" rel="external">官方DATAREDIS-481</a>注意到了Lock的优化，并对cache manager做了颠覆性的升级。<br>下面跟着我来看看，spring-data-redis 2.0之后如何使用注解式cache.<br>由于底层依赖的<a href="https://github.com/xetorthio/jedis" target="_blank" rel="external">Jedis</a>,自从发布2.9.0版本之后，升级缓慢，目前也仅支持到2.8.x和3.x.x版本，所以Spring推荐使用<a href="https://github.com/lettuce-io/lettuce-core" target="_blank" rel="external">lettuce</a>.</p>
+<p>先看application.xml里如何写：</p>
+<pre><code>spring:
+    redis:
+      host: 127.0.0.1
+      database: 0
+      port: 6379
+      timeout: 1000
+      lettuce:
+        pool:
+          max-active: 500
+          min-idle: 0
+          max-idle: 500
+          max-wait: 1000
+</code></pre><p>开始使用lettuce了，jedis提示deprecated了。<br>pool提供的参数有限，如果想自己定制，参见如下设置：</p>
+<pre><code>   //继承CachingConfigurerSupport
+@Configuration
+@EnableCaching
+public class RedisConfig extends CachingConfigurerSupport {
+
+    //注入默认参数
+    @Autowired
+    private RedisProperties redisProperties;
+    //默认超时
+    private long expire = 600L;
+
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        //commons-pool2包
+        GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+        poolConfig.setMaxIdle(500);
+        poolConfig.setMinIdle(0);
+        poolConfig.setMaxTotal(500);
+        poolConfig.setMaxWaitMillis(1000);
+        poolConfig.setTestOnBorrow(true);   //额外设置
+
+        // 基本连接信息：host port database password
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+        redisStandaloneConfiguration.setHostName(redisProperties.getHost());
+        redisStandaloneConfiguration.setPort(redisProperties.getPort());
+        redisStandaloneConfiguration.setDatabase(redisProperties.getDatabase());
+        if (null != redisProperties.getPassword()){
+            redisStandaloneConfiguration.setPassword(RedisPassword.of(redisProperties.getPassword()));
+        }
+
+        //这里单独配置超时时间，连接池管理
+        LettuceClientConfiguration lettuceClientConfiguration = LettucePoolingClientConfiguration.builder()
+                .commandTimeout(Duration.ofMillis(200)).shutdownTimeout(Duration.ofMillis(200)).poolConfig
+                        (poolConfig)
+                .build();
+        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory
+                (redisStandaloneConfiguration, lettuceClientConfiguration);
+        lettuceConnectionFactory.setValidateConnection(true);
+        return lettuceConnectionFactory;
+    }
+
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+        // 默认配置使用prefix、单独设置valueSerializer、过期时间
+        RedisCacheConfiguration redisCacheConfiguration =
+                RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(
+                        RedisSerializationContext.SerializationPair.fromSerializer(getValueSerializer()))
+                        .entryTtl(Duration.ofSeconds
+                                (expire)).disableCachingNullValues();
+        // 使用redisConnectionFactory直接创建无锁的cm
+        RedisCacheManager cm = RedisCacheManager.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory)).cacheDefaults(redisCacheConfiguration).transactionAware().build();
+        return cm;
+    }
+
+    private RedisSerializer getValueSerializer() {
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        return jackson2JsonRedisSerializer;
+    }
+
+    @Bean
+    @Override
+    public CacheErrorHandler errorHandler() {
+        return new RedisCacheErrorHandler();
+    }
+
+    @Override
+    public KeyGenerator keyGenerator() {
+        return new MyKeyGenerator()
+    }
+</code></pre><p>从上面可以看出，基本操作是一致的，但是RedisCacheManager创建更加优雅，不在直接依赖redisTemplate。<br>关于是否使用prefix问题，<code>RedisCacheConfiguration.defaultCacheConfig()</code>中代码如下：</p>
+<pre><code>private RedisCacheConfiguration(Duration ttl, Boolean cacheNullValues, Boolean usePrefix,
+        CacheKeyPrefix keyPrefix, SerializationPair&lt;String&gt; keySerializationPair,
+        SerializationPair&lt;?&gt; valueSerializationPair, ConversionService conversionService) {
+
+    this.ttl = ttl;
+    this.cacheNullValues = cacheNullValues;
+    this.usePrefix = usePrefix;
+    this.keyPrefix = keyPrefix;
+    this.keySerializationPair = keySerializationPair;
+    this.valueSerializationPair = (SerializationPair&lt;Object&gt;) valueSerializationPair;
+    this.conversionService = conversionService;
+}
+
+
+public static RedisCacheConfiguration defaultCacheConfig() {
+
+    DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+
+    registerDefaultConverters(conversionService);
+   // 默认usePrefix为true,是推荐的
+    return new RedisCacheConfiguration(Duration.ZERO, true, true, CacheKeyPrefix.simple(),
+            SerializationPair.fromSerializer(new StringRedisSerializer()),
+            SerializationPair.fromSerializer(new JdkSerializationRedisSerializer()), conversionService);
+}
+</code></pre><p>当然也是可以覆盖禁用的，使用<code>disableKeyPrefix</code>, 但明确提出，你需要特别注意，不建议使用。</p>
+<p>关于是否使用lock的问题，新版本也提供了可选方案。通过<code>RedisCacheWriter</code>来实现：</p>
+<pre><code>static RedisCacheWriter nonLockingRedisCacheWriter(RedisConnectionFactory connectionFactory) {
+
+    Assert.notNull(connectionFactory, &quot;ConnectionFactory must not be null!&quot;);
+
+    return new DefaultRedisCacheWriter(connectionFactory);
+}
+
+static RedisCacheWriter lockingRedisCacheWriter(RedisConnectionFactory connectionFactory) {
+
+    Assert.notNull(connectionFactory, &quot;ConnectionFactory must not be null!&quot;);
+
+    return new DefaultRedisCacheWriter(connectionFactory, Duration.ofMillis(50));
+}
+</code></pre><p>可以看出lockingRedisCacheWriter将会有sleep 50ms来处理锁,nonlocking则没有加锁等待，给用户提供了更好的处理方案。</p>
+<p>关于全部失效或者清理key的问题，2.0版本处理方案如下：</p>
+<pre><code>@Override
+public void clean(String name, byte[] pattern) {
+
+    Assert.notNull(name, &quot;Name must not be null!&quot;);
+    Assert.notNull(pattern, &quot;Pattern must not be null!&quot;);
+
+    execute(name, connection -&gt; {
+
+        boolean wasLocked = false;
+
+        try {
+
+            if (isLockingCacheWriter()) {
+                doLock(name, connection);
+                wasLocked = true;
+            }
+         // 这里仍旧是使用的keys操作
+            byte[][] keys = Optional.ofNullable(connection.keys(pattern)).orElse(Collections.emptySet())
+                    .toArray(new byte[0][]);
+
+            if (keys.length &gt; 0) {
+                connection.del(keys);
+            }
+        } finally {
+
+            if (wasLocked &amp;&amp; isLockingCacheWriter()) {
+                doUnlock(name, connection);
+            }
+        }
+
+        return &quot;OK&quot;;
+    });
+}
+</code></pre><p>这里仍旧使用的是<code>keys</code>命令，坑仍在。后续使用<code>scan</code>操作也许是更好的选择，但最终还是要依据自己的业务需求来定制。</p>
+<p>总结：</p>
+<blockquote>
+<p><strong>开源项目的坑无处不在，即使是spring</strong>。<br>无论是什么版本，使用<code>prefix</code>是更好的选择，也是趋势所在。<br>keys操作对性能的影响始终未能彻底消除，建议使用key expire机制来规避。（生产环境keys操作也是尽可能要避免的）。<br>redis缓存key的大小，无论是性能还是存储的影响都很大，强烈建议在业务允许范围内尽可能减小key的大小(比如使用MD5,有一定碰撞率)。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言：&quot;&gt;&lt;a href=&quot;#前言：&quot; class=&quot;headerlink&quot; title=&quot;前言：&quot;&gt;&lt;/a&gt;前言：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;spring-data-redis使得Spring项目可以快速简单的通过RedisTemplate来操作Redis。而spring-boot-starter-data-redis更是让redis集成更加的方便。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;SpringBoot如何与Redis集成，作为cache&quot;&gt;&lt;a href=&quot;#SpringBoot如何与Redis集成，作为cache&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot如何与Redis集成，作为cache&quot;&gt;&lt;/a&gt;SpringBoot如何与Redis集成，作为cache&lt;/h3&gt;&lt;p&gt;application.xml里如下配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+     redis:
+       host: 127.0.0.1
+       port: 6379
+       database: 0
+       timeout: 1000
+       pool:
+             max-idle: 200
+             min-idle: 0
+             max-active: 200
+             max-wait: 1000
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;spring boot可以自动组装相关配置，注意其中使用到了jedis pool，用于提升性能，非必须。&lt;br&gt;通过以下的annotation加入方法名上，可以无侵入的使用cache。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@Cacheable   缓存&lt;/li&gt;
+&lt;li&gt;@CachePut    设置缓存&lt;/li&gt;
+&lt;li&gt;@CacheEvict  失效或更新缓存&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;@Caching   组合操作&lt;/p&gt;
+&lt;p&gt;以上annotation不做详细展开。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spring" scheme="http://www.shenyanchao.cn/categories/spring/"/>
+    
+    
+      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+    
+      <category term="redis" scheme="http://www.shenyanchao.cn/tags/redis/"/>
+    
+      <category term="cache" scheme="http://www.shenyanchao.cn/tags/cache/"/>
+    
+  </entry>
   
   <entry>
     <title>关于接口定义的一些想法</title>
@@ -2973,271 +3888,6 @@ service ssh restart
       <category term="ssh" scheme="http://www.shenyanchao.cn/tags/ssh/"/>
     
       <category term="linux" scheme="http://www.shenyanchao.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描</title>
-    <link href="http://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/"/>
-    <id>http://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/</id>
-    <published>2013-11-20T11:22:00.000Z</published>
-    <updated>2017-10-10T12:39:52.639Z</updated>
-    
-    <content type="html"><![CDATA[<p>在pom.xml里添加以下maven插件配置：   </p>
-<pre><code>    &lt;!-- 静态代码检查 --&gt;
-&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.11&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;configLocation&gt;checkstyle.xml&lt;/configLocation&gt;
-        &lt;includeResources&gt;false&lt;/includeResources&gt;
-        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
-        &lt;violationSeverity&gt;info&lt;/violationSeverity&gt;
-        &lt;maxAllowedViolations&gt;0&lt;/maxAllowedViolations&gt;
-        &lt;consoleOutput&gt;true&lt;/consoleOutput&gt;
-        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-        &lt;includes&gt;
-            **\/package\/**.java,**\/otherpackage\/**.java
-        &lt;/includes&gt;
-    &lt;/configuration&gt;
-&lt;!--     &lt;executions&gt;
-         &lt;execution&gt;
-             &lt;goals&gt;
-                 &lt;goal&gt;check&lt;/goal&gt;
-             &lt;/goals&gt;
-             &lt;phase&gt;validate&lt;/phase&gt;
-         &lt;/execution&gt;
-     &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-
-&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-pmd-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.7.1&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;failurePriority&gt;5&lt;/failurePriority&gt;
-        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
-        &lt;targetJdk&gt;${jdk.version}&lt;/targetJdk&gt;
-        &lt;verbose&gt;true&lt;/verbose&gt;
-        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
-        &lt;rulesets&gt;
-            &lt;ruleset&gt;pmd.xml&lt;/ruleset&gt;
-        &lt;/rulesets&gt;
-        &lt;includes&gt;
-            &lt;include&gt;**\/package\/**.java&lt;/include&gt;
-            &lt;include&gt;**\/otherpackage\/**.java&lt;/include&gt;
-        &lt;/includes&gt;
-    &lt;/configuration&gt;
-  &lt;!--   &lt;executions&gt;
-         &lt;execution&gt;
-             &lt;phase&gt;package&lt;/phase&gt;
-             &lt;goals&gt;
-                 &lt;goal&gt;check&lt;/goal&gt;
-             &lt;/goals&gt;
-         &lt;/execution&gt;
-     &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-&lt;plugin&gt;
-    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-    &lt;artifactId&gt;findbugs-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.5.2&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;onlyAnalyze&gt;
-            cn.shenyanchao.package.*,
-            cn.shenyanchao.otherpackage.*,
-        &lt;/onlyAnalyze&gt;
-        &lt;includeFilterFile&gt;findbugs.xml&lt;/includeFilterFile&gt;
-        &lt;failOnError&gt;true&lt;/failOnError&gt;
-        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
-    &lt;/configuration&gt;
- &lt;!--   &lt;executions&gt;
-        &lt;execution&gt;
-            &lt;phase&gt;package&lt;/phase&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;check&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-    &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-</code></pre><p>这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。<br><a id="more"></a>  </p>
-<p>#####那么能否指定只扫描特定的包或者文件呢？<br>上面checkstyle用的是：  </p>
-<pre><code>&lt;includes&gt;
-    **\/package\/**.java,**\/otherpackage\/**.java
-&lt;/includes&gt;
-</code></pre><p>pmd是：    </p>
-<pre><code>&lt;includes&gt;
-    &lt;include&gt;**\/package\/**.java&lt;/include&gt;
-    &lt;include&gt;**\/otherpackage\/**.java&lt;/include&gt;
-&lt;/includes&gt;
-</code></pre><p>findbugs则使用的是：</p>
-<pre><code>&lt;onlyAnalyze&gt;
-    cn.shenyanchao.package.*,
-    cn.shenyanchao.otherpackage.*,
-&lt;/onlyAnalyze&gt;
-</code></pre><p>#####如何在编译期间或打包期间执行检查？</p>
-<p>如上所示的注释掉部分，添加就可以了：</p>
-<pre><code>&lt;executions&gt;
-     &lt;execution&gt;
-         &lt;phase&gt;package&lt;/phase&gt;
-         &lt;goals&gt;
-             &lt;goal&gt;check&lt;/goal&gt;
-         &lt;/goals&gt;
-     &lt;/execution&gt;
- &lt;/executions&gt;
-</code></pre><p>这里的意思是在mvn 执行打包package的时候进行check操作。因此如果check不通过，那么将不会编译打包成功。   </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在pom.xml里添加以下maven插件配置：   &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    &amp;lt;!-- 静态代码检查 --&amp;gt;
-&amp;lt;plugin&amp;gt;
-    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;maven-checkstyle-plugin&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;2.11&amp;lt;/version&amp;gt;
-    &amp;lt;configuration&amp;gt;
-        &amp;lt;configLocation&amp;gt;checkstyle.xml&amp;lt;/configLocation&amp;gt;
-        &amp;lt;includeResources&amp;gt;false&amp;lt;/includeResources&amp;gt;
-        &amp;lt;failOnViolation&amp;gt;true&amp;lt;/failOnViolation&amp;gt;
-        &amp;lt;violationSeverity&amp;gt;info&amp;lt;/violationSeverity&amp;gt;
-        &amp;lt;maxAllowedViolations&amp;gt;0&amp;lt;/maxAllowedViolations&amp;gt;
-        &amp;lt;consoleOutput&amp;gt;true&amp;lt;/consoleOutput&amp;gt;
-        &amp;lt;encoding&amp;gt;UTF-8&amp;lt;/encoding&amp;gt;
-        &amp;lt;includes&amp;gt;
-            **\/package\/**.java,**\/otherpackage\/**.java
-        &amp;lt;/includes&amp;gt;
-    &amp;lt;/configuration&amp;gt;
-&amp;lt;!--     &amp;lt;executions&amp;gt;
-         &amp;lt;execution&amp;gt;
-             &amp;lt;goals&amp;gt;
-                 &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
-             &amp;lt;/goals&amp;gt;
-             &amp;lt;phase&amp;gt;validate&amp;lt;/phase&amp;gt;
-         &amp;lt;/execution&amp;gt;
-     &amp;lt;/executions&amp;gt;--&amp;gt;
-&amp;lt;/plugin&amp;gt;
-
-&amp;lt;plugin&amp;gt;
-    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;maven-pmd-plugin&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;2.7.1&amp;lt;/version&amp;gt;
-    &amp;lt;configuration&amp;gt;
-        &amp;lt;failurePriority&amp;gt;5&amp;lt;/failurePriority&amp;gt;
-        &amp;lt;failOnViolation&amp;gt;true&amp;lt;/failOnViolation&amp;gt;
-        &amp;lt;targetJdk&amp;gt;${jdk.version}&amp;lt;/targetJdk&amp;gt;
-        &amp;lt;verbose&amp;gt;true&amp;lt;/verbose&amp;gt;
-        &amp;lt;outputEncoding&amp;gt;UTF-8&amp;lt;/outputEncoding&amp;gt;
-        &amp;lt;rulesets&amp;gt;
-            &amp;lt;ruleset&amp;gt;pmd.xml&amp;lt;/ruleset&amp;gt;
-        &amp;lt;/rulesets&amp;gt;
-        &amp;lt;includes&amp;gt;
-            &amp;lt;include&amp;gt;**\/package\/**.java&amp;lt;/include&amp;gt;
-            &amp;lt;include&amp;gt;**\/otherpackage\/**.java&amp;lt;/include&amp;gt;
-        &amp;lt;/includes&amp;gt;
-    &amp;lt;/configuration&amp;gt;
-  &amp;lt;!--   &amp;lt;executions&amp;gt;
-         &amp;lt;execution&amp;gt;
-             &amp;lt;phase&amp;gt;package&amp;lt;/phase&amp;gt;
-             &amp;lt;goals&amp;gt;
-                 &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
-             &amp;lt;/goals&amp;gt;
-         &amp;lt;/execution&amp;gt;
-     &amp;lt;/executions&amp;gt;--&amp;gt;
-&amp;lt;/plugin&amp;gt;
-&amp;lt;plugin&amp;gt;
-    &amp;lt;groupId&amp;gt;org.codehaus.mojo&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;findbugs-maven-plugin&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;2.5.2&amp;lt;/version&amp;gt;
-    &amp;lt;configuration&amp;gt;
-        &amp;lt;onlyAnalyze&amp;gt;
-            cn.shenyanchao.package.*,
-            cn.shenyanchao.otherpackage.*,
-        &amp;lt;/onlyAnalyze&amp;gt;
-        &amp;lt;includeFilterFile&amp;gt;findbugs.xml&amp;lt;/includeFilterFile&amp;gt;
-        &amp;lt;failOnError&amp;gt;true&amp;lt;/failOnError&amp;gt;
-        &amp;lt;outputEncoding&amp;gt;UTF-8&amp;lt;/outputEncoding&amp;gt;
-    &amp;lt;/configuration&amp;gt;
- &amp;lt;!--   &amp;lt;executions&amp;gt;
-        &amp;lt;execution&amp;gt;
-            &amp;lt;phase&amp;gt;package&amp;lt;/phase&amp;gt;
-            &amp;lt;goals&amp;gt;
-                &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
-            &amp;lt;/goals&amp;gt;
-        &amp;lt;/execution&amp;gt;
-    &amp;lt;/executions&amp;gt;--&amp;gt;
-&amp;lt;/plugin&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="maven" scheme="http://www.shenyanchao.cn/categories/maven/"/>
-    
-    
-      <category term="checkstyle" scheme="http://www.shenyanchao.cn/tags/checkstyle/"/>
-    
-      <category term="maven" scheme="http://www.shenyanchao.cn/tags/maven/"/>
-    
-      <category term="pmd" scheme="http://www.shenyanchao.cn/tags/pmd/"/>
-    
-      <category term="findbugs" scheme="http://www.shenyanchao.cn/tags/findbugs/"/>
-    
-      <category term="静态代码扫描" scheme="http://www.shenyanchao.cn/tags/%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maven如何打包本地依赖包</title>
-    <link href="http://www.shenyanchao.cn/blog/2013/11/20/how-package-system-dependency-lib-in-maven/"/>
-    <id>http://www.shenyanchao.cn/blog/2013/11/20/how-package-system-dependency-lib-in-maven/</id>
-    <published>2013-11-20T11:04:00.000Z</published>
-    <updated>2017-10-10T12:39:52.632Z</updated>
-    
-    <content type="html"><![CDATA[<p>####Maven如何依赖本地包？<br>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
-    &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
-    &lt;version&gt;3.2.8&lt;/version&gt;
-    &lt;scope&gt;system&lt;/scope&gt;
-    &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
-&lt;/dependency&gt;
-</code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
-<p>####如何将本地包打到war包内？<br>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
-<pre><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.3&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;warName&gt;${project.artifactId}&lt;/warName&gt;
-        &lt;webResources&gt;
-            &lt;resource&gt;
-                &lt;directory&gt;lib/&lt;/directory&gt;
-                &lt;targetPath&gt;WEB-INF/lib&lt;/targetPath&gt;
-                &lt;includes&gt;
-                    &lt;include&gt;**/*.jar&lt;/include&gt;
-                &lt;/includes&gt;
-            &lt;/resource&gt;
-        &lt;/webResources&gt;
-    &lt;/configuration&gt;
-&lt;/plugin&gt;
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;####Maven如何依赖本地包？&lt;br&gt;有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/
-    
-    </summary>
-    
-      <category term="maven" scheme="http://www.shenyanchao.cn/categories/maven/"/>
-    
-    
-      <category term="maven" scheme="http://www.shenyanchao.cn/tags/maven/"/>
-    
-      <category term="package" scheme="http://www.shenyanchao.cn/tags/package/"/>
-    
-      <category term="war" scheme="http://www.shenyanchao.cn/tags/war/"/>
     
   </entry>
   

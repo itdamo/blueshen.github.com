@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/</loc>
+    
+    <lastmod>2018-10-08T06:09:26.363Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</loc>
+    
+    <lastmod>2018-10-08T06:07:39.959Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shenyanchao.cn/tags/index.html</loc>
     
     <lastmod>2017-10-10T12:39:52.695Z</lastmod>
@@ -16,14 +30,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/about/index.html</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/20/xpath/</loc>
     
     <lastmod>2017-10-10T12:39:52.659Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/20/xpath/</loc>
+    <loc>http://www.shenyanchao.cn/about/index.html</loc>
     
     <lastmod>2017-10-10T12:39:52.659Z</lastmod>
     
@@ -37,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/06/13/write-my-maven-plugin/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/09/20/wo-de-di--pian-zhong-wen-bo-ke/</loc>
     
     <lastmod>2017-10-10T12:39:52.658Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/09/20/wo-de-di--pian-zhong-wen-bo-ke/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/06/13/write-my-maven-plugin/</loc>
     
     <lastmod>2017-10-10T12:39:52.658Z</lastmod>
     
@@ -79,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</loc>
     
     <lastmod>2017-10-10T12:39:52.656Z</lastmod>
     
@@ -93,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/</loc>
     
     <lastmod>2017-10-10T12:39:52.656Z</lastmod>
     
@@ -121,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.654Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shenyanchao.cn/blog/2012/10/30/travel-in-yunnan/</loc>
     
     <lastmod>2017-10-10T12:39:52.654Z</lastmod>
@@ -142,9 +149,9 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</loc>
     
-    <lastmod>2017-10-10T12:39:52.653Z</lastmod>
+    <lastmod>2017-10-10T12:39:52.654Z</lastmod>
     
   </url>
   
@@ -156,7 +163,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.653Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/singleton-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.652Z</lastmod>
     
@@ -170,13 +184,6 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/singleton-in-java/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.652Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shenyanchao.cn/blog/2012/11/07/template-method-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.652Z</lastmod>
@@ -184,9 +191,9 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-frequently-asked-questions/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
     
-    <lastmod>2017-10-10T12:39:52.651Z</lastmod>
+    <lastmod>2017-10-10T12:39:52.652Z</lastmod>
     
   </url>
   
@@ -198,14 +205,21 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-frequently-asked-questions/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.651Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/</loc>
     
     <lastmod>2017-10-10T12:39:52.650Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-1/</loc>
     
     <lastmod>2017-10-10T12:39:52.650Z</lastmod>
     
@@ -219,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-1/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</loc>
     
     <lastmod>2017-10-10T12:39:52.650Z</lastmod>
     
@@ -247,14 +261,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-web-driver/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-rc/</loc>
     
     <lastmod>2017-10-10T12:39:52.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-rc/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-web-driver/</loc>
     
     <lastmod>2017-10-10T12:39:52.648Z</lastmod>
     
@@ -275,6 +289,13 @@
   </url>
   
   <url>
+    <loc>http://www.shenyanchao.cn/blog/2013/04/01/run-karma-in-jenkins-ci/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.646Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/</loc>
     
     <lastmod>2017-10-10T12:39:52.646Z</lastmod>
@@ -282,9 +303,9 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/04/01/run-karma-in-jenkins-ci/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/06/28/refactoring-to-patterns-reading-notes/</loc>
     
-    <lastmod>2017-10-10T12:39:52.646Z</lastmod>
+    <lastmod>2017-10-10T12:39:52.645Z</lastmod>
     
   </url>
   
@@ -303,21 +324,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/06/28/refactoring-to-patterns-reading-notes/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.645Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/proxy-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/06/19/publishing-from-github-to-maven-central/</loc>
     
     <lastmod>2017-10-10T12:39:52.644Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/11/pmd/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/proxy-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.644Z</lastmod>
     
@@ -331,16 +345,9 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/06/19/publishing-from-github-to-maven-central/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/11/pmd/</loc>
     
     <lastmod>2017-10-10T12:39:52.644Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/08/observer-in-java/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.643Z</lastmod>
     
   </url>
   
@@ -359,14 +366,21 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/08/observer-in-java/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.643Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2013/03/11/node-dot-js-develop-guide-reading-note/</loc>
     
     <lastmod>2017-10-10T12:39:52.642Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/03/11/node-dot-js-develop-guide-reading-note/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.642Z</lastmod>
     
@@ -380,14 +394,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/05/02/my-linux-dream/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/12/04/mysqldump/</loc>
     
     <lastmod>2017-10-10T12:39:52.641Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/12/04/mysqldump/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/05/02/my-linux-dream/</loc>
     
     <lastmod>2017-10-10T12:39:52.641Z</lastmod>
     
@@ -401,13 +415,6 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/03/18/mocha-in-brief/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.640Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shenyanchao.cn/blog/2013/06/21/mockito-in-brief/</loc>
     
     <lastmod>2017-10-10T12:39:52.640Z</lastmod>
@@ -415,14 +422,21 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/memento-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/03/18/mocha-in-brief/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.639Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/memento-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.639Z</lastmod>
     
@@ -464,6 +478,13 @@
   </url>
   
   <url>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/19/jvm-out-of-memory/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.637Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.shenyanchao.cn/blog/2012/12/07/jmeter-distribution-step-by-step/</loc>
     
     <lastmod>2017-10-10T12:39:52.637Z</lastmod>
@@ -478,21 +499,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/19/jvm-out-of-memory/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.637Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/19/java6-jvm-params/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</loc>
     
     <lastmod>2017-10-10T12:39:52.636Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/19/java6-jvm-params/</loc>
     
     <lastmod>2017-10-10T12:39:52.636Z</lastmod>
     
@@ -506,13 +520,6 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/08/iterator-in-java/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.635Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shenyanchao.cn/blog/2013/03/22/jasmine-in-brief/</loc>
     
     <lastmod>2017-10-10T12:39:52.635Z</lastmod>
@@ -520,14 +527,21 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/08/iterator-in-java/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.635Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</loc>
     
     <lastmod>2017-10-10T12:39:52.634Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.634Z</lastmod>
     
@@ -555,13 +569,6 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/how-webdriver-works/</loc>
-    
-    <lastmod>2017-10-10T12:39:52.632Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.shenyanchao.cn/blog/2013/09/16/git-ssh-connection/</loc>
     
     <lastmod>2017-10-10T12:39:52.632Z</lastmod>
@@ -569,7 +576,7 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/22/http-header/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/how-webdriver-works/</loc>
     
     <lastmod>2017-10-10T12:39:52.632Z</lastmod>
     
@@ -583,9 +590,9 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/20/git-command/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/22/http-header/</loc>
     
-    <lastmod>2017-10-10T12:39:52.631Z</lastmod>
+    <lastmod>2017-10-10T12:39:52.632Z</lastmod>
     
   </url>
   
@@ -597,16 +604,16 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/flyweight-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/20/git-command/</loc>
     
     <lastmod>2017-10-10T12:39:52.631Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/01/21/exploratory-software-testing-reading-notes-1/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/flyweight-in-java/</loc>
     
-    <lastmod>2017-10-10T12:39:52.630Z</lastmod>
+    <lastmod>2017-10-10T12:39:52.631Z</lastmod>
     
   </url>
   
@@ -625,7 +632,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/22/encode-story/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/01/21/exploratory-software-testing-reading-notes-1/</loc>
+    
+    <lastmod>2017-10-10T12:39:52.630Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.629Z</lastmod>
     
@@ -639,21 +653,21 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/22/encode-story/</loc>
     
     <lastmod>2017-10-10T12:39:52.629Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2013/06/05/deep-in-testng/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/22/design-pattern-in-jdk-index/</loc>
     
     <lastmod>2017-10-10T12:39:52.628Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/22/design-pattern-in-jdk-index/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2013/06/05/deep-in-testng/</loc>
     
     <lastmod>2017-10-10T12:39:52.628Z</lastmod>
     
@@ -681,14 +695,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/08/command-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/02/composite-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.626Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/11/02/composite-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/11/08/command-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.626Z</lastmod>
     
@@ -730,14 +744,14 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/30/adapter-in-java/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/23/bom-in-utf8-text/</loc>
     
     <lastmod>2017-10-10T12:39:52.623Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2012/10/30/adapter-in-java/</loc>
     
     <lastmod>2017-10-10T12:39:52.623Z</lastmod>
     
@@ -751,7 +765,7 @@
   </url>
   
   <url>
-    <loc>http://www.shenyanchao.cn/blog/2012/10/23/bom-in-utf8-text/</loc>
+    <loc>http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</loc>
     
     <lastmod>2017-10-10T12:39:52.623Z</lastmod>
     

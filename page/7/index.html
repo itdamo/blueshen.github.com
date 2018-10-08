@@ -282,6 +282,270 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2012/11/08/observer-in-java/" itemprop="url">
+                  设计模式：观察者（Observer） in java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-11-08T18:50:00+08:00" content="2012-11-08">
+              2012-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/08/observer-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/08/observer-in-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>定义：</strong>又叫发布订阅模式（Publish/subscribe），它定义了对象间的一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并自动更新。  </p>
+<blockquote>
+<p>这个定义还是比较通俗易懂的。我看了一遍，发现这不就是微博吗？我发布一条微博，那么所有关注我的人，都会收到通知，然后在新鲜事里显示出来。没错，就是这样！</p>
+</blockquote>
+<p>观察者模式有4个角色：  </p>
+<ul>
+<li>被观察者(Observable):<br>定义被观察者必须实现的职责，动态的增加、删除观察者以及通知观察者   </li>
+<li>观察者（Observer）:<br>接收到消息后，进行更新操作</li>
+<li>被观察者(Observable)具体类:<br>定义自己的业务逻辑，并定义哪儿些事件需要通知观察者   </li>
+<li>观察者（Observer）具体类：<br>每个观察者在接收到消息后的更新操作是不同的。</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2012/11/08/observer-in-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2012/11/08/iterator-in-java/" itemprop="url">
+                  设计模式：迭代器（Iterator） in java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-11-08T16:50:00+08:00" content="2012-11-08">
+              2012-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/08/iterator-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/08/iterator-in-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>定义：</strong>迭代器模式提供了一种方法来访问一个容器对象种的各个元素，而又不暴露这个对象的内部细节。   </p>
+<blockquote>
+<p>在Java中已经默认提供了Iterator支持，各种容器类都进行了实现，而事实上，迭代器模式就是为了解决如何遍历这些容器里的元素而诞生的。   </p>
+</blockquote>
+<p><strong>迭代器模式</strong>主要有以下的角色：</p>
+<ul>
+<li>Iterator抽象迭代器：<br>负责定义访问与遍历元素的接口。基本有3个固定的方法<code>hasNext()</code>,<code>next()</code>,<code>remove()</code>;</li>
+<li>Concrete Iterator具体迭代器：<br>迭代器的实现类，实现接口，完成元素遍历。</li>
+<li>Aggregate抽象容器：<br>定义创建具体迭代器的接口。在Java种一般是<code>iterator()</code>方法。</li>
+<li>Concrete Aggregate具体容器：<br>实现创建迭代器接口，返回迭代器实例对象。   </li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2012/11/08/iterator-in-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2012/11/08/command-in-java/" itemprop="url">
                   设计模式：命令（Command） in java
                 </a>
@@ -1293,263 +1557,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2012/11/02/state-in-java/" itemprop="url">
-                  设计模式：状态（state） in java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:11:00+08:00" content="2012-11-02">
-              2012-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/state-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/state-in-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>定义：</strong>当一个对象内在状态改变时允许其改变行为，这个对象看起来想改变了其类。<br>状态模式的核心是封装，状态的变更引起了行为的变更，从外部看起来就好像这个对象对应的类发生了改变一样。    </p>
-<p>状态模式有3个角色：    </p>
-<ul>
-<li>State抽象状态角色<br>接口或抽象类，负责对象状态定义，并且封装环境角色以实现状态转换。    </li>
-<li>ConcreteState具体状态角色<br>每一个具体状态必须完成2个职责：本状态的行为管理以及趋向状态处理。简单说，就是本状态下要做的事情，以及本状态如何过渡到其他状态。       </li>
-<li>Context环境角色<br>定义客户端需要的接口，并且负责具体状态的切换。    </li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2012/11/02/state-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2012/11/02/strategy-in-java/" itemprop="url">
-                  设计模式：策略（strategy） in java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:11:00+08:00" content="2012-11-02">
-              2012-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/strategy-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/strategy-in-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>定义：</strong>策略模式（Strategy Pattern）是一种比较简单的模式，也叫做政策模式（Policy Pattern）。定义一组算法，将每个算法都封装起来，并且使他们之间可以互换。    </p>
-<p>策略模式有3个角色：   </p>
-<ul>
-<li>Context封装角色<br>它叫上下文角色，起承上启下封装的作用，屏蔽高层模块对策略、算法的直接访问，封装可能存在的变化。</li>
-<li>Strategy抽象策略角色<br>策略、算法的家族的抽象，通常为接口。   </li>
-<li>ConcreteStrategy具体策略角色<br>实现抽象策略中的操作，该类含有具体的算法。  </li>
-</ul>
-<p>下面借用刘备江东娶亲，诸葛亮给赵云3个妙计的故事来说明这个问题。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2012/11/02/strategy-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1595,7 +1602,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1612,7 +1619,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-count">196</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1667,7 +1674,7 @@
         <div class="copyright" >
   
   &copy;  2012 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

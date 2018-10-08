@@ -282,6 +282,351 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/" itemprop="url">
+                  Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-20T19:22:00+08:00" content="2013-11-20">
+              2013-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在pom.xml里添加以下maven插件配置：   </p>
+<pre><code>    &lt;!-- 静态代码检查 --&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.11&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;configLocation&gt;checkstyle.xml&lt;/configLocation&gt;
+        &lt;includeResources&gt;false&lt;/includeResources&gt;
+        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
+        &lt;violationSeverity&gt;info&lt;/violationSeverity&gt;
+        &lt;maxAllowedViolations&gt;0&lt;/maxAllowedViolations&gt;
+        &lt;consoleOutput&gt;true&lt;/consoleOutput&gt;
+        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+        &lt;includes&gt;
+            **\/package\/**.java,**\/otherpackage\/**.java
+        &lt;/includes&gt;
+    &lt;/configuration&gt;
+&lt;!--     &lt;executions&gt;
+         &lt;execution&gt;
+             &lt;goals&gt;
+                 &lt;goal&gt;check&lt;/goal&gt;
+             &lt;/goals&gt;
+             &lt;phase&gt;validate&lt;/phase&gt;
+         &lt;/execution&gt;
+     &lt;/executions&gt;--&gt;
+&lt;/plugin&gt;
+
+&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-pmd-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.7.1&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;failurePriority&gt;5&lt;/failurePriority&gt;
+        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
+        &lt;targetJdk&gt;${jdk.version}&lt;/targetJdk&gt;
+        &lt;verbose&gt;true&lt;/verbose&gt;
+        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
+        &lt;rulesets&gt;
+            &lt;ruleset&gt;pmd.xml&lt;/ruleset&gt;
+        &lt;/rulesets&gt;
+        &lt;includes&gt;
+            &lt;include&gt;**\/package\/**.java&lt;/include&gt;
+            &lt;include&gt;**\/otherpackage\/**.java&lt;/include&gt;
+        &lt;/includes&gt;
+    &lt;/configuration&gt;
+  &lt;!--   &lt;executions&gt;
+         &lt;execution&gt;
+             &lt;phase&gt;package&lt;/phase&gt;
+             &lt;goals&gt;
+                 &lt;goal&gt;check&lt;/goal&gt;
+             &lt;/goals&gt;
+         &lt;/execution&gt;
+     &lt;/executions&gt;--&gt;
+&lt;/plugin&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;findbugs-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.5.2&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;onlyAnalyze&gt;
+            cn.shenyanchao.package.*,
+            cn.shenyanchao.otherpackage.*,
+        &lt;/onlyAnalyze&gt;
+        &lt;includeFilterFile&gt;findbugs.xml&lt;/includeFilterFile&gt;
+        &lt;failOnError&gt;true&lt;/failOnError&gt;
+        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
+    &lt;/configuration&gt;
+ &lt;!--   &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;check&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;--&gt;
+&lt;/plugin&gt;
+</code></pre><p>这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2013/11/20/how-package-system-dependency-lib-in-maven/" itemprop="url">
+                  Maven如何打包本地依赖包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-20T19:04:00+08:00" content="2013-11-20">
+              2013-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/11/20/how-package-system-dependency-lib-in-maven/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/11/20/how-package-system-dependency-lib-in-maven/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>####Maven如何依赖本地包？<br>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
+    &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
+    &lt;version&gt;3.2.8&lt;/version&gt;
+    &lt;scope&gt;system&lt;/scope&gt;
+    &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
+&lt;/dependency&gt;
+</code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
+<p>####如何将本地包打到war包内？<br>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.3&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;warName&gt;${project.artifactId}&lt;/warName&gt;
+        &lt;webResources&gt;
+            &lt;resource&gt;
+                &lt;directory&gt;lib/&lt;/directory&gt;
+                &lt;targetPath&gt;WEB-INF/lib&lt;/targetPath&gt;
+                &lt;includes&gt;
+                    &lt;include&gt;**/*.jar&lt;/include&gt;
+                &lt;/includes&gt;
+            &lt;/resource&gt;
+        &lt;/webResources&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2013/09/25/custome-checkstyle-rule/" itemprop="url">
                   自定义CheckStyle规则
                 </a>
@@ -1305,250 +1650,6 @@ and the repository exists.
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/" itemprop="url">
-                  使用Eclipse AST来解析Java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-19T14:46:00+08:00" content="2013-06-19">
-              2013-06-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/06/19/use-eclipse-ast-to-parser-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。<br>另外，Eclipse有一个<a href="http://www.eclipse.org/jdt/ui/astview/">AST View</a>插件，使用这个能更加的清楚的看到解析后的效果。   </p>
-<p><img src="/images/blog/eclipse-ast-view.png" alt="Eclipse AST View">    </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013/06/13/write-my-maven-plugin/" itemprop="url">
-                  write my maven plugin
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-13T20:35:00+08:00" content="2013-06-13">
-              2013-06-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/maven/" itemprop="url" rel="index">
-                    <span itemprop="name">maven</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013/06/13/write-my-maven-plugin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/06/13/write-my-maven-plugin/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mvn archetype:generate -DgroupId=cn.shenyanchao.ut -DartifactId=ut-maven-plugin -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-plugin</p>
-<p><a href="http://maven.apache.org/guides/plugin/guide-java-plugin-development.html" target="_blank" rel="external">http://maven.apache.org/guides/plugin/guide-java-plugin-development.html</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1594,7 +1695,7 @@ and the repository exists.
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1611,7 +1712,7 @@ and the repository exists.
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">191</span>
+                <span class="site-state-item-count">196</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1666,7 +1767,7 @@ and the repository exists.
         <div class="copyright" >
   
   &copy;  2012 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
