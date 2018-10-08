@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Spring MVC本身对Restful支持非常好。它的@RequestMapping、@RequestParam、@PathVariable、@ResponseBody注解很好的支持了REST。18.2 Creating RESTful services
 1. @RequestMappingSpring uses the @RequestMapping method annotation to">
-<meta property="og:updated_time" content="2017-10-10T12:39:52.646Z">
+<meta property="og:updated_time" content="2018-10-08T06:11:37.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Restful Spring MVC">
 <meta name="twitter:description" content="Spring MVC本身对Restful支持非常好。它的@RequestMapping、@RequestParam、@PathVariable、@ResponseBody注解很好的支持了REST。18.2 Creating RESTful services
@@ -368,13 +368,14 @@ public String findOwner(@PathVariable(&quot;ownerId&quot;) String theOwner, Mode
 <p><strong>Tip</strong></p>
 <p>method parameters that are decorated with the @PathVariable annotation can be of any simple type such as int, long, Date… Spring automatically converts to the appropriate type and throws a TypeMismatchException if the type is not correct.</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="3-RequestParam"><a href="#3-RequestParam" class="headerlink" title="3. @RequestParam"></a>3. <code>@RequestParam</code></h3><p>官方文档居然没有对这个注解进行说明，估计是遗漏了（真不应该啊）。这个注解跟<code>@PathVariable</code>功能差不多，只是参数值的来源不一样而已。它的取值来源是请求参数（querystring或者post表单字段）。</p>
 <p>对了，因为它的来源可以是POST字段，所以它支持更丰富和复杂的类型信息。比如文件对象:</p>
 <pre><code>@RequestMapping(&quot;/imageUpload&quot;)
 public String processImageUpload(@RequestParam(&quot;name&quot;) String name,
                 @RequestParam(&quot;description&quot;) String description,
                 @RequestParam(&quot;image&quot;) MultipartFile image) throws IOException {
-    this.imageDatabase.storeImage(name, image.getInputStream(), 
+    this.imageDatabase.storeImage(name, image.getInputStream(),
                                     (int) image.getSize(), description);
     return &quot;redirect:imageList&quot;;
 }
@@ -383,7 +384,7 @@ public String processImageUpload(@RequestParam(&quot;name&quot;) String name,
 public String processImageUpload(@RequestParam(value=&quot;name&quot;, defaultValue=&quot;arganzheng&quot;) String name,
                 @RequestParam(&quot;description&quot;) String description,
                 @RequestParam(&quot;image&quot;) MultipartFile image) throws IOException {
-    this.imageDatabase.storeImage(name, image.getInputStream(), 
+    this.imageDatabase.storeImage(name, image.getInputStream(),
                                     (int) image.getSize(), description);
     return &quot;redirect:imageList&quot;;
 }
@@ -399,14 +400,14 @@ public String processImageUpload(@RequestParam(value=&quot;name&quot;, defaultVa
     List&lt;MediaType&gt; getSupportedMediaTypes();
 
     // Read an object of the given type form the given input message, and returns it.
-    T read(Class&lt;T&gt; clazz, HttpInputMessage inputMessage) throws IOException, 
+    T read(Class&lt;T&gt; clazz, HttpInputMessage inputMessage) throws IOException,
                                                                     HttpMessageNotReadableException;
 
     // Write an given object to the given output message.
-    void write(T t, HttpOutputMessage outputMessage) throws IOException, 
+    void write(T t, HttpOutputMessage outputMessage) throws IOException,
                                                             HttpMessageNotWritableException;
 
-}        
+}
 </code></pre><p>Spring MVC对<code>HttpMessageConverter</code>有多种默认实现，基本上不需要自己再自定义<code>HttpMessageConverter</code><br>&gt;</p>
 <ul>
 <li>StringHttpMessageConverter - converts strings</li>
@@ -434,7 +435,7 @@ implements HandlerAdapter, Ordered, BeanFactoryAware {
         this.messageConverters = new HttpMessageConverter[]{new ByteArrayHttpMessageConverter(), stringHttpMessageConverter,
         new SourceHttpMessageConverter(), new XmlAwareFormHttpMessageConverter()};
     }
-}   
+}
 </code></pre><p>如上：默认的<code>HttpMessageConverter</code>是<code>ByteArrayHttpMessageConverter</code>、<code>stringHttpMessageConverter</code>、<code>SourceHttpMessageConverter</code>和<code>XmlAwareFormHttpMessageConverter</code>转换器。所以需要配置一下：</p>
 <pre><code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter&quot;&gt;
     &lt;property name=&quot;messageConverters&quot;&gt;
@@ -521,10 +522,10 @@ public class MappingJsonpHttpMessageConverter extends MappingJacksonHttpMessageC
 </code></pre><p>传入参数类型也可以是javax.servlet.http.Cookie类型。</p>
 <p><strong>TIPS</strong> 如果是使用cookies值来保持回话状态的话，推荐使用Spring的<a href="http://docs.spring.io/spring/docs/3.0.0.M3/reference/html/ch04s04.html" target="_blank" rel="external">Bean Scopes</a>机制，具体参见笔者的另一篇文章：<a href="http://blog.arganzheng.me/posts/spring-bean-scopes.html" target="_blank" rel="external">Spring的Bean Scopes</a>。非常方便。</p>
 <h3 id="6-RequestHeader"><a href="#6-RequestHeader" class="headerlink" title="6. @RequestHeader"></a>6. <code>@RequestHeader</code></h3><p><code>@RequestHeader</code>用于将请求的头信息区数据映射到功能处理方法的参数上。</p>
-<pre><code>@RequestMapping(value=&quot;/header&quot;)  
-public String test(  
-   @RequestHeader(&quot;User-Agent&quot;) String userAgent,  
-   @RequestHeader(value=&quot;Accept&quot;) String[] accepts)  
+<pre><code>@RequestMapping(value=&quot;/header&quot;)
+public String test(
+   @RequestHeader(&quot;User-Agent&quot;) String userAgent,
+   @RequestHeader(value=&quot;Accept&quot;) String[] accepts)
 </code></pre><p>如上配置将自动将请求头“User-Agent”值入参到userAgent参数上，并将“Accept”请求头值入参到accepts参数上。</p>
 <h3 id="7-返回多种表现形式-Returning-multiple-representations"><a href="#7-返回多种表现形式-Returning-multiple-representations" class="headerlink" title="7. 返回多种表现形式(Returning multiple representations)"></a>7. 返回多种表现形式(Returning multiple representations)</h3><p>对于Restful服务，一个资源往往有多种表现形式，比如最常见的就是返回xml和json格式数据，还有就是RSS和ATOM。怎样让客户端告诉Restful服务，我希望得到什么样表现形式的资源呢？</p>
 <p>一般来说client可以通过以下三者方式来通知Server它希望拿到的资源格式：</p>
@@ -570,7 +571,7 @@ public String test(
     private List&lt;ViewResolver&gt; viewResolvers;
 
 
-    // ignore some setter and getter...    
+    // ignore some setter and getter...
 
     public void setMediaTypes(Map&lt;String, String&gt; mediaTypes) {
       Assert.notNull(mediaTypes, &quot;&apos;mediaTypes&apos; must not be null&quot;);
@@ -795,16 +796,11 @@ public String test(
 </blockquote>
 <p>这个就是上面提到的Spring MVC默认的三个<code>ContentNegotiationStrategy</code>，即所谓的PPA Strategy（path extension, then parameter, then Accept header) ，顺序也是先path extension，然后parameter(默认是format参数)，然后才是accept头。</p>
 <p>关于<code>ContentNegotiationStrategy</code>，可以参考笔者的另一篇文章：<a href="http://blog.arganzheng.me/posts/content-negotiation-using-spring-mvc.html" target="_blank" rel="external">content negotiation using spring mvc</a>。有具体的实际案例。</p>
-<h5 id="2-供选择的SingleViewResolver"><a href="#2-供选择的SingleViewResolver" class="headerlink" title="2. 供选择的SingleViewResolver"></a>2. 供选择的SingleViewResolver</h5><blockquote>
+<h5 id="2-供选择的SingleViewResolver"><a href="#2-供选择的SingleViewResolver" class="headerlink" title="2. 供选择的SingleViewResolver"></a>2. 供选择的SingleViewResolver</h5><p>&gt;</p>
 <ol>
-<li><p>The ContentNegotiatingViewResolver does not resolve views itself, but delegates to other ViewResolvers. By default, these other view resolvers are picked up automatically from the application context, though they can also be set explicitly by using the viewResolvers property. Note that in order for this view resolver to work properly, the order property needs to be set to a higher precedence than the others (the default is Ordered.HIGHEST_PRECEDENCE.)</p>
-<p> 说明：即<code>private List&lt;ViewResolver&gt; viewResolvers;</code>属性。需要注意的是Spring会自动加载和注册所有其他的ViewResolver到<code>ContentNegotiationViewResolover</code>的<code>viewResolvers</code>属性。但是你需要告诉Spring MVC，你希望controller返回的view都是由<code>ContentNegotiationViewResolover</code>来解析，而不是其他定义的ViewResolver。这是通过order配置项来决定。你应该给<code>ContentNegotiationViewResolover</code>配置最高的order(其实默认就是最高了)。</p>
-</li>
-<li><p>Additionally, this view resolver exposes the defaultViews property, allowing you to override the views provided by the view resolvers. Note that these default views are offered as candicates, and still need have the content type requested (via file extension, parameter, or Accept header, described above). You can also set the default content type directly, which will be returned when the other mechanisms (Accept header, file extension or parameter) do not result in a match.</p>
-<p> 说明：即<code>private List&lt;View&gt; defaultViews;</code>和<code>private MediaType defaultContentType;</code>属性。</p>
-</li>
+<li>The ContentNegotiatingViewResolver does not resolve views itself, but delegates to other ViewResolvers. By default, these other view resolvers are picked up automatically from the application context, though they can also be set explicitly by using the viewResolvers property. Note that in order for this view resolver to work properly, the order property needs to be set to a higher precedence than the others (the default is Ordered.HIGHEST_PRECEDENCE.)<br>&gt;<br> 说明：即<code>private List&lt;ViewResolver&gt; viewResolvers;</code>属性。需要注意的是Spring会自动加载和注册所有其他的ViewResolver到<code>ContentNegotiationViewResolover</code>的<code>viewResolvers</code>属性。但是你需要告诉Spring MVC，你希望controller返回的view都是由<code>ContentNegotiationViewResolover</code>来解析，而不是其他定义的ViewResolver。这是通过order配置项来决定。你应该给<code>ContentNegotiationViewResolover</code>配置最高的order(其实默认就是最高了)。<br>&gt;</li>
+<li>Additionally, this view resolver exposes the defaultViews property, allowing you to override the views provided by the view resolvers. Note that these default views are offered as candicates, and still need have the content type requested (via file extension, parameter, or Accept header, described above). You can also set the default content type directly, which will be returned when the other mechanisms (Accept header, file extension or parameter) do not result in a match.<br>&gt;<br> 说明：即<code>private List&lt;View&gt; defaultViews;</code>和<code>private MediaType defaultContentType;</code>属性。</li>
 </ol>
-</blockquote>
 <p>关于<code>ContentNegotiatingViewResolver</code>，下面两篇文章都不错，值得一看：</p>
 <ol>
 <li><a href="http://blog.eyallupu.com/2009/07/content-negotiation-using-spring-mvcs.html" target="_blank" rel="external">Content Negotiation using Spring MVC’s ContentNegotiatingViewResolver</a>:使用了<code>viewResolvers</code>配置。</li>
@@ -883,8 +879,8 @@ http://arganzheng.me/message/update
 
   &lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory --&gt;
   &lt;mvc:resources mapping=&quot;/resources/**&quot; location=&quot;/resources/&quot; /&gt;
-  &lt;!-- 注意：配置了mvc:resources就必须配置这个选项，否则handler mapping都失效了 
-      @see  http://stackoverflow.com/questions/7910845/the-handler-mapping-from-the-mvcresource-override-other-mappings-which-defined 
+  &lt;!-- 注意：配置了mvc:resources就必须配置这个选项，否则handler mapping都失效了
+      @see  http://stackoverflow.com/questions/7910845/the-handler-mapping-from-the-mvcresource-override-other-mappings-which-defined
   --&gt;
   &lt;mvc:annotation-driven /&gt;
 </code></pre><p>这样所有请求：<code>http://arganzheng.me/resources/**</code>会映射到webapp下的resources目录，而不是找我们的controller处理。</p>
