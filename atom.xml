@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.shenyanchao.cn/"/>
-  <updated>2018-10-08T06:07:39.959Z</updated>
+  <updated>2018-10-22T09:30:45.548Z</updated>
   <id>http://www.shenyanchao.cn/</id>
   
   <author>
@@ -16,11 +16,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于接口定义的一些想法</title>
+    <link href="http://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/"/>
+    <id>http://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/</id>
+    <published>2018-10-22T09:30:45.547Z</published>
+    <updated>2018-10-22T09:30:45.548Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
+<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
+<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
+<ul>
+<li>swagger-maven-plugin</li>
+<li>swagger-ui</li>
+</ul>
+<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
+<ul>
+<li>提前制定接口，方便联调</li>
+<li>提前规划返回接口类型，统一字段名称。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。&lt;/p&gt;
+&lt;h3 id=&quot;使用RESTFul接口&quot;&gt;&lt;a href=&quot;#使用RESTFul接口&quot; class=&quot;headerlink&quot; title=&quot;
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.shenyanchao.cn/categories/java/"/>
+    
+    
+      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+    
+      <category term="restful" scheme="http://www.shenyanchao.cn/tags/restful/"/>
+    
+      <category term="interface" scheme="http://www.shenyanchao.cn/tags/interface/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微服务下的API设计原则</title>
     <link href="http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
     <id>http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</id>
     <published>2018-08-23T09:05:00.000Z</published>
-    <updated>2018-10-08T06:07:39.959Z</updated>
+    <updated>2018-10-22T09:30:45.584Z</updated>
     
     <content type="html"><![CDATA[<h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/" target="_blank" rel="external">Github API</a></p>
 <h2 id="1-为了安全，请使用HTTPS"><a href="#1-为了安全，请使用HTTPS" class="headerlink" title="1. 为了安全，请使用HTTPS"></a>1. 为了安全，请使用HTTPS</h2><p>与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。</p>
@@ -365,7 +404,7 @@
     <link href="http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/"/>
     <id>http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/</id>
     <published>2018-07-23T09:05:00.000Z</published>
-    <updated>2018-10-08T06:09:26.363Z</updated>
+    <updated>2018-10-22T09:30:45.582Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><blockquote>
 <p>spring-data-redis使得Spring项目可以快速简单的通过RedisTemplate来操作Redis。而spring-boot-starter-data-redis更是让redis集成更加的方便。</p>
@@ -931,50 +970,11 @@ public void clean(String name, byte[] pattern) {
   </entry>
   
   <entry>
-    <title>关于接口定义的一些想法</title>
-    <link href="http://www.shenyanchao.cn/blog/2017/10/10/about-interface-define/"/>
-    <id>http://www.shenyanchao.cn/blog/2017/10/10/about-interface-define/</id>
-    <published>2017-10-10T12:39:52.622Z</published>
-    <updated>2017-10-10T12:39:52.622Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
-<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
-<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
-<ul>
-<li>swagger-maven-plugin</li>
-<li>swagger-ui</li>
-</ul>
-<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
-<ul>
-<li>提前制定接口，方便联调</li>
-<li>提前规划返回接口类型，统一字段名称。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。&lt;/p&gt;
-&lt;h3 id=&quot;使用RESTFul接口&quot;&gt;&lt;a href=&quot;#使用RESTFul接口&quot; class=&quot;headerlink&quot; title=&quot;
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.shenyanchao.cn/categories/java/"/>
-    
-    
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
-    
-      <category term="restful" scheme="http://www.shenyanchao.cn/tags/restful/"/>
-    
-      <category term="interface" scheme="http://www.shenyanchao.cn/tags/interface/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Restful Spring MVC</title>
     <link href="http://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/"/>
     <id>http://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/</id>
     <published>2015-11-03T05:53:00.000Z</published>
-    <updated>2018-10-08T06:11:37.322Z</updated>
+    <updated>2018-10-22T09:30:45.573Z</updated>
     
     <content type="html"><![CDATA[<p>Spring MVC本身对Restful支持非常好。它的<code>@RequestMapping</code>、<code>@RequestParam</code>、<code>@PathVariable</code>、<code>@ResponseBody</code>注解很好的支持了REST。<a href="http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch18s02.html" target="_blank" rel="external">18.2 Creating RESTful services</a></p>
 <h3 id="1-RequestMapping"><a href="#1-RequestMapping" class="headerlink" title="1. @RequestMapping"></a>1. <code>@RequestMapping</code></h3><p>Spring uses the @RequestMapping method annotation to define the URI Template for the request. 类似于struts的action-mapping。 可以指定POST或者GET。</p>
@@ -1554,7 +1554,7 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
     <link href="http://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
     <id>http://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/</id>
     <published>2015-03-26T05:07:00.000Z</published>
-    <updated>2017-10-10T12:39:52.625Z</updated>
+    <updated>2018-10-22T09:30:45.552Z</updated>
     
     <content type="html"><![CDATA[<p>最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。</p>
 <p>####1）C3P0容错和自动重连与以下配置参数有关：</p>
@@ -1611,7 +1611,7 @@ acquireRetryDelay: 1000
     <link href="http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
     <id>http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
     <published>2014-11-25T05:53:00.000Z</published>
-    <updated>2017-10-10T12:39:52.623Z</updated>
+    <updated>2018-10-22T09:30:45.550Z</updated>
     
     <content type="html"><![CDATA[<p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
 <p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
@@ -1748,7 +1748,7 @@ pooch nibble
     <link href="http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
     <id>http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
     <published>2014-11-14T05:26:00.000Z</published>
-    <updated>2017-10-10T12:39:52.656Z</updated>
+    <updated>2018-10-22T09:30:45.588Z</updated>
     
     <content type="html"><![CDATA[<p>###软件版本</p>
 <ul>
@@ -1820,7 +1820,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
     <link href="http://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/"/>
     <id>http://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/</id>
     <published>2014-11-13T08:20:00.000Z</published>
-    <updated>2017-10-10T12:39:52.629Z</updated>
+    <updated>2018-10-22T09:30:45.556Z</updated>
     
     <content type="html"><![CDATA[<p>　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&gt;UTF-8文件编码批量转换。</p>
 <p>Linux命令-enca 查看文件的编码</p>
@@ -1897,7 +1897,7 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
     <link href="http://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
     <id>http://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/</id>
     <published>2014-11-13T05:24:00.000Z</published>
-    <updated>2017-10-10T12:39:52.634Z</updated>
+    <updated>2018-10-22T09:30:45.561Z</updated>
     
     <content type="html"><![CDATA[<p>###安装需求</p>
 <ul>
@@ -2044,7 +2044,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/"/>
     <id>http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</id>
     <published>2014-11-11T11:31:00.000Z</published>
-    <updated>2017-10-10T12:39:52.634Z</updated>
+    <updated>2018-10-22T09:30:45.562Z</updated>
     
     <content type="html"><![CDATA[<p>Hadoop软件供应商Cloudera去年收购了一家总部位于伦敦的新兴企业<a href="https://github.com/myrrix/myrrix-recommender]" target="_blank" rel="external">Myrrix</a>——但在此之后无论是买家还是卖家在机器学习技术方面都开始归于沉寂。不过无论如何，Myrrix公司的技术方案加上其创始人Sean Owen可能已经足以值回票价。</p>
 <p>　　Owen目前的正式头衔为数据科学部门主管，目前他正专注投身于名为<a href="https://github.com/cloudera/oryx" target="_blank" rel="external">Oryx</a>的开源机器学习项目当中。(Oryx意思是剑羚、属于非洲羚羊的一类分支，Cloudera在售的产品中则有一款名为Impala——即黑斑羚)。Oryx的开发意图在于帮助Hadoop用户构建机器学习模式并将其加以部署，这样我们就能够以实时方式查询并获取其结果——例如将其作为垃圾邮件过滤器或者推荐引擎的组成部分。在理想状态下，Oryx能够在接纳输入数据流的同时对自身进行更新。</p>
@@ -2088,7 +2088,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/"/>
     <id>http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</id>
     <published>2014-10-22T09:14:00.000Z</published>
-    <updated>2017-10-10T12:39:52.654Z</updated>
+    <updated>2018-10-22T09:30:45.585Z</updated>
     
     <content type="html"><![CDATA[<p>solr 查询参数中有tie这样的一个参数，下面是它的官方解释：</p>
 <p><strong>The tie (Tie Breaker) Parameter</strong></p>
@@ -2127,7 +2127,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/"/>
     <id>http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</id>
     <published>2014-08-27T06:43:00.000Z</published>
-    <updated>2017-10-10T12:39:52.636Z</updated>
+    <updated>2018-10-22T09:30:45.564Z</updated>
     
     <content type="html"><![CDATA[<p>##Java7新特性</p>
 <p>###Java7语法特性<br>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
@@ -2701,7 +2701,7 @@ public class RepeatAnnotationUseNewVersion {
     <link href="http://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/"/>
     <id>http://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/</id>
     <published>2014-06-24T07:17:00.000Z</published>
-    <updated>2017-10-10T12:39:52.630Z</updated>
+    <updated>2018-10-22T09:30:45.558Z</updated>
     
     <content type="html"><![CDATA[<p>###常用的excel操作工具</p>
 <ul>
@@ -2808,7 +2808,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     <link href="http://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
     <id>http://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/</id>
     <published>2014-06-24T07:10:00.000Z</published>
-    <updated>2017-10-10T12:39:52.645Z</updated>
+    <updated>2018-10-22T09:30:45.572Z</updated>
     
     <content type="html"><![CDATA[<p>###为什么使用quartz集群？</p>
 <p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
@@ -2960,7 +2960,7 @@ public class TestTask extends QuartzJobBean {
     <link href="http://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/"/>
     <id>http://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</id>
     <published>2014-03-31T08:24:00.000Z</published>
-    <updated>2017-10-10T12:39:52.657Z</updated>
+    <updated>2018-10-22T09:30:45.589Z</updated>
     
     <content type="html"><![CDATA[<p>###velocity在spring项目中的使用<br>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
 <pre><code>&lt;bean id=&quot;velocityEngine&quot; class=&quot;org.springframework.ui.velocity.VelocityEngineFactoryBean&quot;&gt;
@@ -3022,7 +3022,7 @@ output.encoding = utf-8
     <link href="http://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/"/>
     <id>http://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/</id>
     <published>2014-03-27T13:43:00.000Z</published>
-    <updated>2017-10-10T12:39:52.635Z</updated>
+    <updated>2018-10-22T09:30:45.563Z</updated>
     
     <content type="html"><![CDATA[<p>###dom4j解析xml</p>
 <p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：  </p>
@@ -3167,7 +3167,7 @@ private static String getEncoding(String text) {
     <link href="http://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
     <id>http://www.shenyanchao.cn/blog/2014/03/18/use-jstl/</id>
     <published>2014-03-18T10:49:00.000Z</published>
-    <updated>2017-10-10T12:39:52.655Z</updated>
+    <updated>2018-10-22T09:30:45.587Z</updated>
     
     <content type="html"><![CDATA[<p>###EL 表达式<br>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
 <p>Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。</p>
@@ -3636,7 +3636,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     <link href="http://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/"/>
     <id>http://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</id>
     <published>2013-12-14T13:31:00.000Z</published>
-    <updated>2017-10-10T12:39:52.657Z</updated>
+    <updated>2018-10-22T09:30:45.589Z</updated>
     
     <content type="html"><![CDATA[<p>###ut-maven-plugin简介</p>
 <p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
@@ -3759,7 +3759,7 @@ Pet pet = clinicService.findPetById(1);
     <link href="http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/"/>
     <id>http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</id>
     <published>2013-12-04T07:45:00.000Z</published>
-    <updated>2017-10-10T12:39:52.653Z</updated>
+    <updated>2018-10-22T09:30:45.584Z</updated>
     
     <content type="html"><![CDATA[<p>《程序员修炼之道-从小工到专家》写的具有普遍意义的指导方法。很少有具体的开发讲解，更多的是告诉你，作为一个程序员，你应该具有哪些素质，以及怎么做。下面是我对书中印象比较深的一些记录。</p>
 <p>###关于心态</p>
@@ -3835,7 +3835,7 @@ Pet pet = clinicService.findPetById(1);
     <link href="http://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/"/>
     <id>http://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/</id>
     <published>2013-11-26T08:04:00.000Z</published>
-    <updated>2017-10-10T12:39:52.654Z</updated>
+    <updated>2018-10-22T09:30:45.585Z</updated>
     
     <content type="html"><![CDATA[<p>###一、什么是SSH？<br>简单说，SSH是一种网络协议，用于计算机之间的加密登录。   </p>
 <p>如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。   </p>

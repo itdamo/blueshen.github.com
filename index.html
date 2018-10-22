@@ -282,6 +282,137 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2018/10/22/about-interface-define/" itemprop="url">
+                  关于接口定义的一些想法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-22T17:30:45+08:00" content="2018-10-22">
+              2018-10-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2018/10/22/about-interface-define/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2018/10/22/about-interface-define/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
+<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
+<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
+<ul>
+<li>swagger-maven-plugin</li>
+<li>swagger-ui</li>
+</ul>
+<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
+<ul>
+<li>提前制定接口，方便联调</li>
+<li>提前规划返回接口类型，统一字段名称。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/" itemprop="url">
                   微服务下的API设计原则
                 </a>
@@ -504,137 +635,6 @@
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/10/10/about-interface-define/" itemprop="url">
-                  关于接口定义的一些想法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-10T20:39:52+08:00" content="2017-10-10">
-              2017-10-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2017/10/10/about-interface-define/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2017/10/10/about-interface-define/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
-<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
-<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
-<ul>
-<li>swagger-maven-plugin</li>
-<li>swagger-ui</li>
-</ul>
-<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
-<ul>
-<li>提前制定接口，方便联调</li>
-<li>提前规划返回接口类型，统一字段名称。</li>
-</ul>
-
-          
         
       
     </div>
