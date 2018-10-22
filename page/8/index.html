@@ -539,6 +539,134 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2012/11/02/memento-in-java/" itemprop="url">
+                  设计模式:备忘录（memento） in java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-11-02T20:10:00+08:00" content="2012-11-02">
+              2012-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/02/memento-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/memento-in-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>定义：</strong>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。   </p>
+<p>备忘录模式有以下三个角色：   </p>
+<ul>
+<li>Originator发起人角色<br>记录当前时刻的内部状态，负责定义哪些属于备份范围的状态，负责创建和恢复备忘录数据。   </li>
+<li>Memento备忘录角色<br>负责存储Originator发起人对象的内部状态，在需要的时候提供发起人需要的内部状态。   </li>
+<li>Caretaker备忘录管理员角色<br>对备忘录进行管理、保存和提供备忘录。   </li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2012/11/02/memento-in-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2012/11/02/null-object-in-java/" itemprop="url">
                   设计模式：空对象（null object） in java
                 </a>
@@ -622,134 +750,6 @@ if (book != null) {
 </code></pre><p>系统在使用对象的相关功能时，总要检查对象是否为null，如果不为null，我们才会调用它的相关方法，完成某种逻辑。这样的检查在一个系统中出现很多次，相信任何一个设计者都不愿意看到这样的情况。为了解决这种问题，我们可以可以引入空对象，这样，我们就可以摆脱大量程式化的代码，对代码的可读性也是一个飞跃。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2012/11/02/null-object-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2012/11/02/memento-in-java/" itemprop="url">
-                  设计模式:备忘录（memento） in java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:10:00+08:00" content="2012-11-02">
-              2012-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/memento-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/memento-in-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>定义：</strong>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。   </p>
-<p>备忘录模式有以下三个角色：   </p>
-<ul>
-<li>Originator发起人角色<br>记录当前时刻的内部状态，负责定义哪些属于备份范围的状态，负责创建和恢复备忘录数据。   </li>
-<li>Memento备忘录角色<br>负责存储Originator发起人对象的内部状态，在需要的时候提供发起人需要的内部状态。   </li>
-<li>Caretaker备忘录管理员角色<br>对备忘录进行管理、保存和提供备忘录。   </li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2012/11/02/memento-in-java/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
