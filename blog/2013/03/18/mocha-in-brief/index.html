@@ -86,16 +86,19 @@
 
 
 
-<meta name="description" content="##Mocha##Mocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/">
+<meta name="description" content="MochaMocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/
+安装n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mocha简介">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/18/mocha-in-brief/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##Mocha##Mocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.567Z">
+<meta property="og:description" content="MochaMocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/
+安装n">
+<meta property="og:updated_time" content="2018-10-23T06:30:36.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mocha简介">
-<meta name="twitter:description" content="##Mocha##Mocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/">
+<meta name="twitter:description" content="MochaMocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/
+安装n">
 
 
 
@@ -349,10 +352,9 @@
       
 
       
-        <p>##Mocha##<br>Mocha作为一种咖啡名，应该是广为人知的，中文翻译为<strong>摩卡</strong>。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。<br>Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。<br>项目主页：<a href="http://visionmedia.github.com/mocha/" target="_blank" rel="external">http://visionmedia.github.com/mocha/</a>    </p>
-<p>##安装##<br>    npm install -g mocha</p>
-<p>##一个简单的样例##</p>
-<pre><code>$ mkdir test
+        <h2 id="Mocha"><a href="#Mocha" class="headerlink" title="Mocha"></a>Mocha</h2><p>Mocha作为一种咖啡名，应该是广为人知的，中文翻译为<strong>摩卡</strong>。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。<br>Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。<br>项目主页：<a href="http://visionmedia.github.com/mocha/" target="_blank" rel="external">http://visionmedia.github.com/mocha/</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install -g mocha
+</code></pre><h2 id="一个简单的样例"><a href="#一个简单的样例" class="headerlink" title="一个简单的样例"></a>一个简单的样例</h2><pre><code>$ mkdir test
 $ cd ..
 $ mocha test/test.js
 
@@ -372,15 +374,14 @@ $  mocha
 
   ✔ 1 test complete (1ms)
 </code></pre><a id="more"></a>
-<p>##Assertions##<br>在Java Unit Test中类似JUNIT，TestNG提供了不少的Assert函数。同样的，mocha也有很多选择。而这些并不属于mocha的一部分。</p>
+<h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><p>在Java Unit Test中类似JUNIT，TestNG提供了不少的Assert函数。同样的，mocha也有很多选择。而这些并不属于mocha的一部分。</p>
 <ul>
 <li><a href="http://github.com/visionmedia/should.js" target="_blank" rel="external">should.js</a></li>
 <li><a href="https://github.com/LearnBoost/expect.js" target="_blank" rel="external">expect.js</a></li>
 <li><a href="http://chaijs.com/" target="_blank" rel="external">chai</a></li>
 <li><a href="https://github.com/visionmedia/better-assert" target="_blank" rel="external">better-assert</a></li>
 </ul>
-<p>##测试同步代码##</p>
-<pre><code>describe(&apos;Array&apos;, function(){
+<h2 id="测试同步代码"><a href="#测试同步代码" class="headerlink" title="测试同步代码"></a>测试同步代码</h2><pre><code>describe(&apos;Array&apos;, function(){
   describe(&apos;#indexOf()&apos;, function(){
     it(&apos;should return -1 when the value is not present&apos;, function(){
       [1,2,3].indexOf(5).should.equal(-1);
@@ -388,7 +389,7 @@ $  mocha
     })
   })
 })
-</code></pre><p>##测试异步代码##<br>添加一个回调函数，通常称为done,给it。mocha就会知道应该等待操作完成。</p>
+</code></pre><h2 id="测试异步代码"><a href="#测试异步代码" class="headerlink" title="测试异步代码"></a>测试异步代码</h2><p>添加一个回调函数，通常称为done,给it。mocha就会知道应该等待操作完成。</p>
 <pre><code>describe(&apos;User&apos;, function(){
   describe(&apos;#save()&apos;, function(){
     it(&apos;should save without error&apos;, function(done){
@@ -397,15 +398,13 @@ $  mocha
     })
   })
 })
-</code></pre><p>##类似与JUNIT的函数</p>
-<ul>
+</code></pre><h2 id="类似与JUNIT的函数"><a href="#类似与JUNIT的函数" class="headerlink" title="类似与JUNIT的函数"></a>类似与JUNIT的函数</h2><ul>
 <li>before : 在所有测试执行之前</li>
 <li>after ： 在所有测试执行之后</li>
 <li>beforeEach ： 每个测试之前</li>
 <li>afterEach ：每个测试之后</li>
 </ul>
-<p>##mocha指令##</p>
-<pre><code>Usage: mocha [debug] [options] [files]
+<h2 id="mocha指令"><a href="#mocha指令" class="headerlink" title="mocha指令"></a>mocha指令</h2><pre><code>Usage: mocha [debug] [options] [files]
 
 Commands:
 
@@ -436,8 +435,7 @@ Options:
   --interfaces                    显示可用的接口
   --reporters                     显示可用的报表列表
   --compilers &lt;ext&gt;:&lt;module&gt;,...  使用指定的module来编译文件
-</code></pre><p>##报表##</p>
-<pre><code>dot - dot matrix
+</code></pre><h2 id="报表"><a href="#报表" class="headerlink" title="报表"></a>报表</h2><pre><code>dot - dot matrix
     doc - html documentation
     spec - hierarchical spec list
     json - single json object
@@ -664,7 +662,7 @@ Options:
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mocha"><span class="nav-number">1.</span> <span class="nav-text">Mocha</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的样例"><span class="nav-number">3.</span> <span class="nav-text">一个简单的样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assertions"><span class="nav-number">4.</span> <span class="nav-text">Assertions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试同步代码"><span class="nav-number">5.</span> <span class="nav-text">测试同步代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试异步代码"><span class="nav-number">6.</span> <span class="nav-text">测试异步代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类似与JUNIT的函数"><span class="nav-number">7.</span> <span class="nav-text">类似与JUNIT的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mocha指令"><span class="nav-number">8.</span> <span class="nav-text">mocha指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报表"><span class="nav-number">9.</span> <span class="nav-text">报表</span></a></li></ol></div>
             
           </div>
         </section>

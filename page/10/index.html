@@ -1211,11 +1211,11 @@
 
       
         
-          <p>##什么是Page Objects(翻译为：页面对象？)…##<br>简单的说，Page Objects是指UI界面上用于与用户进行交互的对象。它可以指整个页面，也可以指Page上的某个区域。Page Objects是你的test code的交互对象，是对实际UI的一种抽象模型化。通过Page Objects可以减少重复代码的编写，例如，很多页面都有同样的header，footer，navigator等部分，如果对这些进行抽象，只写一次就可以在其他地方通用了。  </p>
+          <h2 id="什么是Page-Objects-翻译为：页面对象？-…"><a href="#什么是Page-Objects-翻译为：页面对象？-…" class="headerlink" title="什么是Page Objects(翻译为：页面对象？)…"></a>什么是Page Objects(翻译为：页面对象？)…</h2><p>简单的说，Page Objects是指UI界面上用于与用户进行交互的对象。它可以指整个页面，也可以指Page上的某个区域。Page Objects是你的test code的交互对象，是对实际UI的一种抽象模型化。通过Page Objects可以减少重复代码的编写，例如，很多页面都有同样的header，footer，navigator等部分，如果对这些进行抽象，只写一次就可以在其他地方通用了。</p>
 <p><strong>注意PageObjects与Page Objects是不一样的</strong>，PageObjects用于特指采用Page Objects进行封装的一种设计模式（Design Pattern）,而不仅仅是多一个空格的区别。哈。</p>
-<p>##如何实现PageObjects设计模式？##<br>一般情况下，对于一个Page Objects对象，它有两个方面的特征：  </p>
+<h2 id="如何实现PageObjects设计模式？"><a href="#如何实现PageObjects设计模式？" class="headerlink" title="如何实现PageObjects设计模式？"></a>如何实现PageObjects设计模式？</h2><p>一般情况下，对于一个Page Objects对象，它有两个方面的特征：</p>
 <ul>
-<li>自身元素(WebElement)  </li>
+<li>自身元素(WebElement)</li>
 <li>实现功能 (Services)
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2012/10/16/pageobjects-design-pattern/#more" rel="contents">
@@ -1338,16 +1338,16 @@
 
       
         
-          <p>##Selenium WebDriver支持哪儿些浏览器？<br>按照官方文档的说法，现阶段有以下的drivers: </p>
+          <p>##Selenium WebDriver支持哪儿些浏览器？<br>按照官方文档的说法，现阶段有以下的drivers:</p>
 <blockquote>
 <ul>
-<li>ChromeDriver  </li>
-<li>InternetExplorerDriver   </li>
-<li>FirefoxDriver   </li>
-<li>OperaDriver   </li>
-<li>HtmlUnitDriver   </li>
-<li>AndroidDriver(mobile testing)  </li>
-<li>OperaMobileDriver(mobile testing)  </li>
+<li>ChromeDriver</li>
+<li>InternetExplorerDriver</li>
+<li>FirefoxDriver</li>
+<li>OperaDriver</li>
+<li>HtmlUnitDriver</li>
+<li>AndroidDriver(mobile testing)</li>
+<li>OperaMobileDriver(mobile testing)</li>
 <li>IPhoneDriver(mobile testing)
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2012/10/12/selenium-multiple-browser-support/#more" rel="contents">
@@ -1471,7 +1471,13 @@
       
         
           
-            <p>##经常会碰到，页面操作后，出现一个alert窗口或者prompt确认窗口的情况，这时需要获得窗口的提示信息以及点击确定或取消的情况。<br>    // Get a handle to the open alert, prompt or confirmation<br>    Alert alert = driver.switchTo().alert();<br>    // Get the text of the alert or prompt<br>    alert.getText();<br>    // And acknowledge the alert (equivalent to clicking “OK”)<br>    alert.accept();<br>这是通用的处理方法。但是如果弹出的窗口不是<code>alert()</code>或者<code>prompt()</code>弹出来的则不适用。请注意。</p>
+            <h2 id="经常会碰到，页面操作后，出现一个alert窗口或者prompt确认窗口的情况，这时需要获得窗口的提示信息以及点击确定或取消的情况。"><a href="#经常会碰到，页面操作后，出现一个alert窗口或者prompt确认窗口的情况，这时需要获得窗口的提示信息以及点击确定或取消的情况。" class="headerlink" title="经常会碰到，页面操作后，出现一个alert窗口或者prompt确认窗口的情况，这时需要获得窗口的提示信息以及点击确定或取消的情况。"></a>经常会碰到，页面操作后，出现一个alert窗口或者prompt确认窗口的情况，这时需要获得窗口的提示信息以及点击确定或取消的情况。</h2><pre><code>// Get a handle to the open alert, prompt or confirmation
+Alert alert = driver.switchTo().alert();
+// Get the text of the alert or prompt
+alert.getText();
+// And acknowledge the alert (equivalent to clicking &quot;OK&quot;)
+alert.accept();
+</code></pre><p>这是通用的处理方法。但是如果弹出的窗口不是<code>alert()</code>或者<code>prompt()</code>弹出来的则不适用。请注意。</p>
 
           
         

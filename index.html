@@ -889,8 +889,7 @@ public String findOwner(@PathVariable(&quot;ownerId&quot;) String theOwner, Mode
       
         
           <p>最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。</p>
-<p>####1）C3P0容错和自动重连与以下配置参数有关：</p>
-<p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br>
+<h4 id="1）C3P0容错和自动重连与以下配置参数有关："><a href="#1）C3P0容错和自动重连与以下配置参数有关：" class="headerlink" title="1）C3P0容错和自动重连与以下配置参数有关："></a>1）C3P0容错和自动重连与以下配置参数有关：</h4><p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2015/03/26/c3p0-config/#more" rel="contents">
               阅读全文 &raquo;
@@ -1137,17 +1136,16 @@ public String findOwner(@PathVariable(&quot;ownerId&quot;) String theOwner, Mode
 
       
         
-          <p>###软件版本</p>
-<ul>
+          <h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><ul>
 <li>Ubuntu Linux</li>
 <li><a href="http://mirror.bit.edu.cn/apache/mahout/0.9/mahout-distribution-0.9.tar.gz">mahout-0.9</a>,本文写作的时候的最新版本</li>
 <li><a href="http://download.labs.sogou.com/dl/sogoulabdown/SogouC.reduced.20061102.tar.gz">Sogou语料库</a>精简版</li>
 <li><a href="https://github.com/blueshen/ik-analyzer">ik-analyzer</a>, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。</li>
 </ul>
-<p>###Sogou语料库处理<br>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
+<h3 id="Sogou语料库处理"><a href="#Sogou语料库处理" class="headerlink" title="Sogou语料库处理"></a>Sogou语料库处理</h3><p>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
 <pre><code>find sogou -type d -exec mkdir -p utf/{} \;
 find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-</code></pre><p>###使用mahout生成sequence file<br>进入utf/sogou目录，执行：</p>
+</code></pre><h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
 <pre><code>mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
 </code></pre><p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br>
           <div class="post-more-link text-center">

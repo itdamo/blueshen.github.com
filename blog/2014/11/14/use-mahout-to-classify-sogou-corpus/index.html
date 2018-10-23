@@ -86,40 +86,37 @@
 
 
 
-<meta name="description" content="###软件版本
-
+<meta name="description" content="软件版本
 Ubuntu Linux
 mahout-0.9,本文写作的时候的最新版本
 Sogou语料库精简版
 ik-analyzer, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。
 
-###Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式">
+Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用mahout对Sogou语料库进行分类">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="###软件版本
-
+<meta property="og:description" content="软件版本
 Ubuntu Linux
 mahout-0.9,本文写作的时候的最新版本
 Sogou语料库精简版
 ik-analyzer, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。
 
-###Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式">
+Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-seqfile.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-vector.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-result.png">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.588Z">
+<meta property="og:updated_time" content="2018-10-23T07:50:08.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用mahout对Sogou语料库进行分类">
-<meta name="twitter:description" content="###软件版本
-
+<meta name="twitter:description" content="软件版本
 Ubuntu Linux
 mahout-0.9,本文写作的时候的最新版本
 Sogou语料库精简版
 ik-analyzer, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。
 
-###Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式">
+Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-seqfile.png">
 
 
@@ -374,33 +371,29 @@ ik-analyzer, 这个版本是专门为了在mahout中进行分词而单独做的�
       
 
       
-        <p>###软件版本</p>
-<ul>
+        <h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><ul>
 <li>Ubuntu Linux</li>
 <li><a href="http://mirror.bit.edu.cn/apache/mahout/0.9/mahout-distribution-0.9.tar.gz" target="_blank" rel="external">mahout-0.9</a>,本文写作的时候的最新版本</li>
 <li><a href="http://download.labs.sogou.com/dl/sogoulabdown/SogouC.reduced.20061102.tar.gz" target="_blank" rel="external">Sogou语料库</a>精简版</li>
 <li><a href="https://github.com/blueshen/ik-analyzer" target="_blank" rel="external">ik-analyzer</a>, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。</li>
 </ul>
-<p>###Sogou语料库处理<br>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
+<h3 id="Sogou语料库处理"><a href="#Sogou语料库处理" class="headerlink" title="Sogou语料库处理"></a>Sogou语料库处理</h3><p>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
 <pre><code>find sogou -type d -exec mkdir -p utf/{} \;
 find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-</code></pre><p>###使用mahout生成sequence file<br>进入utf/sogou目录，执行：</p>
+</code></pre><h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
 <pre><code>mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
 </code></pre><p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br><a id="more"></a><br>    mahout seqdumper -i sogou-seq/part-m-00000 | more<br><img src="/images/blog/2014/sogou-seqfile.png" alt=""></p>
 <p>如果是在hadoop上跑，可以这样看。</p>
 <pre><code>hadoop fs -text sogou-seq/part-m-00000 | more
-</code></pre><p>###使用seq2sparse生成Vectors<br>执行命令：</p>
+</code></pre><h3 id="使用seq2sparse生成Vectors"><a href="#使用seq2sparse生成Vectors" class="headerlink" title="使用seq2sparse生成Vectors"></a>使用seq2sparse生成Vectors</h3><p>执行命令：</p>
 <pre><code>mahout seq2sparse -i sogou-seq  -o sogou-vectors -lnorm -nv -wt tfidf -a org.wltea.analyzer.lucene.IKAnalyzer -ow
 </code></pre><p>查看生成的vector</p>
 <p>mahout vectordump -i sogou-vectors/tfidf-vectors/part-r-00000 | more</p>
 <p><img src="/images/blog/2014/sogou-vector.png" alt=""></p>
 <p>需要注意的是<code>org.wltea.analyzer.lucene.IKAnalyzer</code>，是上面提到的ik-analyzer里的。需要将ik-analyzer打包，然后将打出的包，放入$MAHOUT_HOME/lib内。默认是英文的，使用的是<code>org.apache.lucene.analysis.standard.StandardAnalyzer</code>，空格分割明显不适用中文。</p>
-<p>###切分训练集和测试集</p>
-<pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
-</code></pre><p>###使用Native Bayes训练model</p>
-<pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
-</code></pre><p>###使用测试集来查看效果</p>
-<pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
+<h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
+</code></pre><h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
+</code></pre><h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
 </code></pre><p><img src="/images/blog/2014/sogou-result.png" alt=""></p>
 <p>可以看出87%的正确率还是不错的。</p>
 <hr>
@@ -629,7 +622,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件版本"><span class="nav-number">1.</span> <span class="nav-text">软件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sogou语料库处理"><span class="nav-number">2.</span> <span class="nav-text">Sogou语料库处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用mahout生成sequence-file"><span class="nav-number">3.</span> <span class="nav-text">使用mahout生成sequence file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用seq2sparse生成Vectors"><span class="nav-number">4.</span> <span class="nav-text">使用seq2sparse生成Vectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切分训练集和测试集"><span class="nav-number">5.</span> <span class="nav-text">切分训练集和测试集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Native-Bayes训练model"><span class="nav-number">6.</span> <span class="nav-text">使用Native Bayes训练model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用测试集来查看效果"><span class="nav-number">7.</span> <span class="nav-text">使用测试集来查看效果</span></a></li></ol></div>
             
           </div>
         </section>

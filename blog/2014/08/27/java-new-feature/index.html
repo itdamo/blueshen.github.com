@@ -86,37 +86,34 @@
 
 
 
-<meta name="description" content="##Java7新特性
-###Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
-####1. switch可以消化String
-比如：
+<meta name="description" content="Java7新特性Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
+1. switch可以消化String比如：
 public static void switchString(String s){
     switch (s){
     case &amp;quot;db&amp;quot;: ...
-    case &amp;quot;wls&amp;quot;: ...">
+    case &amp;quot;wls&amp;quot;: ...
+    case &amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java新特性">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##Java7新特性
-###Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
-####1. switch可以消化String
-比如：
+<meta property="og:description" content="Java7新特性Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
+1. switch可以消化String比如：
 public static void switchString(String s){
     switch (s){
     case &amp;quot;db&amp;quot;: ...
-    case &amp;quot;wls&amp;quot;: ...">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.564Z">
+    case &amp;quot;wls&amp;quot;: ...
+    case &amp;qu">
+<meta property="og:updated_time" content="2018-10-23T06:27:33.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java新特性">
-<meta name="twitter:description" content="##Java7新特性
-###Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
-####1. switch可以消化String
-比如：
+<meta name="twitter:description" content="Java7新特性Java7语法特性根据JSR 334，Java7添加了数个语法方面的新特性：
+1. switch可以消化String比如：
 public static void switchString(String s){
     switch (s){
     case &amp;quot;db&amp;quot;: ...
-    case &amp;quot;wls&amp;quot;: ...">
+    case &amp;quot;wls&amp;quot;: ...
+    case &amp;qu">
 
 
 
@@ -370,10 +367,8 @@ public static void switchString(String s){
       
 
       
-        <p>##Java7新特性</p>
-<p>###Java7语法特性<br>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
-<p>####1. switch可以消化String</p>
-<p>比如：</p>
+        <h2 id="Java7新特性"><a href="#Java7新特性" class="headerlink" title="Java7新特性"></a>Java7新特性</h2><h3 id="Java7语法特性"><a href="#Java7语法特性" class="headerlink" title="Java7语法特性"></a>Java7语法特性</h3><p>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
+<h4 id="1-switch可以消化String"><a href="#1-switch可以消化String" class="headerlink" title="1. switch可以消化String"></a>1. switch可以消化String</h4><p>比如：</p>
 <pre><code>public static void switchString(String s){
     switch (s){
     case &quot;db&quot;: ...
@@ -385,8 +380,7 @@ public static void switchString(String s){
     }
 }
 </code></pre><a id="more"></a>
-<p>####2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。</p>
-<ul>
+<h4 id="2-新的整数字面表达方式-“0b”前缀和”-”连数符，提升程序员的幸福感。"><a href="#2-新的整数字面表达方式-“0b”前缀和”-”连数符，提升程序员的幸福感。" class="headerlink" title="2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。"></a>2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。</h4><ul>
 <li><p>a. 表示二进制字面值的前缀, 0b:<br>比如以下三个变量的值相同：</p>
 <pre><code>byte b1 = 0b00100001;     // New
 byte b2 = 0x21;        // Old
@@ -396,25 +390,21 @@ byte b3 = 33;        // Old
 <pre><code>long phone_nbr = 021_1111_2222;
 </code></pre></li>
 </ul>
-<p>####3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</p>
-<pre><code>ArrayList&lt;String&gt; al1 = new ArrayList&lt;String&gt;();    // Old
+<h4 id="3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价："><a href="#3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价：" class="headerlink" title="3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价："></a>3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</h4><pre><code>ArrayList&lt;String&gt; al1 = new ArrayList&lt;String&gt;();    // Old
 ArrayList&lt;String&gt; al2 = new ArrayList&lt;&gt;();        // New
-</code></pre><p>####4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</p>
-<pre><code>ClassNotFoundException, 
-IllegalAccessException, 
-InstantiationException, 
-InvocationTargetException, 
-NoSuchFieldException, 
+</code></pre><h4 id="4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是："><a href="#4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是：" class="headerlink" title="4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是："></a>4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</h4><pre><code>ClassNotFoundException,
+IllegalAccessException,
+InstantiationException,
+InvocationTargetException,
+NoSuchFieldException,
 NoSuchMethodException
-</code></pre><p>####5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</p>
-<pre><code>try{
+</code></pre><h4 id="5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："><a href="#5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：" class="headerlink" title="5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："></a>5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</h4><pre><code>try{
     // code
 }
 catch (SQLException | IOException ex) {
     // ...
 }
-</code></pre><p>####6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</p>
-<pre><code>public void test() throws NoSuchMethodException, NoSuchFieldException{    // 子类
+</code></pre><h4 id="6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style："><a href="#6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style：" class="headerlink" title="6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style："></a>6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</h4><pre><code>public void test() throws NoSuchMethodException, NoSuchFieldException{    // 子类
     try{
         // code
     }
@@ -422,15 +412,16 @@ catch (SQLException | IOException ex) {
         throws ex;
     }
 }
-</code></pre><p>####7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“：<br>    try(BufferedReader br = new BufferedReader(new FileReader(“/home/oracle/temp.txt”))){<br>        … br.readLine() …<br>    }<br>try-with-resources语句可以带catch，也可以向上例一样一个catch也没有。</p>
-<p>###Java7 NIO 新方法<br>整体来说，对IO操作进行了优化，使用起来更加顺手，甚至可以替换apache common-io包。</p>
-<p>####1.增加<code>java.nio.file.Paths</code>用于目录操作</p>
-<pre><code>Path path = Paths.get(&quot;/home/shenyanchao&quot;, &quot;Desktop&quot;);
+</code></pre><h4 id="7-发明了try-结构-Try-with-Resources，能够自动接住异常并关闭资源-所谓的资源需要利用新的java-lang-AutoCloseable接口-，注意以下代码中try后面跟的是”-“不是”-“："><a href="#7-发明了try-结构-Try-with-Resources，能够自动接住异常并关闭资源-所谓的资源需要利用新的java-lang-AutoCloseable接口-，注意以下代码中try后面跟的是”-“不是”-“：" class="headerlink" title="7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“："></a>7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“：</h4><pre><code>try(BufferedReader br = new BufferedReader(new FileReader(&quot;/home/oracle/temp.txt&quot;))){
+    ... br.readLine() ...
+}
+</code></pre><p>try-with-resources语句可以带catch，也可以向上例一样一个catch也没有。</p>
+<h3 id="Java7-NIO-新方法"><a href="#Java7-NIO-新方法" class="headerlink" title="Java7 NIO 新方法"></a>Java7 NIO 新方法</h3><p>整体来说，对IO操作进行了优化，使用起来更加顺手，甚至可以替换apache common-io包。</p>
+<h4 id="1-增加java-nio-file-Paths用于目录操作"><a href="#1-增加java-nio-file-Paths用于目录操作" class="headerlink" title="1.增加java.nio.file.Paths用于目录操作"></a>1.增加<code>java.nio.file.Paths</code>用于目录操作</h4><pre><code>Path path = Paths.get(&quot;/home/shenyanchao&quot;, &quot;Desktop&quot;);
 System.out.println(path.toAbsolutePath());
 System.out.println(path.getParent());
 System.out.println(path.getFileSystem().isOpen());
-</code></pre><p>####2.增加<code>java.nio.file.Files</code>工具类来处理文件</p>
-<pre><code>Files.copy(src,dest, StandardCopyOption.COPY_ATTRIBUTES,StandardCopyOption.REPLACE_EXISTING);
+</code></pre><h4 id="2-增加java-nio-file-Files工具类来处理文件"><a href="#2-增加java-nio-file-Files工具类来处理文件" class="headerlink" title="2.增加java.nio.file.Files工具类来处理文件"></a>2.增加<code>java.nio.file.Files</code>工具类来处理文件</h4><pre><code>Files.copy(src,dest, StandardCopyOption.COPY_ATTRIBUTES,StandardCopyOption.REPLACE_EXISTING);
 
 Files.move(src,dest,StandardCopyOption.ATOMIC_MOVE);
 
@@ -441,13 +432,12 @@ Files.deleteIfExists(dest);
 Files.readAllLines(src);
 
 Files.createTempFile(src,&quot;aa&quot;,&quot;bb&quot;);
-</code></pre><p>####3.目录树遍历<br>使用<code>FileVisitor</code>来实现访问者模式。</p>
+</code></pre><h4 id="3-目录树遍历"><a href="#3-目录树遍历" class="headerlink" title="3.目录树遍历"></a>3.目录树遍历</h4><p>使用<code>FileVisitor</code>来实现访问者模式。</p>
 <pre><code>preVisitDirectory(T dir, BasicFileAttributes attrs);
 visitFile(T dir, BasicFileAttributes attrs);
 visitFileFailed(T dir, IOException exc);
 postVisitDirectory(T dir, IOException exc);
-</code></pre><p>####4.使用WatchService来监控目录，变化请通知</p>
-<pre><code>WatchService watchService = FileSystems.getDefault().newWatchService();
+</code></pre><h4 id="4-使用WatchService来监控目录，变化请通知"><a href="#4-使用WatchService来监控目录，变化请通知" class="headerlink" title="4.使用WatchService来监控目录，变化请通知"></a>4.使用WatchService来监控目录，变化请通知</h4><pre><code>WatchService watchService = FileSystems.getDefault().newWatchService();
 Path path = Paths.get(&quot;/home/shenyanchao/Documents&quot;);
 WatchKey watchKey = path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
         StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
@@ -461,8 +451,7 @@ while (true) {
         break;
     }
 }
-</code></pre><p>###Java7并发（JSR166Y）</p>
-<p>####Fork Join框架，大任务分解为小任务<br>通过ForkJoinPool，ForkJoinTask来实现的。</p>
+</code></pre><h3 id="Java7并发（JSR166Y）"><a href="#Java7并发（JSR166Y）" class="headerlink" title="Java7并发（JSR166Y）"></a>Java7并发（JSR166Y）</h3><h4 id="Fork-Join框架，大任务分解为小任务"><a href="#Fork-Join框架，大任务分解为小任务" class="headerlink" title="Fork Join框架，大任务分解为小任务"></a>Fork Join框架，大任务分解为小任务</h4><p>通过ForkJoinPool，ForkJoinTask来实现的。</p>
 <pre><code>public class Fibonacci extends RecursiveTask&lt;Integer&gt; {
 
     final int n;
@@ -487,17 +476,14 @@ while (true) {
         System.out.println(fibonacci.compute());
     }
 }
-</code></pre><p>####TransferQueue，ConcurrentLinkedDeque等新类<br>TransferQueue是一个继承了 BlockingQueue的接口，并且增加若干新的方法。</p>
-<p>####ThreadLocalRandom用于生成随机数</p>
-<pre><code>ThreadLocalRandom.current().nextInt (...)
+</code></pre><h4 id="TransferQueue，ConcurrentLinkedDeque等新类"><a href="#TransferQueue，ConcurrentLinkedDeque等新类" class="headerlink" title="TransferQueue，ConcurrentLinkedDeque等新类"></a>TransferQueue，ConcurrentLinkedDeque等新类</h4><p>TransferQueue是一个继承了 BlockingQueue的接口，并且增加若干新的方法。</p>
+<h4 id="ThreadLocalRandom用于生成随机数"><a href="#ThreadLocalRandom用于生成随机数" class="headerlink" title="ThreadLocalRandom用于生成随机数"></a>ThreadLocalRandom用于生成随机数</h4><pre><code>ThreadLocalRandom.current().nextInt (...)
 </code></pre><p>Random是线程安全的，但速度较慢。而这个是快速的，但是速度很快。适用于线程内部的使用。</p>
-<p>###Java7 client<br>诸如更新了很多swing显示相关的api.<br>更好的支持linux fonts</p>
-<p>###Java7 VM新特性</p>
-<p>####1.引入Garbage First回收算法<br>Garbage First简称G1，它的目标是要做到尽量减少GC所导致的应用暂停的时间，让应用达到准实时的效果，同时保持JVM堆空间的利用率。用于替代CMS</p>
+<h3 id="Java7-client"><a href="#Java7-client" class="headerlink" title="Java7 client"></a>Java7 client</h3><p>诸如更新了很多swing显示相关的api.<br>更好的支持linux fonts</p>
+<h3 id="Java7-VM新特性"><a href="#Java7-VM新特性" class="headerlink" title="Java7 VM新特性"></a>Java7 VM新特性</h3><h4 id="1-引入Garbage-First回收算法"><a href="#1-引入Garbage-First回收算法" class="headerlink" title="1.引入Garbage First回收算法"></a>1.引入Garbage First回收算法</h4><p>Garbage First简称G1，它的目标是要做到尽量减少GC所导致的应用暂停的时间，让应用达到准实时的效果，同时保持JVM堆空间的利用率。用于替代CMS</p>
 <hr>
 <p>参考文档：<a href="http://www.slideshare.net/boulderjug/55-things-in-java-7" target="_blank" rel="external">http://www.slideshare.net/boulderjug/55-things-in-java-7</a></p>
-<p>##Java8新特性</p>
-<p>###1.接口默认方法[接口允许有实现啦]<br>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用 <code>default</code>关键字即可，这个特征又叫做扩展方法。</p>
+<h2 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h2><h3 id="1-接口默认方法-接口允许有实现啦"><a href="#1-接口默认方法-接口允许有实现啦" class="headerlink" title="1.接口默认方法[接口允许有实现啦]"></a>1.接口默认方法[接口允许有实现啦]</h3><p>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用 <code>default</code>关键字即可，这个特征又叫做扩展方法。</p>
 <pre><code>interface Formula {
     double calculate(int a);
 
@@ -505,7 +491,7 @@ while (true) {
         return Math.sqrt(a);
     }
 }
-</code></pre><p>###2.Lambda表达式<br>据说借鉴了各种动态语言的新特性，比如scala，python<br>首先看看在老版本的Java中是如何排列字符串的：</p>
+</code></pre><h3 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2.Lambda表达式"></a>2.Lambda表达式</h3><p>据说借鉴了各种动态语言的新特性，比如scala，python<br>首先看看在老版本的Java中是如何排列字符串的：</p>
 <pre><code>List&lt;String&gt; names = Arrays.asList(&quot;peter&quot;, &quot;anna&quot;, &quot;mike&quot;, &quot;xenia&quot;);
 
 Collections.sort(names, new Comparator&lt;String&gt;() {
@@ -520,9 +506,9 @@ public int compare(String a, String b) {
 });
 </code></pre><p>可以更短：</p>
 <pre><code>Collections.sort(names, (String a, String b) -&gt; b.compareTo(a));
-</code></pre><p>再短： </p>
+</code></pre><p>再短：</p>
 <pre><code>Collections.sort(names, (a, b) -&gt; b.compareTo(a));
-</code></pre><p>###3.@FunctionalInterface<br>这是新引入的一个注解，用于支持lambda。用<code>FunctionalInterface</code>标识的接口，必须只包含1个抽象方法。否则会编译报错的。因为如果有多个抽象方法，lambda就无法知道对应哪个方法了。</p>
+</code></pre><h3 id="3-FunctionalInterface"><a href="#3-FunctionalInterface" class="headerlink" title="3.@FunctionalInterface"></a>3.@FunctionalInterface</h3><p>这是新引入的一个注解，用于支持lambda。用<code>FunctionalInterface</code>标识的接口，必须只包含1个抽象方法。否则会编译报错的。因为如果有多个抽象方法，lambda就无法知道对应哪个方法了。</p>
 <pre><code>@FunctionalInterface
 interface Converter&lt;F, T&gt; {
     T convert(F from);
@@ -532,7 +518,7 @@ Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);
 Integer converted = converter.convert(&quot;123&quot;);
 System.out.println(converted);    // 123
 </code></pre><p>例子中，<code>(from) -&gt; Integer.valueOf(from)</code>这个lambda表达式指出了convert方法的具体实现。</p>
-<p>####(1)方法与构造函数的引用::<br>Java 8 允许你使用 :: 关键字来传递方法或者构造函数引用,下面的代码展示了如何引用一个静态方法</p>
+<h4 id="1-方法与构造函数的引用"><a href="#1-方法与构造函数的引用" class="headerlink" title="(1)方法与构造函数的引用::"></a>(1)方法与构造函数的引用::</h4><p>Java 8 允许你使用 :: 关键字来传递方法或者构造函数引用,下面的代码展示了如何引用一个静态方法</p>
 <pre><code>Converter&lt;String, Integer&gt; converter = Integer::valueOf;
 Integer converted = converter.convert(&quot;123&quot;);
 System.out.println(converted);   // 123
@@ -560,10 +546,10 @@ System.out.println(converted);    // &quot;J&quot;
 <pre><code>PersonFactory&lt;Person&gt; personFactory = Person::new;
 Person person = personFactory.create(&quot;Peter&quot;, &quot;Parker&quot;);
 </code></pre><p>我们只需要使用 Person::new 来获取Person类构造函数的引用，Java编译器会自动根据PersonFactory.create方法的签名来选择合适的构造函数。</p>
-<p>####(2)内嵌的Functional Interfaces<br>上面提到的Comparator接口，为什么可以使用lambda表达式，正是因为在java 8中，被定义为了FunctionalInterface。这些已经存在的接口是通过添加@FunctionalInterface注解来支持的。</p>
+<h4 id="2-内嵌的Functional-Interfaces"><a href="#2-内嵌的Functional-Interfaces" class="headerlink" title="(2)内嵌的Functional Interfaces"></a>(2)内嵌的Functional Interfaces</h4><p>上面提到的Comparator接口，为什么可以使用lambda表达式，正是因为在java 8中，被定义为了FunctionalInterface。这些已经存在的接口是通过添加@FunctionalInterface注解来支持的。</p>
 <p>另外，java 8 api还提供了丰富的接口。这些接口貌似都是从Google Guava包里得到的提示，命名甚至都是一样的。</p>
 <ul>
-<li>Predicates   </li>
+<li>Predicates</li>
 </ul>
 <p>Predicate 接口只有一个参数，返回boolean类型。该接口包含多种默认方法来将Predicate组合成其他复杂的逻辑（比如：与，或，非）：</p>
 <pre><code>Predicate&lt;String&gt; predicate = (s) -&gt; s.length() &gt; 0;
@@ -646,7 +632,7 @@ stringCollection.add(&quot;ddd1&quot;);
     .sorted((a, b) -&gt; b.compareTo(a))
     .forEach(System.out::println);
 
-// &quot;DDD2&quot;, &quot;DDD1&quot;, &quot;CCC&quot;, &quot;BBB3&quot;, &quot;BBB2&quot;, &quot;AAA2&quot;, &quot;AAA1&quot;        
+// &quot;DDD2&quot;, &quot;DDD1&quot;, &quot;CCC&quot;, &quot;BBB3&quot;, &quot;BBB2&quot;, &quot;AAA2&quot;, &quot;AAA1&quot;
 </code></pre><p>另外提供有各种match方法。</p>
 <pre><code>boolean anyStartsWithA =
     stringCollection
@@ -675,7 +661,7 @@ System.out.println(noneStartsWithZ);      // true
         .filter((s) -&gt; s.startsWith(&quot;b&quot;))
         .count();
 
-System.out.println(startsWithB);    // 3        
+System.out.println(startsWithB);    // 3
 </code></pre><p>reduce则进行了归一化处理：</p>
 <pre><code>Optional&lt;String&gt; reduced =
     stringCollection
@@ -686,7 +672,7 @@ System.out.println(startsWithB);    // 3
 reduced.ifPresent(System.out::println);
 // &quot;aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2&quot;
 </code></pre><ul>
-<li>ParallelStream </li>
+<li>ParallelStream</li>
 </ul>
 <p>它是一个并行的。速度要比stream快的多。</p>
 <ul>
@@ -726,14 +712,14 @@ map.get(9);             // val9
 
 map.merge(9, &quot;concat&quot;, (value, newValue) -&gt; value.concat(newValue));
 map.get(9);             // val9concat
-</code></pre><p>###4.时间API<br>Java8更新了Date API,这个新的api与joda-time类似。</p>
-<p>####(1)Clock<br>Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用Instant类来表示，Instant类也可以用来创建老的java.util.Date对象。</p>
+</code></pre><h3 id="4-时间API"><a href="#4-时间API" class="headerlink" title="4.时间API"></a>4.时间API</h3><p>Java8更新了Date API,这个新的api与joda-time类似。</p>
+<h4 id="1-Clock"><a href="#1-Clock" class="headerlink" title="(1)Clock"></a>(1)Clock</h4><p>Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用Instant类来表示，Instant类也可以用来创建老的java.util.Date对象。</p>
 <pre><code>Clock clock = Clock.systemDefaultZone();
 long millis = clock.millis();
 
 Instant instant = clock.instant();
 Date legacyDate = Date.from(instant);   // legacy java.util.Date
-</code></pre><p>####(2)TimeZones<br>在新API中时区使用ZoneId来表示。时区可以很方便的使用静态方法of来获取到。 时区定义了到UTS时间的时间差，在Instant时间点对象到本地日期对象之间转换的时候是极其重要的</p>
+</code></pre><h4 id="2-TimeZones"><a href="#2-TimeZones" class="headerlink" title="(2)TimeZones"></a>(2)TimeZones</h4><p>在新API中时区使用ZoneId来表示。时区可以很方便的使用静态方法of来获取到。 时区定义了到UTS时间的时间差，在Instant时间点对象到本地日期对象之间转换的时候是极其重要的</p>
 <pre><code>System.out.println(ZoneId.getAvailableZoneIds());
 // prints all available timezone ids
 
@@ -744,7 +730,7 @@ System.out.println(zone2.getRules());
 
 // ZoneRules[currentStandardOffset=+01:00]
 // ZoneRules[currentStandardOffset=-03:00]
-</code></pre><p>####(3)LocalTime<br>LocalTime 定义了一个没有时区信息的时间，例如 晚上10点，或者 17:30:15。下面的例子使用前面代码创建的时区创建了两个本地时间。之后比较时间并以小时和分钟为单位计算两个时间的时间差：</p>
+</code></pre><h4 id="3-LocalTime"><a href="#3-LocalTime" class="headerlink" title="(3)LocalTime"></a>(3)LocalTime</h4><p>LocalTime 定义了一个没有时区信息的时间，例如 晚上10点，或者 17:30:15。下面的例子使用前面代码创建的时区创建了两个本地时间。之后比较时间并以小时和分钟为单位计算两个时间的时间差：</p>
 <pre><code>LocalTime now1 = LocalTime.now(zone1);
 LocalTime now2 = LocalTime.now(zone2);
 
@@ -766,7 +752,7 @@ DateTimeFormatter germanFormatter =
 
 LocalTime leetTime = LocalTime.parse(&quot;13:37&quot;, germanFormatter);
 System.out.println(leetTime);   // 13:37
-</code></pre><p>####(4)LocalDate<br>LocalDate 表示了一个确切的日期，比如 2014-03-11。该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象是不可变的，操作返回的总是一个新实例。</p>
+</code></pre><h4 id="4-LocalDate"><a href="#4-LocalDate" class="headerlink" title="(4)LocalDate"></a>(4)LocalDate</h4><p>LocalDate 表示了一个确切的日期，比如 2014-03-11。该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象是不可变的，操作返回的总是一个新实例。</p>
 <pre><code>LocalDate today = LocalDate.now();
 LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
 LocalDate yesterday = tomorrow.minusDays(2);
@@ -782,8 +768,9 @@ DateTimeFormatter germanFormatter =
 
 LocalDate xmas = LocalDate.parse(&quot;24.12.2014&quot;, germanFormatter);
 System.out.println(xmas);   // 2014-12-24
-</code></pre><p>####(5)LocalDateTime<br>        LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。</p>
-<pre><code>LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);
+</code></pre><h4 id="5-LocalDateTime"><a href="#5-LocalDateTime" class="headerlink" title="(5)LocalDateTime"></a>(5)LocalDateTime</h4><pre><code>LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。
+
+LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);
 
 DayOfWeek dayOfWeek = sylvester.getDayOfWeek();
 System.out.println(dayOfWeek);      // WEDNESDAY
@@ -808,7 +795,7 @@ DateTimeFormatter formatter =
 LocalDateTime parsed = LocalDateTime.parse(&quot;Nov 03, 2014 - 07:13&quot;, formatter);
 String string = formatter.format(parsed);
 System.out.println(string);     // Nov 03, 2014 - 07:13
-</code></pre><p>###5.支持重复注解了，注解也可以用在任何地方了<br>java8之前，类，属性，方法才有注解，现在几乎任何地方都可以了。</p>
+</code></pre><h3 id="5-支持重复注解了，注解也可以用在任何地方了"><a href="#5-支持重复注解了，注解也可以用在任何地方了" class="headerlink" title="5.支持重复注解了，注解也可以用在任何地方了"></a>5.支持重复注解了，注解也可以用在任何地方了</h3><p>java8之前，类，属性，方法才有注解，现在几乎任何地方都可以了。</p>
 <pre><code>new @Interned MyObject();
 myString = (@NonNull String) str;
 
@@ -843,8 +830,8 @@ public class RepeatAnnotationUseNewVersion {
     @Authority(role=&quot;Manager&quot;)
     public void doSomeThing(){ }
 }
-</code></pre><p>###6.Nashorn JavaScript 引擎<br>简单的说，它是 Rhino 的接替者.升级啦。</p>
-<p>###7.StampedLock<br>它是java8在java.util.concurrent.locks新增的一个API。</p>
+</code></pre><h3 id="6-Nashorn-JavaScript-引擎"><a href="#6-Nashorn-JavaScript-引擎" class="headerlink" title="6.Nashorn JavaScript 引擎"></a>6.Nashorn JavaScript 引擎</h3><p>简单的说，它是 Rhino 的接替者.升级啦。</p>
+<h3 id="7-StampedLock"><a href="#7-StampedLock" class="headerlink" title="7.StampedLock"></a>7.StampedLock</h3><p>它是java8在java.util.concurrent.locks新增的一个API。</p>
 <p>ReentrantReadWriteLock 在沒有任何读写锁时，才可以取得写入锁，这可用于实现了悲观读取（Pessimistic Reading），即如果执行中进行读取时，经常可能有另一执行要写入的需求，为了保持同步，ReentrantReadWriteLock 的读取锁定就可派上用场。</p>
 <p>然而，如果读取执行情况很多，写入很少的情况下，使用 ReentrantReadWriteLock 可能会使写入线程遭遇饥饿（Starvation）问题，也就是写入线程吃吃无法竞争到锁定而一直处于等待状态。</p>
 <p>StampedLock控制锁有三种模式（写，读，乐观读），一个StampedLock状态是由版本和模式两个部分组成，锁获取方法返回一个数字作为票据stamp，它用相应的锁状态表示并控制访问，数字0表示没有写锁被授权访问。在读锁上分为悲观锁和乐观锁。</p>
@@ -1125,7 +1112,7 @@ public class RepeatAnnotationUseNewVersion {
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java7新特性"><span class="nav-number">1.</span> <span class="nav-text">Java7新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7语法特性"><span class="nav-number">1.1.</span> <span class="nav-text">Java7语法特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-switch可以消化String"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. switch可以消化String</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新的整数字面表达方式-“0b”前缀和”-”连数符，提升程序员的幸福感。"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价："><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是："><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："><span class="nav-number">1.1.5.</span> <span class="nav-text">5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style："><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-发明了try-结构-Try-with-Resources，能够自动接住异常并关闭资源-所谓的资源需要利用新的java-lang-AutoCloseable接口-，注意以下代码中try后面跟的是”-“不是”-“："><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7-NIO-新方法"><span class="nav-number">1.2.</span> <span class="nav-text">Java7 NIO 新方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-增加java-nio-file-Paths用于目录操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.增加java.nio.file.Paths用于目录操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-增加java-nio-file-Files工具类来处理文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.增加java.nio.file.Files工具类来处理文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-目录树遍历"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.目录树遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用WatchService来监控目录，变化请通知"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.使用WatchService来监控目录，变化请通知</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7并发（JSR166Y）"><span class="nav-number">1.3.</span> <span class="nav-text">Java7并发（JSR166Y）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Fork-Join框架，大任务分解为小任务"><span class="nav-number">1.3.1.</span> <span class="nav-text">Fork Join框架，大任务分解为小任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TransferQueue，ConcurrentLinkedDeque等新类"><span class="nav-number">1.3.2.</span> <span class="nav-text">TransferQueue，ConcurrentLinkedDeque等新类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocalRandom用于生成随机数"><span class="nav-number">1.3.3.</span> <span class="nav-text">ThreadLocalRandom用于生成随机数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7-client"><span class="nav-number">1.4.</span> <span class="nav-text">Java7 client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java7-VM新特性"><span class="nav-number">1.5.</span> <span class="nav-text">Java7 VM新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-引入Garbage-First回收算法"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.引入Garbage First回收算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java8新特性"><span class="nav-number">2.</span> <span class="nav-text">Java8新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-接口默认方法-接口允许有实现啦"><span class="nav-number">2.1.</span> <span class="nav-text">1.接口默认方法[接口允许有实现啦]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Lambda表达式"><span class="nav-number">2.2.</span> <span class="nav-text">2.Lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-FunctionalInterface"><span class="nav-number">2.3.</span> <span class="nav-text">3.@FunctionalInterface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-方法与构造函数的引用"><span class="nav-number">2.3.1.</span> <span class="nav-text">(1)方法与构造函数的引用::</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-内嵌的Functional-Interfaces"><span class="nav-number">2.3.2.</span> <span class="nav-text">(2)内嵌的Functional Interfaces</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-时间API"><span class="nav-number">2.4.</span> <span class="nav-text">4.时间API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Clock"><span class="nav-number">2.4.1.</span> <span class="nav-text">(1)Clock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-TimeZones"><span class="nav-number">2.4.2.</span> <span class="nav-text">(2)TimeZones</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-LocalTime"><span class="nav-number">2.4.3.</span> <span class="nav-text">(3)LocalTime</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-LocalDate"><span class="nav-number">2.4.4.</span> <span class="nav-text">(4)LocalDate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-LocalDateTime"><span class="nav-number">2.4.5.</span> <span class="nav-text">(5)LocalDateTime</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-支持重复注解了，注解也可以用在任何地方了"><span class="nav-number">2.5.</span> <span class="nav-text">5.支持重复注解了，注解也可以用在任何地方了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Nashorn-JavaScript-引擎"><span class="nav-number">2.6.</span> <span class="nav-text">6.Nashorn JavaScript 引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-StampedLock"><span class="nav-number">2.7.</span> <span class="nav-text">7.StampedLock</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

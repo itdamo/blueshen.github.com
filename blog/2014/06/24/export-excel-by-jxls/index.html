@@ -86,52 +86,46 @@
 
 
 
-<meta name="description" content="###常用的excel操作工具
-
+<meta name="description" content="常用的excel操作工具
 Apache POI
 jexcelApi
 
 它们都提供了完善的API来支持EXCEL的读写。
-###jXLS是什么？
-jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
+jXLS是什么？jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
 jXLS的基本功能：
 
 支持Excel 95-2000的所有版本
 生成Excel 2000标准格式
-支">
+支持字体、数字、日">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 jXLS导出报表">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="###常用的excel操作工具
-
+<meta property="og:description" content="常用的excel操作工具
 Apache POI
 jexcelApi
 
 它们都提供了完善的API来支持EXCEL的读写。
-###jXLS是什么？
-jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
+jXLS是什么？jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
 jXLS的基本功能：
 
 支持Excel 95-2000的所有版本
 生成Excel 2000标准格式
-支">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.558Z">
+支持字体、数字、日">
+<meta property="og:updated_time" content="2018-10-23T06:21:22.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 jXLS导出报表">
-<meta name="twitter:description" content="###常用的excel操作工具
-
+<meta name="twitter:description" content="常用的excel操作工具
 Apache POI
 jexcelApi
 
 它们都提供了完善的API来支持EXCEL的读写。
-###jXLS是什么？
-jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
+jXLS是什么？jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。
 jXLS的基本功能：
 
 支持Excel 95-2000的所有版本
 生成Excel 2000标准格式
-支">
+支持字体、数字、日">
 
 
 
@@ -385,14 +379,12 @@ jXLS的基本功能：
       
 
       
-        <p>###常用的excel操作工具</p>
-<ul>
+        <h3 id="常用的excel操作工具"><a href="#常用的excel操作工具" class="headerlink" title="常用的excel操作工具"></a>常用的excel操作工具</h3><ul>
 <li>Apache POI</li>
 <li>jexcelApi</li>
 </ul>
 <p>它们都提供了完善的API来支持EXCEL的读写。</p>
-<p>###jXLS是什么？</p>
-<p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
+<h3 id="jXLS是什么？"><a href="#jXLS是什么？" class="headerlink" title="jXLS是什么？"></a>jXLS是什么？</h3><p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
 <p>jXLS的基本功能：</p>
 <ul>
 <li>支持Excel 95-2000的所有版本</li>
@@ -413,8 +405,7 @@ jXLS的基本功能：
 beans.put(&quot;department&quot;, department);
 XLSTransformer transformer = new XLSTransformer();
 transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
-</code></pre><p>###jXLS是如何解析模板生成数据的？</p>
-<p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
+</code></pre><h3 id="jXLS是如何解析模板生成数据的？"><a href="#jXLS是如何解析模板生成数据的？" class="headerlink" title="jXLS是如何解析模板生成数据的？"></a>jXLS是如何解析模板生成数据的？</h3><p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
 <pre><code>Object value = ((Expression) cell.getExpressions().get(0)).evaluate();
 </code></pre><p>而evaluate()方法如下：</p>
 <pre><code>public Object evaluate() throws Exception {
@@ -429,8 +420,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     return expression;
 }
 </code></pre><p>从而可以看出，数据的获得是通过JEXL来实现的。换句话说，模板内可以使用任何的JEXL标签。</p>
-<p>###让jXLS支持hyperlink</p>
-<p>业务上有这么一个需求，想在单元格内显示一个链接，而链接是动态生成的。通过模板设置单元格为链接始终无法生效，但是如果链接是固定的是可以生效的。如何实现动态的呢，改源码net.sf.jxls.transformer.CellTransformer 82行：</p>
+<h3 id="让jXLS支持hyperlink"><a href="#让jXLS支持hyperlink" class="headerlink" title="让jXLS支持hyperlink"></a>让jXLS支持hyperlink</h3><p>业务上有这么一个需求，想在单元格内显示一个链接，而链接是动态生成的。通过模板设置单元格为链接始终无法生效，但是如果链接是固定的是可以生效的。如何实现动态的呢，改源码net.sf.jxls.transformer.CellTransformer 82行：</p>
 <pre><code>if (cell.getStringCellValue().toLowerCase().startsWith(&quot;${href}&quot;) &amp;&amp; cell.getExpressions().size() == 3){
        //是链接类型的cell
        HSSFCell hssfCell = (HSSFCell) cell.getPoiCell();
@@ -666,7 +656,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的excel操作工具"><span class="nav-number">1.</span> <span class="nav-text">常用的excel操作工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jXLS是什么？"><span class="nav-number">2.</span> <span class="nav-text">jXLS是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jXLS是如何解析模板生成数据的？"><span class="nav-number">3.</span> <span class="nav-text">jXLS是如何解析模板生成数据的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让jXLS支持hyperlink"><span class="nav-number">4.</span> <span class="nav-text">让jXLS支持hyperlink</span></a></li></ol></div>
             
           </div>
         </section>

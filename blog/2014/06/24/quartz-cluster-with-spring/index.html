@@ -86,25 +86,22 @@
 
 
 
-<meta name="description" content="###为什么使用quartz集群？
-在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
+<meta name="description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
 ####1.导入数据库表
-以mysql为例，下载quartz发行版，在/docs/dbTab">
+以mysql为例，下载quartz发行版，在/docs/dbTables下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring中配置quartz集群">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="###为什么使用quartz集群？
-在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
+<meta property="og:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
 ####1.导入数据库表
-以mysql为例，下载quartz发行版，在/docs/dbTab">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.572Z">
+以mysql为例，下载quartz发行版，在/docs/dbTables下">
+<meta property="og:updated_time" content="2018-10-23T06:37:38.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring中配置quartz集群">
-<meta name="twitter:description" content="###为什么使用quartz集群？
-在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
+<meta name="twitter:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
 ####1.导入数据库表
-以mysql为例，下载quartz发行版，在/docs/dbTab">
+以mysql为例，下载quartz发行版，在/docs/dbTables下">
 
 
 
@@ -358,14 +355,12 @@
       
 
       
-        <p>###为什么使用quartz集群？</p>
-<p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
+        <h3 id="为什么使用quartz集群？"><a href="#为什么使用quartz集群？" class="headerlink" title="为什么使用quartz集群？"></a>为什么使用quartz集群？</h3><p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
 <p>####1.导入数据库表</p>
 <p>以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。</p>
 <p>注意事项：</p>
 <p>修改SQL： TYPE=InnoDB –&gt; ENGINE=InnoDB<br><a id="more"></a></p>
-<p>####2.项目中加入配置文件quartz.properties</p>
-<pre><code>#============================================================================
+<h4 id="2-项目中加入配置文件quartz-properties"><a href="#2-项目中加入配置文件quartz-properties" class="headerlink" title="2.项目中加入配置文件quartz.properties"></a>2.项目中加入配置文件quartz.properties</h4><pre><code>#============================================================================
 # Configure Main Scheduler Properties
 #============================================================================
 org.quartz.scheduler.instanceName = ClusteredScheduler
@@ -390,8 +385,7 @@ org.quartz.jobStore.tablePrefix = QRTZ_
 
 org.quartz.jobStore.isClustered = true
 org.quartz.jobStore.clusterCheckinInterval = 15000
-</code></pre><p>####3.增加applicationContext-quartz.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</code></pre><h4 id="3-增加applicationContext-quartz-xml"><a href="#3-增加applicationContext-quartz-xml" class="headerlink" title="3.增加applicationContext-quartz.xml"></a>3.增加applicationContext-quartz.xml</h4><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
        xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -462,8 +456,7 @@ org.quartz.jobStore.clusterCheckinInterval = 15000
             return job;
         }
     }
-</code></pre><p>####4. 如何写JOB？</p>
-<pre><code>@Component
+</code></pre><h4 id="4-如何写JOB？"><a href="#4-如何写JOB？" class="headerlink" title="4. 如何写JOB？"></a>4. 如何写JOB？</h4><pre><code>@Component
 public class TestTask extends QuartzJobBean {
 
 
@@ -476,8 +469,7 @@ public class TestTask extends QuartzJobBean {
     }
 }
 </code></pre><p>由于使用MethodInvokingFactoryBean总是报seriziable错误，因此本例使用的是JobDetailBean。那这也意味着要继承QuartzJobBean。同时由于配置了JobFactory，使得可以直接注入UserService等实例。</p>
-<p>####5.quartz在mysql5.6下报错</p>
-<pre><code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;OPTION SQL_SELECT_LIMIT=5&apos; at line 1
+<h4 id="5-quartz在mysql5-6下报错"><a href="#5-quartz在mysql5-6下报错" class="headerlink" title="5.quartz在mysql5.6下报错"></a>5.quartz在mysql5.6下报错</h4><pre><code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;OPTION SQL_SELECT_LIMIT=5&apos; at line 1
 </code></pre><p>这个错误是由于mysql connector的版本太低导致的，可以通过升级版本来解决。 参见<a href="http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1" target="_blank" rel="external">http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1</a></p>
 
       
@@ -700,7 +692,7 @@ public class TestTask extends QuartzJobBean {
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用quartz集群？"><span class="nav-number">1.</span> <span class="nav-text">为什么使用quartz集群？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-项目中加入配置文件quartz-properties"><span class="nav-number">1.1.</span> <span class="nav-text">2.项目中加入配置文件quartz.properties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-增加applicationContext-quartz-xml"><span class="nav-number">1.2.</span> <span class="nav-text">3.增加applicationContext-quartz.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-如何写JOB？"><span class="nav-number">1.3.</span> <span class="nav-text">4. 如何写JOB？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-quartz在mysql5-6下报错"><span class="nav-number">1.4.</span> <span class="nav-text">5.quartz在mysql5.6下报错</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

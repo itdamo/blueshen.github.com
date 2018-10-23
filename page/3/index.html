@@ -351,7 +351,7 @@
 
       
         
-          <p>在pom.xml里添加以下maven插件配置：   </p>
+          <p>在pom.xml里添加以下maven插件配置：</p>
 <pre><code>    &lt;!-- 静态代码检查 --&gt;
 &lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
@@ -827,14 +827,14 @@
 
       
         
-          <p>####目标Web系统<br>apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优</p>
-<p>####Tomcat<br>按照官方默认配置。<br>并发150正常;达到210时，报connection refuse</p>
-<p>$TOMCAT_HOME/conf/server.xml中   </p>
-<pre><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeout=&quot;20000&quot; 
+          <h4 id="目标Web系统"><a href="#目标Web系统" class="headerlink" title="目标Web系统"></a>目标Web系统</h4><p>apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优</p>
+<h4 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h4><p>按照官方默认配置。<br>并发150正常;达到210时，报connection refuse</p>
+<p>$TOMCAT_HOME/conf/server.xml中</p>
+<pre><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeout=&quot;20000&quot;
                redirectPort=&quot;8443&quot; URIEncoding=&quot;UTF-8&quot;/&gt;
 </code></pre><p>maxThreads 默认值是200<br>acceptCount 默认值是100</p>
-<p>解决方法：显式指明以上2项，并提高数值。并可配合min/maxSpareThreads </p>
-<p>参数文档： <a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html</a>     </p>
+<p>解决方法：显式指明以上2项，并提高数值。并可配合min/maxSpareThreads</p>
+<p>参数文档： <a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html</a></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/09/24/performance-tuning-in-web-test/#more" rel="contents">
               阅读全文 &raquo;
@@ -1088,9 +1088,9 @@ and the repository exists.
 
       
         
-          <p>###什么是Sonar？<br><a href="http://www.sonarqube.org/">Sonar</a>是一个开源的代码质量管理平台。它能对代码进行如下7个维度的管理。  </p>
-<p><img src="http://www.sonarqube.org/wp-content/themes/sonar/images/7axes.png" alt=""><br>使用插件，它可以对20多种语言进行代码质量管理，这其中包括Java，C#，C/C++,PL/SQL等等。    </p>
-<p>###安装Sonar<br>1.下载sonar,地址<a href="http://www.sonarqube.org/downloads/">http://www.sonarqube.org/downloads/</a>。通常选取稳定版本下载即可，这是一个zip文件。<br>2.解压下载的sonar到一个目录。我们称这个解压后的路径为SONAR_HOME<br>3.进入$SONAR_HOME/bin/${os-version}/,找到sonar.sh,执行<code>./sonar.sh console</code>即可。在windows下是StartSonar.bat。<br>4.现在进入<a href="http://localhost:9000">http://localhost:9000</a>,就看到了界面。默认的登录使用admin:admin   </p>
+          <h3 id="什么是Sonar？"><a href="#什么是Sonar？" class="headerlink" title="什么是Sonar？"></a>什么是Sonar？</h3><p><a href="http://www.sonarqube.org/">Sonar</a>是一个开源的代码质量管理平台。它能对代码进行如下7个维度的管理。</p>
+<p><img src="http://www.sonarqube.org/wp-content/themes/sonar/images/7axes.png" alt=""><br>使用插件，它可以对20多种语言进行代码质量管理，这其中包括Java，C#，C/C++,PL/SQL等等。</p>
+<h3 id="安装Sonar"><a href="#安装Sonar" class="headerlink" title="安装Sonar"></a>安装Sonar</h3><p>1.下载sonar,地址<a href="http://www.sonarqube.org/downloads/">http://www.sonarqube.org/downloads/</a>。通常选取稳定版本下载即可，这是一个zip文件。<br>2.解压下载的sonar到一个目录。我们称这个解压后的路径为SONAR_HOME<br>3.进入$SONAR_HOME/bin/${os-version}/,找到sonar.sh,执行<code>./sonar.sh console</code>即可。在windows下是StartSonar.bat。<br>4.现在进入<a href="http://localhost:9000">http://localhost:9000</a>,就看到了界面。默认的登录使用admin:admin</p>
 <p>这个时候，Sonar已经运行啦。但是在生产环境是不行的。上面跑起来的只是一个样例，使用的是h2内存数据库。我们可不想重启服务后，生产环境的数据都没了。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/09/04/use-sonar/#more" rel="contents">
@@ -1213,9 +1213,8 @@ and the repository exists.
 
       
         
-          <p>GoF的《设计模式》以及Martin Fowler的《重构》都是经典。而《重构与模式》则是将二者结合起来。通过设计模式来指导重构，而重构的目的就是让代码更加的简单，易于维护和扩展。   </p>
-<p>###写作缘由</p>
-<ul>
+          <p>GoF的《设计模式》以及Martin Fowler的《重构》都是经典。而《重构与模式》则是将二者结合起来。通过设计模式来指导重构，而重构的目的就是让代码更加的简单，易于维护和扩展。</p>
+<h3 id="写作缘由"><a href="#写作缘由" class="headerlink" title="写作缘由"></a>写作缘由</h3><ul>
 <li>过度设计：代码存在设计过度的情况</li>
 <li>模式万灵丹：认为设计模式的万能的</li>
 <li>设计不足：类比与过度设计，长期设计不足，导致开发节奏“快、慢、更慢”</li>
@@ -1223,8 +1222,8 @@ and the repository exists.
 <li>重构与模式：模式有助于改进设计，通过重构实现模式或者趋向模式进行重构</li>
 <li>演进式设计：将模式放到重构的背景中进行领会</li>
 </ul>
-<p>###什么是重构<br>定义：重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低。<br>重构过程包括去除重复、简化复杂逻辑和澄清模糊的代码。要保证重构的安全性，必须确保所做的修改不会产生任何破坏，这需要进行手工测试或者自动化测试。循序渐进的进行重构有处于防止增加缺陷。  </p>
-<p>重构的动机：  </p>
+<h3 id="什么是重构"><a href="#什么是重构" class="headerlink" title="什么是重构"></a>什么是重构</h3><p>定义：重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低。<br>重构过程包括去除重复、简化复杂逻辑和澄清模糊的代码。要保证重构的安全性，必须确保所做的修改不会产生任何破坏，这需要进行手工测试或者自动化测试。循序渐进的进行重构有处于防止增加缺陷。</p>
+<p>重构的动机：</p>
 <ul>
 <li>使新代码的增加更容易</li>
 <li>改善既有代码的设计</li>
@@ -1352,8 +1351,8 @@ and the repository exists.
 
       
         
-          <p><a href="http://www.dbunit.org/">DbUnit</a>是一个意在对使用数据库驱动项目进行测试的JUnit扩展。它使得你的数据库在各个Test之间处于一个已知的状态。这很好的解决了以下问题：当一个测试破坏了数据库时，导致其后面的所有测试失败或给出了错误的结果。   </p>
-<p>###DbUnit原理<br>DbUnit通过维护真实数据库与数据集(DataSet)之间的关系来发现与暴露测试过程中的问题。此处DataSet可以自建，可以由数据库导出，并以多种方式体现，xml文件、XLS文件和数据库查询数据等，一般多用XML文件。在测试过程中，DataSet被称为期望结果(expected result),真实数据库被称真实结果(actual result),你所要做的就是通过DbUnit完成期望结果与真实结果之间的操作与比较，从而发现问题和校验结果。<br>DbUnit包括三个核心部分:</p>
+          <p><a href="http://www.dbunit.org/">DbUnit</a>是一个意在对使用数据库驱动项目进行测试的JUnit扩展。它使得你的数据库在各个Test之间处于一个已知的状态。这很好的解决了以下问题：当一个测试破坏了数据库时，导致其后面的所有测试失败或给出了错误的结果。</p>
+<h3 id="DbUnit原理"><a href="#DbUnit原理" class="headerlink" title="DbUnit原理"></a>DbUnit原理</h3><p>DbUnit通过维护真实数据库与数据集(DataSet)之间的关系来发现与暴露测试过程中的问题。此处DataSet可以自建，可以由数据库导出，并以多种方式体现，xml文件、XLS文件和数据库查询数据等，一般多用XML文件。在测试过程中，DataSet被称为期望结果(expected result),真实数据库被称真实结果(actual result),你所要做的就是通过DbUnit完成期望结果与真实结果之间的操作与比较，从而发现问题和校验结果。<br>DbUnit包括三个核心部分:</p>
 <ul>
 <li>IDatabaseConnection ：描述DbUnit数据库连接接口；</li>
 <li>IDataSet：数据集操作接口；</li>
@@ -1480,9 +1479,9 @@ and the repository exists.
 
       
         
-          <p>Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。   </p>
+          <p>Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。</p>
 <p>项目地址:<a href="https://code.google.com/p/mockito/">https://code.google.com/p/mockito/</a></p>
-<p>##powermock 简介##<br>EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程而被许多人应用在自己的工作中，但是这两种 Mock 工具都不可以实现对静态函数、构造函数、私有函数、Final 函数以及系统函数的模拟，但是这些方法往往是我们在大型系统中需要的功能。PowerMock 是在 EasyMock 以及 Mockito 基础上的扩展，通过定制类加载器等技术，PowerMock 实现了之前提到的所有模拟功能，使其成为大型系统上单元测试中的必备工具。缺点是缺少文档。   </p>
+<h2 id="powermock-简介"><a href="#powermock-简介" class="headerlink" title="powermock 简介"></a>powermock 简介</h2><p>EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程而被许多人应用在自己的工作中，但是这两种 Mock 工具都不可以实现对静态函数、构造函数、私有函数、Final 函数以及系统函数的模拟，但是这些方法往往是我们在大型系统中需要的功能。PowerMock 是在 EasyMock 以及 Mockito 基础上的扩展，通过定制类加载器等技术，PowerMock 实现了之前提到的所有模拟功能，使其成为大型系统上单元测试中的必备工具。缺点是缺少文档。</p>
 <p>项目地址:<a href="https://code.google.com/p/powermock/">https://code.google.com/p/powermock/</a><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/06/21/mockito-in-brief/#more" rel="contents">

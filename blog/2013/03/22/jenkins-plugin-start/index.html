@@ -86,7 +86,7 @@
 
 
 
-<meta name="description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+<meta name="description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -95,12 +95,12 @@ xxx.hpi
 |        +- index.jelly
 |        +- XXXX.class
 |    +- lib
-+-    (static resour">
++-    (static resources)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开始第一个Jenkins Plugin">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+<meta property="og:description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -109,11 +109,11 @@ xxx.hpi
 |        +- index.jelly
 |        +- XXXX.class
 |    +- lib
-+-    (static resour">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.565Z">
++-    (static resources)">
+<meta property="og:updated_time" content="2018-10-23T06:28:16.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始第一个Jenkins Plugin">
-<meta name="twitter:description" content="##一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   
+<meta name="twitter:description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -122,7 +122,7 @@ xxx.hpi
 |        +- index.jelly
 |        +- XXXX.class
 |    +- lib
-+-    (static resour">
++-    (static resources)">
 
 
 
@@ -376,7 +376,7 @@ xxx.hpi
       
 
       
-        <p>##一，Jenkins插件的结构<br>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：   </p>
+        <h2 id="一，Jenkins插件的结构"><a href="#一，Jenkins插件的结构" class="headerlink" title="一，Jenkins插件的结构"></a>一，Jenkins插件的结构</h2><p>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：</p>
 <pre><code>xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -386,7 +386,7 @@ xxx.hpi
 |        +- XXXX.class
 |    +- lib
 +-    (static resources)
-</code></pre><p>说明：   </p>
+</code></pre><p>说明：</p>
 <ul>
 <li>1.插件的后缀为”.hpi”,文件名（xxx部分）是插件的简写名字，用来区分插件。</li>
 <li>2.如上图结构所示，它与war包类似，只是缺少web.xml。</li>
@@ -395,19 +395,20 @@ xxx.hpi
 <li>5.WEB-INF/lib 包含插件中需要的.jar文件</li>
 <li><p>6.插件需要的静态文件如图片，HTML，css样式文件，JS文件等可以放到文件的根目录下面。</p>
 <a id="more"></a>
-<p>##二，Jenkins-Plugins的开发<br>Jenkins插件的开发，使用maven来进行项目的管理和构建。如下罗列了其中需要的步骤。<br>###2.1 Jenkins插件开发时的环境配置<br>Jenkins插件开发，需要JDK和Maven环境。下面以windows下的环境配置为例说明。<br>####2.1.1 JDK配置<br>JDK的版本要求在1.6以上，需要在配置文件中配置JDK的变量：   </p>
-<p>  JAVA_HOME = C:\Program Files (x86)\Java\jdk1.6.0_38<br>  CLASSPATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>  PATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;   </p>
+<h2 id="二，Jenkins-Plugins的开发"><a href="#二，Jenkins-Plugins的开发" class="headerlink" title="二，Jenkins-Plugins的开发"></a>二，Jenkins-Plugins的开发</h2><p>Jenkins插件的开发，使用maven来进行项目的管理和构建。如下罗列了其中需要的步骤。</p>
+<h3 id="2-1-Jenkins插件开发时的环境配置"><a href="#2-1-Jenkins插件开发时的环境配置" class="headerlink" title="2.1 Jenkins插件开发时的环境配置"></a>2.1 Jenkins插件开发时的环境配置</h3><p>Jenkins插件开发，需要JDK和Maven环境。下面以windows下的环境配置为例说明。</p>
+<h4 id="2-1-1-JDK配置"><a href="#2-1-1-JDK配置" class="headerlink" title="2.1.1 JDK配置"></a>2.1.1 JDK配置</h4><p>JDK的版本要求在1.6以上，需要在配置文件中配置JDK的变量：</p>
+<p>  JAVA_HOME = C:\Program Files (x86)\Java\jdk1.6.0_38<br>  CLASSPATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>  PATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
 </li>
 </ul>
-<p>####2.1.2 Maven的配置   </p>
-<pre><code>M2_HOME =  D:\maven
+<h4 id="2-1-2-Maven的配置"><a href="#2-1-2-Maven的配置" class="headerlink" title="2.1.2 Maven的配置"></a>2.1.2 Maven的配置</h4><pre><code>M2_HOME =  D:\maven
 M2 = %M2_HOME%\bin
 MAVEN_OPTS  = -Xms256m -Xmx512m
 
-CLASSPATH = ...;%M2%   
-PATH = ...;%M2%   
+CLASSPATH = ...;%M2%
+PATH = ...;%M2%
 </code></pre><p>可以通过<code>mvn --version</code>,查看maven是否配置成功。</p>
-<p>####2.1.3 Maven开发环境的配置<br>在~/.m2/settings.xml中，或者/maven/conf/settings.xml中，配置如下的Jenkins库依赖：   </p>
+<h4 id="2-1-3-Maven开发环境的配置"><a href="#2-1-3-Maven开发环境的配置" class="headerlink" title="2.1.3 Maven开发环境的配置"></a>2.1.3 Maven开发环境的配置</h4><p>在~/.m2/settings.xml中，或者/maven/conf/settings.xml中，配置如下的Jenkins库依赖：</p>
 <pre><code>&lt;settings&gt;
   &lt;pluginGroups&gt;
     &lt;pluginGroup&gt;org.jenkins-ci.tools&lt;/pluginGroup&gt;
@@ -442,27 +443,28 @@ PATH = ...;%M2%
     &lt;/mirror&gt;
   &lt;/mirrors&gt;
 &lt;/settings&gt;
-</code></pre><p>###2.2 生成插件的框架程序<br>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：   </p>
+</code></pre><h3 id="2-2-生成插件的框架程序"><a href="#2-2-生成插件的框架程序" class="headerlink" title="2.2 生成插件的框架程序"></a>2.2 生成插件的框架程序</h3><p>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：</p>
 <pre><code>mvn hpi:create
 
 Enter the groupId of your plugin: com.baidu.ite.hudson
 Enter the artifactId of your plugin: samplePlugin
-</code></pre><p>这样会建立一个工程，名字为<code>samplePlugin</code>,包路径<code>com.baidu.ite.hudson</code>。<br>或者使用如下的命令：   </p>
+</code></pre><p>这样会建立一个工程，名字为<code>samplePlugin</code>,包路径<code>com.baidu.ite.hudson</code>。<br>或者使用如下的命令：</p>
 <pre><code>mvn -U org.jenkins-ci.tools:maven-hpi-plugin:create -DgroupId={your.gound.id} -DartifactId={your.plugin.id}
 </code></pre><p>说明：<br>1，-u代表jenkins需要更新自己所有的插件内容。<br>2，jenkins中提供的archetype-resources，文件的名字为<code>HelloWorldBuilder.java</code>。我们需要手工修改成自己需要的内容。</p>
-<p>####2.2.1 代码结构<br>使用 hpi:create生成的文件结构如下：   </p>
-<pre><code>+- src 
-|    +- main 
+<h4 id="2-2-1-代码结构"><a href="#2-2-1-代码结构" class="headerlink" title="2.2.1 代码结构"></a>2.2.1 代码结构</h4><p>使用 hpi:create生成的文件结构如下：</p>
+<pre><code>+- src
+|    +- main
 |    |    +- java
-|    |    |    +- groupId.HelloWorldBuilder.java 
-|    |    +- resources 
+|    |    |    +- groupId.HelloWorldBuilder.java
+|    |    +- resources
 |    |    |    +-  groupId.HelloWorldBuilder
    |    |    |    |    +- config.jelly
-|    |    |    |    +- help-name.html 
-|    |    |    +- index.jelly 
-</code></pre><p>Jenkins定义了一些扩展点（Extension Points）,这些扩展点是接口或者抽象类。你可以根据自己的需要来修改文件的名字和扩展点。我们使用命令生成的框架程序中，HelloWorldBuilder继承了Builder。 </p>
-<p>####2.2.2 代码的解释<br>    数据的绑定：   </p>
-<pre><code>&lt;!--config.jelly--&gt;
+|    |    |    |    +- help-name.html
+|    |    |    +- index.jelly
+</code></pre><p>Jenkins定义了一些扩展点（Extension Points）,这些扩展点是接口或者抽象类。你可以根据自己的需要来修改文件的名字和扩展点。我们使用命令生成的框架程序中，HelloWorldBuilder继承了Builder。</p>
+<h4 id="2-2-2-代码的解释"><a href="#2-2-2-代码的解释" class="headerlink" title="2.2.2 代码的解释"></a>2.2.2 代码的解释</h4><pre><code>数据的绑定：
+
+&lt;!--config.jelly--&gt;
 &lt;f:entry title=&quot;Name&quot; field=&quot;name&quot;&gt;
     &lt;f:textbox /&gt;
   &lt;/f:entry&gt;
@@ -495,19 +497,19 @@ public boolean perform(AbstractBuild build, Launcher launcher, BuildListener lis
             return FormValidation.ok();
         }
 </code></pre><p>在该函数中，实现在配置页面中填写内容时，进行校验的过程。如函数所述，当填入内容为空时，提示：Please set a name。你可以根据你的需要进行逻辑的控制。</p>
-<p>###2.3 转换为eclipse工程<br>为了便于在编辑器中进行修改，我们需要将生成的maven代码转化为eclipse工程，使用的命令如下：   </p>
+<h3 id="2-3-转换为eclipse工程"><a href="#2-3-转换为eclipse工程" class="headerlink" title="2.3 转换为eclipse工程"></a>2.3 转换为eclipse工程</h3><p>为了便于在编辑器中进行修改，我们需要将生成的maven代码转化为eclipse工程，使用的命令如下：</p>
 <pre><code>mvn eclipse:eclipse
 或者
 mvn -DdownloadSources=true -DdownloadJavadocs=true -DoutputDirectory=target/eclipse-classes eclipse:eclipse
 </code></pre><p>第二条较长的命令中，参数是可选的。</p>
-<p>###2.4 生成hpi文件<br>使用如下命令可以生成<code>./target/pluginname.hpi</code>:   </p>
+<h3 id="2-4-生成hpi文件"><a href="#2-4-生成hpi文件" class="headerlink" title="2.4 生成hpi文件"></a>2.4 生成hpi文件</h3><p>使用如下命令可以生成<code>./target/pluginname.hpi</code>:</p>
 <pre><code>mvn install
 或者
-mvn package 
+mvn package
 </code></pre><p>其中mvn install 生成hpi文件，并放置到本地maven仓库中，mvn package只进行打包操作。</p>
-<p>###2.5 使用.hpl进行调试<br>maven中使用<code>.hpl（hudson plugin link）</code>格式来进行插件的调试。hpl文件中只包含一个链接，链接到类似<code>META-INF/MANIFEST.MF</code>的说明文件<code>../path/to/your/plugin/workspace/manifest-debug.mf</code>。该文件其中额外定义了一些属性来指定文件目录位置,这样资源的修改可以立即生效（需要配置stapler.jelly.noCache=true），不需要重新打包安装。<br>在maven中可以使用命令：    </p>
+<h3 id="2-5-使用-hpl进行调试"><a href="#2-5-使用-hpl进行调试" class="headerlink" title="2.5 使用.hpl进行调试"></a>2.5 使用.hpl进行调试</h3><p>maven中使用<code>.hpl（hudson plugin link）</code>格式来进行插件的调试。hpl文件中只包含一个链接，链接到类似<code>META-INF/MANIFEST.MF</code>的说明文件<code>../path/to/your/plugin/workspace/manifest-debug.mf</code>。该文件其中额外定义了一些属性来指定文件目录位置,这样资源的修改可以立即生效（需要配置stapler.jelly.noCache=true），不需要重新打包安装。<br>在maven中可以使用命令：</p>
 <pre><code>mvn hpi:hpl -DhudsonHome=/...
-</code></pre><p>###2.6 使用.hpi进行测试<br>在调试通过后，可以使用.hpi文件来启动jenkins,查看结果，命令如下：   </p>
+</code></pre><h3 id="2-6-使用-hpi进行测试"><a href="#2-6-使用-hpi进行测试" class="headerlink" title="2.6 使用.hpi进行测试"></a>2.6 使用.hpi进行测试</h3><p>在调试通过后，可以使用.hpi文件来启动jenkins,查看结果，命令如下：</p>
 <pre><code>mvn hpi:run -DhudsonHome=/...
 </code></pre><p>说明：-DhudsonHome可以不选，默认Jenkins安装到工程的./target目录中。</p>
 <hr>
@@ -735,7 +737,7 @@ mvn package
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一，Jenkins插件的结构"><span class="nav-number">1.</span> <span class="nav-text">一，Jenkins插件的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二，Jenkins-Plugins的开发"><span class="nav-number">2.</span> <span class="nav-text">二，Jenkins-Plugins的开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Jenkins插件开发时的环境配置"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Jenkins插件开发时的环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-JDK配置"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 JDK配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Maven的配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Maven的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Maven开发环境的配置"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Maven开发环境的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-生成插件的框架程序"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 生成插件的框架程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-代码结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 代码结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-代码的解释"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 代码的解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-转换为eclipse工程"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 转换为eclipse工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-生成hpi文件"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 生成hpi文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-使用-hpl进行调试"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 使用.hpl进行调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-使用-hpi进行测试"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 使用.hpi进行测试</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

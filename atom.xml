@@ -1554,19 +1554,16 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
     <link href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
     <id>https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/</id>
     <published>2015-03-26T05:07:00.000Z</published>
-    <updated>2018-10-22T09:30:45.552Z</updated>
+    <updated>2018-10-23T06:17:37.900Z</updated>
     
     <content type="html"><![CDATA[<p>最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。</p>
-<p>####1）C3P0容错和自动重连与以下配置参数有关：</p>
-<p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br><a id="more"></a><br><code>idleConnectionTestPeriod</code> ：C3P0会有一个Task检测pool内的连接是否正常，此参数就是Task运行的频率。默认值为0，表示不进行检测。</p>
+<h4 id="1）C3P0容错和自动重连与以下配置参数有关："><a href="#1）C3P0容错和自动重连与以下配置参数有关：" class="headerlink" title="1）C3P0容错和自动重连与以下配置参数有关："></a>1）C3P0容错和自动重连与以下配置参数有关：</h4><p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br><a id="more"></a><br><code>idleConnectionTestPeriod</code> ：C3P0会有一个Task检测pool内的连接是否正常，此参数就是Task运行的频率。默认值为0，表示不进行检测。</p>
 <p><code>testConnectionOnCheckout</code> ：true表示在每次从pool内checkout连接的时候测试其有效性，这是个同步操作，因此应用端的每次数据库调用，都会先通过测试sql测试其有效性，如果连接无效，会关闭此连接并剔除出pool，并尝试从pool内取其他连接，默认为false，此特性要慎用，会造成至少多一倍的数据库调用。</p>
 <p><code>testConnectionOnCheckin</code> ：true表示每次把连接checkin到pool里的时候测试其有效性，因为是个事后操作，所以是异步的，应用端不需要等待测试结果，但同样会造成至少多一倍的数据库调用。</p>
 <p><code>acquireRetryAttempts 和acquireRetryDelay</code> ：pool请求取连接失败后重试的次数和重试的频率。请求连接会发生在pool内连接少于min值或则等待请求数&gt;池内能提供的连接数</p>
 <p><code>automaticTestTable 、connectionTesterClassName 、preferredTestQuery</code> ：表示测试方式，默认是采用DatabaseMetaData.getTables()来测试connection的有效性，但可以通过以上配置来定制化测试语句，通过其名字就很好理解其含义，无需过多解释</p>
 <p><code>maxIdleTime 和 maxConnectionAge</code> ：表示connection的时效性，maxIdleTime和maxConnectionAge不同之处在于， maxIdleTime表示idle状态的connection能存活的最大时间，而 maxConnectionAge表示connection能存活的绝对时间</p>
-<p>####2）应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。</p>
-<p>####3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection</p>
-<p>####4）breakAfterAcquireFailure=false是关键。<br>如果 breakAfterAcquireFailure=true ，一旦pool向数据库请求连接失败，就会标记pool block并关闭pool，这样无论数据库是否恢复正常，应用端都无法从pool拿到连接</p>
+<h4 id="2）应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"><a href="#2）应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。" class="headerlink" title="2）应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"></a>2）应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。</h4><h4 id="3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"><a href="#3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection" class="headerlink" title="3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"></a>3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection</h4><h4 id="4）breakAfterAcquireFailure-false是关键。"><a href="#4）breakAfterAcquireFailure-false是关键。" class="headerlink" title="4）breakAfterAcquireFailure=false是关键。"></a>4）breakAfterAcquireFailure=false是关键。</h4><p>如果 breakAfterAcquireFailure=true ，一旦pool向数据库请求连接失败，就会标记pool block并关闭pool，这样无论数据库是否恢复正常，应用端都无法从pool拿到连接</p>
 <p>####5）要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。</p>
 <p>####6）推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性</p>
 <p>####7）若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行</p>
@@ -1592,8 +1589,7 @@ acquireRetryDelay: 1000
     <summary type="html">
     
       &lt;p&gt;最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。&lt;/p&gt;
-&lt;p&gt;####1）C3P0容错和自动重连与以下配置参数有关：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;breakAfterAcquireFailure&lt;/code&gt; ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false&lt;br&gt;
+&lt;h4 id=&quot;1）C3P0容错和自动重连与以下配置参数有关：&quot;&gt;&lt;a href=&quot;#1）C3P0容错和自动重连与以下配置参数有关：&quot; class=&quot;headerlink&quot; title=&quot;1）C3P0容错和自动重连与以下配置参数有关：&quot;&gt;&lt;/a&gt;1）C3P0容错和自动重连与以下配置参数有关：&lt;/h4&gt;&lt;p&gt;&lt;code&gt;breakAfterAcquireFailure&lt;/code&gt; ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false&lt;br&gt;
     
     </summary>
     
@@ -1748,35 +1744,31 @@ pooch nibble
     <link href="https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
     <published>2014-11-14T05:26:00.000Z</published>
-    <updated>2018-10-22T09:30:45.588Z</updated>
+    <updated>2018-10-23T07:50:08.764Z</updated>
     
-    <content type="html"><![CDATA[<p>###软件版本</p>
-<ul>
+    <content type="html"><![CDATA[<h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><ul>
 <li>Ubuntu Linux</li>
 <li><a href="http://mirror.bit.edu.cn/apache/mahout/0.9/mahout-distribution-0.9.tar.gz" target="_blank" rel="external">mahout-0.9</a>,本文写作的时候的最新版本</li>
 <li><a href="http://download.labs.sogou.com/dl/sogoulabdown/SogouC.reduced.20061102.tar.gz" target="_blank" rel="external">Sogou语料库</a>精简版</li>
 <li><a href="https://github.com/blueshen/ik-analyzer" target="_blank" rel="external">ik-analyzer</a>, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。</li>
 </ul>
-<p>###Sogou语料库处理<br>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
+<h3 id="Sogou语料库处理"><a href="#Sogou语料库处理" class="headerlink" title="Sogou语料库处理"></a>Sogou语料库处理</h3><p>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
 <pre><code>find sogou -type d -exec mkdir -p utf/{} \;
 find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-</code></pre><p>###使用mahout生成sequence file<br>进入utf/sogou目录，执行：</p>
+</code></pre><h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
 <pre><code>mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
 </code></pre><p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br><a id="more"></a><br>    mahout seqdumper -i sogou-seq/part-m-00000 | more<br><img src="/images/blog/2014/sogou-seqfile.png" alt=""></p>
 <p>如果是在hadoop上跑，可以这样看。</p>
 <pre><code>hadoop fs -text sogou-seq/part-m-00000 | more
-</code></pre><p>###使用seq2sparse生成Vectors<br>执行命令：</p>
+</code></pre><h3 id="使用seq2sparse生成Vectors"><a href="#使用seq2sparse生成Vectors" class="headerlink" title="使用seq2sparse生成Vectors"></a>使用seq2sparse生成Vectors</h3><p>执行命令：</p>
 <pre><code>mahout seq2sparse -i sogou-seq  -o sogou-vectors -lnorm -nv -wt tfidf -a org.wltea.analyzer.lucene.IKAnalyzer -ow
 </code></pre><p>查看生成的vector</p>
 <p>mahout vectordump -i sogou-vectors/tfidf-vectors/part-r-00000 | more</p>
 <p><img src="/images/blog/2014/sogou-vector.png" alt=""></p>
 <p>需要注意的是<code>org.wltea.analyzer.lucene.IKAnalyzer</code>，是上面提到的ik-analyzer里的。需要将ik-analyzer打包，然后将打出的包，放入$MAHOUT_HOME/lib内。默认是英文的，使用的是<code>org.apache.lucene.analysis.standard.StandardAnalyzer</code>，空格分割明显不适用中文。</p>
-<p>###切分训练集和测试集</p>
-<pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
-</code></pre><p>###使用Native Bayes训练model</p>
-<pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
-</code></pre><p>###使用测试集来查看效果</p>
-<pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
+<h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
+</code></pre><h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
+</code></pre><h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
 </code></pre><p><img src="/images/blog/2014/sogou-result.png" alt=""></p>
 <p>可以看出87%的正确率还是不错的。</p>
 <hr>
@@ -1786,17 +1778,16 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
     
     <summary type="html">
     
-      &lt;p&gt;###软件版本&lt;/p&gt;
-&lt;ul&gt;
+      &lt;h3 id=&quot;软件版本&quot;&gt;&lt;a href=&quot;#软件版本&quot; class=&quot;headerlink&quot; title=&quot;软件版本&quot;&gt;&lt;/a&gt;软件版本&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Ubuntu Linux&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://mirror.bit.edu.cn/apache/mahout/0.9/mahout-distribution-0.9.tar.gz&quot;&gt;mahout-0.9&lt;/a&gt;,本文写作的时候的最新版本&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://download.labs.sogou.com/dl/sogoulabdown/SogouC.reduced.20061102.tar.gz&quot;&gt;Sogou语料库&lt;/a&gt;精简版&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/blueshen/ik-analyzer&quot;&gt;ik-analyzer&lt;/a&gt;, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;###Sogou语料库处理&lt;br&gt;下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.&lt;br&gt;语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：&lt;/p&gt;
+&lt;h3 id=&quot;Sogou语料库处理&quot;&gt;&lt;a href=&quot;#Sogou语料库处理&quot; class=&quot;headerlink&quot; title=&quot;Sogou语料库处理&quot;&gt;&lt;/a&gt;Sogou语料库处理&lt;/h3&gt;&lt;p&gt;下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.&lt;br&gt;语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;find sogou -type d -exec mkdir -p utf/{} \;
 find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###使用mahout生成sequence file&lt;br&gt;进入utf/sogou目录，执行：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;使用mahout生成sequence-file&quot;&gt;&lt;a href=&quot;#使用mahout生成sequence-file&quot; class=&quot;headerlink&quot; title=&quot;使用mahout生成sequence file&quot;&gt;&lt;/a&gt;使用mahout生成sequence file&lt;/h3&gt;&lt;p&gt;进入utf/sogou目录，执行：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;生成的sequence file存放在sogou-seq目录内。&lt;br&gt;可以通过seqdumper命令查看：&lt;br&gt;
     
@@ -2127,12 +2118,10 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/"/>
     <id>https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</id>
     <published>2014-08-27T06:43:00.000Z</published>
-    <updated>2018-10-22T09:30:45.564Z</updated>
+    <updated>2018-10-23T06:27:33.710Z</updated>
     
-    <content type="html"><![CDATA[<p>##Java7新特性</p>
-<p>###Java7语法特性<br>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
-<p>####1. switch可以消化String</p>
-<p>比如：</p>
+    <content type="html"><![CDATA[<h2 id="Java7新特性"><a href="#Java7新特性" class="headerlink" title="Java7新特性"></a>Java7新特性</h2><h3 id="Java7语法特性"><a href="#Java7语法特性" class="headerlink" title="Java7语法特性"></a>Java7语法特性</h3><p>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
+<h4 id="1-switch可以消化String"><a href="#1-switch可以消化String" class="headerlink" title="1. switch可以消化String"></a>1. switch可以消化String</h4><p>比如：</p>
 <pre><code>public static void switchString(String s){
     switch (s){
     case &quot;db&quot;: ...
@@ -2144,8 +2133,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     }
 }
 </code></pre><a id="more"></a>
-<p>####2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。</p>
-<ul>
+<h4 id="2-新的整数字面表达方式-“0b”前缀和”-”连数符，提升程序员的幸福感。"><a href="#2-新的整数字面表达方式-“0b”前缀和”-”连数符，提升程序员的幸福感。" class="headerlink" title="2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。"></a>2. 新的整数字面表达方式 - “0b”前缀和”_”连数符，提升程序员的幸福感。</h4><ul>
 <li><p>a. 表示二进制字面值的前缀, 0b:<br>比如以下三个变量的值相同：</p>
 <pre><code>byte b1 = 0b00100001;     // New
 byte b2 = 0x21;        // Old
@@ -2155,25 +2143,21 @@ byte b3 = 33;        // Old
 <pre><code>long phone_nbr = 021_1111_2222;
 </code></pre></li>
 </ul>
-<p>####3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</p>
-<pre><code>ArrayList&lt;String&gt; al1 = new ArrayList&lt;String&gt;();    // Old
+<h4 id="3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价："><a href="#3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价：" class="headerlink" title="3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价："></a>3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</h4><pre><code>ArrayList&lt;String&gt; al1 = new ArrayList&lt;String&gt;();    // Old
 ArrayList&lt;String&gt; al2 = new ArrayList&lt;&gt;();        // New
-</code></pre><p>####4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</p>
-<pre><code>ClassNotFoundException, 
-IllegalAccessException, 
-InstantiationException, 
-InvocationTargetException, 
-NoSuchFieldException, 
+</code></pre><h4 id="4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是："><a href="#4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是：" class="headerlink" title="4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是："></a>4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</h4><pre><code>ClassNotFoundException,
+IllegalAccessException,
+InstantiationException,
+InvocationTargetException,
+NoSuchFieldException,
 NoSuchMethodException
-</code></pre><p>####5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</p>
-<pre><code>try{
+</code></pre><h4 id="5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："><a href="#5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：" class="headerlink" title="5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："></a>5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</h4><pre><code>try{
     // code
 }
 catch (SQLException | IOException ex) {
     // ...
 }
-</code></pre><p>####6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</p>
-<pre><code>public void test() throws NoSuchMethodException, NoSuchFieldException{    // 子类
+</code></pre><h4 id="6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style："><a href="#6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style：" class="headerlink" title="6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style："></a>6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</h4><pre><code>public void test() throws NoSuchMethodException, NoSuchFieldException{    // 子类
     try{
         // code
     }
@@ -2181,15 +2165,16 @@ catch (SQLException | IOException ex) {
         throws ex;
     }
 }
-</code></pre><p>####7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“：<br>    try(BufferedReader br = new BufferedReader(new FileReader(“/home/oracle/temp.txt”))){<br>        … br.readLine() …<br>    }<br>try-with-resources语句可以带catch，也可以向上例一样一个catch也没有。</p>
-<p>###Java7 NIO 新方法<br>整体来说，对IO操作进行了优化，使用起来更加顺手，甚至可以替换apache common-io包。</p>
-<p>####1.增加<code>java.nio.file.Paths</code>用于目录操作</p>
-<pre><code>Path path = Paths.get(&quot;/home/shenyanchao&quot;, &quot;Desktop&quot;);
+</code></pre><h4 id="7-发明了try-结构-Try-with-Resources，能够自动接住异常并关闭资源-所谓的资源需要利用新的java-lang-AutoCloseable接口-，注意以下代码中try后面跟的是”-“不是”-“："><a href="#7-发明了try-结构-Try-with-Resources，能够自动接住异常并关闭资源-所谓的资源需要利用新的java-lang-AutoCloseable接口-，注意以下代码中try后面跟的是”-“不是”-“：" class="headerlink" title="7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“："></a>7. 发明了try()结构 - Try with Resources，能够自动接住异常并关闭资源(所谓的资源需要利用新的java.lang.AutoCloseable接口)，注意以下代码中try后面跟的是”(“不是”{“：</h4><pre><code>try(BufferedReader br = new BufferedReader(new FileReader(&quot;/home/oracle/temp.txt&quot;))){
+    ... br.readLine() ...
+}
+</code></pre><p>try-with-resources语句可以带catch，也可以向上例一样一个catch也没有。</p>
+<h3 id="Java7-NIO-新方法"><a href="#Java7-NIO-新方法" class="headerlink" title="Java7 NIO 新方法"></a>Java7 NIO 新方法</h3><p>整体来说，对IO操作进行了优化，使用起来更加顺手，甚至可以替换apache common-io包。</p>
+<h4 id="1-增加java-nio-file-Paths用于目录操作"><a href="#1-增加java-nio-file-Paths用于目录操作" class="headerlink" title="1.增加java.nio.file.Paths用于目录操作"></a>1.增加<code>java.nio.file.Paths</code>用于目录操作</h4><pre><code>Path path = Paths.get(&quot;/home/shenyanchao&quot;, &quot;Desktop&quot;);
 System.out.println(path.toAbsolutePath());
 System.out.println(path.getParent());
 System.out.println(path.getFileSystem().isOpen());
-</code></pre><p>####2.增加<code>java.nio.file.Files</code>工具类来处理文件</p>
-<pre><code>Files.copy(src,dest, StandardCopyOption.COPY_ATTRIBUTES,StandardCopyOption.REPLACE_EXISTING);
+</code></pre><h4 id="2-增加java-nio-file-Files工具类来处理文件"><a href="#2-增加java-nio-file-Files工具类来处理文件" class="headerlink" title="2.增加java.nio.file.Files工具类来处理文件"></a>2.增加<code>java.nio.file.Files</code>工具类来处理文件</h4><pre><code>Files.copy(src,dest, StandardCopyOption.COPY_ATTRIBUTES,StandardCopyOption.REPLACE_EXISTING);
 
 Files.move(src,dest,StandardCopyOption.ATOMIC_MOVE);
 
@@ -2200,13 +2185,12 @@ Files.deleteIfExists(dest);
 Files.readAllLines(src);
 
 Files.createTempFile(src,&quot;aa&quot;,&quot;bb&quot;);
-</code></pre><p>####3.目录树遍历<br>使用<code>FileVisitor</code>来实现访问者模式。</p>
+</code></pre><h4 id="3-目录树遍历"><a href="#3-目录树遍历" class="headerlink" title="3.目录树遍历"></a>3.目录树遍历</h4><p>使用<code>FileVisitor</code>来实现访问者模式。</p>
 <pre><code>preVisitDirectory(T dir, BasicFileAttributes attrs);
 visitFile(T dir, BasicFileAttributes attrs);
 visitFileFailed(T dir, IOException exc);
 postVisitDirectory(T dir, IOException exc);
-</code></pre><p>####4.使用WatchService来监控目录，变化请通知</p>
-<pre><code>WatchService watchService = FileSystems.getDefault().newWatchService();
+</code></pre><h4 id="4-使用WatchService来监控目录，变化请通知"><a href="#4-使用WatchService来监控目录，变化请通知" class="headerlink" title="4.使用WatchService来监控目录，变化请通知"></a>4.使用WatchService来监控目录，变化请通知</h4><pre><code>WatchService watchService = FileSystems.getDefault().newWatchService();
 Path path = Paths.get(&quot;/home/shenyanchao/Documents&quot;);
 WatchKey watchKey = path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
         StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
@@ -2220,8 +2204,7 @@ while (true) {
         break;
     }
 }
-</code></pre><p>###Java7并发（JSR166Y）</p>
-<p>####Fork Join框架，大任务分解为小任务<br>通过ForkJoinPool，ForkJoinTask来实现的。</p>
+</code></pre><h3 id="Java7并发（JSR166Y）"><a href="#Java7并发（JSR166Y）" class="headerlink" title="Java7并发（JSR166Y）"></a>Java7并发（JSR166Y）</h3><h4 id="Fork-Join框架，大任务分解为小任务"><a href="#Fork-Join框架，大任务分解为小任务" class="headerlink" title="Fork Join框架，大任务分解为小任务"></a>Fork Join框架，大任务分解为小任务</h4><p>通过ForkJoinPool，ForkJoinTask来实现的。</p>
 <pre><code>public class Fibonacci extends RecursiveTask&lt;Integer&gt; {
 
     final int n;
@@ -2246,17 +2229,14 @@ while (true) {
         System.out.println(fibonacci.compute());
     }
 }
-</code></pre><p>####TransferQueue，ConcurrentLinkedDeque等新类<br>TransferQueue是一个继承了 BlockingQueue的接口，并且增加若干新的方法。</p>
-<p>####ThreadLocalRandom用于生成随机数</p>
-<pre><code>ThreadLocalRandom.current().nextInt (...)
+</code></pre><h4 id="TransferQueue，ConcurrentLinkedDeque等新类"><a href="#TransferQueue，ConcurrentLinkedDeque等新类" class="headerlink" title="TransferQueue，ConcurrentLinkedDeque等新类"></a>TransferQueue，ConcurrentLinkedDeque等新类</h4><p>TransferQueue是一个继承了 BlockingQueue的接口，并且增加若干新的方法。</p>
+<h4 id="ThreadLocalRandom用于生成随机数"><a href="#ThreadLocalRandom用于生成随机数" class="headerlink" title="ThreadLocalRandom用于生成随机数"></a>ThreadLocalRandom用于生成随机数</h4><pre><code>ThreadLocalRandom.current().nextInt (...)
 </code></pre><p>Random是线程安全的，但速度较慢。而这个是快速的，但是速度很快。适用于线程内部的使用。</p>
-<p>###Java7 client<br>诸如更新了很多swing显示相关的api.<br>更好的支持linux fonts</p>
-<p>###Java7 VM新特性</p>
-<p>####1.引入Garbage First回收算法<br>Garbage First简称G1，它的目标是要做到尽量减少GC所导致的应用暂停的时间，让应用达到准实时的效果，同时保持JVM堆空间的利用率。用于替代CMS</p>
+<h3 id="Java7-client"><a href="#Java7-client" class="headerlink" title="Java7 client"></a>Java7 client</h3><p>诸如更新了很多swing显示相关的api.<br>更好的支持linux fonts</p>
+<h3 id="Java7-VM新特性"><a href="#Java7-VM新特性" class="headerlink" title="Java7 VM新特性"></a>Java7 VM新特性</h3><h4 id="1-引入Garbage-First回收算法"><a href="#1-引入Garbage-First回收算法" class="headerlink" title="1.引入Garbage First回收算法"></a>1.引入Garbage First回收算法</h4><p>Garbage First简称G1，它的目标是要做到尽量减少GC所导致的应用暂停的时间，让应用达到准实时的效果，同时保持JVM堆空间的利用率。用于替代CMS</p>
 <hr>
 <p>参考文档：<a href="http://www.slideshare.net/boulderjug/55-things-in-java-7" target="_blank" rel="external">http://www.slideshare.net/boulderjug/55-things-in-java-7</a></p>
-<p>##Java8新特性</p>
-<p>###1.接口默认方法[接口允许有实现啦]<br>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用 <code>default</code>关键字即可，这个特征又叫做扩展方法。</p>
+<h2 id="Java8新特性"><a href="#Java8新特性" class="headerlink" title="Java8新特性"></a>Java8新特性</h2><h3 id="1-接口默认方法-接口允许有实现啦"><a href="#1-接口默认方法-接口允许有实现啦" class="headerlink" title="1.接口默认方法[接口允许有实现啦]"></a>1.接口默认方法[接口允许有实现啦]</h3><p>Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用 <code>default</code>关键字即可，这个特征又叫做扩展方法。</p>
 <pre><code>interface Formula {
     double calculate(int a);
 
@@ -2264,7 +2244,7 @@ while (true) {
         return Math.sqrt(a);
     }
 }
-</code></pre><p>###2.Lambda表达式<br>据说借鉴了各种动态语言的新特性，比如scala，python<br>首先看看在老版本的Java中是如何排列字符串的：</p>
+</code></pre><h3 id="2-Lambda表达式"><a href="#2-Lambda表达式" class="headerlink" title="2.Lambda表达式"></a>2.Lambda表达式</h3><p>据说借鉴了各种动态语言的新特性，比如scala，python<br>首先看看在老版本的Java中是如何排列字符串的：</p>
 <pre><code>List&lt;String&gt; names = Arrays.asList(&quot;peter&quot;, &quot;anna&quot;, &quot;mike&quot;, &quot;xenia&quot;);
 
 Collections.sort(names, new Comparator&lt;String&gt;() {
@@ -2279,9 +2259,9 @@ public int compare(String a, String b) {
 });
 </code></pre><p>可以更短：</p>
 <pre><code>Collections.sort(names, (String a, String b) -&gt; b.compareTo(a));
-</code></pre><p>再短： </p>
+</code></pre><p>再短：</p>
 <pre><code>Collections.sort(names, (a, b) -&gt; b.compareTo(a));
-</code></pre><p>###3.@FunctionalInterface<br>这是新引入的一个注解，用于支持lambda。用<code>FunctionalInterface</code>标识的接口，必须只包含1个抽象方法。否则会编译报错的。因为如果有多个抽象方法，lambda就无法知道对应哪个方法了。</p>
+</code></pre><h3 id="3-FunctionalInterface"><a href="#3-FunctionalInterface" class="headerlink" title="3.@FunctionalInterface"></a>3.@FunctionalInterface</h3><p>这是新引入的一个注解，用于支持lambda。用<code>FunctionalInterface</code>标识的接口，必须只包含1个抽象方法。否则会编译报错的。因为如果有多个抽象方法，lambda就无法知道对应哪个方法了。</p>
 <pre><code>@FunctionalInterface
 interface Converter&lt;F, T&gt; {
     T convert(F from);
@@ -2291,7 +2271,7 @@ Converter&lt;String, Integer&gt; converter = (from) -&gt; Integer.valueOf(from);
 Integer converted = converter.convert(&quot;123&quot;);
 System.out.println(converted);    // 123
 </code></pre><p>例子中，<code>(from) -&gt; Integer.valueOf(from)</code>这个lambda表达式指出了convert方法的具体实现。</p>
-<p>####(1)方法与构造函数的引用::<br>Java 8 允许你使用 :: 关键字来传递方法或者构造函数引用,下面的代码展示了如何引用一个静态方法</p>
+<h4 id="1-方法与构造函数的引用"><a href="#1-方法与构造函数的引用" class="headerlink" title="(1)方法与构造函数的引用::"></a>(1)方法与构造函数的引用::</h4><p>Java 8 允许你使用 :: 关键字来传递方法或者构造函数引用,下面的代码展示了如何引用一个静态方法</p>
 <pre><code>Converter&lt;String, Integer&gt; converter = Integer::valueOf;
 Integer converted = converter.convert(&quot;123&quot;);
 System.out.println(converted);   // 123
@@ -2319,10 +2299,10 @@ System.out.println(converted);    // &quot;J&quot;
 <pre><code>PersonFactory&lt;Person&gt; personFactory = Person::new;
 Person person = personFactory.create(&quot;Peter&quot;, &quot;Parker&quot;);
 </code></pre><p>我们只需要使用 Person::new 来获取Person类构造函数的引用，Java编译器会自动根据PersonFactory.create方法的签名来选择合适的构造函数。</p>
-<p>####(2)内嵌的Functional Interfaces<br>上面提到的Comparator接口，为什么可以使用lambda表达式，正是因为在java 8中，被定义为了FunctionalInterface。这些已经存在的接口是通过添加@FunctionalInterface注解来支持的。</p>
+<h4 id="2-内嵌的Functional-Interfaces"><a href="#2-内嵌的Functional-Interfaces" class="headerlink" title="(2)内嵌的Functional Interfaces"></a>(2)内嵌的Functional Interfaces</h4><p>上面提到的Comparator接口，为什么可以使用lambda表达式，正是因为在java 8中，被定义为了FunctionalInterface。这些已经存在的接口是通过添加@FunctionalInterface注解来支持的。</p>
 <p>另外，java 8 api还提供了丰富的接口。这些接口貌似都是从Google Guava包里得到的提示，命名甚至都是一样的。</p>
 <ul>
-<li>Predicates   </li>
+<li>Predicates</li>
 </ul>
 <p>Predicate 接口只有一个参数，返回boolean类型。该接口包含多种默认方法来将Predicate组合成其他复杂的逻辑（比如：与，或，非）：</p>
 <pre><code>Predicate&lt;String&gt; predicate = (s) -&gt; s.length() &gt; 0;
@@ -2405,7 +2385,7 @@ stringCollection.add(&quot;ddd1&quot;);
     .sorted((a, b) -&gt; b.compareTo(a))
     .forEach(System.out::println);
 
-// &quot;DDD2&quot;, &quot;DDD1&quot;, &quot;CCC&quot;, &quot;BBB3&quot;, &quot;BBB2&quot;, &quot;AAA2&quot;, &quot;AAA1&quot;        
+// &quot;DDD2&quot;, &quot;DDD1&quot;, &quot;CCC&quot;, &quot;BBB3&quot;, &quot;BBB2&quot;, &quot;AAA2&quot;, &quot;AAA1&quot;
 </code></pre><p>另外提供有各种match方法。</p>
 <pre><code>boolean anyStartsWithA =
     stringCollection
@@ -2434,7 +2414,7 @@ System.out.println(noneStartsWithZ);      // true
         .filter((s) -&gt; s.startsWith(&quot;b&quot;))
         .count();
 
-System.out.println(startsWithB);    // 3        
+System.out.println(startsWithB);    // 3
 </code></pre><p>reduce则进行了归一化处理：</p>
 <pre><code>Optional&lt;String&gt; reduced =
     stringCollection
@@ -2445,7 +2425,7 @@ System.out.println(startsWithB);    // 3
 reduced.ifPresent(System.out::println);
 // &quot;aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2&quot;
 </code></pre><ul>
-<li>ParallelStream </li>
+<li>ParallelStream</li>
 </ul>
 <p>它是一个并行的。速度要比stream快的多。</p>
 <ul>
@@ -2485,14 +2465,14 @@ map.get(9);             // val9
 
 map.merge(9, &quot;concat&quot;, (value, newValue) -&gt; value.concat(newValue));
 map.get(9);             // val9concat
-</code></pre><p>###4.时间API<br>Java8更新了Date API,这个新的api与joda-time类似。</p>
-<p>####(1)Clock<br>Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用Instant类来表示，Instant类也可以用来创建老的java.util.Date对象。</p>
+</code></pre><h3 id="4-时间API"><a href="#4-时间API" class="headerlink" title="4.时间API"></a>4.时间API</h3><p>Java8更新了Date API,这个新的api与joda-time类似。</p>
+<h4 id="1-Clock"><a href="#1-Clock" class="headerlink" title="(1)Clock"></a>(1)Clock</h4><p>Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代 System.currentTimeMillis() 来获取当前的微秒数。某一个特定的时间点也可以使用Instant类来表示，Instant类也可以用来创建老的java.util.Date对象。</p>
 <pre><code>Clock clock = Clock.systemDefaultZone();
 long millis = clock.millis();
 
 Instant instant = clock.instant();
 Date legacyDate = Date.from(instant);   // legacy java.util.Date
-</code></pre><p>####(2)TimeZones<br>在新API中时区使用ZoneId来表示。时区可以很方便的使用静态方法of来获取到。 时区定义了到UTS时间的时间差，在Instant时间点对象到本地日期对象之间转换的时候是极其重要的</p>
+</code></pre><h4 id="2-TimeZones"><a href="#2-TimeZones" class="headerlink" title="(2)TimeZones"></a>(2)TimeZones</h4><p>在新API中时区使用ZoneId来表示。时区可以很方便的使用静态方法of来获取到。 时区定义了到UTS时间的时间差，在Instant时间点对象到本地日期对象之间转换的时候是极其重要的</p>
 <pre><code>System.out.println(ZoneId.getAvailableZoneIds());
 // prints all available timezone ids
 
@@ -2503,7 +2483,7 @@ System.out.println(zone2.getRules());
 
 // ZoneRules[currentStandardOffset=+01:00]
 // ZoneRules[currentStandardOffset=-03:00]
-</code></pre><p>####(3)LocalTime<br>LocalTime 定义了一个没有时区信息的时间，例如 晚上10点，或者 17:30:15。下面的例子使用前面代码创建的时区创建了两个本地时间。之后比较时间并以小时和分钟为单位计算两个时间的时间差：</p>
+</code></pre><h4 id="3-LocalTime"><a href="#3-LocalTime" class="headerlink" title="(3)LocalTime"></a>(3)LocalTime</h4><p>LocalTime 定义了一个没有时区信息的时间，例如 晚上10点，或者 17:30:15。下面的例子使用前面代码创建的时区创建了两个本地时间。之后比较时间并以小时和分钟为单位计算两个时间的时间差：</p>
 <pre><code>LocalTime now1 = LocalTime.now(zone1);
 LocalTime now2 = LocalTime.now(zone2);
 
@@ -2525,7 +2505,7 @@ DateTimeFormatter germanFormatter =
 
 LocalTime leetTime = LocalTime.parse(&quot;13:37&quot;, germanFormatter);
 System.out.println(leetTime);   // 13:37
-</code></pre><p>####(4)LocalDate<br>LocalDate 表示了一个确切的日期，比如 2014-03-11。该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象是不可变的，操作返回的总是一个新实例。</p>
+</code></pre><h4 id="4-LocalDate"><a href="#4-LocalDate" class="headerlink" title="(4)LocalDate"></a>(4)LocalDate</h4><p>LocalDate 表示了一个确切的日期，比如 2014-03-11。该对象值是不可变的，用起来和LocalTime基本一致。下面的例子展示了如何给Date对象加减天/月/年。另外要注意的是这些对象是不可变的，操作返回的总是一个新实例。</p>
 <pre><code>LocalDate today = LocalDate.now();
 LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
 LocalDate yesterday = tomorrow.minusDays(2);
@@ -2541,8 +2521,9 @@ DateTimeFormatter germanFormatter =
 
 LocalDate xmas = LocalDate.parse(&quot;24.12.2014&quot;, germanFormatter);
 System.out.println(xmas);   // 2014-12-24
-</code></pre><p>####(5)LocalDateTime<br>        LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。</p>
-<pre><code>LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);
+</code></pre><h4 id="5-LocalDateTime"><a href="#5-LocalDateTime" class="headerlink" title="(5)LocalDateTime"></a>(5)LocalDateTime</h4><pre><code>LocalDateTime 同时表示了时间和日期，相当于前两节内容合并到一个对象上了。LocalDateTime和LocalTime还有LocalDate一样，都是不可变的。LocalDateTime提供了一些能访问具体字段的方法。
+
+LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);
 
 DayOfWeek dayOfWeek = sylvester.getDayOfWeek();
 System.out.println(dayOfWeek);      // WEDNESDAY
@@ -2567,7 +2548,7 @@ DateTimeFormatter formatter =
 LocalDateTime parsed = LocalDateTime.parse(&quot;Nov 03, 2014 - 07:13&quot;, formatter);
 String string = formatter.format(parsed);
 System.out.println(string);     // Nov 03, 2014 - 07:13
-</code></pre><p>###5.支持重复注解了，注解也可以用在任何地方了<br>java8之前，类，属性，方法才有注解，现在几乎任何地方都可以了。</p>
+</code></pre><h3 id="5-支持重复注解了，注解也可以用在任何地方了"><a href="#5-支持重复注解了，注解也可以用在任何地方了" class="headerlink" title="5.支持重复注解了，注解也可以用在任何地方了"></a>5.支持重复注解了，注解也可以用在任何地方了</h3><p>java8之前，类，属性，方法才有注解，现在几乎任何地方都可以了。</p>
 <pre><code>new @Interned MyObject();
 myString = (@NonNull String) str;
 
@@ -2602,8 +2583,8 @@ public class RepeatAnnotationUseNewVersion {
     @Authority(role=&quot;Manager&quot;)
     public void doSomeThing(){ }
 }
-</code></pre><p>###6.Nashorn JavaScript 引擎<br>简单的说，它是 Rhino 的接替者.升级啦。</p>
-<p>###7.StampedLock<br>它是java8在java.util.concurrent.locks新增的一个API。</p>
+</code></pre><h3 id="6-Nashorn-JavaScript-引擎"><a href="#6-Nashorn-JavaScript-引擎" class="headerlink" title="6.Nashorn JavaScript 引擎"></a>6.Nashorn JavaScript 引擎</h3><p>简单的说，它是 Rhino 的接替者.升级啦。</p>
+<h3 id="7-StampedLock"><a href="#7-StampedLock" class="headerlink" title="7.StampedLock"></a>7.StampedLock</h3><p>它是java8在java.util.concurrent.locks新增的一个API。</p>
 <p>ReentrantReadWriteLock 在沒有任何读写锁时，才可以取得写入锁，这可用于实现了悲观读取（Pessimistic Reading），即如果执行中进行读取时，经常可能有另一执行要写入的需求，为了保持同步，ReentrantReadWriteLock 的读取锁定就可派上用场。</p>
 <p>然而，如果读取执行情况很多，写入很少的情况下，使用 ReentrantReadWriteLock 可能会使写入线程遭遇饥饿（Starvation）问题，也就是写入线程吃吃无法竞争到锁定而一直处于等待状态。</p>
 <p>StampedLock控制锁有三种模式（写，读，乐观读），一个StampedLock状态是由版本和模式两个部分组成，锁获取方法返回一个数字作为票据stamp，它用相应的锁状态表示并控制访问，数字0表示没有写锁被授权访问。在读锁上分为悲观锁和乐观锁。</p>
@@ -2669,10 +2650,8 @@ public class RepeatAnnotationUseNewVersion {
     
     <summary type="html">
     
-      &lt;p&gt;##Java7新特性&lt;/p&gt;
-&lt;p&gt;###Java7语法特性&lt;br&gt;根据JSR 334，Java7添加了数个语法方面的新特性：&lt;/p&gt;
-&lt;p&gt;####1. switch可以消化String&lt;/p&gt;
-&lt;p&gt;比如：&lt;/p&gt;
+      &lt;h2 id=&quot;Java7新特性&quot;&gt;&lt;a href=&quot;#Java7新特性&quot; class=&quot;headerlink&quot; title=&quot;Java7新特性&quot;&gt;&lt;/a&gt;Java7新特性&lt;/h2&gt;&lt;h3 id=&quot;Java7语法特性&quot;&gt;&lt;a href=&quot;#Java7语法特性&quot; class=&quot;headerlink&quot; title=&quot;Java7语法特性&quot;&gt;&lt;/a&gt;Java7语法特性&lt;/h3&gt;&lt;p&gt;根据JSR 334，Java7添加了数个语法方面的新特性：&lt;/p&gt;
+&lt;h4 id=&quot;1-switch可以消化String&quot;&gt;&lt;a href=&quot;#1-switch可以消化String&quot; class=&quot;headerlink&quot; title=&quot;1. switch可以消化String&quot;&gt;&lt;/a&gt;1. switch可以消化String&lt;/h4&gt;&lt;p&gt;比如：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;public static void switchString(String s){
     switch (s){
     case &amp;quot;db&amp;quot;: ...
@@ -2701,16 +2680,14 @@ public class RepeatAnnotationUseNewVersion {
     <link href="https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/"/>
     <id>https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/</id>
     <published>2014-06-24T07:17:00.000Z</published>
-    <updated>2018-10-22T09:30:45.558Z</updated>
+    <updated>2018-10-23T06:21:22.752Z</updated>
     
-    <content type="html"><![CDATA[<p>###常用的excel操作工具</p>
-<ul>
+    <content type="html"><![CDATA[<h3 id="常用的excel操作工具"><a href="#常用的excel操作工具" class="headerlink" title="常用的excel操作工具"></a>常用的excel操作工具</h3><ul>
 <li>Apache POI</li>
 <li>jexcelApi</li>
 </ul>
 <p>它们都提供了完善的API来支持EXCEL的读写。</p>
-<p>###jXLS是什么？</p>
-<p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
+<h3 id="jXLS是什么？"><a href="#jXLS是什么？" class="headerlink" title="jXLS是什么？"></a>jXLS是什么？</h3><p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
 <p>jXLS的基本功能：</p>
 <ul>
 <li>支持Excel 95-2000的所有版本</li>
@@ -2731,8 +2708,7 @@ public class RepeatAnnotationUseNewVersion {
 beans.put(&quot;department&quot;, department);
 XLSTransformer transformer = new XLSTransformer();
 transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
-</code></pre><p>###jXLS是如何解析模板生成数据的？</p>
-<p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
+</code></pre><h3 id="jXLS是如何解析模板生成数据的？"><a href="#jXLS是如何解析模板生成数据的？" class="headerlink" title="jXLS是如何解析模板生成数据的？"></a>jXLS是如何解析模板生成数据的？</h3><p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
 <pre><code>Object value = ((Expression) cell.getExpressions().get(0)).evaluate();
 </code></pre><p>而evaluate()方法如下：</p>
 <pre><code>public Object evaluate() throws Exception {
@@ -2747,8 +2723,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     return expression;
 }
 </code></pre><p>从而可以看出，数据的获得是通过JEXL来实现的。换句话说，模板内可以使用任何的JEXL标签。</p>
-<p>###让jXLS支持hyperlink</p>
-<p>业务上有这么一个需求，想在单元格内显示一个链接，而链接是动态生成的。通过模板设置单元格为链接始终无法生效，但是如果链接是固定的是可以生效的。如何实现动态的呢，改源码net.sf.jxls.transformer.CellTransformer 82行：</p>
+<h3 id="让jXLS支持hyperlink"><a href="#让jXLS支持hyperlink" class="headerlink" title="让jXLS支持hyperlink"></a>让jXLS支持hyperlink</h3><p>业务上有这么一个需求，想在单元格内显示一个链接，而链接是动态生成的。通过模板设置单元格为链接始终无法生效，但是如果链接是固定的是可以生效的。如何实现动态的呢，改源码net.sf.jxls.transformer.CellTransformer 82行：</p>
 <pre><code>if (cell.getStringCellValue().toLowerCase().startsWith(&quot;${href}&quot;) &amp;&amp; cell.getExpressions().size() == 3){
        //是链接类型的cell
        HSSFCell hssfCell = (HSSFCell) cell.getPoiCell();
@@ -2765,14 +2740,12 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     
     <summary type="html">
     
-      &lt;p&gt;###常用的excel操作工具&lt;/p&gt;
-&lt;ul&gt;
+      &lt;h3 id=&quot;常用的excel操作工具&quot;&gt;&lt;a href=&quot;#常用的excel操作工具&quot; class=&quot;headerlink&quot; title=&quot;常用的excel操作工具&quot;&gt;&lt;/a&gt;常用的excel操作工具&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Apache POI&lt;/li&gt;
 &lt;li&gt;jexcelApi&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;它们都提供了完善的API来支持EXCEL的读写。&lt;/p&gt;
-&lt;p&gt;###jXLS是什么？&lt;/p&gt;
-&lt;p&gt;jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。&lt;/p&gt;
+&lt;h3 id=&quot;jXLS是什么？&quot;&gt;&lt;a href=&quot;#jXLS是什么？&quot; class=&quot;headerlink&quot; title=&quot;jXLS是什么？&quot;&gt;&lt;/a&gt;jXLS是什么？&lt;/h3&gt;&lt;p&gt;jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。&lt;/p&gt;
 &lt;p&gt;jXLS的基本功能：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;支持Excel 95-2000的所有版本&lt;/li&gt;
@@ -2808,16 +2781,14 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     <link href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
     <id>https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/</id>
     <published>2014-06-24T07:10:00.000Z</published>
-    <updated>2018-10-22T09:30:45.572Z</updated>
+    <updated>2018-10-23T06:37:38.630Z</updated>
     
-    <content type="html"><![CDATA[<p>###为什么使用quartz集群？</p>
-<p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
+    <content type="html"><![CDATA[<h3 id="为什么使用quartz集群？"><a href="#为什么使用quartz集群？" class="headerlink" title="为什么使用quartz集群？"></a>为什么使用quartz集群？</h3><p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
 <p>####1.导入数据库表</p>
 <p>以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。</p>
 <p>注意事项：</p>
 <p>修改SQL： TYPE=InnoDB –&gt; ENGINE=InnoDB<br><a id="more"></a></p>
-<p>####2.项目中加入配置文件quartz.properties</p>
-<pre><code>#============================================================================
+<h4 id="2-项目中加入配置文件quartz-properties"><a href="#2-项目中加入配置文件quartz-properties" class="headerlink" title="2.项目中加入配置文件quartz.properties"></a>2.项目中加入配置文件quartz.properties</h4><pre><code>#============================================================================
 # Configure Main Scheduler Properties
 #============================================================================
 org.quartz.scheduler.instanceName = ClusteredScheduler
@@ -2842,8 +2813,7 @@ org.quartz.jobStore.tablePrefix = QRTZ_
 
 org.quartz.jobStore.isClustered = true
 org.quartz.jobStore.clusterCheckinInterval = 15000
-</code></pre><p>####3.增加applicationContext-quartz.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</code></pre><h4 id="3-增加applicationContext-quartz-xml"><a href="#3-增加applicationContext-quartz-xml" class="headerlink" title="3.增加applicationContext-quartz.xml"></a>3.增加applicationContext-quartz.xml</h4><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
        xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -2914,8 +2884,7 @@ org.quartz.jobStore.clusterCheckinInterval = 15000
             return job;
         }
     }
-</code></pre><p>####4. 如何写JOB？</p>
-<pre><code>@Component
+</code></pre><h4 id="4-如何写JOB？"><a href="#4-如何写JOB？" class="headerlink" title="4. 如何写JOB？"></a>4. 如何写JOB？</h4><pre><code>@Component
 public class TestTask extends QuartzJobBean {
 
 
@@ -2928,15 +2897,13 @@ public class TestTask extends QuartzJobBean {
     }
 }
 </code></pre><p>由于使用MethodInvokingFactoryBean总是报seriziable错误，因此本例使用的是JobDetailBean。那这也意味着要继承QuartzJobBean。同时由于配置了JobFactory，使得可以直接注入UserService等实例。</p>
-<p>####5.quartz在mysql5.6下报错</p>
-<pre><code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;OPTION SQL_SELECT_LIMIT=5&apos; at line 1
+<h4 id="5-quartz在mysql5-6下报错"><a href="#5-quartz在mysql5-6下报错" class="headerlink" title="5.quartz在mysql5.6下报错"></a>5.quartz在mysql5.6下报错</h4><pre><code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;OPTION SQL_SELECT_LIMIT=5&apos; at line 1
 </code></pre><p>这个错误是由于mysql connector的版本太低导致的，可以通过升级版本来解决。 参见<a href="http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1" target="_blank" rel="external">http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###为什么使用quartz集群？&lt;/p&gt;
-&lt;p&gt;在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。&lt;br&gt;quartz集群在spring中的配置&lt;/p&gt;
+      &lt;h3 id=&quot;为什么使用quartz集群？&quot;&gt;&lt;a href=&quot;#为什么使用quartz集群？&quot; class=&quot;headerlink&quot; title=&quot;为什么使用quartz集群？&quot;&gt;&lt;/a&gt;为什么使用quartz集群？&lt;/h3&gt;&lt;p&gt;在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。&lt;br&gt;quartz集群在spring中的配置&lt;/p&gt;
 &lt;p&gt;####1.导入数据库表&lt;/p&gt;
 &lt;p&gt;以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。&lt;/p&gt;
 &lt;p&gt;注意事项：&lt;/p&gt;
@@ -2960,9 +2927,9 @@ public class TestTask extends QuartzJobBean {
     <link href="https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/"/>
     <id>https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</id>
     <published>2014-03-31T08:24:00.000Z</published>
-    <updated>2018-10-22T09:30:45.589Z</updated>
+    <updated>2018-10-23T07:51:20.130Z</updated>
     
-    <content type="html"><![CDATA[<p>###velocity在spring项目中的使用<br>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
+    <content type="html"><![CDATA[<h3 id="velocity在spring项目中的使用"><a href="#velocity在spring项目中的使用" class="headerlink" title="velocity在spring项目中的使用"></a>velocity在spring项目中的使用</h3><p>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
 <pre><code>&lt;bean id=&quot;velocityEngine&quot; class=&quot;org.springframework.ui.velocity.VelocityEngineFactoryBean&quot;&gt;
     &lt;property name=&quot;configLocation&quot;&gt;
         &lt;value&gt;classpath:velocity.properties&lt;/value&gt;
@@ -2971,7 +2938,7 @@ public class TestTask extends QuartzJobBean {
         &lt;value&gt;/WEB-INF/velocity/&lt;/value&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
-</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：   </p>
+</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：</p>
 <pre><code>resource.loader  =  file
 
 file.resource.loader.description =  Velocity  File Resource Loader
@@ -2986,8 +2953,7 @@ output.encoding = utf-8
 <li>spring增强了file加载的能力，推荐使用<code>resourceLoaderPath</code>来指明路径，而不是交给<code>file.resource.loader.path</code>进行处理。如果使用这个可能会跑NullPointerException；</li>
 <li>class加载存在弊端，在生产环境classpath里的内容一旦加载就被缓存起来了，这导致velocity模板加载的cache机制失效。</li>
 </ul>
-<p>###关于Velocity使用的坑</p>
-<ul>
+<h3 id="关于Velocity使用的坑"><a href="#关于Velocity使用的坑" class="headerlink" title="关于Velocity使用的坑"></a>关于Velocity使用的坑</h3><ul>
 <li><p>关于减号（-）的问题</p>
 <blockquote>
 <p>请注意下面的2中写法<br><code>#set($maxIndex=$DOC_COUNT-1)</code>报错<br><code>#set($maxIndex=$DOC_COUNT - 1)</code>正确，区别仅在于-两侧的空格</p>
@@ -3003,8 +2969,7 @@ output.encoding = utf-8
     
     <summary type="html">
     
-      &lt;p&gt;###velocity在spring项目中的使用&lt;br&gt;本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。&lt;br&gt;首先，可以交给Spring来初始化velocityEngine:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;bean id=&amp;q
+      &lt;h3 id=&quot;velocity在spring项目中的使用&quot;&gt;&lt;a href=&quot;#velocity在spring项目中的使用&quot; class=&quot;headerlink&quot; title=&quot;velocity在spring项目中的使用&quot;&gt;&lt;/a&gt;velocity在spring项目中的使用&lt;/
     
     </summary>
     
@@ -3167,9 +3132,9 @@ private static String getEncoding(String text) {
     <link href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
     <id>https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/</id>
     <published>2014-03-18T10:49:00.000Z</published>
-    <updated>2018-10-22T09:30:45.587Z</updated>
+    <updated>2018-10-23T07:48:23.912Z</updated>
     
-    <content type="html"><![CDATA[<p>###EL 表达式<br>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
+    <content type="html"><![CDATA[<h3 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h3><p>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
 <p>Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。</p>
 <p>Standard-1.0 Taglib（JSTL1.0）支持Servlet2.3和JSP1.2规范，Web应用服务器Tomcat4支持这些规范，而它的发布也在Tomcat 4.1.24测试通过了。</p>
 <p>Standard-1.1 Taglib（JSTL1.1）支持Servlet2.4和JSP2.0规范，Web应用服务器Tomcat5支持这些规范，它的发布在Tomcat 5.0.3测试通过了。</p>
@@ -3185,7 +3150,7 @@ private static String getEncoding(String text) {
 <p>JSTL标签库由标签库和EL表达式语言两个部分组成。EL在JSTL 1.0规范中被引入，当时用来作为Java表达式来工作，而该表达式必须配合JSTL的标签库才能得到需要的结果。</p>
 <p>说明：在JSTL 1.1规范中，JSP2.0容器已经能够独立的理解任何EL表达式。EL可以独立出现在JSP页面的任何角落。本文随后的内容将以JSTL 1.1规范作为介绍的重点。</p>
 <a id="more"></a>
-<p>####9.2.1JSTL EL 表达式语言简介<br>EL是从JavaScript脚本语言得到启发的一种表达式语言，它借鉴了JavaScript多类型转换无关性的特点。在使用EL从scope中得到参数时可以自动转换类型，因此对于类型的限制更加宽松。Web服务器对于request请求参数通常会以String类型来发送，在得到时使用的Java语言脚本就应该是request.getParameter(“XXX”)，这样的话，对于实际应用还必须进行强制类型转换。而EL就将用户从这种类型转换的繁琐工作脱离出来，允许用户直接使用EL表达式取得的值，而不用关心它是什么类型。</p>
+<h4 id="9-2-1JSTL-EL-表达式语言简介"><a href="#9-2-1JSTL-EL-表达式语言简介" class="headerlink" title="9.2.1JSTL EL 表达式语言简介"></a>9.2.1JSTL EL 表达式语言简介</h4><p>EL是从JavaScript脚本语言得到启发的一种表达式语言，它借鉴了JavaScript多类型转换无关性的特点。在使用EL从scope中得到参数时可以自动转换类型，因此对于类型的限制更加宽松。Web服务器对于request请求参数通常会以String类型来发送，在得到时使用的Java语言脚本就应该是request.getParameter(“XXX”)，这样的话，对于实际应用还必须进行强制类型转换。而EL就将用户从这种类型转换的繁琐工作脱离出来，允许用户直接使用EL表达式取得的值，而不用关心它是什么类型。</p>
 <p>下面的示例就是一个EL表达式，见例9.1。</p>
 <p>例9.1：简单EL表达式</p>
 <pre><code>&lt;%@ page contentType=&quot;text/html; charset=UTF-8&quot;%&gt;
@@ -3193,8 +3158,8 @@ private static String getEncoding(String text) {
 &lt;html&gt;
  &lt;body&gt; ${sampleValue + 1} &lt;br&gt; &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>这个示例将在JSP页面显示为“1”，EL表达式必须以“${XXX}”来表示，其中“XXX”部分就是具体表达式内容，“${}”将这个表达式内容包含在其中作为EL表达式的定义。本示例可以在满足JSP2.0规范的任何Web应用服务器中使用。   </p>
-<p>####9.2.2 EL 表达式的默认变量<br>一个EL表达式包含变量和操作符两个内容。任何存在于JSP作用范围的JavaBean都可以被转化成EL表达式来使用，它所包含的默认变量如下：</p>
+</code></pre><p>这个示例将在JSP页面显示为“1”，EL表达式必须以“${XXX}”来表示，其中“XXX”部分就是具体表达式内容，“${}”将这个表达式内容包含在其中作为EL表达式的定义。本示例可以在满足JSP2.0规范的任何Web应用服务器中使用。</p>
+<h4 id="9-2-2-EL-表达式的默认变量"><a href="#9-2-2-EL-表达式的默认变量" class="headerlink" title="9.2.2 EL 表达式的默认变量"></a>9.2.2 EL 表达式的默认变量</h4><p>一个EL表达式包含变量和操作符两个内容。任何存在于JSP作用范围的JavaBean都可以被转化成EL表达式来使用，它所包含的默认变量如下：</p>
 <p>1．默认变量pageScope、requestScope、sessionScope、applicationScope<br>      这4个默认变量包含Scope作用范围的参数集合，相当于被保存在java.util.Map中的某个参数。下面看简单的示例9.2：</p>
 <p>例9.2：使用sessionScope变量的EL表达式</p>
 <pre><code>&lt;%request.getSession().setAttribute(&quot;sampleValue&quot;, new Integer(10));%&gt;
@@ -3233,7 +3198,7 @@ ${sessionScope.sampleValue}
 <p>包含所有应用程序初始化参数的集合。</p>
 <p>6．默认变量pageContext</p>
 <p>等价于page环境类javax.servlet.jsp.PageContext的实例，用来提供访问不同的请求参数。<br>11个默认变量几乎包含了Web应用的所有基本操作，若一个表达式不使用这些变量而直接使用参数名，那么就采用就近原则。该表达式将使用最近取得的参数值。</p>
-<p>###表达式的操作符<br>EL表达式中还有许多操作符可以帮助完成各种所需的操作，之前的示例中“.”、“[]”就是其中的两个，下面将用表9.1来展示所有操作符及它们各自的功能。</p>
+<h3 id="表达式的操作符"><a href="#表达式的操作符" class="headerlink" title="表达式的操作符"></a>表达式的操作符</h3><p>EL表达式中还有许多操作符可以帮助完成各种所需的操作，之前的示例中“.”、“[]”就是其中的两个，下面将用表9.1来展示所有操作符及它们各自的功能。</p>
 <p>表9.1 EL表达式的操作符</p>
 <table cellspacing="0" cellpadding="0" width="562" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="64"><br>                                <p align="left">操作符</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">功能和作用</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">.</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">访问一个bean属性或者Map entry</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">[]</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">访问一个数组或者链表元素</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">()</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">对子表达式分组，用来改变赋值顺序</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">? :</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">条件语句，比如：条件?ifTrue:ifFalse</p><br>                                <p align="left">如果条件为真，表达式值为前者，反之为后者</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">+</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">数学运算符，加操作</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">-</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">数学运算符，减操作或者对一个值取反</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">*</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">数学运算符，乘操作</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">/ 或div</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">数学运算符，除操作</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">% 或mod</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">数学运算符，模操作(取余)</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">== 或eq</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左右两端是否相等，如果相等返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">!= 或ne</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左右两端是否不相等，如果不相等返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">&lt; 或lt</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左边是否小于右边，如果小于返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">&gt; 或gt</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左边是否大于右边，如果大于返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">&lt;= 或le</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左边是否小于或者等于右边，如果小于或者等于返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">&gt;= 或ge</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，判断符号左边是否大于或者等于右边，如果大于或者等于返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">&amp;&amp; 或and</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，与操作赋。如果左右两边同为true返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">|| 或or</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，或操作赋。如果左右两边有任何一边为true返回true，否则返回false</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">! 或not</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">逻辑运算符，非操作赋。如果对true取运算返回false，否则返回true</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">empty</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">用来对一个空变量值进行判断: null、一个空String、空数组、空Map、没有条目的Collection集合</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td valign="top" width="64"><br>                                <p align="left">func(args)</p><br>                                </td><br>                                <td width="498"><br>                                <p align="left">调用方法, func是方法名，args是参数，可以没有，或者有一个、多个参数.参数间用逗号隔开</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3246,7 +3211,7 @@ ${(pageScope.sampleValue + 12) /3==4} &lt;br&gt;         //显示true
 ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 &lt;input type=&quot;text&quot; name=&quot;sample1&quot; value=&quot;${pageScope.sampleValue + 10}&quot;&gt; //显示值为10的Text控件
 </code></pre><p>可以看到，对于这些示例，程序设计者完全无需管理它们的类型转换，在表达式内部都已经处理了。有了EL表达式，在JSP页面的编程变得更灵活，也更容易。</p>
-<p>###标签库介绍<br>在JSTL1.1中有以下这些标签库是被支持的：Core标签库、XML processing标签库、I18N formatting标签库、Database access标签库、Functions标签库。<br>对应的标识符见表9.2所示：</p>
+<h3 id="标签库介绍"><a href="#标签库介绍" class="headerlink" title="标签库介绍"></a>标签库介绍</h3><p>在JSTL1.1中有以下这些标签库是被支持的：Core标签库、XML processing标签库、I18N formatting标签库、Database access标签库、Functions标签库。<br>对应的标识符见表9.2所示：</p>
 <p>表9.2 标签库的标识符</p>
 <table cellspacing="0" cellpadding="0" width="360" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">标签库</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left">URI</p><br>                                </td><br>                                <td width="50"><br>                                <p align="center">前缀</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Core</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/core" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">c</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">XML processing</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/xml" target="_blank" rel="external">http://java.sun.com/jsp/jstl/xml</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">x</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">I18N formatting</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/fmt" target="_blank" rel="external">http://java.sun.com/jsp/jstl/fmt</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fmt</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Database access</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/sql" target="_blank" rel="external">http://java.sun.com/jsp/jstl/sql</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">sql</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Functions</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/functions" target="_blank" rel="external">http://java.sun.com/jsp/jstl/functions</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fn</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3261,8 +3226,8 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
     &lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;10&quot; step=&quot;1&quot;&gt; ${i} &lt;br /&gt;&lt;/c:forEach&gt;
  &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>在该示例的JSP页面中声明了将使用Core标签库，它的URI为“<a href="http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中</a><c:foreach>标签就是使用了JSTL的标签进行了工作。对于该标签的功能，这里暂时不作具体讲解，只是让读者能够有个简单的概念，了解怎样定义和使用标签库。 </c:foreach></p>
-<p>###标签库<br>Core标签库，又被称为核心标签库，该标签库的工作是对于JSP页面一般处理的封装。在该标签库中的标签一共有14个，被分为了四类，分别是：</p>
+</code></pre><p>在该示例的JSP页面中声明了将使用Core标签库，它的URI为“<a href="http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中</a><c:foreach>标签就是使用了JSTL的标签进行了工作。对于该标签的功能，这里暂时不作具体讲解，只是让读者能够有个简单的概念，了解怎样定义和使用标签库。</c:foreach></p>
+<h3 id="标签库"><a href="#标签库" class="headerlink" title="标签库"></a>标签库</h3><p>Core标签库，又被称为核心标签库，该标签库的工作是对于JSP页面一般处理的封装。在该标签库中的标签一共有14个，被分为了四类，分别是：</p>
 <ul>
 <li>多用途核心标签：<c:out>、<c:set>、<c:remove>、<c:catch>。</c:catch></c:remove></c:set></c:out></li>
 <li>条件控制标签：<c:if>、<c:choose>、<c:when>、<c:otherwise>。</c:otherwise></c:when></c:choose></c:if></li>
@@ -3270,7 +3235,7 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 <li>URL相关标签：<c:import>、<c:url>、<c:redirect>、<c:param>。</c:param></c:redirect></c:url></c:import></li>
 </ul>
 <p>以下是各个标签的用途和属性以及简单示例。</p>
-<p>###用于显示的<code>&lt;c:out&gt;</code> 标签<br><code>&lt;c:out&gt;</code>标签是一个最常用的标签，用于在JSP中显示数据。它的属性和描述如表9.3所示：</p>
+<h3 id="用于显示的-lt-c-out-gt-标签"><a href="#用于显示的-lt-c-out-gt-标签" class="headerlink" title="用于显示的&lt;c:out&gt; 标签"></a>用于显示的<code>&lt;c:out&gt;</code> 标签</h3><p><code>&lt;c:out&gt;</code>标签是一个最常用的标签，用于在JSP中显示数据。它的属性和描述如表9.3所示：</p>
 <p>表9.3　<code>&lt;c:out&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="535" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">输出到页面的数据，可以是EL表达式或常量（必须）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">default</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">当value为null时显示的数据（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">escapeXml</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">当设置为true时会主动更换特殊字符，比如&ldquo;&amp;lt;,&amp;gt;,&amp;amp;&rdquo;（可选，默认为true）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3278,8 +3243,7 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 <p>在JSTL1.0的时候，在页面显示数据必须使用<c:out>来进行。然而，在JSTL1.1中，由于JSP2.0规范已经默认支持了EL表达式，因此可以直接在JSP页面使用表达式。下面看一个示例。</c:out></p>
 <pre><code>&lt;c:out value=&quot;${sessionScope.anyValue}&quot; default=&quot;no value&quot; escapeXml=&quot;false&quot;/&gt;
 </code></pre><p>该示例将从Session查找名为“anyValue”的参数，并显示在页面，若没有找到则显示“no value”。</p>
-<p>###<code>&lt;c: &gt;</code> 标签 </p>
-<p>####用于赋值的<c:set>标签<br><code>&lt;c:set&gt;</code>标签用于为变量或JavaBean中的变量属性赋值的工作。它的属性和描述如表9.4所示：</c:set></p>
+<h3 id="lt-c-gt-标签"><a href="#lt-c-gt-标签" class="headerlink" title="&lt;c: &gt; 标签"></a><code>&lt;c: &gt;</code> 标签</h3><h4 id="用于赋值的标签"><a href="#用于赋值的标签" class="headerlink" title="用于赋值的标签"></a>用于赋值的<c:set>标签</c:set></h4><p><code>&lt;c:set&gt;</code>标签用于为变量或JavaBean中的变量属性赋值的工作。它的属性和描述如表9.4所示：</p>
 <p>表9.4　<code>&lt;c:set&gt;</code>标签属性和说明</p>
 <table cellpadding="0" width="393" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="72"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="311"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">value</p><br>                                </td><br>                                <td><br>                                <p align="left">值的信息，可以是EL表达式或常量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">target</p><br>                                </td><br>                                <td><br>                                <p align="left">被赋值的JavaBean实例的名称，若存在该属性则必须<br><br>                                存在property属性（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">property</p><br>                                </td><br>                                <td><br>                                <p align="left">JavaBean实例的变量属性名称（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">var</p><br>                                </td><br>                                <td><br>                                <p align="left">被赋值的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">scope</p><br>                                </td><br>                                <td><br>                                <p align="left">变量的作用范围，若没有指定，默认为page（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3287,7 +3251,7 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 <pre><code>&lt;c:set value=&quot;this is andy&quot; var=&quot;oneString&quot;/&gt;
 ${oneString} &lt;br&gt;
 </code></pre><p>该示例将为名为“oneString”的变量赋值为“this is andy”，其作用范围为page。</p>
-<p>####9.3.3 用于删除的 <code>&lt;c:remove&gt;</code>标签<br><code>&lt;c:remove&gt;</code>标签用于删除存在于scope中的变量。它的属性和描述如表9.5所示：</p>
+<h4 id="9-3-3-用于删除的-lt-c-remove-gt-标签"><a href="#9-3-3-用于删除的-lt-c-remove-gt-标签" class="headerlink" title="9.3.3 用于删除的 &lt;c:remove&gt;标签"></a>9.3.3 用于删除的 <code>&lt;c:remove&gt;</code>标签</h4><p><code>&lt;c:remove&gt;</code>标签用于删除存在于scope中的变量。它的属性和描述如表9.5所示：</p>
 <p>表9.5　<code>&lt;c:remove&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="365" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">需要被删除的变量名</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">变量的作用范围，若没有指定，默认为全部查找（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3296,11 +3260,11 @@ ${oneString} &lt;br&gt;
 <pre><code>&lt;c:remove var=&quot;sampleValue&quot; scope=&quot;session&quot;/&gt;
 ${sessionScope.sampleValue} &lt;br&gt;
 </code></pre><p>该示例将存在于Session中名为“sampleValue”的变量删除。下一句EL表达式显示该变量时，该变量已经不存在了。</p>
-<p>####9.3.4 用于异常捕获的 <code>&lt;c:catch&gt;</code> 标签<br><code>&lt;c:catch&gt;</code>标签允许在JSP页面中捕捉异常。它包含一个var属性，是一个描述异常的变量，改变量可选。若没有var属性的定义，那么仅仅捕捉异常而不做任何事情，若定义了var属性，则可以利用var所定义的异常变量进行判断转发到其他页面或提示报错信息。看一个示例。</p>
+<h4 id="9-3-4-用于异常捕获的-lt-c-catch-gt-标签"><a href="#9-3-4-用于异常捕获的-lt-c-catch-gt-标签" class="headerlink" title="9.3.4 用于异常捕获的 &lt;c:catch&gt; 标签"></a>9.3.4 用于异常捕获的 <code>&lt;c:catch&gt;</code> 标签</h4><p><code>&lt;c:catch&gt;</code>标签允许在JSP页面中捕捉异常。它包含一个var属性，是一个描述异常的变量，改变量可选。若没有var属性的定义，那么仅仅捕捉异常而不做任何事情，若定义了var属性，则可以利用var所定义的异常变量进行判断转发到其他页面或提示报错信息。看一个示例。</p>
 <pre><code>&lt;c:catch var=&quot;err&quot;&gt; ${param.sampleSingleValue[9] == 3}&lt;/c:catch&gt;
 ${err}
 </code></pre><p>当“${param.sampleSingleValue[9] == 3}”表达式有异常时，可以从var属性“err”得到异常的内容，通常判断“err”是否为null来决定错误信息的提示。</p>
-<p>####9.3.5 用于判断的 <code>&lt;c:if&gt;</code> 标签<br><code>&lt;c:if&gt;</code>标签用于简单的条件语句。它的属性和描述如表9.6所示：</p>
+<h4 id="9-3-5-用于判断的-lt-c-if-gt-标签"><a href="#9-3-5-用于判断的-lt-c-if-gt-标签" class="headerlink" title="9.3.5 用于判断的 &lt;c:if&gt; 标签"></a>9.3.5 用于判断的 <code>&lt;c:if&gt;</code> 标签</h4><p><code>&lt;c:if&gt;</code>标签用于简单的条件语句。它的属性和描述如表9.6所示：</p>
 <p>表9.6　<code>&lt;c:if&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="454" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="60"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="394"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="60"><br>                                <p align="left">test</p><br>                                </td><br>                                <td width="394"><br>                                <p align="left">需要判断的条件</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="60"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="394"><br>                                <p align="left">保存判断结果true或false的变量名，该变量可供之后的工作使用（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="60"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="394"><br>                                <p align="left">变量的作用范围，若没有指定，默认为保存于page范围中的变量（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3309,7 +3273,7 @@ ${err}
 <pre><code>&lt;c:if test=&quot;${paramValues.sampleValue[2] == 12}&quot; var=&quot;visits&quot;&gt;It is 12&lt;/c:if&gt;&lt;br&gt;
 ${visits} &lt;br&gt;
 </code></pre><p>该示例将判断request请求提交的传入控件数组参数中，下标为“2”的控件内容是否为“12”，若为12则显示“It is 12”。判断结果被保存在page范围中的“visits”变量中。</p>
-<p>####9.3.6 用于复杂判断的 <code>&lt;c:choose&gt; 、 &lt;c:when&gt; 、 &lt;c:otherwise&gt;</code> 标签<br>这三个标签用于实现复杂条件判断语句，类似“if,elseif”的条件语句。</p>
+<h4 id="9-3-6-用于复杂判断的-lt-c-choose-gt-、-lt-c-when-gt-、-lt-c-otherwise-gt-标签"><a href="#9-3-6-用于复杂判断的-lt-c-choose-gt-、-lt-c-when-gt-、-lt-c-otherwise-gt-标签" class="headerlink" title="9.3.6 用于复杂判断的 &lt;c:choose&gt; 、 &lt;c:when&gt; 、 &lt;c:otherwise&gt; 标签"></a>9.3.6 用于复杂判断的 <code>&lt;c:choose&gt; 、 &lt;c:when&gt; 、 &lt;c:otherwise&gt;</code> 标签</h4><p>这三个标签用于实现复杂条件判断语句，类似“if,elseif”的条件语句。</p>
 <p><code>&lt;c:choose&gt;</code>标签没有属性，可以被认为是父标签，<code>&lt;c:when&gt;、&lt;c:otherwise&gt;</code>将作为其子标签来使用。<br><code>&lt;c:when&gt;</code>标签等价于“if”语句，它包含一个test属性，该属性表示需要判断的条件。<br><code>&lt;c:otherwise&gt;</code>标签没有属性，它等价于“else”语句。</p>
 <p>下面看一个复杂条件语句的示例。</p>
 <pre><code>&lt;c:choose&gt;
@@ -3327,7 +3291,7 @@ ${visits} &lt;br&gt;
          &lt;/c:otherwise&gt;
 &lt;/c:choose&gt;
 </code></pre><p>该示例将判断request请求提交的传入控件数组参数中，下标为“2”控件内容是否为“11”或“12”或“13”，并根据判断结果显示各自的语句，若都不是则显示“not 11 、12、13”。</p>
-<p>####9.3.7 用于循环的 <code>&lt;c:forEach&gt;</code> 标签<br><code>&lt;c:forEach&gt;</code>为循环控制标签。它的属性和描述如表9.7所示：</p>
+<h4 id="9-3-7-用于循环的-lt-c-forEach-gt-标签"><a href="#9-3-7-用于循环的-lt-c-forEach-gt-标签" class="headerlink" title="9.3.7 用于循环的 &lt;c:forEach&gt; 标签"></a>9.3.7 用于循环的 <code>&lt;c:forEach&gt;</code> 标签</h4><p><code>&lt;c:forEach&gt;</code>为循环控制标签。它的属性和描述如表9.7所示：</p>
 <p>表9.7　<code>&lt;c:forEach&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="511" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">items</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">进行循环的集合（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">begin</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">开始条件（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">end</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">结束条件（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">step</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">循环的步长，默认为1（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">做循环的对象变量名，若存在items属性，则表示循环集合中对象的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="59"><br>                                <p align="left">varStatus</p><br>                                </td><br>                                <td width="452"><br>                                <p align="left">显示循环状态的变量（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3340,7 +3304,7 @@ ${visits} &lt;br&gt;
       ${i}&lt;br /&gt;
 &lt;/c:forEach&gt;
 </code></pre><p>该示例从“1”循环到“10”，并将循环中变量“i”显示在页面上。</p>
-<p>####9.3.8 用于分隔字符的 <code>&lt;c:forTokens&gt;</code> 标签<br><code>&lt;c:forTokens&gt;</code>标签可以根据某个分隔符分隔指定字符串，相当于java.util.StringTokenizer类。它的属性和描述如表9.8所示：</p>
+<h4 id="9-3-8-用于分隔字符的-lt-c-forTokens-gt-标签"><a href="#9-3-8-用于分隔字符的-lt-c-forTokens-gt-标签" class="headerlink" title="9.3.8 用于分隔字符的 &lt;c:forTokens&gt; 标签"></a>9.3.8 用于分隔字符的 <code>&lt;c:forTokens&gt;</code> 标签</h4><p><code>&lt;c:forTokens&gt;</code>标签可以根据某个分隔符分隔指定字符串，相当于java.util.StringTokenizer类。它的属性和描述如表9.8所示：</p>
 <p>表9.8　<code>&lt;c:forTokens&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="268" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">items</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">进行分隔的EL表达式或常量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">delims</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">分隔符</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">begin</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">开始条件（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">end</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">结束条件（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">step</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">循环的步长，默认为1（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">做循环的对象变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="76"><br>                                <p align="left">varStatus</p><br>                                </td><br>                                <td width="192"><br>                                <p align="left">显示循环状态的变量（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3351,7 +3315,7 @@ ${visits} &lt;br&gt;
 &lt;/c:forTokens&gt;
 </code></pre><p>需要分隔的字符串为“aa,bb,cc,dd”，分隔符为“,”。begin属性指定从第一个“,”开始分隔，end属性指定分隔到第三个“,”，并将做循环的变量名指定为“aValue”。由于步长为“2”，使用EL表达式${aValue}只能显示“aa</p>
 <p>###<code>&lt;x: &gt;</code> 标签</p>
-<p>####9.3.9 用于包含页面的<code>&lt;c:import&gt;</code><br><code>&lt;c:import&gt;</code>标签允许包含另一个JSP页面到本页面来。它的属性和描述如表9.9所示：</p>
+<h4 id="9-3-9-用于包含页面的-lt-c-import-gt"><a href="#9-3-9-用于包含页面的-lt-c-import-gt" class="headerlink" title="9.3.9 用于包含页面的&lt;c:import&gt;"></a>9.3.9 用于包含页面的<code>&lt;c:import&gt;</code></h4><p><code>&lt;c:import&gt;</code>标签允许包含另一个JSP页面到本页面来。它的属性和描述如表9.9所示：</p>
 <p>表9.9　<code>&lt;c:import&gt;</code>标签属性和说明</p>
 <table cellpadding="0" width="360" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="73"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="271"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">rl</p><br>                                </td><br>                                <td><br>                                <p align="left">需要导入页面的URL</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">context</p><br>                                </td><br>                                <td><br>                                <p align="left">Web Context该属性用于在不同的Context下导入页面，当出现context属性时，必须以&ldquo;/&rdquo;开头，此时也需要url属性以&ldquo;/&rdquo;开头（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">charEncoding</p><br>                                </td><br>                                <td><br>                                <p align="left">导入页面的字符集（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">var</p><br>                                </td><br>                                <td><br>                                <p align="left">可以定义导入文本的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">scope</p><br>                                </td><br>                                <td><br>                                <p align="left">导入文本的变量名作用范围（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">varReader</p><br>                                </td><br>                                <td><br>                                <p align="left">接受文本的java.io.Reader类变量名（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3361,7 +3325,7 @@ ${visits} &lt;br&gt;
 &lt;c:import url=&quot;/MyHtml.html&quot; context=”/sample2” var=&quot;thisPage&quot;/&gt;
 &lt;c:import url=&quot;www.sample.com/MyHtml.html&quot; var=&quot;thisPage&quot;/&gt;
 </code></pre><p>该示例演示了三种不同的导入方法，第一种是在同一 Context 下的导入，第二种是在不同的 Context 下导入，第三种是导入任意一个 URL 。</p>
-<p>####9.3.10 用于得到URL地址的<code>&lt;c:url&gt;</code>标签<br><code>&lt;c:url&gt;</code> 标签用于得到一个 URL 地址。它的属性和描述如表 9.10 所示：</p>
+<h4 id="9-3-10-用于得到URL地址的-lt-c-url-gt-标签"><a href="#9-3-10-用于得到URL地址的-lt-c-url-gt-标签" class="headerlink" title="9.3.10 用于得到URL地址的&lt;c:url&gt;标签"></a>9.3.10 用于得到URL地址的<code>&lt;c:url&gt;</code>标签</h4><p><code>&lt;c:url&gt;</code> 标签用于得到一个 URL 地址。它的属性和描述如表 9.10 所示：</p>
 <p>表9.10 <code>&lt;c:url&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="459" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">页面的URL地址</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">context</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">Web Context该属性用于得到不同Context下的URL地址，当出现context属性时，必须以&ldquo;/&rdquo;开头，此时也需要url属性以&ldquo;/&rdquo;开头（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">charEncoding</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">URL的字符集（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">存储URL的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="81"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="378"><br>                                <p align="left">变量名作用范围（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3370,10 +3334,10 @@ ${visits} &lt;br&gt;
 <pre><code>&lt;c:url value=&quot;/MyHtml.html&quot; var=&quot;urlPage&quot; /&gt;
 &lt;a href=&quot;${urlPage}&quot;&gt;link&lt;/a&gt;
 </code></pre><p>得到了一个 URL 后，以 EL 表达式放入<code>&lt;a&gt;</code> 标签的 href 属性，达到链接的目的。</p>
-<p>####9.3.11 用于页面重定向的<code>&lt;c:redirect&gt;</code>标签<br><code>&lt;c:redirect&gt;</code> 用于页面的重定向，该标签的作用相当于 <code>response.setRedirect</code> 方法的工作。它包含 url 和 context 两个属性，属性含义和 <code>&lt;c:url&gt;</code> 标签相同。下面看一个示例。</p>
+<h4 id="9-3-11-用于页面重定向的-lt-c-redirect-gt-标签"><a href="#9-3-11-用于页面重定向的-lt-c-redirect-gt-标签" class="headerlink" title="9.3.11 用于页面重定向的&lt;c:redirect&gt;标签"></a>9.3.11 用于页面重定向的<code>&lt;c:redirect&gt;</code>标签</h4><p><code>&lt;c:redirect&gt;</code> 用于页面的重定向，该标签的作用相当于 <code>response.setRedirect</code> 方法的工作。它包含 url 和 context 两个属性，属性含义和 <code>&lt;c:url&gt;</code> 标签相同。下面看一个示例。</p>
 <pre><code>&lt;c:redirect url=&quot;/MyHtml.html&quot;/&gt;
 </code></pre><p>该示例若出现在 JSP 中，则将重定向到当前 Web Context 下的“ MyHtml.html ”页面，一般会与 <code>&lt;c:if&gt;</code> 等标签一起使用。</p>
-<p>####9.3.12 用于包含传递参数的<code>&lt;c:param&gt;</code>标签<br> <code>&lt;c:param&gt;</code> 用来为包含或重定向的页面传递参数。它的属性和描述如表 9.11 所示：</p>
+<h4 id="9-3-12-用于包含传递参数的-lt-c-param-gt-标签"><a href="#9-3-12-用于包含传递参数的-lt-c-param-gt-标签" class="headerlink" title="9.3.12 用于包含传递参数的&lt;c:param&gt;标签"></a>9.3.12 用于包含传递参数的<code>&lt;c:param&gt;</code>标签</h4><p> <code>&lt;c:param&gt;</code> 用来为包含或重定向的页面传递参数。它的属性和描述如表 9.11 所示：</p>
 <p>表9.11　<code>&lt;c:param&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="190" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="58"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="132"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="58"><br>                                <p align="left">name</p><br>                                </td><br>                                <td width="132"><br>                                <p align="left">传递的参数名</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="58"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="132"><br>                                <p align="left">传递的参数值（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3383,14 +3347,14 @@ ${visits} &lt;br&gt;
 &lt;c:param name=&quot;userName&quot; value=”RW” /&gt;
 &lt;/c:redirect&gt;
 </code></pre><p>该示例将为重定向的“ MyHtml.jsp ”传递指定参数“ userName=’RW’ ”。</p>
-<p>###9.4 JSTL XML processing标签库<br>在企业级应用越来越依赖 XML 的今天， XML 格式的数据被作为信息交换的优先选择。 XML processing 标签库为程序设计者提供了基本的对 XML 格式文件的操作。在该标签库中的标签一共有 10 个，被分为了三类，分别是：</p>
+<h3 id="9-4-JSTL-XML-processing标签库"><a href="#9-4-JSTL-XML-processing标签库" class="headerlink" title="9.4 JSTL XML processing标签库"></a>9.4 JSTL XML processing标签库</h3><p>在企业级应用越来越依赖 XML 的今天， XML 格式的数据被作为信息交换的优先选择。 XML processing 标签库为程序设计者提供了基本的对 XML 格式文件的操作。在该标签库中的标签一共有 10 个，被分为了三类，分别是：</p>
 <ul>
 <li>XML核心标签：<code>&lt;x:parse&gt;、&lt;x:out&gt;、&lt;x:set&gt;</code>。</li>
 <li>XML流控制标签：<code>&lt;x:if&gt;、&lt;x:choose&gt;、&lt;x:when&gt;、&lt;x:otherwise&gt;、&lt;x:forEach&gt;</code>。</li>
 <li>XML转换标签：<code>&lt;x:transform&gt;、&lt;x:param&gt;</code>。</li>
 </ul>
 <p>由于该组标签库专注于对某一特定领域的实现，因此本书将只选择其中常见的一些标签和属性进行介绍。</p>
-<p>####9.4.1 用于解析XML文件的<code>&lt;x:parse&gt;</code>标签<br><code>&lt;x:parse&gt;</code> 标签是该组标签库的核心，从其标签名就可以知道，它是作为解析 XML 文件而存在的。它的属性和描述如表 9.12 所示：</p>
+<h4 id="9-4-1-用于解析XML文件的-lt-x-parse-gt-标签"><a href="#9-4-1-用于解析XML文件的-lt-x-parse-gt-标签" class="headerlink" title="9.4.1 用于解析XML文件的&lt;x:parse&gt;标签"></a>9.4.1 用于解析XML文件的<code>&lt;x:parse&gt;</code>标签</h4><p><code>&lt;x:parse&gt;</code> 标签是该组标签库的核心，从其标签名就可以知道，它是作为解析 XML 文件而存在的。它的属性和描述如表 9.12 所示：</p>
 <p>表9.12　<code>&lt;x:parse&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" width="537" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">doc</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">源XML的内容，该属性的内容应该为String类型或者java.io.Reader的实例，可以用xml属性来替代，但是不被推荐</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">将解析后的XML保存在该属性所指定的变量中，之后XML processing标签库中的其他标签若要取XML中的内容就可以从该变量中得到（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">变量的作用范围（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">varDom</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">指定保存的变量为org.w3c.dom.Document接口类型（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">scopeDom</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">org.w3c.dom.Document的接口类型变量作用范围（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">systemId</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">定义一个URI，该URI将被使用到XML文件中以接入其他资源文件（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="67"><br>                                <p align="left">filter</p><br>                                </td><br>                                <td width="470"><br>                                <p align="left">该属性必须为org.xml.sax.XMLFilter类的一个实例，可以使用EL表达式传入，将对XML文件做过滤得到自身需要的部分（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3412,22 +3376,20 @@ ${visits} &lt;br&gt;
 </code></pre><p>标签库的工作：</p>
 <pre><code>&lt;c:import var=&quot;xmlFile&quot; url=&quot;http://localhost:8080/booksamplejstl/SampleXml.xml&quot;/&gt;
 &lt;x:parse var=&quot;xmlFileValue&quot; doc=&quot;${xmlFile}&quot;/&gt;
-</code></pre><p>###<code>&lt;fmt: &gt;</code> 标签 </p>
-<p>看到I18N就应该想到知识“国际化”，I18N formatting标签库就是用于在JSP页面中做国际化的动作。在该标签库中的标签一共有12个，被分为了两类，分别是：</p>
+</code></pre><h3 id="lt-fmt-gt-标签"><a href="#lt-fmt-gt-标签" class="headerlink" title="&lt;fmt: &gt; 标签"></a><code>&lt;fmt: &gt;</code> 标签</h3><p>看到I18N就应该想到知识“国际化”，I18N formatting标签库就是用于在JSP页面中做国际化的动作。在该标签库中的标签一共有12个，被分为了两类，分别是：</p>
 <ul>
 <li>国际化核心标签：<code>&lt;fmt:setLocale&gt;、&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;、&lt;fmt:message&gt;、&lt;fmt:param&gt;、&lt;fmt:requestEncoding&gt;</code>。</li>
 <li>格式化标签：<code>&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;、&lt;fmt:formatNumber&gt;、&lt;fmt:parseNumber&gt;、&lt;fmt:formatDate&gt;、&lt;fmt:parseDate&gt;</code>。</li>
 </ul>
 <p>下面只选择其中常见的一些标签和属性进行介绍。</p>
-<p>####9.5.1 用于设置本地化环境的<code>&lt;fmt:setLocale&gt;</code>标签<br>    <code>&lt;fmt:setLocale&gt;</code>标签用于设置Locale环境。它的属性和描述如表9.17所示：</p>
-<p>表9.17　<code>&lt;fmt:setLocale&gt;</code>标签属性和说明</p>
+<h4 id="9-5-1-用于设置本地化环境的-lt-fmt-setLocale-gt-标签"><a href="#9-5-1-用于设置本地化环境的-lt-fmt-setLocale-gt-标签" class="headerlink" title="9.5.1 用于设置本地化环境的&lt;fmt:setLocale&gt;标签"></a>9.5.1 用于设置本地化环境的<code>&lt;fmt:setLocale&gt;</code>标签</h4><pre><code>`&lt;fmt:setLocale&gt;`标签用于设置Locale环境。它的属性和描述如表9.17所示：
+</code></pre><p>表9.17　<code>&lt;fmt:setLocale&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="49"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="336"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="49"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="336"><br>                                <p align="left">Locale环境的指定，可以是java.util.Locale或String类型的实例</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="49"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="336"><br>                                <p align="left">Locale环境变量的作用范围（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
 <p>下面看一个示例：</p>
 <pre><code>&lt;fmt:setLocale value=&quot;zh_TW&quot;/&gt;
-</code></pre><p>表示设置本地环境为繁体中文。      </p>
-<p>####9.5.2 用于资源文件绑定的<code>&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;</code>标签</p>
-<p>这两组标签用于资源配置文件的绑定，唯一不同的是<code>&lt;fmt:bundle&gt;</code>标签将资源配置文件绑定于它标签体中的显示，<code>&lt;fmt:setBundle&gt;</code>标签则允许将资源配置文件保存为一个变量，在之后的工作可以根据该变量来进行。</p>
+</code></pre><p>表示设置本地环境为繁体中文。</p>
+<h4 id="9-5-2-用于资源文件绑定的-lt-fmt-bundle-gt-、-lt-fmt-setBundle-gt-标签"><a href="#9-5-2-用于资源文件绑定的-lt-fmt-bundle-gt-、-lt-fmt-setBundle-gt-标签" class="headerlink" title="9.5.2 用于资源文件绑定的&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;标签"></a>9.5.2 用于资源文件绑定的<code>&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;</code>标签</h4><p>这两组标签用于资源配置文件的绑定，唯一不同的是<code>&lt;fmt:bundle&gt;</code>标签将资源配置文件绑定于它标签体中的显示，<code>&lt;fmt:setBundle&gt;</code>标签则允许将资源配置文件保存为一个变量，在之后的工作可以根据该变量来进行。</p>
 <p>根据Locale环境的不同将查找不同后缀的资源配置文件，这点在国际化的任何技术上都是一致的，通常来说，这两种标签单独使用是没有意义的，它们都会与I18N formatting标签库中的其他标签配合使用。它们的属性和描述如表9.18所示：</p>
 <p>表9.18　<code>&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="69"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="421"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="69"><br>                                <p align="left">basename</p><br>                                </td><br>                                <td width="421"><br>                                <p align="left">资源配置文件的指定，只需要指定文件名而无须扩展名，二组标签共有的属性</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="69"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="421"><br>                                <p align="left">&lt;fmt:setBundle&gt;独有的属性，用于保存资源配置文件为一个变量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="69"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="421"><br>                                <p align="left">变量的作用范围</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
@@ -3437,7 +3399,7 @@ ${visits} &lt;br&gt;
 <pre><code>&lt;fmt:setLocale value=&quot;zh_CN&quot;/&gt;
 &lt;fmt:setBundle basename=&quot;applicationMessage&quot; var=&quot;applicationBundle&quot;/&gt;
 </code></pre><p>该示例将会查找一个名为applicationMessage_zh_CN.properties的资源配置文件，来作为显示的Resource绑定。</p>
-<p>####9.5.3  用于显示资源配置文件信息的<code>&lt;fmt:message&gt;</code>标签<br>用于信息显示的标签，将显示资源配置文件中定义的信息。它的属性和描述如表9.19所示：</p>
+<h4 id="9-5-3-用于显示资源配置文件信息的-lt-fmt-message-gt-标签"><a href="#9-5-3-用于显示资源配置文件信息的-lt-fmt-message-gt-标签" class="headerlink" title="9.5.3  用于显示资源配置文件信息的&lt;fmt:message&gt;标签"></a>9.5.3  用于显示资源配置文件信息的<code>&lt;fmt:message&gt;</code>标签</h4><p>用于信息显示的标签，将显示资源配置文件中定义的信息。它的属性和描述如表9.19所示：</p>
 <p>表9.19　<code>&lt;fmt:message&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="55"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="513"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="55"><br>                                <p align="left">key</p><br>                                </td><br>                                <td width="513"><br>                                <p align="left">资源配置文件的&ldquo;键&rdquo;指定</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="55"><br>                                <p align="left">bundle</p><br>                                </td><br>                                <td width="513"><br>                                <p align="left">若使用&lt;fmt:setBundle&gt;保存了资源配置文件，该属性就可以从保存的资源配置文件中进行查找</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="55"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="513"><br>                                <p align="left">将显示信息保存为一个变量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="55"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="513"><br>                                <p align="left">变量的作用范围</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3452,8 +3414,8 @@ ${visits} &lt;br&gt;
 </code></pre><p>该示例使用了两种资源配置文件的绑定的做法，“ applicationMessage ”资源配置文件利用<code>&lt;fmt:setBundle&gt;</code>标签被赋于了变量“ applicationBundle ”，而作为<code>&lt;fmt:bundle&gt;</code>标签定义的“ applicationAllMessage ”资源配置文件作用于其标签体内的显示。</p>
 <p>第一个<code>&lt;fmt:message&gt;</code>标签将使用“ applicationAllMessage ”资源配置文件中“键”为“ userName ”的信息显示。<br>第二个<code>&lt;fmt:message&gt;</code>标签虽然被定义在<code>&lt;fmt:bundle&gt;</code>标签体内，但是它使用了bundle属性，因此将指定之前由<code>&lt;fmt:setBundle&gt;</code>标签保存的“ applicationMessage ”资源配置文件，该“键”为“ passWord ”的信息显示。</p>
 <h4 id="9-5-4-用于参数传递的-lt-fmt-param-gt-标签"><a href="#9-5-4-用于参数传递的-lt-fmt-param-gt-标签" class="headerlink" title="9.5.4  用于参数传递的&lt;fmt:param&gt;标签"></a>9.5.4  用于参数传递的<code>&lt;fmt:param&gt;</code>标签</h4><p><code>&lt;fmt:param&gt;</code>标签应该位于<code>&lt;fmt:message&gt;</code>标签内，将为该消息标签提供参数值。它只有一个属性value。<br><code>&lt;fmt:param&gt;</code>标签有两种使用版本，一种是直接将参数值写在value属性中，另一种是将参数值写在标签体内。</p>
-<p>####9.5.6  用于为请求设置字符编码的<code>&lt;fmt:requestEncoding&gt;</code>标签<br><code>&lt;fmt:requestEncoding&gt;</code>标签用于为请求设置字符编码。它只有一个属性value，在该属性中可以定义字符编码。</p>
-<p>####9.5.7  用于设定时区的<code>&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;</code>标签<br>这两组标签都用于设定一个时区。唯一不同的是<code>&lt;fmt:timeZone&gt;</code>标签将使得在其标签体内的工作可以使用该时区设置，<code>&lt;fmt:setBundle&gt;</code>标签则允许将时区设置保存为一个变量，在之后的工作可以根据该变量来进行。它们的属性和描述如表9.20所示：</p>
+<h4 id="9-5-6-用于为请求设置字符编码的-lt-fmt-requestEncoding-gt-标签"><a href="#9-5-6-用于为请求设置字符编码的-lt-fmt-requestEncoding-gt-标签" class="headerlink" title="9.5.6  用于为请求设置字符编码的&lt;fmt:requestEncoding&gt;标签"></a>9.5.6  用于为请求设置字符编码的<code>&lt;fmt:requestEncoding&gt;</code>标签</h4><p><code>&lt;fmt:requestEncoding&gt;</code>标签用于为请求设置字符编码。它只有一个属性value，在该属性中可以定义字符编码。</p>
+<h4 id="9-5-7-用于设定时区的-lt-fmt-timeZone-gt-、-lt-fmt-setTimeZone-gt-标签"><a href="#9-5-7-用于设定时区的-lt-fmt-timeZone-gt-、-lt-fmt-setTimeZone-gt-标签" class="headerlink" title="9.5.7  用于设定时区的&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;标签"></a>9.5.7  用于设定时区的<code>&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;</code>标签</h4><p>这两组标签都用于设定一个时区。唯一不同的是<code>&lt;fmt:timeZone&gt;</code>标签将使得在其标签体内的工作可以使用该时区设置，<code>&lt;fmt:setBundle&gt;</code>标签则允许将时区设置保存为一个变量，在之后的工作可以根据该变量来进行。它们的属性和描述如表9.20所示：</p>
 <p>表9.20　<code>&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">时区的设置</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">&lt;fmt:setTimeZone&gt;独有的属性，用于保存时区为一个变量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="53"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="312"><br>                                <p align="left">变量的作用范围</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3475,7 +3437,7 @@ ${visits} &lt;br&gt;
 <p>下面看一个示例。</p>
 <pre><code>&lt;fmt:parseNumber value=&quot;15%&quot; type=&quot;percent&quot; var=&quot;num&quot;/&gt;
 </code></pre><p>解析之后的结果为“ 0.15 ”。</p>
-<p>####9.5.10  用于格式化日期的<code>&lt;fmt:formatDate&gt;</code>标签<br><code>&lt;fmt:formatDate&gt;</code>标签用于格式化日期。它的属性和描述如表9.23所示：</p>
+<h4 id="9-5-10-用于格式化日期的-lt-fmt-formatDate-gt-标签"><a href="#9-5-10-用于格式化日期的-lt-fmt-formatDate-gt-标签" class="headerlink" title="9.5.10  用于格式化日期的&lt;fmt:formatDate&gt;标签"></a>9.5.10  用于格式化日期的<code>&lt;fmt:formatDate&gt;</code>标签</h4><p><code>&lt;fmt:formatDate&gt;</code>标签用于格式化日期。它的属性和描述如表9.23所示：</p>
 <p>表9.23　<code>&lt;fmt:formatDate&gt;</code>标签属性和说明</p>
 <table cellspacing="0" cellpadding="0" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">格式化的日期，该属性的内容应该是java.util.Date类型的实例</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">type</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">格式化的类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">pattern</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">格式化模式</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">var</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">结果保存变量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">scope</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">变量的作用范围</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p align="left">timeZone</p><br>                                </td><br>                                <td width="343"><br>                                <p align="left">指定格式化日期的时区</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3487,12 +3449,11 @@ ${visits} &lt;br&gt;
 
 
 <p><code>&lt;fmt:parseNumber&gt;</code>和<code>&lt;fmt:parseDate&gt;</code>两组标签都实现解析字符串为一个具体对象实例的工作，因此，这两组解析标签对var属性的字符串参数要求非常严格。就JSP页面的表示层前段来说，处理这种解析本不属于份内之事，因此<code>&lt;fmt:parseNumber&gt;</code>和<code>&lt;fmt:parseDate&gt;</code>两组标签应该尽量少用，替代工作的地方应该在服务器端表示层的后段，比如在Servlet中。</p>
-<p> <code>&lt;sql:&gt;</code>标签 </p>
-<p>###9.6  Database access 标签库</p>
-<p>Database access标签库中的标签用来提供在JSP页面中可以与数据库进行交互的功能，虽然它的存在对于早期纯JSP开发的应用以及小型的开发有着意义重大的贡献，但是对于MVC模型来说，它却是违反规范的。因为与数据库交互的工作本身就属于业务逻辑层的工作，所以不应该在JSP页面中出现，而是应该在模型层中进行。</p>
+<p> <code>&lt;sql:&gt;</code>标签</p>
+<h3 id="9-6-Database-access-标签库"><a href="#9-6-Database-access-标签库" class="headerlink" title="9.6  Database access 标签库"></a>9.6  Database access 标签库</h3><p>Database access标签库中的标签用来提供在JSP页面中可以与数据库进行交互的功能，虽然它的存在对于早期纯JSP开发的应用以及小型的开发有着意义重大的贡献，但是对于MVC模型来说，它却是违反规范的。因为与数据库交互的工作本身就属于业务逻辑层的工作，所以不应该在JSP页面中出现，而是应该在模型层中进行。</p>
 <p>对于Database access标签库本书不作重点介绍，只给出几个简单示例让读者略微了解它们的功能。</p>
 <p>Database access标签库有以下6组标签来进行工作：<code>&lt;sql:setDataSource&gt;、&lt;sql:query&gt;、&lt;sql:update&gt;、&lt;sql:transaction&gt;、&lt;sql:setDataSource&gt;、&lt;sql:param&gt;、&lt;sql:dateParam&gt;</code>。</p>
-<p>####9.6.1 用于设置数据源的 <code>&lt;sql:setDataSource&gt;</code> 标签<br><code>&lt;sql:setDataSource&gt;</code>标签用于设置数据源，下面看一个示例：</p>
+<h4 id="9-6-1-用于设置数据源的-lt-sql-setDataSource-gt-标签"><a href="#9-6-1-用于设置数据源的-lt-sql-setDataSource-gt-标签" class="headerlink" title="9.6.1 用于设置数据源的 &lt;sql:setDataSource&gt; 标签"></a>9.6.1 用于设置数据源的 <code>&lt;sql:setDataSource&gt;</code> 标签</h4><p><code>&lt;sql:setDataSource&gt;</code>标签用于设置数据源，下面看一个示例：</p>
 <pre><code>&lt;sql:setDataSource
          var=&quot;dataSrc&quot;
          url=&quot;jdbc:postgresql://localhost:5432/myDB&quot;
@@ -3500,8 +3461,7 @@ ${visits} &lt;br&gt;
          user=&quot;admin&quot;
          password=&quot;1111&quot;/&gt;
 </code></pre><p>该示例定义一个数据源并保存在“ dataSrc ”变量内。</p>
-<p>####9.6.2 用于查询的 <code>&lt;sql:query&gt;</code>标签</p>
-<p><code>&lt;sql:query&gt;</code>标签用于查询数据库，它标签体内可以是一句查询SQL。下面看一个示例：</p>
+<h4 id="9-6-2-用于查询的-lt-sql-query-gt-标签"><a href="#9-6-2-用于查询的-lt-sql-query-gt-标签" class="headerlink" title="9.6.2 用于查询的 &lt;sql:query&gt;标签"></a>9.6.2 用于查询的 <code>&lt;sql:query&gt;</code>标签</h4><p><code>&lt;sql:query&gt;</code>标签用于查询数据库，它标签体内可以是一句查询SQL。下面看一个示例：</p>
 <pre><code>&lt;sql:query var=&quot;queryResults&quot; dataSource=&quot;${dataSrc}&quot;&gt;
       select * from table1
 &lt;/sql:query&gt;
@@ -3513,16 +3473,16 @@ ${visits} &lt;br&gt;
       &lt;/tr&gt;
 &lt;/c:forEach&gt;
 </code></pre><p>“ rows ”是javax.servlet.jsp.jstl.sql.Result实例的变量属性之一，用来表示数据库表中的“列”集合，循环时，通过“ ${row.XXX} ”表达式可以取得每一列的数据，“ XXX ”是表中的列名。</p>
-<p>####9.6.3 用于更新的 <code>&lt;sql:update&gt;</code> 标签<br><code>&lt;sql:update&gt;</code>标签用于更新数据库，它的标签体内可以是一句更新的SQL语句。其使用和<code>&lt;sql:query&gt;</code>标签没有什么不同。</p>
-<p>####9.6.4 用于事务处理的<code>&lt;sql:transaction&gt;</code>标签<br><code>&lt;sql:transaction&gt;</code>标签用于数据库的事务处理，在该标签体内可以使用<code>&lt;sql:update&gt;</code>标签和<code>&lt;sql:query&gt;</code>标签，而<code>&lt;sql:transaction&gt;</code>标签的事务管理将作用于它们之上。<br><code>&lt;sql:transaction&gt;</code>标签对于事务处理定义了read_committed、read_uncommitted、repeatable_read、serializable4个隔离级别。</p>
-<p>####9.6.5 用于事务处理的<code>&lt;sql:param&gt; 、 &lt;sql:dateParam&gt;</code> 标签<br>这两个标签用于向SQL语句提供参数，就好像程序中预处理SQL的“ ? ”一样。<code>&lt;sql:param&gt;</code>标签传递除java.util.Date类型以外的所有相融参数，<code>&lt;sql:dateParam&gt;</code>标签则指定必须传递java.util.Date类型的参数。</p>
-<p>###<code>&lt;fn:&gt;</code> 标签 </p>
-<p>###9.7 Functions 标签库<br>       称呼Functions标签库为标签库，倒不如称呼其为函数库来得更容易理解些。因为Functions标签库并没有提供传统的标签来为JSP页面的工作服务，而是被用于EL表达式语句中。在JSP2.0规范下出现的Functions标签库为EL表达式语句提供了许多更为有用的功能。Functions标签库分为两大类，共16个函数。</p>
-<pre><code>长度函数：fn:length
+<h4 id="9-6-3-用于更新的-lt-sql-update-gt-标签"><a href="#9-6-3-用于更新的-lt-sql-update-gt-标签" class="headerlink" title="9.6.3 用于更新的 &lt;sql:update&gt; 标签"></a>9.6.3 用于更新的 <code>&lt;sql:update&gt;</code> 标签</h4><p><code>&lt;sql:update&gt;</code>标签用于更新数据库，它的标签体内可以是一句更新的SQL语句。其使用和<code>&lt;sql:query&gt;</code>标签没有什么不同。</p>
+<h4 id="9-6-4-用于事务处理的-lt-sql-transaction-gt-标签"><a href="#9-6-4-用于事务处理的-lt-sql-transaction-gt-标签" class="headerlink" title="9.6.4 用于事务处理的&lt;sql:transaction&gt;标签"></a>9.6.4 用于事务处理的<code>&lt;sql:transaction&gt;</code>标签</h4><p><code>&lt;sql:transaction&gt;</code>标签用于数据库的事务处理，在该标签体内可以使用<code>&lt;sql:update&gt;</code>标签和<code>&lt;sql:query&gt;</code>标签，而<code>&lt;sql:transaction&gt;</code>标签的事务管理将作用于它们之上。<br><code>&lt;sql:transaction&gt;</code>标签对于事务处理定义了read_committed、read_uncommitted、repeatable_read、serializable4个隔离级别。</p>
+<h4 id="9-6-5-用于事务处理的-lt-sql-param-gt-、-lt-sql-dateParam-gt-标签"><a href="#9-6-5-用于事务处理的-lt-sql-param-gt-、-lt-sql-dateParam-gt-标签" class="headerlink" title="9.6.5 用于事务处理的&lt;sql:param&gt; 、 &lt;sql:dateParam&gt; 标签"></a>9.6.5 用于事务处理的<code>&lt;sql:param&gt; 、 &lt;sql:dateParam&gt;</code> 标签</h4><p>这两个标签用于向SQL语句提供参数，就好像程序中预处理SQL的“ ? ”一样。<code>&lt;sql:param&gt;</code>标签传递除java.util.Date类型以外的所有相融参数，<code>&lt;sql:dateParam&gt;</code>标签则指定必须传递java.util.Date类型的参数。</p>
+<h3 id="lt-fn-gt-标签"><a href="#lt-fn-gt-标签" class="headerlink" title="&lt;fn:&gt; 标签"></a><code>&lt;fn:&gt;</code> 标签</h3><h3 id="9-7-Functions-标签库"><a href="#9-7-Functions-标签库" class="headerlink" title="9.7 Functions 标签库"></a>9.7 Functions 标签库</h3><pre><code>称呼Functions标签库为标签库，倒不如称呼其为函数库来得更容易理解些。因为Functions标签库并没有提供传统的标签来为JSP页面的工作服务，而是被用于EL表达式语句中。在JSP2.0规范下出现的Functions标签库为EL表达式语句提供了许多更为有用的功能。Functions标签库分为两大类，共16个函数。
+
+长度函数：fn:length
 字符串处理函数：fn:contains、fn:containsIgnoreCase、fn:endsWith、fn:escapeXml、fn:indexOf、fn:join、fn:replace、fn:split、fn:startsWith、fn:substring、fn:substringAfter、fn:substringBefore、fn:toLowerCase、fn:toUpperCase、fn:trim
 </code></pre><p>以下是各个函数的用途和属性以及简单示例。</p>
-<p>####9.7.1 长度函数 fn:length 函数<br>       长度函数fn:length的出现有重要的意义。在JSTL1.0中，有一个功能被忽略了，那就是对集合的长度取值。虽然java.util.Collection接口定义了size方法，但是该方法不是一个标准的JavaBean属性方法（没有get,set方法），因此，无法通过EL表达式“ ${collection.size} ”来轻松取得。</p>
-<p>fn:length函数正是为了解决这个问题而被设计出来的。它的参数为input，将计算通过该属性传入的对象长度。该对象应该为集合类型或String类型。其返回结果是一个int类型的值。下面看一个示例。</p>
+<h4 id="9-7-1-长度函数-fn-length-函数"><a href="#9-7-1-长度函数-fn-length-函数" class="headerlink" title="9.7.1 长度函数 fn:length 函数"></a>9.7.1 长度函数 fn:length 函数</h4><pre><code>长度函数fn:length的出现有重要的意义。在JSTL1.0中，有一个功能被忽略了，那就是对集合的长度取值。虽然java.util.Collection接口定义了size方法，但是该方法不是一个标准的JavaBean属性方法（没有get,set方法），因此，无法通过EL表达式“ ${collection.size} ”来轻松取得。
+</code></pre><p>fn:length函数正是为了解决这个问题而被设计出来的。它的参数为input，将计算通过该属性传入的对象长度。该对象应该为集合类型或String类型。其返回结果是一个int类型的值。下面看一个示例。</p>
 <pre><code>&lt;%ArrayList arrayList1 = new ArrayList();
                             arrayList1.add(&quot;aa&quot;);
                             arrayList1.add(&quot;bb&quot;);
@@ -3532,29 +3492,34 @@ ${visits} &lt;br&gt;
 &lt;%request.getSession().setAttribute(&quot;arrayList1&quot;, arrayList1);%&gt;
 ${fn:length(sessionScope.arrayList1)}
 </code></pre><p>假设一个ArrayList类型的实例“ arrayList1 ”，并为其添加三个字符串对象，使用fn:length函数后就可以取得返回结果为“ 3 ”。</p>
-<p>####9.7.2 判断函数 fn:contains 函数<br>       fn:contains函数用来判断源字符串是否包含子字符串。它包括string和substring两个参数，它们都是String类型，分布表示源字符串和子字符串。其返回结果为一个boolean类型的值。下面看一个示例。</p>
-<pre><code>${fn:contains(&quot;ABC&quot;, &quot;a&quot;)}&lt;br&gt;
+<h4 id="9-7-2-判断函数-fn-contains-函数"><a href="#9-7-2-判断函数-fn-contains-函数" class="headerlink" title="9.7.2 判断函数 fn:contains 函数"></a>9.7.2 判断函数 fn:contains 函数</h4><pre><code>   fn:contains函数用来判断源字符串是否包含子字符串。它包括string和substring两个参数，它们都是String类型，分布表示源字符串和子字符串。其返回结果为一个boolean类型的值。下面看一个示例。
+
+${fn:contains(&quot;ABC&quot;, &quot;a&quot;)}&lt;br&gt;
 ${fn:contains(&quot;ABC&quot;, &quot;A&quot;)}&lt;br&gt;
 </code></pre><p>前者返回“ false ”，后者返回“ true ”。</p>
-<p>####9.7.3 fn:containsIgnoreCase函数<br>      fn:containsIgnoreCase函数与fn:contains函数的功能差不多，唯一的区别是fn:containsIgnoreCase函数对于子字符串的包含比较将忽略大小写。它与fn:contains函数相同，包括string和substring两个参数，并返回一个boolean类型的值。下面看一个示例。</p>
-<pre><code>${fn:containsIgnoreCase(&quot;ABC&quot;, &quot;a&quot;)}&lt;br&gt;
+<h4 id="9-7-3-fn-containsIgnoreCase函数"><a href="#9-7-3-fn-containsIgnoreCase函数" class="headerlink" title="9.7.3 fn:containsIgnoreCase函数"></a>9.7.3 fn:containsIgnoreCase函数</h4><pre><code>  fn:containsIgnoreCase函数与fn:contains函数的功能差不多，唯一的区别是fn:containsIgnoreCase函数对于子字符串的包含比较将忽略大小写。它与fn:contains函数相同，包括string和substring两个参数，并返回一个boolean类型的值。下面看一个示例。
+
+${fn:containsIgnoreCase(&quot;ABC&quot;, &quot;a&quot;)}&lt;br&gt;
 ${fn:containsIgnoreCase(&quot;ABC&quot;, &quot;A&quot;)}&lt;br&gt;
 </code></pre><p>前者和后者都会返回“ true ”。</p>
-<p>####9.7.4 词头判断函数 fn:startsWith 函数<br>       fn:startsWith函数用来判断源字符串是否符合一连串的特定词头。它除了包含一个string参数外，还包含一个subffx参数，表示词头字符串，同样是String类型。该函数返回一个boolean类型的值。下面看一个示例。</p>
-<pre><code>${fn:startsWith (&quot;ABC&quot;, &quot;ab&quot;)}&lt;br&gt;
+<h4 id="9-7-4-词头判断函数-fn-startsWith-函数"><a href="#9-7-4-词头判断函数-fn-startsWith-函数" class="headerlink" title="9.7.4 词头判断函数 fn:startsWith 函数"></a>9.7.4 词头判断函数 fn:startsWith 函数</h4><pre><code>   fn:startsWith函数用来判断源字符串是否符合一连串的特定词头。它除了包含一个string参数外，还包含一个subffx参数，表示词头字符串，同样是String类型。该函数返回一个boolean类型的值。下面看一个示例。
+
+${fn:startsWith (&quot;ABC&quot;, &quot;ab&quot;)}&lt;br&gt;
 ${fn:startsWith (&quot;ABC&quot;, &quot;AB&quot;)}&lt;br&gt;
 </code></pre><p>前者返回“ false ”，后者返回“ true ”。</p>
-<p>####9.7.5 词尾判断函数 fn:endsWith 函数<br>       fn:endsWith函数用来判断源字符串是否符合一连串的特定词尾。它与fn:startsWith函数相同，包括string和subffx两个参数，并返回一个boolean类型的值。下面看一个示例。</p>
-<pre><code>${fn:endsWith(&quot;ABC&quot;, &quot;bc&quot;)}&lt;br&gt;
+<h4 id="9-7-5-词尾判断函数-fn-endsWith-函数"><a href="#9-7-5-词尾判断函数-fn-endsWith-函数" class="headerlink" title="9.7.5 词尾判断函数 fn:endsWith 函数"></a>9.7.5 词尾判断函数 fn:endsWith 函数</h4><pre><code>   fn:endsWith函数用来判断源字符串是否符合一连串的特定词尾。它与fn:startsWith函数相同，包括string和subffx两个参数，并返回一个boolean类型的值。下面看一个示例。
+
+${fn:endsWith(&quot;ABC&quot;, &quot;bc&quot;)}&lt;br&gt;
 ${fn:endsWith(&quot;ABC&quot;, &quot;BC&quot;)}&lt;br&gt;
 </code></pre><p>前者返回“ false ”，后者返回“ true ”。</p>
-<p>####9.7.6 字符实体转换函数 fn:escapeXml 函数<br>fn:escapeXml函数用于将所有特殊字符转化为字符实体码。它只包含一个string参数，返回一个String类型的值。</p>
-<p>####9.7.8 字符匹配函数 fn:indexOf 函数<br>       fn:indexOf函数用于取得子字符串与源字符串匹配的开始位置，若子字符串与源字符串中的内容没有匹配成功将返回“ -1 ”。它包括string和substring两个参数，返回结果为int类型。下面看一个示例。</p>
-<pre><code>${fn:indexOf(&quot;ABCD&quot;,&quot;aBC&quot;)}&lt;br&gt;
+<h4 id="9-7-6-字符实体转换函数-fn-escapeXml-函数"><a href="#9-7-6-字符实体转换函数-fn-escapeXml-函数" class="headerlink" title="9.7.6 字符实体转换函数 fn:escapeXml 函数"></a>9.7.6 字符实体转换函数 fn:escapeXml 函数</h4><p>fn:escapeXml函数用于将所有特殊字符转化为字符实体码。它只包含一个string参数，返回一个String类型的值。</p>
+<h4 id="9-7-8-字符匹配函数-fn-indexOf-函数"><a href="#9-7-8-字符匹配函数-fn-indexOf-函数" class="headerlink" title="9.7.8 字符匹配函数 fn:indexOf 函数"></a>9.7.8 字符匹配函数 fn:indexOf 函数</h4><pre><code>   fn:indexOf函数用于取得子字符串与源字符串匹配的开始位置，若子字符串与源字符串中的内容没有匹配成功将返回“ -1 ”。它包括string和substring两个参数，返回结果为int类型。下面看一个示例。
+
+${fn:indexOf(&quot;ABCD&quot;,&quot;aBC&quot;)}&lt;br&gt;
 ${fn:indexOf(&quot;ABCD&quot;,&quot;BC&quot;)}&lt;br&gt;
 </code></pre><p>前者由于没有匹配成功，所以返回-1，后者匹配成功将返回位置的下标，为1。</p>
-<p>####9.7.9 分隔符函数 fn:join 函数<br>       fn:join函数允许为一个字符串数组中的每一个字符串加上分隔符，并连接起来。它的参数、返回结果和描述如表9.25所示：</p>
-<p>表9.25　fn:join函数</p>
+<h4 id="9-7-9-分隔符函数-fn-join-函数"><a href="#9-7-9-分隔符函数-fn-join-函数" class="headerlink" title="9.7.9 分隔符函数 fn:join 函数"></a>9.7.9 分隔符函数 fn:join 函数</h4><pre><code>fn:join函数允许为一个字符串数组中的每一个字符串加上分隔符，并连接起来。它的参数、返回结果和描述如表9.25所示：
+</code></pre><p>表9.25　fn:join函数</p>
 <table cellspacing="0" cellpadding="0" width="350" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="65"><br>                                <p>参数</p><br>                                </td><br>                                <td width="216"><br>                                <p>描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>array</p><br>                                </td><br>                                <td width="216"><br>                                <p>字符串数组。其类型必须为String[]类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>separator</p><br>                                </td><br>                                <td width="216"><br>                                <p>分隔符。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>返回结果</p><br>                                </td><br>                                <td width="216"><br>                                <p>返回一个String类型的值</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
 
@@ -3563,15 +3528,15 @@ ${fn:indexOf(&quot;ABCD&quot;,&quot;BC&quot;)}&lt;br&gt;
 &lt;%request.getSession().setAttribute(&quot;stringArray&quot;, stringArray);%&gt;
 ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 </code></pre><p>定义数组并放置到Session中，然后通过Session得到该字符串数组，使用fn:join函数并传入分隔符“ ; ”，得到的结果为“ a;b;c ”。</p>
-<p>####9.7.10 替换函数 fn:replace 函数<br>       fn:replace函数允许为源字符串做替换的工作。它的参数、返回结果和描述如表9.26所示：</p>
-<p>表9.26　fn:replace函数</p>
+<h4 id="9-7-10-替换函数-fn-replace-函数"><a href="#9-7-10-替换函数-fn-replace-函数" class="headerlink" title="9.7.10 替换函数 fn:replace 函数"></a>9.7.10 替换函数 fn:replace 函数</h4><pre><code>fn:replace函数允许为源字符串做替换的工作。它的参数、返回结果和描述如表9.26所示：
+</code></pre><p>表9.26　fn:replace函数</p>
 <table cellspacing="0" cellpadding="0" width="353" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="105"><br>                                <p>参数</p><br>                                </td><br>                                <td width="249"><br>                                <p>描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p>inputString</p><br>                                </td><br>                                <td width="249"><br>                                <p>源字符串。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p>beforeSubstring</p><br>                                </td><br>                                <td width="249"><br>                                <p>指定被替换字符串。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p>afterSubstring</p><br>                                </td><br>                                <td width="249"><br>                                <p>指定替换字符串。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="105"><br>                                <p>返回结果</p><br>                                </td><br>                                <td width="249"><br>                                <p>返回一个String类型的值</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
 
 <p>下面看一个示例。</p>
 <p>${fn:replace(“ABC”,”A”,”B”)}<br></p>
 <p>将“ ABC ”字符串替换为“ BBC ”，在“ ABC ”字符串中用“ B ”替换了“ A ”。</p>
-<p>####9.7.11 分隔符转换数组函数 fn:split 函数<br>fn:split函数用于将一组由分隔符分隔的字符串转换成字符串数组。它的参数、返回结果和描述如表9.27所示：</p>
+<h4 id="9-7-11-分隔符转换数组函数-fn-split-函数"><a href="#9-7-11-分隔符转换数组函数-fn-split-函数" class="headerlink" title="9.7.11 分隔符转换数组函数 fn:split 函数"></a>9.7.11 分隔符转换数组函数 fn:split 函数</h4><p>fn:split函数用于将一组由分隔符分隔的字符串转换成字符串数组。它的参数、返回结果和描述如表9.27所示：</p>
 <p>表9.27　fn:split函数</p>
 <table cellspacing="0" cellpadding="0" width="281" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="65"><br>                                <p>参数</p><br>                                </td><br>                                <td width="216"><br>                                <p>描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>string</p><br>                                </td><br>                                <td width="216"><br>                                <p>源字符串。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>delimiters</p><br>                                </td><br>                                <td width="216"><br>                                <p>指定分隔符。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="65"><br>                                <p>返回结果</p><br>                                </td><br>                                <td width="216"><br>                                <p>返回一个String[]类型的值</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3579,7 +3544,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 <p>下面看一个示例。</p>
 <p>${fn:split(“A,B,C”,”,”)}<br></p>
 <p>将“ A,B,C ”字符串转换为数组{A,B,C}。</p>
-<p>####9.7.12 字符串截取函数 fn:substring 函数<br>fn:substring函数用于截取字符串。它的参数、返回结果和描述如表9.28所示：</p>
+<h4 id="9-7-12-字符串截取函数-fn-substring-函数"><a href="#9-7-12-字符串截取函数-fn-substring-函数" class="headerlink" title="9.7.12 字符串截取函数 fn:substring 函数"></a>9.7.12 字符串截取函数 fn:substring 函数</h4><p>fn:substring函数用于截取字符串。它的参数、返回结果和描述如表9.28所示：</p>
 <p>表9.28　fn:substring函数</p>
 <table cellspacing="0" cellpadding="0" width="353" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="68"><br>                                <p>参数</p><br>                                </td><br>                                <td width="285"><br>                                <p>描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="68"><br>                                <p>string</p><br>                                </td><br>                                <td width="285"><br>                                <p>源字符串。其类型必须为String类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="68"><br>                                <p>beginIndex</p><br>                                </td><br>                                <td width="285"><br>                                <p>指定起始下标（值从0开始）。其类型必须为int类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="68"><br>                                <p>endIndex</p><br>                                </td><br>                                <td width="285"><br>                                <p>指定结束下标（值从0开始）。其类型必须为int类型</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="68"><br>                                <p>返回结果</p><br>                                </td><br>                                <td width="285"><br>                                <p>返回一个String类型的值</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3587,16 +3552,16 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 <p>下面看一个示例。</p>
 <p>${fn:substring(“ABC”,”1”,”2”)}<br></p>
 <p>截取结果为“ B ”。</p>
-<p>####9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数<br>fn:substringBefore函数允许截取源字符从开始到某个字符串。它的参数和fn:substringAfter函数相同，不同的是substring表示的是结束字符串。下面看一个示例。</p>
+<h4 id="9-7-14-起始到定位截取字符串函数-fn-substringBefore-函数"><a href="#9-7-14-起始到定位截取字符串函数-fn-substringBefore-函数" class="headerlink" title="9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数"></a>9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数</h4><p>fn:substringBefore函数允许截取源字符从开始到某个字符串。它的参数和fn:substringAfter函数相同，不同的是substring表示的是结束字符串。下面看一个示例。</p>
 <pre><code>${fn:substringBefore(&quot;ABCD&quot;,&quot;BC&quot;)}&lt;br&gt;
 </code></pre><p>截取的结果为“ A ”。</p>
-<p>####9.7.15 小写转换函数 fn:toLowerCase 函数<br>fn:toLowerCase函数允许将源字符串中的字符全部转换成小写字符。它只有一个表示源字符串的参数string，函数返回一个String类型的值。下面看一个示例。</p>
+<h4 id="9-7-15-小写转换函数-fn-toLowerCase-函数"><a href="#9-7-15-小写转换函数-fn-toLowerCase-函数" class="headerlink" title="9.7.15 小写转换函数 fn:toLowerCase 函数"></a>9.7.15 小写转换函数 fn:toLowerCase 函数</h4><p>fn:toLowerCase函数允许将源字符串中的字符全部转换成小写字符。它只有一个表示源字符串的参数string，函数返回一个String类型的值。下面看一个示例。</p>
 <pre><code>${fn:toLowerCase(&quot;ABCD&quot;)}&lt;br&gt;
 </code></pre><p>转换的结果为“ abcd ”。</p>
-<p>####9.7.16大写转换函数 fn:toUpperCase 函数<br>fn:toUpperCase函数允许将源字符串中的字符全部转换成大写字符。它与fn:toLowerCase函数相同，也只有一个String参数，并返回一个String类型的值。下面看一个示例。</p>
+<h4 id="9-7-16大写转换函数-fn-toUpperCase-函数"><a href="#9-7-16大写转换函数-fn-toUpperCase-函数" class="headerlink" title="9.7.16大写转换函数 fn:toUpperCase 函数"></a>9.7.16大写转换函数 fn:toUpperCase 函数</h4><p>fn:toUpperCase函数允许将源字符串中的字符全部转换成大写字符。它与fn:toLowerCase函数相同，也只有一个String参数，并返回一个String类型的值。下面看一个示例。</p>
 <pre><code>${fn:toUpperCase(&quot;abcd&quot;)}&lt;br&gt;
 </code></pre><p>转换的结果为“ ABCD ”。</p>
-<p>####9.7.17空格删除函数 fn:trim 函数<br>fn:trim函数将删除源字符串中结尾部分的“空格”以产生一个新的字符串。它与fn:toLowerCase函数相同，只有一个String参数，并返回一个String类型的值。下面看一个示例。</p>
+<h4 id="9-7-17空格删除函数-fn-trim-函数"><a href="#9-7-17空格删除函数-fn-trim-函数" class="headerlink" title="9.7.17空格删除函数 fn:trim 函数"></a>9.7.17空格删除函数 fn:trim 函数</h4><p>fn:trim函数将删除源字符串中结尾部分的“空格”以产生一个新的字符串。它与fn:toLowerCase函数相同，只有一个String参数，并返回一个String类型的值。下面看一个示例。</p>
 <pre><code>${fn:trim(&quot;AB C &quot;)}D&lt;br&gt;
 </code></pre><p>转换的结果为“ AB CD ”，注意，它将只删除词尾的空格而不是全部，因此“ B ”和“ C ”之间仍然留有一个空格。</p>
 <p>参考文档<a href="http://www.javawind.net/help/html/jstl_el.htm" target="_blank" rel="external">http://www.javawind.net/help/html/jstl_el.htm</a></p>
@@ -3604,7 +3569,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     
     <summary type="html">
     
-      &lt;p&gt;###EL 表达式&lt;br&gt;在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。&lt;/p&gt;
+      &lt;h3 id=&quot;EL-表达式&quot;&gt;&lt;a href=&quot;#EL-表达式&quot; class=&quot;headerlink&quot; title=&quot;EL 表达式&quot;&gt;&lt;/a&gt;EL 表达式&lt;/h3&gt;&lt;p&gt;在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。&lt;/p&gt;
 &lt;p&gt;Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。&lt;/p&gt;
 &lt;p&gt;Standard-1.0 Taglib（JSTL1.0）支持Servlet2.3和JSP1.2规范，Web应用服务器Tomcat4支持这些规范，而它的发布也在Tomcat 4.1.24测试通过了。&lt;/p&gt;
 &lt;p&gt;Standard-1.1 Taglib（JSTL1.1）支持Servlet2.4和JSP2.0规范，Web应用服务器Tomcat5支持这些规范，它的发布在Tomcat 5.0.3测试通过了。&lt;/p&gt;
@@ -3636,18 +3601,17 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     <link href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/"/>
     <id>https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</id>
     <published>2013-12-14T13:31:00.000Z</published>
-    <updated>2018-10-22T09:30:45.589Z</updated>
+    <updated>2018-10-23T07:51:09.445Z</updated>
     
-    <content type="html"><![CDATA[<p>###ut-maven-plugin简介</p>
-<p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
+    <content type="html"><![CDATA[<h3 id="ut-maven-plugin简介"><a href="#ut-maven-plugin简介" class="headerlink" title="ut-maven-plugin简介"></a>ut-maven-plugin简介</h3><p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
 <p>也许，现在她还小，还不足够智能，智能到足以测试你的方法的所有业务逻辑。但是在将来，她将会越来越智能。帮你解决更多的单元测试问题，或者解决更多共性的问题。<br><a id="more"></a></p>
-<p>###实现原理<br>如何解析源码，这是首先需要解决的问题。在计算机科学中，有<strong>抽象语法树(Abstract Syntax Tree)</strong>这一概念，它是源代码的抽象语法结构的树状表现形式。树上的每个节点都表示源代码中的一种结构。利用抽象语法树就可以对源码进行一个全方位的解析，从而知道如何生成特定的测试代码。 </p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>如何解析源码，这是首先需要解决的问题。在计算机科学中，有<strong>抽象语法树(Abstract Syntax Tree)</strong>这一概念，它是源代码的抽象语法结构的树状表现形式。树上的每个节点都表示源代码中的一种结构。利用抽象语法树就可以对源码进行一个全方位的解析，从而知道如何生成特定的测试代码。</p>
 <p>Eclipse（以及其它IDE）中就提供了AST的解析功能，比如Eclipse里的outline(大纲)视图。</p>
 <p><img src="/images/blog/2013/eclipse-outline.png" alt=""></p>
 <p>同时,Eclipse也提供的有抽象语法树视图，即ASTView。</p>
 <p><img src="/images/blog/2013/eclipse-ast-view.png" alt=""></p>
-<p>本插件选用<a href="https://code.google.com/p/javaparser/" target="_blank" rel="external">JavaParser</a>来分析源码，提取并生成测试代码。  </p>
-<p>###如何使用这个工具？<br>这个插件一个被我放到了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ut-maven-plugin%22" target="_blank" rel="external">Maven Central</a>上，因此，你可以直接在pom.xml里添加上这个插件就可以了。同时建议你使用最新的版本。<br>比如：  </p>
+<p>本插件选用<a href="https://code.google.com/p/javaparser/" target="_blank" rel="external">JavaParser</a>来分析源码，提取并生成测试代码。</p>
+<h3 id="如何使用这个工具？"><a href="#如何使用这个工具？" class="headerlink" title="如何使用这个工具？"></a>如何使用这个工具？</h3><p>这个插件一个被我放到了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ut-maven-plugin%22" target="_blank" rel="external">Maven Central</a>上，因此，你可以直接在pom.xml里添加上这个插件就可以了。同时建议你使用最新的版本。<br>比如：</p>
 <pre><code>&lt;plugin&gt;
 &lt;groupId&gt;cn.shenyanchao.ut&lt;/groupId&gt;
 &lt;artifactId&gt;ut-maven-plugin&lt;/artifactId&gt;
@@ -3662,8 +3626,8 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     &lt;/execution&gt;
 &lt;/executions&gt;
 &lt;/plugin&gt;
-</code></pre><p>###解决了什么问题？<br>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="external">spring-petclinic</a>中的代码为例。</p>
-<p>下面的Service代码：  </p>
+</code></pre><h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="external">spring-petclinic</a>中的代码为例。</p>
+<p>下面的Service代码：</p>
 <pre><code>package org.springframework.samples.petclinic.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -3693,7 +3657,7 @@ public class ClinicServiceImpl implements ClinicService {
     ......
 
 }
-</code></pre><p>那么，我们自己手工写的单元测试代码有可能是这样的：   </p>
+</code></pre><p>那么，我们自己手工写的单元测试代码有可能是这样的：</p>
 <pre><code>package org.springframework.samples.petclinic.service.test;
 
 import org.junit.Assert;
@@ -3728,17 +3692,16 @@ public class ClinicServiceImplTest {
         Pet pet = clinicService.findPetById(1);
         Assert.assertNotNull(pet);
     }
-</code></pre><p>如果，有很多个类需要写单元测试，那么我们会发现有很多代码是具有共性的，或者是有一定规律的。但从这个类来说，我们认为大部分代码都是可以通过对源代码进行分析得到的，除了以下的业务逻辑部分：  </p>
+</code></pre><p>如果，有很多个类需要写单元测试，那么我们会发现有很多代码是具有共性的，或者是有一定规律的。但从这个类来说，我们认为大部分代码都是可以通过对源代码进行分析得到的，除了以下的业务逻辑部分：</p>
 <pre><code>when(petRepository.findById(anyInt())).thenReturn(new Pet());
 Pet pet = clinicService.findPetById(1);
-</code></pre><p>因此余下的代码都可以由插件来完成，使得程序员直接关注于业务逻辑部分的编写。大大的提高了程序员单元测试的编写效率，甚至使程序员们爱上单测。   </p>
-<p>当然，这里只是一个例子，如果能抽象出更多的共性，本插件就可以进行不断的扩展。简单的来说，有共性有规律就可以自动生成出来。随着不断的扩展，ut-maven-plugin将越来越智能化。   </p>
+</code></pre><p>因此余下的代码都可以由插件来完成，使得程序员直接关注于业务逻辑部分的编写。大大的提高了程序员单元测试的编写效率，甚至使程序员们爱上单测。</p>
+<p>当然，这里只是一个例子，如果能抽象出更多的共性，本插件就可以进行不断的扩展。简单的来说，有共性有规律就可以自动生成出来。随着不断的扩展，ut-maven-plugin将越来越智能化。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###ut-maven-plugin简介&lt;/p&gt;
-&lt;p&gt;这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。&lt;br&gt;《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。&lt;/p&gt;
+      &lt;h3 id=&quot;ut-maven-plugin简介&quot;&gt;&lt;a href=&quot;#ut-maven-plugin简介&quot; class=&quot;headerlink&quot; title=&quot;ut-maven-plugin简介&quot;&gt;&lt;/a&gt;ut-maven-plugin简介&lt;/h3&gt;&lt;p&gt;这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。&lt;br&gt;《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。&lt;/p&gt;
 &lt;p&gt;也许，现在她还小，还不足够智能，智能到足以测试你的方法的所有业务逻辑。但是在将来，她将会越来越智能。帮你解决更多的单元测试问题，或者解决更多共性的问题。&lt;br&gt;
     
     </summary>
@@ -3759,47 +3722,44 @@ Pet pet = clinicService.findPetById(1);
     <link href="https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/"/>
     <id>https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</id>
     <published>2013-12-04T07:45:00.000Z</published>
-    <updated>2018-10-22T09:30:45.584Z</updated>
+    <updated>2018-10-23T07:43:15.128Z</updated>
     
     <content type="html"><![CDATA[<p>《程序员修炼之道-从小工到专家》写的具有普遍意义的指导方法。很少有具体的开发讲解，更多的是告诉你，作为一个程序员，你应该具有哪些素质，以及怎么做。下面是我对书中印象比较深的一些记录。</p>
-<p>###关于心态</p>
-<p>####石头汤与煮青蛙</p>
-<blockquote>
-<p>三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。  </p>
-<p>士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。   </p>
-<p>“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。<br>几分钟后，村民们又问：“就这些了吗？”    </p>
-<p>“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。    </p>
-<p>接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。    </p>
-<p>最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。   </p>
+<h3 id="关于心态"><a href="#关于心态" class="headerlink" title="关于心态"></a>关于心态</h3><h4 id="石头汤与煮青蛙"><a href="#石头汤与煮青蛙" class="headerlink" title="石头汤与煮青蛙"></a>石头汤与煮青蛙</h4><blockquote>
+<p>三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。</p>
+<p>士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。</p>
+<p>“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。<br>几分钟后，村民们又问：“就这些了吗？”</p>
+<p>“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。</p>
+<p>接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。</p>
+<p>最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。</p>
 </blockquote>
 <a id="more"></a>
-<p>在石头汤的故事里有两层寓意。  </p>
+<p>在石头汤的故事里有两层寓意。</p>
 <p>士兵们戏弄了村民，他们利用村民的好奇，从他们那里弄到了食物。但更重要的是，士兵充当了催化剂，把村名团结起来，和他们一起做到了他们自己本来做不到的事情—— 一项协作的成果。最后每个人都是赢家。</p>
-<p>另一方面，石头汤的故事也是关于温和渐进的欺骗的故事。它讲述的是过于集中的注意力。村民们想到了石头，却忘记了世界的其余部分。我们都是这样，每一天,事情都会悄悄爬到我们身上。   </p>
-<p>我们现在是程序员，那你的目标是什么呢？当然是软件的总设计师—— 项目经理。那又会有什么启示呢？你常常是否也可以效仿这些士兵，做一个聪明的项目经理呢？在有些情况下，你也许确切的知道需要做什么，以及怎样去做。整个项目就在你的眼前，完全在你的掌控之中—— 你知道它是对的。但随着项目的深入，问题的复杂化，你会遇到拖延和漠然。这时你将会怎么做呢？你可以把项目看成是石头，把我们的成员看成是村民，而把我们自己看成是士兵。因为每个人都会保卫他们自己的资源。这正是拿出石头的时候。设计出你可以合理请求的东西，好好的开发它。一旦完成就拿给大家看，让他们大吃一惊。然后说：“要是我们增加…….可能就会更好。”然后假装那并不重要。坐回椅子上，等他们开始增加你本来就想增加的功能。这时大家就会发现参与正在发生的成功更容易。让他们去创造未来，你就会让他们聚集在你的周围，最大化的发挥团队的作用。    </p>
-<p>再来看两个案例。   </p>
+<p>另一方面，石头汤的故事也是关于温和渐进的欺骗的故事。它讲述的是过于集中的注意力。村民们想到了石头，却忘记了世界的其余部分。我们都是这样，每一天,事情都会悄悄爬到我们身上。</p>
+<p>我们现在是程序员，那你的目标是什么呢？当然是软件的总设计师—— 项目经理。那又会有什么启示呢？你常常是否也可以效仿这些士兵，做一个聪明的项目经理呢？在有些情况下，你也许确切的知道需要做什么，以及怎样去做。整个项目就在你的眼前，完全在你的掌控之中—— 你知道它是对的。但随着项目的深入，问题的复杂化，你会遇到拖延和漠然。这时你将会怎么做呢？你可以把项目看成是石头，把我们的成员看成是村民，而把我们自己看成是士兵。因为每个人都会保卫他们自己的资源。这正是拿出石头的时候。设计出你可以合理请求的东西，好好的开发它。一旦完成就拿给大家看，让他们大吃一惊。然后说：“要是我们增加…….可能就会更好。”然后假装那并不重要。坐回椅子上，等他们开始增加你本来就想增加的功能。这时大家就会发现参与正在发生的成功更容易。让他们去创造未来，你就会让他们聚集在你的周围，最大化的发挥团队的作用。</p>
+<p>再来看两个案例。</p>
 <blockquote>
-<p>如果你抓一只青蛙放进沸水里，他会一下子跳出来。但是你把青蛙放进冷水里，然后慢慢加热，青蛙不会注意到温度的缓慢变化，会呆在锅里，直到被煮熟。    </p>
-<p>一扇破窗户，只要有那么一段时间不修理，就会渐渐给建筑物周围的居民带来一种废弃感。于是又一扇窗户破了，人们开始乱扔垃圾，出现了乱涂乱画，慢慢的更严重的结构破坏开始了。在相对较短的一段时间里，建筑就被损毁的超出了业主想象的程度，也超出了业主愿意修理的程度，而废弃感则变成了现实！   </p>
+<p>如果你抓一只青蛙放进沸水里，他会一下子跳出来。但是你把青蛙放进冷水里，然后慢慢加热，青蛙不会注意到温度的缓慢变化，会呆在锅里，直到被煮熟。</p>
+<p>一扇破窗户，只要有那么一段时间不修理，就会渐渐给建筑物周围的居民带来一种废弃感。于是又一扇窗户破了，人们开始乱扔垃圾，出现了乱涂乱画，慢慢的更严重的结构破坏开始了。在相对较短的一段时间里，建筑就被损毁的超出了业主想象的程度，也超出了业主愿意修理的程度，而废弃感则变成了现实！</p>
 </blockquote>
-<p>锅里的那只可怜的青蛙是谁？它没有注意到周围环境的渐变，最终被煮熟了。同样的事情也会发生在不警醒的人身上。在项目开发高涨的热度里，很难再用一只眼睛注意中周围的环境。这又引出了一个“破窗户”的理论。一扇破窗户，只要有那么一段时间不修理，就会渐渐给建筑物周围的居民带来一种废弃感。于是又一扇窗户破了，人们开始乱扔垃圾，出现了乱涂乱画，慢慢的更严重的结构破坏开始了。在相对较短的一段时间里，建筑就被损毁的超出了业主想象的程度，也超出了业主愿意修理的程度，而废弃感则变成了现实！那我们如何解决呢？很简单，当第一扇破窗户出现时就及时的修理。     </p>
-<p>当然我们也看到过这样的症状。项目慢慢的不可改变的完全失去控制。大多数的软件灾难都是从微不足道的小事情开始的，大多数项目的拖延也都是一天一天发生的。系统一个特性一个特性地偏离其规范，项目的目标也慢慢的偏离轨道，直到整个项目的失败。常常是小事情的积累破坏了士气和团队，因为众所周知的困难是不会导致失败的，只有那些微不足道的小事才会导致失败。这些小事并不会立即显现出来，它只会在积累到一定程度时才会爆发。   </p>
-<p>作为整体开发的团队更容易被煮熟。所以未来的项目经理们，我们要时刻，持续地检查范围的扩大，时间的减缩，新增特性，新环境 ——任何不在初期的约定中定义的东西。因为团队无需拒绝不在预计中的变化—— 只要你注意到它们正在发生。记住，当出现第一扇破窗户时就及时修理。否则，你就会置身于热水之中。   </p>
-<p>###关于工具</p>
-<p>###文本编辑器<br>文本处理是每个程序员无法回避的问题。首先，要选择编辑器。一个好的编辑器应该具有以下的特性：</p>
+<p>锅里的那只可怜的青蛙是谁？它没有注意到周围环境的渐变，最终被煮熟了。同样的事情也会发生在不警醒的人身上。在项目开发高涨的热度里，很难再用一只眼睛注意中周围的环境。这又引出了一个“破窗户”的理论。一扇破窗户，只要有那么一段时间不修理，就会渐渐给建筑物周围的居民带来一种废弃感。于是又一扇窗户破了，人们开始乱扔垃圾，出现了乱涂乱画，慢慢的更严重的结构破坏开始了。在相对较短的一段时间里，建筑就被损毁的超出了业主想象的程度，也超出了业主愿意修理的程度，而废弃感则变成了现实！那我们如何解决呢？很简单，当第一扇破窗户出现时就及时的修理。</p>
+<p>当然我们也看到过这样的症状。项目慢慢的不可改变的完全失去控制。大多数的软件灾难都是从微不足道的小事情开始的，大多数项目的拖延也都是一天一天发生的。系统一个特性一个特性地偏离其规范，项目的目标也慢慢的偏离轨道，直到整个项目的失败。常常是小事情的积累破坏了士气和团队，因为众所周知的困难是不会导致失败的，只有那些微不足道的小事才会导致失败。这些小事并不会立即显现出来，它只会在积累到一定程度时才会爆发。</p>
+<p>作为整体开发的团队更容易被煮熟。所以未来的项目经理们，我们要时刻，持续地检查范围的扩大，时间的减缩，新增特性，新环境 ——任何不在初期的约定中定义的东西。因为团队无需拒绝不在预计中的变化—— 只要你注意到它们正在发生。记住，当出现第一扇破窗户时就及时修理。否则，你就会置身于热水之中。</p>
+<h3 id="关于工具"><a href="#关于工具" class="headerlink" title="关于工具"></a>关于工具</h3><h3 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h3><p>文本处理是每个程序员无法回避的问题。首先，要选择编辑器。一个好的编辑器应该具有以下的特性：</p>
 <ul>
 <li>可配置</li>
 <li>可扩展</li>
-<li>可编程   </li>
+<li>可编程</li>
 </ul>
-<p>一旦你选择了一种编辑器，就彻底的了解它，并将其用于所有的编辑任务。如果你用一种编辑器进行所有的文本编辑活动，你就不必停下来思考怎样完成文本操纵。编辑器将成为你双手的延伸。<br>知道了这些应该怎么做？   </p>
+<p>一旦你选择了一种编辑器，就彻底的了解它，并将其用于所有的编辑任务。如果你用一种编辑器进行所有的文本编辑活动，你就不必停下来思考怎样完成文本操纵。编辑器将成为你双手的延伸。<br>知道了这些应该怎么做？</p>
 <table border="1px"><br><tr><br><th>如果你现在这样…</th><th>那么考虑…</th><br></tr><br><tr><br><td>我使用不同的编辑器，但只使用其基本特性。</td><td>选一种强大的编辑器，好好学习它。</td><br></tr><br><tr><br><td>我有最喜欢的编辑器，但不使用其全部特性。</td><td>学习它们。减少你需要敲击的键数</td><br></tr><br><tr><br><td>我有最喜欢的编辑器，只要可能就使用它。</td><td>设法扩展它，并将其用于比现在更多的任务。</td><br></tr><br><tr><br><td>我认为你们在胡说。notepad就是有史以来最好的编辑器。</td><td>只要你愿意，并且生产率很高，那就这样吧！但如果你发现自己在羡慕别人的编辑器，你可能需要重新评估自己的位置啦。</td><br></tr><br></table>
 
 <p><strong>推荐工具：</strong>Emacs,vi,CRiSP,Brief以及其他的跨平台软件。<br>珍惜生命，远离office哦。</p>
-<p>####源码控制<br>源码控制系统追踪你在源码和文档中的每一项变动。并且能在适当的时候进行undo操作。</p>
-<p>把源码置于源码控制系统的保护之下具有一个很大，隐蔽的好处：可以进行自动的和可重复的产品持续集成构建。   </p>
-<p>###关于编码<br>注重时效的程序员批判的思考所有代码，包括自己写的。要相信从来没有完美的软件。不能靠运气和偶然的成功，而要深思熟虑的编程。并且要考虑算法的效率。</p>
-<p>适时的进行重构。Martin Fowler告诉我们如何进行利大于弊的重构。   </p>
+<h4 id="源码控制"><a href="#源码控制" class="headerlink" title="源码控制"></a>源码控制</h4><p>源码控制系统追踪你在源码和文档中的每一项变动。并且能在适当的时候进行undo操作。</p>
+<p>把源码置于源码控制系统的保护之下具有一个很大，隐蔽的好处：可以进行自动的和可重复的产品持续集成构建。</p>
+<h3 id="关于编码"><a href="#关于编码" class="headerlink" title="关于编码"></a>关于编码</h3><p>注重时效的程序员批判的思考所有代码，包括自己写的。要相信从来没有完美的软件。不能靠运气和偶然的成功，而要深思熟虑的编程。并且要考虑算法的效率。</p>
+<p>适时的进行重构。Martin Fowler告诉我们如何进行利大于弊的重构。</p>
 <ul>
 <li>不要试图在重构的同时增加功能</li>
 <li>在开始重构之前，确保你拥有良好的测试。尽可能经常运行这些测试。这样，如果你的改动破坏了任何东西，你就能很快的知道。</li>
@@ -3810,15 +3770,13 @@ Pet pet = clinicService.findPetById(1);
     <summary type="html">
     
       &lt;p&gt;《程序员修炼之道-从小工到专家》写的具有普遍意义的指导方法。很少有具体的开发讲解，更多的是告诉你，作为一个程序员，你应该具有哪些素质，以及怎么做。下面是我对书中印象比较深的一些记录。&lt;/p&gt;
-&lt;p&gt;###关于心态&lt;/p&gt;
-&lt;p&gt;####石头汤与煮青蛙&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。  &lt;/p&gt;
-&lt;p&gt;士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。   &lt;/p&gt;
-&lt;p&gt;“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。&lt;br&gt;几分钟后，村民们又问：“就这些了吗？”    &lt;/p&gt;
-&lt;p&gt;“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。    &lt;/p&gt;
-&lt;p&gt;接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。    &lt;/p&gt;
-&lt;p&gt;最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。   &lt;/p&gt;
+&lt;h3 id=&quot;关于心态&quot;&gt;&lt;a href=&quot;#关于心态&quot; class=&quot;headerlink&quot; title=&quot;关于心态&quot;&gt;&lt;/a&gt;关于心态&lt;/h3&gt;&lt;h4 id=&quot;石头汤与煮青蛙&quot;&gt;&lt;a href=&quot;#石头汤与煮青蛙&quot; class=&quot;headerlink&quot; title=&quot;石头汤与煮青蛙&quot;&gt;&lt;/a&gt;石头汤与煮青蛙&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。&lt;/p&gt;
+&lt;p&gt;士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。&lt;/p&gt;
+&lt;p&gt;“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。&lt;br&gt;几分钟后，村民们又问：“就这些了吗？”&lt;/p&gt;
+&lt;p&gt;“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。&lt;/p&gt;
+&lt;p&gt;接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。&lt;/p&gt;
+&lt;p&gt;最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>

@@ -595,11 +595,11 @@
 
       
         
-          <p>###Eclipse AST<br>Eclipse AST 是 Eclipse JDT 的一个重要组成部分,定义在包 org.eclipse.jdt.core.dom 中,用来表示 Java 语言中的所有语法结构。<br>Eclipse AST 采用工厂方法模式和访问者模式   (见 2.7节)来设计和实现,这样可以减轻用户深入了解其内部结构的压力,并且方便用户利用它们构建并处理 AST。你可以打开 Eclipse 帮助页面,通过鼠标依次点击窗口左边的目录“JDT Plug-in Developer Guide”Æ“Reference”Æ“API Reference” Æ“org.eclipse.jdt.core.dom”,即可打开这个包的详细说明。本节将对这个包中重要的类作简要说明,为简便起见,这里省去这些类的包名,即org.eclipse.jdt.core.dom。<br>在 Eclipse AST 中,与本书的课程设计相关的类主要有以下三部分:    </p>
+          <h3 id="Eclipse-AST"><a href="#Eclipse-AST" class="headerlink" title="Eclipse AST"></a>Eclipse AST</h3><p>Eclipse AST 是 Eclipse JDT 的一个重要组成部分,定义在包 org.eclipse.jdt.core.dom 中,用来表示 Java 语言中的所有语法结构。<br>Eclipse AST 采用工厂方法模式和访问者模式   (见 2.7节)来设计和实现,这样可以减轻用户深入了解其内部结构的压力,并且方便用户利用它们构建并处理 AST。你可以打开 Eclipse 帮助页面,通过鼠标依次点击窗口左边的目录“JDT Plug-in Developer Guide”Æ“Reference”Æ“API Reference” Æ“org.eclipse.jdt.core.dom”,即可打开这个包的详细说明。本节将对这个包中重要的类作简要说明,为简便起见,这里省去这些类的包名,即org.eclipse.jdt.core.dom。<br>在 Eclipse AST 中,与本书的课程设计相关的类主要有以下三部分:</p>
 <ul>
 <li>ASTNode 类及其派生类:用于描述各种 AST 节点的类,每个 AST 节点表示一个Java 源程序中的一个语法结构,例如,一个名字、类型、表达式、语句或声明等。</li>
 <li>AST 类:创建 AST 节点的工厂类,类中包含许多创建各类 AST 节点的工厂方法,用户可以利用这些方法来构建 AST。</li>
-<li>ASTVisitor 类:<br>AST 的访问者抽象类,类中声明了一组访问各类 AST 节点的 visit( )方法、endVisit( )方法和 preVisit( )方法。   </li>
+<li>ASTVisitor 类:<br>AST 的访问者抽象类,类中声明了一组访问各类 AST 节点的 visit( )方法、endVisit( )方法和 preVisit( )方法。</li>
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/06/07/eclipse-ast/#more" rel="contents">
@@ -872,12 +872,147 @@
 
       
         
-          <h2 id="selenium常见问题"><a href="#selenium常见问题" class="headerlink" title="###selenium常见问题"></a>###selenium常见问题</h2><p>原文：<a href="https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions">https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions</a>     </p>
-<p>####Q:什么是WebDriver?<br>A:WebDriver是一个用来写网页自动化测试的工具。它致力于模拟真实用户的行为并尽可能的实现HTML上的交互。  </p>
-<p>####Q:Selenium与<a href="http://sahi.co.in/">Sahi</a>有什么异同？<br>A:它们的目标是一样的，都是为了测试webapp。但是，它们的实现是不一样的。WebDriver是直接控制浏览器的，而不是在浏览器内运行了一个Javascript应用（这牵涉到同源策略问题）。这也意味着WebDriver可以充分利用原生平台提供的任何工具。</p>
-<p>####Q：什么是Selenium 2.0?<br>A:WebDriver是Selenium的一部分。而WebDriver为其提供了强大的API以及原生的Driver。<br>
+          <h3 id="selenium常见问题"><a href="#selenium常见问题" class="headerlink" title="selenium常见问题"></a>selenium常见问题</h3><hr>
+<p>原文：<a href="https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions">https://code.google.com/p/selenium/wiki/FrequentlyAskedQuestions</a></p>
+<h4 id="Q-什么是WebDriver"><a href="#Q-什么是WebDriver" class="headerlink" title="Q:什么是WebDriver?"></a>Q:什么是WebDriver?</h4><p>A:WebDriver是一个用来写网页自动化测试的工具。它致力于模拟真实用户的行为并尽可能的实现HTML上的交互。</p>
+<h4 id="Q-Selenium与Sahi有什么异同？"><a href="#Q-Selenium与Sahi有什么异同？" class="headerlink" title="Q:Selenium与Sahi有什么异同？"></a>Q:Selenium与<a href="http://sahi.co.in/">Sahi</a>有什么异同？</h4><p>A:它们的目标是一样的，都是为了测试webapp。但是，它们的实现是不一样的。WebDriver是直接控制浏览器的，而不是在浏览器内运行了一个Javascript应用（这牵涉到同源策略问题）。这也意味着WebDriver可以充分利用原生平台提供的任何工具。</p>
+<h4 id="Q：什么是Selenium-2-0"><a href="#Q：什么是Selenium-2-0" class="headerlink" title="Q：什么是Selenium 2.0?"></a>Q：什么是Selenium 2.0?</h4><p>A:WebDriver是Selenium的一部分。而WebDriver为其提供了强大的API以及原生的Driver。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/05/30/selenium-wiki-frequently-asked-questions/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="url">
+                  selenium wiki:高级用户交互
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-05-30T19:56:00+08:00" content="2013-05-30">
+              2013-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/selenium-wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium-wiki</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="AdvancedUserInteractions-高级用户交互"><a href="#AdvancedUserInteractions-高级用户交互" class="headerlink" title="AdvancedUserInteractions(高级用户交互)"></a>AdvancedUserInteractions(高级用户交互)</h3><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>高级用户交互API提供了一个更新更完善的机制来定义并描述用户在一个网页上的各种操作。这些操作包括：拖拽、按住CTRL键选择多个元素等等。</p>
+<h4 id="开始（short-how-to）"><a href="#开始（short-how-to）" class="headerlink" title="开始（short how to）"></a>开始（short how to）</h4><p>为了生成一连串的动作，我们使用Actions来建立。首先，我们先配置操作：</p>
+<pre><code>Actions builder = new Actions(driver);
+
+builder.keyDown(Keys.CONTROL)
+.click(someElement)
+.click(someOtherElement)
+.keyUp(Keys.CONTROL);
+</code></pre><p>然后，获得操作（Action）:</p>
+<pre><code>Action selectMultiple = builder.build();
+</code></pre><p>最后，执行这个动作：</p>
+<pre><code>selectMultiple.perform();
+</code></pre><p>这一系列的动作应该尽量的短。在使用中最好在执行一个简短的动作后验证页面是否处于正确的状态，然后再执行下面的动作。下一节将会列出所有可用的动作（Action），并且说明它们如何进行扩展。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1017,266 +1152,6 @@
 <p><strong>警告：</strong> WebDriverJS 要求开发者习惯异步编程。对于那些 JavaScript 新手来说可能会发现 WebDriverJS 有点难上手。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/05/30/selenium-wiki-web-driver-js/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="url">
-                  selenium wiki:高级用户交互
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-05-30T19:56:00+08:00" content="2013-05-30">
-              2013-05-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/selenium-wiki/" itemprop="url" rel="index">
-                    <span itemprop="name">selenium-wiki</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>###AdvancedUserInteractions(高级用户交互)</p>
-<p>###入门<br>高级用户交互API提供了一个更新更完善的机制来定义并描述用户在一个网页上的各种操作。这些操作包括：拖拽、按住CTRL键选择多个元素等等。    </p>
-<p>####开始（short how to）<br>为了生成一连串的动作，我们使用Actions来建立。首先，我们先配置操作：   </p>
-<pre><code>Actions builder = new Actions(driver);
-
-builder.keyDown(Keys.CONTROL)
-.click(someElement)
-.click(someOtherElement)
-.keyUp(Keys.CONTROL);
-</code></pre><p>然后，获得操作（Action）:    </p>
-<pre><code>Action selectMultiple = builder.build();
-</code></pre><p>最后，执行这个动作：   </p>
-<pre><code>selectMultiple.perform();   
-</code></pre><p>这一系列的动作应该尽量的短。在使用中最好在执行一个简短的动作后验证页面是否处于正确的状态，然后再执行下面的动作。下一节将会列出所有可用的动作（Action），并且说明它们如何进行扩展。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="url">
-                  selenium文档:selenium WebDriver
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-05-30T19:55:00+08:00" content="2013-05-30">
-              2013-05-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/selenium官方文档/" itemprop="url" rel="index">
-                    <span itemprop="name">selenium官方文档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Selenium-WebDriver"><a href="#Selenium-WebDriver" class="headerlink" title="Selenium WebDriver"></a>Selenium WebDriver</h1><p>注意：本章内容官方团队正在完善中。</p>
-<h2 id="介绍-WebDriver"><a href="#介绍-WebDriver" class="headerlink" title="介绍 WebDriver"></a>介绍 WebDriver</h2><p>Selenium 2.0 最主要的一个新特性就是集成了 WebDriver API。WebDriver 提供更精简的编程几口，以解决 Selenium-RC API 中的一些限制。WebDriver 为那些页面元素可以不通过页面重新加载来更新的动态网页提供了更好的支持。WebDriver 的目标是提供一套精心设计的面向对象的 API 来更好的支持现代高级 web 应用的测试工作。</p>
-<h2 id="同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？"><a href="#同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？" class="headerlink" title="同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？"></a>同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？</h2><p>Selenium-WebDriver 直接通过浏览器自动化的本地接口来调用浏览器。如何直接调用，和调用的细节取决于你使用什么浏览器。本章后续的内容介绍了每个 “browser driver” 的详细信息。</p>
-<p>相比 Selenium-RC ，WebDriver 确实非常不一样。Selenium-RC 在所有支持的浏览器中工作原理是一样的。它将 JavaScript 在浏览器加载的时候注入浏览器，然后使用这些 JavaScript 驱动 AUT 运行 WebDriver 使用的是不同的技术，再一次强调，它是直接调用浏览器自动化的本地接口。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1526,6 +1401,131 @@ builder.keyDown(Keys.CONTROL)
 <h2 id="什么是-Selenium-Grid"><a href="#什么是-Selenium-Grid" class="headerlink" title="什么是 Selenium-Grid ?"></a>什么是 Selenium-Grid ?</h2><p>Selenium-Grid 允许你在多台机器的多个浏览器上并行的进行测试，也就是说，你可以同时运行多个测试。本质上来说就是，Selenium-Grid 支持分布式的测试执行。它可以让你的测试在一个分布式的执行环境中运行。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-grid/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="url">
+                  selenium文档:selenium WebDriver
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-05-30T19:55:00+08:00" content="2013-05-30">
+              2013-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/selenium官方文档/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium官方文档</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Selenium-WebDriver"><a href="#Selenium-WebDriver" class="headerlink" title="Selenium WebDriver"></a>Selenium WebDriver</h1><p>注意：本章内容官方团队正在完善中。</p>
+<h2 id="介绍-WebDriver"><a href="#介绍-WebDriver" class="headerlink" title="介绍 WebDriver"></a>介绍 WebDriver</h2><p>Selenium 2.0 最主要的一个新特性就是集成了 WebDriver API。WebDriver 提供更精简的编程几口，以解决 Selenium-RC API 中的一些限制。WebDriver 为那些页面元素可以不通过页面重新加载来更新的动态网页提供了更好的支持。WebDriver 的目标是提供一套精心设计的面向对象的 API 来更好的支持现代高级 web 应用的测试工作。</p>
+<h2 id="同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？"><a href="#同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？" class="headerlink" title="同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？"></a>同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？</h2><p>Selenium-WebDriver 直接通过浏览器自动化的本地接口来调用浏览器。如何直接调用，和调用的细节取决于你使用什么浏览器。本章后续的内容介绍了每个 “browser driver” 的详细信息。</p>
+<p>相比 Selenium-RC ，WebDriver 确实非常不一样。Selenium-RC 在所有支持的浏览器中工作原理是一样的。它将 JavaScript 在浏览器加载的时候注入浏览器，然后使用这些 JavaScript 驱动 AUT 运行 WebDriver 使用的是不同的技术，再一次强调，它是直接调用浏览器自动化的本地接口。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

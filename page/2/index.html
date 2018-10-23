@@ -481,10 +481,8 @@
 
       
         
-          <p>##Java7新特性</p>
-<p>###Java7语法特性<br>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
-<p>####1. switch可以消化String</p>
-<p>比如：</p>
+          <h2 id="Java7新特性"><a href="#Java7新特性" class="headerlink" title="Java7新特性"></a>Java7新特性</h2><h3 id="Java7语法特性"><a href="#Java7语法特性" class="headerlink" title="Java7语法特性"></a>Java7语法特性</h3><p>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
+<h4 id="1-switch可以消化String"><a href="#1-switch可以消化String" class="headerlink" title="1. switch可以消化String"></a>1. switch可以消化String</h4><p>比如：</p>
 <pre><code>public static void switchString(String s){
     switch (s){
     case &quot;db&quot;: ...
@@ -617,14 +615,12 @@
 
       
         
-          <p>###常用的excel操作工具</p>
-<ul>
+          <h3 id="常用的excel操作工具"><a href="#常用的excel操作工具" class="headerlink" title="常用的excel操作工具"></a>常用的excel操作工具</h3><ul>
 <li>Apache POI</li>
 <li>jexcelApi</li>
 </ul>
 <p>它们都提供了完善的API来支持EXCEL的读写。</p>
-<p>###jXLS是什么？</p>
-<p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
+<h3 id="jXLS是什么？"><a href="#jXLS是什么？" class="headerlink" title="jXLS是什么？"></a>jXLS是什么？</h3><p>jXLS是基于apache poi的一个扩展。它的功能就类似于jstl在servlet中的作用，你可以自定义一个模板，然后往里面放数据就OK了。</p>
 <p>jXLS的基本功能：</p>
 <ul>
 <li>支持Excel 95-2000的所有版本</li>
@@ -760,8 +756,7 @@
 
       
         
-          <p>###为什么使用quartz集群？</p>
-<p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
+          <h3 id="为什么使用quartz集群？"><a href="#为什么使用quartz集群？" class="headerlink" title="为什么使用quartz集群？"></a>为什么使用quartz集群？</h3><p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
 <p>####1.导入数据库表</p>
 <p>以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。</p>
 <p>注意事项：</p>
@@ -888,7 +883,7 @@
       
         
           
-            <p>###velocity在spring项目中的使用<br>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
+            <h3 id="velocity在spring项目中的使用"><a href="#velocity在spring项目中的使用" class="headerlink" title="velocity在spring项目中的使用"></a>velocity在spring项目中的使用</h3><p>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
 <pre><code>&lt;bean id=&quot;velocityEngine&quot; class=&quot;org.springframework.ui.velocity.VelocityEngineFactoryBean&quot;&gt;
     &lt;property name=&quot;configLocation&quot;&gt;
         &lt;value&gt;classpath:velocity.properties&lt;/value&gt;
@@ -897,7 +892,7 @@
         &lt;value&gt;/WEB-INF/velocity/&lt;/value&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
-</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：   </p>
+</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：</p>
 <pre><code>resource.loader  =  file
 
 file.resource.loader.description =  Velocity  File Resource Loader
@@ -912,8 +907,7 @@ output.encoding = utf-8
 <li>spring增强了file加载的能力，推荐使用<code>resourceLoaderPath</code>来指明路径，而不是交给<code>file.resource.loader.path</code>进行处理。如果使用这个可能会跑NullPointerException；</li>
 <li>class加载存在弊端，在生产环境classpath里的内容一旦加载就被缓存起来了，这导致velocity模板加载的cache机制失效。</li>
 </ul>
-<p>###关于Velocity使用的坑</p>
-<ul>
+<h3 id="关于Velocity使用的坑"><a href="#关于Velocity使用的坑" class="headerlink" title="关于Velocity使用的坑"></a>关于Velocity使用的坑</h3><ul>
 <li><p>关于减号（-）的问题</p>
 <blockquote>
 <p>请注意下面的2中写法<br><code>#set($maxIndex=$DOC_COUNT-1)</code>报错<br><code>#set($maxIndex=$DOC_COUNT - 1)</code>正确，区别仅在于-两侧的空格</p>
@@ -1212,7 +1206,7 @@ private static String getEncoding(String text) {
 
       
         
-          <p>###EL 表达式<br>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
+          <h3 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h3><p>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
 <p>Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。</p>
 <p>Standard-1.0 Taglib（JSTL1.0）支持Servlet2.3和JSP1.2规范，Web应用服务器Tomcat4支持这些规范，而它的发布也在Tomcat 4.1.24测试通过了。</p>
 <p>Standard-1.1 Taglib（JSTL1.1）支持Servlet2.4和JSP2.0规范，Web应用服务器Tomcat5支持这些规范，它的发布在Tomcat 5.0.3测试通过了。</p>
@@ -1348,8 +1342,7 @@ private static String getEncoding(String text) {
 
       
         
-          <p>###ut-maven-plugin简介</p>
-<p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
+          <h3 id="ut-maven-plugin简介"><a href="#ut-maven-plugin简介" class="headerlink" title="ut-maven-plugin简介"></a>ut-maven-plugin简介</h3><p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
 <p>也许，现在她还小，还不足够智能，智能到足以测试你的方法的所有业务逻辑。但是在将来，她将会越来越智能。帮你解决更多的单元测试问题，或者解决更多共性的问题。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/12/14/ut-maven-plugin/#more" rel="contents">
@@ -1473,15 +1466,13 @@ private static String getEncoding(String text) {
       
         
           <p>《程序员修炼之道-从小工到专家》写的具有普遍意义的指导方法。很少有具体的开发讲解，更多的是告诉你，作为一个程序员，你应该具有哪些素质，以及怎么做。下面是我对书中印象比较深的一些记录。</p>
-<p>###关于心态</p>
-<p>####石头汤与煮青蛙</p>
-<blockquote>
-<p>三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。  </p>
-<p>士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。   </p>
-<p>“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。<br>几分钟后，村民们又问：“就这些了吗？”    </p>
-<p>“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。    </p>
-<p>接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。    </p>
-<p>最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。   </p>
+<h3 id="关于心态"><a href="#关于心态" class="headerlink" title="关于心态"></a>关于心态</h3><h4 id="石头汤与煮青蛙"><a href="#石头汤与煮青蛙" class="headerlink" title="石头汤与煮青蛙"></a>石头汤与煮青蛙</h4><blockquote>
+<p>三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。</p>
+<p>士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。</p>
+<p>“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。<br>几分钟后，村民们又问：“就这些了吗？”</p>
+<p>“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。</p>
+<p>接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。</p>
+<p>最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。</p>
 </blockquote>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/#more" rel="contents">

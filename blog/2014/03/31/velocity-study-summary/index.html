@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="###velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
-&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFac">
+<meta name="description" content="velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
+&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFactor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Velocity学习小结">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="###velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
-&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFac">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.589Z">
+<meta property="og:description" content="velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
+&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFactor">
+<meta property="og:updated_time" content="2018-10-23T07:51:20.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Velocity学习小结">
-<meta name="twitter:description" content="###velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
-&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFac">
+<meta name="twitter:description" content="velocity在spring项目中的使用本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。首先，可以交给Spring来初始化velocityEngine:
+&amp;lt;bean id=&amp;quot;velocityEngine&amp;quot; class=&amp;quot;org.springframework.ui.velocity.VelocityEngineFactor">
 
 
 
@@ -352,7 +352,7 @@
       
 
       
-        <p>###velocity在spring项目中的使用<br>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
+        <h3 id="velocity在spring项目中的使用"><a href="#velocity在spring项目中的使用" class="headerlink" title="velocity在spring项目中的使用"></a>velocity在spring项目中的使用</h3><p>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
 <pre><code>&lt;bean id=&quot;velocityEngine&quot; class=&quot;org.springframework.ui.velocity.VelocityEngineFactoryBean&quot;&gt;
     &lt;property name=&quot;configLocation&quot;&gt;
         &lt;value&gt;classpath:velocity.properties&lt;/value&gt;
@@ -361,7 +361,7 @@
         &lt;value&gt;/WEB-INF/velocity/&lt;/value&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
-</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：   </p>
+</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：</p>
 <pre><code>resource.loader  =  file
 
 file.resource.loader.description =  Velocity  File Resource Loader
@@ -376,8 +376,7 @@ output.encoding = utf-8
 <li>spring增强了file加载的能力，推荐使用<code>resourceLoaderPath</code>来指明路径，而不是交给<code>file.resource.loader.path</code>进行处理。如果使用这个可能会跑NullPointerException；</li>
 <li>class加载存在弊端，在生产环境classpath里的内容一旦加载就被缓存起来了，这导致velocity模板加载的cache机制失效。</li>
 </ul>
-<p>###关于Velocity使用的坑</p>
-<ul>
+<h3 id="关于Velocity使用的坑"><a href="#关于Velocity使用的坑" class="headerlink" title="关于Velocity使用的坑"></a>关于Velocity使用的坑</h3><ul>
 <li><p>关于减号（-）的问题</p>
 <blockquote>
 <p>请注意下面的2中写法<br><code>#set($maxIndex=$DOC_COUNT-1)</code>报错<br><code>#set($maxIndex=$DOC_COUNT - 1)</code>正确，区别仅在于-两侧的空格</p>
@@ -608,7 +607,7 @@ output.encoding = utf-8
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#velocity在spring项目中的使用"><span class="nav-number">1.</span> <span class="nav-text">velocity在spring项目中的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于Velocity使用的坑"><span class="nav-number">2.</span> <span class="nav-text">关于Velocity使用的坑</span></a></li></ol></div>
             
           </div>
         </section>

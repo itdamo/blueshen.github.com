@@ -87,27 +87,27 @@
 
 
 <meta name="description" content="Jenkins是一款目前最为流行的持续集成工具，那么，如何让Karma的能集成到Jenkins，并自动执行呢？
-###前提条件###Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：   
+前提条件Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：
 
 Node
 Karma
 
-###配置Karma.conf.js文件###必须保证：
+配置Karma.conf.js文件必须保证：
 singleRun = true;
-只有这样，才能保证">
+只有这样，才能保证运行Test后，浏览器自动退出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Karma与Jenkins-CI集成">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/04/01/run-karma-in-jenkins-ci/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Jenkins是一款目前最为流行的持续集成工具，那么，如何让Karma的能集成到Jenkins，并自动执行呢？
-###前提条件###Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：   
+前提条件Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：
 
 Node
 Karma
 
-###配置Karma.conf.js文件###必须保证：
+配置Karma.conf.js文件必须保证：
 singleRun = true;
-只有这样，才能保证">
+只有这样，才能保证运行Test后，浏览器自动退出">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-jenkins-cobertura.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-jenkins-junit.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-jenkins-codecoverage.png">
@@ -116,18 +116,18 @@ singleRun = true;
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-jenkins-junit-report-detail.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-lcov-1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-lcov-2.png">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.574Z">
+<meta property="og:updated_time" content="2018-10-23T06:40:33.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Karma与Jenkins-CI集成">
 <meta name="twitter:description" content="Jenkins是一款目前最为流行的持续集成工具，那么，如何让Karma的能集成到Jenkins，并自动执行呢？
-###前提条件###Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：   
+前提条件Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：
 
 Node
 Karma
 
-###配置Karma.conf.js文件###必须保证：
+配置Karma.conf.js文件必须保证：
 singleRun = true;
-只有这样，才能保证">
+只有这样，才能保证运行Test后，浏览器自动退出">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/karma-jenkins-cobertura.png">
 
 
@@ -383,20 +383,20 @@ singleRun = true;
 
       
         <p>Jenkins是一款目前最为流行的持续集成工具，那么，如何让Karma的能集成到Jenkins，并自动执行呢？</p>
-<p>###前提条件###<br>Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：   </p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>Jenkins Server上（可以是Master，也许是Slave结点，总之在那个Server上跑，就需要安装），安装：</p>
 <ul>
 <li>Node</li>
 <li>Karma</li>
 </ul>
-<p>###配置Karma.conf.js文件###<br>必须保证：</p>
+<h3 id="配置Karma-conf-js文件"><a href="#配置Karma-conf-js文件" class="headerlink" title="配置Karma.conf.js文件"></a>配置Karma.conf.js文件</h3><p>必须保证：</p>
 <pre><code>singleRun = true;
 </code></pre><p>只有这样，才能保证运行Test后，浏览器自动退出，不影响下次执行。<br>在Jenkins中，也许你想查看测试结果，这个时候可以借助junit reporter。</p>
 <pre><code>reporters = [&apos;junit&apos;];
 junitReporter = {
       outputFile: &apos;test-results.xml&apos;
 };
-</code></pre><p>那么，Junit格式的测试结果就存到了test-results.xml中。    </p>
-<p>另外一种情况，我可能还想查看一下代码覆盖率。Karma也是支持的，要进行以下的配置：   </p>
+</code></pre><p>那么，Junit格式的测试结果就存到了test-results.xml中。</p>
+<p>另外一种情况，我可能还想查看一下代码覆盖率。Karma也是支持的，要进行以下的配置：</p>
 <pre><code>reporters = [&apos;coverage&apos;];
 
 preprocessors = {
@@ -408,24 +408,24 @@ coverageReporter = {
     dir : &apos;coverage/&apos;
 };
 </code></pre><p>这里，reporters指出了要生成coverage报告。preprocessors指明了要统计覆盖率的源码。coverageReporter里，指明type为cobertura，dir则是报告路径。type用多种选择，其中cobertura为Jenkins专属的。<br><a id="more"></a></p>
-<p>###一个Jenkins Job###<br>1.新建一个自由风格（freestyle）的Job即可。<br>2.Restrict where this project can be run 里面填好前提条件中的机器名。当然如果直接是在Master结点，这个可以忽略。<br>3.源码管理部分，填写repository url。<br>4.在构建里，直接填写<code>karma start</code>即可。<br>5.在构建后操作里。选择Publish Cobertura Coverage Report,并指定生成的XML地址。如下图：   </p>
+<h3 id="一个Jenkins-Job"><a href="#一个Jenkins-Job" class="headerlink" title="一个Jenkins Job"></a>一个Jenkins Job</h3><p>1.新建一个自由风格（freestyle）的Job即可。<br>2.Restrict where this project can be run 里面填好前提条件中的机器名。当然如果直接是在Master结点，这个可以忽略。<br>3.源码管理部分，填写repository url。<br>4.在构建里，直接填写<code>karma start</code>即可。<br>5.在构建后操作里。选择Publish Cobertura Coverage Report,并指定生成的XML地址。如下图：</p>
 <p><img src="/images/blog/karma-jenkins-cobertura.png" alt="karma-jenkins-cobertura"></p>
-<p>6.在构建后操作里。选择Publish JUnit test result report,同样指定report的XML路径。如图：   </p>
-<p><img src="/images/blog/karma-jenkins-junit.png" alt="karma-jenkins-junit">  </p>
-<p>###Jenkins运行结果###<br>Code Coverage结果：<br><img src="/images/blog/karma-jenkins-codecoverage.png" alt=""></p>
+<p>6.在构建后操作里。选择Publish JUnit test result report,同样指定report的XML路径。如图：</p>
+<p><img src="/images/blog/karma-jenkins-junit.png" alt="karma-jenkins-junit"></p>
+<h3 id="Jenkins运行结果"><a href="#Jenkins运行结果" class="headerlink" title="Jenkins运行结果"></a>Jenkins运行结果</h3><p>Code Coverage结果：<br><img src="/images/blog/karma-jenkins-codecoverage.png" alt=""></p>
 <p>点击进入后，可以看到具体的覆盖率情况：<br><img src="/images/blog/karma-jenkins-codecoverage-detail.png" alt=""></p>
-<p>JUnit结果：<br><img src="/images/blog/karma-jenkins-junit-report.png" alt="">  </p>
+<p>JUnit结果：<br><img src="/images/blog/karma-jenkins-junit-report.png" alt=""></p>
 <p>点进去后可以查看详细信息：<br><img src="/images/blog/karma-jenkins-junit-report-detail.png" alt=""></p>
-<p>###关于Coverage###<br>coverageReporter的类型有以下几种：   </p>
+<h3 id="关于Coverage"><a href="#关于Coverage" class="headerlink" title="关于Coverage"></a>关于Coverage</h3><p>coverageReporter的类型有以下几种：</p>
 <ul>
 <li>html (default)</li>
 <li>lcov (lcov and html)</li>
 <li>lcovonly</li>
 <li>text (standard output)</li>
 <li>text-summary (standard output)</li>
-<li>cobertura (xml format supported by Jenkins)   </li>
+<li>cobertura (xml format supported by Jenkins)</li>
 </ul>
-<p>Karma是使用<a href="http://gotwarlost.github.com/istanbul/" target="_blank" rel="external">istanbul</a>来生成报告的，上面在Jenkins种使用的cobertura类型。如果不在CI环境中，那么可以考虑使用lcon或者html类型，report也是相当好看呢。<br>以下是lcov类型的Coverage结果： </p>
+<p>Karma是使用<a href="http://gotwarlost.github.com/istanbul/" target="_blank" rel="external">istanbul</a>来生成报告的，上面在Jenkins种使用的cobertura类型。如果不在CI环境中，那么可以考虑使用lcon或者html类型，report也是相当好看呢。<br>以下是lcov类型的Coverage结果：</p>
 <p><img src="/images/blog/karma-lcov-1.png" alt=""></p>
 <p>而下面的结果，则指明了哪行源码被覆盖了。<br><img src="/images/blog/karma-lcov-2.png" alt=""></p>
 
@@ -655,7 +655,7 @@ coverageReporter = {
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Karma-conf-js文件"><span class="nav-number">2.</span> <span class="nav-text">配置Karma.conf.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个Jenkins-Job"><span class="nav-number">3.</span> <span class="nav-text">一个Jenkins Job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins运行结果"><span class="nav-number">4.</span> <span class="nav-text">Jenkins运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于Coverage"><span class="nav-number">5.</span> <span class="nav-text">关于Coverage</span></a></li></ol></div>
             
           </div>
         </section>

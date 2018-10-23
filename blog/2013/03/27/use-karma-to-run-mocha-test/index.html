@@ -86,22 +86,25 @@
 
 
 
-<meta name="description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
-##什么时候使用Karma？##">
+<meta name="description" content="从Testacular到Karma的变化2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+什么时候使用Karma？
+在真实浏览器里测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Karma来驱动mocha测试">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
-##什么时候使用Karma？##">
+<meta property="og:description" content="从Testacular到Karma的变化2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+什么时候使用Karma？
+在真实浏览器里测">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-chrome.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-node-server.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-node-run.png">
-<meta property="og:updated_time" content="2018-10-22T09:30:45.588Z">
+<meta property="og:updated_time" content="2018-10-23T07:49:32.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Karma来驱动mocha测试">
-<meta name="twitter:description" content="##从Testacular到Karma的变化##2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
-##什么时候使用Karma？##">
+<meta name="twitter:description" content="从Testacular到Karma的变化2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma
+什么时候使用Karma？
+在真实浏览器里测">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/karma-chrome.png">
 
 
@@ -356,9 +359,8 @@
       
 
       
-        <p>##从Testacular到Karma的变化##<br>2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。<br>安装：<br>    npm install -g karma</p>
-<p>##什么时候使用Karma？##</p>
-<ul>
+        <h2 id="从Testacular到Karma的变化"><a href="#从Testacular到Karma的变化" class="headerlink" title="从Testacular到Karma的变化"></a>从Testacular到Karma的变化</h2><p>2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。<br>安装：<br>    npm install -g karma</p>
+<h2 id="什么时候使用Karma？"><a href="#什么时候使用Karma？" class="headerlink" title="什么时候使用Karma？"></a>什么时候使用Karma？</h2><ul>
 <li>在真实浏览器里测试。</li>
 <li>在多种浏览器里进行测试（包括桌面、移动）。</li>
 <li>在本地开发环境执行测试。</li>
@@ -369,37 +371,37 @@
 <li>想使用Istanbul自动生成coverage报告。</li>
 <li>想在源码中使用RequireJS。</li>
 </ul>
-<p>##Karma不是Testing Framework##<br>Karma自从出现，就是一直作为一个Test Runner而存在的，只是用来驱动测试的框架。不过到目前为止，它支持以下流行的测试框架。  </p>
+<h2 id="Karma不是Testing-Framework"><a href="#Karma不是Testing-Framework" class="headerlink" title="Karma不是Testing Framework"></a>Karma不是Testing Framework</h2><p>Karma自从出现，就是一直作为一个Test Runner而存在的，只是用来驱动测试的框架。不过到目前为止，它支持以下流行的测试框架。</p>
 <ul>
 <li>Mocha</li>
 <li>Jasmine</li>
 <li><p>QUnit</p>
 <a id="more"></a>
-<p>##Karma与Test Framework集成##<br>Karma对各种Test Framework的支持是以插件的模式进行支持的。<br>只需要在karma.conf.js进行以下配置（mocha为例）：  </p>
+<h2 id="Karma与Test-Framework集成"><a href="#Karma与Test-Framework集成" class="headerlink" title="Karma与Test Framework集成"></a>Karma与Test Framework集成</h2><p>Karma对各种Test Framework的支持是以插件的模式进行支持的。<br>只需要在karma.conf.js进行以下配置（mocha为例）：</p>
 <p>  frameworks = [‘mocha’];</p>
-<p>  plugins = [<br>  ‘karma-mocha’<br>  ];<br>在此处只是配置了一下，具体支持的plugin要在当前目录下进行安装：    </p>
+<p>  plugins = [<br>  ‘karma-mocha’<br>  ];<br>在此处只是配置了一下，具体支持的plugin要在当前目录下进行安装：</p>
 <p>  npm install karma-mocha<br>其他框架依此类推。</p>
 </li>
 </ul>
-<p>##Karma报告##<br>Karma的报告（reporter）也是以插件模式进行的。 </p>
-<p>####JUnit Reporter####<br>首先，要定义reporter类型，在karma.conf.js添加：  </p>
+<h2 id="Karma报告"><a href="#Karma报告" class="headerlink" title="Karma报告"></a>Karma报告</h2><p>Karma的报告（reporter）也是以插件模式进行的。</p>
+<h4 id="JUnit-Reporter"><a href="#JUnit-Reporter" class="headerlink" title="JUnit Reporter"></a>JUnit Reporter</h4><p>首先，要定义reporter类型，在karma.conf.js添加：</p>
 <pre><code>reporters = [&apos;junit&apos;];
-</code></pre><p>如果想更近一步的话，可以配置一下报告的位置。   </p>
+</code></pre><p>如果想更近一步的话，可以配置一下报告的位置。</p>
 <pre><code>junitReporter = {
     outputFile: &apos;junit-report/test-results.xml&apos;
 };
-</code></pre><p>报告配置完了，自然要有依赖啊。执行<code>npm install karma-junit-reporter</code>来安装。然后在加上这个plugin:   </p>
+</code></pre><p>报告配置完了，自然要有依赖啊。执行<code>npm install karma-junit-reporter</code>来安装。然后在加上这个plugin:</p>
 <pre><code>plugins = [
     &apos;karma-junit-reporter&apos;
 ];
-</code></pre><p>####Coverage Reporter####<br>同JUnit Reporter一样，首先添加：  </p>
+</code></pre><h4 id="Coverage-Reporter"><a href="#Coverage-Reporter" class="headerlink" title="Coverage Reporter"></a>Coverage Reporter</h4><p>同JUnit Reporter一样，首先添加：</p>
 <pre><code>reporters = [&apos;coverage&apos;];
-</code></pre><p>进一步的配置coverage report:   </p>
+</code></pre><p>进一步的配置coverage report:</p>
 <pre><code>coverageReporter = {
     type : &apos;cobertura&apos;,
     dir : &apos;coverage/&apos;
 };
-</code></pre><p>其中，type用于指出报告类型；dir用于指出生成报告的存放目录。<br>type包括：  </p>
+</code></pre><p>其中，type用于指出报告类型；dir用于指出生成报告的存放目录。<br>type包括：</p>
 <ul>
 <li>html (default)</li>
 <li>lcov (lcov and html)</li>
@@ -408,13 +410,13 @@
 <li>text-summary (standard output)</li>
 <li>cobertura (xml format supported by Jenkins)</li>
 </ul>
-<p>下面，需要安装依赖<code>npm install karma-coverage</code>。并在配置文件内添加：  </p>
+<p>下面，需要安装依赖<code>npm install karma-coverage</code>。并在配置文件内添加：</p>
 <pre><code>plugins = [
     &apos;karma-coverage&apos;
 ];
-</code></pre><p>##创建一个样例##<br>1.执行‘karma init’,然后根据提示按Tab键进行相关选择。先生成一个默认的配置文件，这个是可以再修改的。    </p>
+</code></pre><h2 id="创建一个样例"><a href="#创建一个样例" class="headerlink" title="创建一个样例"></a>创建一个样例</h2><p>1.执行‘karma init’,然后根据提示按Tab键进行相关选择。先生成一个默认的配置文件，这个是可以再修改的。</p>
 <p>2.创建一个src文件夹，用于存放待测试的JS代码。然后在创建一个test文件夹，用于存放自己写的单元测试代码。</p>
-<p>3.以mocha为例，将mocha集成到karma中，使用karma来驱动测试。这需要在karma.conf.js里进行如下配置：  </p>
+<p>3.以mocha为例，将mocha集成到karma中，使用karma来驱动测试。这需要在karma.conf.js里进行如下配置：</p>
 <pre><code>// Karma configuration
 // Generated on Tue Mar 19 2013 20:46:08 GMT+0800 (CST)
 
@@ -516,11 +518,11 @@ plugins = [
 ];
 </code></pre><p>4.放入相应的代码到src以及test目录里。执行’karma start’命令, 浏览器将会被打开，然后执行相应的Test。效果如下图：<br><img src="/images/blog/karma-chrome.png" alt="Karma in Chrome"></p>
 <p>完整样例代码：<br><a href="https://github.com/blueshen/Karma-mocha-example" target="_blank" rel="external">https://github.com/blueshen/Karma-mocha-example</a></p>
-<p>##IntelliJ IDEA集成##<br>为了在项目中开发方便，那么在开发中集成到IDE中，会节省N多时间的。下面就先来说说于IDEA的集成。<br>1.安装NodeJS插件： Settings –&gt; IDE Settings –&gt; Plugins –&gt; Browse repositories –&gt; NodeJS  选中，然后右键Download and Install进行安装。重启后成功安装。<br>2.配置Karma Server: 从菜单Run –&gt; Edit Configurations… –&gt;点击 ‘+’新建一个Node.js类型的配置。出现以下的界面：<br><img src="/images/blog/karma-node-server.png" alt="karma-node-server"></p>
-<p>其中：<br>Name： 任意，本处为Karma node Server<br>Path to Node: node可执行全路径。$NODE_PATH/bin/node<br>Working Directory: 当前项目的跟路径<br>Path to Node App JS File: 此处为karma的可执行全路径。<br>Application Parameters: 要执行的命令，此处为start<br>Environment variables: 就是环境变量了。此处我定义了CHROME_BIN来指出CHROME浏览器路径。  </p>
+<h2 id="IntelliJ-IDEA集成"><a href="#IntelliJ-IDEA集成" class="headerlink" title="IntelliJ IDEA集成"></a>IntelliJ IDEA集成</h2><p>为了在项目中开发方便，那么在开发中集成到IDE中，会节省N多时间的。下面就先来说说于IDEA的集成。<br>1.安装NodeJS插件： Settings –&gt; IDE Settings –&gt; Plugins –&gt; Browse repositories –&gt; NodeJS  选中，然后右键Download and Install进行安装。重启后成功安装。<br>2.配置Karma Server: 从菜单Run –&gt; Edit Configurations… –&gt;点击 ‘+’新建一个Node.js类型的配置。出现以下的界面：<br><img src="/images/blog/karma-node-server.png" alt="karma-node-server"></p>
+<p>其中：<br>Name： 任意，本处为Karma node Server<br>Path to Node: node可执行全路径。$NODE_PATH/bin/node<br>Working Directory: 当前项目的跟路径<br>Path to Node App JS File: 此处为karma的可执行全路径。<br>Application Parameters: 要执行的命令，此处为start<br>Environment variables: 就是环境变量了。此处我定义了CHROME_BIN来指出CHROME浏览器路径。</p>
 <p>3.配置Karma run<br>同Karma Server，只是修改Application Parameters为run<br><img src="/images/blog/karma-node-run.png" alt="karma-node-run"></p>
-<p>配置成功后，运行Karma node Server可以看到浏览器就可以正常启动了。console也正确的输出。如同在terminal里执行一般。需要注意的是，本地开发时，需要将<code>singleRun=false</code>,也就是说执行完测试之后不退出。只有在CI环境下才用true。   </p>
-<p>在浏览器启动之后，如果修改了源代码，Test能否自动执行呢？可以将<code>autoWatch=true</code>,这样当你修改代码后，保存后能自动执行，方便开发了。如果‘autoWatch=false’了，那么这时间就要执行Karma run了，用于在Karma Server上重新执行。   </p>
+<p>配置成功后，运行Karma node Server可以看到浏览器就可以正常启动了。console也正确的输出。如同在terminal里执行一般。需要注意的是，本地开发时，需要将<code>singleRun=false</code>,也就是说执行完测试之后不退出。只有在CI环境下才用true。</p>
+<p>在浏览器启动之后，如果修改了源代码，Test能否自动执行呢？可以将<code>autoWatch=true</code>,这样当你修改代码后，保存后能自动执行，方便开发了。如果‘autoWatch=false’了，那么这时间就要执行Karma run了，用于在Karma Server上重新执行。</p>
 
       
     </div>
@@ -744,7 +746,7 @@ plugins = [
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从Testacular到Karma的变化"><span class="nav-number">1.</span> <span class="nav-text">从Testacular到Karma的变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候使用Karma？"><span class="nav-number">2.</span> <span class="nav-text">什么时候使用Karma？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karma不是Testing-Framework"><span class="nav-number">3.</span> <span class="nav-text">Karma不是Testing Framework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karma与Test-Framework集成"><span class="nav-number">4.</span> <span class="nav-text">Karma与Test Framework集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karma报告"><span class="nav-number">5.</span> <span class="nav-text">Karma报告</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JUnit-Reporter"><span class="nav-number">5.0.1.</span> <span class="nav-text">JUnit Reporter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Coverage-Reporter"><span class="nav-number">5.0.2.</span> <span class="nav-text">Coverage Reporter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个样例"><span class="nav-number">6.</span> <span class="nav-text">创建一个样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntelliJ-IDEA集成"><span class="nav-number">7.</span> <span class="nav-text">IntelliJ IDEA集成</span></a></li></ol></div>
             
           </div>
         </section>
