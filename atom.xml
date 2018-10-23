@@ -4,9 +4,9 @@
   <subtitle>搜索引擎、自然语言处理、ElasticSearch、Solr</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.shenyanchao.cn/"/>
+  <link href="https://www.shenyanchao.cn/"/>
   <updated>2018-10-22T09:30:45.548Z</updated>
-  <id>http://www.shenyanchao.cn/</id>
+  <id>https://www.shenyanchao.cn/</id>
   
   <author>
     <name>申艳超</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>关于接口定义的一些想法</title>
-    <link href="http://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/"/>
-    <id>http://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/</id>
+    <link href="https://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/"/>
+    <id>https://www.shenyanchao.cn/blog/2018/10/22/about-interface-define/</id>
     <published>2018-10-22T09:30:45.547Z</published>
     <updated>2018-10-22T09:30:45.548Z</updated>
     
@@ -43,21 +43,21 @@
     
     </summary>
     
-      <category term="java" scheme="http://www.shenyanchao.cn/categories/java/"/>
+      <category term="java" scheme="https://www.shenyanchao.cn/categories/java/"/>
     
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
-      <category term="restful" scheme="http://www.shenyanchao.cn/tags/restful/"/>
+      <category term="restful" scheme="https://www.shenyanchao.cn/tags/restful/"/>
     
-      <category term="interface" scheme="http://www.shenyanchao.cn/tags/interface/"/>
+      <category term="interface" scheme="https://www.shenyanchao.cn/tags/interface/"/>
     
   </entry>
   
   <entry>
     <title>微服务下的API设计原则</title>
-    <link href="http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
-    <id>http://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</id>
+    <link href="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
+    <id>https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</id>
     <published>2018-08-23T09:05:00.000Z</published>
     <updated>2018-10-22T09:30:45.584Z</updated>
     
@@ -388,21 +388,21 @@
     
     </summary>
     
-      <category term="encode" scheme="http://www.shenyanchao.cn/categories/encode/"/>
+      <category term="encode" scheme="https://www.shenyanchao.cn/categories/encode/"/>
     
     
-      <category term="微服务" scheme="http://www.shenyanchao.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+      <category term="微服务" scheme="https://www.shenyanchao.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
-      <category term="API" scheme="http://www.shenyanchao.cn/tags/API/"/>
+      <category term="API" scheme="https://www.shenyanchao.cn/tags/API/"/>
     
-      <category term="设计" scheme="http://www.shenyanchao.cn/tags/%E8%AE%BE%E8%AE%A1/"/>
+      <category term="设计" scheme="https://www.shenyanchao.cn/tags/%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>Spring Redis 注解式Cache那些事</title>
-    <link href="http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/"/>
-    <id>http://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/</id>
+    <link href="https://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/"/>
+    <id>https://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/</id>
     <published>2018-07-23T09:05:00.000Z</published>
     <updated>2018-10-22T09:30:45.582Z</updated>
     
@@ -958,21 +958,21 @@ public void clean(String name, byte[] pattern) {
     
     </summary>
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/categories/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/categories/spring/"/>
     
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
-      <category term="redis" scheme="http://www.shenyanchao.cn/tags/redis/"/>
+      <category term="redis" scheme="https://www.shenyanchao.cn/tags/redis/"/>
     
-      <category term="cache" scheme="http://www.shenyanchao.cn/tags/cache/"/>
+      <category term="cache" scheme="https://www.shenyanchao.cn/tags/cache/"/>
     
   </entry>
   
   <entry>
     <title>Restful Spring MVC</title>
-    <link href="http://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/"/>
-    <id>http://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/</id>
+    <link href="https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/"/>
+    <id>https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/</id>
     <published>2015-11-03T05:53:00.000Z</published>
     <updated>2018-10-22T09:30:45.573Z</updated>
     
@@ -1538,21 +1538,21 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
     
     </summary>
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/categories/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/categories/spring/"/>
     
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
-      <category term="restful" scheme="http://www.shenyanchao.cn/tags/restful/"/>
+      <category term="restful" scheme="https://www.shenyanchao.cn/tags/restful/"/>
     
-      <category term="mvc" scheme="http://www.shenyanchao.cn/tags/mvc/"/>
+      <category term="mvc" scheme="https://www.shenyanchao.cn/tags/mvc/"/>
     
   </entry>
   
   <entry>
     <title>关于C3P0容错和自动重连特性的研究</title>
-    <link href="http://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
-    <id>http://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/</id>
+    <link href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
+    <id>https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/</id>
     <published>2015-03-26T05:07:00.000Z</published>
     <updated>2018-10-22T09:30:45.552Z</updated>
     
@@ -1597,19 +1597,19 @@ acquireRetryDelay: 1000
     
     </summary>
     
-      <category term="c3p0" scheme="http://www.shenyanchao.cn/categories/c3p0/"/>
+      <category term="c3p0" scheme="https://www.shenyanchao.cn/categories/c3p0/"/>
     
     
-      <category term="c3p0" scheme="http://www.shenyanchao.cn/tags/c3p0/"/>
+      <category term="c3p0" scheme="https://www.shenyanchao.cn/tags/c3p0/"/>
     
-      <category term="dhcp" scheme="http://www.shenyanchao.cn/tags/dhcp/"/>
+      <category term="dhcp" scheme="https://www.shenyanchao.cn/tags/dhcp/"/>
     
   </entry>
   
   <entry>
     <title>如何在Solr中更好的处理同义词</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
     <published>2014-11-25T05:53:00.000Z</published>
     <updated>2018-10-22T09:30:45.550Z</updated>
     
@@ -1732,21 +1732,21 @@ pooch nibble
     
     </summary>
     
-      <category term="solr" scheme="http://www.shenyanchao.cn/categories/solr/"/>
+      <category term="solr" scheme="https://www.shenyanchao.cn/categories/solr/"/>
     
     
-      <category term="同义词" scheme="http://www.shenyanchao.cn/tags/%E5%90%8C%E4%B9%89%E8%AF%8D/"/>
+      <category term="同义词" scheme="https://www.shenyanchao.cn/tags/%E5%90%8C%E4%B9%89%E8%AF%8D/"/>
     
-      <category term="solr" scheme="http://www.shenyanchao.cn/tags/solr/"/>
+      <category term="solr" scheme="https://www.shenyanchao.cn/tags/solr/"/>
     
-      <category term="lucene" scheme="http://www.shenyanchao.cn/tags/lucene/"/>
+      <category term="lucene" scheme="https://www.shenyanchao.cn/tags/lucene/"/>
     
   </entry>
   
   <entry>
     <title>使用mahout对Sogou语料库进行分类</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
     <published>2014-11-14T05:26:00.000Z</published>
     <updated>2018-10-22T09:30:45.588Z</updated>
     
@@ -1802,23 +1802,23 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
     
     </summary>
     
-      <category term="mahout" scheme="http://www.shenyanchao.cn/categories/mahout/"/>
+      <category term="mahout" scheme="https://www.shenyanchao.cn/categories/mahout/"/>
     
     
-      <category term="mahout" scheme="http://www.shenyanchao.cn/tags/mahout/"/>
+      <category term="mahout" scheme="https://www.shenyanchao.cn/tags/mahout/"/>
     
-      <category term="sogou" scheme="http://www.shenyanchao.cn/tags/sogou/"/>
+      <category term="sogou" scheme="https://www.shenyanchao.cn/tags/sogou/"/>
     
-      <category term="ik-analyzer" scheme="http://www.shenyanchao.cn/tags/ik-analyzer/"/>
+      <category term="ik-analyzer" scheme="https://www.shenyanchao.cn/tags/ik-analyzer/"/>
     
-      <category term="ubuntu" scheme="http://www.shenyanchao.cn/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="https://www.shenyanchao.cn/tags/ubuntu/"/>
     
   </entry>
   
   <entry>
     <title>Linux中文件编码转换</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/</id>
     <published>2014-11-13T08:20:00.000Z</published>
     <updated>2018-10-22T09:30:45.556Z</updated>
     
@@ -1879,23 +1879,23 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
     
     </summary>
     
-      <category term="linux" scheme="http://www.shenyanchao.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.shenyanchao.cn/categories/linux/"/>
     
     
-      <category term="enca" scheme="http://www.shenyanchao.cn/tags/enca/"/>
+      <category term="enca" scheme="https://www.shenyanchao.cn/tags/enca/"/>
     
-      <category term="iconv" scheme="http://www.shenyanchao.cn/tags/iconv/"/>
+      <category term="iconv" scheme="https://www.shenyanchao.cn/tags/iconv/"/>
     
-      <category term="convmv" scheme="http://www.shenyanchao.cn/tags/convmv/"/>
+      <category term="convmv" scheme="https://www.shenyanchao.cn/tags/convmv/"/>
     
-      <category term="编码" scheme="http://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
+      <category term="编码" scheme="https://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
   </entry>
   
   <entry>
     <title>Hadoop1.2.1安装部署</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/</id>
     <published>2014-11-13T05:24:00.000Z</published>
     <updated>2018-10-22T09:30:45.561Z</updated>
     
@@ -2030,19 +2030,19 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     
     </summary>
     
-      <category term="hadoop" scheme="http://www.shenyanchao.cn/categories/hadoop/"/>
+      <category term="hadoop" scheme="https://www.shenyanchao.cn/categories/hadoop/"/>
     
     
-      <category term="hadoop" scheme="http://www.shenyanchao.cn/tags/hadoop/"/>
+      <category term="hadoop" scheme="https://www.shenyanchao.cn/tags/hadoop/"/>
     
-      <category term="linux" scheme="http://www.shenyanchao.cn/tags/linux/"/>
+      <category term="linux" scheme="https://www.shenyanchao.cn/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title>oryx介绍</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</id>
     <published>2014-11-11T11:31:00.000Z</published>
     <updated>2018-10-22T09:30:45.562Z</updated>
     
@@ -2072,21 +2072,21 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     
     </summary>
     
-      <category term="oryx" scheme="http://www.shenyanchao.cn/categories/oryx/"/>
+      <category term="oryx" scheme="https://www.shenyanchao.cn/categories/oryx/"/>
     
     
-      <category term="cloudera" scheme="http://www.shenyanchao.cn/tags/cloudera/"/>
+      <category term="cloudera" scheme="https://www.shenyanchao.cn/tags/cloudera/"/>
     
-      <category term="oryx" scheme="http://www.shenyanchao.cn/tags/oryx/"/>
+      <category term="oryx" scheme="https://www.shenyanchao.cn/tags/oryx/"/>
     
-      <category term="myrrix" scheme="http://www.shenyanchao.cn/tags/myrrix/"/>
+      <category term="myrrix" scheme="https://www.shenyanchao.cn/tags/myrrix/"/>
     
   </entry>
   
   <entry>
     <title>solr中的tie breaker</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</id>
     <published>2014-10-22T09:14:00.000Z</published>
     <updated>2018-10-22T09:30:45.585Z</updated>
     
@@ -2111,21 +2111,21 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     
     </summary>
     
-      <category term="solr" scheme="http://www.shenyanchao.cn/categories/solr/"/>
+      <category term="solr" scheme="https://www.shenyanchao.cn/categories/solr/"/>
     
     
-      <category term="solr" scheme="http://www.shenyanchao.cn/tags/solr/"/>
+      <category term="solr" scheme="https://www.shenyanchao.cn/tags/solr/"/>
     
-      <category term="lucene" scheme="http://www.shenyanchao.cn/tags/lucene/"/>
+      <category term="lucene" scheme="https://www.shenyanchao.cn/tags/lucene/"/>
     
-      <category term="tie" scheme="http://www.shenyanchao.cn/tags/tie/"/>
+      <category term="tie" scheme="https://www.shenyanchao.cn/tags/tie/"/>
     
   </entry>
   
   <entry>
     <title>Java新特性</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</id>
     <published>2014-08-27T06:43:00.000Z</published>
     <updated>2018-10-22T09:30:45.564Z</updated>
     
@@ -2687,19 +2687,19 @@ public class RepeatAnnotationUseNewVersion {
     
     </summary>
     
-      <category term="java" scheme="http://www.shenyanchao.cn/categories/java/"/>
+      <category term="java" scheme="https://www.shenyanchao.cn/categories/java/"/>
     
     
-      <category term="java7" scheme="http://www.shenyanchao.cn/tags/java7/"/>
+      <category term="java7" scheme="https://www.shenyanchao.cn/tags/java7/"/>
     
-      <category term="java8" scheme="http://www.shenyanchao.cn/tags/java8/"/>
+      <category term="java8" scheme="https://www.shenyanchao.cn/tags/java8/"/>
     
   </entry>
   
   <entry>
     <title>使用 jXLS导出报表</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/</id>
     <published>2014-06-24T07:17:00.000Z</published>
     <updated>2018-10-22T09:30:45.558Z</updated>
     
@@ -2790,23 +2790,23 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     
     </summary>
     
-      <category term="Java" scheme="http://www.shenyanchao.cn/categories/Java/"/>
+      <category term="Java" scheme="https://www.shenyanchao.cn/categories/Java/"/>
     
     
-      <category term="apache poi" scheme="http://www.shenyanchao.cn/tags/apache-poi/"/>
+      <category term="apache poi" scheme="https://www.shenyanchao.cn/tags/apache-poi/"/>
     
-      <category term="excel" scheme="http://www.shenyanchao.cn/tags/excel/"/>
+      <category term="excel" scheme="https://www.shenyanchao.cn/tags/excel/"/>
     
-      <category term="jXLS" scheme="http://www.shenyanchao.cn/tags/jXLS/"/>
+      <category term="jXLS" scheme="https://www.shenyanchao.cn/tags/jXLS/"/>
     
-      <category term="jxl" scheme="http://www.shenyanchao.cn/tags/jxl/"/>
+      <category term="jxl" scheme="https://www.shenyanchao.cn/tags/jxl/"/>
     
   </entry>
   
   <entry>
     <title>Spring中配置quartz集群</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/</id>
     <published>2014-06-24T07:10:00.000Z</published>
     <updated>2018-10-22T09:30:45.572Z</updated>
     
@@ -2944,21 +2944,21 @@ public class TestTask extends QuartzJobBean {
     
     </summary>
     
-      <category term="Java" scheme="http://www.shenyanchao.cn/categories/Java/"/>
+      <category term="Java" scheme="https://www.shenyanchao.cn/categories/Java/"/>
     
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
-      <category term="quartz" scheme="http://www.shenyanchao.cn/tags/quartz/"/>
+      <category term="quartz" scheme="https://www.shenyanchao.cn/tags/quartz/"/>
     
-      <category term="集群" scheme="http://www.shenyanchao.cn/tags/%E9%9B%86%E7%BE%A4/"/>
+      <category term="集群" scheme="https://www.shenyanchao.cn/tags/%E9%9B%86%E7%BE%A4/"/>
     
   </entry>
   
   <entry>
     <title>Velocity学习小结</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</id>
     <published>2014-03-31T08:24:00.000Z</published>
     <updated>2018-10-22T09:30:45.589Z</updated>
     
@@ -3008,19 +3008,19 @@ output.encoding = utf-8
     
     </summary>
     
-      <category term="velocity" scheme="http://www.shenyanchao.cn/categories/velocity/"/>
+      <category term="velocity" scheme="https://www.shenyanchao.cn/categories/velocity/"/>
     
     
-      <category term="spring" scheme="http://www.shenyanchao.cn/tags/spring/"/>
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
-      <category term="velocity" scheme="http://www.shenyanchao.cn/tags/velocity/"/>
+      <category term="velocity" scheme="https://www.shenyanchao.cn/tags/velocity/"/>
     
   </entry>
   
   <entry>
     <title>又见Java乱码</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/</id>
     <published>2014-03-27T13:43:00.000Z</published>
     <updated>2018-10-22T09:30:45.563Z</updated>
     
@@ -3149,23 +3149,23 @@ private static String getEncoding(String text) {
     
     </summary>
     
-      <category term="encode" scheme="http://www.shenyanchao.cn/categories/encode/"/>
+      <category term="encode" scheme="https://www.shenyanchao.cn/categories/encode/"/>
     
     
-      <category term="编码" scheme="http://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
+      <category term="编码" scheme="https://www.shenyanchao.cn/tags/%E7%BC%96%E7%A0%81/"/>
     
-      <category term="dom4j" scheme="http://www.shenyanchao.cn/tags/dom4j/"/>
+      <category term="dom4j" scheme="https://www.shenyanchao.cn/tags/dom4j/"/>
     
-      <category term="jenkins" scheme="http://www.shenyanchao.cn/tags/jenkins/"/>
+      <category term="jenkins" scheme="https://www.shenyanchao.cn/tags/jenkins/"/>
     
-      <category term="java" scheme="http://www.shenyanchao.cn/tags/java/"/>
+      <category term="java" scheme="https://www.shenyanchao.cn/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>JSTL介绍</title>
-    <link href="http://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
-    <id>http://www.shenyanchao.cn/blog/2014/03/18/use-jstl/</id>
+    <link href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
+    <id>https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/</id>
     <published>2014-03-18T10:49:00.000Z</published>
     <updated>2018-10-22T09:30:45.587Z</updated>
     
@@ -3622,19 +3622,19 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     
     </summary>
     
-      <category term="java" scheme="http://www.shenyanchao.cn/categories/java/"/>
+      <category term="java" scheme="https://www.shenyanchao.cn/categories/java/"/>
     
     
-      <category term="jstl" scheme="http://www.shenyanchao.cn/tags/jstl/"/>
+      <category term="jstl" scheme="https://www.shenyanchao.cn/tags/jstl/"/>
     
-      <category term="el" scheme="http://www.shenyanchao.cn/tags/el/"/>
+      <category term="el" scheme="https://www.shenyanchao.cn/tags/el/"/>
     
   </entry>
   
   <entry>
     <title>ut-maven-plugin</title>
-    <link href="http://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/"/>
-    <id>http://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</id>
+    <link href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/"/>
+    <id>https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</id>
     <published>2013-12-14T13:31:00.000Z</published>
     <updated>2018-10-22T09:30:45.589Z</updated>
     
@@ -3743,21 +3743,21 @@ Pet pet = clinicService.findPetById(1);
     
     </summary>
     
-      <category term="测试" scheme="http://www.shenyanchao.cn/categories/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="https://www.shenyanchao.cn/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="ast" scheme="http://www.shenyanchao.cn/tags/ast/"/>
+      <category term="ast" scheme="https://www.shenyanchao.cn/tags/ast/"/>
     
-      <category term="ut-maven-plugin" scheme="http://www.shenyanchao.cn/tags/ut-maven-plugin/"/>
+      <category term="ut-maven-plugin" scheme="https://www.shenyanchao.cn/tags/ut-maven-plugin/"/>
     
-      <category term="javaparser" scheme="http://www.shenyanchao.cn/tags/javaparser/"/>
+      <category term="javaparser" scheme="https://www.shenyanchao.cn/tags/javaparser/"/>
     
   </entry>
   
   <entry>
     <title>《程序员修炼之道》读书笔记</title>
-    <link href="http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/"/>
-    <id>http://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</id>
+    <link href="https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/"/>
+    <id>https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</id>
     <published>2013-12-04T07:45:00.000Z</published>
     <updated>2018-10-22T09:30:45.584Z</updated>
     
@@ -3823,17 +3823,17 @@ Pet pet = clinicService.findPetById(1);
     
     </summary>
     
-      <category term="开发" scheme="http://www.shenyanchao.cn/categories/%E5%BC%80%E5%8F%91/"/>
+      <category term="开发" scheme="https://www.shenyanchao.cn/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="读书笔记" scheme="http://www.shenyanchao.cn/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="https://www.shenyanchao.cn/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>SSH原理</title>
-    <link href="http://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/"/>
-    <id>http://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/</id>
+    <link href="https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/"/>
+    <id>https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/</id>
     <published>2013-11-26T08:04:00.000Z</published>
     <updated>2018-10-22T09:30:45.585Z</updated>
     
@@ -3893,12 +3893,12 @@ service ssh restart
     
     </summary>
     
-      <category term="linux" scheme="http://www.shenyanchao.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.shenyanchao.cn/categories/linux/"/>
     
     
-      <category term="ssh" scheme="http://www.shenyanchao.cn/tags/ssh/"/>
+      <category term="ssh" scheme="https://www.shenyanchao.cn/tags/ssh/"/>
     
-      <category term="linux" scheme="http://www.shenyanchao.cn/tags/linux/"/>
+      <category term="linux" scheme="https://www.shenyanchao.cn/tags/linux/"/>
     
   </entry>
   
