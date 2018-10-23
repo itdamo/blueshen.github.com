@@ -86,28 +86,28 @@
 
 
 
-<meta name="description" content="在写selenium自动化的过程中，经常会遇到这样的问题：   
+<meta name="description" content="在写selenium自动化的过程中，经常会遇到这样的问题：
 
 1.在同一个页面内做操作，比如点击某个按钮后，弹出一个框，再点击另外一个按钮，又弹出一个框2.此时如果第一个click操作后，第二个click再点击时，由于前一个弹出的框仍旧在前端显示，就会出错3.在实际人工操作中，点击出第一个框后，点击一下空白区域，在点击出现第二个框。因此，可以考虑一个点击空白区域的方法
 
-##实现方法如下12">
+实现方法如下1234567">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提高selenium自动化的稳定性1-点击空白区域">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-1/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="在写selenium自动化的过程中，经常会遇到这样的问题：   
+<meta property="og:description" content="在写selenium自动化的过程中，经常会遇到这样的问题：
 
 1.在同一个页面内做操作，比如点击某个按钮后，弹出一个框，再点击另外一个按钮，又弹出一个框2.此时如果第一个click操作后，第二个click再点击时，由于前一个弹出的框仍旧在前端显示，就会出错3.在实际人工操作中，点击出第一个框后，点击一下空白区域，在点击出现第二个框。因此，可以考虑一个点击空白区域的方法
 
-##实现方法如下12">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.851Z">
+实现方法如下1234567">
+<meta property="og:updated_time" content="2018-10-23T08:55:32.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提高selenium自动化的稳定性1-点击空白区域">
-<meta name="twitter:description" content="在写selenium自动化的过程中，经常会遇到这样的问题：   
+<meta name="twitter:description" content="在写selenium自动化的过程中，经常会遇到这样的问题：
 
 1.在同一个页面内做操作，比如点击某个按钮后，弹出一个框，再点击另外一个按钮，又弹出一个框2.此时如果第一个click操作后，第二个click再点击时，由于前一个弹出的框仍旧在前端显示，就会出错3.在实际人工操作中，点击出第一个框后，点击一下空白区域，在点击出现第二个框。因此，可以考虑一个点击空白区域的方法
 
-##实现方法如下12">
+实现方法如下1234567">
 
 
 
@@ -361,11 +361,11 @@
       
 
       
-        <p>在写selenium自动化的过程中，经常会遇到这样的问题：   </p>
+        <p>在写selenium自动化的过程中，经常会遇到这样的问题：</p>
 <blockquote>
 <p>1.在同一个页面内做操作，比如点击某个按钮后，弹出一个框，再点击另外一个按钮，又弹出一个框<br>2.此时如果第一个click操作后，第二个click再点击时，由于前一个弹出的框仍旧在前端显示，就会出错<br>3.在实际人工操作中，点击出第一个框后，点击一下空白区域，在点击出现第二个框。因此，可以考虑一个点击空白区域的方法</p>
 </blockquote>
-<p>##实现方法如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">/**</span></div><div class="line"> * 点击空白区域：坐标（0，0）</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clickBlankArea</span><span class="params">(WebDriver driver)</span> </span>&#123;</div><div class="line">	Actions actions = <span class="keyword">new</span> Actions(driver);</div><div class="line">	actions.moveByOffset(<span class="number">0</span>, <span class="number">0</span>).click().build().perform();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="实现方法如下"><a href="#实现方法如下" class="headerlink" title="实现方法如下"></a>实现方法如下</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">/**</span></div><div class="line"> * 点击空白区域：坐标（0，0）</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clickBlankArea</span><span class="params">(WebDriver driver)</span> </span>&#123;</div><div class="line">	Actions actions = <span class="keyword">new</span> Actions(driver);</div><div class="line">	actions.moveByOffset(<span class="number">0</span>, <span class="number">0</span>).click().build().perform();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>让driver先移动到一个空白位置（此处设为(0,0)坐标点），做一下点击操作即可</p>
 
       
@@ -532,7 +532,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -588,7 +588,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现方法如下"><span class="nav-number">1.</span> <span class="nav-text">实现方法如下</span></a></li></ol></div>
             
           </div>
         </section>

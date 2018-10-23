@@ -551,7 +551,7 @@
       
         
           
-            <p>####Maven如何依赖本地包？<br>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
+            <h4 id="Maven如何依赖本地包？"><a href="#Maven如何依赖本地包？" class="headerlink" title="Maven如何依赖本地包？"></a>Maven如何依赖本地包？</h4><p>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
     &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
@@ -560,7 +560,7 @@
     &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
 &lt;/dependency&gt;
 </code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
-<p>####如何将本地包打到war包内？<br>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
+<h4 id="如何将本地包打到war包内？"><a href="#如何将本地包打到war包内？" class="headerlink" title="如何将本地包打到war包内？"></a>如何将本地包打到war包内？</h4><p>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
@@ -696,14 +696,13 @@
 
       
         
-          <p>###CheckStyle基于antlr对源码进行处理</p>
-<ul>
+          <h3 id="CheckStyle基于antlr对源码进行处理"><a href="#CheckStyle基于antlr对源码进行处理" class="headerlink" title="CheckStyle基于antlr对源码进行处理"></a>CheckStyle基于antlr对源码进行处理</h3><ul>
 <li>antlr对AST解析</li>
 <li>使用Visitor模式</li>
 </ul>
 <p>主要是通过：</p>
 <pre><code>public int[] getDefaultTokens()
-</code></pre><p>指定要访问的节点类型。   </p>
+</code></pre><p>指定要访问的节点类型。</p>
 <pre><code>public void visitToken(DetailAST assignAST)
 </code></pre><p>指定如何处理节点，并进行规则校验。</p>
           <div class="post-more-link text-center">
@@ -1604,16 +1603,15 @@ and the repository exists.
 
       
         
-          <p>除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  </p>
-<p>下面介绍下如何做：   </p>
-<p>###准备工作</p>
-<p>1.添加source code management信息到pom.xml:</p>
+          <p>除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。</p>
+<p>下面介绍下如何做：</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.添加source code management信息到pom.xml:</p>
 <pre><code>&lt;scm&gt;
     &lt;connection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/connection&gt;
     &lt;developerConnection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/developerConnection&gt;
     &lt;url&gt;git@github.com:blueshen/ut-maven-plugin.git&lt;/url&gt;
 &lt;/scm&gt;
-</code></pre><p>2.创建GPG的密钥对并发布公钥。参看<a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven">Sonatype documentation</a>的具体步骤.推荐使用Linux,Mac来发布。    </p>
+</code></pre><p>2.创建GPG的密钥对并发布公钥。参看<a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven">Sonatype documentation</a>的具体步骤.推荐使用Linux,Mac来发布。</p>
 <blockquote>
 <p><code>gpg --gen-key</code> 创建key<br><code>gpg --list-keys</code> 查看所有的key<br><code>gpg --send-keys --keyserver pool.sks-keyservers.net yourkey</code>   发布你的key到服务器上</p>
 </blockquote>
@@ -1702,7 +1700,7 @@ and the repository exists.
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

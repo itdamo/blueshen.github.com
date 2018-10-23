@@ -86,7 +86,7 @@
 
 
 
-<meta name="description" content="##什么是代理？##代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：   
+<meta name="description" content="什么是代理？代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：
 
 静态代理
 动态代理">
@@ -94,14 +94,14 @@
 <meta property="og:title" content="设计模式：代理（Proxy） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/proxy-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##什么是代理？##代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：   
+<meta property="og:description" content="什么是代理？代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：
 
 静态代理
 动态代理">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.840Z">
+<meta property="og:updated_time" content="2018-10-23T08:55:30.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：代理（Proxy） in java">
-<meta name="twitter:description" content="##什么是代理？##代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：   
+<meta name="twitter:description" content="什么是代理？代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：
 
 静态代理
 动态代理">
@@ -358,13 +358,13 @@
       
 
       
-        <p>##什么是代理？##<br>代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。<br>代理，简单来分，可以分为以下两类：   </p>
+        <h2 id="什么是代理？"><a href="#什么是代理？" class="headerlink" title="什么是代理？"></a>什么是代理？</h2><p>代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。<br>代理，简单来分，可以分为以下两类：</p>
 <ul>
 <li>静态代理</li>
 <li>动态代理<a id="more"></a>
 </li>
 </ul>
-<p>##静态代理##<br>以实现两个数的加法场景为例：   </p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>以实现两个数的加法场景为例：</p>
 <pre><code>public interface IAdd {
     public int add(int a, int b);
 }
@@ -393,16 +393,16 @@ add.add(3, 14);
         return result;
     }
 }
-</code></pre><p>这样做，没有修改已有的类，并且增加了一些操作，此处为一些提示信息。采用了组合的方式，实现了代理模式。具体使用时，直接使用AddProxy即可。   </p>
+</code></pre><p>这样做，没有修改已有的类，并且增加了一些操作，此处为一些提示信息。采用了组合的方式，实现了代理模式。具体使用时，直接使用AddProxy即可。</p>
 <pre><code>IAdd add = new AddProxy(new Add());
 int result = add.add(3, 14);
-</code></pre><p>此为<strong>静态代理</strong>也。   </p>
-<p>##动态代理##<br>动态代理，是指运行时动态的生成代理类，完成功能。静态代理中，显然AddProxy是编译期已知的了。实现方式，主要有两种：   </p>
+</code></pre><p>此为<strong>静态代理</strong>也。</p>
+<p>##动态代理##<br>动态代理，是指运行时动态的生成代理类，完成功能。静态代理中，显然AddProxy是编译期已知的了。实现方式，主要有两种：</p>
 <ul>
 <li>JDK Proxy</li>
-<li>Cglib Proxy    </li>
+<li>Cglib Proxy</li>
 </ul>
-<p>###JDK Proxy###<br>Java自身提供了相关的类，来实现动态代理。<br>首先要定义一个<code>java.lang.reflect.InvocationHandler</code>接口实现   </p>
+<h3 id="JDK-Proxy"><a href="#JDK-Proxy" class="headerlink" title="JDK Proxy"></a>JDK Proxy</h3><p>Java自身提供了相关的类，来实现动态代理。<br>首先要定义一个<code>java.lang.reflect.InvocationHandler</code>接口实现</p>
 <pre><code>import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 /**
@@ -425,7 +425,7 @@ public class AddInvocationHandler implements InvocationHandler {
         return result;
     }
 }
-</code></pre><p>那么在具体使用时，代码如下：  </p>
+</code></pre><p>那么在具体使用时，代码如下：</p>
 <pre><code>AddInvocationHandler addHandler = new AddInvocationHandler();
 IAdd add = new Add();
 addHandler.bind(add);
@@ -433,8 +433,8 @@ IAdd addProxy = (IAdd) Proxy.newProxyInstance(
             Add.class.getClassLoader(), Add.class.getInterfaces(),
             addHandler);
 int jdkResult = addProxy.add(3, 14);
-</code></pre><p>从代码可见，主要是通过<code>Proxy.newProxyInstance</code>来在运行时生成代理类。需要注意的是，第二个参数必须使用具体实现类Add来获得interfaces，也就是说其代理的类必须实现了接口。<code>addHandler</code>负责绑定要代理的target类，并调用invoke来增强Add功能。  </p>
-<p>###Cglib Proxy###<br>JDK的动态代理机制只能代理实现了接口的类，而不能实现接口的类就不能实现JDK的动态代理，cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但因为采用的是继承，所以不能对final修饰的类进行代理。<br>要使用CgLib，首先要实现一个CallBack接口的类，由于本例是为了实现method的拦截，因此直接实现MethodInterceptor即可：  </p>
+</code></pre><p>从代码可见，主要是通过<code>Proxy.newProxyInstance</code>来在运行时生成代理类。需要注意的是，第二个参数必须使用具体实现类Add来获得interfaces，也就是说其代理的类必须实现了接口。<code>addHandler</code>负责绑定要代理的target类，并调用invoke来增强Add功能。</p>
+<p>###Cglib Proxy###<br>JDK的动态代理机制只能代理实现了接口的类，而不能实现接口的类就不能实现JDK的动态代理，cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但因为采用的是继承，所以不能对final修饰的类进行代理。<br>要使用CgLib，首先要实现一个CallBack接口的类，由于本例是为了实现method的拦截，因此直接实现MethodInterceptor即可：</p>
 <pre><code>import java.lang.reflect.Method;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -452,7 +452,7 @@ public Object intercept(Object obj, Method method, Object[] args,
         return result;
     }
 }
-</code></pre><p>具体使用时：  </p>
+</code></pre><p>具体使用时：</p>
 <pre><code>Enhancer enhancer = new Enhancer();
 enhancer.setSuperclass(Add.class);
 enhancer.setCallback(new AddInterceptor());
@@ -626,7 +626,7 @@ int result = add.add(3, 14);
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -682,7 +682,7 @@ int result = add.add(3, 14);
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是代理？"><span class="nav-number">1.</span> <span class="nav-text">什么是代理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态代理"><span class="nav-number">2.</span> <span class="nav-text">静态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-Proxy"><span class="nav-number">2.1.</span> <span class="nav-text">JDK Proxy</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

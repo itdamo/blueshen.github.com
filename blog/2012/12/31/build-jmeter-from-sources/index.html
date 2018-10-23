@@ -86,22 +86,22 @@
 
 
 
-<meta name="description" content="###获取Jmeter的源码###Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:   
+<meta name="description" content="获取Jmeter的源码Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:
 git clone git://github.com/apache/jmeter.git jmeter
-这">
+这样就把Jmeter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从源码编译构建Jmeter">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/12/31/build-jmeter-from-sources/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="###获取Jmeter的源码###Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:   
+<meta property="og:description" content="获取Jmeter的源码Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:
 git clone git://github.com/apache/jmeter.git jmeter
-这">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.816Z">
+这样就把Jmeter">
+<meta property="og:updated_time" content="2018-10-23T08:55:24.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从源码编译构建Jmeter">
-<meta name="twitter:description" content="###获取Jmeter的源码###Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:   
+<meta name="twitter:description" content="获取Jmeter的源码Jmeter源码可以从SVN REPO找到，地址：http://svn.apache.org/repos/asf/jmeter/trunk/从GIT上也是可以的。地址：https://github.com/apache/jmeterGit clone:
 git clone git://github.com/apache/jmeter.git jmeter
-这">
+这样就把Jmeter">
 
 
 
@@ -355,16 +355,17 @@ git clone git://github.com/apache/jmeter.git jmeter
       
 
       
-        <p>###获取Jmeter的源码###<br>Jmeter源码可以从SVN REPO找到，地址：<a href="http://svn.apache.org/repos/asf/jmeter/trunk/" target="_blank" rel="external">http://svn.apache.org/repos/asf/jmeter/trunk/</a><br>从GIT上也是可以的。地址：<a href="https://github.com/apache/jmeter" target="_blank" rel="external">https://github.com/apache/jmeter</a><br>Git clone:   </p>
+        <h3 id="获取Jmeter的源码"><a href="#获取Jmeter的源码" class="headerlink" title="获取Jmeter的源码"></a>获取Jmeter的源码</h3><p>Jmeter源码可以从SVN REPO找到，地址：<a href="http://svn.apache.org/repos/asf/jmeter/trunk/" target="_blank" rel="external">http://svn.apache.org/repos/asf/jmeter/trunk/</a><br>从GIT上也是可以的。地址：<a href="https://github.com/apache/jmeter" target="_blank" rel="external">https://github.com/apache/jmeter</a><br>Git clone:</p>
 <pre><code>git clone git://github.com/apache/jmeter.git jmeter
 </code></pre><p>这样就把Jmeter的源码给放到了本地的jmeter文件夹内。</p>
-<p>###配置并编译Jmeter###<br><a id="more"></a><br>进入Jmeter目录，有个build.xml文件，显然是用ant管理的。<br>此时，如果把项目import到eclipse内，会发现缺失很多依赖的jar包。此时不禁感叹，为啥不直接用maven管理呢，这样就不用管这些了。我第一次操作的时候害的我还去下载了一个最新的发行版本，然后从里面找各种依赖的jar包。后来发现，开发者已经为我们想到了这个。执行ant命令就可以直接下载：</p>
+<h3 id="配置并编译Jmeter"><a href="#配置并编译Jmeter" class="headerlink" title="配置并编译Jmeter"></a>配置并编译Jmeter</h3><a id="more"></a>
+<p>进入Jmeter目录，有个build.xml文件，显然是用ant管理的。<br>此时，如果把项目import到eclipse内，会发现缺失很多依赖的jar包。此时不禁感叹，为啥不直接用maven管理呢，这样就不用管这些了。我第一次操作的时候害的我还去下载了一个最新的发行版本，然后从里面找各种依赖的jar包。后来发现，开发者已经为我们想到了这个。执行ant命令就可以直接下载：</p>
 <pre><code>ant download_jars
 </code></pre><p>一段时间的等待后，各种jar包就下载好了。要耐心等待，这个过程要下载很多包的。</p>
-<p>接下来吗？直接执行：    </p>
+<p>接下来吗？直接执行：</p>
 <pre><code>ant install /ant clean install
 </code></pre><p>提示BUILD SUCCESSFUL,这就表明已经编译成功了。</p>
-<p>###运行Jmeter###<br>进入bin目录，执行jmeter.bat（windows）或者 ./jmeter（linux）,Jmeter的界面打开了，开始体验吧。   </p>
+<h3 id="运行Jmeter"><a href="#运行Jmeter" class="headerlink" title="运行Jmeter"></a>运行Jmeter</h3><p>进入bin目录，执行jmeter.bat（windows）或者 ./jmeter（linux）,Jmeter的界面打开了，开始体验吧。</p>
 
       
     </div>
@@ -530,7 +531,7 @@ git clone git://github.com/apache/jmeter.git jmeter
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -586,7 +587,7 @@ git clone git://github.com/apache/jmeter.git jmeter
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取Jmeter的源码"><span class="nav-number">1.</span> <span class="nav-text">获取Jmeter的源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置并编译Jmeter"><span class="nav-number">2.</span> <span class="nav-text">配置并编译Jmeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行Jmeter"><span class="nav-number">3.</span> <span class="nav-text">运行Jmeter</span></a></li></ol></div>
             
           </div>
         </section>

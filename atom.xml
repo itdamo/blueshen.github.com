@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shenyanchao.cn/"/>
-  <updated>2018-10-23T08:41:02.813Z</updated>
+  <updated>2018-10-23T08:57:54.889Z</updated>
   <id>https://www.shenyanchao.cn/</id>
   
   <author>
@@ -16,50 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于接口定义的一些想法</title>
-    <link href="https://www.shenyanchao.cn/blog/2018/10/23/about-interface-define/"/>
-    <id>https://www.shenyanchao.cn/blog/2018/10/23/about-interface-define/</id>
-    <published>2018-10-23T08:41:02.813Z</published>
-    <updated>2018-10-23T08:41:02.813Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
-<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
-<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
-<ul>
-<li>swagger-maven-plugin</li>
-<li>swagger-ui</li>
-</ul>
-<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
-<ul>
-<li>提前制定接口，方便联调</li>
-<li>提前规划返回接口类型，统一字段名称。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。&lt;/p&gt;
-&lt;h3 id=&quot;使用RESTFul接口&quot;&gt;&lt;a href=&quot;#使用RESTFul接口&quot; class=&quot;headerlink&quot; title=&quot;
-    
-    </summary>
-    
-      <category term="java" scheme="https://www.shenyanchao.cn/categories/java/"/>
-    
-    
-      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
-    
-      <category term="restful" scheme="https://www.shenyanchao.cn/tags/restful/"/>
-    
-      <category term="interface" scheme="https://www.shenyanchao.cn/tags/interface/"/>
-    
-  </entry>
-  
-  <entry>
     <title>微服务下的API设计原则</title>
     <link href="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
     <id>https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/</id>
     <published>2018-08-23T09:05:00.000Z</published>
-    <updated>2018-10-23T08:41:02.863Z</updated>
+    <updated>2018-10-23T08:57:54.889Z</updated>
     
     <content type="html"><![CDATA[<h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/" target="_blank" rel="external">Github API</a></p>
 <h2 id="1-为了安全，请使用HTTPS"><a href="#1-为了安全，请使用HTTPS" class="headerlink" title="1. 为了安全，请使用HTTPS"></a>1. 为了安全，请使用HTTPS</h2><p>与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。</p>
@@ -388,7 +349,7 @@
     
     </summary>
     
-      <category term="encode" scheme="https://www.shenyanchao.cn/categories/encode/"/>
+      <category term="微服务" scheme="https://www.shenyanchao.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
       <category term="微服务" scheme="https://www.shenyanchao.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
@@ -966,6 +927,45 @@ public void clean(String name, byte[] pattern) {
       <category term="redis" scheme="https://www.shenyanchao.cn/tags/redis/"/>
     
       <category term="cache" scheme="https://www.shenyanchao.cn/tags/cache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于接口定义的一些想法</title>
+    <link href="https://www.shenyanchao.cn/blog/2016/03/20/about-interface-define/"/>
+    <id>https://www.shenyanchao.cn/blog/2016/03/20/about-interface-define/</id>
+    <published>2016-03-20T02:43:00.000Z</published>
+    <updated>2018-10-23T08:56:52.106Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
+<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
+<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
+<ul>
+<li>swagger-maven-plugin</li>
+<li>swagger-ui</li>
+</ul>
+<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
+<ul>
+<li>提前制定接口，方便联调</li>
+<li>提前规划返回接口类型，统一字段名称。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。&lt;/p&gt;
+&lt;h3 id=&quot;使用RESTFul接口&quot;&gt;&lt;a href=&quot;#使用RESTFul接口&quot; class=&quot;headerlink&quot; title=&quot;
+    
+    </summary>
+    
+      <category term="java" scheme="https://www.shenyanchao.cn/categories/java/"/>
+    
+    
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
+    
+      <category term="restful" scheme="https://www.shenyanchao.cn/tags/restful/"/>
+    
+      <category term="interface" scheme="https://www.shenyanchao.cn/tags/interface/"/>
     
   </entry>
   
@@ -1607,19 +1607,17 @@ acquireRetryDelay: 1000
     <link href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
     <published>2014-11-25T05:53:00.000Z</published>
-    <updated>2018-10-23T08:41:02.815Z</updated>
+    <updated>2018-10-23T08:55:20.762Z</updated>
     
     <content type="html"><![CDATA[<p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
 <p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
 <p>叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。</p>
 <p>事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。</p>
 <a id="more"></a>
-<p>###The SynonymFilterFactory</p>
-<p>Solr提供了一个听起来很酷的SynonymFilterFactory,它可以接收一个逗号分割的同义词文本。你甚至可以选择同义词是相互扩展还是特定方向的替换。   </p>
+<h3 id="The-SynonymFilterFactory"><a href="#The-SynonymFilterFactory" class="headerlink" title="The SynonymFilterFactory"></a>The SynonymFilterFactory</h3><p>Solr提供了一个听起来很酷的SynonymFilterFactory,它可以接收一个逗号分割的同义词文本。你甚至可以选择同义词是相互扩展还是特定方向的替换。</p>
 <p>举例来说，你可以让“dog”，“hound”和“pooch”都扩展为“dog|hound|pooch”，或者你可以指定“dog”映射到“hound”，反过来却不可以，或者你可以把所有的词都转化为”dog“,Solr处理这部分是非常灵活的并且做的很棒。</p>
 <p>当你考虑是把SynonymFilterFactory放在查询分析器还是索引分析器时，这个问题就变得很复杂啦。</p>
-<p>###Index-time vs. query-time</p>
-<p>下图总结了查询时（query-time）和索引时（index-time）同义词扩展的基本差异。当然我们是为了解决solr中使用的问题，但是这2种方法适用于任何信息检索系统。</p>
+<h3 id="Index-time-vs-query-time"><a href="#Index-time-vs-query-time" class="headerlink" title="Index-time vs. query-time"></a>Index-time vs. query-time</h3><p>下图总结了查询时（query-time）和索引时（index-time）同义词扩展的基本差异。当然我们是为了解决solr中使用的问题，但是这2种方法适用于任何信息检索系统。</p>
 <p><img src="/images/blog/2014/index_vs_query_expansion2.png" alt="Index-time vs. query-time expansion."></p>
 <p>你的直观选择可能是将SynonymFilterFactory放在查询分析器内。理论上，这样做有以下优点：</p>
 <ul>
@@ -1635,20 +1633,20 @@ acquireRetryDelay: 1000
 </ul>
 <p>这有点复杂，因此也值得我们一一解决这些问题。</p>
 <p>###多字同义词并不能识别为短语查询</p>
-<p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词： </p>
+<p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词：</p>
 <pre><code>breast neoplasm
 breast neoplasms
 breast tumor
 breast tumors
 cancer of breast
 cancer of the breast
-</code></pre><p>因此在正常情况下，如果SynonymFilterFactory配置了<code>expand=&quot;true&quot;</code>,查询”breast cancer“就变成了： </p>
+</code></pre><p>因此在正常情况下，如果SynonymFilterFactory配置了<code>expand=&quot;true&quot;</code>,查询”breast cancer“就变成了：</p>
 <pre><code>+((breast breast breast breast breast cancer cancer) (cancer neoplasm neoplasms tumor tumors) breast breast)
 </code></pre><p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
 <p>然而，这也意味着，如果你正在做一个短语查询（比如”breast cancer“）,如果想生效，你的文档必须字面上匹配类似”breast cancer breast breast“这样的字符。</p>
 <p>啊？这里到底发生了什么？事实证明SynonymFilterFactory并没有按你所想来扩展多字同义词。直觉上，可能认为它表现为一个有限自动机，Solr构建出的结果可能类似这样(忽略复数)：</p>
 <p><img src="/images/blog/2014/graph11.png" alt=""></p>
-<p>但是，它真正构建的是下面这样的：   </p>
+<p>但是，它真正构建的是下面这样的：</p>
 <p><img src="/images/blog/2014/graph22.png" alt=""></p>
 <p>简直是一碗意大利面。</p>
 <p>你可怜的文档必须依序包含所有的4个部分。让人惊讶。</p>
@@ -1658,9 +1656,9 @@ cancer of the breast
 <pre><code>+(dog hound pooch)
 </code></pre><p>由于“hound”和”pooch“是比较少见的字，因此无论查询什么，包含这些字的文档会在查询结果中排名特别高。这对可怜的用户来说，简直是一个浩劫，为什么搜索”dog“的时候，会有那么多包含”hound“和”pooch“的怪异文档排名那么高。</p>
 <p>索引时扩展通过给”dog”,”hound”,”pooch”赋予相同的IDF值，而不管原始文档是什么。</p>
-<p>###多字同义词不会匹配查询<br>最后，也是最严重的是，如果你对用户查询做任意类型的分词，SynonymFilterFactory并不会匹配多字同义词。这是因为分词器会将用户输入分开，然后才交给SynonymFilterFactory来转换。  </p>
+<p>###多字同义词不会匹配查询<br>最后，也是最严重的是，如果你对用户查询做任意类型的分词，SynonymFilterFactory并不会匹配多字同义词。这是因为分词器会将用户输入分开，然后才交给SynonymFilterFactory来转换。</p>
 <p>比如，查询“cancer of the breast”会被StandardTokenizationFactory分词为[“cancer”,”of”,”the”,”breast]，并且只有独立的词才会传给SynonymFilterFactory。因此，在这种情况下，如果分词后的单个词，比如‘cancer“和”breast“都没有同义词的情况下，同义词扩展就压根不会发生。</p>
-<p>###其他问题<br>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。   </p>
+<p>###其他问题<br>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
 <p>当我搜索”breast cancer“的时候，我发现高亮器会很神奇的把”breast cancer X Y“给高亮了，其中”X“和”Y“是文档中任何跟在”breast cancer“后面的2个字符。例如，它可能会高亮”breast cancer frauds are“或者”breast cancer is to“。</p>
 <p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt=""></p>
 <p>看完这个<a href="https://issues.apache.org/jira/browse/SOLR-3390" target="_blank" rel="external">solr bug</a>,这和前面提到的Solr多字同义词扩展是一个原因。</p>
@@ -1671,7 +1669,7 @@ cancer of the breast
 <p>查询时扩展不会引起这个问题，因为Solr只扩展了查询，而不是文档。因此Lucene仍然认为查询的”cancer of the breast“只会匹配文档里的”breast cancer“。</p>
 <p>###总结</p>
 <p>所有这些古怪的问题，让我得出这样的结论：Solr内建的同义词扩展机制是及其糟糕的。我必须找出一个更好的方法来让Solr按我想的来运行。</p>
-<p>总之，无论是索引时扩展还是查询时扩展使用标准的SynonymFilterFactory都是不可行的，因为它们都有各自不同的问题。   </p>
+<p>总之，无论是索引时扩展还是查询时扩展使用标准的SynonymFilterFactory都是不可行的，因为它们都有各自不同的问题。</p>
 <p><strong>Index-time</strong></p>
 <ul>
 <li>索引爆炸</li>
@@ -1687,17 +1685,17 @@ cancer of the breast
 </ul>
 <p>我开始假设理想的同义词扩展系统应该是基于查询时的，由于基于索引的扩展有那么多固有的缺点。同时，我也意识到在Solr实现同义词扩展之前，有一个更加根本的问题需要解决。</p>
 <p>回到”dog“/“hound”/“pooch”的例子，对待3个词对等的是不明智的。在特定的查询中，”dog“可能并不与”hound“和”pooch“是一样的，比如 (e.g. “The Hound of the Baskervilles,” “The Itchy &amp; Scratchy &amp; Poochy Show”). 一视同仁感觉是错误的。</p>
-<p>同样的，即使使用官方推荐的索引时扩展，IDF权重也被抛弃了。每个包含”dog“的文章现在也都包含”pooch“，这意味着我们将永久的丢失关于”pooch“的真实IDF值。  </p>
-<p>在一个理想的系统里，搜索”dog“，返回的结果应该包含所有存在”hound“和”pooch“的文档，但是应该将所有包含真实查询的文档排的更靠前面，包含”dog“的应该得到更高的分。同样的，搜索“hound”应该把包含“hound”的排的更靠前面，搜索“pooch”就应该将包含“pooch”的更靠前。所有的3个搜索都返回相同的文档集，但是结果排序不一样。 </p>
+<p>同样的，即使使用官方推荐的索引时扩展，IDF权重也被抛弃了。每个包含”dog“的文章现在也都包含”pooch“，这意味着我们将永久的丢失关于”pooch“的真实IDF值。</p>
+<p>在一个理想的系统里，搜索”dog“，返回的结果应该包含所有存在”hound“和”pooch“的文档，但是应该将所有包含真实查询的文档排的更靠前面，包含”dog“的应该得到更高的分。同样的，搜索“hound”应该把包含“hound”的排的更靠前面，搜索“pooch”就应该将包含“pooch”的更靠前。所有的3个搜索都返回相同的文档集，但是结果排序不一样。</p>
 <p>###Solution</p>
 <p>我的解决方法是，把同义词扩展从分析器的Tokenizer链移动到QueryParser。不是把查询变成如上面的纵横交错的图，而是把它分为2个部分：主查询和同义词查询。然后我为每个部分独立配置权重，指定每个部分内部为“should occur”。最后将二者使用“must occur”的布尔查询包装起来。</p>
-<p>因此，搜索“dog”为被解析为类似这样：   </p>
+<p>因此，搜索“dog”为被解析为类似这样：</p>
 <pre><code>+((dog)^1.2 (hound pooch)^1.1)
 </code></pre><p>1.2和1.1是独立的权重，可以配置。文档必须包含“dog”,”hound”或者“pooch”，但是“dog”更优先显示。</p>
-<p>这样来处理同义词，带来了另一个有趣的副作用：它消除了短语查询不支持的问题。如果是“breast cancer”(带引号)，将会被解析为这样：   </p>
+<p>这样来处理同义词，带来了另一个有趣的副作用：它消除了短语查询不支持的问题。如果是“breast cancer”(带引号)，将会被解析为这样：</p>
 <pre><code>+((&quot;breast cancer&quot;)^1.2 ((&quot;breast neoplasm&quot;) (&quot;breast tumor&quot;) (&quot;cancer ? breast&quot;) (&quot;cancer ? ? breast&quot;))^1.1)
 </code></pre><p>(问号?的出现是由于停用词“of”和“the”)</p>
-<p>这意味着查询带引号的“breast cancer”会匹配所有包含“breast neoplasm,” “breast tumor,” “cancer of the breast,” and “cancer of breast.“字符的文档。  </p>
+<p>这意味着查询带引号的“breast cancer”会匹配所有包含“breast neoplasm,” “breast tumor,” “cancer of the breast,” and “cancer of breast.“字符的文档。</p>
 <p>我比原始的SynonymFilterFactory更进一步，针对一个特定的查询构建了所有可能的同义词组合查询。比如查询”dog bite“,同义词文件是：</p>
 <pre><code>dog,hound,pooch
 bite,nibble
@@ -1717,7 +1715,8 @@ pooch nibble
 
 ###尝试一下
 
-使用步骤见&lt;https://github.com/blueshen/hon-lucene-synonyms</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>—<br>原文：<a href="http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr/" target="_blank" rel="external">Better synonym handling in Solr</a><br><br>–&gt;]]></content>
+使用步骤见&lt;https://github.com/blueshen/hon-lucene-synonyms</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>—<br>原文：<a href="http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr/" target="_blank" rel="external">Better synonym handling in Solr</a><br><br>–&gt;
+]]></content>
     
     <summary type="html">
     
@@ -1888,32 +1887,30 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
     <link href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/</id>
     <published>2014-11-13T05:24:00.000Z</published>
-    <updated>2018-10-23T08:41:02.825Z</updated>
+    <updated>2018-10-23T08:55:28.041Z</updated>
     
-    <content type="html"><![CDATA[<p>###安装需求</p>
-<ul>
+    <content type="html"><![CDATA[<h3 id="安装需求"><a href="#安装需求" class="headerlink" title="安装需求"></a>安装需求</h3><ul>
 <li>Java 1.6</li>
 <li>ssh,sshd正常安装</li>
 </ul>
 <p>确保可以ssh到localhost，并且不需要密码</p>
 <pre><code>ssh localhost
-</code></pre><p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：  </p>
-<pre><code>ps -ef | grep sshd 
+</code></pre><p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
+<pre><code>ps -ef | grep sshd
 </code></pre><p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
 <pre><code>sudo apt-get install openssh-server
 </code></pre><p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
-<pre><code>ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+<pre><code>ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa
 cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 </code></pre><a id="more"></a>
-<p>###相关软件<br>Ubuntu Linux为例：</p>
-<pre><code>sudo apt-get install ssh 
+<h3 id="相关软件"><a href="#相关软件" class="headerlink" title="相关软件"></a>相关软件</h3><p>Ubuntu Linux为例：</p>
+<pre><code>sudo apt-get install ssh
 sudo apt-get install rsync
-</code></pre><p>###Hadoop下载<br>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
+</code></pre><h3 id="Hadoop下载"><a href="#Hadoop下载" class="headerlink" title="Hadoop下载"></a>Hadoop下载</h3><p>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
 <pre><code>wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
-</code></pre><p> ###启动Hadoop</p>
-<p> 1.解压<code>tar -xzvf hadoop-1.2.1.tar.gz</code>，进入conf/hadoop-env.sh，设置JAVA_HOME为你的JDK目录。</p>
+</code></pre><h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h3><p> 1.解压<code>tar -xzvf hadoop-1.2.1.tar.gz</code>，进入conf/hadoop-env.sh，设置JAVA_HOME为你的JDK目录。</p>
 <pre><code>export JAVA_HOME=/path/to/java/home
-</code></pre><p> 2.进入/hadoop-1.2.1目录，运行<code>bin\hadoop</code>,会显示hadoop的使用说明信息。 </p>
+</code></pre><p> 2.进入/hadoop-1.2.1目录，运行<code>bin\hadoop</code>,会显示hadoop的使用说明信息。</p>
 <pre><code>  Usage: hadoop [--config confdir] COMMAND
   where COMMAND is one of:
   namenode -format     format the DFS filesystem
@@ -1950,12 +1947,12 @@ Most commands print help when invoked w/o parameters.
 <li>伪分布(Pseudo-Distributed)式</li>
 <li>全分布(Full-Distributed)式</li>
 </ul>
-<p>####本地(Standalone)模式安装<br>  默认情况下，Hadoop就是单机本地模式。方便调试。<br>  下面是一个样例，复制conf目录到input作为输入，找出符合正则的文件，输出到output目录</p>
-<pre><code>$ mkdir input 
-$ cp conf/*.xml input 
-$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos; 
+<h4 id="本地-Standalone-模式安装"><a href="#本地-Standalone-模式安装" class="headerlink" title="本地(Standalone)模式安装"></a>本地(Standalone)模式安装</h4><p>  默认情况下，Hadoop就是单机本地模式。方便调试。<br>  下面是一个样例，复制conf目录到input作为输入，找出符合正则的文件，输出到output目录</p>
+<pre><code>$ mkdir input
+$ cp conf/*.xml input
+$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;
 $ cat output/*
-</code></pre><p>####伪分布(Pseudo-Distributed)式<br>配置conf/core-site.xml</p>
+</code></pre><h4 id="伪分布-Pseudo-Distributed-式"><a href="#伪分布-Pseudo-Distributed-式" class="headerlink" title="伪分布(Pseudo-Distributed)式"></a>伪分布(Pseudo-Distributed)式</h4><p>配置conf/core-site.xml</p>
 <pre><code>&lt;configuration&gt;
      &lt;property&gt;
          &lt;name&gt;fs.default.name&lt;/name&gt;
@@ -1992,30 +1989,29 @@ $ cat output/*
 <p>运行:<br>    $ bin/hadoop jar hadoop-examples-*.jar grep input output ‘dfs[a-z.]+’</p>
 <p>检查结果：</p>
 <p>拷贝output目录到本地并检查:<br>    $ bin/hadoop fs -get output output<br>    $ cat output/*</p>
-<p>或者直接在distributed filesystem查看: </p>
+<p>或者直接在distributed filesystem查看:</p>
 <pre><code>$ bin/hadoop fs -cat output/*
 </code></pre><p>使用完，可以这样来关闭：</p>
 <pre><code>$ bin/stop-all.sh
-</code></pre><p>####Hadoop分布式部署<br> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
+</code></pre><h4 id="Hadoop分布式部署"><a href="#Hadoop分布式部署" class="headerlink" title="Hadoop分布式部署"></a>Hadoop分布式部署</h4><p> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
 <hr>
 <p>参考文档：<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###安装需求&lt;/p&gt;
-&lt;ul&gt;
+      &lt;h3 id=&quot;安装需求&quot;&gt;&lt;a href=&quot;#安装需求&quot; class=&quot;headerlink&quot; title=&quot;安装需求&quot;&gt;&lt;/a&gt;安装需求&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Java 1.6&lt;/li&gt;
 &lt;li&gt;ssh,sshd正常安装&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;确保可以ssh到localhost，并且不需要密码&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ssh localhost
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。&lt;br&gt; 运行：  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ps -ef | grep sshd 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。&lt;br&gt; 运行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ps -ef | grep sshd
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;sudo apt-get install openssh-server
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后再执行&lt;code&gt;ssh localhost&lt;/code&gt;,如果不能无密码登陆，需要做一下操作：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssh-keygen -t dsa -P &amp;apos;&amp;apos; -f ~/.ssh/id_dsa 
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t dsa -P &amp;apos;&amp;apos; -f ~/.ssh/id_dsa
 cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
 &lt;/code&gt;&lt;/pre&gt;
     
@@ -2987,10 +2983,9 @@ output.encoding = utf-8
     <link href="https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/"/>
     <id>https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/</id>
     <published>2014-03-27T13:43:00.000Z</published>
-    <updated>2018-10-23T08:41:02.828Z</updated>
+    <updated>2018-10-23T08:55:29.619Z</updated>
     
-    <content type="html"><![CDATA[<p>###dom4j解析xml</p>
-<p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：  </p>
+    <content type="html"><![CDATA[<h3 id="dom4j解析xml"><a href="#dom4j解析xml" class="headerlink" title="dom4j解析xml"></a>dom4j解析xml</h3><p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：</p>
 <pre><code>public static Document parseText(String text) throws DocumentException {
     Document result = null;
 
@@ -3057,14 +3052,12 @@ private static String getEncoding(String text) {
 
 xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
 </code></pre><p>由此，一定要慎重使用编码。<strong>永远不要相信默认编码</strong>。</p>
-<p>###Jenkins/Hudson中shell command的编码</p>
-<p>遇到这样的情况，在jenkins的机器上直接执行shell命令，与在jenkins job中执行shell的默认编码是不一样的。机器上直接执行默认从环境变量里取的，但是jenkins job的编码是走的jenkins node上的默认编码配置。为了防止出现类似的问题，可以在jenkins job中提前指定特定的编码。</p>
+<h3 id="Jenkins-Hudson中shell-command的编码"><a href="#Jenkins-Hudson中shell-command的编码" class="headerlink" title="Jenkins/Hudson中shell command的编码"></a>Jenkins/Hudson中shell command的编码</h3><p>遇到这样的情况，在jenkins的机器上直接执行shell命令，与在jenkins job中执行shell的默认编码是不一样的。机器上直接执行默认从环境变量里取的，但是jenkins job的编码是走的jenkins node上的默认编码配置。为了防止出现类似的问题，可以在jenkins job中提前指定特定的编码。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###dom4j解析xml&lt;/p&gt;
-&lt;p&gt;dom4j提供了一个&lt;code&gt;DocumentHelper&lt;/code&gt;来解析xml内容，此处的内容是String类型的。下面是其源码：  &lt;/p&gt;
+      &lt;h3 id=&quot;dom4j解析xml&quot;&gt;&lt;a href=&quot;#dom4j解析xml&quot; class=&quot;headerlink&quot; title=&quot;dom4j解析xml&quot;&gt;&lt;/a&gt;dom4j解析xml&lt;/h3&gt;&lt;p&gt;dom4j提供了一个&lt;code&gt;DocumentHelper&lt;/code&gt;来解析xml内容，此处的内容是String类型的。下面是其源码：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;public static Document parseText(String text) throws DocumentException {
     Document result = null;
 
@@ -3793,60 +3786,59 @@ Pet pet = clinicService.findPetById(1);
     <link href="https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/"/>
     <id>https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/</id>
     <published>2013-11-26T08:04:00.000Z</published>
-    <updated>2018-10-23T08:41:02.864Z</updated>
+    <updated>2018-10-23T08:55:33.851Z</updated>
     
-    <content type="html"><![CDATA[<p>###一、什么是SSH？<br>简单说，SSH是一种网络协议，用于计算机之间的加密登录。   </p>
-<p>如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。   </p>
-<p>最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。   </p>
+    <content type="html"><![CDATA[<h3 id="一、什么是SSH？"><a href="#一、什么是SSH？" class="headerlink" title="一、什么是SSH？"></a>一、什么是SSH？</h3><p>简单说，SSH是一种网络协议，用于计算机之间的加密登录。</p>
+<p>如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。</p>
+<p>最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。</p>
 <p>需要指出的是，SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是OpenSSH，它是自由软件，应用非常广泛。<br><a id="more"></a></p>
-<p>###二、最基本的用法<br>SSH主要用于远程登录。假定你要以用户名user，登录远程主机host，只要一条简单命令就可以了。   </p>
+<h3 id="二、最基本的用法"><a href="#二、最基本的用法" class="headerlink" title="二、最基本的用法"></a>二、最基本的用法</h3><p>SSH主要用于远程登录。假定你要以用户名user，登录远程主机host，只要一条简单命令就可以了。</p>
 <pre><code>$ ssh user@host
-</code></pre><p>如果本地用户名与远程用户名一致，登录时可以省略用户名。   </p>
+</code></pre><p>如果本地用户名与远程用户名一致，登录时可以省略用户名。</p>
 <pre><code>$ ssh host
-</code></pre><p>SSH的默认端口是22，也就是说，你的登录请求会送进远程主机的22端口。使用p参数，可以修改这个端口。    </p>
-<p>　　$ ssh -p 2222 user@host </p>
-<p>上面这条命令表示，ssh直接连接远程主机的2222端口。     </p>
-<p>###三、中间人攻击<br>SSH之所以能够保证安全，原因在于它采用了公钥加密。   </p>
-<p>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。<br>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。    </p>
-<p>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的”中间人攻击”（Man-in-the-middle attack）。<br>SSH协议是如何应对的呢？    </p>
-<p>###四、口令登录<br>如果你是第一次登录对方主机，系统会出现下面的提示：   </p>
+</code></pre><p>SSH的默认端口是22，也就是说，你的登录请求会送进远程主机的22端口。使用p参数，可以修改这个端口。</p>
+<p>　　$ ssh -p 2222 user@host</p>
+<p>上面这条命令表示，ssh直接连接远程主机的2222端口。</p>
+<h3 id="三、中间人攻击"><a href="#三、中间人攻击" class="headerlink" title="三、中间人攻击"></a>三、中间人攻击</h3><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
+<p>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。<br>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
+<p>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的”中间人攻击”（Man-in-the-middle attack）。<br>SSH协议是如何应对的呢？</p>
+<h3 id="四、口令登录"><a href="#四、口令登录" class="headerlink" title="四、口令登录"></a>四、口令登录</h3><p>如果你是第一次登录对方主机，系统会出现下面的提示：</p>
 <pre><code>$ ssh user@host
 The authenticity of host &apos;host (12.18.429.21)&apos; can&apos;t be established.
 RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.
 Are you sure you want to continue connecting (yes/no)?
-</code></pre><p>这段话的意思是，无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？<br>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。<br>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。<br>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。     </p>
+</code></pre><p>这段话的意思是，无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？<br>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。<br>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。<br>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。</p>
 <pre><code>Are you sure you want to continue connecting (yes/no)? yes
-</code></pre><p>系统会出现一句提示，表示host主机已经得到认可。     </p>
+</code></pre><p>系统会出现一句提示，表示host主机已经得到认可。</p>
 <pre><code>Warning: Permanently added &apos;host,12.18.429.21&apos; (RSA) to the list of known hosts.
-</code></pre><p>然后，会要求输入密码。    </p>
+</code></pre><p>然后，会要求输入密码。</p>
 <pre><code>Password: (enter password)
-</code></pre><p>如果密码正确，就可以登录了。<br>当远程主机的公钥被接受以后，它就会被保存在文件$HOME/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。<br>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。    </p>
-<p>###五、公钥登录<br>使用密码登录，每次都必须输入密码，非常麻烦。好在SSH还提供了公钥登录，可以省去输入密码的步骤。<br>所谓”公钥登录”，原理很简单，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。<br>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个： </p>
+</code></pre><p>如果密码正确，就可以登录了。<br>当远程主机的公钥被接受以后，它就会被保存在文件$HOME/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。<br>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+<p>###五、公钥登录<br>使用密码登录，每次都必须输入密码，非常麻烦。好在SSH还提供了公钥登录，可以省去输入密码的步骤。<br>所谓”公钥登录”，原理很简单，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。<br>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
 <pre><code>$ ssh-keygen
-</code></pre><p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。    </p>
-<p>运行结束以后，在$HOME/.ssh/目录下，会新生成两个文件：id_rsa.pub和id_rsa。前者是你的公钥，后者是你的私钥。<br>这时再输入下面的命令，将公钥传送到远程主机host上面：  </p>
+</code></pre><p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
+<p>运行结束以后，在$HOME/.ssh/目录下，会新生成两个文件：id_rsa.pub和id_rsa。前者是你的公钥，后者是你的私钥。<br>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>
 <pre><code>$ ssh-copy-id user@host
-</code></pre><p>好了，从此你再登录，就不需要输入密码了。<br>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。      </p>
+</code></pre><p>好了，从此你再登录，就不需要输入密码了。<br>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。</p>
 <pre><code>RSAAuthentication yes
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
-</code></pre><p>然后，重启远程主机的ssh服务。    </p>
+</code></pre><p>然后，重启远程主机的ssh服务。</p>
 <pre><code>// ubuntu系统
 service ssh restart
 // debian系统
 /etc/init.d/ssh restart
-</code></pre><p>###六、authorized_keys文件</p>
-<p>远程主机将用户的公钥，保存在登录后的用户主目录的$HOME/.ssh/authorized_keys文件中。公钥就是一段字符串，只要把它追加在authorized_keys文件的末尾就行了。   </p>
-<p>这里不使用上面的ssh-copy-id命令，改用下面的命令，解释公钥的保存过程：   </p>
-<pre><code>$ ssh user@host &apos;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&apos; &lt; ~/.ssh/id_rsa.pub     
-</code></pre><p>这条命令由多个语句组成，依次分解开来看：<br>（1）<code>$ ssh user@host</code>，表示登录远程主机；<br>（2）单引号中的<code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令：<br>（3）<code>$ mkdir -p .ssh</code>的作用是，如果用户主目录中的.ssh目录不存在，就创建一个;<br>（4）<code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件<code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件authorized_keys的末尾。<br>写入authorized_keys文件后，公钥登录的设置就完成了。     </p>
+</code></pre><h3 id="六、authorized-keys文件"><a href="#六、authorized-keys文件" class="headerlink" title="六、authorized_keys文件"></a>六、authorized_keys文件</h3><p>远程主机将用户的公钥，保存在登录后的用户主目录的$HOME/.ssh/authorized_keys文件中。公钥就是一段字符串，只要把它追加在authorized_keys文件的末尾就行了。</p>
+<p>这里不使用上面的ssh-copy-id命令，改用下面的命令，解释公钥的保存过程：</p>
+<pre><code>$ ssh user@host &apos;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&apos; &lt; ~/.ssh/id_rsa.pub
+</code></pre><p>这条命令由多个语句组成，依次分解开来看：<br>（1）<code>$ ssh user@host</code>，表示登录远程主机；<br>（2）单引号中的<code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令：<br>（3）<code>$ mkdir -p .ssh</code>的作用是，如果用户主目录中的.ssh目录不存在，就创建一个;<br>（4）<code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件<code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件authorized_keys的末尾。<br>写入authorized_keys文件后，公钥登录的设置就完成了。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###一、什么是SSH？&lt;br&gt;简单说，SSH是一种网络协议，用于计算机之间的加密登录。   &lt;/p&gt;
-&lt;p&gt;如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。   &lt;/p&gt;
-&lt;p&gt;最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。   &lt;/p&gt;
+      &lt;h3 id=&quot;一、什么是SSH？&quot;&gt;&lt;a href=&quot;#一、什么是SSH？&quot; class=&quot;headerlink&quot; title=&quot;一、什么是SSH？&quot;&gt;&lt;/a&gt;一、什么是SSH？&lt;/h3&gt;&lt;p&gt;简单说，SSH是一种网络协议，用于计算机之间的加密登录。&lt;/p&gt;
+&lt;p&gt;如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。&lt;/p&gt;
+&lt;p&gt;最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。&lt;/p&gt;
 &lt;p&gt;需要指出的是，SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是OpenSSH，它是自由软件，应用非常广泛。&lt;br&gt;
     
     </summary>

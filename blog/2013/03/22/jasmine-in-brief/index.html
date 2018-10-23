@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="##jasmine测试框架简介##jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
-###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with">
+<meta name="description" content="jasmine测试框架简介jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
+###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with an e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jasmine 简介">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/22/jasmine-in-brief/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="##jasmine测试框架简介##jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
-###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.827Z">
+<meta property="og:description" content="jasmine测试框架简介jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
+###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with an e">
+<meta property="og:updated_time" content="2018-10-23T08:55:28.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jasmine 简介">
-<meta name="twitter:description" content="##jasmine测试框架简介##jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
-###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with">
+<meta name="twitter:description" content="jasmine测试框架简介jasmine是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。
+###jasmine的简单语法###一个基本的jasmine测试用例如下：    describe(“A suite”, function() {          it(“contains spec with an e">
 
 
 
@@ -352,18 +352,18 @@
       
 
       
-        <p>##jasmine测试框架简介##<br><strong>jasmine</strong>是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。</p>
-<p>###jasmine的简单语法###<br>一个基本的jasmine测试用例如下：<br>    describe(“A suite”, function() {<br>          it(“contains spec with an expectation”, function() {<br>        expect(true).toBe(true);<br>          });<br>    });   </p>
-<p>####describe方法####<br>describe方法标志着一个测试集(test suite)的开始，这个方法有两个参数，一个字符串String，一个方法function；字符串用来描述我们这个test suite，function里的东西就是测试代码，它们就是suite。<br><a id="more"></a></p>
-<p>####it方法####<br>jasmine中用方法it来开始specs（我理解成测试点，一个测试suite里可以有很多spec）。it方法和describe方法类似，同样有两个参数，一个String，一个function；String用来描述测试点（spec），function是具体的测试代码。一个测试点(spec)可以包含多个expections（其实是断言的意思）。 </p>
+        <h2 id="jasmine测试框架简介"><a href="#jasmine测试框架简介" class="headerlink" title="jasmine测试框架简介"></a>jasmine测试框架简介</h2><p><strong>jasmine</strong>是一种javascript测试框架，它既可以在html文件中运行，也可以和jsTestDriver整合，在jsTestDriver中运行。</p>
+<p>###jasmine的简单语法###<br>一个基本的jasmine测试用例如下：<br>    describe(“A suite”, function() {<br>          it(“contains spec with an expectation”, function() {<br>        expect(true).toBe(true);<br>          });<br>    });</p>
+<h4 id="describe方法"><a href="#describe方法" class="headerlink" title="describe方法"></a>describe方法</h4><p>describe方法标志着一个测试集(test suite)的开始，这个方法有两个参数，一个字符串String，一个方法function；字符串用来描述我们这个test suite，function里的东西就是测试代码，它们就是suite。<br><a id="more"></a></p>
+<h4 id="it方法"><a href="#it方法" class="headerlink" title="it方法"></a>it方法</h4><p>jasmine中用方法it来开始specs（我理解成测试点，一个测试suite里可以有很多spec）。it方法和describe方法类似，同样有两个参数，一个String，一个function；String用来描述测试点（spec），function是具体的测试代码。一个测试点(spec)可以包含多个expections（其实是断言的意思）。</p>
 <p>####expectations####<br>断言可以返回为true或者false。全部的断言返回true这个测试点就通过，一个或者多个断言返回false这个测试点就不通过。<br>describe和it都是方法，我们可以自定义一些变量，在describe中定义的变量，在it方法中可以直接使用。<br>    describe(“A suite is just a function”, function() {<br>    var a;</p>
 <pre><code>it(&quot;and so is a spec&quot;, function() {
     a = true;
 
     expect(a).toBe(true);
 });
-});  
-</code></pre><p>####Matchers####<br>一个一个的测试点们由expect开头，后面跟着一个我们需要测试的变量，如上面的a，然后跟着一个Matcher方法（我理解成校验规则），Matcher方法带着一个期望值，如上面的true。Matchers方法返回true或者false，它决定着测试点（spec）是否通过。所有的Matchers方法都能在mathcer前面加上not来进行否定断言，如`expect(a).not.toBe(true);  </p>
+});
+</code></pre><h4 id="Matchers"><a href="#Matchers" class="headerlink" title="Matchers"></a>Matchers</h4><p>一个一个的测试点们由expect开头，后面跟着一个我们需要测试的变量，如上面的a，然后跟着一个Matcher方法（我理解成校验规则），Matcher方法带着一个期望值，如上面的true。Matchers方法返回true或者false，它决定着测试点（spec）是否通过。所有的Matchers方法都能在mathcer前面加上not来进行否定断言，如`expect(a).not.toBe(true);</p>
 <p>jasmine中有很多Matchers方法供我们使用，当然我们也可以定义自己的Matchers方法。<br>    describe(“Included matchers:”, function() {</p>
 <pre><code>    it(&quot;The &apos;toBe&apos; matcher compares with ===&quot;, function() {
         var a = 12;
@@ -371,8 +371,8 @@
 
         expect(a).toBe(b);
         expect(a).not.toBe(null);
-      });  
-    //上面的例子，比较a、b是否相等；验证a是否不是空。 
+      });
+    //上面的例子，比较a、b是否相等；验证a是否不是空。
 
     it(&quot;should work for objects&quot;, function() {
           var foo = {
@@ -473,9 +473,9 @@ it(&quot;The &apos;toThrow&apos; matcher is for testing if a function throws an 
     expect(foo).not.toThrow();
     expect(bar).toThrow();
     });
-}); 
-//测试一个方法是否抛出异常  
-</code></pre><p>####Setup和Teardown方法####<br>为了代码简洁，减少重复性的工作，jasmine提供<code>beforeEach</code>和<code>afterEach</code>方法。<code>beforeEach</code>会在每个spec之前执行，<code>after</code>会在每个spec之后执行，类似于selenium中的<code>beforeMethod</code>和<code>afterMethod</code>方法。<br>    describe(“A spec (with setup and tear-down)”, function() {<br>          var foo;</p>
+});
+//测试一个方法是否抛出异常
+</code></pre><h4 id="Setup和Teardown方法"><a href="#Setup和Teardown方法" class="headerlink" title="Setup和Teardown方法"></a>Setup和Teardown方法</h4><p>为了代码简洁，减少重复性的工作，jasmine提供<code>beforeEach</code>和<code>afterEach</code>方法。<code>beforeEach</code>会在每个spec之前执行，<code>after</code>会在每个spec之后执行，类似于selenium中的<code>beforeMethod</code>和<code>afterMethod</code>方法。<br>    describe(“A spec (with setup and tear-down)”, function() {<br>          var foo;</p>
 <pre><code>      beforeEach(function() {
         foo = 1;
       });
@@ -492,14 +492,14 @@ it(&quot;The &apos;toThrow&apos; matcher is for testing if a function throws an 
         expect(foo).toEqual(1);
         expect(true).toEqual(true);
       });
-});  
-</code></pre><p>另外describe和it作为方法是可以嵌套的，也就是describe中可以出现子describe和it。  </p>
-<p>####禁用某些spec和suites####<br>在测试中，我们可能需要禁用一些suites和spec，方法是使用xdescribe和xit方法，这些测试的方法会被忽略，不计入统计结果。  </p>
-<p>####The Runner and Reporter####<br>Jasmine是用javascript实现的，所以它也必须在javascript的环境中运行，最简单的环境也就是一个web页面。所有的spec都可以在这个页面中运行，这个页面就叫做Runner。  </p>
-<p>Jasmine通过下面的js代码来展现spec运行结果：<br>    var htmlReporter = new jasmine.HtmlReporter(); //创建一个HTMLReporter<br>    jasmineEnv.addReporter(htmlReporter);  </p>
+});
+</code></pre><p>另外describe和it作为方法是可以嵌套的，也就是describe中可以出现子describe和it。</p>
+<p>####禁用某些spec和suites####<br>在测试中，我们可能需要禁用一些suites和spec，方法是使用xdescribe和xit方法，这些测试的方法会被忽略，不计入统计结果。</p>
+<p>####The Runner and Reporter####<br>Jasmine是用javascript实现的，所以它也必须在javascript的环境中运行，最简单的环境也就是一个web页面。所有的spec都可以在这个页面中运行，这个页面就叫做Runner。</p>
+<p>Jasmine通过下面的js代码来展现spec运行结果：<br>    var htmlReporter = new jasmine.HtmlReporter(); //创建一个HTMLReporter<br>    jasmineEnv.addReporter(htmlReporter);</p>
 <pre><code>jasmineEnv.specFilter = function(spec) {  //一个过滤器，允许我们点击单个的suites，单独运行
 return htmlReporter.specFilter(spec);
-};  
+};
 
 
   var currentWindowOnload = window.onload;   //页面加载完毕后，执行所有的test。
@@ -681,7 +681,7 @@ return htmlReporter.specFilter(spec);
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -737,7 +737,7 @@ return htmlReporter.specFilter(spec);
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jasmine测试框架简介"><span class="nav-number">1.</span> <span class="nav-text">jasmine测试框架简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#describe方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">describe方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#it方法"><span class="nav-number">1.0.2.</span> <span class="nav-text">it方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matchers"><span class="nav-number">1.0.3.</span> <span class="nav-text">Matchers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Setup和Teardown方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">Setup和Teardown方法</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

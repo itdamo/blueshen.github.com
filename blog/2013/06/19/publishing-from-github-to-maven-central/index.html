@@ -86,28 +86,25 @@
 
 
 
-<meta name="description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
-下面介绍下如何做：   
-###准备工作
-1.添加source code management信息到pom.xml:
-&amp;l">
+<meta name="description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。
+下面介绍下如何做：
+准备工作1.添加source code management信息到pom.xml:
+&amp;lt;scm&amp;gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从Github发布jar包到Maven Central">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/06/19/publishing-from-github-to-maven-central/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
-下面介绍下如何做：   
-###准备工作
-1.添加source code management信息到pom.xml:
-&amp;l">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.840Z">
+<meta property="og:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。
+下面介绍下如何做：
+准备工作1.添加source code management信息到pom.xml:
+&amp;lt;scm&amp;gt;">
+<meta property="og:updated_time" content="2018-10-23T08:55:31.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Github发布jar包到Maven Central">
-<meta name="twitter:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  
-下面介绍下如何做：   
-###准备工作
-1.添加source code management信息到pom.xml:
-&amp;l">
+<meta name="twitter:description" content="除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。
+下面介绍下如何做：
+准备工作1.添加source code management信息到pom.xml:
+&amp;lt;scm&amp;gt;">
 
 
 
@@ -361,23 +358,20 @@
       
 
       
-        <p>除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。  </p>
-<p>下面介绍下如何做：   </p>
-<p>###准备工作</p>
-<p>1.添加source code management信息到pom.xml:</p>
+        <p>除非你的项目是Apache或者Codehaus管理的，否则你是不可能直接把artifacts发布到Maven Central的。然而，Sonatype提供了它们的Nexus repositories,我们可以将开源项目提交上去，然后会自动同步到Maven Central。</p>
+<p>下面介绍下如何做：</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.添加source code management信息到pom.xml:</p>
 <pre><code>&lt;scm&gt;
     &lt;connection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/connection&gt;
     &lt;developerConnection&gt;scm:git:git@github.com:blueshen/ut-maven-plugin.git&lt;/developerConnection&gt;
     &lt;url&gt;git@github.com:blueshen/ut-maven-plugin.git&lt;/url&gt;
 &lt;/scm&gt;
-</code></pre><p>2.创建GPG的密钥对并发布公钥。参看<a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven" target="_blank" rel="external">Sonatype documentation</a>的具体步骤.推荐使用Linux,Mac来发布。    </p>
+</code></pre><p>2.创建GPG的密钥对并发布公钥。参看<a href="https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven" target="_blank" rel="external">Sonatype documentation</a>的具体步骤.推荐使用Linux,Mac来发布。</p>
 <blockquote>
 <p><code>gpg --gen-key</code> 创建key<br><code>gpg --list-keys</code> 查看所有的key<br><code>gpg --send-keys --keyserver pool.sks-keyservers.net yourkey</code>   发布你的key到服务器上</p>
 </blockquote>
 <p>3.确保你的工程POM符合<a href="https://docs.sonatype.org/display/Repository/Central+Sync+Requirements" target="_blank" rel="external">要求</a><br>4.创建一个<a href="https://issues.sonatype.org/" target="_blank" rel="external">Sonatype JIRA</a>账户，并发布一个ticket来让Nexus repository建立。用户名，密码后面要用的。这中间牵涉到人工操作，会花费一些时间。<br><a id="more"></a></p>
-<p>###使用Maven来发布到Sonatype Nexus repository</p>
-<p>####pom.xml配置有2种方法：   </p>
-<p>1.添加maven-release-plugin到pom.xml:</p>
+<h3 id="使用Maven来发布到Sonatype-Nexus-repository"><a href="#使用Maven来发布到Sonatype-Nexus-repository" class="headerlink" title="使用Maven来发布到Sonatype Nexus repository"></a>使用Maven来发布到Sonatype Nexus repository</h3><h4 id="pom-xml配置有2种方法："><a href="#pom-xml配置有2种方法：" class="headerlink" title="pom.xml配置有2种方法："></a>pom.xml配置有2种方法：</h4><p>1.添加maven-release-plugin到pom.xml:</p>
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
@@ -438,7 +432,7 @@
     &lt;artifactId&gt;oss-parent&lt;/artifactId&gt;
     &lt;version&gt;7&lt;/version&gt;
 &lt;/parent&gt;
-</code></pre><p>####maven settings.xml配置<br>编辑或者创建~/.m2/settings.xml并包含验证信息:</p>
+</code></pre><h4 id="maven-settings-xml配置"><a href="#maven-settings-xml配置" class="headerlink" title="maven settings.xml配置"></a>maven settings.xml配置</h4><p>编辑或者创建~/.m2/settings.xml并包含验证信息:</p>
 <pre><code>&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0
@@ -468,15 +462,13 @@
         &lt;/profile&gt;
     &lt;/profiles&gt;
 &lt;/settings&gt;
-</code></pre><p>Maven有一个<a href="http://maven.apache.org/guides/mini/guide-encryption.html" target="_blank" rel="external">避免使用明文的方法</a>,但我还没试用过。    </p>
-<p>###准备一个release版本    </p>
-<p>为了准备一个release版本, 执行:    </p>
-<pre><code>$ mvn release:clean    
+</code></pre><p>Maven有一个<a href="http://maven.apache.org/guides/mini/guide-encryption.html" target="_blank" rel="external">避免使用明文的方法</a>,但我还没试用过。</p>
+<h3 id="准备一个release版本"><a href="#准备一个release版本" class="headerlink" title="准备一个release版本"></a>准备一个release版本</h3><p>为了准备一个release版本, 执行:</p>
+<pre><code>$ mvn release:clean
 $ mvn release:prepare
 </code></pre><p><a href="http://maven.apache.org/plugins/maven-release-plugin/examples/prepare-release.html" target="_blank" rel="external">参考这个</a>.这里具体做了以下工作：如果你的工程的版本是0.1-SNAPSHOT. 准备一个发布版本会去掉-SNAPSHOT后缀，然后提交到github，并将这时的代码打一个tag。同时，更新本地项目到0.2-SNAPSHOT版本.</p>
 <p>如果你要撤销release,可以使用<code>git reset --hard HEAD~2</code>进行<a href="http://stackoverflow.com/a/6866485/150884" target="_blank" rel="external">回退</a>,使用<code>git tag -d ut-maven-plugin-0.1</code><a href="http://nathanhoad.net/how-to-delete-a-remote-git-tag" target="_blank" rel="external">删除Tag</a>,然后使用<code>git push origin :refs/tags/ut-maven-plugin-0.1</code>提交.</p>
-<p>###发布到Sonatype</p>
-<p>1.如果一切OK，你就可以使用<a href="http://maven.apache.org/plugins/maven-release-plugin/examples/perform-release.html" target="_blank" rel="external">mvn release:perform</a>来发布工程到Sonatype。<br>2.登录到Sonatype Nexus，在Staging Repositories找到你的artifacts。<br>3.点击close,关闭后，点击Release发布artifacts。Sonatype有一些<a href="https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt" target="_blank" rel="external">很好的指引</a>. 你可以使用<a href="http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html" target="_blank" rel="external">Maven repository management plugin</a>来自动化这些步骤,尽管我自己还没有试过。<br>4.在你的JIRA ticket下添加一个评论，说你已经推了release版本。下次Sonatype同步的时候，就会将你的artifacts放到Maven Central了。以后再发布新版本的时候，就不用添加评论了，会自动同步的。</p>
+<h3 id="发布到Sonatype"><a href="#发布到Sonatype" class="headerlink" title="发布到Sonatype"></a>发布到Sonatype</h3><p>1.如果一切OK，你就可以使用<a href="http://maven.apache.org/plugins/maven-release-plugin/examples/perform-release.html" target="_blank" rel="external">mvn release:perform</a>来发布工程到Sonatype。<br>2.登录到Sonatype Nexus，在Staging Repositories找到你的artifacts。<br>3.点击close,关闭后，点击Release发布artifacts。Sonatype有一些<a href="https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt" target="_blank" rel="external">很好的指引</a>. 你可以使用<a href="http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html" target="_blank" rel="external">Maven repository management plugin</a>来自动化这些步骤,尽管我自己还没有试过。<br>4.在你的JIRA ticket下添加一个评论，说你已经推了release版本。下次Sonatype同步的时候，就会将你的artifacts放到Maven Central了。以后再发布新版本的时候，就不用添加评论了，会自动同步的。</p>
 <p>参考文档<a href="http://datumedge.blogspot.jp/2012/05/publishing-from-github-to-maven-central.html" target="_blank" rel="external">http://datumedge.blogspot.jp/2012/05/publishing-from-github-to-maven-central.html</a></p>
 
       
@@ -645,7 +637,7 @@ $ mvn release:prepare
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -701,7 +693,7 @@ $ mvn release:prepare
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Maven来发布到Sonatype-Nexus-repository"><span class="nav-number">2.</span> <span class="nav-text">使用Maven来发布到Sonatype Nexus repository</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pom-xml配置有2种方法："><span class="nav-number">2.1.</span> <span class="nav-text">pom.xml配置有2种方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#maven-settings-xml配置"><span class="nav-number">2.2.</span> <span class="nav-text">maven settings.xml配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备一个release版本"><span class="nav-number">3.</span> <span class="nav-text">准备一个release版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布到Sonatype"><span class="nav-number">4.</span> <span class="nav-text">发布到Sonatype</span></a></li></ol></div>
             
           </div>
         </section>

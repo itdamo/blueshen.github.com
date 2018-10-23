@@ -86,28 +86,28 @@
 
 
 
-<meta name="description" content="####Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
+<meta name="description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;g">
+    &amp;lt;version&amp;gt;3.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven如何打包本地依赖包">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/11/20/how-package-system-dependency-lib-in-maven/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="####Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
+<meta property="og:description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;g">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.824Z">
+    &amp;lt;version&amp;gt;3.">
+<meta property="og:updated_time" content="2018-10-23T08:54:28.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven如何打包本地依赖包">
-<meta name="twitter:description" content="####Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
+<meta name="twitter:description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
 &amp;lt;dependency&amp;gt;
     &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
     &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;g">
+    &amp;lt;version&amp;gt;3.">
 
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <p>####Maven如何依赖本地包？<br>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
+        <h4 id="Maven如何依赖本地包？"><a href="#Maven如何依赖本地包？" class="headerlink" title="Maven如何依赖本地包？"></a>Maven如何依赖本地包？</h4><p>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
     &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
@@ -370,7 +370,7 @@
     &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
 &lt;/dependency&gt;
 </code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
-<p>####如何将本地包打到war包内？<br>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
+<h4 id="如何将本地包打到war包内？"><a href="#如何将本地包打到war包内？" class="headerlink" title="如何将本地包打到war包内？"></a>如何将本地包打到war包内？</h4><p>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
@@ -553,7 +553,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -609,7 +609,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven如何依赖本地包？"><span class="nav-number">1.</span> <span class="nav-text">Maven如何依赖本地包？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何将本地包打到war包内？"><span class="nav-number">2.</span> <span class="nav-text">如何将本地包打到war包内？</span></a></li></ol></div>
             
           </div>
         </section>
