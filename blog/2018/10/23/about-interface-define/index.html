@@ -68,12 +68,10 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="搜索引擎,自然语言处理,ElasticSearch,Lucene,Solr,申艳超,shenyanchao" />
+  <meta name="keywords" content="spring,restful,interface," />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
@@ -88,16 +86,22 @@
 
 
 
-<meta name="description" content="404 | Blues小站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="申艳超-博客">
-<meta property="og:url" content="https://www.shenyanchao.cn/404.html">
+<meta name="description" content="最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。
+使用RESTFul接口RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.
+解决接口联调的苦难作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于接口定义的一些想法">
+<meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/10/23/about-interface-define/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="404 | Blues小站">
-<meta property="og:updated_time" content="2018-10-23T08:36:10.108Z">
+<meta property="og:description" content="最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。
+使用RESTFul接口RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.
+解决接口联调的苦难作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况">
+<meta property="og:updated_time" content="2018-10-23T08:36:10.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="申艳超-博客">
-<meta name="twitter:description" content="404 | Blues小站">
+<meta name="twitter:title" content="关于接口定义的一些想法">
+<meta name="twitter:description" content="最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。
+使用RESTFul接口RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.
+解决接口联调的苦难作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况">
 
 
 
@@ -115,13 +119,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-     | 申艳超-博客
-  
-</title>
+  <title> 关于接口定义的一些想法 | 申艳超-博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -152,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,19 +270,197 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-          <html>
-    <head>   
-        <meta charset="UTF-8">
-        <title>404 | Blues小站</title>
-    </head>
-    <body>
-    <br>
-    <br><script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8"></script><br>
-    <br>
-    </body>
-    </html>
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于接口定义的一些想法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-23T16:36:10+08:00" content="2018-10-23">
+              2018-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2018/10/23/about-interface-define/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2018/10/23/about-interface-define/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近公司内项目，需要开发接口给ios,android客户端去调用。因此，做了一些思考，主要是关于如何更好的定义接口以及联调。</p>
+<h3 id="使用RESTFul接口"><a href="#使用RESTFul接口" class="headerlink" title="使用RESTFul接口"></a>使用RESTFul接口</h3><p>RESTFul接口作为一个通行的标准，当然是优先使用的。项目都是基于Spring的，因此采用的是Spring MVC.</p>
+<h3 id="解决接口联调的苦难"><a href="#解决接口联调的苦难" class="headerlink" title="解决接口联调的苦难"></a>解决接口联调的苦难</h3><p>作为一个技术人员，写文档是一大令人头疼的事情。况且即使把文档写好了，也可能导致在以后的修修补补中，导致不一致的情况。<br>因此，考虑采用文档自动生成的方式。最终选用了Swagger<wwww.swagger.io>来自动为Spring MVC生成文档。</wwww.swagger.io></p>
+<ul>
+<li>swagger-maven-plugin</li>
+<li>swagger-ui</li>
+</ul>
+<h3 id="项目中遇到的一些教训"><a href="#项目中遇到的一些教训" class="headerlink" title="项目中遇到的一些教训"></a>项目中遇到的一些教训</h3><p>作为技术负责人</p>
+<ul>
+<li>提前制定接口，方便联调</li>
+<li>提前规划返回接口类型，统一字段名称。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag">#spring</a>
+          
+            <a href="/tags/restful/" rel="tag">#restful</a>
+          
+            <a href="/tags/interface/" rel="tag">#interface</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/" rel="next" title="微服务下的API设计原则">
+                <i class="fa fa-chevron-left"></i> 微服务下的API设计原则
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -323,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars0.githubusercontent.com/u/2255020?v=3&s=460"
@@ -392,6 +577,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RESTFul接口"><span class="nav-number">1.</span> <span class="nav-text">使用RESTFul接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决接口联调的苦难"><span class="nav-number">2.</span> <span class="nav-text">解决接口联调的苦难</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目中遇到的一些教训"><span class="nav-number">3.</span> <span class="nav-text">项目中遇到的一些教训</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -495,6 +691,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
@@ -511,9 +711,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'blueshen';
-      var disqus_identifier = '404.html';
-      var disqus_title = '';
-      var disqus_url = 'https://www.shenyanchao.cn/404.html';
+      var disqus_identifier = 'blog/2018/10/23/about-interface-define/';
+      var disqus_title = '关于接口定义的一些想法';
+      var disqus_url = 'https://www.shenyanchao.cn/blog/2018/10/23/about-interface-define/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
