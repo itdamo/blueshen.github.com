@@ -974,7 +974,7 @@ public void clean(String name, byte[] pattern) {
     <link href="https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/"/>
     <id>https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/</id>
     <published>2015-11-03T05:53:00.000Z</published>
-    <updated>2018-10-23T08:41:02.843Z</updated>
+    <updated>2018-10-23T08:57:11.266Z</updated>
     
     <content type="html"><![CDATA[<p>Spring MVC本身对Restful支持非常好。它的<code>@RequestMapping</code>、<code>@RequestParam</code>、<code>@PathVariable</code>、<code>@ResponseBody</code>注解很好的支持了REST。<a href="http://static.springsource.org/spring/docs/3.0.0.M3/reference/html/ch18s02.html" target="_blank" rel="external">18.2 Creating RESTful services</a></p>
 <h3 id="1-RequestMapping"><a href="#1-RequestMapping" class="headerlink" title="1. @RequestMapping"></a>1. <code>@RequestMapping</code></h3><p>Spring uses the @RequestMapping method annotation to define the URI Template for the request. 类似于struts的action-mapping。 可以指定POST或者GET。</p>
