@@ -800,133 +800,6 @@ if (book != null) {
             
               
                 
-                <a class="post-title-link" href="/blog/2012/11/02/interpreter-in-java/" itemprop="url">
-                  设计模式：解释器（interpreter） in java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:09:00+08:00" content="2012-11-02">
-              2012-11-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/interpreter-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/interpreter-in-java/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>定义：</strong>解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。    </p>
-<p>解释器模式有以下几个角色：    </p>
-<ul>
-<li>AbstractExpression抽象解释器<br>具体的解释任务由各个实现类完成。</li>
-<li>TerminalExpression终结符表达式<br>实现与文法中的元素相关联的解释操作，通常一个解释器模式中只有一个终结符表达式，但有多个实例，对应不同的终结符。</li>
-<li>NonterminalExpression非终结符表达式<br>文法中的每条规则对应于一个非终结表达式。非终结符表达式根据逻辑的复杂程度而增加，原则上每个文法规则都对应一个非终结符表达式。   </li>
-<li>Context环境角色</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/blog/2012/11/02/chain-of-responsibility-in-java/" itemprop="url">
                   设计模式：责任链（chain of responsibility） in java
                 </a>
@@ -1053,8 +926,8 @@ if (book != null) {
             
               
                 
-                <a class="post-title-link" href="/blog/2012/11/02/flyweight-in-java/" itemprop="url">
-                  设计模式：享元（flyweight） in java
+                <a class="post-title-link" href="/blog/2012/11/02/interpreter-in-java/" itemprop="url">
+                  设计模式：解释器（interpreter） in java
                 </a>
               
             
@@ -1067,7 +940,7 @@ if (book != null) {
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-02T20:07:00+08:00" content="2012-11-02">
+            <time itemprop="dateCreated" datetime="2012-11-02T20:09:00+08:00" content="2012-11-02">
               2012-11-02
             </time>
           </span>
@@ -1097,8 +970,8 @@ if (book != null) {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/blog/2012/11/02/flyweight-in-java/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/flyweight-in-java/" itemprop="commentsCount"></span>
+                <a href="/blog/2012/11/02/interpreter-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/interpreter-in-java/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1122,17 +995,17 @@ if (book != null) {
 
       
         
-          <p><strong>定义：</strong>享元模式（Flyweight Pattern）是池技术的重要实现方式。使用共享对象可有效地支持大量的细粒度的对象。    </p>
-<p>享元模式提出了2个要求：细粒度的对象和共享对象。<br>要求细粒度对象，那么不可避免地使用对象数量多且性质相近。可以将这些对象分为2个部分：    </p>
+          
+            <p><strong>定义：</strong>解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。    </p>
+<p>解释器模式有以下几个角色：    </p>
 <ul>
-<li>内部状态（intrinsic）<br>内部状态是对象可共享出来的信息，存储在享元对象内部并且不会随环境改变而改变。它们可以作为一个对象的动态附加信息，不必直接储存在具体的某个对象中，属于可以共享的部分。    </li>
-<li>外部状态（extrinsic）<br>外部状态是对象得以依赖的一个标记，是随环境改变而改变的，不可以共享的状态。    </li>
+<li>AbstractExpression抽象解释器<br>具体的解释任务由各个实现类完成。</li>
+<li>TerminalExpression终结符表达式<br>实现与文法中的元素相关联的解释操作，通常一个解释器模式中只有一个终结符表达式，但有多个实例，对应不同的终结符。</li>
+<li>NonterminalExpression非终结符表达式<br>文法中的每条规则对应于一个非终结表达式。非终结符表达式根据逻辑的复杂程度而增加，原则上每个文法规则都对应一个非终结符表达式。   </li>
+<li>Context环境角色</li>
 </ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2012/11/02/flyweight-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+
+          
         
       
     </div>
@@ -1262,6 +1135,133 @@ if (book != null) {
 <p>这个说白了就是一个树形结构，不再具体使用例子了。     </p>
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2012/11/02/flyweight-in-java/" itemprop="url">
+                  设计模式：享元（flyweight） in java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-11-02T20:07:00+08:00" content="2012-11-02">
+              2012-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2012/11/02/flyweight-in-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="blog/2012/11/02/flyweight-in-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>定义：</strong>享元模式（Flyweight Pattern）是池技术的重要实现方式。使用共享对象可有效地支持大量的细粒度的对象。    </p>
+<p>享元模式提出了2个要求：细粒度的对象和共享对象。<br>要求细粒度对象，那么不可避免地使用对象数量多且性质相近。可以将这些对象分为2个部分：    </p>
+<ul>
+<li>内部状态（intrinsic）<br>内部状态是对象可共享出来的信息，存储在享元对象内部并且不会随环境改变而改变。它们可以作为一个对象的动态附加信息，不必直接储存在具体的某个对象中，属于可以共享的部分。    </li>
+<li>外部状态（extrinsic）<br>外部状态是对象得以依赖的一个标记，是随环境改变而改变的，不可以共享的状态。    </li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2012/11/02/flyweight-in-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
