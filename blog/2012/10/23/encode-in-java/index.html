@@ -84,7 +84,7 @@
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Java的编译存储Java是跨平台的一种语言，这一概念想必已经深入人心。Java是如何实现跨平台的呢?其中起到重大作用的便是Unicode编码。在使用IDE进行开发时，比如ECLIPSE,IDEA等，可以指定源文件（.java）的编码格式，此处的编码格式是指Java文件自身的编码。Java文件可以用各种编码进行存储，考虑到兼容中文字符，大多采用GBK,UTF-8,GB18030等编码格式。但是经过">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.821Z">
+<meta property="og:updated_time" content="2018-10-24T04:32:42.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字符编码及其使用详解">
 <meta name="twitter:description" content="Java的编译存储Java是跨平台的一种语言，这一概念想必已经深入人心。Java是如何实现跨平台的呢?其中起到重大作用的便是Unicode编码。在使用IDE进行开发时，比如ECLIPSE,IDEA等，可以指定源文件（.java）的编码格式，此处的编码格式是指Java文件自身的编码。Java文件可以用各种编码进行存储，考虑到兼容中文字符，大多采用GBK,UTF-8,GB18030等编码格式。但是经过">
@@ -338,7 +338,7 @@
 <p>.java(任意编码) —&gt; .class(Unicode) —&gt; JVM内（Unicode）</p>
 <a id="more"></a>
 <h2 id="是什么导致了乱码的出现？"><a href="#是什么导致了乱码的出现？" class="headerlink" title="是什么导致了乱码的出现？"></a>是什么导致了乱码的出现？</h2><p>在JVM内，从class文件加载的源码全部以UNICODE编码。即使如<code>String str = &quot;中国&quot;;</code>这样的语句，在JVM内存中仍然是unicode编码的。可是，程序本身难免牵涉到外部文件的读写、与数据库的交互等。这样就会造成很多非unicode编码的字符存在于JVM中，这也就是乱码出现的根本原因所在。</p>
-<p>##Java中如何实现字符编码转换？##<br>String类提供了三个重要的函数：</p>
+<h2 id="Java中如何实现字符编码转换？"><a href="#Java中如何实现字符编码转换？" class="headerlink" title="Java中如何实现字符编码转换？"></a>Java中如何实现字符编码转换？</h2><p>String类提供了三个重要的函数：</p>
 <pre><code>getBytes(String charsetName)
 getBytes()
 new String(byte[],String charsetName)
@@ -614,7 +614,7 @@ writer.close();
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的编译存储"><span class="nav-number">1.</span> <span class="nav-text">Java的编译存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么导致了乱码的出现？"><span class="nav-number">2.</span> <span class="nav-text">是什么导致了乱码的出现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP的request与response乱码问题"><span class="nav-number">3.</span> <span class="nav-text">HTTP的request与response乱码问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库乱码"><span class="nav-number">4.</span> <span class="nav-text">数据库乱码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的编译存储"><span class="nav-number">1.</span> <span class="nav-text">Java的编译存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么导致了乱码的出现？"><span class="nav-number">2.</span> <span class="nav-text">是什么导致了乱码的出现？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中如何实现字符编码转换？"><span class="nav-number">3.</span> <span class="nav-text">Java中如何实现字符编码转换？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP的request与response乱码问题"><span class="nav-number">4.</span> <span class="nav-text">HTTP的request与response乱码问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库乱码"><span class="nav-number">5.</span> <span class="nav-text">数据库乱码</span></a></li></ol></div>
             
           </div>
         </section>

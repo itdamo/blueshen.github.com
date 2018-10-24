@@ -885,6 +885,133 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="url">
+                  selenium wiki:高级用户交互
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-05-30T19:56:00+08:00" content="2013-05-30">
+              2013-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/selenium-wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium-wiki</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="AdvancedUserInteractions-高级用户交互"><a href="#AdvancedUserInteractions-高级用户交互" class="headerlink" title="AdvancedUserInteractions(高级用户交互)"></a>AdvancedUserInteractions(高级用户交互)</h3><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>高级用户交互API提供了一个更新更完善的机制来定义并描述用户在一个网页上的各种操作。这些操作包括：拖拽、按住CTRL键选择多个元素等等。</p>
+<h4 id="开始（short-how-to）"><a href="#开始（short-how-to）" class="headerlink" title="开始（short how to）"></a>开始（short how to）</h4><p>为了生成一连串的动作，我们使用Actions来建立。首先，我们先配置操作：</p>
+<pre><code>Actions builder = new Actions(driver);
+
+builder.keyDown(Keys.CONTROL)
+.click(someElement)
+.click(someOtherElement)
+.keyUp(Keys.CONTROL);
+</code></pre><p>然后，获得操作（Action）:</p>
+<pre><code>Action selectMultiple = builder.build();
+</code></pre><p>最后，执行这个动作：</p>
+<pre><code>selectMultiple.perform();
+</code></pre><p>这一系列的动作应该尽量的短。在使用中最好在执行一个简短的动作后验证页面是否处于正确的状态，然后再执行下面的动作。下一节将会列出所有可用的动作（Action），并且说明它们如何进行扩展。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2013/05/30/selenium-wiki-web-driver-js/" itemprop="url">
                   selenium wiki:webdriverJs
                 </a>
@@ -1017,8 +1144,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" itemprop="url">
-                  selenium wiki:高级用户交互
+                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-grid/" itemprop="url">
+                  selenium文档:selenium Grid
                 </a>
               
             
@@ -1031,7 +1158,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-05-30T19:56:00+08:00" content="2013-05-30">
+            <time itemprop="dateCreated" datetime="2013-05-30T19:55:00+08:00" content="2013-05-30">
               2013-05-30
             </time>
           </span>
@@ -1045,8 +1172,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/selenium-wiki/" itemprop="url" rel="index">
-                    <span itemprop="name">selenium-wiki</span>
+                  <a href="/categories/selenium官方文档/" itemprop="url" rel="index">
+                    <span itemprop="name">selenium官方文档</span>
                   </a>
                 </span>
 
@@ -1079,21 +1206,10 @@
 
       
         
-          <h3 id="AdvancedUserInteractions-高级用户交互"><a href="#AdvancedUserInteractions-高级用户交互" class="headerlink" title="AdvancedUserInteractions(高级用户交互)"></a>AdvancedUserInteractions(高级用户交互)</h3><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>高级用户交互API提供了一个更新更完善的机制来定义并描述用户在一个网页上的各种操作。这些操作包括：拖拽、按住CTRL键选择多个元素等等。</p>
-<h4 id="开始（short-how-to）"><a href="#开始（short-how-to）" class="headerlink" title="开始（short how to）"></a>开始（short how to）</h4><p>为了生成一连串的动作，我们使用Actions来建立。首先，我们先配置操作：</p>
-<pre><code>Actions builder = new Actions(driver);
-
-builder.keyDown(Keys.CONTROL)
-.click(someElement)
-.click(someOtherElement)
-.keyUp(Keys.CONTROL);
-</code></pre><p>然后，获得操作（Action）:</p>
-<pre><code>Action selectMultiple = builder.build();
-</code></pre><p>最后，执行这个动作：</p>
-<pre><code>selectMultiple.perform();
-</code></pre><p>这一系列的动作应该尽量的短。在使用中最好在执行一个简短的动作后验证页面是否处于正确的状态，然后再执行下面的动作。下一节将会列出所有可用的动作（Action），并且说明它们如何进行扩展。<br>
+          <h1 id="Selenium-Grid"><a href="#Selenium-Grid" class="headerlink" title="Selenium Grid"></a>Selenium Grid</h1><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p>如果你对 Selenium 自动化测试已经非常熟悉，你仅仅需要一个快速上手来使程序运行起来。本章节的内容能满足不同的技术层次，但是如果你仅仅需要一个可以快速上手的指引，那么就显得有点多。如果是这样，你可以参考 <a href="http://code.google.com/p/selenium/wiki/Grid2">Selenium Wiki</a> 的相关文章。</p>
+<h2 id="什么是-Selenium-Grid"><a href="#什么是-Selenium-Grid" class="headerlink" title="什么是 Selenium-Grid ?"></a>什么是 Selenium-Grid ?</h2><p>Selenium-Grid 允许你在多台机器的多个浏览器上并行的进行测试，也就是说，你可以同时运行多个测试。本质上来说就是，Selenium-Grid 支持分布式的测试执行。它可以让你的测试在一个分布式的执行环境中运行。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/#more" rel="contents">
+            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-grid/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1213,122 +1329,6 @@ builder.keyDown(Keys.CONTROL)
 <p>Selenium Server 能启动和杀死浏览器进程，解析并运行由测试程序传递过来的 Selenese 命令，并且可以是一个 HTTP 代理，拦截和验证浏览器和 AUT(测试中的应用)之间的 HTTP 通信。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-rc/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-grid/" itemprop="url">
-                  selenium文档:selenium Grid
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-05-30T19:55:00+08:00" content="2013-05-30">
-              2013-05-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/selenium官方文档/" itemprop="url" rel="index">
-                    <span itemprop="name">selenium官方文档</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Selenium-Grid"><a href="#Selenium-Grid" class="headerlink" title="Selenium Grid"></a>Selenium Grid</h1><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p>如果你对 Selenium 自动化测试已经非常熟悉，你仅仅需要一个快速上手来使程序运行起来。本章节的内容能满足不同的技术层次，但是如果你仅仅需要一个可以快速上手的指引，那么就显得有点多。如果是这样，你可以参考 <a href="http://code.google.com/p/selenium/wiki/Grid2">Selenium Wiki</a> 的相关文章。</p>
-<h2 id="什么是-Selenium-Grid"><a href="#什么是-Selenium-Grid" class="headerlink" title="什么是 Selenium-Grid ?"></a>什么是 Selenium-Grid ?</h2><p>Selenium-Grid 允许你在多台机器的多个浏览器上并行的进行测试，也就是说，你可以同时运行多个测试。本质上来说就是，Selenium-Grid 支持分布式的测试执行。它可以让你的测试在一个分布式的执行环境中运行。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-grid/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
