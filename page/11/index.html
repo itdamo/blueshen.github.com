@@ -452,13 +452,12 @@ js.executeScript(&quot;return document.title&quot;);
 
       
         
-          <p>##什么是MPM？ </p>
-<p>MPM（Multi -Processing Modules，多路处理模块）是Apache2.x中影响性能的最核心特性。 </p>
-<p>是Apache 2.x才支持的一个可插入的并发模型，在编译的时候，我们只可以选择一个并发模型。 </p>
-<p>配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf </p>
-<p>如果apache是默认安装的可能配置在httpd.conf文件中。根据实际情况查找配置。 </p>
-<p>使用格式：<br>进入apache的目录，对apache进行如下编译： </p>
-<p>Linux代码   </p>
+          <h2 id="什么是MPM？"><a href="#什么是MPM？" class="headerlink" title="什么是MPM？"></a>什么是MPM？</h2><p>MPM（Multi -Processing Modules，多路处理模块）是Apache2.x中影响性能的最核心特性。</p>
+<p>是Apache 2.x才支持的一个可插入的并发模型，在编译的时候，我们只可以选择一个并发模型。</p>
+<p>配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf</p>
+<p>如果apache是默认安装的可能配置在httpd.conf文件中。根据实际情况查找配置。</p>
+<p>使用格式：<br>进入apache的目录，对apache进行如下编译：</p>
+<p>Linux代码</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure --help|grep mpm</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2012/10/12/apache-mpm/#more" rel="contents">

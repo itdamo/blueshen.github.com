@@ -88,7 +88,7 @@
 为什么要使用桥接模式？场景：我们想绘制矩形、圆形、椭圆形、正方形，我们至少需要4个形状类">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/bridge-pattern-1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/bridge-pattern-2.png">
-<meta property="og:updated_time" content="2018-10-23T08:55:23.199Z">
+<meta property="og:updated_time" content="2018-10-24T06:01:53.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：桥接(bridge) in java">
 <meta name="twitter:description" content="定义：Bridge 模式又叫做桥接模式，是构造型的设计模式之一。Bridge模式基于类的最小设计原则，通过使用封装，聚合以及继承等行为来让不同的类承担不同的责任。它的主要特点是把抽象（abstraction）与行为实现（implementation）分离开来，从而可以保持各部分的独立性以及应对它们的功能扩展。
@@ -344,8 +344,7 @@
 <h3 id="为什么要使用桥接模式？"><a href="#为什么要使用桥接模式？" class="headerlink" title="为什么要使用桥接模式？"></a>为什么要使用桥接模式？</h3><p>场景：我们想绘制矩形、圆形、椭圆形、正方形，我们至少需要4个形状类。但是如果又需要绘制的图形是不同颜色的，比如白色、灰色、蓝色的。<br>我们可能很快就会想到这样的方案：</p>
 <p><img src="/images/blog/bridge-pattern-1.png" alt="方案1"><br>按照上面的说法，我们可能要新建4*3=12个类来完成。<br>但是如果需要画更多的图形，并有更多的颜色呢。如此扩展下去很可能出现类爆炸。<br><a id="more"></a><br>那如何解决呢？使用Bridge来组合这些方案吧。这种方案只需要4+3个类就搞定了。</p>
 <p><img src="/images/blog/bridge-pattern-2.png" alt="方案2"></p>
-<p>###桥接模式的角色和职责</p>
-<ul>
+<h3 id="桥接模式的角色和职责"><a href="#桥接模式的角色和职责" class="headerlink" title="桥接模式的角色和职责"></a>桥接模式的角色和职责</h3><ul>
 <li>Client<br>  Bridge模式的使用者</li>
 <li>Abstraction<br> 它的主要职责是定义出该角色的行为，同时保存一个对实现化角色的引用，该角色一般是抽象类。</li>
 <li>Refined Abstraction<br>  修正抽象化角色。它引用实现化角色对抽象化角色进行修正。</li>
@@ -685,7 +684,7 @@ public class BlackColor implements Color {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用桥接模式？"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用桥接模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Bridge模式来实现绘图场景"><span class="nav-number">2.</span> <span class="nav-text">使用Bridge模式来实现绘图场景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要使用桥接模式？"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用桥接模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式的角色和职责"><span class="nav-number">2.</span> <span class="nav-text">桥接模式的角色和职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Bridge模式来实现绘图场景"><span class="nav-number">3.</span> <span class="nav-text">使用Bridge模式来实现绘图场景</span></a></li></ol></div>
             
           </div>
         </section>

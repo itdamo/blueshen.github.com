@@ -98,7 +98,7 @@
 
 同时，也有人认为简单工厂只是工厂方法的一种特列，那么就分为两种了。本文就按3种分别进行介绍了。
 工厂方法定义：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法让一个类的实例化延迟到其子类。">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.823Z">
+<meta property="og:updated_time" content="2018-10-24T06:05:31.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式:工厂（factory） in java">
 <meta name="twitter:description" content="工厂模式，直接按名字来说，就是负责专门生产产品的。大致分为3类：
@@ -525,8 +525,7 @@ IProduct product4 = blueProductFactory.createProductB();
 product4.sayName();
 product4.sayColor();
 </code></pre><p>这样两个工厂分别开工了，一个出的产品都是红色的，一个都是蓝色的。这就是<strong>抽象工厂</strong>了。</p>
-<p>##工厂模式 in JDK##</p>
-<pre><code>Class.forName(String className);
+<h2 id="工厂模式-in-JDK"><a href="#工厂模式-in-JDK" class="headerlink" title="工厂模式 in JDK"></a>工厂模式 in JDK</h2><pre><code>Class.forName(String className);
 </code></pre><p>这种应该就是简单工厂的典型了。依据不同的className来生产相应的对象，只不过这里是Class对象了，不要混淆。</p>
 <pre><code>javax.xml.parsers.DocumentBuilderFactory#newInstance()
 javax.xml.transform.TransformerFactory#newInstance()
@@ -745,7 +744,7 @@ javax.xml.xpath.XPathFactory#newInstance()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.</span> <span class="nav-text">工厂方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂"><span class="nav-number"></span> <span class="nav-text">简单工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number"></span> <span class="nav-text">抽象工厂</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.</span> <span class="nav-text">工厂方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂"><span class="nav-number"></span> <span class="nav-text">简单工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number"></span> <span class="nav-text">抽象工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式-in-JDK"><span class="nav-number"></span> <span class="nav-text">工厂模式 in JDK</span></a></div>
             
           </div>
         </section>

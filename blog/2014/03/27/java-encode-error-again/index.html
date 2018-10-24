@@ -92,7 +92,7 @@ public static Document parseText(String text) throws DocumentException {
     Document result = null;
 
     SAXReader reader = new SAXR">
-<meta property="og:updated_time" content="2018-10-23T08:55:29.619Z">
+<meta property="og:updated_time" content="2018-10-24T06:16:08.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="又见Java乱码">
 <meta name="twitter:description" content="dom4j解析xmldom4j提供了一个DocumentHelper来解析xml内容，此处的内容是String类型的。下面是其源码：
@@ -393,8 +393,7 @@ private static String getEncoding(String text) {
     return result;
 }
 </code></pre><p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br><a id="more"></a></p>
-<p>###如何读取文件到String</p>
-<pre><code>public String loadXmlRule() {
+<h3 id="如何读取文件到String"><a href="#如何读取文件到String" class="headerlink" title="如何读取文件到String"></a>如何读取文件到String</h3><pre><code>public String loadXmlRule() {
     InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(&quot;file.xml&quot;);
     String xmlContent = null;
     try {
@@ -630,7 +629,7 @@ xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dom4j解析xml"><span class="nav-number">1.</span> <span class="nav-text">dom4j解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-Hudson中shell-command的编码"><span class="nav-number">2.</span> <span class="nav-text">Jenkins/Hudson中shell command的编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dom4j解析xml"><span class="nav-number">1.</span> <span class="nav-text">dom4j解析xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何读取文件到String"><span class="nav-number">2.</span> <span class="nav-text">如何读取文件到String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-Hudson中shell-command的编码"><span class="nav-number">3.</span> <span class="nav-text">Jenkins/Hudson中shell command的编码</span></a></li></ol></div>
             
           </div>
         </section>

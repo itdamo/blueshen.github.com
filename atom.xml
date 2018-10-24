@@ -1554,7 +1554,7 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
     <link href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
     <id>https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/</id>
     <published>2015-03-26T05:07:00.000Z</published>
-    <updated>2018-10-23T08:41:02.816Z</updated>
+    <updated>2018-10-24T06:02:21.726Z</updated>
     
     <content type="html"><![CDATA[<p>最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。</p>
 <h4 id="1）C3P0容错和自动重连与以下配置参数有关："><a href="#1）C3P0容错和自动重连与以下配置参数有关：" class="headerlink" title="1）C3P0容错和自动重连与以下配置参数有关："></a>1）C3P0容错和自动重连与以下配置参数有关：</h4><p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br><a id="more"></a><br><code>idleConnectionTestPeriod</code> ：C3P0会有一个Task检测pool内的连接是否正常，此参数就是Task运行的频率。默认值为0，表示不进行检测。</p>
@@ -1564,10 +1564,7 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
 <p><code>automaticTestTable 、connectionTesterClassName 、preferredTestQuery</code> ：表示测试方式，默认是采用DatabaseMetaData.getTables()来测试connection的有效性，但可以通过以上配置来定制化测试语句，通过其名字就很好理解其含义，无需过多解释</p>
 <p><code>maxIdleTime 和 maxConnectionAge</code> ：表示connection的时效性，maxIdleTime和maxConnectionAge不同之处在于， maxIdleTime表示idle状态的connection能存活的最大时间，而 maxConnectionAge表示connection能存活的绝对时间</p>
 <h4 id="2）应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"><a href="#2）应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。" class="headerlink" title="2）应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"></a>2）应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。</h4><h4 id="3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"><a href="#3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection" class="headerlink" title="3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"></a>3）无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection</h4><h4 id="4）breakAfterAcquireFailure-false是关键。"><a href="#4）breakAfterAcquireFailure-false是关键。" class="headerlink" title="4）breakAfterAcquireFailure=false是关键。"></a>4）breakAfterAcquireFailure=false是关键。</h4><p>如果 breakAfterAcquireFailure=true ，一旦pool向数据库请求连接失败，就会标记pool block并关闭pool，这样无论数据库是否恢复正常，应用端都无法从pool拿到连接</p>
-<p>####5）要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。</p>
-<p>####6）推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性</p>
-<p>####7）若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行</p>
-<p>综上所述，要想保证性能的前提下，本人推荐的配置组合如下：</p>
+<h4 id="5）要想保证网络和数据库瞬间的失效100-不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。"><a href="#5）要想保证网络和数据库瞬间的失效100-不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。" class="headerlink" title="5）要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。"></a>5）要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。</h4><h4 id="6）推荐使用-idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性"><a href="#6）推荐使用-idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性" class="headerlink" title="6）推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性"></a>6）推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性</h4><h4 id="7）若嫌DatabaseMetaData-getTables-性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行"><a href="#7）若嫌DatabaseMetaData-getTables-性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行" class="headerlink" title="7）若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行"></a>7）若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行</h4><p>综上所述，要想保证性能的前提下，本人推荐的配置组合如下：</p>
 <pre><code>breakAfterAcquireFailure: false
 testConnectionOnCheckout: false
 testConnectionOnCheckin: false
@@ -1607,7 +1604,7 @@ acquireRetryDelay: 1000
     <link href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
     <published>2014-11-25T05:53:00.000Z</published>
-    <updated>2018-10-23T08:55:20.762Z</updated>
+    <updated>2018-10-24T06:21:11.244Z</updated>
     
     <content type="html"><![CDATA[<p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
 <p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
@@ -1632,8 +1629,7 @@ acquireRetryDelay: 1000
 <li>多字同义词不会匹配查询</li>
 </ul>
 <p>这有点复杂，因此也值得我们一一解决这些问题。</p>
-<p>###多字同义词并不能识别为短语查询</p>
-<p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词：</p>
+<h3 id="多字同义词并不能识别为短语查询"><a href="#多字同义词并不能识别为短语查询" class="headerlink" title="多字同义词并不能识别为短语查询"></a>多字同义词并不能识别为短语查询</h3><p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词：</p>
 <pre><code>breast neoplasm
 breast neoplasms
 breast tumor
@@ -1656,9 +1652,9 @@ cancer of the breast
 <pre><code>+(dog hound pooch)
 </code></pre><p>由于“hound”和”pooch“是比较少见的字，因此无论查询什么，包含这些字的文档会在查询结果中排名特别高。这对可怜的用户来说，简直是一个浩劫，为什么搜索”dog“的时候，会有那么多包含”hound“和”pooch“的怪异文档排名那么高。</p>
 <p>索引时扩展通过给”dog”,”hound”,”pooch”赋予相同的IDF值，而不管原始文档是什么。</p>
-<p>###多字同义词不会匹配查询<br>最后，也是最严重的是，如果你对用户查询做任意类型的分词，SynonymFilterFactory并不会匹配多字同义词。这是因为分词器会将用户输入分开，然后才交给SynonymFilterFactory来转换。</p>
+<h3 id="多字同义词不会匹配查询"><a href="#多字同义词不会匹配查询" class="headerlink" title="多字同义词不会匹配查询"></a>多字同义词不会匹配查询</h3><p>最后，也是最严重的是，如果你对用户查询做任意类型的分词，SynonymFilterFactory并不会匹配多字同义词。这是因为分词器会将用户输入分开，然后才交给SynonymFilterFactory来转换。</p>
 <p>比如，查询“cancer of the breast”会被StandardTokenizationFactory分词为[“cancer”,”of”,”the”,”breast]，并且只有独立的词才会传给SynonymFilterFactory。因此，在这种情况下，如果分词后的单个词，比如‘cancer“和”breast“都没有同义词的情况下，同义词扩展就压根不会发生。</p>
-<p>###其他问题<br>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
 <p>当我搜索”breast cancer“的时候，我发现高亮器会很神奇的把”breast cancer X Y“给高亮了，其中”X“和”Y“是文档中任何跟在”breast cancer“后面的2个字符。例如，它可能会高亮”breast cancer frauds are“或者”breast cancer is to“。</p>
 <p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt=""></p>
 <p>看完这个<a href="https://issues.apache.org/jira/browse/SOLR-3390" target="_blank" rel="external">solr bug</a>,这和前面提到的Solr多字同义词扩展是一个原因。</p>
@@ -1667,8 +1663,7 @@ cancer of the breast
 <p>这就是Lucene认为的你文档的样子。同义词扩展给你带来了比你要求更多的东西，类似”Dada-esque“的结果！”Breast tumor the options“确实是这样的。</p>
 <p>从根本上来说，Lucene认为一个查询”cancer of the breast“(4个Token)和你原始文档里的”breast cancer treatment options“(4个Token)是一样的。这是因为Tokens只是一个叠加另一个上面而已，丢失任何信息的部分都可以由它后面的部门来替代。</p>
 <p>查询时扩展不会引起这个问题，因为Solr只扩展了查询，而不是文档。因此Lucene仍然认为查询的”cancer of the breast“只会匹配文档里的”breast cancer“。</p>
-<p>###总结</p>
-<p>所有这些古怪的问题，让我得出这样的结论：Solr内建的同义词扩展机制是及其糟糕的。我必须找出一个更好的方法来让Solr按我想的来运行。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>所有这些古怪的问题，让我得出这样的结论：Solr内建的同义词扩展机制是及其糟糕的。我必须找出一个更好的方法来让Solr按我想的来运行。</p>
 <p>总之，无论是索引时扩展还是查询时扩展使用标准的SynonymFilterFactory都是不可行的，因为它们都有各自不同的问题。</p>
 <p><strong>Index-time</strong></p>
 <ul>
@@ -1687,8 +1682,7 @@ cancer of the breast
 <p>回到”dog“/“hound”/“pooch”的例子，对待3个词对等的是不明智的。在特定的查询中，”dog“可能并不与”hound“和”pooch“是一样的，比如 (e.g. “The Hound of the Baskervilles,” “The Itchy &amp; Scratchy &amp; Poochy Show”). 一视同仁感觉是错误的。</p>
 <p>同样的，即使使用官方推荐的索引时扩展，IDF权重也被抛弃了。每个包含”dog“的文章现在也都包含”pooch“，这意味着我们将永久的丢失关于”pooch“的真实IDF值。</p>
 <p>在一个理想的系统里，搜索”dog“，返回的结果应该包含所有存在”hound“和”pooch“的文档，但是应该将所有包含真实查询的文档排的更靠前面，包含”dog“的应该得到更高的分。同样的，搜索“hound”应该把包含“hound”的排的更靠前面，搜索“pooch”就应该将包含“pooch”的更靠前。所有的3个搜索都返回相同的文档集，但是结果排序不一样。</p>
-<p>###Solution</p>
-<p>我的解决方法是，把同义词扩展从分析器的Tokenizer链移动到QueryParser。不是把查询变成如上面的纵横交错的图，而是把它分为2个部分：主查询和同义词查询。然后我为每个部分独立配置权重，指定每个部分内部为“should occur”。最后将二者使用“must occur”的布尔查询包装起来。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>我的解决方法是，把同义词扩展从分析器的Tokenizer链移动到QueryParser。不是把查询变成如上面的纵横交错的图，而是把它分为2个部分：主查询和同义词查询。然后我为每个部分独立配置权重，指定每个部分内部为“should occur”。最后将二者使用“must occur”的布尔查询包装起来。</p>
 <p>因此，搜索“dog”为被解析为类似这样：</p>
 <pre><code>+((dog)^1.2 (hound pooch)^1.1)
 </code></pre><p>1.2和1.1是独立的权重，可以配置。文档必须包含“dog”,”hound”或者“pooch”，但是“dog”更优先显示。</p>
@@ -1707,16 +1701,7 @@ pooch bite
 dog nibble
 hound nibble
 pooch nibble
-</code></pre><a href="!--
-
-###尝试一下
-
-使用步骤见&lt;https://github.com/blueshen/hon-lucene-synonyms">!--
-
-###尝试一下
-
-使用步骤见&lt;https://github.com/blueshen/hon-lucene-synonyms</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>—<br>原文：<a href="http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr/" target="_blank" rel="external">Better synonym handling in Solr</a><br><br>–&gt;
-]]></content>
+</code></pre>]]></content>
     
     <summary type="html">
     
@@ -2777,11 +2762,10 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     <link href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
     <id>https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/</id>
     <published>2014-06-24T07:10:00.000Z</published>
-    <updated>2018-10-23T08:41:02.841Z</updated>
+    <updated>2018-10-24T06:14:32.681Z</updated>
     
     <content type="html"><![CDATA[<h3 id="为什么使用quartz集群？"><a href="#为什么使用quartz集群？" class="headerlink" title="为什么使用quartz集群？"></a>为什么使用quartz集群？</h3><p>在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。<br>quartz集群在spring中的配置</p>
-<p>####1.导入数据库表</p>
-<p>以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。</p>
+<h4 id="1-导入数据库表"><a href="#1-导入数据库表" class="headerlink" title="1.导入数据库表"></a>1.导入数据库表</h4><p>以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。</p>
 <p>注意事项：</p>
 <p>修改SQL： TYPE=InnoDB –&gt; ENGINE=InnoDB<br><a id="more"></a></p>
 <h4 id="2-项目中加入配置文件quartz-properties"><a href="#2-项目中加入配置文件quartz-properties" class="headerlink" title="2.项目中加入配置文件quartz.properties"></a>2.项目中加入配置文件quartz.properties</h4><pre><code>#============================================================================
@@ -2900,8 +2884,7 @@ public class TestTask extends QuartzJobBean {
     <summary type="html">
     
       &lt;h3 id=&quot;为什么使用quartz集群？&quot;&gt;&lt;a href=&quot;#为什么使用quartz集群？&quot; class=&quot;headerlink&quot; title=&quot;为什么使用quartz集群？&quot;&gt;&lt;/a&gt;为什么使用quartz集群？&lt;/h3&gt;&lt;p&gt;在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。&lt;br&gt;quartz集群在spring中的配置&lt;/p&gt;
-&lt;p&gt;####1.导入数据库表&lt;/p&gt;
-&lt;p&gt;以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。&lt;/p&gt;
+&lt;h4 id=&quot;1-导入数据库表&quot;&gt;&lt;a href=&quot;#1-导入数据库表&quot; class=&quot;headerlink&quot; title=&quot;1.导入数据库表&quot;&gt;&lt;/a&gt;1.导入数据库表&lt;/h4&gt;&lt;p&gt;以mysql为例，下载quartz发行版，在/docs/dbTables下找到tables_mysql_innodb.sql。导入数据结构到数据库内。 使用tables_mysql.sql的话，由于没有指定使用innodB引擎，在一些默认使用MYISAM的数据库实例内可能会报错。&lt;/p&gt;
 &lt;p&gt;注意事项：&lt;/p&gt;
 &lt;p&gt;修改SQL： TYPE=InnoDB –&amp;gt; ENGINE=InnoDB&lt;br&gt;
     
@@ -2983,7 +2966,7 @@ output.encoding = utf-8
     <link href="https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/"/>
     <id>https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/</id>
     <published>2014-03-27T13:43:00.000Z</published>
-    <updated>2018-10-23T08:55:29.619Z</updated>
+    <updated>2018-10-24T06:16:08.559Z</updated>
     
     <content type="html"><![CDATA[<h3 id="dom4j解析xml"><a href="#dom4j解析xml" class="headerlink" title="dom4j解析xml"></a>dom4j解析xml</h3><p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：</p>
 <pre><code>public static Document parseText(String text) throws DocumentException {
@@ -3032,8 +3015,7 @@ private static String getEncoding(String text) {
     return result;
 }
 </code></pre><p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br><a id="more"></a></p>
-<p>###如何读取文件到String</p>
-<pre><code>public String loadXmlRule() {
+<h3 id="如何读取文件到String"><a href="#如何读取文件到String" class="headerlink" title="如何读取文件到String"></a>如何读取文件到String</h3><pre><code>public String loadXmlRule() {
     InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(&quot;file.xml&quot;);
     String xmlContent = null;
     try {
@@ -3125,7 +3107,7 @@ private static String getEncoding(String text) {
     <link href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
     <id>https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/</id>
     <published>2014-03-18T10:49:00.000Z</published>
-    <updated>2018-10-23T08:41:02.867Z</updated>
+    <updated>2018-10-24T06:23:08.603Z</updated>
     
     <content type="html"><![CDATA[<h3 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h3><p>在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。</p>
 <p>Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。</p>
@@ -3307,8 +3289,7 @@ ${visits} &lt;br&gt;
          ${aValue}
 &lt;/c:forTokens&gt;
 </code></pre><p>需要分隔的字符串为“aa,bb,cc,dd”，分隔符为“,”。begin属性指定从第一个“,”开始分隔，end属性指定分隔到第三个“,”，并将做循环的变量名指定为“aValue”。由于步长为“2”，使用EL表达式${aValue}只能显示“aa</p>
-<p>###<code>&lt;x: &gt;</code> 标签</p>
-<h4 id="9-3-9-用于包含页面的-lt-c-import-gt"><a href="#9-3-9-用于包含页面的-lt-c-import-gt" class="headerlink" title="9.3.9 用于包含页面的&lt;c:import&gt;"></a>9.3.9 用于包含页面的<code>&lt;c:import&gt;</code></h4><p><code>&lt;c:import&gt;</code>标签允许包含另一个JSP页面到本页面来。它的属性和描述如表9.9所示：</p>
+<h3 id="lt-x-gt-标签"><a href="#lt-x-gt-标签" class="headerlink" title="&lt;x: &gt; 标签"></a><code>&lt;x: &gt;</code> 标签</h3><h4 id="9-3-9-用于包含页面的-lt-c-import-gt"><a href="#9-3-9-用于包含页面的-lt-c-import-gt" class="headerlink" title="9.3.9 用于包含页面的&lt;c:import&gt;"></a>9.3.9 用于包含页面的<code>&lt;c:import&gt;</code></h4><p><code>&lt;c:import&gt;</code>标签允许包含另一个JSP页面到本页面来。它的属性和描述如表9.9所示：</p>
 <p>表9.9　<code>&lt;c:import&gt;</code>标签属性和说明</p>
 <table cellpadding="0" width="360" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="73"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="271"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">rl</p><br>                                </td><br>                                <td><br>                                <p align="left">需要导入页面的URL</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">context</p><br>                                </td><br>                                <td><br>                                <p align="left">Web Context该属性用于在不同的Context下导入页面，当出现context属性时，必须以&ldquo;/&rdquo;开头，此时也需要url属性以&ldquo;/&rdquo;开头（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">charEncoding</p><br>                                </td><br>                                <td><br>                                <p align="left">导入页面的字符集（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">var</p><br>                                </td><br>                                <td><br>                                <p align="left">可以定义导入文本的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">scope</p><br>                                </td><br>                                <td><br>                                <p align="left">导入文本的变量名作用范围（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">varReader</p><br>                                </td><br>                                <td><br>                                <p align="left">接受文本的java.io.Reader类变量名（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -3786,7 +3767,7 @@ Pet pet = clinicService.findPetById(1);
     <link href="https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/"/>
     <id>https://www.shenyanchao.cn/blog/2013/11/26/the-principle-of-ssh/</id>
     <published>2013-11-26T08:04:00.000Z</published>
-    <updated>2018-10-23T08:55:33.851Z</updated>
+    <updated>2018-10-24T06:12:08.999Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、什么是SSH？"><a href="#一、什么是SSH？" class="headerlink" title="一、什么是SSH？"></a>一、什么是SSH？</h3><p>简单说，SSH是一种网络协议，用于计算机之间的加密登录。</p>
 <p>如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。</p>
@@ -3814,7 +3795,7 @@ Are you sure you want to continue connecting (yes/no)?
 </code></pre><p>然后，会要求输入密码。</p>
 <pre><code>Password: (enter password)
 </code></pre><p>如果密码正确，就可以登录了。<br>当远程主机的公钥被接受以后，它就会被保存在文件$HOME/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。<br>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。</p>
-<p>###五、公钥登录<br>使用密码登录，每次都必须输入密码，非常麻烦。好在SSH还提供了公钥登录，可以省去输入密码的步骤。<br>所谓”公钥登录”，原理很简单，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。<br>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
+<h3 id="五、公钥登录"><a href="#五、公钥登录" class="headerlink" title="五、公钥登录"></a>五、公钥登录</h3><p>使用密码登录，每次都必须输入密码，非常麻烦。好在SSH还提供了公钥登录，可以省去输入密码的步骤。<br>所谓”公钥登录”，原理很简单，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。<br>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
 <pre><code>$ ssh-keygen
 </code></pre><p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
 <p>运行结束以后，在$HOME/.ssh/目录下，会新生成两个文件：id_rsa.pub和id_rsa。前者是你的公钥，后者是你的私钥。<br>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>

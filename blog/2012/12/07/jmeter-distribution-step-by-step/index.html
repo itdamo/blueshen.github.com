@@ -99,7 +99,7 @@ jdk 1.5+
 
 总控机为client，我们（用户）只与这太机器打交道。或者称">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/jmeter-remote.png">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.831Z">
+<meta property="og:updated_time" content="2018-10-24T06:08:24.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jmeter 分布式 step by step">
 <meta name="twitter:description" content="环境准备
@@ -368,7 +368,7 @@ jdk 1.5+
 </blockquote>
 <a id="more"></a>
 <p>这个只是角度不一样，就是一个总分结构。</p>
-<p>###Slave配置###<br>假设这3台机器都作为slave，那么分别在各个机器上，<br>进入%JMETER HOME%/bin/目录<br>运行:<br>jmeter-server.bat（windows）<br>jmeter-server.sh (linux)</p>
+<h3 id="Slave配置"><a href="#Slave配置" class="headerlink" title="Slave配置"></a>Slave配置</h3><p>假设这3台机器都作为slave，那么分别在各个机器上，<br>进入%JMETER HOME%/bin/目录<br>运行:<br>jmeter-server.bat（windows）<br>jmeter-server.sh (linux)</p>
 <h3 id="Master配置"><a href="#Master配置" class="headerlink" title="Master配置"></a>Master配置</h3><p>这里，我们以10.81.14.170作为Master,<br>进入%JMETER HOME%/bin/ 目录<br>找到jmeter.properties文件，打开并找到remote_hosts=127.0.0.1这一行，修改为remote_hosts=127.0.0.1,10.81.14.180,10.81.14.190<br>其中，IP部分指向slave,并以逗号分割。由于170这台机器同时也是slave而存在，因此直接写为127.0.0.1了。<br>在目录下执行：<br>jmeter.bat (windows)<br>jmeter.sh (linux)<br>用来打开GUI界面。<br>点开运行-&gt;远程启动，将会看到这样的界面：<br><img src="/images/blog/jmeter-remote.png" alt="Jmeter远程启动"><br>从这里就可以指定哪台slave来发压力了。当然也可以选择远程全部启动了。</p>
 <h3 id="为什么要分布式发压力？"><a href="#为什么要分布式发压力？" class="headerlink" title="为什么要分布式发压力？"></a>为什么要分布式发压力？</h3><p>1.单机运行受限，网络、CPU、内存读可能是瓶颈所在；<br>2.Jmeter是纯Java的程序，受JVM的一些限制；<br>一般情况下，依据机器配置，单机的发压量为300～600，如果需要更大的并发，就需要使用分布式的多台机器同时加压。</p>
 <h3 id="配置注意事项"><a href="#配置注意事项" class="headerlink" title="配置注意事项"></a>配置注意事项</h3><p>1.尽量保证各台机器之间的jmeter版本一致<br>2.JDK／JRE要正确安装<br>3.启动端口有可能被占用了，这个需要在启动时间指定SERVER_PORT</p>
@@ -588,7 +588,7 @@ jdk 1.5+
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Master配置"><span class="nav-number">3.</span> <span class="nav-text">Master配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要分布式发压力？"><span class="nav-number">4.</span> <span class="nav-text">为什么要分布式发压力？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置注意事项"><span class="nav-number">5.</span> <span class="nav-text">配置注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作原理"><span class="nav-number">2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Slave配置"><span class="nav-number">3.</span> <span class="nav-text">Slave配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Master配置"><span class="nav-number">4.</span> <span class="nav-text">Master配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要分布式发压力？"><span class="nav-number">5.</span> <span class="nav-text">为什么要分布式发压力？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置注意事项"><span class="nav-number">6.</span> <span class="nav-text">配置注意事项</span></a></li></ol></div>
             
           </div>
         </section>

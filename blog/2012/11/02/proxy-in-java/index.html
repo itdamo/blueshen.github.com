@@ -90,7 +90,7 @@
 
 静态代理
 动态代理">
-<meta property="og:updated_time" content="2018-10-23T08:55:30.556Z">
+<meta property="og:updated_time" content="2018-10-24T06:15:01.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：代理（Proxy） in java">
 <meta name="twitter:description" content="什么是代理？代理是指，本该有A做的工作，现在找一个代理人B，然后由B来进行实际的工作。代理，简单来分，可以分为以下两类：
@@ -382,7 +382,7 @@ add.add(3, 14);
 <pre><code>IAdd add = new AddProxy(new Add());
 int result = add.add(3, 14);
 </code></pre><p>此为<strong>静态代理</strong>也。</p>
-<p>##动态代理##<br>动态代理，是指运行时动态的生成代理类，完成功能。静态代理中，显然AddProxy是编译期已知的了。实现方式，主要有两种：</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>动态代理，是指运行时动态的生成代理类，完成功能。静态代理中，显然AddProxy是编译期已知的了。实现方式，主要有两种：</p>
 <ul>
 <li>JDK Proxy</li>
 <li>Cglib Proxy</li>
@@ -419,7 +419,7 @@ IAdd addProxy = (IAdd) Proxy.newProxyInstance(
             addHandler);
 int jdkResult = addProxy.add(3, 14);
 </code></pre><p>从代码可见，主要是通过<code>Proxy.newProxyInstance</code>来在运行时生成代理类。需要注意的是，第二个参数必须使用具体实现类Add来获得interfaces，也就是说其代理的类必须实现了接口。<code>addHandler</code>负责绑定要代理的target类，并调用invoke来增强Add功能。</p>
-<p>###Cglib Proxy###<br>JDK的动态代理机制只能代理实现了接口的类，而不能实现接口的类就不能实现JDK的动态代理，cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但因为采用的是继承，所以不能对final修饰的类进行代理。<br>要使用CgLib，首先要实现一个CallBack接口的类，由于本例是为了实现method的拦截，因此直接实现MethodInterceptor即可：</p>
+<h3 id="Cglib-Proxy"><a href="#Cglib-Proxy" class="headerlink" title="Cglib Proxy"></a>Cglib Proxy</h3><p>JDK的动态代理机制只能代理实现了接口的类，而不能实现接口的类就不能实现JDK的动态代理，cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但因为采用的是继承，所以不能对final修饰的类进行代理。<br>要使用CgLib，首先要实现一个CallBack接口的类，由于本例是为了实现method的拦截，因此直接实现MethodInterceptor即可：</p>
 <pre><code>import java.lang.reflect.Method;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -660,7 +660,7 @@ int result = add.add(3, 14);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是代理？"><span class="nav-number">1.</span> <span class="nav-text">什么是代理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态代理"><span class="nav-number">2.</span> <span class="nav-text">静态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-Proxy"><span class="nav-number">2.1.</span> <span class="nav-text">JDK Proxy</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是代理？"><span class="nav-number">1.</span> <span class="nav-text">什么是代理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态代理"><span class="nav-number">2.</span> <span class="nav-text">静态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态代理"><span class="nav-number">3.</span> <span class="nav-text">动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-Proxy"><span class="nav-number">3.1.</span> <span class="nav-text">JDK Proxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cglib-Proxy"><span class="nav-number">3.2.</span> <span class="nav-text">Cglib Proxy</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

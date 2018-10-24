@@ -78,18 +78,18 @@
 
 
 
-<meta name="description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。   
+<meta name="description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。
 采用什么算法作为例子呢？就是用把动物放进冰箱这个算法吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：模板方法（template method） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/07/template-method-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。   
+<meta property="og:description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。
 采用什么算法作为例子呢？就是用把动物放进冰箱这个算法吧。">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.861Z">
+<meta property="og:updated_time" content="2018-10-24T06:04:18.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：模板方法（template method） in java">
-<meta name="twitter:description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。   
+<meta name="twitter:description" content="定义：定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。
 采用什么算法作为例子呢？就是用把动物放进冰箱这个算法吧。">
 
 
@@ -337,10 +337,10 @@
       
 
       
-        <p><strong>定义：</strong>定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。<br>简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。   </p>
-<p>采用什么算法作为例子呢？就是用<strong>把动物放进冰箱</strong>这个算法吧。  </p>
+        <p><strong>定义：</strong>定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义这个算法的某些特定步骤。<br>简单的说，就是你首先定义一下算法的各部分之间的执行顺序或者调用关系，然后在子类中实现具体每一部分是如何实现的。</p>
+<p>采用什么算法作为例子呢？就是用<strong>把动物放进冰箱</strong>这个算法吧。</p>
 <a id="more"></a>
-<p>先定义一个抽象类:  </p>
+<p>先定义一个抽象类:</p>
 <pre><code>public abstract class AbstractAlgorithm {
 
     public abstract void openFridgeDoor();
@@ -355,8 +355,8 @@
         this.closeFridgeDoor();
     }
 }
-</code></pre><p>这个类，定义了3个操作，打开冰箱门、把动物放进冰箱、关闭冰箱门，但并未实现，而留给子类来具体实现。<code>execute()</code>用来执行这一算法，它指定了各个操作之间的先后顺序。  </p>
-<p>比如：我想把大象放进冰箱里：  </p>
+</code></pre><p>这个类，定义了3个操作，打开冰箱门、把动物放进冰箱、关闭冰箱门，但并未实现，而留给子类来具体实现。<code>execute()</code>用来执行这一算法，它指定了各个操作之间的先后顺序。</p>
+<p>比如：我想把大象放进冰箱里：</p>
 <pre><code>public class PutElephantInFridge extends AbstractAlgorithm {
 
     @Override
@@ -380,12 +380,11 @@
 <pre><code>PutElephantInFridge algo = new PutElephantInFridge();
 algo.execute();
 </code></pre><p>好吧，执行一下算法就完成了。<br>下面吗？我想把猴子放进冰箱，好吧，新建一个类继承AbstractAlgorithm，然后重写相关步骤就可以了。</p>
-<p>##模板方法 In JDK##</p>
-<pre><code>java.io.InputStream, java.io.OutputStream, java.io.Reader，java.io.Writer      
+<h2 id="模板方法-In-JDK"><a href="#模板方法-In-JDK" class="headerlink" title="模板方法 In JDK"></a>模板方法 In JDK</h2><pre><code>java.io.InputStream, java.io.OutputStream, java.io.Reader，java.io.Writer
 
 java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap
 </code></pre><p>所有非抽象方法。</p>
-<pre><code>javax.servlet.http.HttpServlet#doXXX()   
+<pre><code>javax.servlet.http.HttpServlet#doXXX()
 </code></pre><p>都默认返回一个<code>SC_METHOD_NOT_ALLOWED</code>类似的错误码，或者代码，要想使用，只有继承并且重写这些方法。</p>
 
       
@@ -599,7 +598,7 @@ java.util.AbstractList, java.util.AbstractSet and java.util.AbstractMap
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法-In-JDK"><span class="nav-number">1.</span> <span class="nav-text">模板方法 In JDK</span></a></li></ol></div>
             
           </div>
         </section>
