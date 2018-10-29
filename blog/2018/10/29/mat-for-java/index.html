@@ -91,7 +91,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
-<meta property="og:updated_time" content="2018-10-29T07:20:29.715Z">
+<meta property="og:updated_time" content="2018-10-29T07:37:20.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用MAT来分析JAVA内存泄露">
 <meta name="twitter:description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
@@ -365,6 +365,9 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 </code></pre><p>还支持另外两个：</p>
 <p>org.eclipse.mat.api:overview<br>org.eclipse.mat.api:top_components</p>
 <p>执行之后，产生多个zip版html。不过这个版本，没有直接分析出来的好用，有些功能有缺失。</p>
+<hr>
+<p>其他线上问题常见分析工具：</p>
+<p><a href="https://github.com/blueshen/useful-scripts" target="_blank" rel="external">https://github.com/blueshen/useful-scripts</a></p>
 
       
     </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shenyanchao.cn/"/>
-  <updated>2018-10-29T07:20:29.715Z</updated>
+  <updated>2018-10-29T07:37:20.014Z</updated>
   <id>https://www.shenyanchao.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/"/>
     <id>https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/</id>
     <published>2018-10-29T06:53:46.000Z</published>
-    <updated>2018-10-29T07:20:29.715Z</updated>
+    <updated>2018-10-29T07:37:20.014Z</updated>
     
     <content type="html"><![CDATA[<h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><pre><code>jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;
 </code></pre><h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><pre><code>-XX:+HeapDumpOnOutOfMemoryError
@@ -42,6 +42,9 @@
 </code></pre><p>还支持另外两个：</p>
 <p>org.eclipse.mat.api:overview<br>org.eclipse.mat.api:top_components</p>
 <p>执行之后，产生多个zip版html。不过这个版本，没有直接分析出来的好用，有些功能有缺失。</p>
+<hr>
+<p>其他线上问题常见分析工具：</p>
+<p><a href="https://github.com/blueshen/useful-scripts" target="_blank" rel="external">https://github.com/blueshen/useful-scripts</a></p>
 ]]></content>
     
     <summary type="html">
