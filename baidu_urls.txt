@@ -1,3 +1,4 @@
+https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/
 https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/
 https://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/
 https://www.shenyanchao.cn/blog/2016/03/20/about-interface-define/
@@ -7,4 +8,3 @@ https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/
 https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/
 https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/
 https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/
-https://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/

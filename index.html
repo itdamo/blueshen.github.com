@@ -274,6 +274,126 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2018/10/29/mat-for-java/" itemprop="url">
+                  利用MAT来分析JAVA内存泄露
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-29T14:53:46+08:00" content="2018-10-29">
+              2018-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><pre><code>jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;
+</code></pre><h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><pre><code>-XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=${heap.dump.path}
+</code></pre><h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php">https://www.eclipse.org/mat/downloads.php</a></p>
+<p><img src="/images/blog/mat/mat-for-java.jpg" alt=""></p>
+<p>依据不同的操作系统下载响应版本。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2018/10/29/mat-for-java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/" itemprop="url">
                   微服务下的API设计原则
                 </a>
@@ -1375,122 +1495,6 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014/11/11/introduce-oryx/" itemprop="url">
-                  oryx介绍
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-11T19:31:00+08:00" content="2014-11-11">
-              2014-11-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/oryx/" itemprop="url" rel="index">
-                    <span itemprop="name">oryx</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Hadoop软件供应商Cloudera去年收购了一家总部位于伦敦的新兴企业<a href="https://github.com/myrrix/myrrix-recommender]">Myrrix</a>——但在此之后无论是买家还是卖家在机器学习技术方面都开始归于沉寂。不过无论如何，Myrrix公司的技术方案加上其创始人Sean Owen可能已经足以值回票价。</p>
-<p>　　Owen目前的正式头衔为数据科学部门主管，目前他正专注投身于名为<a href="https://github.com/cloudera/oryx">Oryx</a>的开源机器学习项目当中。(Oryx意思是剑羚、属于非洲羚羊的一类分支，Cloudera在售的产品中则有一款名为Impala——即黑斑羚)。Oryx的开发意图在于帮助Hadoop用户构建机器学习模式并将其加以部署，这样我们就能够以实时方式查询并获取其结果——例如将其作为垃圾邮件过滤器或者推荐引擎的组成部分。在理想状态下，Oryx能够在接纳输入数据流的同时对自身进行更新。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2014/11/11/introduce-oryx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1536,7 +1540,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-count">109</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1544,7 +1548,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1553,7 +1557,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">196</span>
+                <span class="site-state-item-count">198</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
