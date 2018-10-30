@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,27 +34,13 @@
 
 
 
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
   
   
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -55,9 +48,24 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="jstl,el," />
@@ -67,11 +75,6 @@
 
 
   <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -94,26 +97,42 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> JSTL介绍 | 申艳超-博客 </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
+
+
+
+
+
+  <title>JSTL介绍 | 申艳超-博客</title>
   
+
+
 
 
 
@@ -121,7 +140,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
+      hm.src = "https://hm.baidu.com/hm.js?81c9612f8fdceca45435ef7f5404d7b2";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -130,38 +149,42 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">申艳超-博客</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">申艳超-博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">搜索引擎、自然语言处理、ElasticSearch、Solr</h1>
+      
   </div>
-  <p class="site-subtitle">搜索引擎、自然语言处理、ElasticSearch、Solr</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -181,18 +204,8 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -201,8 +214,28 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -211,12 +244,22 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
             
-            标签
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
           </a>
         </li>
       
@@ -230,16 +273,6 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-douban">
-          <a href="/douban" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            豆瓣读书
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -247,6 +280,8 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -261,49 +296,68 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                JSTL介绍
-              
-            
-          </h1>
+          <h2 class="post-title" itemprop="name headline">JSTL介绍</h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-03-18T18:49:00+08:00" content="2014-03-18">
-              2014-03-18
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-18T18:49:00+08:00">
+                2014-03-18
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
@@ -311,26 +365,41 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
                 
                 
-
               
             </span>
           
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/18/use-jstl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="blog/2014/03/18/use-jstl/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
           
 
           
 
           
-          
 
           
+
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -770,29 +839,29 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/jstl/" rel="tag">#jstl</a>
+            <a href="/tags/jstl/" rel="tag"># jstl</a>
           
-            <a href="/tags/el/" rel="tag">#el</a>
+            <a href="/tags/el/" rel="tag"># el</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -804,6 +873,8 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -818,49 +889,15 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
-      
-        
-  <div class="bdsharebuttonbox">
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
-    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a class="bds_count" data-cmd="count"></a>
-  </div>
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "share": {
-        "bdSize": "16",
-        "bdStyle": "0"
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      }
-    }
-  </script>
-
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
   </div>
@@ -871,9 +908,19 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -889,100 +936,127 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars0.githubusercontent.com/u/2255020?v=3&s=460"
-               alt="申艳超" />
-          <p class="site-author-name" itemprop="name">申艳超</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">109</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">198</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <span class="links-of-author-item">
-                <a href="https://github.com/blueshen" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
+              <img class="site-author-image" itemprop="image"
+                src="/images/shenyanchao.jpeg"
+                alt="申艳超" />
+            
+              <p class="site-author-name" itemprop="name">申艳超</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
-              </span>
+              </div>
             
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/blueshen" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhiyi.shen@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式"><span class="nav-number">1.</span> <span class="nav-text">EL 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-1JSTL-EL-表达式语言简介"><span class="nav-number">1.1.</span> <span class="nav-text">9.2.1JSTL EL 表达式语言简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-2-EL-表达式的默认变量"><span class="nav-number">1.2.</span> <span class="nav-text">9.2.2 EL 表达式的默认变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式的操作符"><span class="nav-number">2.</span> <span class="nav-text">表达式的操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库介绍"><span class="nav-number">3.</span> <span class="nav-text">标签库介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库"><span class="nav-number">4.</span> <span class="nav-text">标签库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于显示的-lt-c-out-gt-标签"><span class="nav-number">5.</span> <span class="nav-text">用于显示的<c:out> 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-c-gt-标签"><span class="nav-number">6.</span> <span class="nav-text"><c: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用于赋值的标签"><span class="nav-number">6.1.</span> <span class="nav-text">用于赋值的标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-3-用于删除的-lt-c-remove-gt-标签"><span class="nav-number">6.2.</span> <span class="nav-text">9.3.3 用于删除的 <c:remove>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-4-用于异常捕获的-lt-c-catch-gt-标签"><span class="nav-number">6.3.</span> <span class="nav-text">9.3.4 用于异常捕获的 <c:catch> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-5-用于判断的-lt-c-if-gt-标签"><span class="nav-number">6.4.</span> <span class="nav-text">9.3.5 用于判断的 <c:if> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-6-用于复杂判断的-lt-c-choose-gt-、-lt-c-when-gt-、-lt-c-otherwise-gt-标签"><span class="nav-number">6.5.</span> <span class="nav-text">9.3.6 用于复杂判断的 <c:choose> 、 <c:when> 、 <c:otherwise> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-7-用于循环的-lt-c-forEach-gt-标签"><span class="nav-number">6.6.</span> <span class="nav-text">9.3.7 用于循环的 <c:forEach> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-8-用于分隔字符的-lt-c-forTokens-gt-标签"><span class="nav-number">6.7.</span> <span class="nav-text">9.3.8 用于分隔字符的 <c:forTokens> 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-x-gt-标签"><span class="nav-number">7.</span> <span class="nav-text"><x: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-9-用于包含页面的-lt-c-import-gt"><span class="nav-number">7.1.</span> <span class="nav-text">9.3.9 用于包含页面的<c:import></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-10-用于得到URL地址的-lt-c-url-gt-标签"><span class="nav-number">7.2.</span> <span class="nav-text">9.3.10 用于得到URL地址的<c:url>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-11-用于页面重定向的-lt-c-redirect-gt-标签"><span class="nav-number">7.3.</span> <span class="nav-text">9.3.11 用于页面重定向的<c:redirect>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-12-用于包含传递参数的-lt-c-param-gt-标签"><span class="nav-number">7.4.</span> <span class="nav-text">9.3.12 用于包含传递参数的<c:param>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-JSTL-XML-processing标签库"><span class="nav-number">8.</span> <span class="nav-text">9.4 JSTL XML processing标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-1-用于解析XML文件的-lt-x-parse-gt-标签"><span class="nav-number">8.1.</span> <span class="nav-text">9.4.1 用于解析XML文件的<x:parse>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fmt-gt-标签"><span class="nav-number">9.</span> <span class="nav-text"><fmt: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-1-用于设置本地化环境的-lt-fmt-setLocale-gt-标签"><span class="nav-number">9.1.</span> <span class="nav-text">9.5.1 用于设置本地化环境的<fmt:setLocale>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-2-用于资源文件绑定的-lt-fmt-bundle-gt-、-lt-fmt-setBundle-gt-标签"><span class="nav-number">9.2.</span> <span class="nav-text">9.5.2 用于资源文件绑定的<fmt:bundle>、<fmt:setBundle>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-3-用于显示资源配置文件信息的-lt-fmt-message-gt-标签"><span class="nav-number">9.3.</span> <span class="nav-text">9.5.3  用于显示资源配置文件信息的<fmt:message>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-4-用于参数传递的-lt-fmt-param-gt-标签"><span class="nav-number">9.4.</span> <span class="nav-text">9.5.4  用于参数传递的<fmt:param>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-6-用于为请求设置字符编码的-lt-fmt-requestEncoding-gt-标签"><span class="nav-number">9.5.</span> <span class="nav-text">9.5.6  用于为请求设置字符编码的<fmt:requestEncoding>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-7-用于设定时区的-lt-fmt-timeZone-gt-、-lt-fmt-setTimeZone-gt-标签"><span class="nav-number">9.6.</span> <span class="nav-text">9.5.7  用于设定时区的<fmt:timeZone>、<fmt:setTimeZone>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-8-用于格式化数字的-lt-fmt-formatNumber-gt-标签"><span class="nav-number">9.7.</span> <span class="nav-text">9.5.8  用于格式化数字的<fmt:formatNumber>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-9-用于解析数字的-lt-fmt-parseNumber-gt-标签"><span class="nav-number">9.8.</span> <span class="nav-text">9.5.9  用于解析数字的<fmt:parseNumber>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-10-用于格式化日期的-lt-fmt-formatDate-gt-标签"><span class="nav-number">9.9.</span> <span class="nav-text">9.5.10  用于格式化日期的<fmt:formatDate>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-11-用于解析日期的-lt-fmt-parseDate-gt-标签"><span class="nav-number">9.10.</span> <span class="nav-text">9.5.11  用于解析日期的<fmt:parseDate>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-Database-access-标签库"><span class="nav-number">10.</span> <span class="nav-text">9.6  Database access 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-1-用于设置数据源的-lt-sql-setDataSource-gt-标签"><span class="nav-number">10.1.</span> <span class="nav-text">9.6.1 用于设置数据源的 <sql:setDataSource> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-用于查询的-lt-sql-query-gt-标签"><span class="nav-number">10.2.</span> <span class="nav-text">9.6.2 用于查询的 <sql:query>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-3-用于更新的-lt-sql-update-gt-标签"><span class="nav-number">10.3.</span> <span class="nav-text">9.6.3 用于更新的 <sql:update> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-4-用于事务处理的-lt-sql-transaction-gt-标签"><span class="nav-number">10.4.</span> <span class="nav-text">9.6.4 用于事务处理的<sql:transaction>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-5-用于事务处理的-lt-sql-param-gt-、-lt-sql-dateParam-gt-标签"><span class="nav-number">10.5.</span> <span class="nav-text">9.6.5 用于事务处理的<sql:param> 、 <sql:dateParam> 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fn-gt-标签"><span class="nav-number">11.</span> <span class="nav-text"><fn:> 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7-Functions-标签库"><span class="nav-number">12.</span> <span class="nav-text">9.7 Functions 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-1-长度函数-fn-length-函数"><span class="nav-number">12.1.</span> <span class="nav-text">9.7.1 长度函数 fn:length 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-2-判断函数-fn-contains-函数"><span class="nav-number">12.2.</span> <span class="nav-text">9.7.2 判断函数 fn:contains 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-3-fn-containsIgnoreCase函数"><span class="nav-number">12.3.</span> <span class="nav-text">9.7.3 fn:containsIgnoreCase函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-4-词头判断函数-fn-startsWith-函数"><span class="nav-number">12.4.</span> <span class="nav-text">9.7.4 词头判断函数 fn:startsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-5-词尾判断函数-fn-endsWith-函数"><span class="nav-number">12.5.</span> <span class="nav-text">9.7.5 词尾判断函数 fn:endsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-6-字符实体转换函数-fn-escapeXml-函数"><span class="nav-number">12.6.</span> <span class="nav-text">9.7.6 字符实体转换函数 fn:escapeXml 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-8-字符匹配函数-fn-indexOf-函数"><span class="nav-number">12.7.</span> <span class="nav-text">9.7.8 字符匹配函数 fn:indexOf 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-9-分隔符函数-fn-join-函数"><span class="nav-number">12.8.</span> <span class="nav-text">9.7.9 分隔符函数 fn:join 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-10-替换函数-fn-replace-函数"><span class="nav-number">12.9.</span> <span class="nav-text">9.7.10 替换函数 fn:replace 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-11-分隔符转换数组函数-fn-split-函数"><span class="nav-number">12.10.</span> <span class="nav-text">9.7.11 分隔符转换数组函数 fn:split 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-12-字符串截取函数-fn-substring-函数"><span class="nav-number">12.11.</span> <span class="nav-text">9.7.12 字符串截取函数 fn:substring 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-14-起始到定位截取字符串函数-fn-substringBefore-函数"><span class="nav-number">12.12.</span> <span class="nav-text">9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-15-小写转换函数-fn-toLowerCase-函数"><span class="nav-number">12.13.</span> <span class="nav-text">9.7.15 小写转换函数 fn:toLowerCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-16大写转换函数-fn-toUpperCase-函数"><span class="nav-number">12.14.</span> <span class="nav-text">9.7.16大写转换函数 fn:toUpperCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-17空格删除函数-fn-trim-函数"><span class="nav-number">12.15.</span> <span class="nav-text">9.7.17空格删除函数 fn:trim 函数</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -995,36 +1069,50 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2012 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2012 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">申艳超</span>
+
+  
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
 
         
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
@@ -1047,54 +1135,109 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
 
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://blueshen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/';
+          this.page.identifier = 'blog/2014/03/18/use-jstl/';
+          this.page.title = 'JSTL介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://blueshen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
 
 
 
@@ -1102,21 +1245,52 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   
 
 
 
-  
-  
+
+
   
 
   
 
   
 <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
 </script>
 
 
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
