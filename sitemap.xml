@@ -4,7 +4,7 @@
   <url>
     <loc>https://www.shenyanchao.cn/404.html</loc>
     
-    <lastmod>2018-10-30T07:42:19.047Z</lastmod>
+    <lastmod>2018-10-30T10:15:46.905Z</lastmod>
     
   </url>
   
@@ -352,14 +352,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</loc>
     
     <lastmod>2018-10-23T08:41:02.870Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/</loc>
     
     <lastmod>2018-10-23T08:41:02.870Z</lastmod>
     
@@ -380,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</loc>
     
     <lastmod>2018-10-23T08:41:02.868Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/</loc>
     
     <lastmod>2018-10-23T08:41:02.868Z</lastmod>
     
@@ -450,14 +450,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-frequently-asked-questions/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-web-driver-js/</loc>
     
     <lastmod>2018-10-23T08:41:02.858Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-web-driver-js/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-frequently-asked-questions/</loc>
     
     <lastmod>2018-10-23T08:41:02.858Z</lastmod>
     
@@ -513,14 +513,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-grid/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-introduction/</loc>
     
     <lastmod>2018-10-23T08:41:02.845Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-introduction/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-grid/</loc>
     
     <lastmod>2018-10-23T08:41:02.845Z</lastmod>
     
@@ -548,14 +548,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/08/observer-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.838Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/08/observer-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/</loc>
     
     <lastmod>2018-10-23T08:41:02.838Z</lastmod>
     
@@ -576,14 +576,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/02/my-linux-dream/</loc>
     
     <lastmod>2018-10-23T08:41:02.836Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/05/02/my-linux-dream/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/</loc>
     
     <lastmod>2018-10-23T08:41:02.836Z</lastmod>
     
@@ -611,14 +611,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/memento-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.834Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/memento-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.834Z</lastmod>
     
@@ -632,13 +632,6 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/</loc>
-    
-    <lastmod>2018-10-23T08:41:02.833Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenyanchao.cn/blog/2012/10/19/maven-life-cycle/</loc>
     
     <lastmod>2018-10-23T08:41:02.833Z</lastmod>
@@ -646,9 +639,9 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/</loc>
     
-    <lastmod>2018-10-23T08:41:02.832Z</lastmod>
+    <lastmod>2018-10-23T08:41:02.833Z</lastmod>
     
   </url>
   
@@ -661,6 +654,13 @@
   
   <url>
     <loc>https://www.shenyanchao.cn/blog/2012/09/21/markdown-syntax/</loc>
+    
+    <lastmod>2018-10-23T08:41:02.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/</loc>
     
     <lastmod>2018-10-23T08:41:02.832Z</lastmod>
     
@@ -723,13 +723,6 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/how-webdriver-works/</loc>
-    
-    <lastmod>2018-10-23T08:41:02.824Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenyanchao.cn/blog/2013/09/16/git-ssh-connection/</loc>
     
     <lastmod>2018-10-23T08:41:02.824Z</lastmod>
@@ -738,6 +731,13 @@
   
   <url>
     <loc>https://www.shenyanchao.cn/blog/2012/10/22/http-header/</loc>
+    
+    <lastmod>2018-10-23T08:41:02.824Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/how-webdriver-works/</loc>
     
     <lastmod>2018-10-23T08:41:02.824Z</lastmod>
     
@@ -786,14 +786,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/05/builder-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/chain-of-responsibility-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.816Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/chain-of-responsibility-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/05/builder-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.816Z</lastmod>
     
