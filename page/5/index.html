@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="申艳超,shenyanchao,java" />
 
 
 
@@ -96,7 +96,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -151,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
   page-home">
     <div class="headband"></div>
 
@@ -290,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-web-driver/">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/05/30/selenium-doc-selenium-rc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
@@ -309,7 +309,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="url">selenium文档:selenium WebDriver</a></h2>
+                <a class="post-title-link" href="/blog/2013/05/30/selenium-doc-selenium-rc/" itemprop="url">selenium文档:selenium RC</a></h2>
         
 
         <div class="post-meta">
@@ -362,8 +362,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2013/05/30/selenium-doc-selenium-web-driver/" itemprop="commentCount"></span>
+                <a href="/blog/2013/05/30/selenium-doc-selenium-rc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2013/05/30/selenium-doc-selenium-rc/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -371,7 +371,7 @@
 
           
           
-             <span id="/blog/2013/05/30/selenium-doc-selenium-web-driver/" class="leancloud_visitors" data-flag-title="selenium文档:selenium WebDriver">
+             <span id="/blog/2013/05/30/selenium-doc-selenium-rc/" class="leancloud_visitors" data-flag-title="selenium文档:selenium RC">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,836
+                  8,517
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  23
+                  32
                 </span>
               
             </div>
@@ -434,13 +434,14 @@
 
       
         
-          <h1 id="Selenium-WebDriver"><a href="#Selenium-WebDriver" class="headerlink" title="Selenium WebDriver"></a>Selenium WebDriver</h1><p>注意：本章内容官方团队正在完善中。</p>
-<h2 id="介绍-WebDriver"><a href="#介绍-WebDriver" class="headerlink" title="介绍 WebDriver"></a>介绍 WebDriver</h2><p>Selenium 2.0 最主要的一个新特性就是集成了 WebDriver API。WebDriver 提供更精简的编程几口，以解决 Selenium-RC API 中的一些限制。WebDriver 为那些页面元素可以不通过页面重新加载来更新的动态网页提供了更好的支持。WebDriver 的目标是提供一套精心设计的面向对象的 API 来更好的支持现代高级 web 应用的测试工作。</p>
-<h2 id="同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？"><a href="#同-Selenium-RC-相比，WebDriver-如何驱动浏览器的？" class="headerlink" title="同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？"></a>同 Selenium-RC 相比，WebDriver 如何驱动浏览器的？</h2><p>Selenium-WebDriver 直接通过浏览器自动化的本地接口来调用浏览器。如何直接调用，和调用的细节取决于你使用什么浏览器。本章后续的内容介绍了每个 “browser driver” 的详细信息。</p>
-<p>相比 Selenium-RC ，WebDriver 确实非常不一样。Selenium-RC 在所有支持的浏览器中工作原理是一样的。它将 JavaScript 在浏览器加载的时候注入浏览器，然后使用这些 JavaScript 驱动 AUT 运行 WebDriver 使用的是不同的技术，再一次强调，它是直接调用浏览器自动化的本地接口。<br>
+          <h1 id="Selenium-1-Selenium-RC"><a href="#Selenium-1-Selenium-RC" class="headerlink" title="Selenium 1 (Selenium RC)"></a>Selenium 1 (Selenium RC)</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>正如你在 Selenium 项目简史里读到的，Selenium RC 在很长一段时间内都是 Selenium 的主要项目，直到 WebDriver/Selenium 合并而产生了最新和最强大的 Selenium 2。</p>
+<p>Selenium 仍然被活跃的支持（大部分是维护工作），并且提供了一些 Selenium 2 短期不会支持的特性，包括支持多语言 (Java, Javascript, Ruby, PHP, Python, Perl 和 C#) 和支持几乎所有的浏览器。 </p>
+<h2 id="Selenium-RC-如何工作"><a href="#Selenium-RC-如何工作" class="headerlink" title="Selenium RC 如何工作"></a>Selenium RC 如何工作</h2><p>首先，我们将讲述 Selenium RC 的组件如何操作，以及在测试脚本运行时各自扮演的角色。</p>
+<h3 id="RC-组件"><a href="#RC-组件" class="headerlink" title="RC 组件"></a>RC 组件</h3><p>Selenium RC 组件是：</p>
+<p>Selenium Server 能启动和杀死浏览器进程，解析并运行由测试程序传递过来的 Selenese 命令，并且可以是一个 HTTP 代理，拦截和验证浏览器和 AUT(测试中的应用)之间的 HTTP 通信。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-web-driver/#more" rel="contents">
+            <a class="btn" href="/blog/2013/05/30/selenium-doc-selenium-rc/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
