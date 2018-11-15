@@ -119,7 +119,7 @@
 未来计划
 
 介绍WebDriver 的 JavaScript 绑定（WebDriverJS），可以使 JavaScript 开发人员避免上下文切换的开销，并且可以让他们使用和项目开发">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.858Z">
+<meta property="og:updated_time" content="2018-11-15T11:27:53.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="selenium wiki:webdriverJs">
 <meta name="twitter:description" content="WebDriverJSWebDriver 的 JavaScript 语言绑定。本文包含以下内容：
@@ -590,7 +590,7 @@ driver.quit();
   driver.switchTo().window(&apos;slave&apos;);
   driver.get(&apos;http://www.google.com&apos;);
   driver.findElement(webdriver.By.name(&apos;q&apos;)).sendKeys(&apos;webdriver&apos;);
-  driver.findElement(webdriver.By.name(&apos;btnG&apos;)).click(); 
+  driver.findElement(webdriver.By.name(&apos;btnG&apos;)).click();
 &lt;/script&gt;
 </code></pre><h4 id="调试-Tests"><a href="#调试-Tests" class="headerlink" title="调试 Tests"></a>调试 Tests</h4><p>你可以使用 WebDriver 的服务来调试在浏览器中使用  WebDriverJS 运行的测试。</p>
 <pre><code>$ ./go selenium-server-standalone
@@ -605,7 +605,7 @@ $ java -jar \
 <li>Opera 12.0a+</li>
 <li>Android 4.0+</li>
 </ul>
-<h2 id="设计细节"><a href="#设计细节" class="headerlink" title="设计细节"></a>设计细节</h2><h3 id="管理异步-API"><a href="#管理异步-API" class="headerlink" title="管理异步 API"></a>管理异步 API</h3><p>不同于其他那些提供了阻塞式 API 的语言绑定，WebDriverJS 完全是异步的。为了追踪每个命令的执行状态， WebDriverJS 对 “promise” 进行了扩展。promise 是一个这样的对象，它包含了在未来某一点可用的一个值。JavaScript 有几个 promise 的实现，WebDriverJS 的 promise 是基于 CommonJS 的 <a href="http://www.google.com/url?q=http%3A%2F%2Fwiki.commonjs.org%2Fwiki%2FPromises%2FA&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGC0NMXO-81exam-S5HjTuOxaV_mw" target="_blank" rel="external">Promise/A</a> 提议，它定义了 promise 是任意对象上的 then 函数属性。 </p>
+<h2 id="设计细节"><a href="#设计细节" class="headerlink" title="设计细节"></a>设计细节</h2><h3 id="管理异步-API"><a href="#管理异步-API" class="headerlink" title="管理异步 API"></a>管理异步 API</h3><p>不同于其他那些提供了阻塞式 API 的语言绑定，WebDriverJS 完全是异步的。为了追踪每个命令的执行状态， WebDriverJS 对 “promise” 进行了扩展。promise 是一个这样的对象，它包含了在未来某一点可用的一个值。JavaScript 有几个 promise 的实现，WebDriverJS 的 promise 是基于 CommonJS 的 <a href="http://www.google.com/url?q=http%3A%2F%2Fwiki.commonjs.org%2Fwiki%2FPromises%2FA&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGC0NMXO-81exam-S5HjTuOxaV_mw" target="_blank" rel="external">Promise/A</a> 提议，它定义了 promise 是任意对象上的 then 函数属性。</p>
 <pre><code>/**
  * Registers listeners for when this instance is resolved.
  *
@@ -810,8 +810,8 @@ Content-Length: 60
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2013/05/30/selenium-doc-selenium-grid/" rel="next" title="selenium文档:selenium Grid">
-                <i class="fa fa-chevron-left"></i> selenium文档:selenium Grid
+              <a href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" rel="next" title="selenium wiki:高级用户交互">
+                <i class="fa fa-chevron-left"></i> selenium wiki:高级用户交互
               </a>
             
           </div>
@@ -820,8 +820,8 @@ Content-Length: 60
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2013/05/30/selenium-wiki-advanced-user-interactions/" rel="prev" title="selenium wiki:高级用户交互">
-                selenium wiki:高级用户交互 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2013/05/30/selenium-wiki-frequently-asked-questions/" rel="prev" title="selenium wiki:selenium常见问题">
+                selenium wiki:selenium常见问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -917,7 +917,7 @@ Content-Length: 60
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

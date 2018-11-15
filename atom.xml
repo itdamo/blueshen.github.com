@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shenyanchao.cn/"/>
-  <updated>2018-10-29T07:37:20.014Z</updated>
+  <updated>2018-11-15T11:24:59.597Z</updated>
   <id>https://www.shenyanchao.cn/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/"/>
     <id>https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/</id>
     <published>2018-10-29T06:53:46.000Z</published>
-    <updated>2018-10-29T07:37:20.014Z</updated>
+    <updated>2018-11-15T11:24:59.597Z</updated>
     
     <content type="html"><![CDATA[<h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><pre><code>jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;
 </code></pre><h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><pre><code>-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 </code></pre><h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">https://www.eclipse.org/mat/downloads.php</a></p>
-<p><img src="/images/blog/mat/mat-for-java.jpg" alt=""></p>
+<p><img src="/images/blog/mat/mat-for-java.jpg" alt="mat"></p>
 <p>依据不同的操作系统下载响应版本。</p>
 <a id="more"></a>
 <h3 id="解析dump出的文件"><a href="#解析dump出的文件" class="headerlink" title="解析dump出的文件"></a>解析dump出的文件</h3><p>通常情况下，dump出的文件是很大的。需要修改一下MemoryAnalyzer.ini，调大<code>-Xmx</code>参数,至少要比要分析的文件相等。</p>
@@ -53,12 +53,12 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;JVM参数自动dump&quot;&gt;&lt;a href=&quot;#JVM参数自动dump&quot; class=&quot;headerlink&quot; title=&quot;JVM参数自动dump&quot;&gt;&lt;/a&gt;JVM参数自动dump&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;下载并调整MAT-Eclipse-Memory-Analyze-Tool&quot;&gt;&lt;a href=&quot;#下载并调整MAT-Eclipse-Memory-Analyze-Tool&quot; class=&quot;headerlink&quot; title=&quot;下载并调整MAT(Eclipse Memory Analyze Tool)&quot;&gt;&lt;/a&gt;下载并调整MAT(Eclipse Memory Analyze Tool)&lt;/h3&gt;&lt;p&gt;下载地址： &lt;a href=&quot;https://www.eclipse.org/mat/downloads.php&quot;&gt;https://www.eclipse.org/mat/downloads.php&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/blog/mat/mat-for-java.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/blog/mat/mat-for-java.jpg&quot; alt=&quot;mat&quot;&gt;&lt;/p&gt;
 &lt;p&gt;依据不同的操作系统下载响应版本。&lt;/p&gt;
     
     </summary>
     
-      <category term="jvm" scheme="https://www.shenyanchao.cn/categories/jvm/"/>
+      <category term="JVM" scheme="https://www.shenyanchao.cn/categories/JVM/"/>
     
     
       <category term="java" scheme="https://www.shenyanchao.cn/tags/java/"/>
@@ -1782,7 +1782,7 @@ pooch nibble
     <link href="https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
     <published>2014-11-14T05:26:00.000Z</published>
-    <updated>2018-10-23T08:41:02.868Z</updated>
+    <updated>2018-11-15T11:18:16.203Z</updated>
     
     <content type="html"><![CDATA[<h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><ul>
 <li>Ubuntu Linux</li>
@@ -1807,7 +1807,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
 <h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
 </code></pre><h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
 </code></pre><h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
-</code></pre><p><img src="/images/blog/2014/sogou-result.png" alt=""></p>
+</code></pre><p><img src="/images/blog/2014/sogou-result.png" alt="mahout"></p>
 <p>可以看出87%的正确率还是不错的。</p>
 <hr>
 <p>参考文档：</p>

@@ -102,7 +102,7 @@ Sogou语料库处理下载后的预料库，文档都是GB2312编码的。虽然
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-seqfile.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-vector.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/sogou-result.png">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.868Z">
+<meta property="og:updated_time" content="2018-11-15T11:18:16.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用mahout对Sogou语料库进行分类">
 <meta name="twitter:description" content="软件版本
@@ -484,7 +484,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
 <h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
 </code></pre><h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
 </code></pre><h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
-</code></pre><p><img src="/images/blog/2014/sogou-result.png" alt=""></p>
+</code></pre><p><img src="/images/blog/2014/sogou-result.png" alt="mahout"></p>
 <p>可以看出87%的正确率还是不错的。</p>
 <hr>
 <p>参考文档：</p>
@@ -679,7 +679,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

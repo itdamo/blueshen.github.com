@@ -94,7 +94,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
-<meta property="og:updated_time" content="2018-10-29T07:37:20.014Z">
+<meta property="og:updated_time" content="2018-11-15T11:24:59.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用MAT来分析JAVA内存泄露">
 <meta name="twitter:description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
@@ -356,8 +356,8 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
                   </a>
                 </span>
 
@@ -454,7 +454,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 </code></pre><h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><pre><code>-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 </code></pre><h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">https://www.eclipse.org/mat/downloads.php</a></p>
-<p><img src="/images/blog/mat/mat-for-java.jpg" alt=""></p>
+<p><img src="/images/blog/mat/mat-for-java.jpg" alt="mat"></p>
 <p>依据不同的操作系统下载响应版本。</p>
 <a id="more"></a>
 <h3 id="解析dump出的文件"><a href="#解析dump出的文件" class="headerlink" title="解析dump出的文件"></a>解析dump出的文件</h3><p>通常情况下，dump出的文件是很大的。需要修改一下MemoryAnalyzer.ini，调大<code>-Xmx</code>参数,至少要比要分析的文件相等。</p>
@@ -657,7 +657,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
