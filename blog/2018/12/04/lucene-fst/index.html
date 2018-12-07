@@ -106,10 +106,10 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-2.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-3.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-4.png">
-<meta property="og:image" content="https://www.shenyanchao.cn/fst/fst-days3-fst-5.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-5.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-builder.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-outputs.png">
-<meta property="og:updated_time" content="2018-12-07T13:55:44.001Z">
+<meta property="og:updated_time" content="2018-12-07T14:03:07.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
 <meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
@@ -603,8 +603,9 @@
 <p>我们再插入更多的key, 这次插入tye:99看发生什么情况：</p>
 <p><img src="/images/lucene-fst/fst/fst-days3-fst-4.png" alt="fst">   </p>
 <p>插入tye，导致”es”部分被冻住，同时由于共享前缀t, 状态4-&gt;状态9的输出是99-3=96。</p>
-<p>最后一步，结束了，再执行一次冻住操作。最终的FST长这样：</p>
-<p><img src="fst/fst-days3-fst-5.png" alt="fst">   </p>
+<p>最后一步，结束了，再执行一次冻住操作。</p>
+<p>最终的FST长这样：</p>
+<p><img src="/images/lucene-fst/fst/fst-days3-fst-5.png" alt="fst">   </p>
 <h3 id="Lucene-FST"><a href="#Lucene-FST" class="headerlink" title="Lucene FST"></a>Lucene FST</h3><p>上一部分，对于FST的概念以及构建进行了详细的介绍。本部分将对Lucene FST的实现以及具体进行详细的分析。<br>Lucene关于FST相关的代码在package:<code>org.apache.lucene.util.fst</code>。    </p>
 <p>从<code>org.apache.lucene.util.fst.Builder</code>看起，这个是构建FST的Builder：</p>
 <p><img src="/images/lucene-fst/fst/lucene-fst-builder.png" alt="fst builder lucene">   </p>
@@ -709,7 +710,7 @@ public void add(IntsRef input, T output) throws IOException {
 </li>
 </ul>
 <p>最后在<code>finish</code>方法里，执行<code>freezeTail(0)</code>, 把所有的input构建进FST内。</p>
-<p>另外，值得注意的是Lucene里定义的Outputs类型：</p>
+<p>另外，值得注意的是Lucene里定义的<strong>Outputs</strong>类型：</p>
 <p><img src="/images/lucene-fst/fst/lucene-fst-outputs.png" alt="fst">  </p>
 <p>其中3个method是Outputs接口定义的，有11个不同类型的实现:</p>
 <ul>
