@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="lucene,FST,FSM," />
+  <meta name="keywords" content="lucene,FST,FSM,FSA," />
 
 
 
@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/fst/fst-days3-fst-5.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-builder.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-outputs.png">
-<meta property="og:updated_time" content="2018-12-06T09:48:33.484Z">
+<meta property="og:updated_time" content="2018-12-07T13:55:44.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
 <meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
@@ -464,7 +464,7 @@
 
       
         <h3 id="搜索引擎为什么能查询速度那么快？"><a href="#搜索引擎为什么能查询速度那么快？" class="headerlink" title="搜索引擎为什么能查询速度那么快？"></a>搜索引擎为什么能查询速度那么快？</h3><p>核心是在于如何快速的依据<strong>查询词</strong>快速的查找到所有的相关文档，这也是<strong>倒排索引（Inverted Index）</strong>的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。</p>
-<p>那么开源的搜索引擎包Lucene是怎么来设计的呢？Lucene采用了一种称为FST（Finite State Transducer）的结构来构建词典，这个结构保证了时间和空间复杂度的均衡，是Lucene的核心功能之一</p>
+<p>那么开源的搜索引擎包Lucene是怎么来设计的呢？Lucene采用了一种称为FST（Finite State Transducer）的结构来构建词典，这个结构保证了时间和空间复杂度的均衡，是Lucene的核心功能之一。</p>
 <h3 id="关于FST（Finite-State-Transducer）"><a href="#关于FST（Finite-State-Transducer）" class="headerlink" title="关于FST（Finite State Transducer）"></a>关于FST（Finite State Transducer）</h3><p>FST类似一种TRIE树。</p>
 <h4 id="使用FSM-Finite-State-Machines-作为数据结构"><a href="#使用FSM-Finite-State-Machines-作为数据结构" class="headerlink" title="使用FSM(Finite State Machines)作为数据结构"></a>使用FSM(Finite State Machines)作为数据结构</h4><p><strong>FSM(Finite State Machines)有限状态机</strong>: 表示有限个状态（State）集合以及这些状态之间<strong>转移</strong>和动作的数学模型。其中一个状态被标记为<strong>开始状态</strong>，0个或更多的状态被标记为<strong>final状态</strong>。<br>一个FSM同一时间只处于1个状态。FSM很通用，可以用来表示多种处理过程，下面的FSM描述了《小猫咪的一天》。   </p>
 <p><img src="/images/lucene-fst/fst/fst-cauchy.png" alt="fsm 小猫咪的一天"></p>
@@ -495,8 +495,7 @@
 <li>输入l，FSA从2-&gt;3</li>
 </ul>
 <p>这个时候，FSA处于final状态3，所以“jul”是在这个集合的。 </p>
-<p>设想一下如果输入“jun”，在状态2的时候<strong>无法移动</strong>了，就知道不在这个集合里了。<br>设想如何输入“ju”, 在状态2的时候，已经没有输入了。而状态2并不是<strong>final状态</strong>，所以也不在这个集合里。<br>值得指出的是，查找这个key是否在集合内的时间复杂度，取决于key的长度，而不是集合的大小。   </p>
-<p>现在往FSA里再加一个key.  FSA此时包含keys:”jul”和“mar”。    </p>
+<p>设想一下如果输入“jun”，在状态2的时候<strong>无法移动</strong>了，就知道不在这个集合里了。<br>设想如何输入“ju”, 在状态2的时候，已经没有输入了。而状态2并不是<strong>final状态</strong>，所以也不在这个集合里。<br>值得指出的是，查找这个key是否在集合内的时间复杂度，取决于key的长度，而不是集合的大小。<br>​<br>现在往FSA里再加一个key.  FSA此时包含keys:”jul”和“mar”。    </p>
 <p><img src="/images/lucene-fst/fst/fst-set2.png" alt="fsm"></p>
 <p>start状态0此时有了2个转移：<strong>j</strong>和<strong>m</strong>。因此，输入key:”mar”,首先会跟随m来转移。 final状态是“jul”和“mar”<strong>共享</strong>的。这使得我们能用<strong>更少的空间</strong>来表示<strong>更多的信息</strong>。 </p>
 <p>当我们在这个FSA里加入“jun”，那么它和“jul”有共同的前缀“ju”: </p>
@@ -727,6 +726,7 @@ public void add(IntsRef input, T output) throws IOException {
 <li>hunspell拼写检查词典</li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>FST，不但能<strong>共享前缀</strong>还能<strong>共享后缀</strong>。不但能判断查找的key是否存在，还能给出响应的输入output。 它在时间复杂度和空间复杂度上都做了最大程度的优化，使得Lucene能够将Term Dictionary完全加载到内存，快速的定位Term找到响应的output（posting倒排列表）。</p>
+<hr>
 <p>参考文档：   </p>
 <p><a href="http://www.cs.uvm.edu/~xwu/wie/CourseSlides/Schips-BurstTries.pdf" target="_blank" rel="external">Burst Tries</a><br><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698" target="_blank" rel="external">Direct Construction of Minimal Acyclic Subsequential Transducers</a><br><a href="https://blog.burntsushi.net/transducers/" target="_blank" rel="external">Index 1,600,000,000 Keys with Automata and Rust</a><br><a href="https://en.wikipedia.org/wiki/DFA_minimization" target="_blank" rel="external">DFA minimization WikiPedia</a><br><a href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf" target="_blank" rel="external">Smaller Representation of Finite State Automata</a><br><a href="http://blog.mikemccandless.com/2010/12/using-finite-state-transducers-in.html" target="_blank" rel="external">Using Finite State Transducers in Lucene</a></p>
 
@@ -798,6 +798,8 @@ public void add(IntsRef input, T output) throws IOException {
             <a href="/tags/FST/" rel="tag"># FST</a>
           
             <a href="/tags/FSM/" rel="tag"># FSM</a>
+          
+            <a href="/tags/FSA/" rel="tag"># FSA</a>
           
         </div>
       
@@ -928,7 +930,7 @@ public void add(IntsRef input, T output) throws IOException {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-count">203</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1018,7 +1020,7 @@ public void add(IntsRef input, T output) throws IOException {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">169.9k</span>
+    <span title="Site words total count">171.9k</span>
   
 </div>
 

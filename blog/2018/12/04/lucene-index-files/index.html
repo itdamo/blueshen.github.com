@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="lucene,index," />
+  <meta name="keywords" content="lucene,index,lucene7," />
 
 
 
@@ -81,16 +81,36 @@
 
 
 
-<meta name="description" content="TODO">
+<meta name="description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
+本文，依Lucene 7.5.0（当时最新）版本描述。
+Luc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lucene索引文件详解">
+<meta property="og:title" content="Lucene索引过程&索引文件格式详解">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="TODO">
-<meta property="og:updated_time" content="2018-12-04T13:48:35.082Z">
+<meta property="og:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
+本文，依Lucene 7.5.0（当时最新）版本描述。
+Luc">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-on-disk.jpg">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-process.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-segments-n.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-si.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-fnm.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-fdt.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-tim.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-doc.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-pos.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-pay.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-liv.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-tvd.png">
+<meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-nvd.png">
+<meta property="og:updated_time" content="2018-12-07T13:56:26.089Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lucene索引文件详解">
-<meta name="twitter:description" content="TODO">
+<meta name="twitter:title" content="Lucene索引过程&索引文件格式详解">
+<meta name="twitter:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
+本文，依Lucene 7.5.0（当时最新）版本描述。
+Luc">
+<meta name="twitter:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-on-disk.jpg">
 
 
 
@@ -126,7 +146,7 @@
 
 
 
-  <title>Lucene索引文件详解 | 申艳超-博客</title>
+  <title>Lucene索引过程&索引文件格式详解 | 申艳超-博客</title>
   
 
 
@@ -310,7 +330,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Lucene索引文件详解</h2>
+          <h2 class="post-title" itemprop="name headline">Lucene索引过程&索引文件格式详解</h2>
         
 
         <div class="post-meta">
@@ -333,6 +353,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lucene/" itemprop="url" rel="index">
+                    <span itemprop="name">lucene</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -350,7 +392,7 @@
 
           
           
-             <span id="/blog/2018/12/04/lucene-index-files/" class="leancloud_visitors" data-flag-title="Lucene索引文件详解">
+             <span id="/blog/2018/12/04/lucene-index-files/" class="leancloud_visitors" data-flag-title="Lucene索引过程&索引文件格式详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1
+                  1,984
                 </span>
               
 
@@ -396,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -417,7 +459,214 @@
       
 
       
-        <p>TODO</p>
+        <p>最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。</p>
+<p>本文，依Lucene 7.5.0（当时最新）版本描述。</p>
+<h3 id="Lucene索引文件的表现"><a href="#Lucene索引文件的表现" class="headerlink" title="Lucene索引文件的表现"></a>Lucene索引文件的表现</h3><p>Lucene索引在硬盘上的<strong>表现</strong>就是一系列的文件，后缀名不同，下面是一个样例：</p>
+<p><img src="/images/lucene-index-files/lucene-index-on-disk.jpg" alt="lucene 索引文件"></p>
+<p>通常，看到这些文件，我们就想打开看看，发现根本无法直接查看。这里存的到底是什么，都有什么作用。很多时候是一脸的懵。为了更好的理解这些文件，下面将一步步进行细致的分析。</p>
+<a id="more"></a>
+<h3 id="Lucene构建索引过程"><a href="#Lucene构建索引过程" class="headerlink" title="Lucene构建索引过程"></a>Lucene构建索引过程</h3><p>Lucene源码读起来是比较晦涩的，毕竟它写于20年前，而且作者也是一个具备很多工作经验的老手，读源码是需要一定的时间的。    </p>
+<p>做索引的入口是<code>IndexWriter.addDocument*()</code>, 当新索引N个Document的时候，是如何生成一系列的索引文件呢。</p>
+<p>下面是一个源码导读图：</p>
+<p><img src="/images/lucene-index-files/lucene-index-process.png" alt="Lucene 索引构建"></p>
+<p>以上重点关注<code>DefaultIndexingChain</code>这个类，<code>processDocument()</code>方法主要是用来构建<strong>正排信息</strong>。而针对每个Field的<code>processField()</code>则通过一系列的操作，构建出了<strong>倒排信息</strong>。</p>
+<p>什么时候写入磁盘文件中呢？触发点是DocumentsWriterPerThread(DWPT)的flush()方法。触发时间可能是以下条件：</p>
+<ul>
+<li>超过MaxBufferedDocs限制</li>
+<li>超过RAMBufferSizeMB限制</li>
+<li>人为flush()或commit()</li>
+<li>MergePolicy触发</li>
+</ul>
+<p>经过以上的处理，就生成了一个最小的<strong>独立索引单元</strong>，称之为Segment。一个逻辑上的索引（表现为一个目录），是由N多个Segment构成的。</p>
+<h3 id="Lucene索引文件"><a href="#Lucene索引文件" class="headerlink" title="Lucene索引文件"></a>Lucene索引文件</h3><p>以下描述在<a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="external">Lucene JavaDoc</a>里有详细的介绍，为方便理解，介绍如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>扩展名</th>
+<th>简要描述</th>
+<th>相关源码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Segment File</td>
+<td>segments_N</td>
+<td>commit点信息，其中N是一个36进制表示的值</td>
+<td>SegmentInfos</td>
+</tr>
+<tr>
+<td>Lock File</td>
+<td>write.lock</td>
+<td>文件锁，避免多个writer同时写；默认和索引文件一个目录。</td>
+<td></td>
+</tr>
+<tr>
+<td>Segment Info</td>
+<td>.si</td>
+<td>segment的元数据信息，指明这个segment都包含哪些文件</td>
+<td>Lucene70SegmentInfoFormat</td>
+</tr>
+<tr>
+<td>Compound File</td>
+<td>.cfs, .cfe</td>
+<td>如果启用compound功能，会压缩索引到2个文件内</td>
+<td>Lucene50CompoundFormat</td>
+</tr>
+<tr>
+<td>Fields</td>
+<td>.fnm</td>
+<td>存储有哪些Field,以及相关信息</td>
+<td>Lucene60FieldInfosFormat</td>
+</tr>
+<tr>
+<td>Field Index</td>
+<td>.fdx</td>
+<td>Field数据文件的索引</td>
+<td>Lucene50StoredFieldsFormat</td>
+</tr>
+<tr>
+<td>Field Data</td>
+<td>.fdt</td>
+<td>Field数据文件</td>
+<td>Lucene50StoredFieldsFormat</td>
+</tr>
+<tr>
+<td>Term Dictionary</td>
+<td>.tim</td>
+<td>Term词典</td>
+<td>BlockTreeTermsWriter</td>
+</tr>
+<tr>
+<td>Term Index</td>
+<td>.tip</td>
+<td>指向Term词典的索引</td>
+<td>BlockTreeTermsWriter</td>
+</tr>
+<tr>
+<td>Frequencies</td>
+<td>.doc</td>
+<td>保留包含每个Term的文档列表</td>
+<td>Lucene50PostingsWriter</td>
+</tr>
+<tr>
+<td>Positions</td>
+<td>.pos</td>
+<td>Term在文章中出现的位置信息</td>
+<td>Lucene50PostingsWriter</td>
+</tr>
+<tr>
+<td>Payloads</td>
+<td>.pay</td>
+<td>offset偏移/payload附加信息</td>
+<td>Lucene50PostingsWriter</td>
+</tr>
+<tr>
+<td>Norms</td>
+<td>.nvd, .nvm</td>
+<td>.nvm保存加权因子元数据；.nvd存储加权数据</td>
+<td>Lucene70NormsFormat</td>
+</tr>
+<tr>
+<td>Per-Document Values</td>
+<td>.dvd, .dvm</td>
+<td>.dvm存文档正排元数据；.dvd存文档正排数据</td>
+<td>Lucene70DocValuesFormat</td>
+</tr>
+<tr>
+<td>Term Vector Index</td>
+<td>.tvx</td>
+<td>指向tvd的offset</td>
+<td>Lucene50TermVectorsFormat</td>
+</tr>
+<tr>
+<td>Term Vector Data</td>
+<td>.tvd</td>
+<td>存储term vector信息</td>
+<td>Lucene50TermVectorsFormat</td>
+</tr>
+<tr>
+<td>Live Documents</td>
+<td>.liv</td>
+<td>活着的文档列表。位图形式</td>
+<td>Lucene50LiveDocsFormat</td>
+</tr>
+<tr>
+<td>Point Values</td>
+<td>.dii, .dim</td>
+<td>多维数据，地理位置等信息，用于处理数值型的查询</td>
+<td>Lucene60PointsFormat</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Segment-N"><a href="#Segment-N" class="headerlink" title="Segment_N"></a>Segment_N</h4><p>格式：</p>
+<p><img src="/images/lucene-index-files/lucene-segments-n.png" alt="Lucene Segment_N"></p>
+<p>其中N作为后缀，是36进制的数字, 实现方式为：<code>Long.toString(gen, Character.MAX_RADIX)</code>。</p>
+<p>segments_N里通过SegName记录了这索引里<strong>所有.si文件名</strong>。</p>
+<h4 id="segment格式（-si）"><a href="#segment格式（-si）" class="headerlink" title="segment格式（.si）"></a>segment格式（.si）</h4><p>格式：</p>
+<p><img src="/images/lucene-index-files/lucene-si.png" alt="Lucene segment"></p>
+<p>由于一个segment文件，就是一个独立的子索引，其中Files是一个列表，里面存储了本segment所有相关的索引文件。类似长这样：</p>
+<pre><code>_8qh.dii
+_8qh.dim
+_8qh.fdt
+_8qh.fdx
+_8qh.fnm
+_8qh_Lucene50_0.doc
+_8qh_Lucene50_0.pos
+_8qh_Lucene50_0.tim
+_8qh_Lucene50_0.tip
+_8qh_Lucene70_0.dvd
+_8qh_Lucene70_0.dvm
+_8qh.si    
+</code></pre><p>IndexSort作为新加入的一个特性，也直接体现在了.si文件里。IndexSort可以加速排序，极大提升性能。</p>
+<h4 id="Field-info格式（-fnm）"><a href="#Field-info格式（-fnm）" class="headerlink" title="Field info格式（.fnm）"></a>Field info格式（.fnm）</h4><p>格式：</p>
+<p><img src="/images/lucene-index-files/lucene-fnm.png" alt="Lucene Filed info"></p>
+<p>存储了Document所包含的FieldName以及Field的内部表示FieldNumber（可以理解为ID）。 同时，每个Field相关索引配置，都通过byte来存储保存下来。</p>
+<p>其中DocValueBits里，不同类型的Field, 处理DocValue数据是不一样的，此处暂时按下不表。后续产出</p>
+<h4 id="Field-Data格式（-fdx-fdt）"><a href="#Field-Data格式（-fdx-fdt）" class="headerlink" title="Field Data格式（.fdx, .fdt）"></a>Field Data格式（.fdx, .fdt）</h4><p>格式如下所示：</p>
+<p><img src="/images/lucene-index-files/lucene-fdt.png" alt=""></p>
+<p>由于fdt正排信息很多，在存到磁盘的时候，使用<strong>LZ4算法</strong>进行了压缩。每个Chunk大小16KB(<code>1&lt;&lt;14</code>), Doc个数不能超过128个。在fdx中每个Block有1024个Chunk。</p>
+<p>CompressDocs是压缩后进行存储的，为了方便理解，可以认为就是一系列的Doc构成的。每个Doc又包含FieldNumAndType和实际的Field Value。</p>
+<p>其中FieldNumAndType是一个VLong: <strong>低3位</strong>表示Field Type, 其余<strong>高位</strong>用来表示FieldNumber.  可见Lucene为了最大程度的节省空间，做了很多的Trick.</p>
+<h4 id="Term-Index格式（-tip-tim）"><a href="#Term-Index格式（-tip-tim）" class="headerlink" title="Term Index格式（.tip,.tim）"></a>Term Index格式（.tip,.tim）</h4><p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.html" target="_blank" rel="external">格式</a>如下：</p>
+<p>.tip:</p>
+<p>​    Header, FSTIndex&lt; IndexStartFP&gt;…, DirOffset, Footer</p>
+<p>.tim</p>
+<p>​    Header, <em>PostingsHeader</em>, NodeBlock(…), FieldSummary, DirOffset, Footer</p>
+<p>图例如下：</p>
+<p><img src="/images/lucene-index-files/lucene-tim.png" alt="lucene Term Index &amp; Term Dictionary"></p>
+<p>其中FST部分，是直接加载到内存的，详见另外一篇博文，这里为方便理解，直接写画为类TRIE一样。</p>
+<h4 id="Pos列表（-doc-pos-pay）"><a href="#Pos列表（-doc-pos-pay）" class="headerlink" title="Pos列表（.doc, .pos, .pay）"></a>Pos列表（.doc, .pos, .pay）</h4><p>doc格式如下：</p>
+<p><img src="/images/lucene-index-files/lucene-doc.png" alt="Lucene posting list"></p>
+<p>需要注意的是，PackedBlock是对倒排列表的压缩，每128个作为一个Block，不能凑整的情况下，再按VIntBlock进行存储。无论如何存储，Block内部是存储了DocID（<code>PackedDocDeltaBlock</code>）和Term Freq(<code>PackedFreqBlock</code>)的对应关系的。</p>
+<p>而Postings则是以SKIPLIST（跳表）进行存储的，这种存储格式保证了快速的查找和归并操作。最底层的SkipDatum通过DocSkip保有对实际doc的指针。PosFPSkip则指向.pos文件，PayFPSkip指向了.pay文件。</p>
+<p>pos文件格式：</p>
+<p><img src="/images/lucene-index-files/lucene-pos.png" alt="Lucene Position"></p>
+<p>这里的PackedPosDeltaBlock与doc文件的很像，也是进行了压缩成block进行存储。最终通过PostionDelta和OffsetDelta来获取相关的位置和偏移信息。</p>
+<p>pay格式：</p>
+<p><img src="/images/lucene-index-files/lucene-pay.png" alt="Lucene payload"></p>
+<p>同样做了Block处理，这个文件通过TermPayloads保留了Term和Payload的对应关系；通过TermOffsets保存了Term和Offset的对应关系。</p>
+<h4 id="LIV文件格式-liv"><a href="#LIV文件格式-liv" class="headerlink" title="LIV文件格式(.liv)"></a>LIV文件格式(.liv)</h4><p>格式如下：</p>
+<p><img src="/images/lucene-index-files/lucene-liv.png" alt="Lucene live document"></p>
+<p>通过FixBitSet位图，来表示哪些是存活的，哪些是被删除的。FixBitSet的底层是通过<code>long[]</code>来模拟实现这样一个大的位图的。</p>
+<p>Lucene的4.0版本之前是通过.del文件来标记哪些DocID是被删除的，而现在则改为.liv标记哪些是存活的。个人而言，没有看出来具体原因，毕竟功能实现其实是一样的。</p>
+<h4 id="TermVector-tvx-tvd"><a href="#TermVector-tvx-tvd" class="headerlink" title="TermVector(.tvx, .tvd)"></a>TermVector(.tvx, .tvd)</h4><p>格式如下：</p>
+<p><img src="/images/lucene-index-files/lucene-tvd.png" alt="Lucene TermVector"></p>
+<p>这个格式和Field Data的很相似。区别在于最底层的Chunk直接保留了相关的信息TermFreqs、Positions、StartOffsets、TermAndPayLoads等信息。</p>
+<p>从这里也可以看出Term Vector保存的信息很多都是和之前重复的，如果没有必要，完全可以关闭Term Vector功能，避免额外的性能损耗。  </p>
+<h4 id="Norms-nvm-nvd"><a href="#Norms-nvm-nvd" class="headerlink" title="Norms (.nvm, .nvd)"></a>Norms (.nvm, .nvd)</h4><p>格式如下：</p>
+<p><img src="/images/lucene-index-files/lucene-nvd.png" alt="Lucene Norms"></p>
+<p>Norms信息通常是用来存储Field\Document的Boost加权信息，然后Lucene7之后，去除了Index时的boost加权操作。因此，目前Norms里存储的东西极少，有逐步被取消的的可能性。</p>
+<h4 id="Doc-Values-dvx-dvd"><a href="#Doc-Values-dvx-dvd" class="headerlink" title="Doc Values(.dvx, .dvd)"></a>Doc Values(.dvx, .dvd)</h4><p>DocValues部分，比较复杂，以至于官方文档都没有给出详细的索引格式。以后将作为一个独立的文章还具体解释。</p>
+<h4 id="Point-Values-dii，-dim"><a href="#Point-Values-dii，-dim" class="headerlink" title="Point Values(.dii，.dim)"></a>Point Values(.dii，.dim)</h4><p>Lucene7之后，彻底去除了之前关于数字类型索引和查找的逻辑。之前的TrieInt, TrieLong等完全被删除。取而代之的是IntPoint,LongPoint等类型。</p>
+<p>这些类型都是由BKD-Tree来实现的，Point Value被用来实现N-Dimension多维数据的索引和快速的查询，有统一数字型查询、2D位置、3D乃至8D数据查询的趋势，这块将单独作为一个文章进行详细解读。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lucene索引及其格式，是Solr以及ElasticSearch等分布式搜索引擎的根基。Lucene每一次核心功能的迭代与性能提升都是至关重要的。对Lucene索引过程以及索引文件格式的理解，有助于从更高层面来分析和看待生产环境出现的问题。</p>
+<hr>
+<p>参考文档：</p>
+<p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="external">Lucene Java DOC</a></p>
+<p><a href="http://blog.51cto.com/sbp810050504" target="_blank" rel="external">sbp810050504的blog</a></p>
+<p><a href="https://www.cnblogs.com/forfuture1978/" target="_blank" rel="external">刘超觉先的博客</a></p>
+<p><a href="https://www.manning.com/books/lucene-in-action-second-edition" target="_blank" rel="external">Lucene in Action</a></p>
 
       
     </div>
@@ -467,7 +716,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/" title="Lucene索引文件详解">https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/</a>
+    <a href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/" title="Lucene索引过程&索引文件格式详解">https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -485,6 +734,8 @@
             <a href="/tags/lucene/" rel="tag"># lucene</a>
           
             <a href="/tags/index/" rel="tag"># index</a>
+          
+            <a href="/tags/lucene7/" rel="tag"># lucene7</a>
           
         </div>
       
@@ -564,8 +815,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -606,7 +866,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-count">203</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -653,6 +913,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lucene索引文件的表现"><span class="nav-number">1.</span> <span class="nav-text">Lucene索引文件的表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lucene构建索引过程"><span class="nav-number">2.</span> <span class="nav-text">Lucene构建索引过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lucene索引文件"><span class="nav-number">3.</span> <span class="nav-text">Lucene索引文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Segment-N"><span class="nav-number">3.1.</span> <span class="nav-text">Segment_N</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#segment格式（-si）"><span class="nav-number">3.2.</span> <span class="nav-text">segment格式（.si）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Field-info格式（-fnm）"><span class="nav-number">3.3.</span> <span class="nav-text">Field info格式（.fnm）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Field-Data格式（-fdx-fdt）"><span class="nav-number">3.4.</span> <span class="nav-text">Field Data格式（.fdx, .fdt）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Term-Index格式（-tip-tim）"><span class="nav-number">3.5.</span> <span class="nav-text">Term Index格式（.tip,.tim）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pos列表（-doc-pos-pay）"><span class="nav-number">3.6.</span> <span class="nav-text">Pos列表（.doc, .pos, .pay）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LIV文件格式-liv"><span class="nav-number">3.7.</span> <span class="nav-text">LIV文件格式(.liv)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TermVector-tvx-tvd"><span class="nav-number">3.8.</span> <span class="nav-text">TermVector(.tvx, .tvd)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Norms-nvm-nvd"><span class="nav-number">3.9.</span> <span class="nav-text">Norms (.nvm, .nvd)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Doc-Values-dvx-dvd"><span class="nav-number">3.10.</span> <span class="nav-text">Doc Values(.dvx, .dvd)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Point-Values-dii，-dim"><span class="nav-number">3.11.</span> <span class="nav-text">Point Values(.dii，.dim)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -680,7 +956,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">169.9k</span>
+    <span title="Site words total count">171.9k</span>
   
 </div>
 
