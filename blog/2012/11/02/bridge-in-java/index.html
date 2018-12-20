@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="bridge,pattern," />
+  <meta name="keywords" content="pattern,bridge," />
 
 
 
@@ -91,7 +91,7 @@
 为什么要使用桥接模式？场景：我们想绘制矩形、圆形、椭圆形、正方形，我们至少需要4个形状类">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/bridge-pattern-1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/bridge-pattern-2.png">
-<meta property="og:updated_time" content="2018-11-15T11:21:09.036Z">
+<meta property="og:updated_time" content="2018-12-13T12:53:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：桥接(bridge) in java">
 <meta name="twitter:description" content="定义：Bridge 模式又叫做桥接模式，是构造型的设计模式之一。Bridge模式基于类的最小设计原则，通过使用封装，聚合以及继承等行为来让不同的类承担不同的责任。它的主要特点是把抽象（abstraction）与行为实现（implementation）分离开来，从而可以保持各部分的独立性以及应对它们的功能扩展。
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  775
+                  780
                 </span>
               
 
@@ -447,7 +447,8 @@
       
         <p><strong>定义：</strong>Bridge 模式又叫做桥接模式，是构造型的设计模式之一。Bridge模式基于类的最小设计原则，通过使用封装，聚合以及继承等行为来让不同的类承担不同的责任。它的主要特点是把抽象（abstraction）与行为实现（implementation）分离开来，从而可以保持各部分的独立性以及应对它们的功能扩展。</p>
 <h3 id="为什么要使用桥接模式？"><a href="#为什么要使用桥接模式？" class="headerlink" title="为什么要使用桥接模式？"></a>为什么要使用桥接模式？</h3><p>场景：我们想绘制矩形、圆形、椭圆形、正方形，我们至少需要4个形状类。但是如果又需要绘制的图形是不同颜色的，比如白色、灰色、蓝色的。<br>我们可能很快就会想到这样的方案：</p>
-<p><img src="/images/blog/bridge-pattern-1.png" alt="桥接"><br>按照上面的说法，我们可能要新建4*3=12个类来完成。<br>但是如果需要画更多的图形，并有更多的颜色呢。如此扩展下去很可能出现类爆炸。<br><a id="more"></a><br>那如何解决呢？使用Bridge来组合这些方案吧。这种方案只需要4+3个类就搞定了。</p>
+<p><img src="/images/blog/bridge-pattern-1.png" alt="桥接"></p>
+<p>按照上面的说法，我们可能要新建4*3=12个类来完成。<br>但是如果需要画更多的图形，并有更多的颜色呢。如此扩展下去很可能出现类爆炸。<br><a id="more"></a><br>那如何解决呢？使用Bridge来组合这些方案吧。这种方案只需要4+3个类就搞定了。</p>
 <p><img src="/images/blog/bridge-pattern-2.png" alt="桥接"></p>
 <h3 id="桥接模式的角色和职责"><a href="#桥接模式的角色和职责" class="headerlink" title="桥接模式的角色和职责"></a>桥接模式的角色和职责</h3><ul>
 <li>Client<br>  Bridge模式的使用者</li>
@@ -457,126 +458,16 @@
 <li>ConcreteImplementor<br>  它实现接口或者抽象类定义的方法和属性。</li>
 </ul>
 <h3 id="使用Bridge模式来实现绘图场景"><a href="#使用Bridge模式来实现绘图场景" class="headerlink" title="使用Bridge模式来实现绘图场景"></a>使用Bridge模式来实现绘图场景</h3><p>Abstraction：</p>
-<pre><code>public abstract class Shape {
-
-    protected   Color color;
-    public Shape(){
-        this.color = new BlackColor();
-    }
-    public Shape(Color color){
-        this.color = color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-    public abstract void draw();
-
-}
-</code></pre><p>Refined Abstraction：</p>
-<pre><code>//圆形
-public class CircleShape extends Shape{
-
-    public CircleShape(){
-        super();
-    }
-    public CircleShape(Color color){
-        super(color);
-    }
-
-    @Override
-    public void draw() {
-        System.out.println(&quot;画一个圆形&quot;);
-        color.draw();
-    }
-}
-//椭圆形
-public class EllipseShape extends Shape {
-
-    public EllipseShape(){
-        super();
-    }
-    public EllipseShape(Color color){
-        super(color);
-    }
-
-    @Override
-    public void draw() {
-        System.out.println(&quot;画一个椭圆形&quot;);
-        color.draw();
-    }
-}
-//矩形
-public class RectangleShape extends Shape {
-
-    public  RectangleShape(){
-        super();
-    }
-    public  RectangleShape(Color color){
-        super(color);
-    }
-
-    @Override
-    public void draw() {
-        System.out.println(&quot;画一个矩形&quot;);
-        color.draw();
-    }
-}
-</code></pre><p>Implementor：</p>
-<pre><code>public interface Color {
-
-    public void draw();
-
-}
-</code></pre><p>ConcreteImplementor：</p>
-<pre><code>public class WhiteColor implements Color {
-    @Override
-    public void draw() {
-        System.out.println(&quot;颜色是白色的&quot;);
-    }
-}
-
-public class GrayColor implements Color {
-
-    @Override
-    public void draw() {
-        System.out.println(&quot;颜色是灰色的&quot;);
-    }
-}
-
-public class BlackColor implements Color {
-
-    @Override
-    public void draw() {
-        System.out.println(&quot;颜色是黑色的&quot;);
-    }
-}
-</code></pre><p>上面已经完成了各个部分，接下来就组合来使用这些类画出不同颜色的各种图形了。</p>
-<pre><code>public class Client {
-
-    public static void main(String[] args) {
-        Color whiteColor = new WhiteColor();
-        Color grayColor = new GrayColor();
-        Color blackColor = new BlackColor();
-
-        Shape circleShape = new CircleShape();
-        Shape ellipseShape = new EllipseShape();
-        Shape rectangleShape = new RectangleShape();
-
-        //画一个黑色的圆形
-        circleShape.setColor(blackColor);
-        circleShape.draw();
-
-        //画一个白色的椭圆
-        ellipseShape.setColor(whiteColor);
-        ellipseShape.draw();
-
-        //画一个灰色的矩形
-        rectangleShape.setColor(grayColor);
-        rectangleShape.draw();
-    }
-}
-</code></pre><p>这样就实现了。各种组合来满足条件。如果要添加更多的颜色以及图形，只需要分别扩展就行，不用该原来的代码。使用的时候随心组合就OK了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span>   Color color;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shape</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = <span class="keyword">new</span> BlackColor();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shape</span><span class="params">(Color color)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Refined Abstraction：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//圆形</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CircleShape</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CircleShape</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CircleShape</span><span class="params">(Color color)</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"画一个圆形"</span>);</div><div class="line">        color.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//椭圆形</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EllipseShape</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EllipseShape</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EllipseShape</span><span class="params">(Color color)</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"画一个椭圆形"</span>);</div><div class="line">        color.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//矩形</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RectangleShape</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">RectangleShape</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="title">RectangleShape</span><span class="params">(Color color)</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"画一个矩形"</span>);</div><div class="line">        color.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Implementor：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Color</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ConcreteImplementor：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WhiteColor</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"颜色是白色的"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GrayColor</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"颜色是灰色的"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlackColor</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"颜色是黑色的"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面已经完成了各个部分，接下来就组合来使用这些类画出不同颜色的各种图形了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Color whiteColor = <span class="keyword">new</span> WhiteColor();</div><div class="line">        Color grayColor = <span class="keyword">new</span> GrayColor();</div><div class="line">        Color blackColor = <span class="keyword">new</span> BlackColor();</div><div class="line"></div><div class="line">        Shape circleShape = <span class="keyword">new</span> CircleShape();</div><div class="line">        Shape ellipseShape = <span class="keyword">new</span> EllipseShape();</div><div class="line">        Shape rectangleShape = <span class="keyword">new</span> RectangleShape();</div><div class="line"></div><div class="line">        <span class="comment">//画一个黑色的圆形</span></div><div class="line">        circleShape.setColor(blackColor);</div><div class="line">        circleShape.draw();</div><div class="line"></div><div class="line">        <span class="comment">//画一个白色的椭圆</span></div><div class="line">        ellipseShape.setColor(whiteColor);</div><div class="line">        ellipseShape.draw();</div><div class="line"></div><div class="line">        <span class="comment">//画一个灰色的矩形</span></div><div class="line">        rectangleShape.setColor(grayColor);</div><div class="line">        rectangleShape.draw();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就实现了。各种组合来满足条件。如果要添加更多的颜色以及图形，只需要分别扩展就行，不用该原来的代码。使用的时候随心组合就OK了。</p>
 
       
     </div>
@@ -641,9 +532,9 @@ public class BlackColor implements Color {
       
         <div class="post-tags">
           
-            <a href="/tags/bridge/" rel="tag"># bridge</a>
-          
             <a href="/tags/pattern/" rel="tag"># pattern</a>
+          
+            <a href="/tags/bridge/" rel="tag"># bridge</a>
           
         </div>
       
@@ -666,8 +557,8 @@ public class BlackColor implements Color {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2012/11/02/flyweight-in-java/" rel="prev" title="设计模式：享元（flyweight） in java">
-                设计模式：享元（flyweight） in java <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2012/11/02/composite-in-java/" rel="prev" title="设计模式：组合（composite） in java">
+                设计模式：组合（composite） in java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -752,7 +643,7 @@ public class BlackColor implements Color {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -763,7 +654,7 @@ public class BlackColor implements Color {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -774,7 +665,7 @@ public class BlackColor implements Color {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -864,7 +755,7 @@ public class BlackColor implements Color {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

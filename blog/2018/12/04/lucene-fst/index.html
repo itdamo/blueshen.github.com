@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-5.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-builder.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-outputs.png">
-<meta property="og:updated_time" content="2018-12-07T14:03:07.350Z">
+<meta property="og:updated_time" content="2018-12-20T11:59:20.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
 <meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
@@ -426,7 +426,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,733
+                  3,734
                 </span>
               
 
@@ -611,84 +611,8 @@
 <p><img src="/images/lucene-fst/fst/lucene-fst-builder.png" alt="fst builder lucene">   </p>
 <p>Builder通过泛型T，从而可以构建包含不同类型的FST。我们重点关注属性。</p>
 <p>从其中插入数据<code>add()</code>方法看起： </p>
-<pre><code>    /** Add the next input/output pair.  The provided input
- *  must be sorted after the previous one according to
- *  {@link IntsRef#compareTo}.  It&apos;s also OK to add the same
- *  input twice in a row with different outputs, as long
- *  as {@link Outputs} implements the {@link Outputs#merge}
- *  method. Note that input is fully consumed after this
- *  method is returned (so caller is free to reuse), but
- *  output is not.  So if your outputs are changeable (eg
- *  {@link ByteSequenceOutputs} or {@link
- *  IntSequenceOutputs}) then you cannot reuse across
- *  calls. */
-public void add(IntsRef input, T output) throws IOException {
-
-  ...
-  // prefixLenPlus1是计算出input和lastInput具有公共前缀的位置
-  final int prefixLenPlus1 = pos1+1;
-
-   // 1.新插入的节点放到frontier数组，UnCompileNode表明是新插入的，以后还可能会变化，还未放入FST内。
-  if (frontier.length &lt; input.length+1) {
-    final UnCompiledNode&lt;T&gt;[] next = ArrayUtil.grow(frontier, input.length+1);
-    for(int idx=frontier.length;idx&lt;next.length;idx++) {
-      next[idx] = new UnCompiledNode&lt;&gt;(this, idx);
-    }
-    frontier = next;
-  }
-
-  // minimize/compile states from previous input&apos;s
-  // orphan&apos;d suffix
-
-  // 2.从prefixLenPlus1, 进行freeze冰冻操作, 添加并构建最小FST
-  freezeTail(prefixLenPlus1);
-
-  // init tail states for current input
-  // 3.将当前input剩下的部分插入，构建arc转移（前缀是共用的，不用添加新的状态）。
-  for(int idx=prefixLenPlus1;idx&lt;=input.length;idx++) {
-    frontier[idx-1].addArc(input.ints[input.offset + idx - 1],
-                           frontier[idx]);
-    frontier[idx].inputCount++;
-  }
-
-  final UnCompiledNode&lt;T&gt; lastNode = frontier[input.length];
-  if (lastInput.length() != input.length || prefixLenPlus1 != input.length + 1) {
-    lastNode.isFinal = true;
-    lastNode.output = NO_OUTPUT;
-  }
-
-  // push conflicting outputs forward, only as far as
-  // needed
-  // 4.如果有冲突的话，重新分配output值
-  for(int idx=1;idx&lt;prefixLenPlus1;idx++) {
-    final UnCompiledNode&lt;T&gt; node = frontier[idx];
-    final UnCompiledNode&lt;T&gt; parentNode = frontier[idx-1];
-
-    final T lastOutput = parentNode.getLastOutput(input.ints[input.offset + idx - 1]);
-    assert validOutput(lastOutput);
-
-    final T commonOutputPrefix;
-    final T wordSuffix;
-
-    if (lastOutput != NO_OUTPUT) {
-      // 使用common方法，计算output的共同前缀
-      commonOutputPrefix = fst.outputs.common(output, lastOutput);
-      assert validOutput(commonOutputPrefix);
-      // 使用subtract方法，计算重新分配的output
-      wordSuffix = fst.outputs.subtract(lastOutput, commonOutputPrefix);
-      assert validOutput(wordSuffix);
-      parentNode.setLastOutput(input.ints[input.offset + idx - 1], commonOutputPrefix);
-      node.prependOutput(wordSuffix);
-    } else {
-      commonOutputPrefix = wordSuffix = NO_OUTPUT;
-    }
-    output = fst.outputs.subtract(output, commonOutputPrefix);
-    assert validOutput(output);
-  }
-
-  ...
-}
-</code></pre><p>通过注释，我们看到input是经过排序的，也就是ordered。否则生成的就不是最小的FST。另外如果NO_OUTPUT就退化为FSA了，不用执行第4步重新分配output了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Add the next input/output pair.  The provided input</span></div><div class="line">   *  must be sorted after the previous one according to</div><div class="line">   *  &#123;<span class="doctag">@link</span> IntsRef#compareTo&#125;.  It's also OK to add the same</div><div class="line">   *  input twice in a row with different outputs, as long</div><div class="line">   *  as &#123;<span class="doctag">@link</span> Outputs&#125; implements the &#123;<span class="doctag">@link</span> Outputs#merge&#125;</div><div class="line">   *  method. Note that input is fully consumed after this</div><div class="line">   *  method is returned (so caller is free to reuse), but</div><div class="line">   *  output is not.  So if your outputs are changeable (eg</div><div class="line">   *  &#123;<span class="doctag">@link</span> ByteSequenceOutputs&#125; or &#123;<span class="doctag">@link</span></div><div class="line">   *  IntSequenceOutputs&#125;) then you cannot reuse across</div><div class="line">   *  calls. */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(IntsRef input, T output)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="comment">// prefixLenPlus1是计算出input和lastInput具有公共前缀的位置</span></div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> prefixLenPlus1 = pos1+<span class="number">1</span>;</div><div class="line"></div><div class="line">     <span class="comment">// 1.新插入的节点放到frontier数组，UnCompileNode表明是新插入的，以后还可能会变化，还未放入FST内。</span></div><div class="line">    <span class="keyword">if</span> (frontier.length &lt; input.length+<span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt;[] next = ArrayUtil.grow(frontier, input.length+<span class="number">1</span>);</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> idx=frontier.length;idx&lt;next.length;idx++) &#123;</div><div class="line">        next[idx] = <span class="keyword">new</span> UnCompiledNode&lt;&gt;(<span class="keyword">this</span>, idx);</div><div class="line">      &#125;</div><div class="line">      frontier = next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// minimize/compile states from previous input's</span></div><div class="line">    <span class="comment">// orphan'd suffix</span></div><div class="line"></div><div class="line">    <span class="comment">// 2.从prefixLenPlus1, 进行freeze冰冻操作, 添加并构建最小FST</span></div><div class="line">    freezeTail(prefixLenPlus1);</div><div class="line"></div><div class="line">    <span class="comment">// init tail states for current input</span></div><div class="line">    <span class="comment">// 3.将当前input剩下的部分插入，构建arc转移（前缀是共用的，不用添加新的状态）。</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=prefixLenPlus1;idx&lt;=input.length;idx++) &#123;</div><div class="line">      frontier[idx-<span class="number">1</span>].addArc(input.ints[input.offset + idx - <span class="number">1</span>],</div><div class="line">                             frontier[idx]);</div><div class="line">      frontier[idx].inputCount++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">final</span> UnCompiledNode&lt;T&gt; lastNode = frontier[input.length];</div><div class="line">    <span class="keyword">if</span> (lastInput.length() != input.length || prefixLenPlus1 != input.length + <span class="number">1</span>) &#123;</div><div class="line">      lastNode.isFinal = <span class="keyword">true</span>;</div><div class="line">      lastNode.output = NO_OUTPUT;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// push conflicting outputs forward, only as far as</span></div><div class="line">    <span class="comment">// needed</span></div><div class="line">    <span class="comment">// 4.如果有冲突的话，重新分配output值</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=<span class="number">1</span>;idx&lt;prefixLenPlus1;idx++) &#123;</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; node = frontier[idx];</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; parentNode = frontier[idx-<span class="number">1</span>];</div><div class="line"></div><div class="line">      <span class="keyword">final</span> T lastOutput = parentNode.getLastOutput(input.ints[input.offset + idx - <span class="number">1</span>]);</div><div class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(lastOutput)</span></span>;</div><div class="line"></div><div class="line">      <span class="keyword">final</span> T commonOutputPrefix;</div><div class="line">      <span class="keyword">final</span> T wordSuffix;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (lastOutput != NO_OUTPUT) &#123;</div><div class="line">        <span class="comment">// 使用common方法，计算output的共同前缀</span></div><div class="line">        commonOutputPrefix = fst.outputs.common(output, lastOutput);</div><div class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(commonOutputPrefix)</span></span>;</div><div class="line">        <span class="comment">// 使用subtract方法，计算重新分配的output</span></div><div class="line">        wordSuffix = fst.outputs.subtract(lastOutput, commonOutputPrefix);</div><div class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(wordSuffix)</span></span>;</div><div class="line">        parentNode.setLastOutput(input.ints[input.offset + idx - <span class="number">1</span>], commonOutputPrefix);</div><div class="line">        node.prependOutput(wordSuffix);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        commonOutputPrefix = wordSuffix = NO_OUTPUT;</div><div class="line">      &#125;</div><div class="line">      output = fst.outputs.subtract(output, commonOutputPrefix);</div><div class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(output)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ...</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>通过注释，我们看到input是经过排序的，也就是ordered。否则生成的就不是最小的FST。另外如果NO_OUTPUT就退化为FSA了，不用执行第4步重新分配output了。</p>
 <p>其中<code>freezeTail</code> 方法就是将不再变化的部分进行冰冻，又叫compile，把UnCompileNode，给构建进FST里。进入到FST是先进行compileNode, 然后addNode进去的。</p>
 <p>总结以下，加入节点过程：</p>
 <ul>
@@ -909,7 +833,7 @@ public void add(IntsRef input, T output) throws IOException {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -920,7 +844,7 @@ public void add(IntsRef input, T output) throws IOException {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -931,7 +855,7 @@ public void add(IntsRef input, T output) throws IOException {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1021,7 +945,7 @@ public void add(IntsRef input, T output) throws IOException {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

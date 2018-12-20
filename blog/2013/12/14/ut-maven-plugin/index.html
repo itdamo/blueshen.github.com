@@ -89,7 +89,7 @@
 <meta property="og:description" content="ut-maven-plugin简介这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/eclipse-outline.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/eclipse-ast-view.png">
-<meta property="og:updated_time" content="2018-12-06T09:57:24.544Z">
+<meta property="og:updated_time" content="2018-12-20T12:12:23.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ut-maven-plugin">
 <meta name="twitter:description" content="ut-maven-plugin简介这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序">
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  948
+                  951
                 </span>
               
 
@@ -451,90 +451,15 @@
 <p><img src="/images/blog/2013/eclipse-ast-view.png" alt=""></p>
 <p>本插件选用<a href="https://code.google.com/p/javaparser/" target="_blank" rel="external">JavaParser</a>来分析源码，提取并生成测试代码。</p>
 <h3 id="如何使用这个工具？"><a href="#如何使用这个工具？" class="headerlink" title="如何使用这个工具？"></a>如何使用这个工具？</h3><p>这个插件一个被我放到了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ut-maven-plugin%22" target="_blank" rel="external">Maven Central</a>上，因此，你可以直接在pom.xml里添加上这个插件就可以了。同时建议你使用最新的版本。<br>比如：</p>
-<pre><code>&lt;plugin&gt;
-&lt;groupId&gt;cn.shenyanchao.ut&lt;/groupId&gt;
-&lt;artifactId&gt;ut-maven-plugin&lt;/artifactId&gt;
-&lt;version&gt;0.2.9&lt;/version&gt;
-&lt;executions&gt;
-    &lt;execution&gt;
-        &lt;id&gt;source2test&lt;/id&gt;
-        &lt;phase&gt;process-test-sources&lt;/phase&gt;
-        &lt;goals&gt;
-            &lt;goal&gt;source2test&lt;/goal&gt;
-        &lt;/goals&gt;
-    &lt;/execution&gt;
-&lt;/executions&gt;
-&lt;/plugin&gt;
-</code></pre><h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="external">spring-petclinic</a>中的代码为例。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.shenyanchao.ut<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ut-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-test-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="external">spring-petclinic</a>中的代码为例。</p>
 <p>下面的Service代码：</p>
-<pre><code>package org.springframework.samples.petclinic.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
-import org.springframework.samples.petclinic.repository.PetRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collection;
-
-@Service
-public class ClinicServiceImpl implements ClinicService {
-
-    @Autowired
-    private PetRepository petRepository;
-    //省略
-    ......
-
-    @Override
-    @Transactional(readOnly = true)
-    public Pet findPetById(int id) throws DataAccessException {
-        return petRepository.findById(id);
-    }
-    //省略
-    ......
-
-}
-</code></pre><p>那么，我们自己手工写的单元测试代码有可能是这样的：</p>
-<pre><code>package org.springframework.samples.petclinic.service.test;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.repository.PetRepository;
-import org.springframework.samples.petclinic.service.ClinicServiceImpl;
-
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.when;
-
-public class ClinicServiceImplTest {
-
-    @InjectMocks
-    private ClinicServiceImpl clinicService = new ClinicServiceImpl();
-
-    @Mock
-    private PetRepository petRepository;
-
-    @Before
-    public void initMocks() {
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void findPetByIdTest() {
-        when(petRepository.findById(anyInt())).thenReturn(new Pet());
-        Pet pet = clinicService.findPetById(1);
-        Assert.assertNotNull(pet);
-    }
-</code></pre><p>如果，有很多个类需要写单元测试，那么我们会发现有很多代码是具有共性的，或者是有一定规律的。但从这个类来说，我们认为大部分代码都是可以通过对源代码进行分析得到的，除了以下的业务逻辑部分：</p>
-<pre><code>when(petRepository.findById(anyInt())).thenReturn(new Pet());
-Pet pet = clinicService.findPetById(1);
-</code></pre><p>因此余下的代码都可以由插件来完成，使得程序员直接关注于业务逻辑部分的编写。大大的提高了程序员单元测试的编写效率，甚至使程序员们爱上单测。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</div><div class="line"><span class="keyword">import</span> org.springframework.dao.DataAccessException;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.PetType;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</div><div class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Collection;</div><div class="line"></div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImpl</span> <span class="keyword">implements</span> <span class="title">ClinicService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> PetRepository petRepository;</div><div class="line">    <span class="comment">//省略</span></div><div class="line">    ......</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="meta">@Transactional</span>(readOnly = <span class="keyword">true</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Pet <span class="title">findPetById</span><span class="params">(<span class="keyword">int</span> id)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</div><div class="line">        <span class="keyword">return</span> petRepository.findById(id);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//省略</span></div><div class="line">    ......</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么，我们自己手工写的单元测试代码有可能是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service.test;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Assert;</div><div class="line"><span class="keyword">import</span> org.junit.Before;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.mockito.InjectMocks;</div><div class="line"><span class="keyword">import</span> org.mockito.Mock;</div><div class="line"><span class="keyword">import</span> org.mockito.MockitoAnnotations;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.service.ClinicServiceImpl;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Matchers.anyInt;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Mockito.when;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImplTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@InjectMocks</span></div><div class="line">    <span class="keyword">private</span> ClinicServiceImpl clinicService = <span class="keyword">new</span> ClinicServiceImpl();</div><div class="line"></div><div class="line">    <span class="meta">@Mock</span></div><div class="line">    <span class="keyword">private</span> PetRepository petRepository;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initMocks</span><span class="params">()</span> </span>&#123;</div><div class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findPetByIdTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</div><div class="line">        Pet pet = clinicService.findPetById(<span class="number">1</span>);</div><div class="line">        Assert.assertNotNull(pet);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>如果，有很多个类需要写单元测试，那么我们会发现有很多代码是具有共性的，或者是有一定规律的。但从这个类来说，我们认为大部分代码都是可以通过对源代码进行分析得到的，除了以下的业务逻辑部分：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</div><div class="line">Pet pet = clinicService.findPetById(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p>因此余下的代码都可以由插件来完成，使得程序员直接关注于业务逻辑部分的编写。大大的提高了程序员单元测试的编写效率，甚至使程序员们爱上单测。</p>
 <p>当然，这里只是一个例子，如果能抽象出更多的共性，本插件就可以进行不断的扩展。简单的来说，有共性有规律就可以自动生成出来。随着不断的扩展，ut-maven-plugin将越来越智能化。</p>
 
       
@@ -713,7 +638,7 @@ Pet pet = clinicService.findPetById(1);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -724,7 +649,7 @@ Pet pet = clinicService.findPetById(1);
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -735,7 +660,7 @@ Pet pet = clinicService.findPetById(1);
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -825,7 +750,7 @@ Pet pet = clinicService.findPetById(1);
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

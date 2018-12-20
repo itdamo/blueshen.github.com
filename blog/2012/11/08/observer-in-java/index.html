@@ -99,7 +99,7 @@
 观察者模式有4个角色：  
 
 被观察者(Observable):定义">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.838Z">
+<meta property="og:updated_time" content="2018-12-18T06:56:28.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：观察者（Observer） in java">
 <meta name="twitter:description" content="定义：又叫发布订阅模式（Publish/subscribe），它定义了对象间的一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并自动更新。  
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  952
+                  955
                 </span>
               
 
@@ -470,45 +470,20 @@
 </ul>
 <a id="more"></a>
 <p>在Java中如何实现观察者模式呢？废话，写代码啊！这个我自然知道，更令人惊喜的是JDK自身就提供了对观察者模式的原生支持，我不得不赞叹Java的强大。  </p>
-<p>Java提供了这样的两个东西：  </p>
+<p>Java提供了这样的两个东西：<br>​    </p>
 <ul>
 <li>类<code>java.util.Observable</code>：<br>它内部维护了一个Vector容器，用来放所有的观察者，并且提供了添加、删除观察者的方法。此外，定义了notifyObservers方法，用来通知观察者。  </li>
 <li>接口<code>java.util.Observer</code>：<br>它定义了一个update方法，让Observer具体类来实现各自的操作。</li>
 </ul>
 <p>下面，就以微博作为例子吧。<br>先来一个被观察者，也就是我自己了。</p>
-<pre><code>public class ShenYanChao extends Observable {
-
-    //业务逻辑,不通知
-    public String getName(){
-        return &quot;shenyanchao&quot;;
-    }
-    //发微博，通知
-    public void publishWeibo(String content){
-        System.out.println(&quot;我发布1条微博，內容是：[&quot;+content+&quot;]&quot;);
-        setChanged();
-        notifyObservers(content);
-    }
-}
-</code></pre><p>其中，setChanged()用来表明自身的状态变了，否则观察者是不会理的。这个是JDK的限制，其实观察者模式可以不用这个的。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShenYanChao</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">//业务逻辑,不通知</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"shenyanchao"</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//发微博，通知</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publishWeibo</span><span class="params">(String content)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"我发布1条微博，內容是：["</span>+content+<span class="string">"]"</span>);</div><div class="line">		setChanged();</div><div class="line">		notifyObservers(content);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中，setChanged()用来表明自身的状态变了，否则观察者是不会理的。这个是JDK的限制，其实观察者模式可以不用这个的。  </p>
 <p>下面就需要定义观察者了，也就是我的粉丝了。</p>
-<pre><code>public class Fans implements Observer {
-
-    @Override
-    public void update(Observable o, Object content) {
-        String who = ((ShenYanChao) o).getName();
-        System.out.println(&quot;新鲜事:{&quot; + who + &quot;发布了一条微博，内容是：[&quot; + content + &quot;]}&quot;);
-    }
-
-}
-</code></pre><p>观察者Fans一旦发现我发了1条微博，那么他就会出现一条新鲜事的了。update()的参数，第1个是被观察者，也就是我；第2个就是notifyObservers传过来的参数了，此处是微博内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fans</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object content)</span> </span>&#123;</div><div class="line">		String who = ((ShenYanChao) o).getName();</div><div class="line">		System.out.println(<span class="string">"新鲜事:&#123;"</span> + who + <span class="string">"发布了一条微博，内容是：["</span> + content + <span class="string">"]&#125;"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>观察者Fans一旦发现我发了1条微博，那么他就会出现一条新鲜事的了。update()的参数，第1个是被观察者，也就是我；第2个就是notifyObservers传过来的参数了，此处是微博内容。</p>
 <p>具体场景是这样的：</p>
-<pre><code>ShenYanChao shenyanchao = new ShenYanChao();
-final int FANS_NUM = 10;//我的粉丝可不止这些呢
-for (int i = 0; i &lt; FANS_NUM; i++) {
-    shenyanchao.addObserver(new Fans());
-}
-shenyanchao.publishWeibo(&quot;欢迎登录：www.shenyanchao.cn&quot;);
-</code></pre><p>此处模拟，我有10个粉丝，然后我发了1条微博。结果如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ShenYanChao shenyanchao = <span class="keyword">new</span> ShenYanChao();</div><div class="line"><span class="keyword">final</span> <span class="keyword">int</span> FANS_NUM = <span class="number">10</span>;<span class="comment">//我的粉丝可不止这些呢</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; FANS_NUM; i++) &#123;</div><div class="line">	shenyanchao.addObserver(<span class="keyword">new</span> Fans());</div><div class="line">&#125;</div><div class="line">shenyanchao.publishWeibo(<span class="string">"欢迎登录：www.shenyanchao.cn"</span>);</div></pre></td></tr></table></figure>
+<p>此处模拟，我有10个粉丝，然后我发了1条微博。结果如下：  </p>
 <pre><code>我发布1条微博，內容是：[欢迎登录：www.shenyanchao.cn]
 新鲜事:{shenyanchao发布了一条微博，内容是：[欢迎登录：www.shenyanchao.cn]}
 新鲜事:{shenyanchao发布了一条微博，内容是：[欢迎登录：www.shenyanchao.cn]}
@@ -689,7 +664,7 @@ shenyanchao.publishWeibo(&quot;欢迎登录：www.shenyanchao.cn&quot;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -700,7 +675,7 @@ shenyanchao.publishWeibo(&quot;欢迎登录：www.shenyanchao.cn&quot;);
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -711,7 +686,7 @@ shenyanchao.publishWeibo(&quot;欢迎登录：www.shenyanchao.cn&quot;);
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -785,7 +760,7 @@ shenyanchao.publishWeibo(&quot;欢迎登录：www.shenyanchao.cn&quot;);
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

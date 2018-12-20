@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="MochaMocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/
 安装n">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.835Z">
+<meta property="og:updated_time" content="2018-12-20T12:00:44.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mocha简介">
 <meta name="twitter:description" content="MochaMocha作为一种咖啡名，应该是广为人知的，中文翻译为摩卡。在这里，我们介绍的是一个JavaScript Test Framework，它用于对NodeJS、JavaScript进行单元测试。Mocha是一个功能丰富的Javascript测试框架，能够运行在node和浏览器上，并且有丰富的报表支持。项目主页：http://visionmedia.github.com/mocha/
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  620
+                  613
                 </span>
               
 
@@ -447,23 +447,9 @@
 </code></pre><h2 id="一个简单的样例"><a href="#一个简单的样例" class="headerlink" title="一个简单的样例"></a>一个简单的样例</h2><pre><code>$ mkdir test
 $ cd ..
 $ mocha test/test.js
-
-var assert = require(&quot;assert&quot;)
-describe(&apos;Array&apos;, function(){
-  describe(&apos;#indexOf()&apos;, function(){
-    it(&apos;should return -1 when the value is not present&apos;, function(){
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    })
-  })
-})
-
-$  mocha
-
-  .
-
-  ✔ 1 test complete (1ms)
-</code></pre><a id="more"></a>
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">"assert"</span>)</div><div class="line">describe(<span class="string">'Array'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> 	describe(<span class="string">'#indexOf()'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	it(<span class="string">'should return -1 when the value is not present'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     	assert.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">5</span>));</div><div class="line">     	assert.equal(<span class="number">-1</span>, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].indexOf(<span class="number">0</span>));</div><div class="line">   	&#125;)</div><div class="line"> 	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$  mocha</div><div class="line"></div><div class="line">	 .</div><div class="line"></div><div class="line">	 ✔ 1 test complete (1ms)</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><p>在Java Unit Test中类似JUNIT，TestNG提供了不少的Assert函数。同样的，mocha也有很多选择。而这些并不属于mocha的一部分。</p>
 <ul>
 <li><a href="http://github.com/visionmedia/should.js" target="_blank" rel="external">should.js</a></li>
@@ -471,77 +457,16 @@ $  mocha
 <li><a href="http://chaijs.com/" target="_blank" rel="external">chai</a></li>
 <li><a href="https://github.com/visionmedia/better-assert" target="_blank" rel="external">better-assert</a></li>
 </ul>
-<h2 id="测试同步代码"><a href="#测试同步代码" class="headerlink" title="测试同步代码"></a>测试同步代码</h2><pre><code>describe(&apos;Array&apos;, function(){
-  describe(&apos;#indexOf()&apos;, function(){
-    it(&apos;should return -1 when the value is not present&apos;, function(){
-      [1,2,3].indexOf(5).should.equal(-1);
-      [1,2,3].indexOf(0).should.equal(-1);
-    })
-  })
-})
-</code></pre><h2 id="测试异步代码"><a href="#测试异步代码" class="headerlink" title="测试异步代码"></a>测试异步代码</h2><p>添加一个回调函数，通常称为done,给it。mocha就会知道应该等待操作完成。</p>
-<pre><code>describe(&apos;User&apos;, function(){
-  describe(&apos;#save()&apos;, function(){
-    it(&apos;should save without error&apos;, function(done){
-      var user = new User(&apos;Luna&apos;);
-      user.save(done);
-    })
-  })
-})
-</code></pre><h2 id="类似与JUNIT的函数"><a href="#类似与JUNIT的函数" class="headerlink" title="类似与JUNIT的函数"></a>类似与JUNIT的函数</h2><ul>
+<h2 id="测试同步代码"><a href="#测试同步代码" class="headerlink" title="测试同步代码"></a>测试同步代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe(&apos;Array&apos;, function()&#123;</div><div class="line">  	describe(&apos;#indexOf()&apos;, function()&#123;</div><div class="line">    	it(&apos;should return -1 when the value is not present&apos;, function()&#123;</div><div class="line">      	[1,2,3].indexOf(5).should.equal(-1);</div><div class="line">      	[1,2,3].indexOf(0).should.equal(-1);</div><div class="line">    	&#125;)</div><div class="line">  	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="测试异步代码"><a href="#测试异步代码" class="headerlink" title="测试异步代码"></a>测试异步代码</h2><p>添加一个回调函数，通常称为done,给it。mocha就会知道应该等待操作完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">describe(&apos;User&apos;, function()&#123;</div><div class="line">  	describe(&apos;#save()&apos;, function()&#123;</div><div class="line">    	it(&apos;should save without error&apos;, function(done)&#123;</div><div class="line">      	var user = new User(&apos;Luna&apos;);</div><div class="line">      	user.save(done);</div><div class="line">    	&#125;)</div><div class="line">  	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="类似与JUNIT的函数"><a href="#类似与JUNIT的函数" class="headerlink" title="类似与JUNIT的函数"></a>类似与JUNIT的函数</h2><ul>
 <li>before : 在所有测试执行之前</li>
 <li>after ： 在所有测试执行之后</li>
 <li>beforeEach ： 每个测试之前</li>
 <li>afterEach ：每个测试之后</li>
 </ul>
-<h2 id="mocha指令"><a href="#mocha指令" class="headerlink" title="mocha指令"></a>mocha指令</h2><pre><code>Usage: mocha [debug] [options] [files]
-
-Commands:
-
-  init &lt;path&gt;
-  initialize a client-side mocha setup at &lt;path&gt;
-
-Options:
-
-  -h, --help                      帮助信息
-  -V, --version                   版本信息
-  -r, --require &lt;name&gt;            依赖的module
-  -R, --reporter &lt;name&gt;           使用的报告模式
-  -u, --ui &lt;name&gt;                 用什么接口(bdd|tdd|exports)
-  -g, --grep &lt;pattern&gt;            执行匹配 &lt;pattern&gt;的测试
-  -i, --invert                    --grep 相反的测试
-  -t, --timeout &lt;ms&gt;              超时毫秒数 [2000]
-  -s, --slow &lt;ms&gt;                 &quot;slow&quot; 测试的门槛 [75]
-  -w, --watch                     查看文件的变化，如true,则变化后自动运行。
-  -c, --colors                    启用colors
-  -C, --no-colors                 禁用colors
-  -G, --growl                     启用growl notification
-  -d, --debug                     启用debug
-  -b, --bail                      只对第一个报错的TEST感兴趣
-  --recursive                     递归执行
-  --debug-brk                     enable node&apos;s debugger breaking on the first line
-  --globals &lt;names&gt;               allow the given comma-delimited global [names]
-  --ignore-leaks                  ignore global variable leaks
-  --interfaces                    显示可用的接口
-  --reporters                     显示可用的报表列表
-  --compilers &lt;ext&gt;:&lt;module&gt;,...  使用指定的module来编译文件
-</code></pre><h2 id="报表"><a href="#报表" class="headerlink" title="报表"></a>报表</h2><pre><code>dot - dot matrix
-    doc - html documentation
-    spec - hierarchical spec list
-    json - single json object
-    progress - progress bar
-    list - spec-style listing
-    tap - test-anything-protocol
-    landing - unicode landing strip
-    xunit - xunit reportert
-    teamcity - teamcity ci support
-    html-cov - HTML test coverage
-    json-cov - JSON test coverage
-    min - minimal reporter (great with --watch)
-    json-stream - newline delimited json events
-    markdown - markdown documentation (github flavour)
-    nyan - nyan cat!
-</code></pre>
+<h2 id="mocha指令"><a href="#mocha指令" class="headerlink" title="mocha指令"></a>mocha指令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Usage: mocha [debug] [options] [files]</div><div class="line"></div><div class="line">Commands:</div><div class="line"></div><div class="line"> 	init &lt;path&gt;</div><div class="line"> 	initialize a client-side mocha setup at &lt;path&gt;</div><div class="line"></div><div class="line">Options:</div><div class="line"></div><div class="line"> 	-h, --help                      帮助信息</div><div class="line"> 	-V, --version                   版本信息</div><div class="line"> 	-r, --require &lt;name&gt;            依赖的module</div><div class="line"> 	-R, --reporter &lt;name&gt;           使用的报告模式</div><div class="line"> 	-u, --ui &lt;name&gt;                 用什么接口(bdd|tdd|exports)</div><div class="line"> 	-g, --grep &lt;pattern&gt;            执行匹配 &lt;pattern&gt;的测试</div><div class="line"> 	-i, --invert                    --grep 相反的测试</div><div class="line"> 	-t, --timeout &lt;ms&gt;              超时毫秒数 [2000]</div><div class="line"> 	-s, --slow &lt;ms&gt;                 &quot;slow&quot; 测试的门槛 [75]</div><div class="line"> 	-w, --watch                     查看文件的变化，如true,则变化后自动运行。</div><div class="line"> 	-c, --colors                    启用colors</div><div class="line"> 	-C, --no-colors                 禁用colors</div><div class="line"> 	-G, --growl                     启用growl notification</div><div class="line"> 	-d, --debug                     启用debug</div><div class="line"> 	-b, --bail                      只对第一个报错的TEST感兴趣</div><div class="line"> 	--recursive                     递归执行</div><div class="line"> 	--debug-brk                     enable node&apos;s debugger breaking on the first line</div><div class="line"> 	--globals &lt;names&gt;               allow the given comma-delimited global [names]</div><div class="line"> 	--ignore-leaks                  ignore global variable leaks</div><div class="line"> 	--interfaces                    显示可用的接口</div><div class="line"> 	--reporters                     显示可用的报表列表</div><div class="line"> 	--compilers &lt;ext&gt;:&lt;module&gt;,...  使用指定的module来编译文件</div></pre></td></tr></table></figure>
+<h2 id="报表"><a href="#报表" class="headerlink" title="报表"></a>报表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">   dot - dot matrix</div><div class="line">doc - html documentation</div><div class="line">spec - hierarchical spec list</div><div class="line">json - single json object</div><div class="line">progress - progress bar</div><div class="line">list - spec-style listing</div><div class="line">tap - test-anything-protocol</div><div class="line">landing - unicode landing strip</div><div class="line">xunit - xunit reportert</div><div class="line">teamcity - teamcity ci support</div><div class="line">html-cov - HTML test coverage</div><div class="line">json-cov - JSON test coverage</div><div class="line">min - minimal reporter (great with --watch)</div><div class="line">json-stream - newline delimited json events</div><div class="line">markdown - markdown documentation (github flavour)</div><div class="line">nyan - nyan cat!</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -708,7 +633,7 @@ Options:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -719,7 +644,7 @@ Options:
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -730,7 +655,7 @@ Options:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -820,7 +745,7 @@ Options:
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

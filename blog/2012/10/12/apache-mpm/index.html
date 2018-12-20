@@ -93,7 +93,7 @@
 是Apache 2.x才支持的一个可插入的并发模型，在编译的时候，我们只可以选择一个并发模型。
 配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf
 如果apache是默认安装的可能配置在httpd.conf文件中。根据">
-<meta property="og:updated_time" content="2018-10-24T06:06:04.083Z">
+<meta property="og:updated_time" content="2018-12-20T12:16:32.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="apache mpm介绍">
 <meta name="twitter:description" content="什么是MPM？MPM（Multi -Processing Modules，多路处理模块）是Apache2.x中影响性能的最核心特性。
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,203
+                  2,202
                 </span>
               
 
@@ -496,10 +496,8 @@
 <p>Linux代码</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">worker.c</span>&gt;</span></div><div class="line">StartServers 3</div><div class="line">MaxClients 2000</div><div class="line">ServerLimit 25</div><div class="line">MinSpareThreads 50</div><div class="line">MaxSpareThreads 200</div><div class="line">ThreadLimit 200</div><div class="line">ThreadsPerChild 100</div><div class="line">MaxRequestsPerChild 0</div><div class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>硬性公式：</p>
-<pre><code>ThreadLimit &gt;= ThreadsPerChild
-MaxClients &lt;= ServerLimit * ThreadsPerChild 必须是ThreadsPerChild的倍数
-MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild
-</code></pre><p>ServerLimit默认是16,最大20000;ThreadLimit默认是64,最大20000。<br>通过上面的叙述，可以了解到Apache 2.0中prefork和worker这两个重要MPM的工作原理，并可根据实际情况来配置Apache相关的核心参数，以获得最大的性能和稳定性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ThreadLimit &gt;= ThreadsPerChild</div><div class="line">MaxClients &lt;= ServerLimit * ThreadsPerChild 必须是ThreadsPerChild的倍数</div><div class="line">MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild</div></pre></td></tr></table></figure>
+<p>ServerLimit默认是16,最大20000;ThreadLimit默认是64,最大20000。<br>通过上面的叙述，可以了解到Apache 2.0中prefork和worker这两个重要MPM的工作原理，并可根据实际情况来配置Apache相关的核心参数，以获得最大的性能和稳定性。</p>
 
       
     </div>
@@ -679,7 +677,7 @@ MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -690,7 +688,7 @@ MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -701,7 +699,7 @@ MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -791,7 +789,7 @@ MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

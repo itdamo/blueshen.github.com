@@ -290,6 +290,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2015/03/26/c3p0-config/" itemprop="url">关于C3P0容错和自动重连特性的研究</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-26T13:07:00+08:00">
+                2015-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c3p0/" itemprop="url" rel="index">
+                    <span itemprop="name">c3p0</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015/03/26/c3p0-config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2015/03/26/c3p0-config/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2015/03/26/c3p0-config/" class="leancloud_visitors" data-flag-title="关于C3P0容错和自动重连特性的研究">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,111
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。</p>
+<h4 id="1）C3P0容错和自动重连与以下配置参数有关："><a href="#1）C3P0容错和自动重连与以下配置参数有关：" class="headerlink" title="1）C3P0容错和自动重连与以下配置参数有关："></a>1）C3P0容错和自动重连与以下配置参数有关：</h4><p><code>breakAfterAcquireFailure</code> ：true表示pool向数据库请求连接失败后标记整个pool为block并close，就算后端数据库恢复正常也不进行重连，客户端对pool的请求都拒绝掉。false表示不会标记 pool为block，新的请求都会尝试去数据库请求connection。默认为false。因此，如果想让数据库和网络故障恢复之后，pool能继续请求正常资源必须把此项配置设为false<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2015/03/26/c3p0-config/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -396,7 +595,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,534
+                  2,531
                 </span>
               
 
@@ -806,7 +1005,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  561
+                  570
                 </span>
               
 
@@ -1628,7 +1827,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,176
+                  4,196
                 </span>
               
 
@@ -1668,17 +1867,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
         
           <h2 id="Java7新特性"><a href="#Java7新特性" class="headerlink" title="Java7新特性"></a>Java7新特性</h2><h3 id="Java7语法特性"><a href="#Java7语法特性" class="headerlink" title="Java7语法特性"></a>Java7语法特性</h3><p>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
 <h4 id="1-switch可以消化String"><a href="#1-switch可以消化String" class="headerlink" title="1. switch可以消化String"></a>1. switch可以消化String</h4><p>比如：</p>
-<pre><code>public static void switchString(String s){
-    switch (s){
-    case &quot;db&quot;: ...
-    case &quot;wls&quot;: ...
-    case &quot;ibm&quot;: ...
-    case &quot;soa&quot;: ...
-    case &quot;fa&quot;: ...
-    default: ...
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">switchString</span><span class="params">(String s)</span></span>&#123;</div><div class="line">    <span class="keyword">switch</span> (s)&#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">"db"</span>: ...</div><div class="line">    <span class="keyword">case</span> <span class="string">"wls"</span>: ...</div><div class="line">    <span class="keyword">case</span> <span class="string">"ibm"</span>: ...</div><div class="line">    <span class="keyword">case</span> <span class="string">"soa"</span>: ...</div><div class="line">    <span class="keyword">case</span> <span class="string">"fa"</span>: ...</div><div class="line">    <span class="keyword">default</span>: ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/08/27/java-new-feature/#more" rel="contents">
@@ -1838,7 +2027,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  483
+                  488
                 </span>
               
 
@@ -1888,14 +2077,9 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 <li>生成Excel 2000标准格式</li>
 <li>支持字体、数字、日期操作</li>
 <li>能够修饰单元格属性</li>
-<li><p>支持图像和图表</p>
-<pre><code>&lt;dependency&gt;
-       &lt;groupId&gt;net.sf.jxls&lt;/groupId&gt;
-       &lt;artifactId&gt;jxls-core&lt;/artifactId&gt;
-       &lt;version&gt;1.0.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre></li>
+<li>支持图像和图表</li>
 </ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/06/24/export-excel-by-jxls/#more" rel="contents">
@@ -2137,235 +2321,6 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2014/03/31/velocity-study-summary/" itemprop="url">Velocity学习小结</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-31T16:24:00+08:00">
-                2014-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/velocity/" itemprop="url" rel="index">
-                    <span itemprop="name">velocity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014/03/31/velocity-study-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2014/03/31/velocity-study-summary/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2014/03/31/velocity-study-summary/" class="leancloud_visitors" data-flag-title="Velocity学习小结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  431
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="velocity在spring项目中的使用"><a href="#velocity在spring项目中的使用" class="headerlink" title="velocity在spring项目中的使用"></a>velocity在spring项目中的使用</h3><p>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
-<pre><code>&lt;bean id=&quot;velocityEngine&quot; class=&quot;org.springframework.ui.velocity.VelocityEngineFactoryBean&quot;&gt;
-    &lt;property name=&quot;configLocation&quot;&gt;
-        &lt;value&gt;classpath:velocity.properties&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property name=&quot;resourceLoaderPath&quot;&gt;
-        &lt;value&gt;/WEB-INF/velocity/&lt;/value&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：</p>
-<pre><code>resource.loader  =  file
-
-file.resource.loader.description =  Velocity  File Resource Loader
-file.resource.loader.class = org.apache.velocity.runtime.resource.loader.FileResourceLoader
-file.resource.loader.cache =  true
-file.resource.loader.modificationCheckInterval =  100
-
-input.encoding = utf-8
-output.encoding = utf-8
-</code></pre><p>需要注意的是，resource.loader可能有多种选择，最常用的是file，class.当然也有webapp,jar等类型。file要求指明具体的路径，而在WEB应用里这块常常就会出现问题。因此，我们倾向于认为从classpath来加载模板。但是，为什么此处仍然推荐使用file而不是class呢。那是因为：</p>
-<ul>
-<li>spring增强了file加载的能力，推荐使用<code>resourceLoaderPath</code>来指明路径，而不是交给<code>file.resource.loader.path</code>进行处理。如果使用这个可能会跑NullPointerException；</li>
-<li>class加载存在弊端，在生产环境classpath里的内容一旦加载就被缓存起来了，这导致velocity模板加载的cache机制失效。</li>
-</ul>
-<h3 id="关于Velocity使用的坑"><a href="#关于Velocity使用的坑" class="headerlink" title="关于Velocity使用的坑"></a>关于Velocity使用的坑</h3><ul>
-<li><p>关于减号（-）的问题</p>
-<blockquote>
-<p>请注意下面的2中写法<br><code>#set($maxIndex=$DOC_COUNT-1)</code>报错<br><code>#set($maxIndex=$DOC_COUNT - 1)</code>正确，区别仅在于-两侧的空格</p>
-</blockquote>
-</li>
-<li><p>关于Range类型的问题</p>
-<blockquote>
-<p><code>#set($array = [0..$maxIndex])</code> 这个里面$maxIndex应该只是一个变量，不能是一个表达式。比如这样<code>#set($array = [0..$maxIndex+1])</code>也是错误的。</p>
-</blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2420,7 +2375,7 @@ output.encoding = utf-8
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2431,7 +2386,7 @@ output.encoding = utf-8
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2442,7 +2397,7 @@ output.encoding = utf-8
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2516,7 +2471,7 @@ output.encoding = utf-8
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

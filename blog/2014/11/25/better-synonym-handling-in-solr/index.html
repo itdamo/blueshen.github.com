@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/graph22.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/breast_cancer_highlighting2.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/graph33.png">
-<meta property="og:updated_time" content="2018-10-24T06:21:11.244Z">
+<meta property="og:updated_time" content="2018-12-20T12:16:13.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在Solr中更好的处理同义词">
 <meta name="twitter:description" content="当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,534
+                  2,531
                 </span>
               
 
@@ -479,15 +479,10 @@
 </ul>
 <p>这有点复杂，因此也值得我们一一解决这些问题。</p>
 <h3 id="多字同义词并不能识别为短语查询"><a href="#多字同义词并不能识别为短语查询" class="headerlink" title="多字同义词并不能识别为短语查询"></a>多字同义词并不能识别为短语查询</h3><p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词：</p>
-<pre><code>breast neoplasm
-breast neoplasms
-breast tumor
-breast tumors
-cancer of breast
-cancer of the breast
-</code></pre><p>因此在正常情况下，如果SynonymFilterFactory配置了<code>expand=&quot;true&quot;</code>,查询”breast cancer“就变成了：</p>
-<pre><code>+((breast breast breast breast breast cancer cancer) (cancer neoplasm neoplasms tumor tumors) breast breast)
-</code></pre><p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">breast neoplasm</div><div class="line">breast neoplasms</div><div class="line">breast tumor</div><div class="line">breast tumors</div><div class="line">cancer of breast</div><div class="line">cancer of the breast</div></pre></td></tr></table></figure>
+<p>因此在正常情况下，如果SynonymFilterFactory配置了<code>expand=&quot;true&quot;</code>,查询”breast cancer“就变成了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+((breast breast breast breast breast cancer cancer) (cancer neoplasm neoplasms tumor tumors) breast breast)</div></pre></td></tr></table></figure>
+<p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
 <p>然而，这也意味着，如果你正在做一个短语查询（比如”breast cancer“）,如果想生效，你的文档必须字面上匹配类似”breast cancer breast breast“这样的字符。</p>
 <p>啊？这里到底发生了什么？事实证明SynonymFilterFactory并没有按你所想来扩展多字同义词。直觉上，可能认为它表现为一个有限自动机，Solr构建出的结果可能类似这样(忽略复数)：</p>
 <p><img src="/images/blog/2014/graph11.png" alt=""></p>
@@ -727,7 +722,7 @@ pooch nibble
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -738,7 +733,7 @@ pooch nibble
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -749,7 +744,7 @@ pooch nibble
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -839,7 +834,7 @@ pooch nibble
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

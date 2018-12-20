@@ -290,6 +290,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/03/31/velocity-study-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2014/03/31/velocity-study-summary/" itemprop="url">Velocity学习小结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-03-31T16:24:00+08:00">
+                2014-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/velocity/" itemprop="url" rel="index">
+                    <span itemprop="name">velocity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/03/31/velocity-study-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2014/03/31/velocity-study-summary/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/03/31/velocity-study-summary/" class="leancloud_visitors" data-flag-title="Velocity学习小结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  427
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="velocity在spring项目中的使用"><a href="#velocity在spring项目中的使用" class="headerlink" title="velocity在spring项目中的使用"></a>velocity在spring项目中的使用</h3><p>本文，不是讲velocityResolver来渲染页面的只从最原始的使用方式如何使用。<br>首先，可以交给Spring来初始化velocityEngine:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"velocityEngine"</span> <span class="attr">class</span>=<span class="string">"org.springframework.ui.velocity.VelocityEngineFactoryBean"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:velocity.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"resourceLoaderPath"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/WEB-INF/velocity/<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中的<code>configLocation</code>指明了velocity的配置文件路径。也就是说一些个性化的配置都可以直接在velocity.properties进行操作了。比如下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">resource.loader  =  file</div><div class="line"></div><div class="line">file.resource.loader.description =  Velocity  File Resource Loader</div><div class="line">file.resource.loader.class = org.apache.velocity.runtime.resource.loader.FileResourceLoader</div><div class="line">file.resource.loader.cache =  true</div><div class="line">file.resource.loader.modificationCheckInterval =  100</div><div class="line"></div><div class="line">input.encoding = utf-8</div><div class="line">output.encoding = utf-8</div></pre></td></tr></table></figure>
+<p>需要注意的是，resource.loader可能有多种选择，最常用的是file，class.当然也有webapp,jar等类型。file要求指明具体的路径，而在WEB应用里这块常常就会出现问题。因此，我们倾向于认为从classpath来加载模板。但是，为什么此处仍然推荐使用file而不是class呢。那是因为：</p>
+<ul>
+<li>spring增强了file加载的能力，推荐使用<code>resourceLoaderPath</code>来指明路径，而不是交给<code>file.resource.loader.path</code>进行处理。如果使用这个可能会跑NullPointerException；</li>
+<li>class加载存在弊端，在生产环境classpath里的内容一旦加载就被缓存起来了，这导致velocity模板加载的cache机制失效。</li>
+</ul>
+<h3 id="关于Velocity使用的坑"><a href="#关于Velocity使用的坑" class="headerlink" title="关于Velocity使用的坑"></a>关于Velocity使用的坑</h3><ul>
+<li><p>关于减号（-）的问题</p>
+<blockquote>
+<p>请注意下面的2中写法<br><code>#set($maxIndex=$DOC_COUNT-1)</code>报错<br><code>#set($maxIndex=$DOC_COUNT - 1)</code>正确，区别仅在于-两侧的空格</p>
+</blockquote>
+</li>
+<li><p>关于Range类型的问题</p>
+<blockquote>
+<p><code>#set($array = [0..$maxIndex])</code> 这个里面$maxIndex应该只是一个变量，不能是一个表达式。比如这样<code>#set($array = [0..$maxIndex+1])</code>也是错误的。</p>
+</blockquote>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -396,7 +610,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  491
+                  494
                 </span>
               
 
@@ -435,52 +649,8 @@
       
         
           <h3 id="dom4j解析xml"><a href="#dom4j解析xml" class="headerlink" title="dom4j解析xml"></a>dom4j解析xml</h3><p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：</p>
-<pre><code>public static Document parseText(String text) throws DocumentException {
-    Document result = null;
-
-    SAXReader reader = new SAXReader();
-    String encoding = getEncoding(text);
-
-    InputSource source = new InputSource(new StringReader(text));
-    source.setEncoding(encoding);
-
-    result = reader.read(source);
-
-    // if the XML parser doesn&apos;t provide a way to retrieve the encoding,
-    // specify it manually
-    if (result.getXMLEncoding() == null) {
-        result.setXMLEncoding(encoding);
-    }
-
-    return result;
-}
-
-private static String getEncoding(String text) {
-    String result = null;
-
-    String xml = text.trim();
-
-    if (xml.startsWith(&quot;&lt;?xml&quot;)) {
-        int end = xml.indexOf(&quot;?&gt;&quot;);
-        String sub = xml.substring(0, end);
-        StringTokenizer tokens = new StringTokenizer(sub, &quot; =\&quot;\&apos;&quot;);
-
-        while (tokens.hasMoreTokens()) {
-            String token = tokens.nextToken();
-
-            if (&quot;encoding&quot;.equals(token)) {
-                if (tokens.hasMoreTokens()) {
-                    result = tokens.nextToken();
-                }
-
-                break;
-            }
-        }
-    }
-
-    return result;
-}
-</code></pre><p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Document <span class="title">parseText</span><span class="params">(String text)</span> <span class="keyword">throws</span> DocumentException </span>&#123;</div><div class="line">    Document result = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    SAXReader reader = <span class="keyword">new</span> SAXReader();</div><div class="line">    String encoding = getEncoding(text);</div><div class="line"></div><div class="line">    InputSource source = <span class="keyword">new</span> InputSource(<span class="keyword">new</span> StringReader(text));</div><div class="line">    source.setEncoding(encoding);</div><div class="line"></div><div class="line">    result = reader.read(source);</div><div class="line"></div><div class="line">    <span class="comment">// if the XML parser doesn't provide a way to retrieve the encoding,</span></div><div class="line">    <span class="comment">// specify it manually</span></div><div class="line">    <span class="keyword">if</span> (result.getXMLEncoding() == <span class="keyword">null</span>) &#123;</div><div class="line">        result.setXMLEncoding(encoding);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getEncoding</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">    String result = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    String xml = text.trim();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (xml.startsWith(<span class="string">"&lt;?xml"</span>)) &#123;</div><div class="line">        <span class="keyword">int</span> end = xml.indexOf(<span class="string">"?&gt;"</span>);</div><div class="line">        String sub = xml.substring(<span class="number">0</span>, end);</div><div class="line">        StringTokenizer tokens = <span class="keyword">new</span> StringTokenizer(sub, <span class="string">" =\"\'"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">while</span> (tokens.hasMoreTokens()) &#123;</div><div class="line">            String token = tokens.nextToken();</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (<span class="string">"encoding"</span>.equals(token)) &#123;</div><div class="line">                <span class="keyword">if</span> (tokens.hasMoreTokens()) &#123;</div><div class="line">                    result = tokens.nextToken();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/03/27/java-encode-error-again/#more" rel="contents">
@@ -852,7 +1022,7 @@ private static String getEncoding(String text) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  948
+                  951
                 </span>
               
 
@@ -1458,7 +1628,7 @@ private static String getEncoding(String text) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363
+                  368
                 </span>
               
 
@@ -1497,83 +1667,8 @@ private static String getEncoding(String text) {
       
         
           <p>在pom.xml里添加以下maven插件配置：</p>
-<pre><code>    &lt;!-- 静态代码检查 --&gt;
-&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.11&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;configLocation&gt;checkstyle.xml&lt;/configLocation&gt;
-        &lt;includeResources&gt;false&lt;/includeResources&gt;
-        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
-        &lt;violationSeverity&gt;info&lt;/violationSeverity&gt;
-        &lt;maxAllowedViolations&gt;0&lt;/maxAllowedViolations&gt;
-        &lt;consoleOutput&gt;true&lt;/consoleOutput&gt;
-        &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-        &lt;includes&gt;
-            **\/package\/**.java,**\/otherpackage\/**.java
-        &lt;/includes&gt;
-    &lt;/configuration&gt;
-&lt;!--     &lt;executions&gt;
-         &lt;execution&gt;
-             &lt;goals&gt;
-                 &lt;goal&gt;check&lt;/goal&gt;
-             &lt;/goals&gt;
-             &lt;phase&gt;validate&lt;/phase&gt;
-         &lt;/execution&gt;
-     &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-
-&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-pmd-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.7.1&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;failurePriority&gt;5&lt;/failurePriority&gt;
-        &lt;failOnViolation&gt;true&lt;/failOnViolation&gt;
-        &lt;targetJdk&gt;${jdk.version}&lt;/targetJdk&gt;
-        &lt;verbose&gt;true&lt;/verbose&gt;
-        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
-        &lt;rulesets&gt;
-            &lt;ruleset&gt;pmd.xml&lt;/ruleset&gt;
-        &lt;/rulesets&gt;
-        &lt;includes&gt;
-            &lt;include&gt;**\/package\/**.java&lt;/include&gt;
-            &lt;include&gt;**\/otherpackage\/**.java&lt;/include&gt;
-        &lt;/includes&gt;
-    &lt;/configuration&gt;
-  &lt;!--   &lt;executions&gt;
-         &lt;execution&gt;
-             &lt;phase&gt;package&lt;/phase&gt;
-             &lt;goals&gt;
-                 &lt;goal&gt;check&lt;/goal&gt;
-             &lt;/goals&gt;
-         &lt;/execution&gt;
-     &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-&lt;plugin&gt;
-    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-    &lt;artifactId&gt;findbugs-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.5.2&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;onlyAnalyze&gt;
-            cn.shenyanchao.package.*,
-            cn.shenyanchao.otherpackage.*,
-        &lt;/onlyAnalyze&gt;
-        &lt;includeFilterFile&gt;findbugs.xml&lt;/includeFilterFile&gt;
-        &lt;failOnError&gt;true&lt;/failOnError&gt;
-        &lt;outputEncoding&gt;UTF-8&lt;/outputEncoding&gt;
-    &lt;/configuration&gt;
- &lt;!--   &lt;executions&gt;
-        &lt;execution&gt;
-            &lt;phase&gt;package&lt;/phase&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;check&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-    &lt;/executions&gt;--&gt;
-&lt;/plugin&gt;
-</code></pre><p>这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。<br>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 静态代码检查 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-checkstyle-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">configLocation</span>&gt;</span>checkstyle.xml<span class="tag">&lt;/<span class="name">configLocation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includeResources</span>&gt;</span>false<span class="tag">&lt;/<span class="name">includeResources</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">violationSeverity</span>&gt;</span>info<span class="tag">&lt;/<span class="name">violationSeverity</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maxAllowedViolations</span>&gt;</span>0<span class="tag">&lt;/<span class="name">maxAllowedViolations</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">consoleOutput</span>&gt;</span>true<span class="tag">&lt;/<span class="name">consoleOutput</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">            **\/package\/**.java,**\/otherpackage\/**.java</div><div class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--     &lt;executions&gt;</div><div class="line">         &lt;execution&gt;</div><div class="line">             &lt;goals&gt;</div><div class="line">                 &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">             &lt;/goals&gt;</div><div class="line">             &lt;phase&gt;validate&lt;/phase&gt;</div><div class="line">         &lt;/execution&gt;</div><div class="line">     &lt;/executions&gt;--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-pmd-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failurePriority</span>&gt;</span>5<span class="tag">&lt;/<span class="name">failurePriority</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">targetJdk</span>&gt;</span>$&#123;jdk.version&#125;<span class="tag">&lt;/<span class="name">targetJdk</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">rulesets</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ruleset</span>&gt;</span>pmd.xml<span class="tag">&lt;/<span class="name">ruleset</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">rulesets</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/package\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/otherpackage\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--   &lt;executions&gt;</div><div class="line">         &lt;execution&gt;</div><div class="line">             &lt;phase&gt;package&lt;/phase&gt;</div><div class="line">             &lt;goals&gt;</div><div class="line">                 &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">             &lt;/goals&gt;</div><div class="line">         &lt;/execution&gt;</div><div class="line">     &lt;/executions&gt;--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>findbugs-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">onlyAnalyze</span>&gt;</span></div><div class="line">            cn.shenyanchao.package.*,</div><div class="line">            cn.shenyanchao.otherpackage.*,</div><div class="line">        <span class="tag">&lt;/<span class="name">onlyAnalyze</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includeFilterFile</span>&gt;</span>findbugs.xml<span class="tag">&lt;/<span class="name">includeFilterFile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnError</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnError</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"> <span class="comment">&lt;!--   &lt;executions&gt;</div><div class="line">        &lt;execution&gt;</div><div class="line">            &lt;phase&gt;package&lt;/phase&gt;</div><div class="line">            &lt;goals&gt;</div><div class="line">                &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">            &lt;/goals&gt;</div><div class="line">        &lt;/execution&gt;</div><div class="line">    &lt;/executions&gt;--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/#more" rel="contents">
@@ -1733,7 +1828,7 @@ private static String getEncoding(String text) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  233
+                  235
                 </span>
               
 
@@ -1773,33 +1868,11 @@ private static String getEncoding(String text) {
         
           
             <h4 id="Maven如何依赖本地包？"><a href="#Maven如何依赖本地包？" class="headerlink" title="Maven如何依赖本地包？"></a>Maven如何依赖本地包？</h4><p>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
-    &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
-    &lt;version&gt;3.2.8&lt;/version&gt;
-    &lt;scope&gt;system&lt;/scope&gt;
-    &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
-&lt;/dependency&gt;
-</code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.wltea.ik-analyzer<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ik-analyzer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;project.basedir&#125;/lib/ik-analyzer-3.2.8.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
 <h4 id="如何将本地包打到war包内？"><a href="#如何将本地包打到war包内？" class="headerlink" title="如何将本地包打到war包内？"></a>如何将本地包打到war包内？</h4><p>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
-<pre><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.3&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;warName&gt;${project.artifactId}&lt;/warName&gt;
-        &lt;webResources&gt;
-            &lt;resource&gt;
-                &lt;directory&gt;lib/&lt;/directory&gt;
-                &lt;targetPath&gt;WEB-INF/lib&lt;/targetPath&gt;
-                &lt;includes&gt;
-                    &lt;include&gt;**/*.jar&lt;/include&gt;
-                &lt;/includes&gt;
-            &lt;/resource&gt;
-        &lt;/webResources&gt;
-    &lt;/configuration&gt;
-&lt;/plugin&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">warName</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">warName</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">webResources</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">resource</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">directory</span>&gt;</span>lib/<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>WEB-INF/lib<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.jar<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">webResources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+
           
         
       
@@ -1953,7 +2026,7 @@ private static String getEncoding(String text) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  420
+                  424
                 </span>
               
 
@@ -1996,10 +2069,10 @@ private static String getEncoding(String text) {
 <li>使用Visitor模式</li>
 </ul>
 <p>主要是通过：</p>
-<pre><code>public int[] getDefaultTokens()
-</code></pre><p>指定要访问的节点类型。</p>
-<pre><code>public void visitToken(DetailAST assignAST)
-</code></pre><p>指定如何处理节点，并进行规则校验。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getDefaultTokens()</div></pre></td></tr></table></figure>
+<p>指定要访问的节点类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitToken</span><span class="params">(DetailAST assignAST)</span></span></div></pre></td></tr></table></figure>
+<p>指定如何处理节点，并进行规则校验。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2013/09/25/custome-checkstyle-rule/#more" rel="contents">
@@ -2159,7 +2232,7 @@ private static String getEncoding(String text) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,333
+                  1,337
                 </span>
               
 
@@ -2200,9 +2273,8 @@ private static String getEncoding(String text) {
           <h4 id="目标Web系统"><a href="#目标Web系统" class="headerlink" title="目标Web系统"></a>目标Web系统</h4><p>apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优</p>
 <h4 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h4><p>按照官方默认配置。<br>并发150正常;达到210时，报connection refuse</p>
 <p>$TOMCAT_HOME/conf/server.xml中</p>
-<pre><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeout=&quot;20000&quot;
-               redirectPort=&quot;8443&quot; URIEncoding=&quot;UTF-8&quot;/&gt;
-</code></pre><p>maxThreads 默认值是200<br>acceptCount 默认值是100</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>      <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></div><div class="line">               <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">URIEncoding</span>=<span class="string">"UTF-8"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>maxThreads 默认值是200<br>acceptCount 默认值是100</p>
 <p>解决方法：显式指明以上2项，并提高数值。并可配合min/maxSpareThreads</p>
 <p>参数文档： <a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html</a></p>
           <!--noindex-->
@@ -2212,212 +2284,6 @@ private static String getEncoding(String text) {
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/09/16/git-ssh-connection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2013/09/16/git-ssh-connection/" itemprop="url">提交代码到GitHub SSH错误解决方案</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-09-16T18:08:00+08:00">
-                2013-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2013/09/16/git-ssh-connection/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2013/09/16/git-ssh-connection/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2013/09/16/git-ssh-connection/" class="leancloud_visitors" data-flag-title="提交代码到GitHub SSH错误解决方案">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  235
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近，由于公司内部的网络改造，在<code>git push</code>的时候提示如下信息：</p>
-<pre><code>ssh: connect to host github.com port 22: Connection timed out
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-</code></pre><p>看字面的意思就是连接超时了，什么原因造成的呢，这个估计是公司网络禁用了SSH的22端口导致的。所幸git提供了https、git、ssh三种协议来读写。</p>
-<p>运行<code>git config --local -e</code>打开配置信息。<br>修改其中的    </p>
-<pre><code>url = git@github.com:username/repo.git
-</code></pre><p>为   </p>
-<pre><code>url = https://username@github.com/username/repo.git
-</code></pre><p>这样就改为使用https协议了。提交什么的就OK了。</p>
-<p>后来，我再使用Octopress提交博客的时候问题又出现了。也就是在<code>rake deploy</code>的时候，又走ssh了。此时只要进入_deploy目录，把上述步骤再执行一次就好了。就是每次提交都要输入用户名密码而已。  </p>
-
-          
         
       
     </div>
@@ -2505,7 +2371,7 @@ and the repository exists.
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2516,7 +2382,7 @@ and the repository exists.
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2527,7 +2393,7 @@ and the repository exists.
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2601,7 +2467,7 @@ and the repository exists.
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

@@ -97,7 +97,7 @@ Element抽象">
 Visitor抽象访问者抽象类或者接口，声明访问者可以访问哪些元素，具体到程序中就visit方法的参数定义哪些对象是可以被访问的。
 ConcreteVisitor具体访问者它影响访问者访问到一个类后该怎么办，要做什么事情。
 Element抽象">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.871Z">
+<meta property="og:updated_time" content="2018-12-20T12:14:18.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：访问者（visitor） in java">
 <meta name="twitter:description" content="定义：封装一些作用于某种数据结构中的各元素的操作，它可以在不改变数据结构的前提下定义作用于这些元素的新的操作。    
@@ -417,7 +417,7 @@ Element抽象">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  446
+                  452
                 </span>
               
 
@@ -465,82 +465,18 @@ Element抽象">
 </ul>
 <a id="more"></a>
 <p>下面看看各个部分是如何实现的。<br>抽象元素：    </p>
-<pre><code>public abstract class Element {
-    //业务逻辑
-    public abstract void doSomething();
-    //允许谁来访问
-    public abstract void accept(IVisitor visitor);
-}
-</code></pre><p>具体元素：    </p>
-<pre><code>public class ConcreteElement1 extends Element {
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Element</span> </span>&#123;</div><div class="line">    <span class="comment">//业务逻辑</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//允许谁来访问</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(IVisitor visitor)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>具体元素：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteElement1</span> <span class="keyword">extends</span> <span class="title">Element</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//todo</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(IVisitor visitor)</span> </span>&#123;</div><div class="line">        visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteElement2</span> <span class="keyword">extends</span> <span class="title">Element</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//todo</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(IVisitor visitor)</span> </span>&#123;</div><div class="line">        visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>抽象访问者：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IVisitor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElement1 el1)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElement2 el2)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>具体访问者：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Visitor</span> <span class="keyword">implements</span> <span class="title">IVisitor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElement1 el1)</span> </span>&#123;</div><div class="line">        el1.doSomething();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ConcreteElement2 el2)</span> </span>&#123;</div><div class="line">        el2.doSomething();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结构对象：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectStruture</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Element <span class="title">createElment</span><span class="params">()</span></span>&#123;</div><div class="line">        Random random = <span class="keyword">new</span> Random();</div><div class="line">        <span class="keyword">if</span> (random.nextInt(<span class="number">100</span>) &gt; <span class="number">50</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ConcreteElement1();</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ConcreteElement2();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面看下具体场景类是怎么使用的：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">            Element el = ObjectStruture.createElment();</div><div class="line">            el.accept(<span class="keyword">new</span> Visitor());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-    @Override
-    public void doSomething() {
-        //todo
-    }
-
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}
-
-public class ConcreteElement2 extends Element {
-
-    @Override
-    public void doSomething() {
-        //todo
-    }
-
-    @Override
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}  
-</code></pre><p>抽象访问者：    </p>
-<pre><code>public interface IVisitor {
-
-    public void visit(ConcreteElement1 el1);
-
-    public void visit(ConcreteElement2 el2);
-}
-</code></pre><p>具体访问者：    </p>
-<pre><code>public class Visitor implements IVisitor {
-
-    @Override
-    public void visit(ConcreteElement1 el1) {
-        el1.doSomething();
-    }
-
-    @Override
-    public void visit(ConcreteElement2 el2) {
-        el2.doSomething();
-    }
-}
-</code></pre><p>结构对象：   </p>
-<pre><code>public class ObjectStruture {
-
-    public static Element createElment(){
-        Random random = new Random();
-        if (random.nextInt(100) &gt; 50){
-            return new ConcreteElement1();
-        }else{
-            return new ConcreteElement2();
-        }
-    }
-
-}
-</code></pre><p>下面看下具体场景类是怎么使用的：   </p>
-<pre><code>public class Client {
-
-    public static void main(String[] args) {
-        for (int i = 0; i &lt; 10; i++) {
-            Element el = ObjectStruture.createElment();
-            el.accept(new Visitor());
-        }
-    }
-}
-</code></pre>
       
     </div>
     
@@ -621,8 +557,8 @@ public class ConcreteElement2 extends Element {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2012/11/02/state-in-java/" rel="next" title="设计模式：状态（state） in java">
-                <i class="fa fa-chevron-left"></i> 设计模式：状态（state） in java
+              <a href="/blog/2012/11/02/strategy-in-java/" rel="next" title="设计模式：策略（strategy） in java">
+                <i class="fa fa-chevron-left"></i> 设计模式：策略（strategy） in java
               </a>
             
           </div>
@@ -708,7 +644,7 @@ public class ConcreteElement2 extends Element {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -719,7 +655,7 @@ public class ConcreteElement2 extends Element {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -730,7 +666,7 @@ public class ConcreteElement2 extends Element {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -804,7 +740,7 @@ public class ConcreteElement2 extends Element {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

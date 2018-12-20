@@ -91,7 +91,7 @@ powermock 简介EasyMock 以及 Mockito 都因为可以极大地简化单元测�
 <meta property="og:description" content="Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。
 项目地址:https://code.google.com/p/mockito/
 powermock 简介EasyMock 以及 Mockito 都因为可以极大地简化单元测试的书写过程而被许多人应用">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.835Z">
+<meta property="og:updated_time" content="2018-12-18T06:01:35.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mockito简介">
 <meta name="twitter:description" content="Mockito 是目前 java 单测中使用比较流行的 mock 工具。其他还有 EasyMock，JMock，MockCreator，Mockrunner，MockMaker 及 PowerMock。
@@ -408,7 +408,7 @@ powermock 简介EasyMock 以及 Mockito 都因为可以极大地简化单元测�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,861
+                  2,873
                 </span>
               
 
@@ -526,156 +526,29 @@ inOrder.verify(secondMock).add(&quot;was called second&quot;);
 </code></pre><h2 id="RETURN-SMART-NULLS和RETURN-DEEP-STUBS"><a href="#RETURN-SMART-NULLS和RETURN-DEEP-STUBS" class="headerlink" title="RETURN_SMART_NULLS和RETURN_DEEP_STUBS"></a><code>RETURN_SMART_NULLS和RETURN_DEEP_STUBS</code></h2><p><code>RETURN_SMART_NULLS</code> 是实现了Answer 接口的对象，它是创建mock对象时的一个可选参数， <code>mock(class,answer)</code>。在创建mock对象时，使用该参数，调用没有stubbed的方法会返回 SmartNull 。如返回类型为String的，会返回空””, int 会返回 0,List 会返回 null。</p>
 <p>mock对象使用RETURN_DEEP_STUBS 参数，会自动mock该对象中包含的对象。</p>
 <h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>Mockito支持对变量进行注解，如将mock对象设为测试类的属性，然后通过注解的方式@Mock来定义它，可以减少重复代码，增强可维护性。Mockito支持的注解有@Mock，@Spy，@Captor，@InjectMocks</p>
-<h3 id="Annotation-的初始化"><a href="#Annotation-的初始化" class="headerlink" title="Annotation 的初始化"></a>Annotation 的初始化</h3><p>初始化方法为调用MockitoAnnotations.initMocks(testClass)，可以放到@Before中。</p>
-<pre><code>public class ArticleManagerTest {
-
-    @Mock private ArticleCalculator calculator;
-    @Mock private ArticleDatabase database;
-    @Mock private UserProvider userProvider;
-
-     @Before public void setup() {
-        MockitoAnnotations.initMocks(testClass);
-    }
-}
-</code></pre><p>使用Mockito提供的Junit Runner可以省略上述步骤。</p>
-<pre><code>@RunWith(MockitoJUnitRunner.class)
-public class ExampleTest {
-    @Mock private List list;
-
-    @Test public void shouldDoSomething() {
-        list.add(100);
-    }
-}
-</code></pre><h2 id="powermock-的使用"><a href="#powermock-的使用" class="headerlink" title="powermock 的使用"></a>powermock 的使用</h2><h3 id="Maven配置"><a href="#Maven配置" class="headerlink" title="Maven配置"></a>Maven配置</h3><pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.powermock&lt;/groupId&gt;
-    &lt;artifactId&gt;powermock-module-junit4&lt;/artifactId&gt;
-    &lt;version&gt;1.4.10&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.powermock&lt;/groupId&gt;
-    &lt;artifactId&gt;powermock-api-mockito&lt;/artifactId&gt;
-    &lt;version&gt;1.4.10&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre><h2 id="PowerMock-在单元测试中的应用"><a href="#PowerMock-在单元测试中的应用" class="headerlink" title="PowerMock 在单元测试中的应用"></a>PowerMock 在单元测试中的应用</h2><h3 id="模拟-Static-方法"><a href="#模拟-Static-方法" class="headerlink" title="模拟 Static 方法"></a>模拟 Static 方法</h3><p>在任何需要用到 PowerMock 的类开始之前，首先我们要做如下声明：</p>
-<pre><code>@RunWith(PowerMockRunner.class)
-</code></pre><p>然后，还需要用注释的形式将需要测试的静态方法提供给 PowerMock：</p>
-<pre><code>@PrepareForTest( { YourClassWithEgStaticMethod.class })
-</code></pre><p>然后就可以开始写测试代码：</p>
-<pre><code>1，首先，需要有一个含有 static 方法的代码 , 如
-public class IdGenerator {
-    ...
-    public static long generateNewId() {
-        ...
-    }
-    ...
- }
-2，然后，在被测代码中，引用了以上方法
-public class ClassUnderTest {
-    ...
-    public void methodToTest() {
-    ..
-    final long id = IdGenerator.generateNewId();
-    ..
-     }
-    ...
- }
-
-3，为了达到单元测试的目的，需要让静态方法 generateNewId()返回各种值
-来达到对被测试方法 methodToTest()的覆盖测试，实现方式如下：
-
- @RunWith(PowerMockRunner.class)
- @PrepareForTest(IdGenerator.class)
- public class MyTestClass {
-    @Test
-    public void demoStaticMethodMocking() throws Exception {
-        PowerMockito.mockStatic(IdGenerator.class);
-        when(IdGenerator.generateNewId()).thenReturn(2L);
-
-        new ClassUnderTest().methodToTest();
-
-        verifyStatic();
-        IdGenerator.generateNewId();
-    }
- }
-</code></pre><h3 id="模拟构造函数"><a href="#模拟构造函数" class="headerlink" title="模拟构造函数"></a>模拟构造函数</h3><p>有时候，能模拟构造函数，从而使被测代码中 new 操作返回的对象可以被随意定制，会很大程度的提高单元测试的效率，考虑如下：</p>
-<pre><code>public class DirectoryStructure {
-    public boolean create(String directoryPath) {
-        File directory = new File(directoryPath);
-
-        if (directory.exists()) {
-            throw new IllegalArgumentException(
-            &quot;\&quot;&quot; + directoryPath + &quot;\&quot; already exists.&quot;);
-        }
-
-        return directory.mkdirs();
-    }
- }
-</code></pre><p>为了充分测试 create()函数，我们需要被 new 出来的 File 对象返回文件存在和不存在两种结果。在 PowerMock 出现之前，实现这个单元测试的方式通常都会需要在实际的文件系统中去创建对应的路径以及文件。然而，在 PowerMock 的帮助下，本函数的测试可以和实际的文件系统彻底独立开来：使用 PowerMock 来模拟 File 类的构造函数，使其返回指定的模拟 File 对象而不是实际的 File 对象，然后只需要通过修改指定的模拟 File 对象的实现，即可实现对被测试代码的覆盖测试，参考如下：</p>
-<pre><code>@RunWith(PowerMockRunner.class)
-@PrepareForTest(DirectoryStructure.class)
-public class DirectoryStructureTest {
-   @Test
-   public void createDirectoryStructureWhenPathDoesntExist()
-   throws Exception {
-       final String directoryPath = &quot;mocked path&quot;;
-
-       File directoryMock = mock(File.class);
-
-       //File的初始化函数的mock
-       whenNew(File.class).withArguments(directoryPath)
-           .thenReturn(directoryMock);
-
-       // Standard expectations
-       when(directoryMock.exists()).thenReturn(false);
-       when(directoryMock.mkdirs()).thenReturn(true);
-
-       assertTrue(new NewFileExample()
-           .createDirectoryStructure(directoryPath));
-
-       // Optionally verify that a new File was &quot;created&quot;.
-       verifyNew(File.class).withArguments(directoryPath);
-   }
-}
-</code></pre><p>使用 whenNew().withArguments().thenReturn() 语句即可实现对具体类的构造函数的模拟操作。然后对于之前创建的模拟对象 directoryMock使用 When().thenReturn() 语句，即可实现需要的所有功能，从而实现对被测对象的覆盖测试。在本测试中，因为实际的模拟操作是在类 DirectoryStructureTest 中实现，所以需要指定的 @PrepareForTest 对象是 DirectoryStructureTest.class。</p>
+<h3 id="Annotation-的初始化"><a href="#Annotation-的初始化" class="headerlink" title="Annotation 的初始化"></a>Annotation 的初始化</h3><p>初始化方法为调用MockitoAnnotations.initMocks(testClass)，可以放到@Before中。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArticleManagerTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Mock</span> <span class="keyword">private</span> ArticleCalculator calculator;</div><div class="line">    <span class="meta">@Mock</span> <span class="keyword">private</span> ArticleDatabase database;</div><div class="line">    <span class="meta">@Mock</span> <span class="keyword">private</span> UserProvider userProvider;</div><div class="line"></div><div class="line"> 	<span class="meta">@Before</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">		MockitoAnnotations.initMocks(testClass);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用Mockito提供的Junit Runner可以省略上述步骤。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(MockitoJUnitRunner.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Mock</span> <span class="keyword">private</span> List list;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shouldDoSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        list.add(<span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="powermock-的使用"><a href="#powermock-的使用" class="headerlink" title="powermock 的使用"></a>powermock 的使用</h2><h3 id="Maven配置"><a href="#Maven配置" class="headerlink" title="Maven配置"></a>Maven配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.powermock<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>powermock-module-junit4<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.powermock<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>powermock-api-mockito<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="PowerMock-在单元测试中的应用"><a href="#PowerMock-在单元测试中的应用" class="headerlink" title="PowerMock 在单元测试中的应用"></a>PowerMock 在单元测试中的应用</h2><h3 id="模拟-Static-方法"><a href="#模拟-Static-方法" class="headerlink" title="模拟 Static 方法"></a>模拟 Static 方法</h3><p>在任何需要用到 PowerMock 的类开始之前，首先我们要做如下声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(PowerMockRunner.class)</div></pre></td></tr></table></figure>
+<p>然后，还需要用注释的形式将需要测试的静态方法提供给 PowerMock：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@PrepareForTest</span>( &#123; YourClassWithEgStaticMethod.class &#125;)</div></pre></td></tr></table></figure>
+<p>然后就可以开始写测试代码：</p>
+<p>1，首先，需要有一个含有 static 方法的代码 , 如<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdGenerator</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">generateNewId</span><span class="params">()</span> </span>&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>2，然后，在被测代码中，引用了以上方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassUnderTest</span> </span>&#123;</div><div class="line">	...</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodToTest</span><span class="params">()</span> </span>&#123;</div><div class="line">    ..</div><div class="line">    <span class="keyword">final</span> <span class="keyword">long</span> id = IdGenerator.generateNewId();</div><div class="line">    ..</div><div class="line"> 	&#125;</div><div class="line">	...</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>3，为了达到单元测试的目的，需要让静态方法 generateNewId()返回各种值<br>​    来达到对被测试方法 methodToTest()的覆盖测试，实现方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@RunWith(PowerMockRunner.class)</div><div class="line">@PrepareForTest(IdGenerator.class)</div><div class="line">public class MyTestClass &#123;</div><div class="line">   @Test</div><div class="line">   public void demoStaticMethodMocking() throws Exception &#123;</div><div class="line">       PowerMockito.mockStatic(IdGenerator.class);</div><div class="line">       when(IdGenerator.generateNewId()).thenReturn(2L);</div><div class="line">	</div><div class="line">       new ClassUnderTest().methodToTest();</div><div class="line">	</div><div class="line">       verifyStatic();</div><div class="line">       IdGenerator.generateNewId();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="模拟构造函数"><a href="#模拟构造函数" class="headerlink" title="模拟构造函数"></a>模拟构造函数</h3><p>有时候，能模拟构造函数，从而使被测代码中 new 操作返回的对象可以被随意定制，会很大程度的提高单元测试的效率，考虑如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class DirectoryStructure &#123;</div><div class="line">    public boolean create(String directoryPath) &#123;</div><div class="line">        File directory = new File(directoryPath);</div><div class="line"></div><div class="line">        if (directory.exists()) &#123;</div><div class="line">            throw new IllegalArgumentException(</div><div class="line">            &quot;\&quot;&quot; + directoryPath + &quot;\&quot; already exists.&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return directory.mkdirs();</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p>为了充分测试 create()函数，我们需要被 new 出来的 File 对象返回文件存在和不存在两种结果。在 PowerMock 出现之前，实现这个单元测试的方式通常都会需要在实际的文件系统中去创建对应的路径以及文件。然而，在 PowerMock 的帮助下，本函数的测试可以和实际的文件系统彻底独立开来：使用 PowerMock 来模拟 File 类的构造函数，使其返回指定的模拟 File 对象而不是实际的 File 对象，然后只需要通过修改指定的模拟 File 对象的实现，即可实现对被测试代码的覆盖测试，参考如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(PowerMockRunner.class)</div><div class="line"><span class="meta">@PrepareForTest</span>(DirectoryStructure.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DirectoryStructureTest</span> </span>&#123;</div><div class="line">   <span class="meta">@Test</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createDirectoryStructureWhenPathDoesntExist</span><span class="params">()</span></span></div><div class="line"><span class="keyword">throws</span> Exception &#123;</div><div class="line">       <span class="keyword">final</span> String directoryPath = <span class="string">"mocked path"</span>;</div><div class="line"></div><div class="line">       File directoryMock = mock(File.class);</div><div class="line"></div><div class="line">       <span class="comment">//File的初始化函数的mock</span></div><div class="line">       whenNew(File.class).withArguments(directoryPath)</div><div class="line">		.thenReturn(directoryMock);</div><div class="line"></div><div class="line">       <span class="comment">// Standard expectations</span></div><div class="line">       when(directoryMock.exists()).thenReturn(<span class="keyword">false</span>);</div><div class="line">       when(directoryMock.mkdirs()).thenReturn(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">       assertTrue(<span class="keyword">new</span> NewFileExample()</div><div class="line">		.createDirectoryStructure(directoryPath));</div><div class="line"></div><div class="line">       <span class="comment">// Optionally verify that a new File was "created".</span></div><div class="line">       verifyNew(File.class).withArguments(directoryPath);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 whenNew().withArguments().thenReturn() 语句即可实现对具体类的构造函数的模拟操作。然后对于之前创建的模拟对象 directoryMock使用 When().thenReturn() 语句，即可实现需要的所有功能，从而实现对被测对象的覆盖测试。在本测试中，因为实际的模拟操作是在类 DirectoryStructureTest 中实现，所以需要指定的 @PrepareForTest 对象是 DirectoryStructureTest.class。</p>
 <h3 id="模拟私有以及-Final-方法"><a href="#模拟私有以及-Final-方法" class="headerlink" title="模拟私有以及 Final 方法"></a>模拟私有以及 Final 方法</h3><p>为了实现对类的私有方法或者是 Final 方法的模拟操作，需要 PowerMock 提供的另外一项技术：局部模拟。</p>
 <p>在之前的介绍的模拟操作中，我们总是去模拟一整个类或者对象，然后使用 When().thenReturn()语句去指定其中值得关心的部分函数的返回值，从而达到搭建各种测试环境的目标。对于没有使用 When().thenReturn()方法指定的函数，系统会返回各种类型的默认值。</p>
 <p>局部模拟则提供了另外一种方式，在使用局部模拟时，被创建出来的模拟对象依然是原系统对象，虽然可以使用方法 When().thenReturn()来指定某些具体方法的返回值，但是没有被用此函数修改过的函数依然按照系统原始类的方式来执行。</p>
 <p>这种局部模拟的方式的强大之处在于，除开一般方法可以使用之外，Final 方法和私有方法一样可以使用。<br>参考如下所示的被测代码：</p>
-<pre><code>public final class PrivatePartialMockingExample {
-   public String methodToTest() {
-       return methodToMock(&quot;input&quot;);
-   }
-
-   private String methodToMock(String input) {
-       return &quot;REAL VALUE = &quot; + input;
-   }
-}
-</code></pre><p>为了保持单元测试的纯洁性，在测试方法 methodToTest()时，我们不希望受到私有函数 methodToMock()实现的干扰，为了达到这个目的，我们使用刚提到的局部模拟方法来实现 , 实现方式如下：</p>
-<pre><code>@RunWith(PowerMockRunner.class)
-@PrepareForTest(PrivatePartialMockingExample.class)
-public class PrivatePartialMockingExampleTest {
-   @Test
-   public void demoPrivateMethodMocking() throws Exception {
-       final String expected = &quot;TEST VALUE&quot;;
-       final String nameOfMethodToMock = &quot;methodToMock&quot;;
-       final String input = &quot;input&quot;;
-
-       PrivatePartialMockingExample underTest = spy(new PrivatePartialMockingExample());
-
-       /*
-        * Setup the expectation to the private method using the method name
-        */
-       when(underTest, nameOfMethodToMock, input).thenReturn(expected);
-
-       assertEquals(expected, underTest.methodToTest());
-
-       // Optionally verify that the private method was actually called
-       verifyPrivate(underTest).invoke(nameOfMethodToMock, input);
-   }
-}
-</code></pre><p>可以发现，为了实现局部模拟操作，用来创建模拟对象的函数从 mock() 变成了 spy()，操作对象也从类本身变成了一个具体的对象。同时，When() 函数也使用了不同的版本：在模拟私有方法或者是 Final 方法时，When() 函数需要依次指定模拟对象、被指定的函数名字以及针对该函数的输入参数列表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivatePartialMockingExample</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">methodToTest</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> methodToMock(<span class="string">"input"</span>);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">private</span> String <span class="title">methodToMock</span><span class="params">(String input)</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> <span class="string">"REAL VALUE = "</span> + input;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了保持单元测试的纯洁性，在测试方法 methodToTest()时，我们不希望受到私有函数 methodToMock()实现的干扰，为了达到这个目的，我们使用刚提到的局部模拟方法来实现 , 实现方式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(PowerMockRunner.class)</div><div class="line"><span class="meta">@PrepareForTest</span>(PrivatePartialMockingExample.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrivatePartialMockingExampleTest</span> </span>&#123;</div><div class="line">   <span class="meta">@Test</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">demoPrivateMethodMocking</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">       <span class="keyword">final</span> String expected = <span class="string">"TEST VALUE"</span>;</div><div class="line">       <span class="keyword">final</span> String nameOfMethodToMock = <span class="string">"methodToMock"</span>;</div><div class="line">       <span class="keyword">final</span> String input = <span class="string">"input"</span>;</div><div class="line"></div><div class="line">       PrivatePartialMockingExample underTest = spy(<span class="keyword">new</span> PrivatePartialMockingExample());</div><div class="line"></div><div class="line">       <span class="comment">/*</span></div><div class="line">        * Setup the expectation to the private method using the method name</div><div class="line">        */</div><div class="line">       when(underTest, nameOfMethodToMock, input).thenReturn(expected);</div><div class="line"></div><div class="line">       assertEquals(expected, underTest.methodToTest());</div><div class="line"></div><div class="line">       <span class="comment">// Optionally verify that the private method was actually called</span></div><div class="line">       verifyPrivate(underTest).invoke(nameOfMethodToMock, input);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以发现，为了实现局部模拟操作，用来创建模拟对象的函数从 mock() 变成了 spy()，操作对象也从类本身变成了一个具体的对象。同时，When() 函数也使用了不同的版本：在模拟私有方法或者是 Final 方法时，When() 函数需要依次指定模拟对象、被指定的函数名字以及针对该函数的输入参数列表。</p>
 <p>参考文献:<a href="http://www.ibm.com/developerworks/cn/java/j-lo-powermock/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-powermock/</a></p>
 <hr>
 <p>Thanks to：lizejun</p>
@@ -860,7 +733,7 @@ public class PrivatePartialMockingExampleTest {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -871,7 +744,7 @@ public class PrivatePartialMockingExampleTest {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -882,7 +755,7 @@ public class PrivatePartialMockingExampleTest {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -972,7 +845,7 @@ public class PrivatePartialMockingExampleTest {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

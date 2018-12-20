@@ -1,3 +1,4 @@
+https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkm/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-numberic/
@@ -7,4 +8,3 @@ https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircos
 https://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/
 https://www.shenyanchao.cn/blog/2016/03/20/about-interface-define/
 https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/
-https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/

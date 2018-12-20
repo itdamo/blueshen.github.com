@@ -95,7 +95,7 @@ Selenium 仍然被活跃的支持（大部分是维护工作），并且提供�
 <meta property="og:image" content="http://seleniumhq.org/docs/_images/chapt5_img27_multi_window_mode.png">
 <meta property="og:image" content="http://seleniumhq.org/docs/_images/chapt5_img02_Architecture_Diagram_1.png">
 <meta property="og:image" content="http://seleniumhq.org/docs/_images/chapt5_img02_Architecture_Diagram_2.png">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.846Z">
+<meta property="og:updated_time" content="2018-12-20T12:05:51.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="selenium文档:selenium RC">
 <meta name="twitter:description" content="Selenium 1 (Selenium RC)介绍正如你在 Selenium 项目简史里读到的，Selenium RC 在很长一段时间内都是 Selenium 的主要项目，直到 WebDriver/Selenium 合并而产生了最新和最强大的 Selenium 2。
@@ -412,7 +412,7 @@ Selenium 仍然被活跃的支持（大部分是维护工作），并且提供�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  8,517
+                  8,519
                 </span>
               
 
@@ -494,27 +494,8 @@ Selenium 仍然被活跃的支持（大部分是维护工作），并且提供�
 
 <p>注意: 这个例子仅仅在 Google 搜索页面 <a href="http://www.google.com" target="_blank" rel="external">http://www.google.com</a> 工作。</p>
 <h2 id="Selenese-作为编程代码"><a href="#Selenese-作为编程代码" class="headerlink" title="Selenese 作为编程代码"></a>Selenese 作为编程代码</h2><p>以下为使用支持的多种编程序言从 Selenium-IDE 中导出的测试脚本。如果你有一些面向对象编程的基础知识，你就可以通过阅读以下代码理解 Selenium 如何运行 Selenese 命令。</p>
-<pre><code>/** Add JUnit framework to your classpath if not already there
- *  for this example to work
- */
-package com.example.tests;
-
-import com.thoughtworks.selenium.*;
-import java.util.regex.Pattern;
-
-public class NewTest extends SeleneseTestCase {
-    public void setUp() throws Exception {
-        setUp(&quot;http://www.google.com/&quot;, &quot;*firefox&quot;);
-    }
-      public void testNew() throws Exception {
-          selenium.open(&quot;/&quot;);
-          selenium.type(&quot;q&quot;, &quot;selenium rc&quot;);
-          selenium.click(&quot;btnG&quot;);
-          selenium.waitForPageToLoad(&quot;30000&quot;);
-          assertTrue(selenium.isTextPresent(&quot;Results * for selenium rc&quot;));
-    }
-}
-</code></pre><p>在接下来的章节中，我们将介绍如何通过生成的代码创建你的测试程序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Add JUnit framework to your classpath if not already there</span></div><div class="line"> *  for this example to work</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> com.example.tests;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.thoughtworks.selenium.*;</div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewTest</span> <span class="keyword">extends</span> <span class="title">SeleneseTestCase</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        setUp(<span class="string">"http://www.google.com/"</span>, <span class="string">"*firefox"</span>);</div><div class="line">    &#125;</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testNew</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">          selenium.open(<span class="string">"/"</span>);</div><div class="line">          selenium.type(<span class="string">"q"</span>, <span class="string">"selenium rc"</span>);</div><div class="line">          selenium.click(<span class="string">"btnG"</span>);</div><div class="line">          selenium.waitForPageToLoad(<span class="string">"30000"</span>);</div><div class="line">          assertTrue(selenium.isTextPresent(<span class="string">"Results * for selenium rc"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在接下来的章节中，我们将介绍如何通过生成的代码创建你的测试程序。</p>
 <h2 id="编写你的测试代码"><a href="#编写你的测试代码" class="headerlink" title="编写你的测试代码"></a>编写你的测试代码</h2><p>现在我们将为每种支持的语言演示如何通过上述例子编写你自己的测试代码。我们主要需要做2件事情：</p>
 <ul>
 <li>从 Selenium-IDE 导出指定语言的脚本，有选择性的修改它。</li>
@@ -526,35 +507,8 @@ public class NewTest extends SeleneseTestCase {
 <p>你可能希望为 “NewTest” 测试类重命名。同时，你可能也需要修改以下语句中的浏览器打开参数。</p>
 <pre><code>selenium = new DefaultSelenium(&quot;localhost&quot;, 4444, &quot;*iehta&quot;, &quot;http://www.google.com/&quot;);
 </code></pre><p>使用 Selenium-IDE 创建的代码看起来大致如下。为了使代码更清晰易读，我们手工加入了注释。</p>
-<pre><code>package com.example.tests;
-// 我们指定了这个文件的包
-
-import com.thoughtworks.selenium.*;
-// 导入驱动。
-// 你将使用它来初始化浏览器并执行一些任务。
-
-import java.util.regex.Pattern;
-// 加入正则表达式模块，因为有些我们需要使用它进行校验。
-// 如果你的代码不需要它，完全可以移除掉。 
-
-public class NewTest extends SeleneseTestCase {
-// 创建 Selenium 测试用例
-
-      public void setUp() throws Exception {
-        setUp(&quot;http://www.google.com/&quot;, &quot;*firefox&quot;);
-             // 初始化并启动浏览器
-      }
-
-      public void testNew() throws Exception {
-           selenium.open(&quot;/&quot;);
-           selenium.type(&quot;q&quot;, &quot;selenium rc&quot;);
-           selenium.click(&quot;btnG&quot;);
-           selenium.waitForPageToLoad(&quot;30000&quot;);
-           assertTrue(selenium.isTextPresent(&quot;Results * for selenium rc&quot;));
-           // 以上为真实的测试步骤
-     }
-}
-</code></pre><h2 id="学习使用-API"><a href="#学习使用-API" class="headerlink" title="学习使用 API"></a>学习使用 API</h2><p>Selenium RC API 使用以下约定：假设你了解 Selenese，并且大部分接口是自解释的。在此，我们仅解释最具争议或者看起来不那么直接明了的部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.example.tests;</div><div class="line"><span class="comment">// 我们指定了这个文件的包</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> com.thoughtworks.selenium.*;</div><div class="line"><span class="comment">// 导入驱动。</span></div><div class="line"><span class="comment">// 你将使用它来初始化浏览器并执行一些任务。</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"><span class="comment">// 加入正则表达式模块，因为有些我们需要使用它进行校验。</span></div><div class="line"><span class="comment">// 如果你的代码不需要它，完全可以移除掉。 </span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewTest</span> <span class="keyword">extends</span> <span class="title">SeleneseTestCase</span> </span>&#123;</div><div class="line"><span class="comment">// 创建 Selenium 测试用例</span></div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        setUp(<span class="string">"http://www.google.com/"</span>, <span class="string">"*firefox"</span>);</div><div class="line">             <span class="comment">// 初始化并启动浏览器</span></div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testNew</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">           selenium.open(<span class="string">"/"</span>);</div><div class="line">           selenium.type(<span class="string">"q"</span>, <span class="string">"selenium rc"</span>);</div><div class="line">           selenium.click(<span class="string">"btnG"</span>);</div><div class="line">           selenium.waitForPageToLoad(<span class="string">"30000"</span>);</div><div class="line">           assertTrue(selenium.isTextPresent(<span class="string">"Results * for selenium rc"</span>));</div><div class="line">           <span class="comment">// 以上为真实的测试步骤</span></div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="学习使用-API"><a href="#学习使用-API" class="headerlink" title="学习使用 API"></a>学习使用 API</h2><p>Selenium RC API 使用以下约定：假设你了解 Selenese，并且大部分接口是自解释的。在此，我们仅解释最具争议或者看起来不那么直接明了的部分。</p>
 <h3 id="启动浏览器"><a href="#启动浏览器" class="headerlink" title="启动浏览器"></a>启动浏览器</h3><pre><code>setUp(&quot;http://www.google.com/&quot;, &quot;*firefox&quot;);
 </code></pre><p>每个例子都打开了一个浏览器，并且将浏览器作为一个浏览器对象返回，赋值给一个变量。这个变量将用于调用浏览器方法。这些方法可以执行 Selenium 命令，例如打开、键入或者校验。</p>
 <p>创建浏览器对象所需要的参数如下：</p>
@@ -618,25 +572,8 @@ if(selenium.isElementPresent(&quot;q&quot;)) {
 </code></pre><p>这样做的好处是，即使页面上没有这个元素测试也能够继续执行。</p>
 <h3 id="在你的测试中执行-JavaScript"><a href="#在你的测试中执行-JavaScript" class="headerlink" title="在你的测试中执行 JavaScript"></a>在你的测试中执行 JavaScript</h3><p>在一个应用程序中使用 JavaScript 是非常方便的，但是 Selenium 不直接支持它。你可以在 Selenium RC 中使用 getEval 接口的方法来执行它。</p>
 <p>考虑一个应用中的没有静态 id 的多选框。在这种情况下，你可以通过使用 Selenium RC 对 JavaScript 语句进行求值（evaluate）来找到所有的多选框并处理它们。</p>
-<pre><code>// Java
-public static String[] getAllCheckboxIds () {
-     String script = &quot;var inputId  = new Array();&quot;;// Create array in java script.
-            script += &quot;var cnt = 0;&quot;; // Counter for check box ids.
-            script += &quot;var inputFields  = new Array();&quot;; // Create array in java script.
-            script += &quot;inputFields = window.document.getElementsByTagName(&apos;input&apos;);&quot;; // Collect input elements.
-            script += &quot;for(var i=0; i&lt;inputFields.length; i++) {&quot;; // Loop through the collected elements.
-            script += &quot;if(inputFields[i].id !=null &quot; +
-                      &quot;&amp;&amp; inputFields[i].id !=&apos;undefined&apos; &quot; +
-                      &quot;&amp;&amp; inputFields[i].getAttribute(&apos;type&apos;) == &apos;checkbox&apos;) {&quot;; // If input field is of type check box and input id is not null.
-            script += &quot;inputId[cnt]=inputFields[i].id ;&quot; + // Save check box id to inputId array.
-                      &quot;cnt++;&quot; + // increment the counter.
-                      &quot;}&quot; + // end of if.
-                      &quot;}&quot;; // end of for.
-            script += &quot;inputId.toString();&quot; ;// Convert array in to string.
-     String[] checkboxIds = selenium.getEval(script).split(&quot;,&quot;); // Split the string.
-     return checkboxIds;
- }
-</code></pre><p>如果要计算页面中的图片数，你可以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Java</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> String[] getAllCheckboxIds () &#123;</div><div class="line">     String script = <span class="string">"var inputId  = new Array();"</span>;<span class="comment">// Create array in java script.</span></div><div class="line">            script += <span class="string">"var cnt = 0;"</span>; <span class="comment">// Counter for check box ids.</span></div><div class="line">            script += <span class="string">"var inputFields  = new Array();"</span>; <span class="comment">// Create array in java script.</span></div><div class="line">            script += <span class="string">"inputFields = window.document.getElementsByTagName('input');"</span>; <span class="comment">// Collect input elements.</span></div><div class="line">            script += <span class="string">"for(var i=0; i&lt;inputFields.length; i++) &#123;"</span>; <span class="comment">// Loop through the collected elements.</span></div><div class="line">            script += <span class="string">"if(inputFields[i].id !=null "</span> +</div><div class="line">                      <span class="string">"&amp;&amp; inputFields[i].id !='undefined' "</span> +</div><div class="line">                      <span class="string">"&amp;&amp; inputFields[i].getAttribute('type') == 'checkbox') &#123;"</span>; <span class="comment">// If input field is of type check box and input id is not null.</span></div><div class="line">            script += <span class="string">"inputId[cnt]=inputFields[i].id ;"</span> + <span class="comment">// Save check box id to inputId array.</span></div><div class="line">                      <span class="string">"cnt++;"</span> + <span class="comment">// increment the counter.</span></div><div class="line">                      <span class="string">"&#125;"</span> + <span class="comment">// end of if.</span></div><div class="line">                      <span class="string">"&#125;"</span>; <span class="comment">// end of for.</span></div><div class="line">            script += <span class="string">"inputId.toString();"</span> ;<span class="comment">// Convert array in to string.</span></div><div class="line">     String[] checkboxIds = selenium.getEval(script).split(<span class="string">","</span>); <span class="comment">// Split the string.</span></div><div class="line">     <span class="keyword">return</span> checkboxIds;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>如果要计算页面中的图片数，你可以：</p>
 <pre><code>// Java
 selenium.getEval(&quot;window.document.images.length;&quot;);
 </code></pre><p>记住要调用 window 对象，以防在 DOM 表达式中其默认指向 Selenium 窗口而不是测试窗口。</p>
@@ -837,8 +774,8 @@ Browser 465828/:top frame1 posted START NEW
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2013/05/30/selenium-doc-selenium-web-driver/" rel="next" title="selenium文档:selenium WebDriver">
-                <i class="fa fa-chevron-left"></i> selenium文档:selenium WebDriver
+              <a href="/blog/2013/05/30/selenium-doc-introduction/" rel="next" title="selenium 文档:入门介绍">
+                <i class="fa fa-chevron-left"></i> selenium 文档:入门介绍
               </a>
             
           </div>
@@ -933,7 +870,7 @@ Browser 465828/:top frame1 posted START NEW
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -944,7 +881,7 @@ Browser 465828/:top frame1 posted START NEW
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -955,7 +892,7 @@ Browser 465828/:top frame1 posted START NEW
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1045,7 +982,7 @@ Browser 465828/:top frame1 posted START NEW
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

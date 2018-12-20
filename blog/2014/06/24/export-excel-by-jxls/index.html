@@ -107,7 +107,7 @@ jXLS的基本功能：
 支持Excel 95-2000的所有版本
 生成Excel 2000标准格式
 支持字体、数字、日">
-<meta property="og:updated_time" content="2018-10-24T04:32:55.434Z">
+<meta property="og:updated_time" content="2018-12-20T11:58:42.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 jXLS导出报表">
 <meta name="twitter:description" content="常用的excel操作工具
@@ -432,7 +432,7 @@ jXLS的基本功能：
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  483
+                  488
                 </span>
               
 
@@ -481,48 +481,20 @@ jXLS的基本功能：
 <li>生成Excel 2000标准格式</li>
 <li>支持字体、数字、日期操作</li>
 <li>能够修饰单元格属性</li>
-<li><p>支持图像和图表</p>
-<pre><code>&lt;dependency&gt;
-       &lt;groupId&gt;net.sf.jxls&lt;/groupId&gt;
-       &lt;artifactId&gt;jxls-core&lt;/artifactId&gt;
-       &lt;version&gt;1.0.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre></li>
+<li>支持图像和图表</li>
 </ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>jXLS的API也很简单：</p>
-<pre><code>Map beans = new HashMap();
-beans.put(&quot;department&quot;, department);
-XLSTransformer transformer = new XLSTransformer();
-transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
-</code></pre><h3 id="jXLS是如何解析模板生成数据的？"><a href="#jXLS是如何解析模板生成数据的？" class="headerlink" title="jXLS是如何解析模板生成数据的？"></a>jXLS是如何解析模板生成数据的？</h3><p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
-<pre><code>Object value = ((Expression) cell.getExpressions().get(0)).evaluate();
-</code></pre><p>而evaluate()方法如下：</p>
-<pre><code>public Object evaluate() throws Exception {
-    if (beans != null &amp;&amp; !beans.isEmpty()) {
-        JexlContext context = new MapContext(beans);
-        Object ret = jexlExpresssion.evaluate(context);
-        if (aggregateFunction != null) {
-            return calculateAggregate(aggregateFunction, aggregateField, ret);
-        }
-        return ret;
-    }
-    return expression;
-}
-</code></pre><p>从而可以看出，数据的获得是通过JEXL来实现的。换句话说，模板内可以使用任何的JEXL标签。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Map beans = <span class="keyword">new</span> HashMap();</div><div class="line">beans.put(<span class="string">"department"</span>, department);</div><div class="line">XLSTransformer transformer = <span class="keyword">new</span> XLSTransformer();</div><div class="line">transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);</div></pre></td></tr></table></figure>
+<h3 id="jXLS是如何解析模板生成数据的？"><a href="#jXLS是如何解析模板生成数据的？" class="headerlink" title="jXLS是如何解析模板生成数据的？"></a>jXLS是如何解析模板生成数据的？</h3><p>查看<code>net.sf.jxls.transformer.CellTransformer</code>可以看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object value = ((Expression) cell.getExpressions().get(<span class="number">0</span>)).evaluate();</div></pre></td></tr></table></figure>
+<p>而evaluate()方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">evaluate</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="keyword">if</span> (beans != <span class="keyword">null</span> &amp;&amp; !beans.isEmpty()) &#123;</div><div class="line">        JexlContext context = <span class="keyword">new</span> MapContext(beans);</div><div class="line">        Object ret = jexlExpresssion.evaluate(context);</div><div class="line">        <span class="keyword">if</span> (aggregateFunction != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> calculateAggregate(aggregateFunction, aggregateField, ret);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> expression;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从而可以看出，数据的获得是通过JEXL来实现的。换句话说，模板内可以使用任何的JEXL标签。</p>
 <h3 id="让jXLS支持hyperlink"><a href="#让jXLS支持hyperlink" class="headerlink" title="让jXLS支持hyperlink"></a>让jXLS支持hyperlink</h3><p>业务上有这么一个需求，想在单元格内显示一个链接，而链接是动态生成的。通过模板设置单元格为链接始终无法生效，但是如果链接是固定的是可以生效的。如何实现动态的呢，改源码net.sf.jxls.transformer.CellTransformer 82行：</p>
-<pre><code>if (cell.getStringCellValue().toLowerCase().startsWith(&quot;${href}&quot;) &amp;&amp; cell.getExpressions().size() == 3){
-       //是链接类型的cell
-       HSSFCell hssfCell = (HSSFCell) cell.getPoiCell();
-       Expression valueExpr = (Expression)cell.getExpressions().get(1);
-       Expression linkExpr = (Expression)cell.getExpressions().get(2);
-       hssfCell.setCellValue((String)valueExpr.evaluate());
-       Hyperlink link = new HSSFHyperlink(Hyperlink.LINK_URL);
-       link.setAddress((String)linkExpr.evaluate());
-       hssfCell.setHyperlink(link);
-       cell.setPoiCell(hssfCell);
-    }
-</code></pre><p>当遇见${href}开头的表达式，则认为是链接CELL。此处${href}只是一个标记，可以任意替换的啦。然后将后面的第1个表达式作为显示值，第2个表达式作为链接地址就实现啦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (cell.getStringCellValue().toLowerCase().startsWith(<span class="string">"$&#123;href&#125;"</span>) &amp;&amp; cell.getExpressions().size() == <span class="number">3</span>)&#123;</div><div class="line">           <span class="comment">//是链接类型的cell</span></div><div class="line">           HSSFCell hssfCell = (HSSFCell) cell.getPoiCell();</div><div class="line">           Expression valueExpr = (Expression)cell.getExpressions().get(<span class="number">1</span>);</div><div class="line">           Expression linkExpr = (Expression)cell.getExpressions().get(<span class="number">2</span>);</div><div class="line">           hssfCell.setCellValue((String)valueExpr.evaluate());</div><div class="line">           Hyperlink link = <span class="keyword">new</span> HSSFHyperlink(Hyperlink.LINK_URL);</div><div class="line">           link.setAddress((String)linkExpr.evaluate());</div><div class="line">           hssfCell.setHyperlink(link);</div><div class="line">           cell.setPoiCell(hssfCell);</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>当遇见${href}开头的表达式，则认为是链接CELL。此处${href}只是一个标记，可以任意替换的啦。然后将后面的第1个表达式作为显示值，第2个表达式作为链接地址就实现啦。</p>
 
       
     </div>
@@ -702,7 +674,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -713,7 +685,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -724,7 +696,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -814,7 +786,7 @@ transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

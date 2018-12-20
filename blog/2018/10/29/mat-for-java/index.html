@@ -94,7 +94,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 -XX:HeapDumpPath=${heap.dump.path}
 下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
-<meta property="og:updated_time" content="2018-11-15T11:24:59.597Z">
+<meta property="og:updated_time" content="2018-12-20T11:59:51.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用MAT来分析JAVA内存泄露">
 <meta name="twitter:description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
@@ -413,7 +413,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  231
+                  233
                 </span>
               
 
@@ -458,16 +458,9 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
 <p>依据不同的操作系统下载响应版本。</p>
 <a id="more"></a>
 <h3 id="解析dump出的文件"><a href="#解析dump出的文件" class="headerlink" title="解析dump出的文件"></a>解析dump出的文件</h3><p>通常情况下，dump出的文件是很大的。需要修改一下MemoryAnalyzer.ini，调大<code>-Xmx</code>参数,至少要比要分析的文件相等。</p>
-<pre><code>-startup
-../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar
---launcher.library
-../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200
--vmargs
--Xmx10G
--Dorg.eclipse.swt.internal.carbon.smallFonts
--XstartOnFirstThread
-</code></pre><h3 id="无界面执行（LINUX）"><a href="#无界面执行（LINUX）" class="headerlink" title="无界面执行（LINUX）"></a>无界面执行（LINUX）</h3><pre><code>./ParseHeapDump.sh ${dump.prof} org.eclipse.mat.api:suspects
-</code></pre><p>还支持另外两个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-startup</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar</div><div class="line">--launcher.library</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200</div><div class="line">-vmargs</div><div class="line">-Xmx10G</div><div class="line">-Dorg.eclipse.swt.internal.carbon.smallFonts</div><div class="line">-XstartOnFirstThread</div></pre></td></tr></table></figure>
+<h3 id="无界面执行（LINUX）"><a href="#无界面执行（LINUX）" class="headerlink" title="无界面执行（LINUX）"></a>无界面执行（LINUX）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ParseHeapDump.sh $&#123;dump.prof&#125; org.eclipse.mat.api:suspects</div></pre></td></tr></table></figure>
+<p>还支持另外两个：</p>
 <p>org.eclipse.mat.api:overview<br>org.eclipse.mat.api:top_components</p>
 <p>执行之后，产生多个zip版html。不过这个版本，没有直接分析出来的好用，有些功能有缺失。</p>
 <hr>
@@ -650,7 +643,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -661,7 +654,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -672,7 +665,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -762,7 +755,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

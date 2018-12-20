@@ -82,27 +82,18 @@
 
 
 <meta name="description" content="dom4j解析xmldom4j提供了一个DocumentHelper来解析xml内容，此处的内容是String类型的。下面是其源码：
-public static Document parseText(String text) throws DocumentException {
-    Document result = null;
-
-    SAXReader reader = new SAXR">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445public static Document parseText(String text) throws">
 <meta property="og:type" content="article">
 <meta property="og:title" content="又见Java乱码">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/03/27/java-encode-error-again/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="dom4j解析xmldom4j提供了一个DocumentHelper来解析xml内容，此处的内容是String类型的。下面是其源码：
-public static Document parseText(String text) throws DocumentException {
-    Document result = null;
-
-    SAXReader reader = new SAXR">
-<meta property="og:updated_time" content="2018-10-24T06:16:08.559Z">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445public static Document parseText(String text) throws">
+<meta property="og:updated_time" content="2018-12-18T04:41:23.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="又见Java乱码">
 <meta name="twitter:description" content="dom4j解析xmldom4j提供了一个DocumentHelper来解析xml内容，此处的内容是String类型的。下面是其源码：
-public static Document parseText(String text) throws DocumentException {
-    Document result = null;
-
-    SAXReader reader = new SAXR">
+123456789101112131415161718192021222324252627282930313233343536373839404142434445public static Document parseText(String text) throws">
 
 
 
@@ -414,7 +405,7 @@ public static Document parseText(String text) throws DocumentException {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  491
+                  494
                 </span>
               
 
@@ -452,71 +443,12 @@ public static Document parseText(String text) throws DocumentException {
 
       
         <h3 id="dom4j解析xml"><a href="#dom4j解析xml" class="headerlink" title="dom4j解析xml"></a>dom4j解析xml</h3><p>dom4j提供了一个<code>DocumentHelper</code>来解析xml内容，此处的内容是String类型的。下面是其源码：</p>
-<pre><code>public static Document parseText(String text) throws DocumentException {
-    Document result = null;
-
-    SAXReader reader = new SAXReader();
-    String encoding = getEncoding(text);
-
-    InputSource source = new InputSource(new StringReader(text));
-    source.setEncoding(encoding);
-
-    result = reader.read(source);
-
-    // if the XML parser doesn&apos;t provide a way to retrieve the encoding,
-    // specify it manually
-    if (result.getXMLEncoding() == null) {
-        result.setXMLEncoding(encoding);
-    }
-
-    return result;
-}
-
-private static String getEncoding(String text) {
-    String result = null;
-
-    String xml = text.trim();
-
-    if (xml.startsWith(&quot;&lt;?xml&quot;)) {
-        int end = xml.indexOf(&quot;?&gt;&quot;);
-        String sub = xml.substring(0, end);
-        StringTokenizer tokens = new StringTokenizer(sub, &quot; =\&quot;\&apos;&quot;);
-
-        while (tokens.hasMoreTokens()) {
-            String token = tokens.nextToken();
-
-            if (&quot;encoding&quot;.equals(token)) {
-                if (tokens.hasMoreTokens()) {
-                    result = tokens.nextToken();
-                }
-
-                break;
-            }
-        }
-    }
-
-    return result;
-}
-</code></pre><p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br><a id="more"></a></p>
-<h3 id="如何读取文件到String"><a href="#如何读取文件到String" class="headerlink" title="如何读取文件到String"></a>如何读取文件到String</h3><pre><code>public String loadXmlRule() {
-    InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(&quot;file.xml&quot;);
-    String xmlContent = null;
-    try {
-        xmlContent = IOUtils.toString(inputStream);
-    } catch (IOException e) {
-        LOG.error(&quot;read xml:{} io error&quot;, e);
-    } finally {
-        IOUtils.closeQuietly(inputStream);
-    }
-    return xmlContent;
-}
-</code></pre><p><a href="http://stackoverflow.com/questions/5590451/getresourceasstream-what-encoding-is-it-read-as" target="_blank" rel="external">getResourceAsStream将文件读为字节流</a>，不牵涉到字符编码问题。但是当你把这个inputStream转为String的时候，就需要指定字符编码了。否则不知道按什么编码规则解析字节流到字符。不知道什么编码的情况下，程序可能就会从系统变量取默认的字符编码，也就是LANG值。这个时候在LINUX，WINDOWS下表现的可能就不一致。因此必须显式的指明编码。</p>
-<pre><code>xmlContent = IOUtils.toString(inputStream);
-
-转换为：
-
-xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
-</code></pre><p>由此，一定要慎重使用编码。<strong>永远不要相信默认编码</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Document <span class="title">parseText</span><span class="params">(String text)</span> <span class="keyword">throws</span> DocumentException </span>&#123;</div><div class="line">    Document result = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    SAXReader reader = <span class="keyword">new</span> SAXReader();</div><div class="line">    String encoding = getEncoding(text);</div><div class="line"></div><div class="line">    InputSource source = <span class="keyword">new</span> InputSource(<span class="keyword">new</span> StringReader(text));</div><div class="line">    source.setEncoding(encoding);</div><div class="line"></div><div class="line">    result = reader.read(source);</div><div class="line"></div><div class="line">    <span class="comment">// if the XML parser doesn't provide a way to retrieve the encoding,</span></div><div class="line">    <span class="comment">// specify it manually</span></div><div class="line">    <span class="keyword">if</span> (result.getXMLEncoding() == <span class="keyword">null</span>) &#123;</div><div class="line">        result.setXMLEncoding(encoding);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getEncoding</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">    String result = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    String xml = text.trim();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (xml.startsWith(<span class="string">"&lt;?xml"</span>)) &#123;</div><div class="line">        <span class="keyword">int</span> end = xml.indexOf(<span class="string">"?&gt;"</span>);</div><div class="line">        String sub = xml.substring(<span class="number">0</span>, end);</div><div class="line">        StringTokenizer tokens = <span class="keyword">new</span> StringTokenizer(sub, <span class="string">" =\"\'"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">while</span> (tokens.hasMoreTokens()) &#123;</div><div class="line">            String token = tokens.nextToken();</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (<span class="string">"encoding"</span>.equals(token)) &#123;</div><div class="line">                <span class="keyword">if</span> (tokens.hasMoreTokens()) &#123;</div><div class="line">                    result = tokens.nextToken();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从以上的代码中可以看出，解析过程中是使用XML的头<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code>来获取编码信息的。<br><a id="more"></a></p>
+<h3 id="如何读取文件到String"><a href="#如何读取文件到String" class="headerlink" title="如何读取文件到String"></a>如何读取文件到String</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">loadXmlRule</span><span class="params">()</span> </span>&#123;</div><div class="line">    InputStream inputStream = <span class="keyword">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">"file.xml"</span>);</div><div class="line">    String xmlContent = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        xmlContent = IOUtils.toString(inputStream);</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        LOG.error(<span class="string">"read xml:&#123;&#125; io error"</span>, e);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">        IOUtils.closeQuietly(inputStream);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> xmlContent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="http://stackoverflow.com/questions/5590451/getresourceasstream-what-encoding-is-it-read-as" target="_blank" rel="external">getResourceAsStream将文件读为字节流</a>，不牵涉到字符编码问题。但是当你把这个inputStream转为String的时候，就需要指定字符编码了。否则不知道按什么编码规则解析字节流到字符。不知道什么编码的情况下，程序可能就会从系统变量取默认的字符编码，也就是LANG值。这个时候在LINUX，WINDOWS下表现的可能就不一致。因此必须显式的指明编码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">xmlContent = IOUtils.toString(inputStream);</div><div class="line"></div><div class="line">转换为：</div><div class="line"></div><div class="line">xmlContent = IOUtils.toString(inputStream，<span class="string">"UTF-8);//假设文件是UTF-8</span></div></pre></td></tr></table></figure>
+<p>由此，一定要慎重使用编码。<strong>永远不要相信默认编码</strong>。</p>
 <h3 id="Jenkins-Hudson中shell-command的编码"><a href="#Jenkins-Hudson中shell-command的编码" class="headerlink" title="Jenkins/Hudson中shell command的编码"></a>Jenkins/Hudson中shell command的编码</h3><p>遇到这样的情况，在jenkins的机器上直接执行shell命令，与在jenkins job中执行shell的默认编码是不一样的。机器上直接执行默认从环境变量里取的，但是jenkins job的编码是走的jenkins node上的默认编码配置。为了防止出现类似的问题，可以在jenkins job中提前指定特定的编码。</p>
 
       
@@ -697,7 +629,7 @@ xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -708,7 +640,7 @@ xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -719,7 +651,7 @@ xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -809,7 +741,7 @@ xmlContent = IOUtils.toString(inputStream，&quot;UTF-8);//假设文件是UTF-8
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

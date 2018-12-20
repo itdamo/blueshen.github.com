@@ -91,7 +91,7 @@
 <meta property="og:description" content="定义：命令模式是一种高内聚的模式。它将一个请求封装成一个对象，从而让使用不同请求来把客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销与恢复功能。听起来，好复杂！
 在程序员之间，流传着这样一句话：程序写到最后，就是if-else,for,while。真是枯燥啊！其实能体会到这种感觉，说明作为一个程序员，你已经有了一定的造诣了。那如何提高呢？
 试想，在代码中，你有很多if-else或者ca">
-<meta property="og:updated_time" content="2018-10-24T06:05:10.089Z">
+<meta property="og:updated_time" content="2018-12-13T12:49:24.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：命令（Command） in java">
 <meta name="twitter:description" content="定义：命令模式是一种高内聚的模式。它将一个请求封装成一个对象，从而让使用不同请求来把客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销与恢复功能。听起来，好复杂！
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  889
+                  894
                 </span>
               
 
@@ -455,95 +455,20 @@
 <li>Invoker命令调用者</li>
 </ul>
 <p>下面开始分别定义：<br><strong>Receiver:</strong>定义命令的N种接收者</p>
-<pre><code>public abstract class AbstractReceiver {
-    public abstract void doSomething();
-}
-
-public class Receiver1 extends AbstractReceiver {
-    @Override
-    public void doSomething() {
-        System.out.println(&quot;receiver1 do something&quot;);
-    }
-}
-public class Receiver2 extends AbstractReceiver {
-    @Override
-    public void doSomething() {
-        System.out.println(&quot;receiver2 do something&quot;);
-    }
-}
-...
-public class ReceiverN
-...
-</code></pre><p><strong>Command:</strong>定义N种命令</p>
-<pre><code>public abstract class AbstractCommand {
-    public abstract void execute();
-}
-
-public class Command1 extends AbstractCommand {
-    private AbstractReceiver receiver;
-    public Command1(AbstractReceiver receiver) {
-        this.receiver = receiver;
-    }
-    @Override
-    public void execute() {
-        System.out.println(&quot;command1 命令发出&quot;);
-        receiver.doSomething();
-    }
-}
-public class Command2 extends AbstractCommand {
-    private AbstractReceiver receiver;
-    public Command2(AbstractReceiver receiver) {
-        this.receiver = receiver;
-    }
-    @Override
-    public void execute() {
-        System.out.println(&quot;command2 命令发出&quot;);
-        receiver.doSomething();
-    }
-}
-...
-public class CommandN
-....
-</code></pre><p><strong>Invoker:</strong>定义调用者</p>
-<pre><code>public class Invoker {
-
-    private List&lt;AbstractCommand&gt; commandList = new LinkedList&lt;AbstractCommand&gt;();
-
-    public void addCommand(AbstractCommand command) {
-        commandList.add(command);
-    }
-
-    public void addCommands(LinkedList&lt;AbstractCommand&gt; commands) {
-        commandList.addAll(commands);
-    }
-
-    public void action() {
-        for (AbstractCommand command : commandList) {
-            command.execute();
-        }
-    }
-
-}
-</code></pre><p>使用场景：</p>
-<pre><code>Invoker invoker = new Invoker();
-AbstractReceiver receiver1 = new Receiver1();
-AbstractReceiver receiver2 = new Receiver2();
-AbstractCommand command1 = new Command1(receiver2);
-AbstractCommand command2 = new Command2(receiver1);
-invoker.addCommand(command1);
-invoker.addCommand(command2);
-invoker.action();
-</code></pre><p>运行结果：</p>
-<pre><code>command1 命令发出
-receiver2 do something
-command2 命令发出
-receiver1 do something
-</code></pre><p>现在再回过来看命令模式的定义，就比较明白了吧。也就是说有N种请求条件，那么就定义N个类来封装请求，我们称之为命令（Command）。每个命令做什么操作呢，谁来执行这个命令呢，有命令自己来进行定义。这样就避免了if-else，而由N种命令来决定跳转关系。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractReceiver</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver1</span> <span class="keyword">extends</span> <span class="title">AbstractReceiver</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"receiver1 do something"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver2</span> <span class="keyword">extends</span> <span class="title">AbstractReceiver</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"receiver2 do something"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">...</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReceiverN</span></span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p><strong>Command:</strong>定义N种命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCommand</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Command1</span> <span class="keyword">extends</span> <span class="title">AbstractCommand</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> AbstractReceiver receiver;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Command1</span><span class="params">(AbstractReceiver receiver)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.receiver = receiver;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"command1 命令发出"</span>);</div><div class="line">		receiver.doSomething();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Command2</span> <span class="keyword">extends</span> <span class="title">AbstractCommand</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> AbstractReceiver receiver;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Command2</span><span class="params">(AbstractReceiver receiver)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.receiver = receiver;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"command2 命令发出"</span>);</div><div class="line">		receiver.doSomething();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">...</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommandN</span></span></div><div class="line">....</div></pre></td></tr></table></figure>
+<p><strong>Invoker:</strong>定义调用者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Invoker</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> List&lt;AbstractCommand&gt; commandList = <span class="keyword">new</span> LinkedList&lt;AbstractCommand&gt;();</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCommand</span><span class="params">(AbstractCommand command)</span> </span>&#123;</div><div class="line">		commandList.add(command);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCommands</span><span class="params">(LinkedList&lt;AbstractCommand&gt; commands)</span> </span>&#123;</div><div class="line">		commandList.addAll(commands);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (AbstractCommand command : commandList) &#123;</div><div class="line">			command.execute();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用场景：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Invoker invoker = <span class="keyword">new</span> Invoker();</div><div class="line">AbstractReceiver receiver1 = <span class="keyword">new</span> Receiver1();</div><div class="line">AbstractReceiver receiver2 = <span class="keyword">new</span> Receiver2();</div><div class="line">AbstractCommand command1 = <span class="keyword">new</span> Command1(receiver2);</div><div class="line">AbstractCommand command2 = <span class="keyword">new</span> Command2(receiver1);</div><div class="line">invoker.addCommand(command1);</div><div class="line">invoker.addCommand(command2);</div><div class="line">invoker.action();</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">command1 命令发出</div><div class="line">receiver2 do something</div><div class="line">command2 命令发出</div><div class="line">receiver1 do something</div></pre></td></tr></table></figure>
+<p>现在再回过来看命令模式的定义，就比较明白了吧。也就是说有N种请求条件，那么就定义N个类来封装请求，我们称之为命令（Command）。每个命令做什么操作呢，谁来执行这个命令呢，有命令自己来进行定义。这样就避免了if-else，而由N种命令来决定跳转关系。</p>
 <p>调用者（Invoker）呢，它维护了一个命令列表，并按照一定的顺序来发起命令调用。当然这个列表也有可能就只有一个命令了，就简化了一下。与if-else对比更直观的了。</p>
 <p>定义中还提到了命令撤销或恢复的功能，这种撤销与恢复也是命令的一种了，一般可以通过扩展一个命令出来，通过诸如日志等来恢复之前的操作。其实这个也是可以通过备忘录模式来实现的。</p>
-<h2 id="命令模式-in-JDK"><a href="#命令模式-in-JDK" class="headerlink" title="命令模式 in JDK"></a>命令模式 in JDK</h2><pre><code>java.lang.Runnable#run()
-javax.swing.Action#actionPeformed(ActionEvent e)
-</code></pre><p>从Runnable来说，不同的实现者，通过调用run()来实现在不同线程执行不同的操作。<br>从Action来说，由于桌面UI有很多的操作事件，这些事件就是命令。通过actionPerformed函数，接受不同的命令参数来做出不同的表现。</p>
+<h2 id="命令模式-in-JDK"><a href="#命令模式-in-JDK" class="headerlink" title="命令模式 in JDK"></a>命令模式 in JDK</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java.lang.Runnable#run()</div><div class="line">javax.swing.Action#actionPeformed(ActionEvent e)</div></pre></td></tr></table></figure>
+<p>从Runnable来说，不同的实现者，通过调用run()来实现在不同线程执行不同的操作。<br>从Action来说，由于桌面UI有很多的操作事件，这些事件就是命令。通过actionPerformed函数，接受不同的命令参数来做出不同的表现。</p>
 
       
     </div>
@@ -719,7 +644,7 @@ javax.swing.Action#actionPeformed(ActionEvent e)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -730,7 +655,7 @@ javax.swing.Action#actionPeformed(ActionEvent e)
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -741,7 +666,7 @@ javax.swing.Action#actionPeformed(ActionEvent e)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -831,7 +756,7 @@ javax.swing.Action#actionPeformed(ActionEvent e)
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

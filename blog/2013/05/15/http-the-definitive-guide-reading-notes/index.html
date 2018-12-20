@@ -97,7 +97,7 @@ user（">
 
 scheme(方案)：使用的哪种协议;默认无
 user（">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.825Z">
+<meta property="og:updated_time" content="2018-12-18T04:23:19.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《HTTP权威指南》读书笔记1">
 <meta name="twitter:description" content="URL语法完整的URL是建立在由以下9个部分构成的通用格式上的。
@@ -417,7 +417,7 @@ user（">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,697
+                  1,688
                 </span>
               
 
@@ -517,7 +517,42 @@ Content-Length: 18107
 <h4 id="3-TCP慢启动"><a href="#3-TCP慢启动" class="headerlink" title="3.TCP慢启动"></a>3.TCP慢启动</h4><p>TCP数据传输的性能取决于TCP连接的使用时间。TCP连接随着时间进行自我调谐，防止因特网的突然过载和拥塞。因此新连接的传输速度会比已经调谐的连接慢一些。</p>
 <h4 id="4-Nagle算法与TCP-NODELAY"><a href="#4-Nagle算法与TCP-NODELAY" class="headerlink" title="4.Nagle算法与TCP_NODELAY"></a>4.Nagle算法与TCP_NODELAY</h4><p>一个TCP段都至少装载了40个字节的标记和首部，如果TCP发送大量只包含少量的分组（一个字节），网络的性能就会严重下降。Nagle算法试图在发送一个分组前，将大量TCP数据绑定在一起来提高网络效率。但是这样也造成了不少时延，HTTP应用程序常常在自己的栈中设置参数TCP_NODELAY来禁用Nagle算法。</p>
 <h4 id="5-TIME-WAIT累积与端口耗尽"><a href="#5-TIME-WAIT累积与端口耗尽" class="headerlink" title="5.TIME_WAIT累积与端口耗尽"></a>5.TIME_WAIT累积与端口耗尽</h4><p>在四次挥手中，客户端关闭TCP连接时，会在内存维护一个小的控制块，用来记录最近所关闭的连接的IP地址和端口号。此时客户端处于TIME_WAIT状态，并维持2MSL（2分钟）的时间，确保这段时间内不会创建具有相同地址和端口号的新连接。这个时候问题就来了，在做性能测试的时候，很容易造成大量TIME_WAIT的连接，同时也不能新建新的连接了，因为无端口可用了。这也是增加时延的因素。可以考虑改小MSL。</p>
-<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>+————+—————+———+<br>|  整体范围   |   已定义范围     |   分类   |<br>+————+—————-+———+<br>| 100～199   | 100～101        | 信息提示 |<br>+————+—————-+———+<br>| 200～299   | 200～206        | 成功    |<br>+————+—————-+———+<br>| 300~399    | 300~305        | 重定向   |<br>+————+—————-+———+<br>| 400～499   | 400～415       |客户端错误|<br>+————+—————-+———+<br>| 500~599    | 500~505        | 服务器错误|<br>+————+—————-+———+</p>
+<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><table>
+<thead>
+<tr>
+<th>整体范围</th>
+<th>已定义范围</th>
+<th>分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100~199</td>
+<td>100~101</td>
+<td>信息提示</td>
+</tr>
+<tr>
+<td>200~299</td>
+<td>200~206</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>300~399</td>
+<td>300~305</td>
+<td>重定向</td>
+</tr>
+<tr>
+<td>400~499</td>
+<td>400~415</td>
+<td>客户端错误</td>
+</tr>
+<tr>
+<td>500~599</td>
+<td>500~505</td>
+<td>服务器错误</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -693,7 +728,7 @@ Content-Length: 18107
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +739,7 @@ Content-Length: 18107
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +750,7 @@ Content-Length: 18107
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -805,7 +840,7 @@ Content-Length: 18107
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

@@ -98,7 +98,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 
 Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/selenium-grid-console.png">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.850Z">
+<meta property="og:updated_time" content="2018-12-20T12:07:36.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Selenium-Grid2 配置">
 <meta name="twitter:description" content="为什么要使用Selenium Grid ?
@@ -419,7 +419,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  885
+                  895
                 </span>
               
 
@@ -468,44 +468,35 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 <li>10.81.14.190</li>
 </ul>
 <p>启动Hub（10.81.14.180）:</p>
-<pre><code>java  -jar  selenium-server-standalone-2.27.0.jar -role hub
-</code></pre><p>在浏览器内打开：<a href="http://10.81.14.180:4444/grid/console" target="_blank" rel="external">http://10.81.14.180:4444/grid/console</a>可以查看Hub状态。也就是说Grid默认启动端口是4444，如果想切换为其他端口，则加<code>-port</code>参数。比如要切换为8888：</p>
-<pre><code>java  -jar  selenium-server-standalone-2.27.0.jar -role hub  -port 8888
-</code></pre><p>启动Node（10.81.14.170）:</p>
-<pre><code>java -jar selenium-server-standalone-2.27.0.jar -role node -hub http://10.81.14.180:8888/grid/register
-</code></pre><p>同样的，也可以使用<code>-port</code>切换node端口，默认端口是5555.<br>此处的node节点，也可以作为一个单机的远程节点存在，并同时支持RC,WebDriver。浏览器输入<a href="http://10.81.14.180:8877/wd/hub" target="_blank" rel="external">http://10.81.14.180:8877/wd/hub</a>可以看到session信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub</div></pre></td></tr></table></figure>
+<p>在浏览器内打开：<a href="http://10.81.14.180:4444/grid/console" target="_blank" rel="external">http://10.81.14.180:4444/grid/console</a>可以查看Hub状态。也就是说Grid默认启动端口是4444，如果想切换为其他端口，则加<code>-port</code>参数。比如要切换为8888：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub  -port 8888</div></pre></td></tr></table></figure>
+<p>启动Node（10.81.14.170）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-2.27.0.jar -role node -hub http://10.81.14.180:8888/grid/register</div></pre></td></tr></table></figure>
+<p>同样的，也可以使用<code>-port</code>切换node端口，默认端口是5555.<br>此处的node节点，也可以作为一个单机的远程节点存在，并同时支持RC,WebDriver。浏览器输入<a href="http://10.81.14.180:8877/wd/hub" target="_blank" rel="external">http://10.81.14.180:8877/wd/hub</a>可以看到session信息。</p>
 <p>然后，同样的启动10.81.14.180、10.81.14.190上的Node节点。</p>
 <p>打开浏览器<a href="http://10.81.14.180:8888/grid/console" target="_blank" rel="external">http://10.81.14.180:8888/grid/console</a>,可以看到如下的界面：</p>
 <p><img src="/images/blog/selenium-grid-console.png" alt=""></p>
 <p>至此，Selenium Grid2已经配置成功了。</p>
 <h3 id="使用Grid运行Tests"><a href="#使用Grid运行Tests" class="headerlink" title="使用Grid运行Tests"></a>使用Grid运行Tests</h3><p>Selenium Grid2是向后兼容的，同时支持RC,WebDriver。<br>如果使用RC,即Selenium1，使用以下的方法：</p>
-<pre><code>Selenium selenium = new DefaultSelenium(“10.81.14.180”, 8888, “*firefox”, “http://www.baidu.com”);
-</code></pre><p>使用WebDriver的话，使用以下的方法：</p>
-<pre><code>DesiredCapabilities capability = DesiredCapabilities.firefox();
-WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd/hub&quot;), capability);
-</code></pre><p>可以看出所有的请求都发给了Hub,然后由Hub分配给匹配的节点来执行。<br>那么，Hub是如何来分配的呢？往下看</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Selenium selenium = <span class="keyword">new</span> DefaultSelenium(“<span class="number">10.81</span>.14.180”, <span class="number">8888</span>, “*firefox”, “http:<span class="comment">//www.baidu.com”);</span></div></pre></td></tr></table></figure>
+<p>使用WebDriver的话，使用以下的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DesiredCapabilities capability = DesiredCapabilities.firefox();</div><div class="line">WebDriver driver = <span class="keyword">new</span> RemoteWebDriver(<span class="keyword">new</span> URL(<span class="string">"http://10.81.14.180:8888/wd/hub"</span>), capability);</div></pre></td></tr></table></figure>
+<p>可以看出所有的请求都发给了Hub,然后由Hub分配给匹配的节点来执行。<br>那么，Hub是如何来分配的呢？往下看</p>
 <h3 id="Node配置"><a href="#Node配置" class="headerlink" title="Node配置"></a>Node配置</h3><p>默认，Node会启动11个浏览器实例:5 Firefox,5 Chrome, 1 Internet Explorer. 从Grid Console界面看出来，为什么每个机器上有22个实例呢？是这样的，Node为了同时支持RC与WebDriver两种协议，所以就是2＊11了。把鼠标放到各个浏览器图标上，就可以看出里面的配置区别了。<br>内容类似：</p>
-<pre><code>{
-      &quot;browserName&quot;: &quot;*firefox&quot;,
-      &quot;maxInstances&quot;: 5,
-      &quot;seleniumProtocol&quot;: &quot;Selenium&quot;
-    }
-</code></pre><p>或者</p>
-<pre><code>{
-     &quot;browserName&quot;: &quot;firefox&quot;,
-     &quot;maxInstances&quot;: 5,
-     &quot;seleniumProtocol&quot;: &quot;WebDriver&quot;
-   }
-</code></pre><p>其中，seleniumProtocol就是定义的不同协议了。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">"browserName"</span>: <span class="string">"*firefox"</span>,</div><div class="line">      <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</div><div class="line">      <span class="attr">"seleniumProtocol"</span>: <span class="string">"Selenium"</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">     <span class="attr">"browserName"</span>: <span class="string">"firefox"</span>,</div><div class="line">     <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</div><div class="line">     <span class="attr">"seleniumProtocol"</span>: <span class="string">"WebDriver"</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>其中，seleniumProtocol就是定义的不同协议了。</p>
 <p>如何修改Driver配置呢？可以从启动参数里操作。</p>
-<pre><code>-browser browserName=firefox,version=3.6,maxInstances=5,platform=LINUX
-</code></pre><p>那Node默认启动的配置是什么呢？<br>由于如果从启动参数里，配置这个多东西，很难写的。因此，官方很人性化的提供了JSON文件来配置。也就是说默认启动的配置如下：<br><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-browser browserName=firefox,version=3.6,maxInstances=5,platform=LINUX</div></pre></td></tr></table></figure>
+<p>那Node默认启动的配置是什么呢？<br>由于如果从启动参数里，配置这个多东西，很难写的。因此，官方很人性化的提供了JSON文件来配置。也就是说默认启动的配置如下：<br><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json</a></p>
 <p><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json</a></p>
 <p>如果想自定义配置，直接对json文件修改，启动时，指定配置文件就可以了。</p>
-<pre><code>java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json
-</code></pre><p>仅仅就这样就行了？从博文<a href="http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/">http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</a>知道，浏览器的启动是要制定一些driver位置的，否则Node不知道怎么启动浏览器实例。因此需要进行指定：</p>
-<pre><code>java -jar selenium-server-standalone-2.27.0.jar -port 8877 -role node -hub http://10.81.14.180:8888/grid/register  -nodeConfig nodeconfig.json -Dwebdriver.chrome.driver=&quot;E:/selenium/chromedriver.exe&quot; -Dwebdriver.ie.driver=&quot;E:/selenium/IEDriverServer.exe&quot;
-</code></pre><p>参考文档：<br><a href="http://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/Grid2</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json</div></pre></td></tr></table></figure>
+<p>仅仅就这样就行了？从博文<a href="http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/">http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</a>知道，浏览器的启动是要制定一些driver位置的，否则Node不知道怎么启动浏览器实例。因此需要进行指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-2.27.0.jar -port 8877 -role node -hub http://10.81.14.180:8888/grid/register  -nodeConfig nodeconfig.json -Dwebdriver.chrome.driver=&quot;E:/selenium/chromedriver.exe&quot; -Dwebdriver.ie.driver=&quot;E:/selenium/IEDriverServer.exe&quot;</div></pre></td></tr></table></figure>
+<p>参考文档：<br><a href="http://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/Grid2</a></p>
 
       
     </div>
@@ -681,7 +672,7 @@ WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -692,7 +683,7 @@ WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -703,7 +694,7 @@ WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -793,7 +784,7 @@ WebDriver driver = new RemoteWebDriver(new URL(&quot;http://10.81.14.180:8888/wd
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

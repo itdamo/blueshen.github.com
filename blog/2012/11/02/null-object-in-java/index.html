@@ -82,39 +82,18 @@
 
 
 <meta name="description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-public Book getBook(int id) {  
-    if (id &amp;lt; 0) {  
-        return null;  
-    }  
-    return new Book(1, &amp;quot;Design Pattern&amp;quot;, 100);  
-}  
-
-Book book = getBook(-">
+12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：空对象（null object） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-public Book getBook(int id) {  
-    if (id &amp;lt; 0) {  
-        return null;  
-    }  
-    return new Book(1, &amp;quot;Design Pattern&amp;quot;, 100);  
-}  
-
-Book book = getBook(-">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.837Z">
+12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta property="og:updated_time" content="2018-12-18T06:55:45.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：空对象（null object） in java">
 <meta name="twitter:description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-public Book getBook(int id) {  
-    if (id &amp;lt; 0) {  
-        return null;  
-    }  
-    return new Book(1, &amp;quot;Design Pattern&amp;quot;, 100);  
-}  
-
-Book book = getBook(-">
+12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
 
 
 
@@ -426,7 +405,7 @@ Book book = getBook(-">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  946
+                  952
                 </span>
               
 
@@ -464,92 +443,23 @@ Book book = getBook(-">
 
       
         <p>相信大家一定在开发中见过并且写过类似这样的代码：    </p>
-<pre><code>public Book getBook(int id) {  
-    if (id &lt; 0) {  
-        return null;  
-    }  
-    return new Book(1, &quot;Design Pattern&quot;, 100);  
-}  
-
-Book book = getBook(-1);  
-if (book != null) {                   
-}
-</code></pre><p>系统在使用对象的相关功能时，总要检查对象是否为null，如果不为null，我们才会调用它的相关方法，完成某种逻辑。这样的检查在一个系统中出现很多次，相信任何一个设计者都不愿意看到这样的情况。为了解决这种问题，我们可以可以引入空对象，这样，我们就可以摆脱大量程式化的代码，对代码的可读性也是一个飞跃。<br><a id="more"></a> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Book(<span class="number">1</span>, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">Book book = getBook(-<span class="number">1</span>);  </div><div class="line"><span class="keyword">if</span> (book != <span class="keyword">null</span>) &#123;                   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系统在使用对象的相关功能时，总要检查对象是否为null，如果不为null，我们才会调用它的相关方法，完成某种逻辑。这样的检查在一个系统中出现很多次，相信任何一个设计者都不愿意看到这样的情况。为了解决这种问题，我们可以可以引入空对象，这样，我们就可以摆脱大量程式化的代码，对代码的可读性也是一个飞跃。    </p>
+<a id="more"></a> 
 <p>等等，空对象是什么？它和null什么关系？<br>空对象是一个没有实质性内容的对象，但他并不为null。你可以把空对象理解为一个空箱子，这个物品还是存在的，只不过仅仅是一个壳，没有实质性的东西。<br>我们需要对原有的代码进行重构，把所有返回null的地方都替换成返回一个与之对应的空对象，然后再客户端调用时不再使用book==null这种方式判断是否为空，而是替换成book.isNull()的方式。下面我们就一步一步来实现这种模式。    </p>
 <p>首先，我们需要定义一个Nullable接口：   </p>
-<pre><code>public interface Nullable {  
-    /** 
-     * 对象是否为空 
-     * @return 
-     */  
-    public boolean isNull();  
-}  
-</code></pre><p>这个接口定义了一个isNull()的方法，来表示一个对象是否为空。<br>然后我们让Book实现此接口：    </p>
-<pre><code>public class Book implements Nullable {  
-
-    private int id;  
-    private String name;  
-    private double price;  
-
-    public Book() {  
-    }  
-
-    public Book(int id, String name, double price) {  
-        this.id = id;  
-        this.name = name;  
-        this.price = price;  
-    }  
-
-    @Override  
-    public boolean isNull() {  
-        return false;  
-    }  
-
-    /** 
-     * 创建一个NullBook实例代表空对象 
-     * @return 
-     */  
-    public static Book createNullBook() {  
-        return new NullBook();  
-    }  
-
-    /** 
-     * setters &amp; getters 
-     */  
-}
-</code></pre><p>在Book中实现了isNull()方法，并返回false；另外Book还定义了一个静态的createNullBook方法，返回了一个NullBook的实例，NullBook是什么呢，我们来看一下：   </p>
-<pre><code>public class NullBook extends Book {  
-    @Override  
-    public boolean isNull() {  
-        return true;  
-    }  
-}  
-</code></pre><p>NullBook继承了Book，并在isNull()方法中返回true，这个NullBook其实就是我们上面提到的空对象，仅仅是个空箱子而已。<br>然后我们定义一个BookService类，用以模拟获取Book的接口方法：    </p>
-<pre><code>public class BookService {  
-    public Book getBook(int id) {  
-        if (id &lt; 0) {  
-            //返回一个空对象  
-            return Book.createNullBook();             
-        }  
-        return new Book(id, &quot;Design Pattern&quot;, 100);  
-    }  
-}  
-</code></pre><p>在getBook(int id)中，如果<code>id&lt;0</code>时，则返回一个NullBook的实例，在客户端调用isNull()方法时则返回true，表示是空对象；如果<code>id&gt;=0</code>时，则返回一个Book的实例，在客户端调用isNull()方法时则返回false，表示对象不为空，可以调用相关方法取得数据。对于我们的客户端来讲，返回的都是一个Book类型的对象，我们并不清楚返回的到底是真正的Book实例还是空对象NullBook实例，但是我们并不担心，因为有一点可以肯定的是，我们都可以放心的调用isNull()方法，因为它会根据运行期对象的类型返回一个正确的值。   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Nullable</span> </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 对象是否为空 </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个接口定义了一个isNull()的方法，来表示一个对象是否为空。<br>然后我们让Book实现此接口：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> <span class="keyword">implements</span> <span class="title">Nullable</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </div><div class="line">    <span class="keyword">private</span> String name;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">double</span> price)</span> </span>&#123;  </div><div class="line">        <span class="keyword">this</span>.id = id;  </div><div class="line">        <span class="keyword">this</span>.name = name;  </div><div class="line">        <span class="keyword">this</span>.price = price;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 创建一个NullBook实例代表空对象 </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Book <span class="title">createNullBook</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NullBook();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * setters &amp; getters </div><div class="line">     */  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Book中实现了isNull()方法，并返回false；另外Book还定义了一个静态的createNullBook方法，返回了一个NullBook的实例，NullBook是什么呢，我们来看一下：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NullBook</span> <span class="keyword">extends</span> <span class="title">Book</span> </span>&#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>NullBook继承了Book，并在isNull()方法中返回true，这个NullBook其实就是我们上面提到的空对象，仅仅是个空箱子而已。<br>然后我们定义一个BookService类，用以模拟获取Book的接口方法：    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </div><div class="line">            <span class="comment">//返回一个空对象  </span></div><div class="line">            <span class="keyword">return</span> Book.createNullBook();             </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Book(id, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在getBook(int id)中，如果<code>id&lt;0</code>时，则返回一个NullBook的实例，在客户端调用isNull()方法时则返回true，表示是空对象；如果<code>id&gt;=0</code>时，则返回一个Book的实例，在客户端调用isNull()方法时则返回false，表示对象不为空，可以调用相关方法取得数据。对于我们的客户端来讲，返回的都是一个Book类型的对象，我们并不清楚返回的到底是真正的Book实例还是空对象NullBook实例，但是我们并不担心，因为有一点可以肯定的是，我们都可以放心的调用isNull()方法，因为它会根据运行期对象的类型返回一个正确的值。   </p>
 <p>多态的最根本好处在于：你不必再向对象询问“你是什么类型”而后根据得到的答案调用对象的某个行为，你只管调用该行为就是了，其他的一切事情多态机制会为你妥善处理。    </p>
 <p>最后再来看一下客户端是如何实现对象为空的判断的：    </p>
-<pre><code>public class Client {  
-    public static void main(String[] args) {  
-        BookService service = new BookService();  
-        Book book = service.getBook(-1);  
-        if (book.isNull()) {  
-            System.out.println(&quot;not found!&quot;);  
-        } else {  
-            System.out.println(&quot;name:&quot; + book.getName());  
-            System.out.println(&quot;price:&quot; + book.getPrice());  
-        }  
-    }  
-}  
-</code></pre><hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">        BookService service = <span class="keyword">new</span> BookService();  </div><div class="line">        Book book = service.getBook(-<span class="number">1</span>);  </div><div class="line">        <span class="keyword">if</span> (book.isNull()) &#123;  </div><div class="line">            System.out.println(<span class="string">"not found!"</span>);  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            System.out.println(<span class="string">"name:"</span> + book.getName());  </div><div class="line">            System.out.println(<span class="string">"price:"</span> + book.getPrice());  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
 <p>原文：<a href="http://blog.csdn.net/liuhe688/article/details/6586458" target="_blank" rel="external">http://blog.csdn.net/liuhe688/article/details/6586458</a></p>
 
       
@@ -628,8 +538,8 @@ if (book != null) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2012/11/02/interpreter-in-java/" rel="next" title="设计模式：解释器（interpreter） in java">
-                <i class="fa fa-chevron-left"></i> 设计模式：解释器（interpreter） in java
+              <a href="/blog/2012/11/02/memento-in-java/" rel="next" title="设计模式:备忘录（memento） in java">
+                <i class="fa fa-chevron-left"></i> 设计模式:备忘录（memento） in java
               </a>
             
           </div>
@@ -638,8 +548,8 @@ if (book != null) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2012/11/02/memento-in-java/" rel="prev" title="设计模式:备忘录（memento） in java">
-                设计模式:备忘录（memento） in java <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2012/11/02/state-in-java/" rel="prev" title="设计模式：状态（state） in java">
+                设计模式：状态（state） in java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -715,7 +625,7 @@ if (book != null) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +636,7 @@ if (book != null) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -737,7 +647,7 @@ if (book != null) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -811,7 +721,7 @@ if (book != null) {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

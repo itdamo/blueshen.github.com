@@ -99,7 +99,7 @@ Iterator抽象迭代器：负责定义访问与遍历元素的接口。基本有
 迭代器模式主要有以下的角色：
 
 Iterator抽象迭代器：负责定义访问与遍历元素的接口。基本有3个固定的方法hasNext(),next(),rem">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.826Z">
+<meta property="og:updated_time" content="2018-12-18T04:36:58.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：迭代器（Iterator） in java">
 <meta name="twitter:description" content="定义：迭代器模式提供了一种方法来访问一个容器对象种的各个元素，而又不暴露这个对象的内部细节。   
@@ -420,7 +420,7 @@ Iterator抽象迭代器：负责定义访问与遍历元素的接口。基本有
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  618
+                  624
                 </span>
               
 
@@ -470,81 +470,16 @@ Iterator抽象迭代器：负责定义访问与遍历元素的接口。基本有
 </ul>
 <a id="more"></a>
 <p>为了方便，下面就直接以ArrayList为例，来看看迭代器是如何实现的吧。<br>在使用时，通常这样对ArrayList进行遍历：</p>
-<pre><code>List&lt;String&gt; list = new ArrayList&lt;String&gt;();
-list.add(&quot;first&quot;);
-list.add(&quot;second&quot;);
-Iterator&lt;String&gt; itr = list.iterator();
-while (itr.hasNext()) {
-    String element = itr.next();
-    System.out.println(element);
-}
-</code></pre><p>从这里，我们可以看出来，这就是完全的迭代器模式。<br>首先来看，Iterator接口（java.util.Iterator）：  </p>
-<pre><code>public interface Iterator&lt;E&gt; {
-
-       boolean hasNext();
-
-    E next();
-
-    void remove();
-}
-</code></pre><p>然后是Iterator的具体实现类(java.util.AbstractList<e>$Itr)：<br>    private class Itr implements Iterator<e> {</e></e></p>
-<pre><code>    int cursor = 0;
-
-    int lastRet = -1;
-
-    int expectedModCount = modCount;
-
-    public boolean hasNext() {
-        return cursor != size();
-    }
-
-    public E next() {
-        checkForComodification();
-        try {
-        E next = get(cursor);
-        lastRet = cursor++;
-        return next;
-        } catch (IndexOutOfBoundsException e) {
-            checkForComodification();
-            throw new NoSuchElementException();
-        }
-    }
-
-    public void remove() {
-        if (lastRet == -1)
-        throw new IllegalStateException();
-            checkForComodification();
-
-        try {
-            AbstractList.this.remove(lastRet);
-        if (lastRet &lt; cursor)
-            cursor--;
-        lastRet = -1;
-        expectedModCount = modCount;
-        } catch (IndexOutOfBoundsException e) {
-            throw new ConcurrentModificationException();
-        }
-    }
-
-    final void checkForComodification() {
-        if (modCount != expectedModCount)
-            throw new ConcurrentModificationException();
-    }
-}
-</code></pre><p>这个就是具体的Iterator了，当然还有另外一个ListItr extends Itr，这个是专门针对List进行操作的。<br>那么Aggregate接口对应的是哪个呢？就是<code>java.util.AbstractCollection&lt;E&gt;</code> ，它里面定义了这样的一个接口：   </p>
-<pre><code>...
-  /**
- * Returns an iterator over the elements contained in this collection.
- *
- * @return an iterator over the elements contained in this collection
- */
-public abstract Iterator&lt;E&gt; iterator();
-...
-</code></pre><p>那么具体实现是在哪儿？<code>java.util.AbstractList&lt;E&gt;</code>做了实现。</p>
-<pre><code>public Iterator&lt;E&gt; iterator() {
-    return new Itr();
-}
-</code></pre><p>返回了一个具体的迭代器实例。而ArrayList,LinkedList都是继承AbstractList的，因此自动具有了返回迭代器实例的功能。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">list.add(<span class="string">"first"</span>);</div><div class="line">list.add(<span class="string">"second"</span>);</div><div class="line">Iterator&lt;String&gt; itr = list.iterator();</div><div class="line"><span class="keyword">while</span> (itr.hasNext()) &#123;</div><div class="line">	String element = itr.next();</div><div class="line">	System.out.println(element);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从这里，我们可以看出来，这就是完全的迭代器模式。<br>首先来看，Iterator接口（java.util.Iterator）：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">     <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">   	<span class="function">E <span class="title">next</span><span class="params">()</span></span>;</div><div class="line">     </div><div class="line">   	<span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>然后是Iterator的具体实现类(java.util.AbstractList<e>$Itr)：  </e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">	</div><div class="line">		<span class="keyword">int</span> cursor = <span class="number">0</span>;</div><div class="line">	</div><div class="line">		<span class="keyword">int</span> lastRet = -<span class="number">1</span>;</div><div class="line">	</div><div class="line">		<span class="keyword">int</span> expectedModCount = modCount;</div><div class="line">	</div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">	        <span class="keyword">return</span> cursor != size();</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">		<span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">	        checkForComodification();</div><div class="line">	    	<span class="keyword">try</span> &#123;</div><div class="line">			E next = get(cursor);</div><div class="line">			lastRet = cursor++;</div><div class="line">			<span class="keyword">return</span> next;</div><div class="line">	    	&#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">				checkForComodification();</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">	    	&#125;</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">	    	<span class="keyword">if</span> (lastRet == -<span class="number">1</span>)</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">	        	checkForComodification();</div><div class="line">	</div><div class="line">	    	<span class="keyword">try</span> &#123;</div><div class="line">				AbstractList.<span class="keyword">this</span>.remove(lastRet);</div><div class="line">			<span class="keyword">if</span> (lastRet &lt; cursor)</div><div class="line">		    	cursor--;</div><div class="line">			lastRet = -<span class="number">1</span>;</div><div class="line">			expectedModCount = modCount;</div><div class="line">	    	&#125; <span class="keyword">catch</span> (IndexOutOfBoundsException e) &#123;</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">	    	&#125;</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">		<span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">	    	<span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>这个就是具体的Iterator了，当然还有另外一个ListItr extends Itr，这个是专门针对List进行操作的。<br>那么Aggregate接口对应的是哪个呢？就是<code>java.util.AbstractCollection&lt;E&gt;</code> ，它里面定义了这样的一个接口：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"> 	<span class="comment">/**</span></div><div class="line">    * Returns an iterator over the elements contained in this collection.</div><div class="line">    *</div><div class="line">    * <span class="doctag">@return</span> an iterator over the elements contained in this collection</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>那么具体实现是在哪儿？<code>java.util.AbstractList&lt;E&gt;</code>做了实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Itr();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>返回了一个具体的迭代器实例。而ArrayList,LinkedList都是继承AbstractList的，因此自动具有了返回迭代器实例的功能。  </p>
 <p>因此，Java种的容器类只负责元素的的维护就好了。访问就教给迭代器吧，Java做的如此完善，以至于我们都不必再自己写Iterator了。    </p>
 
       
@@ -712,7 +647,7 @@ public abstract Iterator&lt;E&gt; iterator();
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -723,7 +658,7 @@ public abstract Iterator&lt;E&gt; iterator();
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -734,7 +669,7 @@ public abstract Iterator&lt;E&gt; iterator();
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -808,7 +743,7 @@ public abstract Iterator&lt;E&gt; iterator();
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

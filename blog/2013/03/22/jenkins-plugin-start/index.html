@@ -81,7 +81,7 @@
 
 
 
-<meta name="description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
+<meta name="description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -95,7 +95,7 @@ xxx.hpi
 <meta property="og:title" content="开始第一个Jenkins Plugin">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
+<meta property="og:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -105,10 +105,10 @@ xxx.hpi
 |        +- XXXX.class
 |    +- lib
 +-    (static resources)">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.829Z">
+<meta property="og:updated_time" content="2018-12-18T04:48:00.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始第一个Jenkins Plugin">
-<meta name="twitter:description" content="一，Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
+<meta name="twitter:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
 xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -429,7 +429,7 @@ xxx.hpi
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,395
+                  1,397
                 </span>
               
 
@@ -466,7 +466,7 @@ xxx.hpi
       
 
       
-        <h2 id="一，Jenkins插件的结构"><a href="#一，Jenkins插件的结构" class="headerlink" title="一，Jenkins插件的结构"></a>一，Jenkins插件的结构</h2><p>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：</p>
+        <h2 id="一-Jenkins插件的结构"><a href="#一-Jenkins插件的结构" class="headerlink" title="一 Jenkins插件的结构"></a>一 Jenkins插件的结构</h2><p>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：</p>
 <pre><code>xxx.hpi
 +- META-INF
 |    +-MANIFEST.MF
@@ -485,7 +485,7 @@ xxx.hpi
 <li>5.WEB-INF/lib 包含插件中需要的.jar文件</li>
 <li><p>6.插件需要的静态文件如图片，HTML，css样式文件，JS文件等可以放到文件的根目录下面。</p>
 <a id="more"></a>
-<h2 id="二，Jenkins-Plugins的开发"><a href="#二，Jenkins-Plugins的开发" class="headerlink" title="二，Jenkins-Plugins的开发"></a>二，Jenkins-Plugins的开发</h2><p>Jenkins插件的开发，使用maven来进行项目的管理和构建。如下罗列了其中需要的步骤。</p>
+<h2 id="二-Jenkins-Plugins的开发"><a href="#二-Jenkins-Plugins的开发" class="headerlink" title="二 Jenkins-Plugins的开发"></a>二 Jenkins-Plugins的开发</h2><p>Jenkins插件的开发，使用maven来进行项目的管理和构建。如下罗列了其中需要的步骤。</p>
 <h3 id="2-1-Jenkins插件开发时的环境配置"><a href="#2-1-Jenkins插件开发时的环境配置" class="headerlink" title="2.1 Jenkins插件开发时的环境配置"></a>2.1 Jenkins插件开发时的环境配置</h3><p>Jenkins插件开发，需要JDK和Maven环境。下面以windows下的环境配置为例说明。</p>
 <h4 id="2-1-1-JDK配置"><a href="#2-1-1-JDK配置" class="headerlink" title="2.1.1 JDK配置"></a>2.1.1 JDK配置</h4><p>JDK的版本要求在1.6以上，需要在配置文件中配置JDK的变量：</p>
 <p>  JAVA_HOME = C:\Program Files (x86)\Java\jdk1.6.0_38<br>  CLASSPATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>  PATH = …;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</p>
@@ -499,41 +499,8 @@ CLASSPATH = ...;%M2%
 PATH = ...;%M2%
 </code></pre><p>可以通过<code>mvn --version</code>,查看maven是否配置成功。</p>
 <h4 id="2-1-3-Maven开发环境的配置"><a href="#2-1-3-Maven开发环境的配置" class="headerlink" title="2.1.3 Maven开发环境的配置"></a>2.1.3 Maven开发环境的配置</h4><p>在~/.m2/settings.xml中，或者/maven/conf/settings.xml中，配置如下的Jenkins库依赖：</p>
-<pre><code>&lt;settings&gt;
-  &lt;pluginGroups&gt;
-    &lt;pluginGroup&gt;org.jenkins-ci.tools&lt;/pluginGroup&gt;
-  &lt;/pluginGroups&gt;
-
-  &lt;profiles&gt;
-    &lt;!-- Give access to Jenkins plugins --&gt;
-    &lt;profile&gt;
-      &lt;id&gt;jenkins&lt;/id&gt;
-      &lt;activation&gt;
-        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;!-- change this to false, if you don&apos;t like to have it on per default --&gt;
-      &lt;/activation&gt;
-      &lt;repositories&gt;
-        &lt;repository&gt;
-          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
-          &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
-        &lt;/repository&gt;
-      &lt;/repositories&gt;
-      &lt;pluginRepositories&gt;
-        &lt;pluginRepository&gt;
-          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
-          &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
-        &lt;/pluginRepository&gt;
-      &lt;/pluginRepositories&gt;
-    &lt;/profile&gt;
-  &lt;/profiles&gt;
-  &lt;mirrors&gt;
-    &lt;mirror&gt;
-      &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;
-      &lt;url&gt;http://repo.jenkins-ci.org/public/&lt;/url&gt;
-      &lt;mirrorOf&gt;m.g.o-public&lt;/mirrorOf&gt;
-    &lt;/mirror&gt;
-  &lt;/mirrors&gt;
-&lt;/settings&gt;
-</code></pre><h3 id="2-2-生成插件的框架程序"><a href="#2-2-生成插件的框架程序" class="headerlink" title="2.2 生成插件的框架程序"></a>2.2 生成插件的框架程序</h3><p>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.jenkins-ci.tools<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- Give access to Jenkins plugins --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>jenkins<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span> <span class="comment">&lt;!-- change this to false, if you don't like to have it on per default --&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>m.g.o-public<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-2-生成插件的框架程序"><a href="#2-2-生成插件的框架程序" class="headerlink" title="2.2 生成插件的框架程序"></a>2.2 生成插件的框架程序</h3><p>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：</p>
 <pre><code>mvn hpi:create
 
 Enter the groupId of your plugin: com.baidu.ite.hudson
@@ -549,9 +516,8 @@ Enter the artifactId of your plugin: samplePlugin
 |    |    +- resources
 |    |    |    +-  groupId.HelloWorldBuilder
    |    |    |    |    +- config.jelly
-|    |    |    |    +- help-name.html
-|    |    |    +- index.jelly
-</code></pre><p>Jenkins定义了一些扩展点（Extension Points）,这些扩展点是接口或者抽象类。你可以根据自己的需要来修改文件的名字和扩展点。我们使用命令生成的框架程序中，HelloWorldBuilder继承了Builder。</p>
+</code></pre><p>​    |    |    |    |    +- help-name.html<br>​    |    |    |    +- index.jelly</p>
+<p>Jenkins定义了一些扩展点（Extension Points）,这些扩展点是接口或者抽象类。你可以根据自己的需要来修改文件的名字和扩展点。我们使用命令生成的框架程序中，HelloWorldBuilder继承了Builder。</p>
 <h4 id="2-2-2-代码的解释"><a href="#2-2-2-代码的解释" class="headerlink" title="2.2.2 代码的解释"></a>2.2.2 代码的解释</h4><pre><code>数据的绑定：
 
 &lt;!--config.jelly--&gt;
@@ -576,17 +542,8 @@ public boolean perform(AbstractBuild build, Launcher launcher, BuildListener lis
     return true;
 }
 </code></pre><p>根据注释可以了解：该处是你在Job进行构建时进行操作的地方，并且这里可以根据你在配置中的设置执行你需要的工作。通常，根据需要修改perform函数即可。</p>
-<pre><code>传入数据的检查
-
- public FormValidation doCheckName(@QueryParameter String value)
-                throws IOException, ServletException {
-            if (value.length() == 0)
-                return FormValidation.error(&quot;Please set a name&quot;);
-            if (value.length() &lt; 4)
-                return FormValidation.warning(&quot;Isn&apos;t the name too short?&quot;);
-            return FormValidation.ok();
-        }
-</code></pre><p>在该函数中，实现在配置页面中填写内容时，进行校验的过程。如函数所述，当填入内容为空时，提示：Please set a name。你可以根据你的需要进行逻辑的控制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">传入数据的检查</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">public</span> FormValidation <span class="title">doCheckName</span><span class="params">(@QueryParameter String value)</span></span></div><div class="line">                <span class="keyword">throws</span> IOException, ServletException &#123;</div><div class="line">            <span class="keyword">if</span> (value.length() == <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> FormValidation.error(<span class="string">"Please set a name"</span>);</div><div class="line">            <span class="keyword">if</span> (value.length() &lt; <span class="number">4</span>)</div><div class="line">                <span class="keyword">return</span> FormValidation.warning(<span class="string">"Isn't the name too short?"</span>);</div><div class="line">            <span class="keyword">return</span> FormValidation.ok();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>在该函数中，实现在配置页面中填写内容时，进行校验的过程。如函数所述，当填入内容为空时，提示：Please set a name。你可以根据你的需要进行逻辑的控制。</p>
 <h3 id="2-3-转换为eclipse工程"><a href="#2-3-转换为eclipse工程" class="headerlink" title="2.3 转换为eclipse工程"></a>2.3 转换为eclipse工程</h3><p>为了便于在编辑器中进行修改，我们需要将生成的maven代码转化为eclipse工程，使用的命令如下：</p>
 <pre><code>mvn eclipse:eclipse
 或者
@@ -783,7 +740,7 @@ mvn package
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -794,7 +751,7 @@ mvn package
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -805,7 +762,7 @@ mvn package
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -861,7 +818,7 @@ mvn package
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一，Jenkins插件的结构"><span class="nav-number">1.</span> <span class="nav-text">一，Jenkins插件的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二，Jenkins-Plugins的开发"><span class="nav-number">2.</span> <span class="nav-text">二，Jenkins-Plugins的开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Jenkins插件开发时的环境配置"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Jenkins插件开发时的环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-JDK配置"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 JDK配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Maven的配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Maven的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Maven开发环境的配置"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Maven开发环境的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-生成插件的框架程序"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 生成插件的框架程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-代码结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 代码结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-代码的解释"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 代码的解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-转换为eclipse工程"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 转换为eclipse工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-生成hpi文件"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 生成hpi文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-使用-hpl进行调试"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 使用.hpl进行调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-使用-hpi进行测试"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 使用.hpi进行测试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-Jenkins插件的结构"><span class="nav-number">1.</span> <span class="nav-text">一 Jenkins插件的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-Jenkins-Plugins的开发"><span class="nav-number">2.</span> <span class="nav-text">二 Jenkins-Plugins的开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Jenkins插件开发时的环境配置"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Jenkins插件开发时的环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-JDK配置"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 JDK配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Maven的配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 Maven的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Maven开发环境的配置"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 Maven开发环境的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-生成插件的框架程序"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 生成插件的框架程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-代码结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 代码结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-代码的解释"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 代码的解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-转换为eclipse工程"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 转换为eclipse工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-生成hpi文件"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 生成hpi文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-使用-hpl进行调试"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 使用.hpl进行调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-使用-hpi进行测试"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 使用.hpi进行测试</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -895,7 +852,7 @@ mvn package
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 

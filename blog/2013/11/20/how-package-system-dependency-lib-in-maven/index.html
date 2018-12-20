@@ -82,27 +82,18 @@
 
 
 <meta name="description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;3.">
+1234567&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven如何打包本地依赖包">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/11/20/how-package-system-dependency-lib-in-maven/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;3.">
-<meta property="og:updated_time" content="2018-10-23T08:54:58.710Z">
+1234567&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;g">
+<meta property="og:updated_time" content="2018-12-18T04:17:25.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven如何打包本地依赖包">
 <meta name="twitter:description" content="Maven如何依赖本地包？有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;3.">
+1234567&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.wltea.ik-analyzer&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;ik-analyzer&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;g">
 
 
 
@@ -414,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  233
+                  235
                 </span>
               
 
@@ -452,33 +443,11 @@
 
       
         <h4 id="Maven如何依赖本地包？"><a href="#Maven如何依赖本地包？" class="headerlink" title="Maven如何依赖本地包？"></a>Maven如何依赖本地包？</h4><p>有些依赖包在mavencentral上是没有的。那么如何在项目中使用呢？</p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;org.wltea.ik-analyzer&lt;/groupId&gt;
-    &lt;artifactId&gt;ik-analyzer&lt;/artifactId&gt;
-    &lt;version&gt;3.2.8&lt;/version&gt;
-    &lt;scope&gt;system&lt;/scope&gt;
-    &lt;systemPath&gt;${project.basedir}/lib/ik-analyzer-3.2.8.jar&lt;/systemPath&gt;
-&lt;/dependency&gt;
-</code></pre><p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.wltea.ik-analyzer<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ik-analyzer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;project.basedir&#125;/lib/ik-analyzer-3.2.8.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里可以指明scope是system,然后制定这个依赖包的systemPath就可以啦。这里依ik-analyzer为例的。</p>
 <h4 id="如何将本地包打到war包内？"><a href="#如何将本地包打到war包内？" class="headerlink" title="如何将本地包打到war包内？"></a>如何将本地包打到war包内？</h4><p>打war包，一般直接执行<code>mvn clean package</code>即可，但是默认的情况下是不能将scope=system的本地包打包的。这个时候就需要显式的指定啦。如下面这样，默认将lib下的所有jar文件打包到WEB-INF/lib下。当然也是可以打包其他的文件的，诸如xml,properties等的。</p>
-<pre><code>&lt;plugin&gt;
-    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-    &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
-    &lt;version&gt;2.3&lt;/version&gt;
-    &lt;configuration&gt;
-        &lt;warName&gt;${project.artifactId}&lt;/warName&gt;
-        &lt;webResources&gt;
-            &lt;resource&gt;
-                &lt;directory&gt;lib/&lt;/directory&gt;
-                &lt;targetPath&gt;WEB-INF/lib&lt;/targetPath&gt;
-                &lt;includes&gt;
-                    &lt;include&gt;**/*.jar&lt;/include&gt;
-                &lt;/includes&gt;
-            &lt;/resource&gt;
-        &lt;/webResources&gt;
-    &lt;/configuration&gt;
-&lt;/plugin&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">warName</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">warName</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">webResources</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">resource</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">directory</span>&gt;</span>lib/<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>WEB-INF/lib<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.jar<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">webResources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -655,7 +624,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -666,7 +635,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -677,7 +646,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -767,7 +736,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">171.9k</span>
+    <span title="Site words total count">172.6k</span>
   
 </div>
 
