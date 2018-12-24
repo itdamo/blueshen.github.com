@@ -634,7 +634,7 @@
       
         
           <p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
-<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
+<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="solr plugin 小狗"></p>
 <p>叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。</p>
 <p>事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。</p>
           <!--noindex-->
@@ -796,7 +796,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  496
+                  505
                 </span>
               
 
@@ -841,11 +841,10 @@
 <li><a href="https://github.com/blueshen/ik-analyzer">ik-analyzer</a>, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。</li>
 </ul>
 <h3 id="Sogou语料库处理"><a href="#Sogou语料库处理" class="headerlink" title="Sogou语料库处理"></a>Sogou语料库处理</h3><p>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
-<pre><code>find sogou -type d -exec mkdir -p utf/{} \;
-find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-</code></pre><h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
-<pre><code>mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
-</code></pre><p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find sogou -type d -exec mkdir -p utf/&#123;&#125; \;</div><div class="line">find sogou -type f -exec iconv -f GB2312 -t UTF-8 &#123;&#125; -o utf/&#123;&#125; \;</div></pre></td></tr></table></figure>
+<h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow</div></pre></td></tr></table></figure>
+<p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/#more" rel="contents">
@@ -1005,7 +1004,7 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  570
+                  572
                 </span>
               
 
@@ -1046,14 +1045,10 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
           <p>　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&gt;UTF-8文件编码批量转换。</p>
 <p>Linux命令-enca 查看文件的编码</p>
 <p>Enca语法</p>
-<pre><code>Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...
-        enconv [-L LANGUAGE] [OPTION]... [FILE]...
-        Detect encoding of text files and convert them if required.
-</code></pre><p>Enca用法</p>
-<pre><code>$ enca -L zh_CN file 检查文件的编码
-$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码
-$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
-</code></pre><p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        enconv [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        Detect encoding of text files and convert them if required.</div></pre></td></tr></table></figure>
+<p>Enca用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca -L zh_CN file 检查文件的编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样</div></pre></td></tr></table></figure>
+<p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/11/13/encode-convert-in-linux/#more" rel="contents">
@@ -1213,7 +1208,7 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  799
+                  815
                 </span>
               
 
@@ -1256,15 +1251,13 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
 <li>ssh,sshd正常安装</li>
 </ul>
 <p>确保可以ssh到localhost，并且不需要密码</p>
-<pre><code>ssh localhost
-</code></pre><p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
-<pre><code>ps -ef | grep sshd
-</code></pre><p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
-<pre><code>sudo apt-get install openssh-server
-</code></pre><p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
-<pre><code>ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa
-cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh localhost</div></pre></td></tr></table></figure>
+<p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep sshd</div></pre></td></tr></table></figure>
+<p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa</div><div class="line">cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/11/13/install-hadoop/#more" rel="contents">
@@ -2077,7 +2070,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
 <li>能够修饰单元格属性</li>
 <li>支持图像和图表</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2014/06/24/export-excel-by-jxls/#more" rel="contents">
@@ -2469,7 +2462,7 @@ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 

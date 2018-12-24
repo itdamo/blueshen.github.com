@@ -1722,10 +1722,10 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
     <link href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
     <published>2014-11-25T05:53:00.000Z</published>
-    <updated>2018-12-20T12:16:13.541Z</updated>
+    <updated>2018-12-24T06:36:28.255Z</updated>
     
     <content type="html"><![CDATA[<p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
-<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
+<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="solr plugin 小狗"></p>
 <p>叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。</p>
 <p>事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。</p>
 <a id="more"></a>
@@ -1754,9 +1754,9 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
 <p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
 <p>然而，这也意味着，如果你正在做一个短语查询（比如”breast cancer“）,如果想生效，你的文档必须字面上匹配类似”breast cancer breast breast“这样的字符。</p>
 <p>啊？这里到底发生了什么？事实证明SynonymFilterFactory并没有按你所想来扩展多字同义词。直觉上，可能认为它表现为一个有限自动机，Solr构建出的结果可能类似这样(忽略复数)：</p>
-<p><img src="/images/blog/2014/graph11.png" alt=""></p>
+<p><img src="/images/blog/2014/graph11.png" alt="Lucene FSA"></p>
 <p>但是，它真正构建的是下面这样的：</p>
-<p><img src="/images/blog/2014/graph22.png" alt=""></p>
+<p><img src="/images/blog/2014/graph22.png" alt="Lucene FSA"></p>
 <p>简直是一碗意大利面。</p>
 <p>你可怜的文档必须依序包含所有的4个部分。让人惊讶。</p>
 <p>同样，DisMax和EDisMax查询分析器的mm(最小匹配)参数，并不能像你所想的那样工作。在上面的例子中，设置<code>mm=100%</code>将需要所有4个部分都匹配。</p>
@@ -1769,7 +1769,7 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
 <p>比如，查询“cancer of the breast”会被StandardTokenizationFactory分词为[“cancer”,”of”,”the”,”breast]，并且只有独立的词才会传给SynonymFilterFactory。因此，在这种情况下，如果分词后的单个词，比如‘cancer“和”breast“都没有同义词的情况下，同义词扩展就压根不会发生。</p>
 <h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
 <p>当我搜索”breast cancer“的时候，我发现高亮器会很神奇的把”breast cancer X Y“给高亮了，其中”X“和”Y“是文档中任何跟在”breast cancer“后面的2个字符。例如，它可能会高亮”breast cancer frauds are“或者”breast cancer is to“。</p>
-<p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt=""></p>
+<p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt="solr highlight bug"></p>
 <p>看完这个<a href="https://issues.apache.org/jira/browse/SOLR-3390" target="_blank" rel="external">solr bug</a>,这和前面提到的Solr多字同义词扩展是一个原因。</p>
 <p>使用查询时扩展，你的查询被转换为像意大利面般的图已经足够的怪异了。但是在索引时扩展，假如你的文档包含”breast cancer treatment options“,会变成什么样子呢。</p>
 <p><img src="/images/blog/2014/graph33.png" alt=""></p>
@@ -1819,7 +1819,7 @@ pooch nibble
     <summary type="html">
     
       &lt;p&gt;当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/blog/2014/File-Licking_the_staffy_pup.JPG&quot; alt=&quot;小狗&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/blog/2014/File-Licking_the_staffy_pup.JPG&quot; alt=&quot;solr plugin 小狗&quot;&gt;&lt;/p&gt;
 &lt;p&gt;叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。&lt;/p&gt;
 &lt;p&gt;事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。&lt;/p&gt;
     
@@ -1841,7 +1841,7 @@ pooch nibble
     <link href="https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/14/use-mahout-to-classify-sogou-corpus/</id>
     <published>2014-11-14T05:26:00.000Z</published>
-    <updated>2018-11-15T11:18:16.203Z</updated>
+    <updated>2018-12-24T06:52:54.060Z</updated>
     
     <content type="html"><![CDATA[<h3 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h3><ul>
 <li>Ubuntu Linux</li>
@@ -1850,23 +1850,22 @@ pooch nibble
 <li><a href="https://github.com/blueshen/ik-analyzer" target="_blank" rel="external">ik-analyzer</a>, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。</li>
 </ul>
 <h3 id="Sogou语料库处理"><a href="#Sogou语料库处理" class="headerlink" title="Sogou语料库处理"></a>Sogou语料库处理</h3><p>下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.<br>语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：</p>
-<pre><code>find sogou -type d -exec mkdir -p utf/{} \;
-find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-</code></pre><h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
-<pre><code>mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
-</code></pre><p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br><a id="more"></a><br>    mahout seqdumper -i sogou-seq/part-m-00000 | more<br><img src="/images/blog/2014/sogou-seqfile.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find sogou -type d -exec mkdir -p utf/&#123;&#125; \;</div><div class="line">find sogou -type f -exec iconv -f GB2312 -t UTF-8 &#123;&#125; -o utf/&#123;&#125; \;</div></pre></td></tr></table></figure>
+<h3 id="使用mahout生成sequence-file"><a href="#使用mahout生成sequence-file" class="headerlink" title="使用mahout生成sequence file"></a>使用mahout生成sequence file</h3><p>进入utf/sogou目录，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow</div></pre></td></tr></table></figure>
+<p>生成的sequence file存放在sogou-seq目录内。<br>可以通过seqdumper命令查看：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout seqdumper -i sogou-seq/part-m-00000 | more</div></pre></td></tr></table></figure></p>
+<p><img src="/images/blog/2014/sogou-seqfile.png" alt="搜狗seqfile"></p>
 <p>如果是在hadoop上跑，可以这样看。</p>
-<pre><code>hadoop fs -text sogou-seq/part-m-00000 | more
-</code></pre><h3 id="使用seq2sparse生成Vectors"><a href="#使用seq2sparse生成Vectors" class="headerlink" title="使用seq2sparse生成Vectors"></a>使用seq2sparse生成Vectors</h3><p>执行命令：</p>
-<pre><code>mahout seq2sparse -i sogou-seq  -o sogou-vectors -lnorm -nv -wt tfidf -a org.wltea.analyzer.lucene.IKAnalyzer -ow
-</code></pre><p>查看生成的vector</p>
-<p>mahout vectordump -i sogou-vectors/tfidf-vectors/part-r-00000 | more</p>
-<p><img src="/images/blog/2014/sogou-vector.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -text sogou-seq/part-m-00000 | more</div></pre></td></tr></table></figure>
+<h3 id="使用seq2sparse生成Vectors"><a href="#使用seq2sparse生成Vectors" class="headerlink" title="使用seq2sparse生成Vectors"></a>使用seq2sparse生成Vectors</h3><p>执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout seq2sparse -i sogou-seq  -o sogou-vectors -lnorm -nv -wt tfidf -a org.wltea.analyzer.lucene.IKAnalyzer -ow</div></pre></td></tr></table></figure>
+<p>查看生成的vector<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout vectordump -i sogou-vectors/tfidf-vectors/part-r-00000 | more</div></pre></td></tr></table></figure></p>
+<p><img src="/images/blog/2014/sogou-vector.png" alt="搜狗 vector"> </p>
 <p>需要注意的是<code>org.wltea.analyzer.lucene.IKAnalyzer</code>，是上面提到的ik-analyzer里的。需要将ik-analyzer打包，然后将打出的包，放入$MAHOUT_HOME/lib内。默认是英文的，使用的是<code>org.apache.lucene.analysis.standard.StandardAnalyzer</code>，空格分割明显不适用中文。</p>
-<h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><pre><code>mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential
-</code></pre><h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><pre><code>mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c
-</code></pre><h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><pre><code>mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c
-</code></pre><p><img src="/images/blog/2014/sogou-result.png" alt="mahout"></p>
+<h3 id="切分训练集和测试集"><a href="#切分训练集和测试集" class="headerlink" title="切分训练集和测试集"></a>切分训练集和测试集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout split -i sogou-vectors/tfidf-vectors/ --trainingOutput sogou-train-vectors --testOutput sogou-test-vectors --randomSelectionPct 40 --overwrite --sequenceFiles -xm sequential</div></pre></td></tr></table></figure>
+<h3 id="使用Native-Bayes训练model"><a href="#使用Native-Bayes训练model" class="headerlink" title="使用Native Bayes训练model"></a>使用Native Bayes训练model</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout trainnb -i sogou-train-vectors -el -o sogou-model -li sogou-labelindex -ow -c</div></pre></td></tr></table></figure>
+<h3 id="使用测试集来查看效果"><a href="#使用测试集来查看效果" class="headerlink" title="使用测试集来查看效果"></a>使用测试集来查看效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mahout testnb -i sogou-test-vectors -m sogou-model -l sogou-labelindex -ow -o sogou-testing -c</div></pre></td></tr></table></figure>
+<p><img src="/images/blog/2014/sogou-result.png" alt="mahout"></p>
 <p>可以看出87%的正确率还是不错的。</p>
 <hr>
 <p>参考文档：</p>
@@ -1882,11 +1881,10 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
 &lt;li&gt;&lt;a href=&quot;https://github.com/blueshen/ik-analyzer&quot;&gt;ik-analyzer&lt;/a&gt;, 这个版本是专门为了在mahout中进行分词而单独做的版本，源码从官方拿来。只更改了停用词，以及适配lucene4.6.1版本。maven化更方便使用。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;Sogou语料库处理&quot;&gt;&lt;a href=&quot;#Sogou语料库处理&quot; class=&quot;headerlink&quot; title=&quot;Sogou语料库处理&quot;&gt;&lt;/a&gt;Sogou语料库处理&lt;/h3&gt;&lt;p&gt;下载后的预料库，文档都是GB2312编码的。虽然mahout支持不同的编码方式，但是为了更方便的放到Hadoop里跑，还是建议先转化为标准的UTF-8.&lt;br&gt;语料库解压后，是sogou目录。我们执行以下代码进行转化，转换后的在utf/sogou目录下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;find sogou -type d -exec mkdir -p utf/{} \;
-find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;使用mahout生成sequence-file&quot;&gt;&lt;a href=&quot;#使用mahout生成sequence-file&quot; class=&quot;headerlink&quot; title=&quot;使用mahout生成sequence file&quot;&gt;&lt;/a&gt;使用mahout生成sequence file&lt;/h3&gt;&lt;p&gt;进入utf/sogou目录，执行：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;生成的sequence file存放在sogou-seq目录内。&lt;br&gt;可以通过seqdumper命令查看：&lt;br&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;find sogou -type d -exec mkdir -p utf/&amp;#123;&amp;#125; \;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;find sogou -type f -exec iconv -f GB2312 -t UTF-8 &amp;#123;&amp;#125; -o utf/&amp;#123;&amp;#125; \;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;使用mahout生成sequence-file&quot;&gt;&lt;a href=&quot;#使用mahout生成sequence-file&quot; class=&quot;headerlink&quot; title=&quot;使用mahout生成sequence file&quot;&gt;&lt;/a&gt;使用mahout生成sequence file&lt;/h3&gt;&lt;p&gt;进入utf/sogou目录，执行：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;mahout seqdirectory -i sogou -o sogou-seq -c UTF-8 -ow&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;生成的sequence file存放在sogou-seq目录内。&lt;br&gt;可以通过seqdumper命令查看：&lt;br&gt;
     
     </summary>
     
@@ -1908,19 +1906,15 @@ find sogou -type f -exec iconv -f GB2312 -t UTF-8 {} -o utf/{} \;
     <link href="https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/</id>
     <published>2014-11-13T08:20:00.000Z</published>
-    <updated>2018-12-20T12:03:32.213Z</updated>
+    <updated>2018-12-24T06:39:00.719Z</updated>
     
     <content type="html"><![CDATA[<p>　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&gt;UTF-8文件编码批量转换。</p>
 <p>Linux命令-enca 查看文件的编码</p>
 <p>Enca语法</p>
-<pre><code>Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...
-        enconv [-L LANGUAGE] [OPTION]... [FILE]...
-        Detect encoding of text files and convert them if required.
-</code></pre><p>Enca用法</p>
-<pre><code>$ enca -L zh_CN file 检查文件的编码
-$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码
-$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
-</code></pre><p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br><a id="more"></a><br>转换单个文件的编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        enconv [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        Detect encoding of text files and convert them if required.</div></pre></td></tr></table></figure>
+<p>Enca用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca -L zh_CN file 检查文件的编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样</div></pre></td></tr></table></figure>
+<p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br><a id="more"></a><br>转换单个文件的编码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ enca -L none -x utf-8  index.html</div></pre></td></tr></table></figure>
 <p>转换多个文件的编码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ enca -x utf-8 *</div></pre></td></tr></table></figure>
@@ -1952,14 +1946,10 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
       &lt;p&gt;　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&amp;gt;UTF-8文件编码批量转换。&lt;/p&gt;
 &lt;p&gt;Linux命令-enca 查看文件的编码&lt;/p&gt;
 &lt;p&gt;Enca语法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...
-        enconv [-L LANGUAGE] [OPTION]... [FILE]...
-        Detect encoding of text files and convert them if required.
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Enca用法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ enca -L zh_CN file 检查文件的编码
-$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&amp;quot;UTF-8&amp;quot;编码
-$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。&lt;br&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        enconv [-L LANGUAGE] [OPTION]... [FILE]...&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        Detect encoding of text files and convert them if required.&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Enca用法&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ enca -L zh_CN file 检查文件的编码&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&amp;quot;UTF-8&amp;quot;编码&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。&lt;br&gt;
     
     </summary>
     
@@ -1981,113 +1971,64 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
     <link href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
     <id>https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/</id>
     <published>2014-11-13T05:24:00.000Z</published>
-    <updated>2018-10-23T08:55:28.041Z</updated>
+    <updated>2018-12-24T06:45:51.644Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安装需求"><a href="#安装需求" class="headerlink" title="安装需求"></a>安装需求</h3><ul>
 <li>Java 1.6</li>
 <li>ssh,sshd正常安装</li>
 </ul>
 <p>确保可以ssh到localhost，并且不需要密码</p>
-<pre><code>ssh localhost
-</code></pre><p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
-<pre><code>ps -ef | grep sshd
-</code></pre><p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
-<pre><code>sudo apt-get install openssh-server
-</code></pre><p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
-<pre><code>ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa
-cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
-</code></pre><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh localhost</div></pre></td></tr></table></figure>
+<p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep sshd</div></pre></td></tr></table></figure>
+<p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa</div><div class="line">cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="相关软件"><a href="#相关软件" class="headerlink" title="相关软件"></a>相关软件</h3><p>Ubuntu Linux为例：</p>
-<pre><code>sudo apt-get install ssh
-sudo apt-get install rsync
-</code></pre><h3 id="Hadoop下载"><a href="#Hadoop下载" class="headerlink" title="Hadoop下载"></a>Hadoop下载</h3><p>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
-<pre><code>wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
-</code></pre><h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h3><p> 1.解压<code>tar -xzvf hadoop-1.2.1.tar.gz</code>，进入conf/hadoop-env.sh，设置JAVA_HOME为你的JDK目录。</p>
-<pre><code>export JAVA_HOME=/path/to/java/home
-</code></pre><p> 2.进入/hadoop-1.2.1目录，运行<code>bin\hadoop</code>,会显示hadoop的使用说明信息。</p>
-<pre><code>  Usage: hadoop [--config confdir] COMMAND
-  where COMMAND is one of:
-  namenode -format     format the DFS filesystem
-  secondarynamenode    run the DFS secondary namenode
-  namenode             run the DFS namenode
-  datanode             run a DFS datanode
-  dfsadmin             run a DFS admin client
-  mradmin              run a Map-Reduce admin client
-  fsck                 run a DFS filesystem checking utility
-  fs                   run a generic filesystem user client
-  balancer             run a cluster balancing utility
-  oiv                  apply the offline fsimage viewer to an fsimage
-  fetchdt              fetch a delegation token from the NameNode
-  jobtracker           run the MapReduce job Tracker node
-  pipes                run a Pipes job
-  tasktracker          run a MapReduce task Tracker node
-  historyserver        run job history servers as a standalone daemon
-  job                  manipulate MapReduce jobs
-  queue                get information regarding JobQueues
-  version              print the version
-  jar &lt;jar&gt;            run a jar file
-  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively
-  distcp2 &lt;srcurl&gt; &lt;desturl&gt; DistCp version 2
-  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive
-  classpath            prints the class path needed to get the
-                       Hadoop jar and the required libraries
-  daemonlog            get/set the log level for each daemon
- or
-  CLASSNAME            run the class named CLASSNAME
-Most commands print help when invoked w/o parameters.
-</code></pre><p>  你可以下3中模式来启动hadoop：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install ssh</div><div class="line">sudo apt-get install rsync</div></pre></td></tr></table></figure>
+<h3 id="Hadoop下载"><a href="#Hadoop下载" class="headerlink" title="Hadoop下载"></a>Hadoop下载</h3><p>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz</div></pre></td></tr></table></figure>
+<h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h3><p> 1.解压<code>tar -xzvf hadoop-1.2.1.tar.gz</code>，进入conf/hadoop-env.sh，设置JAVA_HOME为你的JDK目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/path/to/java/home</div></pre></td></tr></table></figure>
+<p> 2.进入/hadoop-1.2.1目录，运行<code>bin\hadoop</code>,会显示hadoop的使用说明信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">  Usage: hadoop [--config confdir] COMMAND</div><div class="line">  where COMMAND is one of:</div><div class="line">  namenode -format     format the DFS filesystem</div><div class="line">  secondarynamenode    run the DFS secondary namenode</div><div class="line">  namenode             run the DFS namenode</div><div class="line">  datanode             run a DFS datanode</div><div class="line">  dfsadmin             run a DFS admin client</div><div class="line">  mradmin              run a Map-Reduce admin client</div><div class="line">  fsck                 run a DFS filesystem checking utility</div><div class="line">  fs                   run a generic filesystem user client</div><div class="line">  balancer             run a cluster balancing utility</div><div class="line">  oiv                  apply the offline fsimage viewer to an fsimage</div><div class="line">  fetchdt              fetch a delegation token from the NameNode</div><div class="line">  jobtracker           run the MapReduce job Tracker node</div><div class="line">  pipes                run a Pipes job</div><div class="line">  tasktracker          run a MapReduce task Tracker node</div><div class="line">  historyserver        run job history servers as a standalone daemon</div><div class="line">  job                  manipulate MapReduce jobs</div><div class="line">  queue                get information regarding JobQueues</div><div class="line">  version              print the version</div><div class="line">  jar &lt;jar&gt;            run a jar file</div><div class="line">  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively</div><div class="line">  distcp2 &lt;srcurl&gt; &lt;desturl&gt; DistCp version 2</div><div class="line">  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive</div><div class="line">  classpath            prints the class path needed to get the</div><div class="line">                       Hadoop jar and the required libraries</div><div class="line">  daemonlog            get/set the log level for each daemon</div><div class="line"> or</div><div class="line">  CLASSNAME            run the class named CLASSNAME</div><div class="line">Most commands print help when invoked w/o parameters.</div></pre></td></tr></table></figure>
+<p>  你可以下3中模式来启动hadoop：</p>
 <ul>
 <li>本地(standalone)模式</li>
 <li>伪分布(Pseudo-Distributed)式</li>
 <li>全分布(Full-Distributed)式</li>
 </ul>
 <h4 id="本地-Standalone-模式安装"><a href="#本地-Standalone-模式安装" class="headerlink" title="本地(Standalone)模式安装"></a>本地(Standalone)模式安装</h4><p>  默认情况下，Hadoop就是单机本地模式。方便调试。<br>  下面是一个样例，复制conf目录到input作为输入，找出符合正则的文件，输出到output目录</p>
-<pre><code>$ mkdir input
-$ cp conf/*.xml input
-$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;
-$ cat output/*
-</code></pre><h4 id="伪分布-Pseudo-Distributed-式"><a href="#伪分布-Pseudo-Distributed-式" class="headerlink" title="伪分布(Pseudo-Distributed)式"></a>伪分布(Pseudo-Distributed)式</h4><p>配置conf/core-site.xml</p>
-<pre><code>&lt;configuration&gt;
-     &lt;property&gt;
-         &lt;name&gt;fs.default.name&lt;/name&gt;
-         &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
-     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><p>配置conf/hdfs-site.xml</p>
-<pre><code>&lt;configuration&gt;
-     &lt;property&gt;
-         &lt;name&gt;dfs.replication&lt;/name&gt;
-         &lt;value&gt;1&lt;/value&gt;
-     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><p>配置conf/mapred-site.xml:</p>
-<pre><code>&lt;configuration&gt;
-     &lt;property&gt;
-         &lt;name&gt;mapred.job.tracker&lt;/name&gt;
-         &lt;value&gt;localhost:9001&lt;/value&gt;
-     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><p>  格式化一个新的distributed-filesystem</p>
-<pre><code>bin/hadoop namenode -format
-</code></pre><p> 启动hadoop：</p>
-<pre><code>bin/start-all.sh
-</code></pre><p>  此时可以通过WEB UI控制台来监控NameNode，JobTracker，TaskTracker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir input</div><div class="line">$ cp conf/*.xml input</div><div class="line">$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;</div><div class="line">$ cat output/*</div></pre></td></tr></table></figure>
+<h4 id="伪分布-Pseudo-Distributed-式"><a href="#伪分布-Pseudo-Distributed-式" class="headerlink" title="伪分布(Pseudo-Distributed)式"></a>伪分布(Pseudo-Distributed)式</h4><p>配置conf/core-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>配置conf/hdfs-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>配置conf/mapred-site.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>  格式化一个新的distributed-filesystem</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hadoop namenode -format</div></pre></td></tr></table></figure>
+<p> 启动hadoop：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/start-all.sh</div></pre></td></tr></table></figure>
+<p>  此时可以通过WEB UI控制台来监控NameNode，JobTracker，TaskTracker</p>
 <ul>
 <li>NameNode - <a href="http://localhost:50070/dfshealth.jsp/" target="_blank" rel="external">http://localhost:50070/dfshealth.jsp/</a></li>
 <li>JobTracker - <a href="http://localhost:50030/jobtracker.jsp/" target="_blank" rel="external">http://localhost:50030/jobtracker.jsp/</a></li>
 <li><p>TaskTracker - <a href="http://localhost:50060/tasktracker.jsp" target="_blank" rel="external">http://localhost:50060/tasktracker.jsp</a></p>
 <p>下面使用distributed filesystem来跑样例:<br>拷贝conf目录到hadoop的input目录，此时可以在控制台看到创建了目录。</p>
-<p>  $ bin/hadoop fs -put conf input</p>
 </li>
 </ul>
-<p>运行:<br>    $ bin/hadoop jar hadoop-examples-*.jar grep input output ‘dfs[a-z.]+’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -put conf input</div></pre></td></tr></table></figure>
+<p>运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure></p>
 <p>检查结果：</p>
-<p>拷贝output目录到本地并检查:<br>    $ bin/hadoop fs -get output output<br>    $ cat output/*</p>
+<p>拷贝output目录到本地并检查:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -get output output</div><div class="line">$ cat output/*</div></pre></td></tr></table></figure></p>
 <p>或者直接在distributed filesystem查看:</p>
-<pre><code>$ bin/hadoop fs -cat output/*
-</code></pre><p>使用完，可以这样来关闭：</p>
-<pre><code>$ bin/stop-all.sh
-</code></pre><h4 id="Hadoop分布式部署"><a href="#Hadoop分布式部署" class="headerlink" title="Hadoop分布式部署"></a>Hadoop分布式部署</h4><p> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -cat output/*</div></pre></td></tr></table></figure>
+<p>使用完，可以这样来关闭：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/stop-all.sh</div></pre></td></tr></table></figure>
+<h4 id="Hadoop分布式部署"><a href="#Hadoop分布式部署" class="headerlink" title="Hadoop分布式部署"></a>Hadoop分布式部署</h4><p> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
 <hr>
 <p>参考文档：<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html</a></p>
 ]]></content>
@@ -2099,15 +2040,13 @@ $ cat output/*
 &lt;li&gt;ssh,sshd正常安装&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;确保可以ssh到localhost，并且不需要密码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssh localhost
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。&lt;br&gt; 运行：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ps -ef | grep sshd
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo apt-get install openssh-server
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后再执行&lt;code&gt;ssh localhost&lt;/code&gt;,如果不能无密码登陆，需要做一下操作：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssh-keygen -t dsa -P &amp;apos;&amp;apos; -f ~/.ssh/id_dsa
-cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
-&lt;/code&gt;&lt;/pre&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ssh localhost&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt; 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。&lt;br&gt; 运行：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ps -ef | grep sshd&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get install openssh-server&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后再执行&lt;code&gt;ssh localhost&lt;/code&gt;,如果不能无密码登陆，需要做一下操作：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;ssh-keygen -t dsa -P &amp;apos;&amp;apos; -f ~/.ssh/id_dsa&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -2206,7 +2145,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/"/>
     <id>https://www.shenyanchao.cn/blog/2014/08/27/java-new-feature/</id>
     <published>2014-08-27T06:43:00.000Z</published>
-    <updated>2018-12-18T04:47:27.597Z</updated>
+    <updated>2018-12-24T06:47:16.435Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Java7新特性"><a href="#Java7新特性" class="headerlink" title="Java7新特性"></a>Java7新特性</h2><h3 id="Java7语法特性"><a href="#Java7语法特性" class="headerlink" title="Java7语法特性"></a>Java7语法特性</h3><p>根据JSR 334，Java7添加了数个语法方面的新特性：</p>
 <h4 id="1-switch可以消化String"><a href="#1-switch可以消化String" class="headerlink" title="1. switch可以消化String"></a>1. switch可以消化String</h4><p>比如：</p>
@@ -2217,9 +2156,10 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">0b00100001</span>;     <span class="comment">// New</span></div><div class="line"><span class="keyword">byte</span> b2 = <span class="number">0x21</span>;        <span class="comment">// Old</span></div><div class="line"><span class="keyword">byte</span> b3 = <span class="number">33</span>;        <span class="comment">// Old</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>b. 用下划线连接整数提升其可读性，自身无含义，不可用在数字的起始和末尾：</p>
-   <figure class="highlight plain"><figcaption><span>phone_nbr = 021_1111_2222;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 3. 简化了泛型对象创建的语法 - &quot;菱形 new&quot;，以下两个语句等价：</div><div class="line"></div><div class="line">```java</div><div class="line">    ArrayList&lt;String&gt; al1 = new ArrayList&lt;String&gt;();    // Old</div><div class="line">    ArrayList&lt;String&gt; al2 = new ArrayList&lt;&gt;();        // New</div></pre></td></tr></table></figure>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> phone_nbr = <span class="number">021_1111_2222</span>;</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h4 id="3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价："><a href="#3-简化了泛型对象创建的语法-“菱形-new”，以下两个语句等价：" class="headerlink" title="3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价："></a>3. 简化了泛型对象创建的语法 - “菱形 new”，以下两个语句等价：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;String&gt; al1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();    <span class="comment">// Old</span></div><div class="line">ArrayList&lt;String&gt; al2 = <span class="keyword">new</span> ArrayList&lt;&gt;();        <span class="comment">// New</span></div></pre></td></tr></table></figure>
 <h4 id="4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是："><a href="#4-为所有的reflect操作异常找了个新爸爸-ReflectOperationException，孩儿们是：" class="headerlink" title="4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是："></a>4. 为所有的reflect操作异常找了个新爸爸 - ReflectOperationException，孩儿们是：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ClassNotFoundException,</div><div class="line">IllegalAccessException,</div><div class="line">InstantiationException,</div><div class="line">InvocationTargetException,</div><div class="line">NoSuchFieldException,</div><div class="line">NoSuchMethodException</div></pre></td></tr></table></figure>
 <h4 id="5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："><a href="#5-catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：" class="headerlink" title="5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会："></a>5. catch有了多重捕获功能，也玩起了包养的勾当，以下代码心领神会：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    <span class="comment">// code</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">catch</span> (SQLException | IOException ex) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style："><a href="#6-异常精确重抛-重抛时自动造型为子类，有点半主动制导武器的style：" class="headerlink" title="6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style："></a>6. 异常精确重抛 - 重抛时自动造型为子类，有点半主动制导武器的style：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> NoSuchMethodException, NoSuchFieldException</span>&#123;    <span class="comment">// 子类</span></div><div class="line">    <span class="keyword">try</span>&#123;</div><div class="line">        <span class="comment">// code</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (RelectiveOperationException ex)&#123;    <span class="comment">// 父类</span></div><div class="line">        <span class="keyword">throws</span> ex;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -2376,7 +2316,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
     <link href="https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/"/>
     <id>https://www.shenyanchao.cn/blog/2014/06/24/export-excel-by-jxls/</id>
     <published>2014-06-24T07:17:00.000Z</published>
-    <updated>2018-12-20T11:58:42.415Z</updated>
+    <updated>2018-12-24T06:53:18.921Z</updated>
     
     <content type="html"><![CDATA[<h3 id="常用的excel操作工具"><a href="#常用的excel操作工具" class="headerlink" title="常用的excel操作工具"></a>常用的excel操作工具</h3><ul>
 <li>Apache POI</li>
@@ -2392,7 +2332,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
 <li>能够修饰单元格属性</li>
 <li>支持图像和图表</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.jxls<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jxls-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>jXLS的API也很简单：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Map beans = <span class="keyword">new</span> HashMap();</div><div class="line">beans.put(<span class="string">"department"</span>, department);</div><div class="line">XLSTransformer transformer = <span class="keyword">new</span> XLSTransformer();</div><div class="line">transformer.transformXLS(xlsTemplateFileName, beans, outputFileName);</div></pre></td></tr></table></figure>
@@ -2422,7 +2362,7 @@ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
 &lt;li&gt;能够修饰单元格属性&lt;/li&gt;
 &lt;li&gt;支持图像和图表&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;net.sf.jxls&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;jxls-core&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.0.5&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;net.sf.jxls&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;jxls-core&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.0.5&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

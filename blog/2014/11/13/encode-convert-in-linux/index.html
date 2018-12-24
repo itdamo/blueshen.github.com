@@ -84,7 +84,7 @@
 <meta name="description" content="在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&amp;gt;UTF-8文件编码批量转换。
 Linux命令-enca 查看文件的编码
 Enca语法
-Usage:  enca [-L LAN">
+123Usage:  enca [-L">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux中文件编码转换">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/index.html">
@@ -92,14 +92,14 @@ Usage:  enca [-L LAN">
 <meta property="og:description" content="在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&amp;gt;UTF-8文件编码批量转换。
 Linux命令-enca 查看文件的编码
 Enca语法
-Usage:  enca [-L LAN">
-<meta property="og:updated_time" content="2018-12-20T12:03:32.213Z">
+123Usage:  enca [-L">
+<meta property="og:updated_time" content="2018-12-24T06:39:00.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux中文件编码转换">
 <meta name="twitter:description" content="在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&amp;gt;UTF-8文件编码批量转换。
 Linux命令-enca 查看文件的编码
 Enca语法
-Usage:  enca [-L LAN">
+123Usage:  enca [-L">
 
 
 
@@ -411,7 +411,7 @@ Usage:  enca [-L LAN">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  570
+                  572
                 </span>
               
 
@@ -451,14 +451,10 @@ Usage:  enca [-L LAN">
         <p>　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&gt;UTF-8文件编码批量转换。</p>
 <p>Linux命令-enca 查看文件的编码</p>
 <p>Enca语法</p>
-<pre><code>Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...
-        enconv [-L LANGUAGE] [OPTION]... [FILE]...
-        Detect encoding of text files and convert them if required.
-</code></pre><p>Enca用法</p>
-<pre><code>$ enca -L zh_CN file 检查文件的编码
-$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码
-$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
-</code></pre><p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br><a id="more"></a><br>转换单个文件的编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        enconv [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        Detect encoding of text files and convert them if required.</div></pre></td></tr></table></figure>
+<p>Enca用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca -L zh_CN file 检查文件的编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样</div></pre></td></tr></table></figure>
+<p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br><a id="more"></a><br>转换单个文件的编码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ enca -L none -x utf-8  index.html</div></pre></td></tr></table></figure>
 <p>转换多个文件的编码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ enca -x utf-8 *</div></pre></td></tr></table></figure>
@@ -749,7 +745,7 @@ $ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 

@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  235
+                  236
                 </span>
               
 
@@ -436,17 +436,13 @@
         
           
             <p>最近，由于公司内部的网络改造，在<code>git push</code>的时候提示如下信息：</p>
-<pre><code>ssh: connect to host github.com port 22: Connection timed out
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-</code></pre><p>看字面的意思就是连接超时了，什么原因造成的呢，这个估计是公司网络禁用了SSH的22端口导致的。所幸git提供了https、git、ssh三种协议来读写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ssh: connect to host github.com port 22: Connection timed out</div><div class="line">fatal: Could not read from remote repository.</div><div class="line"></div><div class="line">Please make sure you have the correct access rights</div><div class="line">and the repository exists.</div></pre></td></tr></table></figure>
+<p>看字面的意思就是连接超时了，什么原因造成的呢，这个估计是公司网络禁用了SSH的22端口导致的。所幸git提供了https、git、ssh三种协议来读写。</p>
 <p>运行<code>git config --local -e</code>打开配置信息。<br>修改其中的    </p>
-<pre><code>url = git@github.com:username/repo.git
-</code></pre><p>为   </p>
-<pre><code>url = https://username@github.com/username/repo.git
-</code></pre><p>这样就改为使用https协议了。提交什么的就OK了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url = git@github.com:username/repo.git</div></pre></td></tr></table></figure>
+<p>为   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">url = https://username@github.com/username/repo.git</div></pre></td></tr></table></figure>
+<p>这样就改为使用https协议了。提交什么的就OK了。</p>
 <p>后来，我再使用Octopress提交博客的时候问题又出现了。也就是在<code>rake deploy</code>的时候，又走ssh了。此时只要进入_deploy目录，把上述步骤再执行一次就好了。就是每次提交都要输入用户名密码而已。  </p>
 
           
@@ -2027,7 +2023,7 @@ and the repository exists.
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,397
+                  5,400
                 </span>
               
 
@@ -2469,7 +2465,7 @@ and the repository exists.
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 

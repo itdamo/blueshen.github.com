@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/graph22.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/breast_cancer_highlighting2.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2014/graph33.png">
-<meta property="og:updated_time" content="2018-12-20T12:16:13.541Z">
+<meta property="og:updated_time" content="2018-12-24T06:36:28.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在Solr中更好的处理同义词">
 <meta name="twitter:description" content="当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?
@@ -456,7 +456,7 @@
 
       
         <p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
-<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="小狗"></p>
+<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="solr plugin 小狗"></p>
 <p>叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。</p>
 <p>事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。</p>
 <a id="more"></a>
@@ -485,9 +485,9 @@
 <p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
 <p>然而，这也意味着，如果你正在做一个短语查询（比如”breast cancer“）,如果想生效，你的文档必须字面上匹配类似”breast cancer breast breast“这样的字符。</p>
 <p>啊？这里到底发生了什么？事实证明SynonymFilterFactory并没有按你所想来扩展多字同义词。直觉上，可能认为它表现为一个有限自动机，Solr构建出的结果可能类似这样(忽略复数)：</p>
-<p><img src="/images/blog/2014/graph11.png" alt=""></p>
+<p><img src="/images/blog/2014/graph11.png" alt="Lucene FSA"></p>
 <p>但是，它真正构建的是下面这样的：</p>
-<p><img src="/images/blog/2014/graph22.png" alt=""></p>
+<p><img src="/images/blog/2014/graph22.png" alt="Lucene FSA"></p>
 <p>简直是一碗意大利面。</p>
 <p>你可怜的文档必须依序包含所有的4个部分。让人惊讶。</p>
 <p>同样，DisMax和EDisMax查询分析器的mm(最小匹配)参数，并不能像你所想的那样工作。在上面的例子中，设置<code>mm=100%</code>将需要所有4个部分都匹配。</p>
@@ -500,7 +500,7 @@
 <p>比如，查询“cancer of the breast”会被StandardTokenizationFactory分词为[“cancer”,”of”,”the”,”breast]，并且只有独立的词才会传给SynonymFilterFactory。因此，在这种情况下，如果分词后的单个词，比如‘cancer“和”breast“都没有同义词的情况下，同义词扩展就压根不会发生。</p>
 <h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
 <p>当我搜索”breast cancer“的时候，我发现高亮器会很神奇的把”breast cancer X Y“给高亮了，其中”X“和”Y“是文档中任何跟在”breast cancer“后面的2个字符。例如，它可能会高亮”breast cancer frauds are“或者”breast cancer is to“。</p>
-<p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt=""></p>
+<p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt="solr highlight bug"></p>
 <p>看完这个<a href="https://issues.apache.org/jira/browse/SOLR-3390" target="_blank" rel="external">solr bug</a>,这和前面提到的Solr多字同义词扩展是一个原因。</p>
 <p>使用查询时扩展，你的查询被转换为像意大利面般的图已经足够的怪异了。但是在索引时扩展，假如你的文档包含”breast cancer treatment options“,会变成什么样子呢。</p>
 <p><img src="/images/blog/2014/graph33.png" alt=""></p>
@@ -834,7 +834,7 @@ pooch nibble
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 

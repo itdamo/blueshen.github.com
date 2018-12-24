@@ -91,7 +91,7 @@
 以医院的例子，做个比喻：">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/facade-hospital1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/facade-hospital2.png">
-<meta property="og:updated_time" content="2018-11-15T11:22:56.322Z">
+<meta property="og:updated_time" content="2018-12-24T06:40:11.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：门面（Facade） in java">
 <meta name="twitter:description" content="定义：为子系统中的一组接口提供一个一致的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。就是说，Facade提供了一个统一的接口，掩盖下层系统的复杂性，用户用起来更加的方便。
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  519
+                  520
                 </span>
               
 
@@ -459,7 +459,8 @@
 <p>　　门面模式让子系统更加易用，客户端不再需要了解子系统内部的实现，也不需要跟众多子系统内部的模块进行交互，只需要跟门面类交互就可以了。</p>
 <p>　　●更好的划分访问层次</p>
 <p>　　通过合理使用Facade，可以帮助我们更好地划分访问的层次。有些方法是对系统外的，有些方法是系统内部使用的。把需要暴露给外部的功能集中到门面中，这样既方便客户端使用，也很好地隐藏了内部的细节</p>
-<h2 id="门面模式-in-JDK"><a href="#门面模式-in-JDK" class="headerlink" title="门面模式 in JDK"></a>门面模式 in JDK</h2><p>这个具体的例子，我首先想到的就是<a href="http://www.slf4j.org/" target="_blank" rel="external">slf4j</a>这个日志框架。通过名字Simple Logging Facade for Java (SLF4J)就知道是采用的Facade模式了。下面是其官方的介绍：<br>The Simple Logging Facade for Java or (SLF4J) serves as a simple facade or abstraction for various logging frameworks, e.g. java.util.logging, log4j and logback, allowing the end user to plug in the desired logging framework at deployment time.<br>也就是说，他屏蔽了各种日志框架的差异，提供了一个统一的日志接口给用户使用。不得不说，<a href="http://www.slf4j.org/" target="_blank" rel="external">slf4j</a>很好用，推荐！</p>
+<h2 id="门面模式-in-JDK"><a href="#门面模式-in-JDK" class="headerlink" title="门面模式 in JDK"></a>门面模式 in JDK</h2><p>这个具体的例子，我首先想到的就是<a href="http://www.slf4j.org/" target="_blank" rel="external">slf4j</a>这个日志框架。通过名字Simple Logging Facade for Java (SLF4J)就知道是采用的Facade模式了。下面是其官方的介绍：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The Simple Logging Facade for Java or (SLF4J) serves as a simple facade or abstraction for various logging frameworks, e.g. java.util.logging, log4j and logback, allowing the end user to plug in the desired logging framework at deployment time.</div></pre></td></tr></table></figure></p>
+<p>也就是说，他屏蔽了各种日志框架的差异，提供了一个统一的日志接口给用户使用。不得不说，<a href="http://www.slf4j.org/" target="_blank" rel="external">slf4j</a>很好用，推荐！</p>
 
       
     </div>
@@ -749,7 +750,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 

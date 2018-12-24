@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="HTTP,读书笔记," />
+  <meta name="keywords" content="读书笔记,HTTP," />
 
 
 
@@ -82,30 +82,30 @@
 
 
 <meta name="description" content="URL语法完整的URL是建立在由以下9个部分构成的通用格式上的。
-&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
+1&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
 其中各个部分代表：
 
 scheme(方案)：使用的哪种协议;默认无
-user（">
+user">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《HTTP权威指南》读书笔记1">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/05/15/http-the-definitive-guide-reading-notes/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="URL语法完整的URL是建立在由以下9个部分构成的通用格式上的。
-&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
+1&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
 其中各个部分代表：
 
 scheme(方案)：使用的哪种协议;默认无
-user（">
-<meta property="og:updated_time" content="2018-12-18T04:23:19.957Z">
+user">
+<meta property="og:updated_time" content="2018-12-24T06:43:22.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《HTTP权威指南》读书笔记1">
 <meta name="twitter:description" content="URL语法完整的URL是建立在由以下9个部分构成的通用格式上的。
-&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
+1&amp;lt;scheme&amp;gt;://&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;path&amp;gt;;&amp;lt;params&amp;gt;?&amp;lt;query&amp;gt;#&amp;lt;frag&amp;gt;
 其中各个部分代表：
 
 scheme(方案)：使用的哪种协议;默认无
-user（">
+user">
 
 
 
@@ -417,7 +417,7 @@ user（">
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,688
+                  1,697
                 </span>
               
 
@@ -455,8 +455,8 @@ user（">
 
       
         <h3 id="URL语法"><a href="#URL语法" class="headerlink" title="URL语法"></a>URL语法</h3><p>完整的URL是建立在由以下9个部分构成的通用格式上的。</p>
-<pre><code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;
-</code></pre><p>其中各个部分代表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frag&gt;</div></pre></td></tr></table></figure>
+<p>其中各个部分代表：</p>
 <ul>
 <li>scheme(方案)：使用的哪种协议;默认无</li>
 <li>user（用户）：用户名；默认匿名</li>
@@ -466,24 +466,16 @@ user（">
 <li>path(路径)：/分割的资源路径</li>
 <li>params(参数)：名/值对，使用；分割。</li>
 <li>query（查询）：名=值对，用&amp;分割多个</li>
-<li><p>frag（片段）：小片资源的名字。在html就是一个锚点名了。自动从锚点开始显示。</p>
-<a id="more"></a>
-<h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><h4 id="1-请求报文（request-message）"><a href="#1-请求报文（request-message）" class="headerlink" title="1.请求报文（request message）"></a>1.请求报文（request message）</h4><p>  <method> <request-url> <version></version></request-url></method></p>
-  <headers>
-
-<p>  <entity-body><br>例如：</entity-body></p>
-<p>  GET /images/blog/qunit-pic.png HTTP/1.0<br>  Host: www.shenyanchao.cn</p>
-</headers></li>
+<li>frag（片段）：小片资源的名字。在html就是一个锚点名了。自动从锚点开始显示。<a id="more"></a>
+<h3 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h3><h4 id="1-请求报文（request-message）"><a href="#1-请求报文（request-message）" class="headerlink" title="1.请求报文（request message）"></a>1.请求报文（request message）</h4></li>
 </ul>
-<h4 id="2-响应报文（request-message）"><a href="#2-响应报文（request-message）" class="headerlink" title="2.响应报文（request message）"></a>2.响应报文（request message）</h4><pre><code>&lt;version&gt; &lt;status-code&gt; &lt;reason-phrase&gt;
-&lt;headers&gt;
-
-&lt;entity-body&gt;
-</code></pre><p>例如：</p>
-<pre><code>HTTP/1.1 200 OK
-Content-Type: image/png
-Content-Length: 18107
-</code></pre><p>以上报文格式中，各个部分的描述如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">method</span>&gt;</span> <span class="tag">&lt;<span class="name">request-URL</span>&gt;</span> <span class="tag">&lt;<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">headers</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">entity-body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /images/blog/qunit-pic.png HTTP/1.0</div><div class="line">Host: www.shenyanchao.cn</div></pre></td></tr></table></figure>
+<h4 id="2-响应报文（request-message）"><a href="#2-响应报文（request-message）" class="headerlink" title="2.响应报文（request message）"></a>2.响应报文（request message）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span> <span class="tag">&lt;<span class="name">status-code</span>&gt;</span> <span class="tag">&lt;<span class="name">reason-phrase</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">headers</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">entity-body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Content-Type: image/png</div><div class="line">Content-Length: 18107</div></pre></td></tr></table></figure>
+<p>以上报文格式中，各个部分的描述如下：</p>
 <ul>
 <li>method（方法）：希望服务器对资源执行的动作。如GET，POST等。</li>
 <li>request-URL（请求的URL）：要请求的资源。</li>
@@ -617,9 +609,9 @@ Content-Length: 18107
       
         <div class="post-tags">
           
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
-          
             <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
         </div>
       
@@ -840,7 +832,7 @@ Content-Length: 18107
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.6k</span>
+    <span title="Site words total count">172.7k</span>
   
 </div>
 
