@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</loc>
+    <lastmod>2018-12-24T04:52:53.018Z</lastmod>
+  </url>  <url>
+    <loc>https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</loc>
+    <lastmod>2018-12-24T04:52:15.459Z</lastmod>
+  </url>  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/22/word-charset/</loc>
+    <lastmod>2018-12-24T04:50:25.729Z</lastmod>
+  </url>  <url>
     <loc>https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/</loc>
     <lastmod>2018-12-20T12:17:49.524Z</lastmod>
   </url>  <url>
@@ -253,9 +262,6 @@
     <loc>https://www.shenyanchao.cn/blog/2012/10/23/bom-in-utf8-text/</loc>
     <lastmod>2018-10-23T08:55:22.051Z</lastmod>
   </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/22/word-charset/</loc>
-    <lastmod>2018-10-23T08:41:02.873Z</lastmod>
-  </url>  <url>
     <loc>https://www.shenyanchao.cn/blog/2012/09/20/wo-de-di--pian-zhong-wen-bo-ke/</loc>
     <lastmod>2018-10-23T08:41:02.872Z</lastmod>
   </url>  <url>
@@ -265,16 +271,10 @@
     <loc>https://www.shenyanchao.cn/blog/2012/10/30/travel-in-yunnan/</loc>
     <lastmod>2018-10-23T08:41:02.865Z</lastmod>
   </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2014/10/22/tie-breaker-in-solr/</loc>
-    <lastmod>2018-10-23T08:41:02.864Z</lastmod>
-  </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/</loc>
-    <lastmod>2018-10-23T08:41:02.862Z</lastmod>
-  </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/strategy-in-java/</loc>
     <lastmod>2018-10-23T08:41:02.861Z</lastmod>
   </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/strategy-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
     <lastmod>2018-10-23T08:41:02.861Z</lastmod>
   </url>  <url>
     <loc>https://www.shenyanchao.cn/blog/2012/11/02/singleton-in-java/</loc>
@@ -325,10 +325,10 @@
     <loc>https://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/</loc>
     <lastmod>2018-10-23T08:41:02.826Z</lastmod>
   </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/19/install-maven/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
     <lastmod>2018-10-23T08:41:02.825Z</lastmod>
   </url>  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/19/install-maven/</loc>
     <lastmod>2018-10-23T08:41:02.825Z</lastmod>
   </url>  <url>
     <loc>https://www.shenyanchao.cn/blog/2013/09/16/git-ssh-connection/</loc>
