@@ -72,11 +72,11 @@
   </entry>
   
   <entry>
-    <title>什么是epoll?</title>
+    <title>linux epoll模型</title>
     <link href="https://www.shenyanchao.cn/blog/2018/12/25/epoll/"/>
     <id>https://www.shenyanchao.cn/blog/2018/12/25/epoll/</id>
     <published>2018-12-25T02:54:24.000Z</published>
-    <updated>2018-12-26T08:46:39.533Z</updated>
+    <updated>2018-12-26T09:17:16.317Z</updated>
     
     <content type="html"><![CDATA[<p>同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。</p>
 <p>本文讨论的背景是Linux环境下的network IO。</p>
@@ -89,6 +89,7 @@
 <li>缓存 I/O</li>
 </ul>
 <h2 id="用户空间与内核空间"><a href="#用户空间与内核空间" class="headerlink" title="用户空间与内核空间"></a>用户空间与内核空间</h2><p>现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操心系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将较低的3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。</p>
+<a id="more"></a>
 <h2 id="进程切换"><a href="#进程切换" class="headerlink" title="进程切换"></a>进程切换</h2><p>为了控制进程的执行，内核必须有能力挂起正在CPU上运行的进程，并恢复以前挂起的某个进程的执行。这种行为被称为进程切换。因此可以说，任何进程都是在操作系统内核的支持下运行的，是与内核紧密相关的。</p>
 <p>从一个进程的运行转到另一个进程上运行，这个过程中经过下面这些变化：</p>
 <ol>
@@ -208,7 +209,15 @@
     
       &lt;p&gt;同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。&lt;/p&gt;
 &lt;p&gt;本文讨论的背景是Linux环境下的network IO。&lt;/p&gt;
-&lt;h1 id=&quot;一-概念说明&quot;&gt;&lt;a href=&quot;#
+&lt;h1 id=&quot;一-概念说明&quot;&gt;&lt;a href=&quot;#一-概念说明&quot; class=&quot;headerlink&quot; title=&quot;一 概念说明&quot;&gt;&lt;/a&gt;一 概念说明&lt;/h1&gt;&lt;p&gt;在进行解释之前，首先要说明几个概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户空间和内核空间&lt;/li&gt;
+&lt;li&gt;进程切换&lt;/li&gt;
+&lt;li&gt;进程的阻塞&lt;/li&gt;
+&lt;li&gt;文件描述符&lt;/li&gt;
+&lt;li&gt;缓存 I/O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;用户空间与内核空间&quot;&gt;&lt;a href=&quot;#用户空间与内核空间&quot; class=&quot;headerlink&quot; title=&quot;用户空间与内核空间&quot;&gt;&lt;/a&gt;用户空间与内核空间&lt;/h2&gt;&lt;p&gt;现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操心系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将较低的3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。&lt;/p&gt;
     
     </summary>
     
@@ -228,7 +237,7 @@
     <link href="https://www.shenyanchao.cn/blog/2018/12/25/redis-inside/"/>
     <id>https://www.shenyanchao.cn/blog/2018/12/25/redis-inside/</id>
     <published>2018-12-25T02:47:52.000Z</published>
-    <updated>2018-12-26T08:50:47.654Z</updated>
+    <updated>2018-12-26T08:52:17.973Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Redis对象"><a href="#Redis对象" class="headerlink" title="Redis对象"></a>Redis对象</h3><p>在Redis的世界里，存储的所有值都是这个RedisObject对象。</p>
 <p>源码定义如下：</p>
