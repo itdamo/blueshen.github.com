@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-inside/redis-ziplist.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-inside/redis-quicklist.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-inside/redis-zset.png">
-<meta property="og:updated_time" content="2018-12-26T08:52:17.973Z">
+<meta property="og:updated_time" content="2018-12-26T09:29:55.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis数据模型详解">
 <meta name="twitter:description" content="Redis对象在Redis的世界里，存储的所有值都是这个RedisObject对象。
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,226
+                  3,234
                 </span>
               
 
@@ -564,15 +564,16 @@
 <tr>
 <td>define OBJ_ENCODING_STREAM</td>
 <td>10</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
 <a id="more"></a>
-<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Redis引入了一个SDS(Simple Dynamic String)类型，来表示String对象。</p>
+<h3 id="数据类型结构"><a href="#数据类型结构" class="headerlink" title="数据类型结构"></a>数据类型结构</h3><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Redis引入了一个SDS(Simple Dynamic String)类型，来表示String对象。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> sdshdr &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// buf 中已占用空间的长度</span></div><div class="line">    <span class="keyword">int</span> len;</div><div class="line">    <span class="comment">// buf 中剩余可用空间的长度</span></div><div class="line">    <span class="keyword">int</span> <span class="built_in">free</span>;</div><div class="line">    <span class="comment">// 数据空间</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>自<strong>Redis3.2</strong>版本之后，为了更好的优化内存，把sdshdr分为sdshdr5、sdshdr8、sdshdr16、sdshdr32、sdrhdr64。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span></div><div class="line"> * However is here to document the layout of type 5 SDS strings. */</div><div class="line"><span class="keyword">struct</span> <span class="number">__</span>attribute__ ((<span class="number">__</span>packed__)) sdshdr5 &#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> flags; <span class="comment">/* 3 lsb of type, and 5 msb of string length */</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">struct</span> <span class="number">__</span>attribute__ ((<span class="number">__</span>packed__)) sdshdr8 &#123;</div><div class="line">    <span class="keyword">uint8_t</span> len; <span class="comment">/* used */</span></div><div class="line">    <span class="keyword">uint8_t</span> alloc; <span class="comment">/* excluding the header and null terminator */</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">struct</span> <span class="number">__</span>attribute__ ((<span class="number">__</span>packed__)) sdshdr16 &#123;</div><div class="line">    <span class="keyword">uint16_t</span> len; <span class="comment">/* used */</span></div><div class="line">    <span class="keyword">uint16_t</span> alloc; <span class="comment">/* excluding the header and null terminator */</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">struct</span> <span class="number">__</span>attribute__ ((<span class="number">__</span>packed__)) sdshdr32 &#123;</div><div class="line">    <span class="keyword">uint32_t</span> len; <span class="comment">/* used */</span></div><div class="line">    <span class="keyword">uint32_t</span> alloc; <span class="comment">/* excluding the header and null terminator */</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div><div class="line"><span class="keyword">struct</span> <span class="number">__</span>attribute__ ((<span class="number">__</span>packed__)) sdshdr64 &#123;</div><div class="line">    <span class="keyword">uint64_t</span> len; <span class="comment">/* used */</span></div><div class="line">    <span class="keyword">uint64_t</span> alloc; <span class="comment">/* excluding the header and null terminator */</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> flags; <span class="comment">/* 3 lsb of type, 5 unused bits */</span></div><div class="line">    <span class="keyword">char</span> buf[];</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h4 id="字典结构"><a href="#字典结构" class="headerlink" title="字典结构"></a>字典结构</h4><p>dictEntry表示hash表的节点。</p>
+<h4 id="字典类型"><a href="#字典类型" class="headerlink" title="字典类型"></a>字典类型</h4><p>dictEntry表示hash表的节点。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 哈希表节点</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictEntry &#123;</div><div class="line">    <span class="comment">// 键</span></div><div class="line">    <span class="keyword">void</span> *key;</div><div class="line">    <span class="comment">// 值</span></div><div class="line">    <span class="keyword">union</span> &#123;</div><div class="line">        <span class="keyword">void</span> *val;</div><div class="line">        <span class="keyword">uint64_t</span> u64;</div><div class="line">        <span class="keyword">int64_t</span> s64;</div><div class="line">    &#125; v;</div><div class="line">    <span class="comment">// 指向下个哈希表节点，形成链表</span></div><div class="line">    <span class="keyword">struct</span> dictEntry *next;</div><div class="line"></div><div class="line">&#125; dictEntry;</div></pre></td></tr></table></figure>
 <p>dictht表示一个哈希表。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * 哈希表</div><div class="line"> *</div><div class="line"> * 每个字典都使用两个哈希表，从而实现渐进式 rehash 。</div><div class="line"> */</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictht &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 哈希表数组</span></div><div class="line">    dictEntry **table;</div><div class="line">    <span class="comment">// 哈希表大小</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> size;</div><div class="line">    <span class="comment">// 哈希表大小掩码，用于计算索引值</span></div><div class="line">    <span class="comment">// 总是等于 size - 1</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> sizemask;</div><div class="line">    <span class="comment">// 该哈希表已有节点的数量</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> used;</div><div class="line"></div><div class="line">&#125; dictht;</div></pre></td></tr></table></figure></p>
 <p>dict代表了一个字典，需要注意的是dictht有2个，这个用来实现渐进式rehash。</p>
@@ -633,14 +634,14 @@
 <tr>
 <th>encoding值</th>
 <th>可表示长度</th>
-<th></th>
+<th>存储</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>00xx xxxx</td>
 <td>6bit</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>01xx xxxx\</td>
@@ -665,39 +666,32 @@
 <tr>
 <th>encoding</th>
 <th>解释</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1100 0000</td>
 <td>表示数字占用后面2个字节</td>
-<td></td>
 </tr>
 <tr>
 <td>1101 0000</td>
 <td>表示数字占用后面4个字节</td>
-<td></td>
 </tr>
 <tr>
 <td>1110 0000</td>
 <td>表示数字占用后面8个字节</td>
-<td></td>
 </tr>
 <tr>
 <td>1111 0000</td>
 <td>表示数字占用后面3个字节</td>
-<td></td>
 </tr>
 <tr>
 <td>1111 1110</td>
 <td>表示数字占用后面1个字节</td>
-<td></td>
 </tr>
 <tr>
 <td>1111 1111</td>
 <td>表示压缩链表中最后一个元素（特殊编码0xFF）。即zlend</td>
-<td></td>
 </tr>
 <tr>
 <td>1111 xxxx</td>
@@ -767,24 +761,25 @@
 <td>List</td>
 <td>LINKEDLIST(3.2前)/QUICKLIST(3.2后)</td>
 <td>ZIPLIST(3.2前)</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>Set</td>
 <td>HT</td>
-<td></td>
+<td>—</td>
 <td>INTSET</td>
 </tr>
 <tr>
 <td>Hash</td>
 <td>HT</td>
 <td>ZIPMAP</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td>ZSET</td>
 <td>SKIPLIST</td>
 <td>ZIPLIST</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
@@ -1013,7 +1008,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-count">212</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1069,7 +1064,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis对象"><span class="nav-number">1.</span> <span class="nav-text">Redis对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典结构"><span class="nav-number">3.1.</span> <span class="nav-text">字典结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INTSET结构"><span class="nav-number">3.2.</span> <span class="nav-text">INTSET结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SKIPLIST-跳表"><span class="nav-number">3.3.</span> <span class="nav-text">SKIPLIST(跳表)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LINKEDLIST"><span class="nav-number">3.4.</span> <span class="nav-text">LINKEDLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZIPLIST"><span class="nav-number">3.5.</span> <span class="nav-text">ZIPLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QUICKLIST"><span class="nav-number">3.6.</span> <span class="nav-text">QUICKLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZIPMAP"><span class="nav-number">3.7.</span> <span class="nav-text">ZIPMAP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据编码一览"><span class="nav-number">4.</span> <span class="nav-text">数据编码一览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String-OBJ-STRING-类型"><span class="nav-number">4.1.</span> <span class="nav-text">String(OBJ_STRING)类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-OBJ-LIST-类型"><span class="nav-number">4.2.</span> <span class="nav-text">List(OBJ_LIST)类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET-OBJ-SET-类型"><span class="nav-number">5.</span> <span class="nav-text">SET(OBJ_SET)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HASH-OBJ-HASH-类型"><span class="nav-number">6.</span> <span class="nav-text">HASH(OBJ_HASH)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SortedSet-OBJ-ZSET-类型"><span class="nav-number">7.</span> <span class="nav-text">SortedSet(OBJ_ZSET)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis对象"><span class="nav-number">1.</span> <span class="nav-text">Redis对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型结构"><span class="nav-number">2.</span> <span class="nav-text">数据类型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典类型"><span class="nav-number">3.1.</span> <span class="nav-text">字典类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INTSET结构"><span class="nav-number">3.2.</span> <span class="nav-text">INTSET结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SKIPLIST-跳表"><span class="nav-number">3.3.</span> <span class="nav-text">SKIPLIST(跳表)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LINKEDLIST"><span class="nav-number">3.4.</span> <span class="nav-text">LINKEDLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZIPLIST"><span class="nav-number">3.5.</span> <span class="nav-text">ZIPLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QUICKLIST"><span class="nav-number">3.6.</span> <span class="nav-text">QUICKLIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZIPMAP"><span class="nav-number">3.7.</span> <span class="nav-text">ZIPMAP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据编码一览"><span class="nav-number">4.</span> <span class="nav-text">数据编码一览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String-OBJ-STRING-类型"><span class="nav-number">4.1.</span> <span class="nav-text">String(OBJ_STRING)类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-OBJ-LIST-类型"><span class="nav-number">4.2.</span> <span class="nav-text">List(OBJ_LIST)类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET-OBJ-SET-类型"><span class="nav-number">5.</span> <span class="nav-text">SET(OBJ_SET)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HASH-OBJ-HASH-类型"><span class="nav-number">6.</span> <span class="nav-text">HASH(OBJ_HASH)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SortedSet-OBJ-ZSET-类型"><span class="nav-number">7.</span> <span class="nav-text">SortedSet(OBJ_ZSET)类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1103,7 +1098,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">182.4k</span>
+    <span title="Site words total count">183.1k</span>
   
 </div>
 

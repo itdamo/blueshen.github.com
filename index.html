@@ -992,7 +992,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,226
+                  3,234
                 </span>
               
 
@@ -1143,6 +1143,7 @@
 <tr>
 <td>define OBJ_ENCODING_STREAM</td>
 <td>10</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
@@ -1305,7 +1306,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  411
+                  1,060
                 </span>
               
 
@@ -1321,7 +1322,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  5
                 </span>
               
             </div>
@@ -1343,13 +1344,15 @@
 
       
         
-          
-            <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。</p>
-<p>仔细排查：固定的几个ES节点，出现间歇性被<strong>踢出</strong>Cluster，随后又<strong>加入</strong>Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。</p>
-<h3 id="日志排查"><a href="#日志排查" class="headerlink" title="日志排查"></a>日志排查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> [2018-12-08T19:25:29,993][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</div><div class="line">java.nio.channels.ClosedChannelException: null</div><div class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</div><div class="line"> [2018-12-08T19:25:29,994][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</div><div class="line"> java.nio.channels.ClosedChannelException: null</div><div class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</div><div class="line"> [2018-12-08T19:25:31,111][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [_TS9PjOLRke8j12-d59iGA]</div><div class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es39-search.mars.ljnode.com_node0][10.200.24.86:8309][cluster:monitor/nodes/info[n]] request_id [203863696] timed out after [5000ms]</div><div class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</div><div class="line">         at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:575) [elasticsearch-5.6.9.jar:5.6.9]</div><div class="line">         at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_172]</div><div class="line">         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_172]</div><div class="line">         at java.lang.Thread.run(Thread.java:748) [?:1.8.0_172]</div><div class="line"> [2018-12-08T19:25:32,305][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [yt3RGpgJStKwtOENBe5Trw]</div><div class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es38-search.mars.ljnode.com_node0][10.200.24.97:8309][cluster:monitor/nodes/info[n]] request_id [203863752] timed out after [5000ms]</div><div class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</div></pre></td></tr></table></figure>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>网络是千兆的网卡，堵塞导致超时。</p>
-
-          
+          <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。</p>
+<p>固定的几个ES节点（10.10.24.X网段），出现间歇性被<strong>踢出</strong>Cluster，随后又<strong>加入</strong>Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/13/elasticsearch-yellow-exception/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2418,7 +2421,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-count">212</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2492,7 +2495,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">182.4k</span>
+    <span title="Site words total count">183.1k</span>
   
 </div>
 
