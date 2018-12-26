@@ -309,7 +309,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2018/12/26/redis-io/" itemprop="url">redis-IO模型</a></h2>
+                <a class="post-title-link" href="/blog/2018/12/26/redis-io/" itemprop="url">Redis-IO模型</a></h2>
         
 
         <div class="post-meta">
@@ -371,7 +371,7 @@
 
           
           
-             <span id="/blog/2018/12/26/redis-io/" class="leancloud_visitors" data-flag-title="redis-IO模型">
+             <span id="/blog/2018/12/26/redis-io/" class="leancloud_visitors" data-flag-title="Redis-IO模型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1
+                  1,830
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -434,10 +434,25 @@
 
       
         
-          
-            <p>TODO</p>
-
-          
+          <p>Redis 是一个事件驱动的内存数据库，服务器需要处理两种类型的事件。</p>
+<ul>
+<li>文件事件</li>
+<li>时间事件</li>
+</ul>
+<h1 id="文件事件-FileEvent"><a href="#文件事件-FileEvent" class="headerlink" title="文件事件(FileEvent)"></a>文件事件(FileEvent)</h1><p>Redis 服务器通过 socket 实现与客户端（或其他redis服务器）的交互,文件事件就是服务器对 socket 操作的抽象。 Redis 服务器，通过监听这些 socket 产生的文件事件并处理这些事件，实现对客户端调用的响应。</p>
+<h2 id="Reactor"><a href="#Reactor" class="headerlink" title="Reactor"></a>Reactor</h2><p>Redis 基于 Reactor 模式开发了自己的事件处理器。</p>
+<p>这里就先展开讲一讲 Reactor 模式。看下图：</p>
+<p><img src="/images/redis-io/Reactor.jpg" alt="reactor"></p>
+<p>“I/O 多路复用模块”会监听多个 FD ，当这些FD产生，accept，read，write 或 close 的文件事件。会向“文件事件分发器（dispatcher）”传送事件。</p>
+<p>文件事件分发器（dispatcher）在收到事件之后，会根据事件的类型将事件分发给对应的 handler。</p>
+<p>我们顺着图，从上到下的逐一讲解 Redis 是怎么实现这个 Reactor 模型的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/26/redis-io/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -503,7 +518,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2018/12/26/redis-expire/" itemprop="url">Redis过期机制</a></h2>
+                <a class="post-title-link" href="/blog/2018/12/26/redis-expire/" itemprop="url">Redis过期&淘汰机制</a></h2>
         
 
         <div class="post-meta">
@@ -565,7 +580,7 @@
 
           
           
-             <span id="/blog/2018/12/26/redis-expire/" class="leancloud_visitors" data-flag-title="Redis过期机制">
+             <span id="/blog/2018/12/26/redis-expire/" class="leancloud_visitors" data-flag-title="Redis过期&淘汰机制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -590,7 +605,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1
+                  2,073
                 </span>
               
 
@@ -606,7 +621,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  9
                 </span>
               
             </div>
@@ -628,10 +643,23 @@
 
       
         
-          
-            <p>TODO</p>
-
-          
+          <h2 id="Redis内存限制"><a href="#Redis内存限制" class="headerlink" title="Redis内存限制"></a>Redis内存限制</h2><p>Redis作为一个高性能的内存NoSQL数据库，其容量受到最大内存限制的限制。</p>
+<p>在使用Redis时，除了对性能，稳定性有很高的要求外，对内存占用也比较敏感。在使用过程中，有些用户会觉得自己的线上实例内存占用比自己预想的要大。</p>
+<p>事实上，实例中的内存除了保存原始的键值对所需的开销外，还有一些运行时产生的额外内存，包括：</p>
+<ol>
+<li>垃圾数据和过期Key所占空间</li>
+<li>字典dict渐进式rehash导致未及时删除的空间</li>
+<li>Redis管理数据, 包括底层数据结构开销，客户端信息，读写缓冲区等</li>
+<li>主从复制，bgsave时的额外开销</li>
+<li>其它</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/26/redis-expire/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -992,7 +1020,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,234
+                  3,148
                 </span>
               
 
@@ -2495,7 +2523,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">183.1k</span>
+    <span title="Site words total count">186.9k</span>
   
 </div>
 

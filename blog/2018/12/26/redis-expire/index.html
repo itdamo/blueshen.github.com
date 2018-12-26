@@ -81,16 +81,31 @@
 
 
 
-<meta name="description" content="TODO">
+<meta name="description" content="Redis内存限制Redis作为一个高性能的内存NoSQL数据库，其容量受到最大内存限制的限制。
+在使用Redis时，除了对性能，稳定性有很高的要求外，对内存占用也比较敏感。在使用过程中，有些用户会觉得自己的线上实例内存占用比自己预想的要大。
+事实上，实例中的内存除了保存原始的键值对所需的开销外，还有一些运行时产生的额外内存，包括：
+
+垃圾数据和过期Key所占空间
+字典dict渐进式rehash导">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis过期机制">
+<meta property="og:title" content="Redis过期&淘汰机制">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="TODO">
-<meta property="og:updated_time" content="2018-12-26T08:49:01.080Z">
+<meta property="og:description" content="Redis内存限制Redis作为一个高性能的内存NoSQL数据库，其容量受到最大内存限制的限制。
+在使用Redis时，除了对性能，稳定性有很高的要求外，对内存占用也比较敏感。在使用过程中，有些用户会觉得自己的线上实例内存占用比自己预想的要大。
+事实上，实例中的内存除了保存原始的键值对所需的开销外，还有一些运行时产生的额外内存，包括：
+
+垃圾数据和过期Key所占空间
+字典dict渐进式rehash导">
+<meta property="og:updated_time" content="2018-12-26T12:28:59.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis过期机制">
-<meta name="twitter:description" content="TODO">
+<meta name="twitter:title" content="Redis过期&淘汰机制">
+<meta name="twitter:description" content="Redis内存限制Redis作为一个高性能的内存NoSQL数据库，其容量受到最大内存限制的限制。
+在使用Redis时，除了对性能，稳定性有很高的要求外，对内存占用也比较敏感。在使用过程中，有些用户会觉得自己的线上实例内存占用比自己预想的要大。
+事实上，实例中的内存除了保存原始的键值对所需的开销外，还有一些运行时产生的额外内存，包括：
+
+垃圾数据和过期Key所占空间
+字典dict渐进式rehash导">
 
 
 
@@ -126,7 +141,7 @@
 
 
 
-  <title>Redis过期机制 | 申艳超-博客</title>
+  <title>Redis过期&淘汰机制 | 申艳超-博客</title>
   
 
 
@@ -310,7 +325,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Redis过期机制</h2>
+          <h2 class="post-title" itemprop="name headline">Redis过期&淘汰机制</h2>
         
 
         <div class="post-meta">
@@ -372,7 +387,7 @@
 
           
           
-             <span id="/blog/2018/12/26/redis-expire/" class="leancloud_visitors" data-flag-title="Redis过期机制">
+             <span id="/blog/2018/12/26/redis-expire/" class="leancloud_visitors" data-flag-title="Redis过期&淘汰机制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,7 +417,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1
+                  2,073
                 </span>
               
 
@@ -418,7 +433,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  9
                 </span>
               
             </div>
@@ -439,7 +454,70 @@
       
 
       
-        <p>TODO</p>
+        <h2 id="Redis内存限制"><a href="#Redis内存限制" class="headerlink" title="Redis内存限制"></a>Redis内存限制</h2><p>Redis作为一个高性能的内存NoSQL数据库，其容量受到最大内存限制的限制。</p>
+<p>在使用Redis时，除了对性能，稳定性有很高的要求外，对内存占用也比较敏感。在使用过程中，有些用户会觉得自己的线上实例内存占用比自己预想的要大。</p>
+<p>事实上，实例中的内存除了保存原始的键值对所需的开销外，还有一些运行时产生的额外内存，包括：</p>
+<ol>
+<li>垃圾数据和过期Key所占空间</li>
+<li>字典dict渐进式rehash导致未及时删除的空间</li>
+<li>Redis管理数据, 包括底层数据结构开销，客户端信息，读写缓冲区等</li>
+<li>主从复制，bgsave时的额外开销</li>
+<li>其它</li>
+</ol>
+<a id="more"></a>
+<h2 id="Redis过期数据清理策略"><a href="#Redis过期数据清理策略" class="headerlink" title="Redis过期数据清理策略"></a>Redis过期数据清理策略</h2><h3 id="过期数据清理时机"><a href="#过期数据清理时机" class="headerlink" title="过期数据清理时机"></a>过期数据清理时机</h3><p>为了防止一次性清理大量过期Key导致Redis服务受影响，Redis只在空闲时清理过期Key。</p>
+<p>具体Redis逐出过期Key的时机为:</p>
+<ol>
+<li>访问Key时，会判断Key是否过期，逐出过期Key;</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  <span class="function">robj *<span class="title">lookupKeyRead</span><span class="params">(redisDb *db, robj *key)</span> </span>&#123;</div><div class="line">    robj *val;</div><div class="line">    expireIfNeeded(db,key);</div><div class="line">    val = lookupKey(db,key);</div><div class="line">    ...</div><div class="line">    <span class="keyword">return</span> val;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>CPU空闲时在定期serverCron任务中，逐出部分过期Key;</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">aeCreateTimeEvent(server.el, <span class="number">1</span>, serverCron, <span class="literal">NULL</span>, <span class="literal">NULL</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">serverCron</span><span class="params">(<span class="keyword">struct</span> aeEventLoop *eventLoop, <span class="keyword">long</span> <span class="keyword">long</span> id, <span class="keyword">void</span> *clientData)</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    databasesCron();</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">databasesCron</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</div><div class="line">    <span class="comment">/* Expire keys by random sampling. Not required for slaves</span></div><div class="line">     + as master will synthesize DELs for us. */</div><div class="line">    <span class="keyword">if</span> (server.active_expire_enabled &amp;&amp; server.masterhost == <span class="literal">NULL</span>)</div><div class="line">        activeExpireCycle(ACTIVE_EXPIRE_CYCLE_SLOW);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>每次事件循环执行的时候，逐出部分过期Key;</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">aeMain</span><span class="params">(aeEventLoop *eventLoop)</span> </span>&#123;</div><div class="line">           eventLoop-&gt;stop = <span class="number">0</span>;</div><div class="line">           <span class="keyword">while</span> (!eventLoop-&gt;stop) &#123;</div><div class="line">               <span class="keyword">if</span> (eventLoop-&gt;beforesleep != <span class="literal">NULL</span>)</div><div class="line">                   eventLoop-&gt;beforesleep(eventLoop);</div><div class="line">               aeProcessEvents(eventLoop, AE_ALL_EVENTS);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">beforeSleep</span><span class="params">(<span class="keyword">struct</span> aeEventLoop *eventLoop)</span> </span>&#123;</div><div class="line">           ...</div><div class="line">  	<span class="comment">/* Run a fast expire cycle (the called function will return</span></div><div class="line">            - ASAP if a fast cycle is not needed). */</div><div class="line">   <span class="keyword">if</span> (server.active_expire_enabled &amp;&amp; server.masterhost == <span class="literal">NULL</span>)</div><div class="line">               activeExpireCycle(ACTIVE_EXPIRE_CYCLE_FAST);</div><div class="line">           ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="过期数据清理算法"><a href="#过期数据清理算法" class="headerlink" title="过期数据清理算法"></a>过期数据清理算法</h3><p>Redis过期Key清理的机制对清理的频率和最大时间都有限制，在尽量不影响正常服务的情况下，进行过期Key的清理，以达到长时间服务的性能最优.</p>
+<p>Redis会周期性的随机测试一批设置了过期时间的key并进行处理。测试到的已过期的key将被删除。具体的算法如下:</p>
+<ol>
+<li>Redis配置项hz定义了serverCron任务的执行周期，默认为10，即CPU空闲时每秒执行10次;</li>
+<li>每次过期key清理的时间不超过CPU时间的25%，即若hz=1，则一次清理时间最大为250ms，若hz=10，则一次清理时间最大为25ms;</li>
+<li>清理时依次遍历所有的db;</li>
+<li>从db中随机取20个key，判断是否过期，若过期，则逐出;</li>
+<li>若有5个以上key过期，则重复步骤4，否则遍历下一个db;</li>
+<li>在清理过程中，若达到了25%CPU时间，退出清理过程;</li>
+</ol>
+<p>这是一个基于概率的简单算法，基本的假设是抽出的样本能够代表整个key空间，redis持续清理过期的数据直至将要过期的key的百分比降到了25%以下。这也意味着在长期来看任何给定的时刻已经过期但仍占据着内存空间的key的量最多为每秒的写操作量除以4.</p>
+<ul>
+<li>由于算法采用的随机取key判断是否过期的方式，故几乎不可能清理完所有的过期Key;</li>
+<li>调高hz参数可以提升清理的频率，过期key可以更及时的被删除，但hz太高会增加CPU时间的消耗;<a href="https://groups.google.com/forum/#!topic/redis-db/6kILekxQXBM" target="_blank" rel="external">Redis作者关于hz参数的一些讨论</a></li>
+</ul>
+<p>代码分析如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">activeExpireCycle</span><span class="params">(<span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">/* We can use at max ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC percentage of CPU time</span></div><div class="line">     * per iteration. Since this function gets called with a frequency of</div><div class="line">     * server.hz times per second, the following is the max amount of</div><div class="line">     * microseconds we can spend in this function. */</div><div class="line">    <span class="comment">// 最多允许25%的CPU时间用于过期Key清理</span></div><div class="line">    <span class="comment">// 若hz=1，则一次activeExpireCycle最多只能执行250ms</span></div><div class="line">    <span class="comment">// 若hz=10，则一次activeExpireCycle最多只能执行25ms</span></div><div class="line">    timelimit = <span class="number">1000000</span>*ACTIVE_EXPIRE_CYCLE_SLOW_TIME_PERC/server.hz/<span class="number">100</span>;</div><div class="line">    ...</div><div class="line">    <span class="comment">// 遍历所有db</span></div><div class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; dbs_per_call; j++) &#123;</div><div class="line">        <span class="keyword">int</span> expired;</div><div class="line">        redisDb *db = server.db+(current_db % server.dbnum);</div><div class="line"></div><div class="line">        <span class="comment">/* Increment the DB now so we are sure if we run out of time</span></div><div class="line">         * in the current DB we'll restart from the next. This allows to</div><div class="line">         * distribute the time evenly across DBs. */</div><div class="line">        current_db++;</div><div class="line"></div><div class="line">        <span class="comment">/* Continue to expire if at the end of the cycle more than 25%</span></div><div class="line">         * of the keys were expired. */</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            ...</div><div class="line">            <span class="comment">// 一次取20个Key，判断是否过期</span></div><div class="line">            <span class="keyword">if</span> (num &gt; ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP)</div><div class="line">                num = ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP;</div><div class="line"></div><div class="line">            <span class="keyword">while</span> (num--) &#123;</div><div class="line">                dictEntry *de;</div><div class="line">                <span class="keyword">long</span> <span class="keyword">long</span> ttl;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ((de = dictGetRandomKey(db-&gt;expires)) == <span class="literal">NULL</span>) <span class="keyword">break</span>;</div><div class="line">                ttl = dictGetSignedIntegerVal(de)-now;</div><div class="line">                <span class="keyword">if</span> (activeExpireCycleTryExpire(db,de,now)) expired++;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> ((iteration &amp; <span class="number">0xf</span>) == <span class="number">0</span>) &#123; <span class="comment">/* check once every 16 iterations. */</span></div><div class="line">                <span class="keyword">long</span> <span class="keyword">long</span> elapsed = ustime()-start;</div><div class="line">                latencyAddSampleIfNeeded(<span class="string">"expire-cycle"</span>,elapsed/<span class="number">1000</span>);</div><div class="line">                <span class="keyword">if</span> (elapsed &gt; timelimit) timelimit_exit = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (timelimit_exit) <span class="keyword">return</span>;</div><div class="line">            <span class="comment">/* We don't repeat the cycle if there are less than 25% of keys</span></div><div class="line">             * found expired in the current DB. */</div><div class="line">            <span class="comment">// 若有5个以上过期Key，则继续直至时间超过25%的CPU时间</span></div><div class="line">            <span class="comment">// 若没有5个过期Key，则跳过。</span></div><div class="line">        &#125; <span class="keyword">while</span> (expired &gt; ACTIVE_EXPIRE_CYCLE_LOOKUPS_PER_LOOP/<span class="number">4</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Redis数据逐出策略"><a href="#Redis数据逐出策略" class="headerlink" title="Redis数据逐出策略"></a>Redis数据逐出策略</h2><h3 id="数据逐出时机"><a href="#数据逐出时机" class="headerlink" title="数据逐出时机"></a>数据逐出时机</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 执行命令</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">processCommand</span><span class="params">(redisClient *c)</span> </span>&#123;</div><div class="line">        ...</div><div class="line">        <span class="comment">/* Handle the maxmemory directive.</span></div><div class="line">        **</div><div class="line">        First we try to free some memory if possible (if there are volatile</div><div class="line">        * keys in the dataset). If there are not the only thing we can do</div><div class="line">        * is returning an error. */</div><div class="line">        <span class="keyword">if</span> (server.maxmemory) &#123;</div><div class="line">            <span class="keyword">int</span> retval = freeMemoryIfNeeded();</div><div class="line">            ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数据逐出算法"><a href="#数据逐出算法" class="headerlink" title="数据逐出算法"></a>数据逐出算法</h3><p>在逐出算法中，根据用户设置的逐出策略，选出待逐出的key，直到当前内存小于最大内存值为主.</p>
+<p>可选逐出策略如下：</p>
+<ul>
+<li>volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用 的数据淘汰</li>
+<li>volatile-ttl：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数 据淘汰</li>
+<li>volatile-random：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
+<li>allkeys-lru：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li>
+<li>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li>no-enviction（驱逐）：禁止驱逐数据</li>
+</ul>
+<p>具体代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">freeMemoryIfNeeded</span><span class="params">()</span> </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// 计算mem_used</span></div><div class="line">    mem_used = zmalloc_used_memory();</div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="comment">/* Check if we are over the memory limit. */</span></div><div class="line">    <span class="keyword">if</span> (mem_used &lt;= server.maxmemory) <span class="keyword">return</span> REDIS_OK;</div><div class="line"></div><div class="line">    <span class="comment">// 如果禁止逐出，返回错误</span></div><div class="line">    <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_NO_EVICTION)</div><div class="line">        <span class="keyword">return</span> REDIS_ERR; <span class="comment">/* We need to free memory, but policy forbids. */</span></div><div class="line"></div><div class="line">    mem_freed = <span class="number">0</span>;</div><div class="line">    mem_tofree = mem_used - server.maxmemory;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> start = ustime();</div><div class="line">    latencyStartMonitor(latency);</div><div class="line">    <span class="keyword">while</span> (mem_freed &lt; mem_tofree) &#123;</div><div class="line">        <span class="keyword">int</span> j, k, keys_freed = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; server.dbnum; j++) &#123;</div><div class="line">            <span class="comment">// 根据逐出策略的不同，选出待逐出的数据</span></div><div class="line">            <span class="keyword">long</span> bestval = <span class="number">0</span>; <span class="comment">/* just to prevent warning */</span></div><div class="line">            sds bestkey = <span class="literal">NULL</span>;</div><div class="line">            <span class="keyword">struct</span> dictEntry *de;</div><div class="line">            redisDb *db = server.db+j;</div><div class="line">            dict *dict;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_LRU ||</div><div class="line">                server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_RANDOM)</div><div class="line">            &#123;</div><div class="line">                dict = server.db[j].dict;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                dict = server.db[j].expires;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (dictSize(dict) == <span class="number">0</span>) <span class="keyword">continue</span>;</div><div class="line"></div><div class="line">            <span class="comment">/* volatile-random and allkeys-random policy */</span></div><div class="line">            <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_RANDOM ||</div><div class="line">                server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_RANDOM)</div><div class="line">            &#123;</div><div class="line">                de = dictGetRandomKey(dict);</div><div class="line">                bestkey = dictGetKey(de);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">/* volatile-lru and allkeys-lru policy */</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_ALLKEYS_LRU ||</div><div class="line">                server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_LRU)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; server.maxmemory_samples; k++) &#123;</div><div class="line">                    sds thiskey;</div><div class="line">                    <span class="keyword">long</span> thisval;</div><div class="line">                    robj *o;</div><div class="line"></div><div class="line">                    de = dictGetRandomKey(dict);</div><div class="line">                    thiskey = dictGetKey(de);</div><div class="line">                    <span class="comment">/* When policy is volatile-lru we need an additional lookup</span></div><div class="line">                     * to locate the real key, as dict is set to db-&gt;expires.  **/</div><div class="line">                    <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_LRU)</div><div class="line">                        de = dictFind(db-&gt;dict, thiskey);</div><div class="line">                    o = dictGetVal(de);</div><div class="line">                    thisval = estimateObjectIdleTime(o);</div><div class="line"></div><div class="line">                    <span class="comment">/* Higher idle time is better candidate for deletion */</span></div><div class="line">                    <span class="keyword">if</span> (bestkey == <span class="literal">NULL</span> || thisval &gt; bestval) &#123;</div><div class="line">                        bestkey = thiskey;</div><div class="line">                        bestval = thisval;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">/* volatile-ttl */</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (server.maxmemory_policy == REDIS_MAXMEMORY_VOLATILE_TTL) &#123;</div><div class="line">                <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; server.maxmemory_samples; k++) &#123;</div><div class="line">                    sds thiskey;</div><div class="line">                    <span class="keyword">long</span> thisval;</div><div class="line"></div><div class="line">                    de = dictGetRandomKey(dict);</div><div class="line">                    thiskey = dictGetKey(de);</div><div class="line">                    thisval = (<span class="keyword">long</span>) dictGetVal(de);</div><div class="line"></div><div class="line">                    <span class="comment">/* Expire sooner (minor expire unix timestamp) is better</span></div><div class="line">                     * candidate for deletion **/</div><div class="line">                    <span class="keyword">if</span> (bestkey == <span class="literal">NULL</span> || thisval &lt; bestval) &#123;</div><div class="line">                        bestkey = thiskey;</div><div class="line">                        bestval = thisval;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">/* Finally remove the selected key. **/</span></div><div class="line">            <span class="comment">// 逐出挑选出的数据</span></div><div class="line">            <span class="keyword">if</span> (bestkey ) &#123;</div><div class="line">                ...</div><div class="line">                delta = (<span class="keyword">long</span> <span class="keyword">long</span>) zmalloc_used_memory();</div><div class="line">                dbDelete(db,keyobj);</div><div class="line">                delta -= (<span class="keyword">long</span> <span class="keyword">long</span>) zmalloc_used_memory();</div><div class="line">                mem_freed += delta;</div><div class="line">                ...</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    <span class="keyword">return</span> REDIS_OK;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ul>
+<li>不要放垃圾数据，及时清理无用数据<br>实验性的数据和下线的业务数据及时删除;</li>
+<li>key尽量都设置过期时间<br>对具有时效性的key设置过期时间，通过redis自身的过期key清理策略来降低过期key对于内存的占用，同时也能够减少业务的麻烦，不需要定期手动清理了.</li>
+<li>单Key不要过大<br>key在get的时候网络传输延迟会比较大，需要分配的输出缓冲区也比较大，在定期清理的时候也容易造成比较高的延迟. 最好能通过业务拆分，数据压缩等方式避免这种过大的key的产生。</li>
+<li>不同业务如果公用一个业务的话，最好使用不同的逻辑db分开<br>从上面的分析可以看出，Redis的过期Key清理策略和强制淘汰策略都会遍历各个db。将key分布在不同的db有助于过期Key的及时清理。另外不同业务使用不同db也有助于问题排查和无用数据的及时下线.</li>
+</ul>
+<hr>
+<p>参考文档</p>
+<p><a href="https://yq.aliyun.com/articles/257459" target="_blank" rel="external">Redis数据过期和淘汰策略详解</a></p>
 
       
     </div>
@@ -489,7 +567,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/" title="Redis过期机制">https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/</a>
+    <a href="https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/" title="Redis过期&淘汰机制">https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -531,8 +609,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2018/12/26/redis-io/" rel="prev" title="redis-IO模型">
-                redis-IO模型 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/12/26/redis-io/" rel="prev" title="Redis-IO模型">
+                Redis-IO模型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -588,8 +666,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -677,6 +764,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis内存限制"><span class="nav-number">1.</span> <span class="nav-text">Redis内存限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis过期数据清理策略"><span class="nav-number">2.</span> <span class="nav-text">Redis过期数据清理策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过期数据清理时机"><span class="nav-number">2.1.</span> <span class="nav-text">过期数据清理时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过期数据清理算法"><span class="nav-number">2.2.</span> <span class="nav-text">过期数据清理算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis数据逐出策略"><span class="nav-number">3.</span> <span class="nav-text">Redis数据逐出策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据逐出时机"><span class="nav-number">3.1.</span> <span class="nav-text">数据逐出时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据逐出算法"><span class="nav-number">3.2.</span> <span class="nav-text">数据逐出算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">4.</span> <span class="nav-text">最佳实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -704,7 +807,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">183.1k</span>
+    <span title="Site words total count">186.9k</span>
   
 </div>
 
