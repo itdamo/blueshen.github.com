@@ -83,23 +83,23 @@
 
 <meta name="description" content="类适配器:客户的开发人员定义了一个接口，期望用这个接口来完成整数的求和操作，接口定义如下：Java代码    
 123public interface Operation&amp;#123;    	public int add(int a,int b);  &amp;#125;
-开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：Java代码    
-12345pu">
+开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：    Java代码    
+123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：适配器（Adapter）in Java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/30/adapter-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="类适配器:客户的开发人员定义了一个接口，期望用这个接口来完成整数的求和操作，接口定义如下：Java代码    
 123public interface Operation&amp;#123;    	public int add(int a,int b);  &amp;#125;
-开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：Java代码    
-12345pu">
-<meta property="og:updated_time" content="2018-12-13T12:52:03.614Z">
+开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：    Java代码    
+123">
+<meta property="og:updated_time" content="2018-12-26T08:51:52.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：适配器（Adapter）in Java">
 <meta name="twitter:description" content="类适配器:客户的开发人员定义了一个接口，期望用这个接口来完成整数的求和操作，接口定义如下：Java代码    
 123public interface Operation&amp;#123;    	public int add(int a,int b);  &amp;#125;
-开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：Java代码    
-12345pu">
+开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：    Java代码    
+123">
 
 
 
@@ -450,7 +450,7 @@
       
         <p><strong>类适配器</strong>:客户的开发人员定义了一个接口，期望用这个接口来完成整数的求和操作，接口定义如下：<br>Java代码    </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Operation</span></span>&#123;  </div><div class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：<br>Java代码    </p>
+<p>开发人员在了解这个接口的定义后，发现一个第三方类，里面有一个方法能实现他们期望的功能，其代码如下：    Java代码    </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OtherOperation</span></span>&#123;  </div><div class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">otherAdd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;  </div><div class="line">       	<span class="keyword">return</span> a + b;  </div><div class="line">  	&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>以上第三方类OtherOperation的方法public int otherAdd(int a,int b)所提供的功能，完全能符合客户的期望，所以只需要想办法把OtherOperation的otherAdd(int a,int b)和客户的Operation接口联系起来，让这个第三方类来为客户提供他们期望的服务就行了，这样就避免了开发人员再度去研究类似OtherOperation的otherAdd(int a,int b)方法的实现（利用已有的轮子，避免重复发明），这方法之一，就是用适配器模式：<br>Java代码  </p>
@@ -644,7 +644,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">118</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -655,7 +655,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -666,7 +666,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">204</span>
+                  <span class="site-state-item-count">211</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -740,7 +740,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.7k</span>
+    <span title="Site words total count">182.4k</span>
   
 </div>
 

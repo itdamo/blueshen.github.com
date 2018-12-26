@@ -1,10 +1,10 @@
+https://www.shenyanchao.cn/blog/2018/12/26/redis-io/
+https://www.shenyanchao.cn/blog/2018/12/26/redis-expire/
+https://www.shenyanchao.cn/blog/2018/12/25/epoll/
+https://www.shenyanchao.cn/blog/2018/12/25/redis-inside/
 https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkm/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-numberic/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/
 https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/
-https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/
-https://www.shenyanchao.cn/blog/2018/07/23/spring-cache-redis-annotation/
-https://www.shenyanchao.cn/blog/2016/03/20/about-interface-define/
-https://www.shenyanchao.cn/blog/2015/11/03/restful-springmvc/
