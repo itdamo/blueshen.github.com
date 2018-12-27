@@ -81,26 +81,23 @@
 
 
 
-<meta name="description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=${heap.dump.path}
-下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
+<meta name="description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
+JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
+下载并调整MAT(Eclipse Memory Analyze Too">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用MAT来分析JAVA内存泄露">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=${heap.dump.path}
-下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
+<meta property="og:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
+JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
+下载并调整MAT(Eclipse Memory Analyze Too">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
-<meta property="og:updated_time" content="2018-12-20T11:59:51.866Z">
+<meta property="og:updated_time" content="2018-12-27T07:41:30.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用MAT来分析JAVA内存泄露">
-<meta name="twitter:description" content="如何DUMP出堆栈手动dumpjmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=${heap.dump.path}
-下载并调整MAT(Eclipse Memory Analyze Tool)下载地址： http">
+<meta name="twitter:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
+JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
+下载并调整MAT(Eclipse Memory Analyze Too">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
 
 
@@ -413,7 +410,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  233
+                  235
                 </span>
               
 
@@ -450,18 +447,16 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
       
 
       
-        <h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><pre><code>jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;
-</code></pre><h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><pre><code>-XX:+HeapDumpOnOutOfMemoryError
--XX:HeapDumpPath=${heap.dump.path}
-</code></pre><h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">https://www.eclipse.org/mat/downloads.php</a></p>
+        <h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;</div></pre></td></tr></table></figure>
+<h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-XX:+HeapDumpOnOutOfMemoryError</div><div class="line">-XX:HeapDumpPath=$&#123;heap.dump.path&#125;</div></pre></td></tr></table></figure>
+<h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">https://www.eclipse.org/mat/downloads.php</a></p>
 <p><img src="/images/blog/mat/mat-for-java.jpg" alt="mat"></p>
 <p>依据不同的操作系统下载响应版本。</p>
 <a id="more"></a>
 <h3 id="解析dump出的文件"><a href="#解析dump出的文件" class="headerlink" title="解析dump出的文件"></a>解析dump出的文件</h3><p>通常情况下，dump出的文件是很大的。需要修改一下MemoryAnalyzer.ini，调大<code>-Xmx</code>参数,至少要比要分析的文件相等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-startup</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar</div><div class="line">--launcher.library</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200</div><div class="line">-vmargs</div><div class="line">-Xmx10G</div><div class="line">-Dorg.eclipse.swt.internal.carbon.smallFonts</div><div class="line">-XstartOnFirstThread</div></pre></td></tr></table></figure>
 <h3 id="无界面执行（LINUX）"><a href="#无界面执行（LINUX）" class="headerlink" title="无界面执行（LINUX）"></a>无界面执行（LINUX）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ParseHeapDump.sh $&#123;dump.prof&#125; org.eclipse.mat.api:suspects</div></pre></td></tr></table></figure>
-<p>还支持另外两个：</p>
-<p>org.eclipse.mat.api:overview<br>org.eclipse.mat.api:top_components</p>
+<p>还支持另外两个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">org.eclipse.mat.api:overview</div><div class="line">org.eclipse.mat.api:top_components</div></pre></td></tr></table></figure></p>
 <p>执行之后，产生多个zip版html。不过这个版本，没有直接分析出来的好用，有些功能有缺失。</p>
 <hr>
 <p>其他线上问题常见分析工具：</p>
@@ -643,7 +638,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -654,7 +649,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -665,7 +660,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">212</span>
+                  <span class="site-state-item-count">214</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -755,7 +750,7 @@ JVM参数自动dump-XX:+HeapDumpOnOutOfMemoryError
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">186.9k</span>
+    <span title="Site words total count">210.7k</span>
   
 </div>
 
