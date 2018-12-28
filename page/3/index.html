@@ -290,6 +290,419 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/11/13/encode-convert-in-linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2014/11/13/encode-convert-in-linux/" itemprop="url">Linux中文件编码转换</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-13T16:20:00+08:00">
+                2014-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/11/13/encode-convert-in-linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2014/11/13/encode-convert-in-linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/11/13/encode-convert-in-linux/" class="leancloud_visitors" data-flag-title="Linux中文件编码转换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  572
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>　在工作中，经常会遇到使用操作系统不一样的环境，从而导致在不同环境下的文件编辑的编码是不一样的，Windows默认是GBK编码格式，Linux默认是UTF-8的格式，这样就会出现把GBK编码的文件拷贝到Linux下出现乱码情况，很是让人头疼，下面给大家介绍下GBK-&gt;UTF-8文件编码批量转换。</p>
+<p>Linux命令-enca 查看文件的编码</p>
+<p>Enca语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Usage:  enca [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        enconv [-L LANGUAGE] [OPTION]... [FILE]...</div><div class="line">        Detect encoding of text files and convert them if required.</div></pre></td></tr></table></figure>
+<p>Enca用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ enca -L zh_CN file 检查文件的编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file 将文件编码转换为&quot;UTF-8&quot;编码</div><div class="line">$ enca -L zh_CN -x UTF-8 file1 file2 如果不想覆盖原文件可以这样</div></pre></td></tr></table></figure>
+<p>除了有检查文件编码的功能以外，”enca”还有一个好处就是如果文件本来就是你要转换的那种编码，它不会报错，还是会print出结果来， 而”iconv”则会报错。这对于脚本编写是比较方便的事情。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/11/13/encode-convert-in-linux/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2014/11/13/install-hadoop/" itemprop="url">Hadoop1.2.1安装部署</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-13T13:24:00+08:00">
+                2014-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014/11/13/install-hadoop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2014/11/13/install-hadoop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2014/11/13/install-hadoop/" class="leancloud_visitors" data-flag-title="Hadoop1.2.1安装部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  815
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="安装需求"><a href="#安装需求" class="headerlink" title="安装需求"></a>安装需求</h3><ul>
+<li>Java 1.6</li>
+<li>ssh,sshd正常安装</li>
+</ul>
+<p>确保可以ssh到localhost，并且不需要密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh localhost</div></pre></td></tr></table></figure>
+<p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep sshd</div></pre></td></tr></table></figure>
+<p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa</div><div class="line">cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2014/11/13/install-hadoop/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/11/11/introduce-oryx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1917,416 +2330,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2013/12/14/ut-maven-plugin/" itemprop="url">ut-maven-plugin</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-14T21:31:00+08:00">
-                2013-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/测试/" itemprop="url" rel="index">
-                    <span itemprop="name">测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2013/12/14/ut-maven-plugin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2013/12/14/ut-maven-plugin/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2013/12/14/ut-maven-plugin/" class="leancloud_visitors" data-flag-title="ut-maven-plugin">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  951
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="ut-maven-plugin简介"><a href="#ut-maven-plugin简介" class="headerlink" title="ut-maven-plugin简介"></a>ut-maven-plugin简介</h3><p>这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。<br>《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序员生成需要重复的工作以及共性的工作。</p>
-<p>也许，现在她还小，还不足够智能，智能到足以测试你的方法的所有业务逻辑。但是在将来，她将会越来越智能。帮你解决更多的单元测试问题，或者解决更多共性的问题。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2013/12/14/ut-maven-plugin/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/12/04/the-pragmatic-programmer-reading-notes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/" itemprop="url">《程序员修炼之道》读书笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-12-04T15:45:00+08:00">
-                2013-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/" class="leancloud_visitors" data-flag-title="《程序员修炼之道》读书笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2,327
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>《程序员修炼之道-从小工到专家》写的具有普遍意义的指导方法。很少有具体的开发讲解，更多的是告诉你，作为一个程序员，你应该具有哪些素质，以及怎么做。下面是我对书中印象比较深的一些记录。</p>
-<h3 id="关于心态"><a href="#关于心态" class="headerlink" title="关于心态"></a>关于心态</h3><h4 id="石头汤与煮青蛙"><a href="#石头汤与煮青蛙" class="headerlink" title="石头汤与煮青蛙"></a>石头汤与煮青蛙</h4><blockquote>
-<p>三个士兵从战场返回家乡，在路上饿了，他们看见前面有村庄，就来了精神(他们相信村民会给他们一顿饭吃)。但当他们到达那里，却发现门锁着，窗户也关着。经历了多年的战乱，村名们粮食匮乏，并把他们仅有的一点粮食藏了起来。</p>
-<p>士兵们并没有气馁，他们煮开一锅水，小心地把三块石头放进去。吃惊的村民走出来望着他们。</p>
-<p>“这是石头汤。”士兵们解释说。“就放这些吗？”村民们问。“一点也没错——但是有人说加一些胡萝卜味道更好…….” 一个村民跑开了，又很快带着他储藏的一篮胡萝卜跑回来。<br>几分钟后，村民们又问：“就这些了吗？”</p>
-<p>“啊，”士兵们说：“几个土豆会让汤更实在。”又一个村民跑开了。</p>
-<p>接下来的一小时，士兵们列举了更多让汤更鲜美的配料：牛肉，韭菜，盐，还有香菜。每一次都会有一个不同的村民跑回去搜寻自己的私人储藏品。</p>
-<p>最后他们煮出了一大锅热气腾腾的汤。士兵们掉石头，和所有的村民一起享用了一顿美餐，这是几个月以来他们所有人第一次吃饱饭。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2013/12/04/the-pragmatic-programmer-reading-notes/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2376,7 +2384,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">121</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2398,7 +2406,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">214</span>
+                  <span class="site-state-item-count">216</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2472,7 +2480,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">217.1k</span>
   
 </div>
 

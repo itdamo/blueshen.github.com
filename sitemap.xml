@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.shenyanchao.cn/blog/2018/12/28/argument-on-Redis/</loc>
+    
+    <lastmod>2018-12-28T10:00:37.082Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2018/12/28/distributed-locks-with-Redis/</loc>
+    
+    <lastmod>2018-12-28T09:37:15.258Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.shenyanchao.cn/blog/2018/12/27/raft-paper/</loc>
     
     <lastmod>2018-12-27T11:53:21.778Z</lastmod>
@@ -723,14 +737,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/strategy-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.861Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/state-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/strategy-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.861Z</lastmod>
     
@@ -842,14 +856,14 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/19/install-maven/</loc>
     
     <lastmod>2018-10-23T08:41:02.825Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/19/install-maven/</loc>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/</loc>
     
     <lastmod>2018-10-23T08:41:02.825Z</lastmod>
     

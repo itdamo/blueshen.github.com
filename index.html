@@ -290,6 +290,408 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/28/argument-on-Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/12/28/argument-on-Redis/" itemprop="url">关于Redis RedLock算法的争论</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T17:39:09+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/12/28/argument-on-Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/28/argument-on-Redis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/12/28/argument-on-Redis/" class="leancloud_visitors" data-flag-title="关于Redis RedLock算法的争论">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,980
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Martin-Kleppmann-的质疑"><a href="#Martin-Kleppmann-的质疑" class="headerlink" title="Martin Kleppmann 的质疑"></a>Martin Kleppmann 的质疑</h2><p>Martin上来就问，我们要锁来干啥呢？2个原因：</p>
+<ol>
+<li>提升效率，用锁来保证一个任务没有必要被执行两次。比如（很昂贵的计算）</li>
+<li>保证正确，使用锁来保证任务按照正常的步骤执行，防止两个节点同时操作一份数据，造成文件冲突，数据丢失。</li>
+</ol>
+<p>对于第1种原因，我们对锁是有一定宽容度的，就算发生了两个节点同时工作，对系统的影响也仅仅是多付出了一些计算的成本，没什么额外的影响。这个时候 使用<strong>单点的 Redis</strong> 就能很好的解决问题，没有必要使用RedLock，维护那么多的Redis实例，提升系统的维护成本。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/28/argument-on-Redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/28/distributed-locks-with-Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="申艳超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/shenyanchao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="申艳超-博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/12/28/distributed-locks-with-Redis/" itemprop="url">使用Redis实现分布式锁</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T17:02:19+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/12/28/distributed-locks-with-Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/28/distributed-locks-with-Redis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/blog/2018/12/28/distributed-locks-with-Redis/" class="leancloud_visitors" data-flag-title="使用Redis实现分布式锁">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,473
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>分布式锁是一个在很多环境中非常有用的原语，它是不同进程互斥操作共享资源的唯一方法。有很多的开发库和博客描述如何使用Redis实现DLM（Distributed Lock Manager），但是每个开发库使用不同的方式，而且相比更复杂的设计与实现，很多库使用一些简单低可靠的方式来实现。 </p>
+<p>这篇文章尝试提供更标准的算法来使用Redis实现分布式锁。我们提出一种算法，叫做<strong>Relock</strong>，它实现了我们认为比vanilla单一实例方式更安全的DLM（分布式锁管理）。我们希望社区分析它并提供反馈，以做为更加复杂或替代设计的一个实现。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/28/distributed-locks-with-Redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/27/raft-paper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1988,394 +2390,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-numberic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/12/04/lucene-numberic/" itemprop="url">Lucene数字类型处理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T12:35:48+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2018/12/04/lucene-numberic/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/04/lucene-numberic/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2018/12/04/lucene-numberic/" class="leancloud_visitors" data-flag-title="Lucene数字类型处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>TODO</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="申艳超">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/shenyanchao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="申艳超-博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/12/04/lucene-fst/" itemprop="url">关于Lucene的词典FST深入剖析</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-04T12:35:25+08:00">
-                2018-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/lucene/" itemprop="url" rel="index">
-                    <span itemprop="name">lucene</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2018/12/04/lucene-fst/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/04/lucene-fst/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/blog/2018/12/04/lucene-fst/" class="leancloud_visitors" data-flag-title="关于Lucene的词典FST深入剖析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,734
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  15
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="搜索引擎为什么能查询速度那么快？"><a href="#搜索引擎为什么能查询速度那么快？" class="headerlink" title="搜索引擎为什么能查询速度那么快？"></a>搜索引擎为什么能查询速度那么快？</h3><p>核心是在于如何快速的依据<strong>查询词</strong>快速的查找到所有的相关文档，这也是<strong>倒排索引（Inverted Index）</strong>的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。</p>
-<p>那么开源的搜索引擎包Lucene是怎么来设计的呢？Lucene采用了一种称为FST（Finite State Transducer）的结构来构建词典，这个结构保证了时间和空间复杂度的均衡，是Lucene的核心功能之一。</p>
-<h3 id="关于FST（Finite-State-Transducer）"><a href="#关于FST（Finite-State-Transducer）" class="headerlink" title="关于FST（Finite State Transducer）"></a>关于FST（Finite State Transducer）</h3><p>FST类似一种TRIE树。</p>
-<h4 id="使用FSM-Finite-State-Machines-作为数据结构"><a href="#使用FSM-Finite-State-Machines-作为数据结构" class="headerlink" title="使用FSM(Finite State Machines)作为数据结构"></a>使用FSM(Finite State Machines)作为数据结构</h4><p><strong>FSM(Finite State Machines)有限状态机</strong>: 表示有限个状态（State）集合以及这些状态之间<strong>转移</strong>和动作的数学模型。其中一个状态被标记为<strong>开始状态</strong>，0个或更多的状态被标记为<strong>final状态</strong>。<br>一个FSM同一时间只处于1个状态。FSM很通用，可以用来表示多种处理过程，下面的FSM描述了《小猫咪的一天》。   </p>
-<p><img src="/images/lucene-fst/fst/fst-cauchy.png" alt="fsm 小猫咪的一天"></p>
-<p>其中“睡觉”或者“吃饭”代表的是<strong>状态</strong>,而“提供食物”或者“东西移动”则代表了<strong>转移</strong>。图中这个FSM是对小猫活动的一个抽象（这里并没有刻意写开始状态或者final状态），小猫咪不能同时的即处于“玩耍”又处于“睡觉”状态，并且从一个状态到下一个状态的转换只有一个输入。“睡觉”状态并不知道是从什么状态转换过来的，可能是“玩耍”，也可能是”猫砂窝”。</p>
-<p>如果《小猫咪的一天》这个FSM接收以下的输入:  </p>
-<ul>
-<li>提供食物</li>
-<li>有大声音</li>
-<li>安静</li>
-<li>消化食物</li>
-</ul>
-<p>那么我们会明确的知道，小猫咪会这样依次变化状态： 睡觉-&gt;吃饭-&gt;躲藏-&gt;吃饭-&gt;猫砂窝. </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018/12/04/lucene-fst/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2425,7 +2444,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-count">121</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2447,7 +2466,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">214</span>
+                  <span class="site-state-item-count">216</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2521,7 +2540,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">217.1k</span>
   
 </div>
 
