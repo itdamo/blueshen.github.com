@@ -1798,7 +1798,7 @@
     <link href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkd/"/>
     <id>https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkd/</id>
     <published>2018-12-04T14:03:21.000Z</published>
-    <updated>2019-01-03T12:56:23.283Z</updated>
+    <updated>2019-01-03T13:05:52.547Z</updated>
     
     <content type="html"><![CDATA[<p>当我对遇到的问题找一个解决方案的时候，我遇到了BKD树这个难题。从来没有听过吗？这种情况可能不只是你自己。从google上搜索”bkd tree”，通常会把你引导到<a href="https://users.cs.duke.edu/~pankaj/publications/papers/bkd-sstd.pdf" target="_blank" rel="external">original research paper</a>和Lucene中用来解决一些空间搜索的<a href="https://issues.apache.org/jira/browse/LUCENE-6477" target="_blank" rel="external">patch</a> 网页，然后就没有其他的了。实际上，在写这篇文章的时候，google的第2篇文章推过来的是wikipedia上与这个比较相似名称的 <a href="https://en.wikipedia.org/wiki/K-D-B-tree" target="_blank" rel="external">K-D-B Tree</a>。BKD树太冷门了，google都以为你是想找其他的。</p>
 <p>BKD树作为一个这么伟大的发明，google这样对待它，这是相当不幸的。</p>
@@ -1827,7 +1827,7 @@
 <p>因为BKD树被组织成B树一样，所以在磁盘上可以工作的很好。随着每个node有更多的扇出，node会更大，相对来说树也就更浅。通常来说，磁盘延迟较大，但是吞吐很高。也就是说读取大块的数据和读取小块的数据耗费的时间成本是差不多的，大块数据是一个优势。更浅的深度也意味着更少的非本地读。通常我们把node的大小设置的至少和page(4KB)大小一样, 或者是成倍的关系。正因为如此，一个node可以包含数百的点。</p>
 <p>和其他B树的变种一样，也要求是平衡的。当然这是通过插入操作来保证的。插入一个元素到叶子上，如果叶子没有满，直接插入。如果叶子满了，就进行切分。不像你想的那样，来增加树的深度，而是增加一个新的兄弟节点来解决。如果一个区域node满了，那就有一点复杂了。</p>
 <p>???假如我们需要对左下方区域进行垂直切分。因为现在已经有4个区域了，所以它的父区域也要进行切分。这意味着要对空间的整个左侧区域进行切分。这是K-D-B树的一大缺陷。切分一个区域通常需要切分它的子区域。修改会导致树大量的修改，当需要往磁盘写的时候，就更慢了。</p>
-<p><img src="/Users/shenyanchao/local/git/blueshen.github.com/source/images/lucene-bkd/kdb-tree-1.png" alt="kdb tree"></p>
+<p><img src="/images/lucene-bkd/kdb-tree-1.png" alt="kdb tree"></p>
 <blockquote>
 <p>Bkd-Tree: A Dynamic Scalable kd-Tree</p>
 </blockquote>
