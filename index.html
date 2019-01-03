@@ -2030,7 +2030,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkm/">
+    <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
@@ -2049,7 +2049,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2018/12/04/lucene-bkm/" itemprop="url">lucene-bkm</a></h2>
+                <a class="post-title-link" href="/blog/2018/12/04/lucene-bkd/" itemprop="url">Lucene BKD树-动态磁盘优化BSP树</a></h2>
         
 
         <div class="post-meta">
@@ -2072,6 +2072,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lucene/" itemprop="url" rel="index">
+                    <span itemprop="name">lucene</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -2080,8 +2102,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2018/12/04/lucene-bkm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/04/lucene-bkm/" itemprop="commentCount"></span>
+                <a href="/blog/2018/12/04/lucene-bkd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/12/04/lucene-bkd/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2089,7 +2111,7 @@
 
           
           
-             <span id="/blog/2018/12/04/lucene-bkm/" class="leancloud_visitors" data-flag-title="lucene-bkm">
+             <span id="/blog/2018/12/04/lucene-bkd/" class="leancloud_visitors" data-flag-title="Lucene BKD树-动态磁盘优化BSP树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2114,7 +2136,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  3,177
                 </span>
               
 
@@ -2130,7 +2152,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  12
                 </span>
               
             </div>
@@ -2152,9 +2174,17 @@
 
       
         
-          
-            
-          
+          <p>当我对遇到的问题找一个解决方案的时候，我遇到了BKD树这个难题。从来没有听过吗？这种情况可能不只是你自己。从google上搜索”bkd tree”，通常会把你引导到<a href="https://users.cs.duke.edu/~pankaj/publications/papers/bkd-sstd.pdf">original research paper</a>和Lucene中用来解决一些空间搜索的<a href="https://issues.apache.org/jira/browse/LUCENE-6477">patch</a> 网页，然后就没有其他的了。实际上，在写这篇文章的时候，google的第2篇文章推过来的是wikipedia上与这个比较相似名称的 <a href="https://en.wikipedia.org/wiki/K-D-B-tree">K-D-B Tree</a>。BKD树太冷门了，google都以为你是想找其他的。</p>
+<p>BKD树作为一个这么伟大的发明，google这样对待它，这是相当不幸的。</p>
+<p>BKD树是用来搜索多维数据的一种树。多维数据可以是物理空间中的一些<strong>点</strong>，也可以是一个很大调色板上的一些点。BKD树相当善于做其他数的工作。相比和BKD同类型的树，BKD树通常比K-D-B树以及更简单的 <a href="https://en.wikipedia.org/wiki/R-tree">R-Trees</a>更快，更节省空间。</p>
+<p>本篇文章不是一个对BKD树简单的罗列或者详细描述的wikipedia。我尝试用大白话来讲解BKD树是怎么运作的，有哪些特性。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/12/04/lucene-bkd/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2466,7 +2496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">216</span>
+                  <span class="site-state-item-count">218</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2526,7 +2556,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2012 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2012 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2540,7 +2570,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">217.1k</span>
+    <span title="Site words total count">221.2k</span>
   
 </div>
 
