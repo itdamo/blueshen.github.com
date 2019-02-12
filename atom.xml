@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shenyanchao.cn/"/>
-  <updated>2019-02-12T09:58:49.211Z</updated>
+  <updated>2019-02-12T10:09:39.519Z</updated>
   <id>https://www.shenyanchao.cn/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="https://www.shenyanchao.cn/blog/2019/01/10/elasticsearch-nested/"/>
     <id>https://www.shenyanchao.cn/blog/2019/01/10/elasticsearch-nested/</id>
     <published>2019-01-10T02:20:53.000Z</published>
-    <updated>2019-02-12T09:58:49.211Z</updated>
+    <updated>2019-02-12T10:09:39.519Z</updated>
     
     <content type="html"><![CDATA[<p>Lucene Field本身并不支持嵌套类型，最多也就支持多值类型。ElasticSearch进行了扩展，使得Field可以是object对象类型或者nested嵌套类型。</p>
 <p>object类型，本质上是把字段<strong>路径打平</strong>，最终在索引里还是一个正常的Field字段，object类型转化后，并不会保留<strong>对象内的属性对应关系</strong>，这在查询中可能需要特别注意。然后nested嵌套类型却实现的对应关系。</p>
 <p>使用上的区别，可以参考官方<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/nested.html" target="_blank" rel="external">Nested Data Type</a>。</p>
 <p>本文，我们主要关注的是elasticsearch内部是如何实现的？</p>
+<a id="more"></a>
 <h3 id="ElasticSearch的官方说法"><a href="#ElasticSearch的官方说法" class="headerlink" title="ElasticSearch的官方说法"></a>ElasticSearch的官方说法</h3><p>Because nested documents are indexed as separate documents, they can only be accessed within the scope of the <code>nested</code> query, the <code>nested</code>/<code>reverse_nested</code>aggregations, or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-inner-hits.html#nested-inner-hits" target="_blank" rel="external">nested inner hits</a>.</p>
 <p>For instance, if a string field within a nested document has <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-options.html" target="_blank" rel="external"><code>index_options</code></a> set to <code>offsets</code> to allow use of the postings during the highlighting, these offsets will not be available during the main highlighting phase. Instead, highlighting needs to be performed via <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-inner-hits.html#nested-inner-hits" target="_blank" rel="external">nested inner hits</a>.</p>
 <p>Indexing a document with 100 nested fields actually indexes 101 documents as each nested document is indexed as a separate document. To safeguard against ill-defined mappings the number of nested fields that can be defined per index has been limited to 50. See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html#mapping-limit-settings" target="_blank" rel="external">Settings to prevent mappings explosion</a><a href="https://github.com/elastic/elasticsearch/edit/6.5/docs/reference/mapping.asciidoc" target="_blank" rel="external">edit</a>.</p>
@@ -61,23 +62,16 @@
 <tr>
 <th>ElasticSearch版本</th>
 <th>隐藏实现方式</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>小于6.1.0</td>
 <td>过滤掉_type以“__”为前缀的nested document</td>
-<td></td>
 </tr>
 <tr>
 <td>大于等于6.1.0</td>
 <td>只获取有<code>__primary_term</code> Field的父Document</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -92,7 +86,9 @@
     <summary type="html">
     
       &lt;p&gt;Lucene Field本身并不支持嵌套类型，最多也就支持多值类型。ElasticSearch进行了扩展，使得Field可以是object对象类型或者nested嵌套类型。&lt;/p&gt;
-&lt;p&gt;object类型，本质上是把字段&lt;strong&gt;路径打平&lt;/strong&gt;，最终在索引
+&lt;p&gt;object类型，本质上是把字段&lt;strong&gt;路径打平&lt;/strong&gt;，最终在索引里还是一个正常的Field字段，object类型转化后，并不会保留&lt;strong&gt;对象内的属性对应关系&lt;/strong&gt;，这在查询中可能需要特别注意。然后nested嵌套类型却实现的对应关系。&lt;/p&gt;
+&lt;p&gt;使用上的区别，可以参考官方&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/nested.html&quot;&gt;Nested Data Type&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本文，我们主要关注的是elasticsearch内部是如何实现的？&lt;/p&gt;
     
     </summary>
     
