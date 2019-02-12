@@ -1,3 +1,4 @@
+https://www.shenyanchao.cn/blog/2019/01/10/elasticsearch-nested/
 https://www.shenyanchao.cn/blog/2018/12/28/argument-on-Redis/
 https://www.shenyanchao.cn/blog/2018/12/28/distributed-locks-with-Redis/
 https://www.shenyanchao.cn/blog/2018/12/27/raft-paper/
@@ -7,4 +8,3 @@ https://www.shenyanchao.cn/blog/2018/12/25/epoll/
 https://www.shenyanchao.cn/blog/2018/12/25/redis-inside/
 https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/
 https://www.shenyanchao.cn/blog/2018/12/04/lucene-bkd/
-https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/
