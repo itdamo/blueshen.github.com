@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.shenyanchao.cn/blog/2013/06/05/deep-in-testng/</loc>
+    
+    <lastmod>2019-02-13T10:56:05.329Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/11/02/chain-of-responsibility-in-java/</loc>
+    
+    <lastmod>2019-02-13T10:55:05.921Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/23/bom-in-utf8-text/</loc>
+    
+    <lastmod>2019-02-13T10:54:49.072Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/30/adapter-in-java/</loc>
+    
+    <lastmod>2019-02-13T10:53:45.637Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/22/http-header/</loc>
+    
+    <lastmod>2019-02-13T10:51:50.442Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/10/19/java6-jvm-params/</loc>
+    
+    <lastmod>2019-02-13T10:51:08.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2012/09/21/markpad-tools/</loc>
+    
+    <lastmod>2019-02-13T10:50:27.809Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.shenyanchao.cn/blog/2013/05/02/my-linux-dream/</loc>
+    
+    <lastmod>2019-02-13T10:48:40.384Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.shenyanchao.cn/blog/2013/09/04/use-sonar/</loc>
     
     <lastmod>2019-02-13T09:32:49.338Z</lastmod>
@@ -275,13 +331,6 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/19/java6-jvm-params/</loc>
-    
-    <lastmod>2019-02-13T09:08:46.197Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenyanchao.cn/blog/2013/03/22/jasmine-in-brief/</loc>
     
     <lastmod>2019-02-13T09:08:34.825Z</lastmod>
@@ -369,13 +418,6 @@
     <loc>https://www.shenyanchao.cn/blog/2012/11/08/command-in-java/</loc>
     
     <lastmod>2019-02-13T09:05:08.544Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/11/02/chain-of-responsibility-in-java/</loc>
-    
-    <lastmod>2019-02-13T09:04:57.792Z</lastmod>
     
   </url>
   
@@ -495,13 +537,6 @@
     <loc>https://www.shenyanchao.cn/blog/2018/12/25/redis-inside/</loc>
     
     <lastmod>2018-12-26T10:48:58.627Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/30/adapter-in-java/</loc>
-    
-    <lastmod>2018-12-26T08:51:52.358Z</lastmod>
     
   </url>
   
@@ -660,23 +695,9 @@
   </url>
   
   <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/22/http-header/</loc>
-    
-    <lastmod>2018-12-18T04:20:33.177Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.shenyanchao.cn/blog/2013/11/20/how-package-system-dependency-lib-in-maven/</loc>
     
     <lastmod>2018-12-18T04:17:25.273Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenyanchao.cn/blog/2013/06/05/deep-in-testng/</loc>
-    
-    <lastmod>2018-12-13T13:11:35.913Z</lastmod>
     
   </url>
   
@@ -698,13 +719,6 @@
     <loc>https://www.shenyanchao.cn/blog/2013/05/30/selenium-wiki-web-driver-js/</loc>
     
     <lastmod>2018-11-15T11:27:53.059Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/09/21/markpad-tools/</loc>
-    
-    <lastmod>2018-11-15T11:24:44.106Z</lastmod>
     
   </url>
   
@@ -782,13 +796,6 @@
     <loc>https://www.shenyanchao.cn/blog/2012/10/20/git-command/</loc>
     
     <lastmod>2018-10-23T08:55:27.135Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.shenyanchao.cn/blog/2012/10/23/bom-in-utf8-text/</loc>
-    
-    <lastmod>2018-10-23T08:55:22.051Z</lastmod>
     
   </url>
   

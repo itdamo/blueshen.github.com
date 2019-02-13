@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。     Concrete Handler具体处理者角色实现抽象角色中定义的接口，并处理它所负责的请">
+<meta name="description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色     它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。      Concrete Handler具体处理者角色     实现抽象角色中定义的接">
 <meta name="keywords" content="设计模式,pattern,chain,责任链">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：责任链（chain of responsibility） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/chain-of-responsibility-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。     Concrete Handler具体处理者角色实现抽象角色中定义的接口，并处理它所负责的请">
+<meta property="og:description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色     它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。      Concrete Handler具体处理者角色     实现抽象角色中定义的接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-13T09:04:57.792Z">
+<meta property="og:updated_time" content="2019-02-13T10:55:05.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：责任链（chain of responsibility） in java">
-<meta name="twitter:description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。     Concrete Handler具体处理者角色实现抽象角色中定义的接口，并处理它所负责的请">
+<meta name="twitter:description" content="定义：使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。     责任链由2个角色组成：     Handler抽象处理者角色     它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。      Concrete Handler具体处理者角色     实现抽象角色中定义的接">
 
 
 
@@ -444,8 +444,12 @@
         <p><strong>定义：</strong>使多个对象都有机会处理请求，从而避免了请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止。    </p>
 <p>责任链由2个角色组成：   </p>
 <ul>
-<li>Handler抽象处理者角色<br>它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。    </li>
-<li>Concrete Handler具体处理者角色<br>实现抽象角色中定义的接口，并处理它所负责的请求。如果不能处理则访问它的后继者。  </li>
+<li><p>Handler抽象处理者角色    </p>
+<p>它定义了一个处理请求的接口。当然对于链子的不同实现，也可以在这个角色中实现后继链。    </p>
+</li>
+<li><p>Concrete Handler具体处理者角色    </p>
+<p>实现抽象角色中定义的接口，并处理它所负责的请求。如果不能处理则访问它的后继者。  </p>
+</li>
 </ul>
 <p>比如Filter就类似这种，每个Filter都对请求进行处理，如果解决不了，则交给下一个进行处理。    </p>
 
@@ -617,7 +621,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -628,7 +632,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -639,7 +643,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">226</span>
+                  <span class="site-state-item-count">230</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -713,7 +717,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">229.9k</span>
+    <span title="Site words total count">230.3k</span>
   
 </div>
 

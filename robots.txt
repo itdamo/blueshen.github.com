@@ -1,3 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: https://www.shenyanchao.cn/sitemap.xml
