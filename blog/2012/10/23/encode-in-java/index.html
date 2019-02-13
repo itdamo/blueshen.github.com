@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="Java,encode,class,String," />
+  <meta name="keywords" content="Java,encode,class,String,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,12 +82,14 @@
 
 
 <meta name="description" content="Java的编译存储Java是跨平台的一种语言，这一概念想必已经深入人心。Java是如何实现跨平台的呢?其中起到重大作用的便是Unicode编码。在使用IDE进行开发时，比如ECLIPSE,IDEA等，可以指定源文件（.java）的编码格式，此处的编码格式是指Java文件自身的编码。Java文件可以用各种编码进行存储，考虑到兼容中文字符，大多采用GBK,UTF-8,GB18030等编码格式。但是经过">
+<meta name="keywords" content="Java,encode,class,String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java字符编码及其使用详解">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Java的编译存储Java是跨平台的一种语言，这一概念想必已经深入人心。Java是如何实现跨平台的呢?其中起到重大作用的便是Unicode编码。在使用IDE进行开发时，比如ECLIPSE,IDEA等，可以指定源文件（.java）的编码格式，此处的编码格式是指Java文件自身的编码。Java文件可以用各种编码进行存储，考虑到兼容中文字符，大多采用GBK,UTF-8,GB18030等编码格式。但是经过">
-<meta property="og:updated_time" content="2018-12-20T12:17:49.524Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-20T12:17:49.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字符编码及其使用详解">
 <meta name="twitter:description" content="Java的编译存储Java是跨平台的一种语言，这一概念想必已经深入人心。Java是如何实现跨平台的呢?其中起到重大作用的便是Unicode编码。在使用IDE进行开发时，比如ECLIPSE,IDEA等，可以指定源文件（.java）的编码格式，此处的编码格式是指Java文件自身的编码。Java文件可以用各种编码进行存储，考虑到兼容中文字符，大多采用GBK,UTF-8,GB18030等编码格式。但是经过">
@@ -120,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/">
 
 
 
@@ -148,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -158,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -234,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -244,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -254,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -288,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/10/23/encode-in-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -333,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -344,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/encode-Java/" itemprop="url" rel="index">
                     <span itemprop="name">encode Java</span>
                   </a>
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,143
+                  2,175
                 </span>
               
 
@@ -444,36 +446,39 @@
 <a id="more"></a>
 <h2 id="是什么导致了乱码的出现？"><a href="#是什么导致了乱码的出现？" class="headerlink" title="是什么导致了乱码的出现？"></a>是什么导致了乱码的出现？</h2><p>在JVM内，从class文件加载的源码全部以UNICODE编码。即使如<code>String str = &quot;中国&quot;;</code>这样的语句，在JVM内存中仍然是unicode编码的。可是，程序本身难免牵涉到外部文件的读写、与数据库的交互等。这样就会造成很多非unicode编码的字符存在于JVM中，这也就是乱码出现的根本原因所在。</p>
 <h2 id="Java中如何实现字符编码转换？"><a href="#Java中如何实现字符编码转换？" class="headerlink" title="Java中如何实现字符编码转换？"></a>Java中如何实现字符编码转换？</h2><p>String类提供了三个重要的函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">getBytes(String charsetName)</div><div class="line">getBytes()</div><div class="line"><span class="keyword">new</span> String(<span class="keyword">byte</span>[],String charsetName)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getBytes(String charsetName)</span><br><span class="line">getBytes()</span><br><span class="line"><span class="keyword">new</span> String(<span class="keyword">byte</span>[],String charsetName)</span><br></pre></td></tr></table></figure>
 <p><code>getBytes(String charset)</code>的作用是将字符串按照指定的charset编码，返回其字节方式的表示。具体来说，实现的是从unicode–&gt;charset的转变。比如“中文”，在JVM内存储为“4e2d 6587”,如果设置charset为GBK,则被编码为“d6d0 cec4”。如果charset=UTF-8,那么结果是“e4 b8 ad e6 96 87”。如果charset=ISO-8859-1,由于无法编码，将返回“3f 3f”,这是两个问号。这是因为Unicode-&gt;ISO-8859-1不能完成这两个字符集之间的映射，因此使用时需要注意，这也为乱码提供了存在的可能性。</p>
 <p><code>getBytes()</code>与上面这个功能一致，只不过charset是采用的系统默认的。系统默认的charset是什么呢？恐怕在不同的机器上有不同的charset。当前环境的默认charset可以通过<code>Charset.defaultCharset()</code>来查看，据个人测试，eclipse内是“UTF-8”,windows中文环境默认是“GBK”。因此当你写下getBytes()的时候，乱码的祸根已经种下，当程序在不同的环境运行时，结果可能就不一样，乱码就这样铺天盖地扑面而来了。哭吧！</p>
 <p><code>new String(byte[],String charsetName)</code>的作用是将字节数组按照charset进行识别，最终转化为Unicode存储在JVM内。因此，如上面所说，如果byte[]是以UTF-8等编码存储的时候，如果按照ISO-8859-1这些不能映射的编码识别，仍旧出现乱码。</p>
 <p>因此，使用诸如<code>new String(str.getBytes(&quot;utf-8&quot;), &quot;gbk&quot;)</code>这种类似的转化时，需要谨慎，防止字符集的不可映射造成的乱码。</p>
 <p><strong>完美解决方案：</strong><br>考虑到Java的编译存储，以及字符在JVM中的组织格式。其实需要自己完成的就是：<br>任意编码的字符 –&gt; unicode —&gt;任意编码的目标字符<br>也就是在InputStream时，指定源字符编码格式，这样Java会自动转换为JVM内部的Unicode格式。而在OutputStream时，指定目标编码格式，Java会自动从Unicode转化为目标编码。Unicode是一个桥梁，而这种转换是不需认为控制的。<br>以OutputStream为例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String str = <span class="string">"123中文"</span>;</div><div class="line">System.out.println(str);</div><div class="line">System.out.println(<span class="string">"默认字符:"</span> +Charset.defaultCharset());</div><div class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"e://encode.txt"</span>)),<span class="string">"GBK"</span>));</div><div class="line">writer.write(str);</div><div class="line">writer.close();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"123中文"</span>;</span><br><span class="line">System.out.println(str);</span><br><span class="line">System.out.println(<span class="string">"默认字符:"</span> +Charset.defaultCharset());</span><br><span class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"e://encode.txt"</span>)),<span class="string">"GBK"</span>));</span><br><span class="line">writer.write(str);</span><br><span class="line">writer.close();</span><br></pre></td></tr></table></figure>
 <p>在eclipse内，源文件是以UTF-8进行编码的，默认字符也为UTF-8,运行后encode.txt,内容正确显示，编码格式正确。</p>
 <p>在windows cmd下进行javac,java进行执行。控制台输出“123 涓  .. ”等乱码。总之中文字符不能显示啊。查看encode.txt，内容倒是无乱码，编码格式怎么是UTF-8呢。我又一次纠结了？<code>System.out.println()</code>是不受环境影响的啊，它总能够以Unicode方式进行显示的啊。Java不至于这么弱吧。<br>好吧，继续GOOGLE.BAIDU,找到了原因所在。javac 有这样一个参数<code>-encoding</code>来指定.java的编码格式。如果没有指定，那么编译时，认为编码格式为<code>Charset.defaultCharset()</code>,显然本例源码是以UTF-8进行编码的，直接javac是以GBK来读取的，那么在读到JVM成为UNICODE编码时，已经是乱码状态，不再是“123中文”了。<code>System.out.println()</code>只是按照实际情况进行了输出，因此在编译时，必须指定源文件的编码格式，保证了在Java文件内的常量字符的正常显示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac -encoding utf-8 *.java</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -encoding utf-8 *.java</span><br></pre></td></tr></table></figure>
 <p>这也就可以理解，maven中pom.xml定义编码的原因了：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>同样Ant的build.xml中，也有相应的编码配置选项：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">javac</span> <span class="attr">destdir</span>=<span class="string">"$&#123;build.dir&#125;"</span> <span class="attr">encoding</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">src</span> <span class="attr">path</span>=<span class="string">"$&#123;src.dir&#125;"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">classpath</span> <span class="attr">refid</span>=<span class="string">"project.classpath"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">javac</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">javac</span> <span class="attr">destdir</span>=<span class="string">"$&#123;build.dir&#125;"</span> <span class="attr">encoding</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">src</span> <span class="attr">path</span>=<span class="string">"$&#123;src.dir&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">classpath</span> <span class="attr">refid</span>=<span class="string">"project.classpath"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">javac</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="HTTP的request与response乱码问题"><a href="#HTTP的request与response乱码问题" class="headerlink" title="HTTP的request与response乱码问题"></a>HTTP的request与response乱码问题</h2><p>1.HTTP请求主要分为POST,GET两种情况。</p>
 <blockquote>
 <p>POST的情况下，如何设置数据的编码格式呢。首先可以通过<code>&lt;form accept-charset= &quot;UTF-8&quot;&gt;</code>来设置表单的编码格式。如果不设置，浏览器会直接使用网页的编码。JSP的网页编码一般通过<code>&lt;%@page pageEncoding=&quot;UTF-8&quot;%&gt;</code>来指定JSP文件的<strong>存储编码</strong>。而通过<code>&lt;%@ page contentType=&quot;text/html; charset=UTF-8&quot; %&gt;</code>来指定<strong>输出内容编码</strong>。<code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</code>这一meta设置，用来指定<strong>网页编码</strong>，这一设置同样使用于静态页面。</p>
+</blockquote>
+<blockquote>
 <p>GET情况下，参数都是放在URL内的，这时处理起来都比较麻烦。URL中的中文字符，一般都会进行<code>UrlEncode.encode()</code>处理,此时编码方式以系统默认编码为准，而在服务器端通过<code>getParameter</code>获得字符串是通过ISO-8859-1进行编码的。因此，需要从web服务器、浏览器端来同时考虑解决问题。服务器端的默认编码一般由<code>LC_ALL,LANG</code>决定的。通常可以设置为zh_CN.UTF-8。至于从浏览器端来解决，则没有统一的方法，毕竟环境多样。</p>
 </blockquote>
 <p>2.setCharacterEncoding()方法<br>这一函数用来设置HTTP请求与相应的编码。前面提到过，通过<code>getParameter()</code>获得的字符串默认是以ISO-8859-1编码的。然而，如果使用了<code>request.setCharacterEncoding()</code>,则改变了其默认编码。同理，使用了<code>response.setCharacterEncoding</code>则保证了页面输出内容的编码，告诉浏览器输出内容采用什么编码。<br>在spring的WEB项目中，有这样一个常用的filter：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>encodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这个filter，一看就知道是给编码有关，但是它具体做了哪些操作呢？源码来了：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doFilterInternal</span><span class="params">(</span></span></div><div class="line">		HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</div><div class="line">		<span class="keyword">throws</span> ServletException, IOException &#123;</div><div class="line"></div><div class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.encoding != <span class="keyword">null</span> &amp;&amp; (<span class="keyword">this</span>.forceEncoding || request.getCharacterEncoding() == <span class="keyword">null</span>)) &#123;</div><div class="line">		request.setCharacterEncoding(<span class="keyword">this</span>.encoding);</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.forceEncoding) &#123;</div><div class="line">			response.setCharacterEncoding(<span class="keyword">this</span>.encoding);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	filterChain.doFilter(request, response);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doFilterInternal</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">		HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span></span></span><br><span class="line"><span class="function">		<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.encoding != <span class="keyword">null</span> &amp;&amp; (<span class="keyword">this</span>.forceEncoding || request.getCharacterEncoding() == <span class="keyword">null</span>)) &#123;</span><br><span class="line">		request.setCharacterEncoding(<span class="keyword">this</span>.encoding);</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.forceEncoding) &#123;</span><br><span class="line">			response.setCharacterEncoding(<span class="keyword">this</span>.encoding);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	filterChain.doFilter(request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看出，就是做了request、response的setCharacterEncoding()操作，防止乱码的问题出现。</p>
 <h2 id="数据库乱码"><a href="#数据库乱码" class="headerlink" title="数据库乱码"></a>数据库乱码</h2><p>前面讲到过，乱码的原因是JVM内可能会读到外界的未知编码字符，导致在内存中的Unicode编码为乱码。显然数据库就是其中之一，并且是经常遇到的问题。<br>1.首先，数据库要支持多语言，应该考虑将数据库设置成UTF或者Unicode编码，而UTF更适合存储（UTF是变长存储的）。如果中文数据中包含的英文字符很少，建议Unicode。数据库编码设置，一般通过在配置文件设置<code>default-character-set=utf8</code>，这个在建库的时间也可以直接指定。<br>2.读库的时候，可以在JDBC连接串中指定读取编码。如<code>useUnicode=true&amp;characterEncoding=UTF-8</code>。并保证两者一致。</p>
 <h2 id="SecureCRT类似工具乱码"><a href="#SecureCRT类似工具乱码" class="headerlink" title="SecureCRT类似工具乱码"></a>SecureCRT类似工具乱码</h2><p>这种问题，通常是由于SecureCRT等客户端与LINUX环境编码不一致造成的。同样的，在这些客户端读取数据库内容进行显示出现乱码，也是由于编码不一致的问题。<br>可以通过设置客户端的编码，以及设置Linux环境的编码，使其保持一致来解决。</p>
-<p>参考文档：<a href="http://blog.csdn.net/qinysong/article/details/1179513" target="_blank" rel="external">http://blog.csdn.net/qinysong/article/details/1179513</a></p>
+<p>参考文档：<a href="http://blog.csdn.net/qinysong/article/details/1179513" target="_blank" rel="noopener">http://blog.csdn.net/qinysong/article/details/1179513</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/30/adapter-in-java/" title="设计模式：适配器（Adapter）in Java" rel="bookmark">设计模式：适配器（Adapter）in Java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/05/builder-in-java/" title="设计模式：构建者（builder） in java" rel="bookmark">设计模式：构建者（builder） in java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/08/command-in-java/" title="设计模式：命令（Command） in java" rel="bookmark">设计模式：命令（Command） in java</a></h3></div></li></ul>
     
     
     
@@ -491,14 +496,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -633,11 +638,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -762,7 +765,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

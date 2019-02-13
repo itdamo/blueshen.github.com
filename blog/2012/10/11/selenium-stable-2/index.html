@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="webdriver,selenium,stable,wait," />
+  <meta name="keywords" content="webdriver,selenium,stable,wait,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,11 +82,13 @@
 
 
 <meta name="description" content="很多页面元素都是ajax动态生成的，这就要求进行适当的等待如何进行等待呢？1.直接sleep1234567public static void sleep(int seconds) &amp;#123;	try &amp;#123;		TimeUnit.SECONDS.sleep(seconds);	&amp;#125; catch (InterruptedException e) &amp;#123;		e.printStac">
+<meta name="keywords" content="webdriver,selenium,stable,wait">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提高selenium自动化的稳定性2-等待">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="很多页面元素都是ajax动态生成的，这就要求进行适当的等待如何进行等待呢？1.直接sleep1234567public static void sleep(int seconds) &amp;#123;	try &amp;#123;		TimeUnit.SECONDS.sleep(seconds);	&amp;#125; catch (InterruptedException e) &amp;#123;		e.printStac">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-11-15T11:27:30.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提高selenium自动化的稳定性2-等待">
@@ -120,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/">
 
 
 
@@ -148,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -158,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -234,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -244,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -254,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -288,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/10/11/selenium-stable-2/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -333,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -344,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/selenium/" itemprop="url" rel="index">
                     <span itemprop="name">selenium</span>
                   </a>
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  742
+                  773
                 </span>
               
 
@@ -439,23 +441,24 @@
       
 
       
-        <h2 id="很多页面元素都是ajax动态生成的，这就要求进行适当的等待"><a href="#很多页面元素都是ajax动态生成的，这就要求进行适当的等待" class="headerlink" title="很多页面元素都是ajax动态生成的，这就要求进行适当的等待"></a>很多页面元素都是ajax动态生成的，这就要求进行适当的等待</h2><h2 id="如何进行等待呢？"><a href="#如何进行等待呢？" class="headerlink" title="如何进行等待呢？"></a>如何进行等待呢？</h2><h3 id="1-直接sleep"><a href="#1-直接sleep" class="headerlink" title="1.直接sleep"></a>1.直接sleep</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">(<span class="keyword">int</span> seconds)</span> </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		TimeUnit.SECONDS.sleep(seconds);</div><div class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h2 id="很多页面元素都是ajax动态生成的，这就要求进行适当的等待"><a href="#很多页面元素都是ajax动态生成的，这就要求进行适当的等待" class="headerlink" title="很多页面元素都是ajax动态生成的，这就要求进行适当的等待"></a>很多页面元素都是ajax动态生成的，这就要求进行适当的等待</h2><h2 id="如何进行等待呢？"><a href="#如何进行等待呢？" class="headerlink" title="如何进行等待呢？"></a>如何进行等待呢？</h2><h3 id="1-直接sleep"><a href="#1-直接sleep" class="headerlink" title="1.直接sleep"></a>1.直接sleep</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">(<span class="keyword">int</span> seconds)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		TimeUnit.SECONDS.sleep(seconds);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种方法，用于直接的让thread进行等待指定的seconds。<br><a id="more"></a></p>
-<h3 id="2-使用selenium-webdriver提供的等待方法"><a href="#2-使用selenium-webdriver提供的等待方法" class="headerlink" title="2.使用selenium webdriver提供的等待方法"></a>2.使用selenium webdriver提供的等待方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.manage().timeouts().implicitlyWait(<span class="number">10</span>, TimeUnit.SECONDS);</div></pre></td></tr></table></figure>
+<h3 id="2-使用selenium-webdriver提供的等待方法"><a href="#2-使用selenium-webdriver提供的等待方法" class="headerlink" title="2.使用selenium webdriver提供的等待方法"></a>2.使用selenium webdriver提供的等待方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.manage().timeouts().implicitlyWait(<span class="number">10</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
 <p>这种方法是webdriver提供的一种隐式等待。<br>隐式等待是指当要查找元素（<code>driver.findElement()</code>），而这个元素没有马上出现时，告诉WebDriver查询Dom一定时间。默认值是0,但是设置之后，这个时间将在WebDriver对象实例整个生命周期都起作用。<br>比如使用：<code>driver.findElement(By.id(&quot;element&quot;));</code>来查找id=”element”的元素。如果没有设置隐式等待，那么执行到这一步的时候就会直接报错<code>NoSuchElementException</code>。而设置后，则会在10秒内不断就查询元素是否存在，如果存在则返回。超过10秒仍没找到，才报错。</p>
-<h3 id="3-使用WebDriver提供的Wait-lt-T-gt-接口"><a href="#3-使用WebDriver提供的Wait-lt-T-gt-接口" class="headerlink" title="3.使用WebDriver提供的Wait&lt;T&gt;接口"></a>3.使用WebDriver提供的<code>Wait&lt;T&gt;</code>接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">FluentWait&lt;T&gt; implements Wait&lt;T&gt;</div><div class="line"></div><div class="line">Wait&lt;WebDriver&gt; wait = <span class="keyword">new</span> FluentWait&lt;WebDriver&gt;(driver)</div><div class="line">      .withTimeout(<span class="number">30</span>, SECONDS)</div><div class="line">      .pollingEvery(<span class="number">5</span>, SECONDS)</div><div class="line">      .ignoring(NoSuchElementException.class);</div><div class="line"></div><div class="line">  	WebElement element = wait.until(<span class="keyword">new</span> Function&lt;WebDriver, WebElement&gt;() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver driver)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> driver.findElement(By.id(<span class="string">"element"</span>));</div><div class="line">    &#125;</div><div class="line">  	&#125;);</div><div class="line">element.click();<span class="comment">//something to do</span></div></pre></td></tr></table></figure>
+<h3 id="3-使用WebDriver提供的Wait-lt-T-gt-接口"><a href="#3-使用WebDriver提供的Wait-lt-T-gt-接口" class="headerlink" title="3.使用WebDriver提供的Wait&lt;T&gt;接口"></a>3.使用WebDriver提供的<code>Wait&lt;T&gt;</code>接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FluentWait&lt;T&gt; implements Wait&lt;T&gt;</span><br><span class="line"></span><br><span class="line">Wait&lt;WebDriver&gt; wait = <span class="keyword">new</span> FluentWait&lt;WebDriver&gt;(driver)</span><br><span class="line">      .withTimeout(<span class="number">30</span>, SECONDS)</span><br><span class="line">      .pollingEvery(<span class="number">5</span>, SECONDS)</span><br><span class="line">      .ignoring(NoSuchElementException.class);</span><br><span class="line"></span><br><span class="line">  	WebElement element = wait.until(<span class="keyword">new</span> Function&lt;WebDriver, WebElement&gt;() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver driver)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> driver.findElement(By.id(<span class="string">"element"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  	&#125;);</span><br><span class="line">element.click();<span class="comment">//something to do</span></span><br></pre></td></tr></table></figure>
 <p>此方法用于等待一个元素在页面上出现，超时时间为30S，每隔5S去请求一次，并且忽略掉until中抛出的<code>NoSuchElementException</code>。<br>FluentWait的源码中这样写到:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Duration timeout = FIVE_HUNDRED_MILLIS;</div><div class="line"><span class="keyword">private</span> Duration interval = FIVE_HUNDRED_MILLIS;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Duration timeout = FIVE_HUNDRED_MILLIS;</span><br><span class="line"><span class="keyword">private</span> Duration interval = FIVE_HUNDRED_MILLIS;</span><br></pre></td></tr></table></figure>
 <p>因此，如果不设置<code>withTimeout</code>、<code>pollingEvery</code>则相当于等待了500ms,并且请求了一次，要使用<code>FluentWait</code>应该依据实际需要进行设置。那有没有更好的方法呢，有的，请往下看。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">WebDriverWait extends FluentWait&lt;WebDriver&gt;</div><div class="line"></div><div class="line">Wait&lt;WebDriver&gt; waiter = <span class="keyword">new</span> WebDriverWait(driver, <span class="number">10</span>);</div><div class="line">WebElement element = waiter.until(<span class="keyword">new</span> Function&lt;WebDriver, WebElement&gt;() &#123;</div><div class="line">		<span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver driver)</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> driver.findElement(By.id(<span class="string">"element"</span>));</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;);</div><div class="line">element.click();<span class="comment">//something to do</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">WebDriverWait extends FluentWait&lt;WebDriver&gt;</span><br><span class="line"></span><br><span class="line">Wait&lt;WebDriver&gt; waiter = <span class="keyword">new</span> WebDriverWait(driver, <span class="number">10</span>);</span><br><span class="line">WebElement element = waiter.until(<span class="keyword">new</span> Function&lt;WebDriver, WebElement&gt;() &#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver driver)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> driver.findElement(By.id(<span class="string">"element"</span>));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;);</span><br><span class="line">element.click();<span class="comment">//something to do</span></span><br></pre></td></tr></table></figure>
 <p><code>WebDriverWait</code>是继承于<code>FluentWait</code>的，并且实现了对功能进行了增强。从源码看出<code>WebDriverWait</code>的构造函数进行了如下的设置：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">withTimeout(timeOutInSeconds, TimeUnit.SECONDS);</div><div class="line">   pollingEvery(sleepTimeOut, TimeUnit.MILLISECONDS);</div><div class="line">   ignoring(NotFoundException.class);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">withTimeout(timeOutInSeconds, TimeUnit.SECONDS);</span><br><span class="line">   pollingEvery(sleepTimeOut, TimeUnit.MILLISECONDS);</span><br><span class="line">   ignoring(NotFoundException.class);</span><br></pre></td></tr></table></figure>
 <p>设置了超时时间、每次请求的间隔为<code>sleepTimeOut</code>（默认500ms）、忽略了<code>NotFoundException</code>。因此直接使用<code>WebDriverWait</code>更加的省事。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>WebDriver提供了很多等待机制来增加selenium自动化的稳定性，只要合理利用是可以达到理想的效果的。<br>无疑第一种方法sleep是最不可取的，是万不得已才用的一份方法，因为元素的加载与网络速度等客观因素直接相关。这个sleep的值是很难取的，值小了不行，值大了会造成case的运行速度缓慢。<br>第二种方法是从全局的角度来解决元素查找问题的，在解决通用性的问题上有一定的优势，可以考虑使用。<br>第三种方法是最好的，也是<strong>推荐</strong>的一种等待方式，很好的解决了动态元素的查找问题。</p>
 <hr>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/11/selenium-stable-1/" title="提高selenium自动化的稳定性1-点击空白区域" rel="bookmark">提高selenium自动化的稳定性1-点击空白区域</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/how-webdriver-works/" title="Selenium WebDriver 工作原理" rel="bookmark">Selenium WebDriver 工作原理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/16/pageobjects-design-pattern/" title="PageObjects 设计模式" rel="bookmark">PageObjects 设计模式</a></h3></div></li></ul>
     
     
     
@@ -473,14 +476,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -615,11 +618,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -710,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#很多页面元素都是ajax动态生成的，这就要求进行适当的等待"><span class="nav-number">1.</span> <span class="nav-text">很多页面元素都是ajax动态生成的，这就要求进行适当的等待</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行等待呢？"><span class="nav-number">2.</span> <span class="nav-text">如何进行等待呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接sleep"><span class="nav-number">2.1.</span> <span class="nav-text">1.直接sleep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用selenium-webdriver提供的等待方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.使用selenium webdriver提供的等待方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用WebDriver提供的Wait-lt-T-gt-接口"><span class="nav-number">2.3.</span> <span class="nav-text">3.使用WebDriver提供的Wait<T>接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#很多页面元素都是ajax动态生成的，这就要求进行适当的等待"><span class="nav-number">1.</span> <span class="nav-text">很多页面元素都是ajax动态生成的，这就要求进行适当的等待</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进行等待呢？"><span class="nav-number">2.</span> <span class="nav-text">如何进行等待呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接sleep"><span class="nav-number">2.1.</span> <span class="nav-text">1.直接sleep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用selenium-webdriver提供的等待方法"><span class="nav-number">2.2.</span> <span class="nav-text">2.使用selenium webdriver提供的等待方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用WebDriver提供的Wait-lt-T-gt-接口"><span class="nav-number">2.3.</span> <span class="nav-text">3.使用WebDriver提供的Wait&lt;T&gt;接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -744,7 +745,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

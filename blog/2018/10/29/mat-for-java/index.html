@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,36 +68,32 @@
 
 
 
-  <meta name="keywords" content="java,mat,OOM," />
+  <meta name="keywords" content="java,mat,OOM,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
-下载并调整MAT(Eclipse Memory Analyze Too">
+<meta name="description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt; JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125; 下载并调整MAT(Eclipse Memory Analyze Too">
+<meta name="keywords" content="java,mat,OOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用MAT来分析JAVA内存泄露">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
-下载并调整MAT(Eclipse Memory Analyze Too">
+<meta property="og:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt; JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125; 下载并调整MAT(Eclipse Memory Analyze Too">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
-<meta property="og:updated_time" content="2018-12-27T07:41:30.892Z">
+<meta property="og:updated_time" content="2018-12-27T07:41:30.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用MAT来分析JAVA内存泄露">
-<meta name="twitter:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt;
-JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125;
-下载并调整MAT(Eclipse Memory Analyze Too">
+<meta name="twitter:description" content="如何DUMP出堆栈手动dump1jmap -dump:format=b,file=&amp;lt;dumpfile.hprof&amp;gt; &amp;lt;pid&amp;gt; JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;heap.dump.path&amp;#125; 下载并调整MAT(Eclipse Memory Analyze Too">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/mat/mat-for-java.jpg">
 
 
@@ -128,7 +124,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/">
 
 
 
@@ -156,7 +152,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -166,13 +162,13 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +198,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -212,7 +208,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -222,7 +218,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -232,7 +228,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -242,7 +238,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -252,7 +248,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -262,7 +258,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -296,20 +292,20 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/10/29/mat-for-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -341,7 +337,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -352,7 +348,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/JVM/" itemprop="url" rel="index">
                     <span itemprop="name">JVM</span>
                   </a>
@@ -395,7 +391,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -410,7 +406,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  235
+                  245
                 </span>
               
 
@@ -447,23 +443,24 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
       
 
       
-        <h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;</div></pre></td></tr></table></figure>
-<h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-XX:+HeapDumpOnOutOfMemoryError</div><div class="line">-XX:HeapDumpPath=$&#123;heap.dump.path&#125;</div></pre></td></tr></table></figure>
-<h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">https://www.eclipse.org/mat/downloads.php</a></p>
+        <h3 id="如何DUMP出堆栈"><a href="#如何DUMP出堆栈" class="headerlink" title="如何DUMP出堆栈"></a>如何DUMP出堆栈</h3><h4 id="手动dump"><a href="#手动dump" class="headerlink" title="手动dump"></a>手动dump</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=&lt;dumpfile.hprof&gt; &lt;pid&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="JVM参数自动dump"><a href="#JVM参数自动dump" class="headerlink" title="JVM参数自动dump"></a>JVM参数自动dump</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:+HeapDumpOnOutOfMemoryError</span><br><span class="line">-XX:HeapDumpPath=$&#123;heap.dump.path&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下载并调整MAT-Eclipse-Memory-Analyze-Tool"><a href="#下载并调整MAT-Eclipse-Memory-Analyze-Tool" class="headerlink" title="下载并调整MAT(Eclipse Memory Analyze Tool)"></a>下载并调整MAT(Eclipse Memory Analyze Tool)</h3><p>下载地址： <a href="https://www.eclipse.org/mat/downloads.php" target="_blank" rel="noopener">https://www.eclipse.org/mat/downloads.php</a></p>
 <p><img src="/images/blog/mat/mat-for-java.jpg" alt="mat"></p>
 <p>依据不同的操作系统下载响应版本。</p>
 <a id="more"></a>
 <h3 id="解析dump出的文件"><a href="#解析dump出的文件" class="headerlink" title="解析dump出的文件"></a>解析dump出的文件</h3><p>通常情况下，dump出的文件是很大的。需要修改一下MemoryAnalyzer.ini，调大<code>-Xmx</code>参数,至少要比要分析的文件相等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-startup</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar</div><div class="line">--launcher.library</div><div class="line">../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200</div><div class="line">-vmargs</div><div class="line">-Xmx10G</div><div class="line">-Dorg.eclipse.swt.internal.carbon.smallFonts</div><div class="line">-XstartOnFirstThread</div></pre></td></tr></table></figure>
-<h3 id="无界面执行（LINUX）"><a href="#无界面执行（LINUX）" class="headerlink" title="无界面执行（LINUX）"></a>无界面执行（LINUX）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ParseHeapDump.sh $&#123;dump.prof&#125; org.eclipse.mat.api:suspects</div></pre></td></tr></table></figure>
-<p>还支持另外两个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">org.eclipse.mat.api:overview</div><div class="line">org.eclipse.mat.api:top_components</div></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-startup</span><br><span class="line">../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar</span><br><span class="line">--launcher.library</span><br><span class="line">../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200</span><br><span class="line">-vmargs</span><br><span class="line">-Xmx10G</span><br><span class="line">-Dorg.eclipse.swt.internal.carbon.smallFonts</span><br><span class="line">-XstartOnFirstThread</span><br></pre></td></tr></table></figure>
+<h3 id="无界面执行（LINUX）"><a href="#无界面执行（LINUX）" class="headerlink" title="无界面执行（LINUX）"></a>无界面执行（LINUX）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ParseHeapDump.sh $&#123;dump.prof&#125; org.eclipse.mat.api:suspects</span><br></pre></td></tr></table></figure>
+<p>还支持另外两个：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.eclipse.mat.api:overview</span><br><span class="line">org.eclipse.mat.api:top_components</span><br></pre></td></tr></table></figure></p>
 <p>执行之后，产生多个zip版html。不过这个版本，没有直接分析出来的好用，有些功能有缺失。</p>
 <hr>
 <p>其他线上问题常见分析工具：</p>
-<p><a href="https://github.com/blueshen/useful-scripts" target="_blank" rel="external">https://github.com/blueshen/useful-scripts</a></p>
+<p><a href="https://github.com/blueshen/useful-scripts" target="_blank" rel="noopener">https://github.com/blueshen/useful-scripts</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/03/27/java-encode-error-again/" title="又见Java乱码" rel="bookmark">又见Java乱码</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/mediator-in-java/" title="设计模式：中介者（mediator） in java" rel="bookmark">设计模式：中介者（mediator） in java</a></h3></div></li></ul>
     
     
     
@@ -481,14 +478,14 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -621,11 +618,9 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -750,7 +745,7 @@ JVM参数自动dump12-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=$&amp;#123;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

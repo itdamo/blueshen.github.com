@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="Java,decorator,IO," />
+  <meta name="keywords" content="Java,decorator,IO,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="1.认识装饰器模式
-装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
+<meta name="description" content="1.认识装饰器模式 装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
+<meta name="keywords" content="Java,decorator,IO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：装饰器（Decorator）in Java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/30/decorator-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="1.认识装饰器模式
-装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
+<meta property="og:description" content="1.认识装饰器模式 装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-18T02:56:19.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：装饰器（Decorator）in Java">
-<meta name="twitter:description" content="1.认识装饰器模式
-装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
+<meta name="twitter:description" content="1.认识装饰器模式 装饰模式能够实现动态的为对象添加功能，是从一个对象外部来给对象添加功能。通常给对象添加功能，要么直接修改对象添加相应的功能，要么派生对应的子类来扩展，抑或是使用对象组合的方式。显然，直接修改对应的类这种方式并不可取。在面向对象的设计中，而我们也应该尽量使用对象组合，而不是对象继承来扩展和复用功能。装饰器模式就是基于对象组合的方式，可以很灵活的给对象添加所需要的功能。装饰器模式的">
 
 
 
@@ -123,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/30/decorator-in-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/30/decorator-in-java/">
 
 
 
@@ -151,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/10/30/decorator-in-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/" itemprop="url" rel="index">
                     <span itemprop="name">设计模式</span>
                   </a>
@@ -390,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,389
+                  1,436
                 </span>
               
 
@@ -453,25 +452,26 @@
 <p>ConcreteDecorator：具体的装饰器类，实现具体要向被装饰对象添加的功能。用来装饰具体的组件对象或者另外一个具体的装饰器对象。</p>
 <p>装饰器模式的示例代码如下(Java语言描述)：</p>
 <p>   (1)组件对象的接口，可以给这些对象动态的添加职责</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Component</span> </span>&#123;  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Component</span> </span>&#123;  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>(2)具体实现组件对象接口的对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  </div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </div><div class="line">    	<span class="comment">//相应的功能处理  </span></div><div class="line">	  &#125;  </div><div class="line">  	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    	<span class="comment">//相应的功能处理  </span></span><br><span class="line">	  &#125;  </span><br><span class="line">  	&#125;</span><br></pre></td></tr></table></figure>
 <p>(3)装饰器接口，维持一个指向组件对象的接口对象， 并定义一个与组件接口一致的接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  </div><div class="line">	<span class="comment">/** </span></div><div class="line"> 	* 持有组件对象 </div><div class="line"> 	*/  </div><div class="line">	<span class="keyword">protected</span> Component component;  </div><div class="line">  </div><div class="line">	<span class="comment">/** </span></div><div class="line"> 	* 构造方法，传入组件对象 </div><div class="line"> 	* <span class="doctag">@param</span> component 组件对象 </div><div class="line">	*/  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Component component)</span> </span>&#123;  </div><div class="line">    	<span class="keyword">this</span>.component = component;  </div><div class="line">	&#125;  </div><div class="line">  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </div><div class="line">    	<span class="comment">//转发请求给组件对象，可以在转发前后执行一些附加动作  </span></div><div class="line">    	component.operation();  </div><div class="line">	&#125;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;  </span><br><span class="line">	<span class="comment">/** </span></span><br><span class="line"><span class="comment"> 	* 持有组件对象 </span></span><br><span class="line"><span class="comment"> 	*/</span>  </span><br><span class="line">	<span class="keyword">protected</span> Component component;  </span><br><span class="line">  </span><br><span class="line">	<span class="comment">/** </span></span><br><span class="line"><span class="comment"> 	* 构造方法，传入组件对象 </span></span><br><span class="line"><span class="comment"> 	* <span class="doctag">@param</span> component 组件对象 </span></span><br><span class="line"><span class="comment">	*/</span>  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Component component)</span> </span>&#123;  </span><br><span class="line">    	<span class="keyword">this</span>.component = component;  </span><br><span class="line">	&#125;  </span><br><span class="line">  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    	<span class="comment">//转发请求给组件对象，可以在转发前后执行一些附加动作  </span></span><br><span class="line">    	component.operation();  </span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>(4)装饰器的具体实现对象，向组件对象添加职责，operationFirst()，operationLast()为前后需要添加的功能。具体的装饰器类ConcreteDecoratorB代码相似，不在给出。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorA</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;  </div><div class="line">   	<span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecoratorA</span><span class="params">(Component component)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>(component);  </div><div class="line">  		&#125;  </div><div class="line">      <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">operationFirst</span><span class="params">()</span></span>&#123; &#125; <span class="comment">//在调用父类的operation方法之前需要执行的操作  </span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">operationLast</span><span class="params">()</span></span>&#123; &#125; <span class="comment">//在调用父类的operation方法之后需要执行的操作  </span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </div><div class="line">         <span class="comment">//调用父类的方法，可以在调用前后执行一些附加动作  </span></div><div class="line">          operationFirst(); <span class="comment">//添加的功能  </span></div><div class="line">          <span class="keyword">super</span>.operation();  <span class="comment">//这里可以选择性的调用父类的方法，如果不调用则相当于完全改写了方法，实现了新的功能  </span></div><div class="line">          operationLast(); <span class="comment">//添加的功能  </span></div><div class="line">  		&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorA</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;  </span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecoratorA</span><span class="params">(Component component)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>(component);  </span><br><span class="line">  		&#125;  </span><br><span class="line">      <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">operationFirst</span><span class="params">()</span></span>&#123; &#125; <span class="comment">//在调用父类的operation方法之前需要执行的操作  </span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">operationLast</span><span class="params">()</span></span>&#123; &#125; <span class="comment">//在调用父类的operation方法之后需要执行的操作  </span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">         <span class="comment">//调用父类的方法，可以在调用前后执行一些附加动作  </span></span><br><span class="line">          operationFirst(); <span class="comment">//添加的功能  </span></span><br><span class="line">          <span class="keyword">super</span>.operation();  <span class="comment">//这里可以选择性的调用父类的方法，如果不调用则相当于完全改写了方法，实现了新的功能  </span></span><br><span class="line">          operationLast(); <span class="comment">//添加的功能  </span></span><br><span class="line">  		&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>(5) 客户端使用装饰器的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span></span>&#123;  </div><div class="line">   		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </div><div class="line">    	Component c1 = <span class="keyword">new</span> ConcreteComponent (); <span class="comment">//首先创建需要被装饰的原始对象(即要被装饰的对象)  </span></div><div class="line">    	Decorator decoratorA = <span class="keyword">new</span> ConcreteDecoratorA(c1); <span class="comment">//给对象透明的增加功能A并调用  </span></div><div class="line">    	decoratorA .operation();  </div><div class="line">    	Decorator decoratorB = <span class="keyword">new</span> ConcreteDecoratorB(c1); <span class="comment">//给对象透明的增加功能B并调用  </span></div><div class="line">    	decoratorB .operation();  </div><div class="line">    	Decorator decoratorBandA = <span class="keyword">new</span> ConcreteDecoratorB(decoratorA);<span class="comment">//装饰器也可以装饰具体的装饰对象，此时相当于给对象在增加A的功能基础上在添加功能B  </span></div><div class="line">    	decoratorBandA.operation();  </div><div class="line">  		&#125;  </div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span></span>&#123;  </span><br><span class="line">   		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">    	Component c1 = <span class="keyword">new</span> ConcreteComponent (); <span class="comment">//首先创建需要被装饰的原始对象(即要被装饰的对象)  </span></span><br><span class="line">    	Decorator decoratorA = <span class="keyword">new</span> ConcreteDecoratorA(c1); <span class="comment">//给对象透明的增加功能A并调用  </span></span><br><span class="line">    	decoratorA .operation();  </span><br><span class="line">    	Decorator decoratorB = <span class="keyword">new</span> ConcreteDecoratorB(c1); <span class="comment">//给对象透明的增加功能B并调用  </span></span><br><span class="line">    	decoratorB .operation();  </span><br><span class="line">    	Decorator decoratorBandA = <span class="keyword">new</span> ConcreteDecoratorB(decoratorA);<span class="comment">//装饰器也可以装饰具体的装饰对象，此时相当于给对象在增加A的功能基础上在添加功能B  </span></span><br><span class="line">    	decoratorBandA.operation();  </span><br><span class="line">  		&#125;  </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>3.小结</p>
 <p>Java中的IO是明显的装饰器模式的运用。FilterInputStream，FilterOutputStream，FilterRead，FilterWriter分别为具体装饰器的父类，相当于Decorator类，它们分别实现了InputStream，OutputStream，Reader，Writer类(这些类相当于Component，是其他组件类的父类，也是Decorator类的父类)。继承自InputStream，OutputStream，Reader，Writer这四个类的其他类是具体的组件类，每个都有相应的功能，相当于ConcreteComponent类。而继承自FilterInputStream，FilterOutputStream，FilterRead，FilterWriter这四个类的其他类就是具体的装饰器对象类，即ConcreteDecorator类。通过这些装饰器类，可以给我们提供更加具体的有用的功能。如FileInputStream是InputStream的一个子类，从文件中读取数据流，BufferedInputStream是继承自FilterInputStream的具体的装饰器类，该类提供一个内存的缓冲区类保存输入流中的数据。我们使用如下的代码来使用BufferedInputStream装饰FileInputStream，就可以提供一个内存缓冲区来保存从文件中读取的输入流。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(file)); <span class="comment">//其中file为某个具体文件的File或者FileDescription对象</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(file)); <span class="comment">//其中file为某个具体文件的File或者FileDescription对象</span></span><br></pre></td></tr></table></figure>
 <p>在以下两种情况下可以考虑使用装饰器模式：</p>
 <p>(1)需要在不影响其他对象的情况下，以动态、透明的方式给对象添加职责。<br>(2)如果不适合使用子类来进行扩展的时候，可以考虑使用装饰器模式。</p>
 <hr>
-<p>参考文档：<a href="http://www.cnblogs.com/chenying99/archive/2012/10/05/2712524.html" target="_blank" rel="external">http://www.cnblogs.com/chenying99/archive/2012/10/05/2712524.html</a></p>
+<p>参考文档：<a href="http://www.cnblogs.com/chenying99/archive/2012/10/05/2712524.html" target="_blank" rel="noopener">http://www.cnblogs.com/chenying99/archive/2012/10/05/2712524.html</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/30/adapter-in-java/" title="设计模式：适配器（Adapter）in Java" rel="bookmark">设计模式：适配器（Adapter）in Java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/05/builder-in-java/" title="设计模式：构建者（builder） in java" rel="bookmark">设计模式：构建者（builder） in java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/08/command-in-java/" title="设计模式：命令（Command） in java" rel="bookmark">设计模式：命令（Command） in java</a></h3></div></li></ul>
     
     
     
@@ -489,14 +489,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -620,11 +620,9 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -733,7 +731,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

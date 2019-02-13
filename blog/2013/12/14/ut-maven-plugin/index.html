@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="ast,unittest,javaparser," />
+  <meta name="keywords" content="ast,unittest,javaparser,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,11 +82,13 @@
 
 
 <meta name="description" content="ut-maven-plugin简介这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序">
+<meta name="keywords" content="ast,unittest,javaparser">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ut-maven-plugin">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="ut-maven-plugin简介这是一个用来生成Unit Test模板的maven插件。使用这个插件不能彻底解决单元测试的问题，她还没有这么智能，只能按照自己的理解帮助你生成一个方法的单元测试方法框架。通过这些自动生成的代码，来提高写单元测试的生产率。《程序员修炼之道》里的提示29说：“Write Code That Writes Code”。这也是ut-maven-plugin所做的，帮助程序">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/eclipse-outline.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/eclipse-ast-view.png">
 <meta property="og:updated_time" content="2018-12-24T06:59:44.833Z">
@@ -123,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/">
 
 
 
@@ -151,7 +153,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +163,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +199,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +209,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +229,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +239,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +249,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +259,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +293,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/12/14/ut-maven-plugin/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +338,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +349,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/测试/" itemprop="url" rel="index">
                     <span itemprop="name">测试</span>
                   </a>
@@ -390,7 +392,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +407,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  951
+                  1,027
                 </span>
               
 
@@ -449,21 +451,22 @@
 <p><img src="/images/blog/2013/eclipse-outline.png" alt=""></p>
 <p>同时,Eclipse也提供的有抽象语法树视图，即ASTView。</p>
 <p><img src="/images/blog/2013/eclipse-ast-view.png" alt=""></p>
-<p>本插件选用<a href="https://code.google.com/p/javaparser/" target="_blank" rel="external">JavaParser</a>来分析源码，提取并生成测试代码。</p>
-<h3 id="如何使用这个工具？"><a href="#如何使用这个工具？" class="headerlink" title="如何使用这个工具？"></a>如何使用这个工具？</h3><p>这个插件一个被我放到了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ut-maven-plugin%22" target="_blank" rel="external">Maven Central</a>上，因此，你可以直接在pom.xml里添加上这个插件就可以了。同时建议你使用最新的版本。<br>比如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.shenyanchao.ut<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ut-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-test-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="external">spring-petclinic</a>中的代码为例。</p>
+<p>本插件选用<a href="https://code.google.com/p/javaparser/" target="_blank" rel="noopener">JavaParser</a>来分析源码，提取并生成测试代码。</p>
+<h3 id="如何使用这个工具？"><a href="#如何使用这个工具？" class="headerlink" title="如何使用这个工具？"></a>如何使用这个工具？</h3><p>这个插件一个被我放到了<a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22ut-maven-plugin%22" target="_blank" rel="noopener">Maven Central</a>上，因此，你可以直接在pom.xml里添加上这个插件就可以了。同时建议你使用最新的版本。<br>比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.shenyanchao.ut<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ut-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-test-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>source2test<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>以<a href="https://github.com/spring-projects/spring-petclinic" target="_blank" rel="noopener">spring-petclinic</a>中的代码为例。</p>
 <p>下面的Service代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</div><div class="line"><span class="keyword">import</span> org.springframework.dao.DataAccessException;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.PetType;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</div><div class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</div><div class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Collection;</div><div class="line"></div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImpl</span> <span class="keyword">implements</span> <span class="title">ClinicService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="keyword">private</span> PetRepository petRepository;</div><div class="line">    <span class="comment">//省略</span></div><div class="line">    ......</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="meta">@Transactional</span>(readOnly = <span class="keyword">true</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> Pet <span class="title">findPetById</span><span class="params">(<span class="keyword">int</span> id)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</div><div class="line">        <span class="keyword">return</span> petRepository.findById(id);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//省略</span></div><div class="line">    ......</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.dao.DataAccessException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.PetType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImpl</span> <span class="keyword">implements</span> <span class="title">ClinicService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> PetRepository petRepository;</span><br><span class="line">    <span class="comment">//省略</span></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@Transactional</span>(readOnly = <span class="keyword">true</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pet <span class="title">findPetById</span><span class="params">(<span class="keyword">int</span> id)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> petRepository.findById(id);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//省略</span></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>那么，我们自己手工写的单元测试代码有可能是这样的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service.test;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Assert;</div><div class="line"><span class="keyword">import</span> org.junit.Before;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.mockito.InjectMocks;</div><div class="line"><span class="keyword">import</span> org.mockito.Mock;</div><div class="line"><span class="keyword">import</span> org.mockito.MockitoAnnotations;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</div><div class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.service.ClinicServiceImpl;</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Matchers.anyInt;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Mockito.when;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImplTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@InjectMocks</span></div><div class="line">    <span class="keyword">private</span> ClinicServiceImpl clinicService = <span class="keyword">new</span> ClinicServiceImpl();</div><div class="line"></div><div class="line">    <span class="meta">@Mock</span></div><div class="line">    <span class="keyword">private</span> PetRepository petRepository;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initMocks</span><span class="params">()</span> </span>&#123;</div><div class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findPetByIdTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</div><div class="line">        Pet pet = clinicService.findPetById(<span class="number">1</span>);</div><div class="line">        Assert.assertNotNull(pet);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.springframework.samples.petclinic.service.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.mockito.InjectMocks;</span><br><span class="line"><span class="keyword">import</span> org.mockito.Mock;</span><br><span class="line"><span class="keyword">import</span> org.mockito.MockitoAnnotations;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.model.Pet;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.repository.PetRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.samples.petclinic.service.ClinicServiceImpl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Matchers.anyInt;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Mockito.when;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClinicServiceImplTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectMocks</span></span><br><span class="line">    <span class="keyword">private</span> ClinicServiceImpl clinicService = <span class="keyword">new</span> ClinicServiceImpl();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mock</span></span><br><span class="line">    <span class="keyword">private</span> PetRepository petRepository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initMocks</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findPetByIdTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</span><br><span class="line">        Pet pet = clinicService.findPetById(<span class="number">1</span>);</span><br><span class="line">        Assert.assertNotNull(pet);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>如果，有很多个类需要写单元测试，那么我们会发现有很多代码是具有共性的，或者是有一定规律的。但从这个类来说，我们认为大部分代码都是可以通过对源代码进行分析得到的，除了以下的业务逻辑部分：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</div><div class="line">Pet pet = clinicService.findPetById(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">when(petRepository.findById(anyInt())).thenReturn(<span class="keyword">new</span> Pet());</span><br><span class="line">Pet pet = clinicService.findPetById(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>因此余下的代码都可以由插件来完成，使得程序员直接关注于业务逻辑部分的编写。大大的提高了程序员单元测试的编写效率，甚至使程序员们爱上单测。</p>
 <p>当然，这里只是一个例子，如果能抽象出更多的共性，本插件就可以进行不断的扩展。简单的来说，有共性有规律就可以自动生成出来。随着不断的扩展，ut-maven-plugin将越来越智能化。</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/" title="使用Eclipse AST来解析Java" rel="bookmark">使用Eclipse AST来解析Java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/07/eclipse-ast/" title="Eclipse AST抽象语法树API" rel="bookmark">Eclipse AST抽象语法树API</a></h3></div></li></ul>
     
     
     
@@ -481,14 +484,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -621,11 +624,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -750,7 +751,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

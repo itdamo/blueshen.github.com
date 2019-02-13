@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,40 +68,33 @@
 
 
 
-  <meta name="keywords" content="apache,linux,mysql,tomcat,调优," />
+  <meta name="keywords" content="linux,mysql,apache,tomcat,调优,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优
-Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse
-$TOMCAT_HOME/conf/server.xml中
-12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
+<meta name="description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优 Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse $TOMCAT_HOME/conf/server.xml中 12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
+<meta name="keywords" content="linux,mysql,apache,tomcat,调优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web系统性能调优常用技巧">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/09/24/performance-tuning-in-web-test/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优
-Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse
-$TOMCAT_HOME/conf/server.xml中
-12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
+<meta property="og:description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优 Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse $TOMCAT_HOME/conf/server.xml中 12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/three-times-handshake.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/2013/four-wave.png">
-<meta property="og:updated_time" content="2018-12-20T02:22:37.598Z">
+<meta property="og:updated_time" content="2018-12-20T02:22:37.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web系统性能调优常用技巧">
-<meta name="twitter:description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优
-Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse
-$TOMCAT_HOME/conf/server.xml中
-12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
+<meta name="twitter:description" content="目标Web系统apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优 Tomcat按照官方默认配置。并发150正常;达到210时，报connection refuse $TOMCAT_HOME/conf/server.xml中 12&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;      connectionTimeou">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/2013/three-times-handshake.png">
 
 
@@ -132,7 +125,7 @@ $TOMCAT_HOME/conf/server.xml中
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/09/24/performance-tuning-in-web-test/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/09/24/performance-tuning-in-web-test/">
 
 
 
@@ -160,7 +153,7 @@ $TOMCAT_HOME/conf/server.xml中
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -170,13 +163,13 @@ $TOMCAT_HOME/conf/server.xml中
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +199,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +209,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -226,7 +219,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -236,7 +229,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -246,7 +239,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -256,7 +249,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -266,7 +259,7 @@ $TOMCAT_HOME/conf/server.xml中
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -300,20 +293,20 @@ $TOMCAT_HOME/conf/server.xml中
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/09/24/performance-tuning-in-web-test/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -345,7 +338,7 @@ $TOMCAT_HOME/conf/server.xml中
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -356,7 +349,7 @@ $TOMCAT_HOME/conf/server.xml中
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/调优/" itemprop="url" rel="index">
                     <span itemprop="name">调优</span>
                   </a>
@@ -399,7 +392,7 @@ $TOMCAT_HOME/conf/server.xml中
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -414,7 +407,7 @@ $TOMCAT_HOME/conf/server.xml中
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,337
+                  1,360
                 </span>
               
 
@@ -454,10 +447,10 @@ $TOMCAT_HOME/conf/server.xml中
         <h4 id="目标Web系统"><a href="#目标Web系统" class="headerlink" title="目标Web系统"></a>目标Web系统</h4><p>apache + tomcat + mysql + linux, 介绍如何定位瓶颈与调优</p>
 <h4 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h4><p>按照官方默认配置。<br>并发150正常;达到210时，报connection refuse</p>
 <p>$TOMCAT_HOME/conf/server.xml中</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>      <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></div><div class="line">               <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">URIEncoding</span>=<span class="string">"UTF-8"</span>/&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>      <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">URIEncoding</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>maxThreads 默认值是200<br>acceptCount 默认值是100</p>
 <p>解决方法：显式指明以上2项，并提高数值。并可配合min/maxSpareThreads</p>
-<p>参数文档： <a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html" target="_blank" rel="external">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html</a></p>
+<p>参数文档： <a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html</a></p>
 <a id="more"></a>
 <p>继续增加并发数，出现以下现象：</p>
 <ul>
@@ -478,9 +471,9 @@ $TOMCAT_HOME/conf/server.xml中
 </code></pre><p>解决方法：<br>​         $TOMCAT_HOME/bin/catalina.sh   第一行添加<br>​        export CATALINA_OPTS=”-Xmx3500m -Xms2048m -XX:PermSize=256m XX:MaxPermSize=512m -Xss128k”</p>
 <p>JAVA_OPTS   VS   CATALINA_OPTS（推荐使用）<br><strong>差别</strong>：JAVA_OPTS start run stop   适用所有JVM<br>​               CATALINA_OPTS   start run    专门配置tomcat</p>
 <p>tomcat默认-client ，production环境加-server</p>
-<p>JVM参数文档：<a href="http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm" target="_blank" rel="external">http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm</a></p>
+<p>JVM参数文档：<a href="http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm" target="_blank" rel="noopener">http://kenwublog.com/docs/java6-jvm-options-chinese-edition.htm</a></p>
 <h5 id="Tomcat-executor"><a href="#Tomcat-executor" class="headerlink" title="Tomcat executor"></a>Tomcat executor</h5><p>据信使用executor后，能在实际中有更好的性能以及稳定性！更为重要的是能在多个connector之间共用。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Executor</span> <span class="attr">name</span>=<span class="string">"tomcatThreadPool"</span> <span class="attr">namePrefix</span>=<span class="string">"catalina-exec-"</span> <span class="attr">maxThreads</span>=<span class="string">"1000"</span> <span class="attr">minSpareThreads</span>=<span class="string">"25"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">executor</span>=<span class="string">"tomcatThreadPool"</span>  <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>   <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span>  <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Executor</span> <span class="attr">name</span>=<span class="string">"tomcatThreadPool"</span> <span class="attr">namePrefix</span>=<span class="string">"catalina-exec-"</span> <span class="attr">maxThreads</span>=<span class="string">"1000"</span> <span class="attr">minSpareThreads</span>=<span class="string">"25"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">executor</span>=<span class="string">"tomcatThreadPool"</span>  <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>   <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span>  <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此时，connector再使用maxThreads等属性将被忽略。</p>
 <h5 id="Tomcat-Connector-protocol"><a href="#Tomcat-Connector-protocol" class="headerlink" title="Tomcat Connector protocol"></a>Tomcat Connector protocol</h5><ul>
 <li><p>bio   默认模式，性能低下，无任何优化，阻塞IO模式</p>
@@ -493,8 +486,8 @@ $TOMCAT_HOME/conf/server.xml中
 <p>  protocol = “org.apache.coyote.http11.Http11AprProtocol”(for http connector)<br>  protocol = “org.apache.coyote.ajp.AjpAprProtocol”  (for ajp connector)</p>
 </li>
 </ul>
-<p>参考文档：<br><http: tomcat.apache.org="" tomcat-6.0-doc="" config="" http.html#connector="" comparison=""></http:></p>
-<p><a href="http://tomcat.apache.org/tomcat-6.0-doc/config/ajp.html" target="_blank" rel="external">http://tomcat.apache.org/tomcat-6.0-doc/config/ajp.html</a></p>
+<p>参考文档：<br>&lt;<a href="http://tomcat.apache.org/tomcat-6.0-doc/config/http.html#Connector" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-6.0-doc/config/http.html#Connector</a> Comparison&gt;</p>
+<p><a href="http://tomcat.apache.org/tomcat-6.0-doc/config/ajp.html" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-6.0-doc/config/ajp.html</a></p>
 <h5 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h5><p>大并发下，响应时间如何提高，绝大部分瓶颈都处于数据库端。</p>
 <p>与数据库的连接，使用JDBC连接池</p>
 <p>slow query监控：</p>
@@ -504,10 +497,10 @@ $TOMCAT_HOME/conf/server.xml中
 </li>
 </ol>
 <p>2.使用mysqldumpslow分析log</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldumpslow -t 10 -s t  slow.log</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -t 10 -s t  slow.log</span><br></pre></td></tr></table></figure>
 <p>解决：</p>
 <ul>
-<li>1.SQL调优   （<a href="http://coolshell.cn/articles/1846.html）" target="_blank" rel="external">http://coolshell.cn/articles/1846.html）</a></li>
+<li>1.SQL调优   （<a href="http://coolshell.cn/articles/1846.html）" target="_blank" rel="noopener">http://coolshell.cn/articles/1846.html）</a></li>
 <li>2.走类似lucene索引，空间换时间（idea实际测试中，吞吐提升7倍）</li>
 <li>3.使用NoSQL?</li>
 </ul>
@@ -518,12 +511,12 @@ max_connect_errors = 10000    允许的最大连接错误量
 query_cache_size =128M    查询缓存
 query_cache_limit = 2M   小于这么大的才缓存，保护查询缓存
 sort_buffer_size =256M    排序order by 或 group by 使用
-</code></pre><p>参考：<a href="http://www.ha97.com/4110.html" target="_blank" rel="external">http://www.ha97.com/4110.html</a></p>
+</code></pre><p>参考：<a href="http://www.ha97.com/4110.html" target="_blank" rel="noopener">http://www.ha97.com/4110.html</a></p>
 <h4 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h4><p>处理静态资源，无法处理动态（需要应用服务器支持）</p>
 <p>静态资源直接交给apache处理</p>
 <p>ab 命令进行测试，达到1000并发很easy</p>
 <pre><code>ab -k -c 1000  -n 1000000  http://hostname:port/path
-</code></pre><p>参考：<a href="http://httpd.apache.org/docs/2.2/programs/ab.html" target="_blank" rel="external">http://httpd.apache.org/docs/2.2/programs/ab.html</a></p>
+</code></pre><p>参考：<a href="http://httpd.apache.org/docs/2.2/programs/ab.html" target="_blank" rel="noopener">http://httpd.apache.org/docs/2.2/programs/ab.html</a></p>
 <h5 id="开启MPM支持大并发"><a href="#开启MPM支持大并发" class="headerlink" title="开启MPM支持大并发"></a>开启MPM支持大并发</h5><table border="1px"><br><thead><br><th>Mpm模式</th><th>并发方式</th><th>内存占用</th><th>并发性能</th><br></thead><br><tbody><br><tr><br><td>prefork</td><td>进程</td><td>高</td><td>低并发下，吞吐率高</td><br></tr><br><tr><br><td>worker</td><td>进程+线程</td><td>低</td><td>支持海量并发</td><br></tr><br></tbody><br></table>
 
 <p>确定apache模式命令：</p>
@@ -535,12 +528,12 @@ worker.c
 http_core.c
 mod_so.c
 </code></pre><p>修改httpd-mpm.conf</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_worker_module</span>&gt;</span></div><div class="line">    StartServers          2</div><div class="line">    MaxClients          150</div><div class="line">    MinSpareThreads      25</div><div class="line">    MaxSpareThreads      75</div><div class="line">    ThreadsPerChild      25</div><div class="line">    MaxRequestsPerChild   0</div><div class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mpm_worker_module</span>&gt;</span></span><br><span class="line">    StartServers          2</span><br><span class="line">    MaxClients          150</span><br><span class="line">    MinSpareThreads      25</span><br><span class="line">    MaxSpareThreads      75</span><br><span class="line">    ThreadsPerChild      25</span><br><span class="line">    MaxRequestsPerChild   0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面的配置需要满足以下公式：<br>​         ThreadLimit &gt;= ThreadsPerChild<br>​         MaxClients &lt;= ServerLimit * ThreadsPerChild 必须是ThreadsPerChild的倍数<br>​         MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild</p>
 <h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><h5 id="too-many-open-files-error"><a href="#too-many-open-files-error" class="headerlink" title="too many open files error"></a>too many open files error</h5><p><code>ulimit -a</code>进行查看<br>修改<code>vi /etc/security/limits.conf</code></p>
 <p>添加：</p>
 <pre><code>*    -     nofile    65535
-</code></pre><p>参考文档：<br> <a href="http://blog.csdn.net/lifeibo/article/details/5972356" target="_blank" rel="external">http://blog.csdn.net/lifeibo/article/details/5972356</a></p>
+</code></pre><p>参考文档：<br> <a href="http://blog.csdn.net/lifeibo/article/details/5972356" target="_blank" rel="noopener">http://blog.csdn.net/lifeibo/article/details/5972356</a></p>
 <p>Http连接是基于TCP的，这个时候需要对linux服务器进行优化。<br><strong>三次握手</strong></p>
 <p><img src="/images/blog/2013/three-times-handshake.png" alt="三次握手"></p>
 <p><strong>四次挥手</strong></p>
@@ -567,11 +560,12 @@ net.ipv4.tcp_syncookies = 1    默认0，SYN队列溢出，启用cookies处理�
 net.ipv4.tcp_syn_retries = 1       新建连接发送SYN次数，默认5，180秒
 net.ipv4.tcp_synack_retries = 1    3次握手的第二步，重试几次。默认5.
 </code></pre><p><code>/sbin/sysctl -p</code>   生效</p>
-<p>参考文档：<a href="http://www.itlearner.com/article/4792" target="_blank" rel="external">http://www.itlearner.com/article/4792</a></p>
+<p>参考文档：<a href="http://www.itlearner.com/article/4792" target="_blank" rel="noopener">http://www.itlearner.com/article/4792</a></p>
 <p>备注：此文由本人在公司内做的PPT分享制作而成，内容有些省略以及跳跃。欢迎留言。</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/11/13/install-hadoop/" title="Hadoop1.2.1安装部署" rel="bookmark">Hadoop1.2.1安装部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/11/26/the-principle-of-ssh/" title="SSH原理" rel="bookmark">SSH原理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/25/epoll/" title="linux epoll模型" rel="bookmark">linux epoll模型</a></h3></div></li></ul>
     
     
     
@@ -589,14 +583,14 @@ net.ipv4.tcp_synack_retries = 1    3次握手的第二步，重试几次。默�
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -633,11 +627,11 @@ net.ipv4.tcp_synack_retries = 1    3次握手的第二步，重试几次。默�
       
         <div class="post-tags">
           
-            <a href="/tags/apache/" rel="tag"># apache</a>
-          
             <a href="/tags/linux/" rel="tag"># linux</a>
           
             <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/apache/" rel="tag"># apache</a>
           
             <a href="/tags/tomcat/" rel="tag"># tomcat</a>
           
@@ -733,11 +727,9 @@ net.ipv4.tcp_synack_retries = 1    3次握手的第二步，重试几次。默�
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -862,7 +854,7 @@ net.ipv4.tcp_synack_retries = 1    3次握手的第二步，重试几次。默�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="mysql,monitor,slowquery," />
+  <meta name="keywords" content="mysql,monitor,slowquery,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行
-123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
+<meta name="description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行 123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
+<meta name="keywords" content="mysql,monitor,slowquery">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql性能监控">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行
-123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
+<meta property="og:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行 123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-20T12:02:35.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql性能监控">
-<meta name="twitter:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行
-123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
+<meta name="twitter:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行 123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
 
 
 
@@ -123,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/">
 
 
 
@@ -151,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/01/10/mysql-monitor/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/mysql/" itemprop="url" rel="index">
                     <span itemprop="name">mysql</span>
                   </a>
@@ -390,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,293
+                  1,322
                 </span>
               
 
@@ -443,15 +442,15 @@
 
       
         <h2 id="用mysqldumpslow分析mysql的slow-query-log"><a href="#用mysqldumpslow分析mysql的slow-query-log" class="headerlink" title="用mysqldumpslow分析mysql的slow query log"></a>用mysqldumpslow分析mysql的slow query log</h2><p>mysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">long_query_time = 1</div><div class="line">log-slow-queries = /var/youpath/slow.log</div><div class="line">log-queries-not-using-indexes[这个在mysql4.10以后才被引入]</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">long_query_time = 1</span><br><span class="line">log-slow-queries = /var/youpath/slow.log</span><br><span class="line">log-queries-not-using-indexes[这个在mysql4.10以后才被引入]</span><br></pre></td></tr></table></figure>
 <p>long_query_time 是指执行超过多久的sql会被log下来，这里是1秒。<br>log-slow-queries 设置把日志写在那里，可以为空，系统会给一个缺省的文件host_name-slow.log，我生成的log就在mysql的data目录<br>log-queries-not-using-indexes 就是字面意思，log下来没有使用索引的query。<br>把上述参数打开，运行一段时间，就可以关掉了，省得影响生产环境。<br><a id="more"></a><br>接下来就是分析了，我这里的文件名字叫host-slow.log。<br>先mysqldumpslow –help以下，我主要用的是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-s ORDER what to sort by (t, at, l, al, r, ar etc), ‘at’ is default</div><div class="line">-t NUM just show the top n queries</div><div class="line">-g PATTERN grep: only consider stmts that include this string</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-s ORDER what to sort by (t, at, l, al, r, ar etc), ‘at’ is default</span><br><span class="line">-t NUM just show the top n queries</span><br><span class="line">-g PATTERN grep: only consider stmts that include this string</span><br></pre></td></tr></table></figure>
 <p>-s，是order的顺序，说明写的不够详细，俺用下来，包括看了代码，主要有<br>c,t,l,r和ac,at,al,ar，分别是按照query次数，时间，lock的时间和返回的记录数来排序，前面加了a的时倒叙<br>-t，是top n的意思，即为返回前面多少条的数据<br>-g，后边可以写一个正则匹配模式，大小写不敏感的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysqldumpslow -s c -t 20 host-slow.log</div><div class="line">mysqldumpslow -s r -t 20 host-slow.log</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -s c -t 20 host-slow.log</span><br><span class="line">mysqldumpslow -s r -t 20 host-slow.log</span><br></pre></td></tr></table></figure>
 <p>上述命令可以看出访问次数最多的20个sql语句和返回记录集最多的20个sql。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldumpslow -t 10 -s t -g “left join” host-slow.log</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -t 10 -s t -g “left join” host-slow.log</span><br></pre></td></tr></table></figure>
 <p>这个是按照时间返回前10条里面含有左连接的sql语句。<br>用了这个工具就可以查询出来那些sql语句是性能的瓶颈，进行优化，比如加索引，该应用的实现方式等。</p>
-<h2 id="linux-系统整体性能查看的方法"><a href="#linux-系统整体性能查看的方法" class="headerlink" title="linux 系统整体性能查看的方法:"></a>linux 系统整体性能查看的方法:</h2><p>vmstat 10 —–每10秒刷新一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------</div><div class="line">	r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</div><div class="line">0  0      0  56508  10968  68380    0    0   184    40 1021   88  3 14 78  5  0</div><div class="line">0  0      0  56508  10976  68376    0    0     0     3 1251   49  0  0 100  0  0</div><div class="line">	0  0      0  56508  10976  68376    0    0     0     0 1250   50  0  0 100  0  0</div><div class="line">	0  0      0  56508  10984  68376    0    0     0     4 1251   51  0  0 100  0  0</div><div class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   48  0  0 100  0  0</div><div class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   50  0  0 100  0  0</div><div class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   51  0  0 100  0  0</div><div class="line">	0  0      0  56508  10992  68376    0    0     0     2 1250   49  0  0 100  0  0</div><div class="line">	0  0      0  56508  10992  68376    0    0     0     0 1250   51  0  0 100  0  0</div></pre></td></tr></table></figure></p>
+<h2 id="linux-系统整体性能查看的方法"><a href="#linux-系统整体性能查看的方法" class="headerlink" title="linux 系统整体性能查看的方法:"></a>linux 系统整体性能查看的方法:</h2><p>vmstat 10 —–每10秒刷新一次<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------</span><br><span class="line">	r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</span><br><span class="line">0  0      0  56508  10968  68380    0    0   184    40 1021   88  3 14 78  5  0</span><br><span class="line">0  0      0  56508  10976  68376    0    0     0     3 1251   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10976  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     4 1251   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   48  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     2 1250   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br></pre></td></tr></table></figure></p>
 <p>procs:<br>r–&gt;;在运行队列中等待的进程数<br>b–&gt;;在等待io的进程数<br>w–&gt;;可以进入运行队列但被替换的进程</p>
 <p>memory<br>swap–&gt;;现时可用的交换内存（k表示）<br>free–&gt;;空闲的内存（k表示）</p>
 <p>pages<br>re－－》回收的页面<br>mf－－》非严重错误的页面<br>pi－－》进入页面数（k表示）<br>po－－》出页面数（k表示）<br>fr－－》空余的页面数（k表示）<br>de－－》提前读入的页面中的未命中数<br>sr－－》通过时钟算法扫描的页面</p>
@@ -460,16 +459,17 @@
 <p>cpu 表示cpu的使用状态<br>cs－－》用户进程使用的时间<br>sy－－》系统进程使用的时间<br>id－－》cpu空闲的时间</p>
 <p>其中:<br>如果 r经常大于 4 ，且id经常少于40，表示cpu的负荷很重。<br>如果pi，po 长期不等于0，表示内存不足。<br>如果disk 经常不等于0， 且在 b中的队列 大于3， 表示 io性能不好。</p>
 <p>每100s显示一次mysql 运行的状态:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqladmin extended -i 100 –r</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin extended -i 100 –r</span><br></pre></td></tr></table></figure>
 <p>显示mysql服务器的线程列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysqladmin -u root -p process</div><div class="line">Enter password:</div><div class="line">+----+------+-----------+----+---------+------+-------+------------------+</div><div class="line">| Id | User | Host      | db | Command | Time | State | Info             |</div><div class="line">+----+------+-----------+----+---------+------+-------+------------------+</div><div class="line">| 12 | root | localhost |    | Query   | 0    |       | show processlist |</div><div class="line">+----+------+-----------+----+---------+------+-------+------------------+</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p process</span><br><span class="line">Enter password:</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br><span class="line">| Id | User | Host      | db | Command | Time | State | Info             |</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br><span class="line">| 12 | root | localhost |    | Query   | 0    |       | show processlist |</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br></pre></td></tr></table></figure>
 <p>相关命令：</p>
-<p>一，获取mysql用户下的进程总数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | awk &apos;&#123;print $1&#125;&apos; | grep &quot;mysql&quot; | grep -v &quot;grep&quot; | wc-1</div></pre></td></tr></table></figure></p>
-<p>二，主机性能状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@ ~]# uptime</div><div class="line">13:05:52 up 53 days, 52 min,  1 user,  load average: 0.00, 0.00, 0.00</div></pre></td></tr></table></figure></p>
+<p>一，获取mysql用户下的进程总数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | awk '&#123;print $1&#125;' | grep "mysql" | grep -v "grep" | wc-1</span><br></pre></td></tr></table></figure></p>
+<p>二，主机性能状态<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ ~]# uptime</span><br><span class="line">13:05:52 up 53 days, 52 min,  1 user,  load average: 0.00, 0.00, 0.00</span><br></pre></td></tr></table></figure></p>
 <p>三，CPU使用率<br>top 或 vmstat<br>四，磁盘IO量<br>vmstat 或  iostat<br>五，swap进出量[内存]<br>free<br>六，数据库性能状态<br>(1)QPS(每秒Query量)<br>QPS = Questions(or Queries) / seconds<br>mysql &gt; show status like ‘Question’;<br>(2)TPS(每秒事务量)<br>TPS = (Com_commit + Com_rollback) / seconds<br>mysql &gt; show status like ‘Com_commit’;<br>mysql &gt; show status like ‘Com_rollback’;<br>(3)key Buffer 命中率<br>key_buffer_read_hits = (1-key_reads / key_read_requests) <em> 100%<br>key_buffer_write_hits = (1-key_writes / key_write_requests) </em> 100%<br>mysql&gt; show status like ‘Key%’;<br>(4)InnoDB Buffer命中率<br>innodb_buffer_read_hits = (1 - innodb_buffer_pool_reads / innodb_buffer_pool_read_requests) <em> 100%<br>mysql&gt; show status like ‘innodb_buffer_pool_read%’;<br>(5)Query Cache命中率<br>Query_cache_hits = (Qcahce_hits / (Qcache_hits + Qcache_inserts )) </em> 100%;<br>mysql&gt; show status like ‘Qcache%’;<br>(6)Table Cache状态量<br>mysql&gt; show status like ‘open%’;<br>(7)Thread Cache 命中率<br>Thread_cache_hits = (1 - Threads_created / connections ) * 100%<br>mysql&gt; show status like ‘Thread%’;<br>mysql&gt; show status like ‘Connections’;<br>(8)锁定状态<br>mysql&gt; show status like ‘%lock%’;<br>(9)复制延时量<br>mysql &gt; show slave status<br>(10) Tmp Table 状况(临时表状况)<br>mysql &gt; show status like ‘Create_tmp%’;<br>(11) Binlog Cache 使用状况<br>mysql &gt; show status like ‘Binlog_cache%’;<br>(12) Innodb_log_waits 量<br>mysql &gt; show status like ‘innodb_log_waits’;</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/12/04/mysqldump/" title="mysqldump命令使用" rel="bookmark">mysqldump命令使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/24/performance-tuning-in-web-test/" title="Web系统性能调优常用技巧" rel="bookmark">Web系统性能调优常用技巧</a></h3></div></li></ul>
     
     
     
@@ -487,14 +487,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -627,11 +627,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -756,7 +754,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

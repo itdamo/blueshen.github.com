@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,45 +68,32 @@
 
 
 
-  <meta name="keywords" content="selenium,grid," />
+  <meta name="keywords" content="selenium,grid,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="为什么要使用Selenium Grid ?
-分布式运行大规模的Test
-能够通过一个中央点，很容易的运行不同OS上的不同browser
-最小化对Grid的维护时间，并能充分利用虚拟设备
-
-Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta name="description" content="为什么要使用Selenium Grid ? 分布式运行大规模的Test 能够通过一个中央点，很容易的运行不同OS上的不同browser 最小化对Grid的维护时间，并能充分利用虚拟设备  Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta name="keywords" content="selenium,grid">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Selenium-Grid2 配置">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="为什么要使用Selenium Grid ?
-分布式运行大规模的Test
-能够通过一个中央点，很容易的运行不同OS上的不同browser
-最小化对Grid的维护时间，并能充分利用虚拟设备
-
-Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta property="og:description" content="为什么要使用Selenium Grid ? 分布式运行大规模的Test 能够通过一个中央点，很容易的运行不同OS上的不同browser 最小化对Grid的维护时间，并能充分利用虚拟设备  Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/selenium-grid-console.png">
 <meta property="og:updated_time" content="2018-12-20T12:07:36.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Selenium-Grid2 配置">
-<meta name="twitter:description" content="为什么要使用Selenium Grid ?
-分布式运行大规模的Test
-能够通过一个中央点，很容易的运行不同OS上的不同browser
-最小化对Grid的维护时间，并能充分利用虚拟设备
-
-Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
+<meta name="twitter:description" content="为什么要使用Selenium Grid ? 分布式运行大规模的Test 能够通过一个中央点，很容易的运行不同OS上的不同browser 最小化对Grid的维护时间，并能充分利用虚拟设备  Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责执行Tests,调用浏览器。">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/selenium-grid-console.png">
 
 
@@ -137,7 +124,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/">
 
 
 
@@ -165,7 +152,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -175,13 +162,13 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -211,7 +198,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -221,7 +208,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -231,7 +218,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -241,7 +228,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -251,7 +238,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -261,7 +248,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -271,7 +258,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -305,20 +292,20 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/01/10/selenium-grid2-config/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -350,7 +337,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -361,7 +348,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/selenium/" itemprop="url" rel="index">
                     <span itemprop="name">selenium</span>
                   </a>
@@ -404,7 +391,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -419,7 +406,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  895
+                  904
                 </span>
               
 
@@ -468,38 +455,39 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 <li>10.81.14.190</li>
 </ul>
 <p>启动Hub（10.81.14.180）:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub</div></pre></td></tr></table></figure>
-<p>在浏览器内打开：<a href="http://10.81.14.180:4444/grid/console" target="_blank" rel="external">http://10.81.14.180:4444/grid/console</a>可以查看Hub状态。也就是说Grid默认启动端口是4444，如果想切换为其他端口，则加<code>-port</code>参数。比如要切换为8888：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub  -port 8888</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub</span><br></pre></td></tr></table></figure>
+<p>在浏览器内打开：<a href="http://10.81.14.180:4444/grid/console" target="_blank" rel="noopener">http://10.81.14.180:4444/grid/console</a>可以查看Hub状态。也就是说Grid默认启动端口是4444，如果想切换为其他端口，则加<code>-port</code>参数。比如要切换为8888：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -jar  selenium-server-standalone-2.27.0.jar -role hub  -port 8888</span><br></pre></td></tr></table></figure>
 <p>启动Node（10.81.14.170）:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-2.27.0.jar -role node -hub http://10.81.14.180:8888/grid/register</div></pre></td></tr></table></figure>
-<p>同样的，也可以使用<code>-port</code>切换node端口，默认端口是5555.<br>此处的node节点，也可以作为一个单机的远程节点存在，并同时支持RC,WebDriver。浏览器输入<a href="http://10.81.14.180:8877/wd/hub" target="_blank" rel="external">http://10.81.14.180:8877/wd/hub</a>可以看到session信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone-2.27.0.jar -role node -hub http://10.81.14.180:8888/grid/register</span><br></pre></td></tr></table></figure>
+<p>同样的，也可以使用<code>-port</code>切换node端口，默认端口是5555.<br>此处的node节点，也可以作为一个单机的远程节点存在，并同时支持RC,WebDriver。浏览器输入<a href="http://10.81.14.180:8877/wd/hub" target="_blank" rel="noopener">http://10.81.14.180:8877/wd/hub</a>可以看到session信息。</p>
 <p>然后，同样的启动10.81.14.180、10.81.14.190上的Node节点。</p>
-<p>打开浏览器<a href="http://10.81.14.180:8888/grid/console" target="_blank" rel="external">http://10.81.14.180:8888/grid/console</a>,可以看到如下的界面：</p>
+<p>打开浏览器<a href="http://10.81.14.180:8888/grid/console" target="_blank" rel="noopener">http://10.81.14.180:8888/grid/console</a>,可以看到如下的界面：</p>
 <p><img src="/images/blog/selenium-grid-console.png" alt=""></p>
 <p>至此，Selenium Grid2已经配置成功了。</p>
 <h3 id="使用Grid运行Tests"><a href="#使用Grid运行Tests" class="headerlink" title="使用Grid运行Tests"></a>使用Grid运行Tests</h3><p>Selenium Grid2是向后兼容的，同时支持RC,WebDriver。<br>如果使用RC,即Selenium1，使用以下的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Selenium selenium = <span class="keyword">new</span> DefaultSelenium(“<span class="number">10.81</span>.14.180”, <span class="number">8888</span>, “*firefox”, “http:<span class="comment">//www.baidu.com”);</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Selenium selenium = <span class="keyword">new</span> DefaultSelenium(“<span class="number">10.81</span>.14.180”, <span class="number">8888</span>, “*firefox”, “http:<span class="comment">//www.baidu.com”);</span></span><br></pre></td></tr></table></figure>
 <p>使用WebDriver的话，使用以下的方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DesiredCapabilities capability = DesiredCapabilities.firefox();</div><div class="line">WebDriver driver = <span class="keyword">new</span> RemoteWebDriver(<span class="keyword">new</span> URL(<span class="string">"http://10.81.14.180:8888/wd/hub"</span>), capability);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DesiredCapabilities capability = DesiredCapabilities.firefox();</span><br><span class="line">WebDriver driver = <span class="keyword">new</span> RemoteWebDriver(<span class="keyword">new</span> URL(<span class="string">"http://10.81.14.180:8888/wd/hub"</span>), capability);</span><br></pre></td></tr></table></figure>
 <p>可以看出所有的请求都发给了Hub,然后由Hub分配给匹配的节点来执行。<br>那么，Hub是如何来分配的呢？往下看</p>
 <h3 id="Node配置"><a href="#Node配置" class="headerlink" title="Node配置"></a>Node配置</h3><p>默认，Node会启动11个浏览器实例:5 Firefox,5 Chrome, 1 Internet Explorer. 从Grid Console界面看出来，为什么每个机器上有22个实例呢？是这样的，Node为了同时支持RC与WebDriver两种协议，所以就是2＊11了。把鼠标放到各个浏览器图标上，就可以看出里面的配置区别了。<br>内容类似：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="attr">"browserName"</span>: <span class="string">"*firefox"</span>,</div><div class="line">      <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</div><div class="line">      <span class="attr">"seleniumProtocol"</span>: <span class="string">"Selenium"</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="attr">"browserName"</span>: <span class="string">"*firefox"</span>,</span><br><span class="line">      <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</span><br><span class="line">      <span class="attr">"seleniumProtocol"</span>: <span class="string">"Selenium"</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">     <span class="attr">"browserName"</span>: <span class="string">"firefox"</span>,</div><div class="line">     <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</div><div class="line">     <span class="attr">"seleniumProtocol"</span>: <span class="string">"WebDriver"</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     <span class="attr">"browserName"</span>: <span class="string">"firefox"</span>,</span><br><span class="line">     <span class="attr">"maxInstances"</span>: <span class="number">5</span>,</span><br><span class="line">     <span class="attr">"seleniumProtocol"</span>: <span class="string">"WebDriver"</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>其中，seleniumProtocol就是定义的不同协议了。</p>
 <p>如何修改Driver配置呢？可以从启动参数里操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-browser browserName=firefox,version=3.6,maxInstances=5,platform=LINUX</div></pre></td></tr></table></figure>
-<p>那Node默认启动的配置是什么呢？<br>由于如果从启动参数里，配置这个多东西，很难写的。因此，官方很人性化的提供了JSON文件来配置。也就是说默认启动的配置如下：<br><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json</a></p>
-<p><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json" target="_blank" rel="external">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-browser browserName=firefox,version=3.6,maxInstances=5,platform=LINUX</span><br></pre></td></tr></table></figure>
+<p>那Node默认启动的配置是什么呢？<br>由于如果从启动参数里，配置这个多东西，很难写的。因此，官方很人性化的提供了JSON文件来配置。也就是说默认启动的配置如下：<br><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json" target="_blank" rel="noopener">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultNode.json</a></p>
+<p><a href="http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json" target="_blank" rel="noopener">http://code.google.com/p/selenium/source/browse/trunk/java/server/src/org/openqa/grid/common/defaults/DefaultHub.json</a></p>
 <p>如果想自定义配置，直接对json文件修改，启动时，指定配置文件就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json</span><br></pre></td></tr></table></figure>
 <p>仅仅就这样就行了？从博文<a href="http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/">http://www.shenyanchao.cn/blog/2012/10/12/selenium-multiple-browser-support/</a>知道，浏览器的启动是要制定一些driver位置的，否则Node不知道怎么启动浏览器实例。因此需要进行指定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar selenium-server-standalone-2.27.0.jar -port 8877 -role node -hub http://10.81.14.180:8888/grid/register  -nodeConfig nodeconfig.json -Dwebdriver.chrome.driver=&quot;E:/selenium/chromedriver.exe&quot; -Dwebdriver.ie.driver=&quot;E:/selenium/IEDriverServer.exe&quot;</div></pre></td></tr></table></figure>
-<p>参考文档：<br><a href="http://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="external">http://code.google.com/p/selenium/wiki/Grid2</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar selenium-server-standalone-2.27.0.jar -port 8877 -role node -hub http://10.81.14.180:8888/grid/register  -nodeConfig nodeconfig.json -Dwebdriver.chrome.driver="E:/selenium/chromedriver.exe" -Dwebdriver.ie.driver="E:/selenium/IEDriverServer.exe"</span><br></pre></td></tr></table></figure>
+<p>参考文档：<br><a href="http://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="noopener">http://code.google.com/p/selenium/wiki/Grid2</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/how-webdriver-works/" title="Selenium WebDriver 工作原理" rel="bookmark">Selenium WebDriver 工作原理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/16/pageobjects-design-pattern/" title="PageObjects 设计模式" rel="bookmark">PageObjects 设计模式</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/12/selenium-faq-alerts-and-prompts/" title="selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口" rel="bookmark">selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口</a></h3></div></li></ul>
     
     
     
@@ -517,14 +505,14 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -655,11 +643,9 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -784,7 +770,7 @@ Selenium Grid 部署与启动Hub :总控节点，连接调用Node。Node: 负责
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="object," />
+  <meta name="keywords" content="object,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta name="description" content="相信大家一定在开发中见过并且写过类似这样的代码：     12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta name="keywords" content="object">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：空对象（null object） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta property="og:description" content="相信大家一定在开发中见过并且写过类似这样的代码：     12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-18T06:55:45.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：空对象（null object） in java">
-<meta name="twitter:description" content="相信大家一定在开发中见过并且写过类似这样的代码：    
-12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
+<meta name="twitter:description" content="相信大家一定在开发中见过并且写过类似这样的代码：     12345678910public Book getBook(int id) &amp;#123;      if (id &amp;lt; 0) &amp;#123;          return null;      &amp;#125;      return new Book(1, &quot;Design Pattern&quot;, 100);  &amp;#125;  Book bo">
 
 
 
@@ -123,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/">
 
 
 
@@ -151,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/11/02/null-object-in-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/" itemprop="url" rel="index">
                     <span itemprop="name">设计模式</span>
                   </a>
@@ -390,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  952
+                  1,022
                 </span>
               
 
@@ -443,27 +442,28 @@
 
       
         <p>相信大家一定在开发中见过并且写过类似这样的代码：    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Book(<span class="number">1</span>, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </div><div class="line">&#125;  </div><div class="line"></div><div class="line">Book book = getBook(-<span class="number">1</span>);  </div><div class="line"><span class="keyword">if</span> (book != <span class="keyword">null</span>) &#123;                   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Book(<span class="number">1</span>, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">Book book = getBook(-<span class="number">1</span>);  </span><br><span class="line"><span class="keyword">if</span> (book != <span class="keyword">null</span>) &#123;                   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>系统在使用对象的相关功能时，总要检查对象是否为null，如果不为null，我们才会调用它的相关方法，完成某种逻辑。这样的检查在一个系统中出现很多次，相信任何一个设计者都不愿意看到这样的情况。为了解决这种问题，我们可以可以引入空对象，这样，我们就可以摆脱大量程式化的代码，对代码的可读性也是一个飞跃。    </p>
 <a id="more"></a> 
 <p>等等，空对象是什么？它和null什么关系？<br>空对象是一个没有实质性内容的对象，但他并不为null。你可以把空对象理解为一个空箱子，这个物品还是存在的，只不过仅仅是一个壳，没有实质性的东西。<br>我们需要对原有的代码进行重构，把所有返回null的地方都替换成返回一个与之对应的空对象，然后再客户端调用时不再使用book==null这种方式判断是否为空，而是替换成book.isNull()的方式。下面我们就一步一步来实现这种模式。    </p>
 <p>首先，我们需要定义一个Nullable接口：   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Nullable</span> </span>&#123;  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 对象是否为空 </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span></span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Nullable</span> </span>&#123;  </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 对象是否为空 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个接口定义了一个isNull()的方法，来表示一个对象是否为空。<br>然后我们让Book实现此接口：    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> <span class="keyword">implements</span> <span class="title">Nullable</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </div><div class="line">    <span class="keyword">private</span> String name;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">double</span> price)</span> </span>&#123;  </div><div class="line">        <span class="keyword">this</span>.id = id;  </div><div class="line">        <span class="keyword">this</span>.name = name;  </div><div class="line">        <span class="keyword">this</span>.price = price;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 创建一个NullBook实例代表空对象 </div><div class="line">     * <span class="doctag">@return</span> </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Book <span class="title">createNullBook</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NullBook();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * setters &amp; getters </div><div class="line">     */  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> <span class="keyword">implements</span> <span class="title">Nullable</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;  </span><br><span class="line">    <span class="keyword">private</span> String name;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">double</span> price)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.id = id;  </span><br><span class="line">        <span class="keyword">this</span>.name = name;  </span><br><span class="line">        <span class="keyword">this</span>.price = price;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 创建一个NullBook实例代表空对象 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Book <span class="title">createNullBook</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> NullBook();  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * setters &amp; getters </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Book中实现了isNull()方法，并返回false；另外Book还定义了一个静态的createNullBook方法，返回了一个NullBook的实例，NullBook是什么呢，我们来看一下：   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NullBook</span> <span class="keyword">extends</span> <span class="title">Book</span> </span>&#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NullBook</span> <span class="keyword">extends</span> <span class="title">Book</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>NullBook继承了Book，并在isNull()方法中返回true，这个NullBook其实就是我们上面提到的空对象，仅仅是个空箱子而已。<br>然后我们定义一个BookService类，用以模拟获取Book的接口方法：    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </div><div class="line">            <span class="comment">//返回一个空对象  </span></div><div class="line">            <span class="keyword">return</span> Book.createNullBook();             </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Book(id, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (id &lt; <span class="number">0</span>) &#123;  </span><br><span class="line">            <span class="comment">//返回一个空对象  </span></span><br><span class="line">            <span class="keyword">return</span> Book.createNullBook();             </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Book(id, <span class="string">"Design Pattern"</span>, <span class="number">100</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在getBook(int id)中，如果<code>id&lt;0</code>时，则返回一个NullBook的实例，在客户端调用isNull()方法时则返回true，表示是空对象；如果<code>id&gt;=0</code>时，则返回一个Book的实例，在客户端调用isNull()方法时则返回false，表示对象不为空，可以调用相关方法取得数据。对于我们的客户端来讲，返回的都是一个Book类型的对象，我们并不清楚返回的到底是真正的Book实例还是空对象NullBook实例，但是我们并不担心，因为有一点可以肯定的是，我们都可以放心的调用isNull()方法，因为它会根据运行期对象的类型返回一个正确的值。   </p>
 <p>多态的最根本好处在于：你不必再向对象询问“你是什么类型”而后根据得到的答案调用对象的某个行为，你只管调用该行为就是了，其他的一切事情多态机制会为你妥善处理。    </p>
 <p>最后再来看一下客户端是如何实现对象为空的判断的：    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">        BookService service = <span class="keyword">new</span> BookService();  </div><div class="line">        Book book = service.getBook(-<span class="number">1</span>);  </div><div class="line">        <span class="keyword">if</span> (book.isNull()) &#123;  </div><div class="line">            System.out.println(<span class="string">"not found!"</span>);  </div><div class="line">        &#125; <span class="keyword">else</span> &#123;  </div><div class="line">            System.out.println(<span class="string">"name:"</span> + book.getName());  </div><div class="line">            System.out.println(<span class="string">"price:"</span> + book.getPrice());  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        BookService service = <span class="keyword">new</span> BookService();  </span><br><span class="line">        Book book = service.getBook(-<span class="number">1</span>);  </span><br><span class="line">        <span class="keyword">if</span> (book.isNull()) &#123;  </span><br><span class="line">            System.out.println(<span class="string">"not found!"</span>);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            System.out.println(<span class="string">"name:"</span> + book.getName());  </span><br><span class="line">            System.out.println(<span class="string">"price:"</span> + book.getPrice());  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<p>原文：<a href="http://blog.csdn.net/liuhe688/article/details/6586458" target="_blank" rel="external">http://blog.csdn.net/liuhe688/article/details/6586458</a></p>
+<p>原文：<a href="http://blog.csdn.net/liuhe688/article/details/6586458" target="_blank" rel="noopener">http://blog.csdn.net/liuhe688/article/details/6586458</a></p>
 
       
     </div>
+    
     
     
     
@@ -481,14 +481,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -538,8 +538,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2012/11/02/memento-in-java/" rel="next" title="设计模式:备忘录（memento） in java">
-                <i class="fa fa-chevron-left"></i> 设计模式:备忘录（memento） in java
+              <a href="/blog/2012/11/02/chain-of-responsibility-in-java/" rel="next" title="设计模式：责任链（chain of responsibility） in java">
+                <i class="fa fa-chevron-left"></i> 设计模式：责任链（chain of responsibility） in java
               </a>
             
           </div>
@@ -548,8 +548,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2012/11/02/strategy-in-java/" rel="prev" title="设计模式：策略（strategy） in java">
-                设计模式：策略（strategy） in java <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2012/11/02/memento-in-java/" rel="prev" title="设计模式:备忘录（memento） in java">
+                设计模式:备忘录（memento） in java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -608,11 +608,9 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -721,7 +719,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

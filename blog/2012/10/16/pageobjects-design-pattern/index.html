@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="webdriver,selenium,PageObjects,PageFactory," />
+  <meta name="keywords" content="webdriver,selenium,PageObjects,PageFactory,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,12 +82,14 @@
 
 
 <meta name="description" content="什么是Page Objects(翻译为：页面对象？)…简单的说，Page Objects是指UI界面上用于与用户进行交互的对象。它可以指整个页面，也可以指Page上的某个区域。Page Objects是你的test code的交互对象，是对实际UI的一种抽象模型化。通过Page Objects可以减少重复代码的编写，例如，很多页面都有同样的header，footer，navigator等部分，如果">
+<meta name="keywords" content="webdriver,selenium,PageObjects,PageFactory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PageObjects 设计模式">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="什么是Page Objects(翻译为：页面对象？)…简单的说，Page Objects是指UI界面上用于与用户进行交互的对象。它可以指整个页面，也可以指Page上的某个区域。Page Objects是你的test code的交互对象，是对实际UI的一种抽象模型化。通过Page Objects可以减少重复代码的编写，例如，很多页面都有同样的header，footer，navigator等部分，如果">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.838Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-23T08:41:02.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PageObjects 设计模式">
 <meta name="twitter:description" content="什么是Page Objects(翻译为：页面对象？)…简单的说，Page Objects是指UI界面上用于与用户进行交互的对象。它可以指整个页面，也可以指Page上的某个区域。Page Objects是你的test code的交互对象，是对实际UI的一种抽象模型化。通过Page Objects可以减少重复代码的编写，例如，很多页面都有同样的header，footer，navigator等部分，如果">
@@ -120,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/">
 
 
 
@@ -148,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -158,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -194,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -204,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -214,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -224,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -234,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -244,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -254,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -288,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/10/16/pageobjects-design-pattern/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -333,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -344,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/selenium/" itemprop="url" rel="index">
                     <span itemprop="name">selenium</span>
                   </a>
@@ -387,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,462
+                  1,562
                 </span>
               
 
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -449,7 +451,7 @@
 </ul>
 <p>自身元素很好理解，就是实实在在的页面元素。而Page Object通常也都是实现一定的功能的。就Test的开发人员来说，更关心的是Page Objects它们实现了什么交互功能，而不是其内部的实现，因此，这里的功能与开发人员理解的功能是<strong>不一样的</strong>。</p>
 <p>以用户登录为例：在登录界面，点击登录后要么成功，转向首页。要么失败，出现提示出错信息。<br>相信这是一个很容易理解的场景吧！<br>Java Code可能类似如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginPage</span> </span>&#123;</div><div class="line">	<span class="comment">//用户名录入框</span></div><div class="line">	<span class="keyword">private</span> WebElement usernameBox;</div><div class="line">	<span class="comment">//密码录入框</span></div><div class="line">	<span class="keyword">private</span> WebElement passwordBox;</div><div class="line">	<span class="comment">//提交按钮</span></div><div class="line">	<span class="keyword">private</span> WebElement submitButton;</div><div class="line"></div><div class="line">   	<span class="function"><span class="keyword">public</span> HomePage <span class="title">loginAs</span><span class="params">(String username, String password)</span> </span>&#123;</div><div class="line">		usernameBox.sendKeys(username);</div><div class="line">		passwordBox.sendKeys(password);</div><div class="line">		submitButton.submit();</div><div class="line">       	<span class="keyword">return</span> <span class="keyword">new</span> HomePage(...)</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	<span class="function"><span class="keyword">public</span> LoginPage <span class="title">loginAsExpectingError</span><span class="params">(String username, String password)</span> </span>&#123;</div><div class="line">      		 <span class="comment">//  出错的username,password 仍留在LoginPage</span></div><div class="line">  		 &#125;</div><div class="line"></div><div class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getErrorMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="comment">// 获取错误信息</span></div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginPage</span> </span>&#123;</span><br><span class="line">	<span class="comment">//用户名录入框</span></span><br><span class="line">	<span class="keyword">private</span> WebElement usernameBox;</span><br><span class="line">	<span class="comment">//密码录入框</span></span><br><span class="line">	<span class="keyword">private</span> WebElement passwordBox;</span><br><span class="line">	<span class="comment">//提交按钮</span></span><br><span class="line">	<span class="keyword">private</span> WebElement submitButton;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> HomePage <span class="title">loginAs</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">		usernameBox.sendKeys(username);</span><br><span class="line">		passwordBox.sendKeys(password);</span><br><span class="line">		submitButton.submit();</span><br><span class="line">       	<span class="keyword">return</span> <span class="keyword">new</span> HomePage(...)</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> LoginPage <span class="title">loginAsExpectingError</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">      		 <span class="comment">//  出错的username,password 仍留在LoginPage</span></span><br><span class="line">  		 &#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">getErrorMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">// 获取错误信息</span></span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>从上面可以看出，同时封装了元素以及功能。此处样例，元素是没有初始化的。可以通过类似于<code>driver.findElement()</code>的函数来直接进行初始化，另外WebDriver提供了一个PageFactory用于对PageObjects设计模式进行支持，下面将会讲到。<br>通过上面的这段代码，也展现出了一个重要的问题，那就是assertion不应该在Page Objects内部，而应该由tests进行处理。Page Objects只是返回需要验证的信息即可。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>public方法代表Page提供的功能</li>
@@ -459,27 +461,28 @@
 <li>Page Objects不用代表整个页面，可以是任意一个部分</li>
 <li>一样的操作，不同的结果应该分开（正确登录，错误登录）</li>
 </ul>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginPage</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">final</span> WebDriver driver;</div><div class="line">	<span class="comment">// 用户名录入框</span></div><div class="line">	<span class="keyword">private</span> WebElement usernameBox;</div><div class="line">	<span class="comment">// 密码录入框</span></div><div class="line">	<span class="keyword">private</span> WebElement passwordBox;</div><div class="line">	<span class="comment">// 提交按钮</span></div><div class="line">	<span class="keyword">private</span> WebElement submitButton;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LoginPage</span><span class="params">(WebDriver driver)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.driver = driver;</div><div class="line">		<span class="keyword">if</span> (!<span class="string">"Login"</span>.equals(driver.getTitle())) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"This is not the login page"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">this</span>.usernameBox = driver.findElement(By.id(<span class="string">"username"</span>));</div><div class="line">		<span class="keyword">this</span>.passwordBox = driver.findElement(By.id(<span class="string">"passwd"</span>));</div><div class="line">		<span class="keyword">this</span>.submitButton = driver.findElement(By.id(<span class="string">"login"</span>));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> HomePage <span class="title">loginAs</span><span class="params">(String username, String password)</span> </span>&#123;</div><div class="line">		usernameBox.sendKeys(username);</div><div class="line">		passwordBox.sendKeys(password);</div><div class="line">		submitButton.submit();</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HomePage(driver);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="PageFactory"><a href="#PageFactory" class="headerlink" title="PageFactory"></a>PageFactory</h2><p>从上面的样例中，有没有发现每个元素都要进行<code>driver.findElement()</code>这样的操作，写起来好累啊，一堆重复性的代码。有没有更好的，更优雅的处理方法呢？<strong><code>org.openqa.selenium.support.PageFactory</code></strong>就是用来负责处理这个的，真Happy!<br>下面以<a href="http://www.baidu.com" target="_blank" rel="external">百度搜索</a>作为样例场景，搜索一个关键字</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.openqa.selenium.WebDriver;</div><div class="line"><span class="keyword">import</span> org.openqa.selenium.WebElement;</div><div class="line"><span class="keyword">import</span> org.openqa.selenium.htmlunit.HtmlUnitDriver;</div><div class="line"><span class="keyword">import</span> org.openqa.selenium.support.PageFactory;</div><div class="line"><span class="keyword">import</span> org.slf4j.Logger;</div><div class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">	* <span class="doctag">@author</span> shenyanchao</div><div class="line">	*</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaiduSearchPage</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory</div><div class="line">		.getLogger(BaiduSearchPage.class);</div><div class="line">	<span class="keyword">private</span> WebElement wd;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchFor</span><span class="params">(String keyword)</span> </span>&#123;</div><div class="line">		wd.sendKeys(keyword);</div><div class="line">		wd.submit();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		WebDriver driver = <span class="keyword">new</span> HtmlUnitDriver();</div><div class="line">		driver.get(<span class="string">"http://www.baidu.com"</span>);</div><div class="line">		BaiduSearchPage baiduPage = PageFactory.initElements(driver,</div><div class="line">			BaiduSearchPage.class);</div><div class="line">		LOG.info(<span class="string">"before search url is:&#123;&#125;"</span>,driver.getCurrentUrl());</div><div class="line">		baiduPage.searchFor(<span class="string">"blueshen"</span>);</div><div class="line">		LOG.info(<span class="string">"after search url is:&#123;&#125;"</span>,driver.getCurrentUrl());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginPage</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> WebDriver driver;</span><br><span class="line">	<span class="comment">// 用户名录入框</span></span><br><span class="line">	<span class="keyword">private</span> WebElement usernameBox;</span><br><span class="line">	<span class="comment">// 密码录入框</span></span><br><span class="line">	<span class="keyword">private</span> WebElement passwordBox;</span><br><span class="line">	<span class="comment">// 提交按钮</span></span><br><span class="line">	<span class="keyword">private</span> WebElement submitButton;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LoginPage</span><span class="params">(WebDriver driver)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.driver = driver;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="string">"Login"</span>.equals(driver.getTitle())) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"This is not the login page"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.usernameBox = driver.findElement(By.id(<span class="string">"username"</span>));</span><br><span class="line">		<span class="keyword">this</span>.passwordBox = driver.findElement(By.id(<span class="string">"passwd"</span>));</span><br><span class="line">		<span class="keyword">this</span>.submitButton = driver.findElement(By.id(<span class="string">"login"</span>));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> HomePage <span class="title">loginAs</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">		usernameBox.sendKeys(username);</span><br><span class="line">		passwordBox.sendKeys(password);</span><br><span class="line">		submitButton.submit();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HomePage(driver);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PageFactory"><a href="#PageFactory" class="headerlink" title="PageFactory"></a>PageFactory</h2><p>从上面的样例中，有没有发现每个元素都要进行<code>driver.findElement()</code>这样的操作，写起来好累啊，一堆重复性的代码。有没有更好的，更优雅的处理方法呢？<strong><code>org.openqa.selenium.support.PageFactory</code></strong>就是用来负责处理这个的，真Happy!<br>下面以<a href="http://www.baidu.com" target="_blank" rel="noopener">百度搜索</a>作为样例场景，搜索一个关键字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.WebDriver;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.WebElement;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.htmlunit.HtmlUnitDriver;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.support.PageFactory;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	* <span class="doctag">@author</span> shenyanchao</span></span><br><span class="line"><span class="comment">	*</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaiduSearchPage</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory</span><br><span class="line">		.getLogger(BaiduSearchPage.class);</span><br><span class="line">	<span class="keyword">private</span> WebElement wd;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchFor</span><span class="params">(String keyword)</span> </span>&#123;</span><br><span class="line">		wd.sendKeys(keyword);</span><br><span class="line">		wd.submit();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		WebDriver driver = <span class="keyword">new</span> HtmlUnitDriver();</span><br><span class="line">		driver.get(<span class="string">"http://www.baidu.com"</span>);</span><br><span class="line">		BaiduSearchPage baiduPage = PageFactory.initElements(driver,</span><br><span class="line">			BaiduSearchPage.class);</span><br><span class="line">		LOG.info(<span class="string">"before search url is:&#123;&#125;"</span>,driver.getCurrentUrl());</span><br><span class="line">		baiduPage.searchFor(<span class="string">"blueshen"</span>);</span><br><span class="line">		LOG.info(<span class="string">"after search url is:&#123;&#125;"</span>,driver.getCurrentUrl());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行以上代码，发现已经可以正常运行，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">before search url is:http://www.baidu.com/</div><div class="line">......</div><div class="line">after search url is:http://www.baidu.com/s?wd=blueshen&amp;rsv_bp=0&amp;rsv_spt=3</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">before search url is:http://www.baidu.com/</span><br><span class="line">......</span><br><span class="line">after search url is:http://www.baidu.com/s?wd=blueshen&amp;rsv_bp=0&amp;rsv_spt=3</span><br></pre></td></tr></table></figure>
 <p>可见，搜索后，已经转向了正确的搜索结果页面。然而WebElement是如何初始化的呢？玄机就在<code>BaiduSearchPage baiduPage = PageFactory.initElements(driver,BaiduSearchPage.class);</code>这行代码。PageFactory负责初始化了Page里的元素，amazing，用起来就是这么的优雅。<br>那么下来，我就要问了：PageFactory是怎么定位元素的呢？</p>
 <blockquote>
 <p>原来PageFactory初始化元素有一个惯例，样例中将WebElement的名称定为wd,那么PageFactory将按类似以下的形式对其进行初始化：<br><code>driver.findElement(By.id(&quot;wd&quot;));</code><br>PageFactory认为wd是HTML元素的id或者name字段的值,并且优先从id开始查找。至此，我们终于知道怎么回事了。</p>
 </blockquote>
 <p>随着项目的变大，以及使用的更加深入，HTML元素的id，name字段并不一定唯一，并且Java Class的属性看起来都是一堆无意义的名称。这些要求我们必须要进行改进。幸好PageFactory已经提前考虑到了这一切，它支持annotations来显式定位元素。那么上述的百度搜索样例，可以修改为如下形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaiduSearchPage</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory</div><div class="line">		.getLogger(BaiduSearchPage.class);</div><div class="line">	<span class="meta">@FindBy</span>(how = How.NAME, using = <span class="string">"wd"</span>)</div><div class="line">	<span class="meta">@CacheLookup</span></div><div class="line">	<span class="keyword">private</span> WebElement serachBox;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchFor</span><span class="params">(String keyword)</span> </span>&#123;</div><div class="line">		serachBox.sendKeys(keyword);</div><div class="line">		serachBox.submit();</div><div class="line">	&#125;</div><div class="line">......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaiduSearchPage</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory</span><br><span class="line">		.getLogger(BaiduSearchPage.class);</span><br><span class="line">	<span class="meta">@FindBy</span>(how = How.NAME, using = <span class="string">"wd"</span>)</span><br><span class="line">	<span class="meta">@CacheLookup</span></span><br><span class="line">	<span class="keyword">private</span> WebElement serachBox;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">searchFor</span><span class="params">(String keyword)</span> </span>&#123;</span><br><span class="line">		serachBox.sendKeys(keyword);</span><br><span class="line">		serachBox.submit();</span><br><span class="line">	&#125;</span><br><span class="line">......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>明确的指定HOW.NAME,using=”wd”,意为查找name=”wd”的元素，并将其初始化赋值给searchBox这一有意义的属性名。其中@CacheLookup用于标识其只初始化一次，然后缓存起来备用。</p>
 <p>感觉还不够简洁吗？继续修改：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FindBy</span>(name = <span class="string">"wd"</span>)</div><div class="line">	<span class="keyword">private</span> WebElement searchBox;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FindBy</span>(name = <span class="string">"wd"</span>)</span><br><span class="line">	<span class="keyword">private</span> WebElement searchBox;</span><br></pre></td></tr></table></figure>
 <p>这是其简略模式，还支持各种定位方式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FindBy</span>(id=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(className=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(name=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(xpath=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(linkText=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(partialLinkText=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(tagName=<span class="string">"..."</span>)</div><div class="line"><span class="meta">@FindBy</span>(css=<span class="string">"..."</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FindBy</span>(id=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(className=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(name=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(xpath=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(linkText=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(partialLinkText=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(tagName=<span class="string">"..."</span>)</span><br><span class="line"><span class="meta">@FindBy</span>(css=<span class="string">"..."</span>)</span><br></pre></td></tr></table></figure>
 <p>同时支持<code>@FindBys</code>用于支持列表元素查找定位，返回<code>List&lt;WebElement&gt;</code>类型。</p>
 <p><strong>总之，利用PageObjects设计模式并且配合PageFactory使用，将使你的自动化测试优雅、易懂、易维护。</strong></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/how-webdriver-works/" title="Selenium WebDriver 工作原理" rel="bookmark">Selenium WebDriver 工作原理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/12/selenium-faq-alerts-and-prompts/" title="selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口" rel="bookmark">selenium FAQ:如何处理JavaScript弹出的alert、prompt窗口</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/12/selenium-faq-how-to-use-javascript/" title="selenium FAQ:怎么样调用Javascript？" rel="bookmark">selenium FAQ:怎么样调用Javascript？</a></h3></div></li></ul>
     
     
     
@@ -497,14 +500,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -639,11 +642,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -768,7 +769,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

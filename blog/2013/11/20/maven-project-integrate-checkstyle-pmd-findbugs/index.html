@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="checkstyle,maven,pmd,findbugs,静态代码扫描," />
+  <meta name="keywords" content="checkstyle,maven,pmd,findbugs,静态代码扫描,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="在pom.xml里添加以下maven插件配置：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
+<meta name="description" content="在pom.xml里添加以下maven插件配置： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
+<meta name="keywords" content="checkstyle,maven,pmd,findbugs,静态代码扫描">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="在pom.xml里添加以下maven插件配置：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
+<meta property="og:description" content="在pom.xml里添加以下maven插件配置： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-20T12:00:02.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描">
-<meta name="twitter:description" content="在pom.xml里添加以下maven插件配置：
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
+<meta name="twitter:description" content="在pom.xml里添加以下maven插件配置： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576&amp;lt;!-- 静态代码检查 --&amp;gt;&amp;lt;plugin&amp;g">
 
 
 
@@ -123,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/">
 
 
 
@@ -151,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/maven/" itemprop="url" rel="index">
                     <span itemprop="name">maven</span>
                   </a>
@@ -390,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  368
+                  458
                 </span>
               
 
@@ -443,20 +442,21 @@
 
       
         <p>在pom.xml里添加以下maven插件配置：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 静态代码检查 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-checkstyle-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">configLocation</span>&gt;</span>checkstyle.xml<span class="tag">&lt;/<span class="name">configLocation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includeResources</span>&gt;</span>false<span class="tag">&lt;/<span class="name">includeResources</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">violationSeverity</span>&gt;</span>info<span class="tag">&lt;/<span class="name">violationSeverity</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maxAllowedViolations</span>&gt;</span>0<span class="tag">&lt;/<span class="name">maxAllowedViolations</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">consoleOutput</span>&gt;</span>true<span class="tag">&lt;/<span class="name">consoleOutput</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">            **\/package\/**.java,**\/otherpackage\/**.java</div><div class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--     &lt;executions&gt;</span></div><div class="line">         &lt;execution&gt;</div><div class="line">             &lt;goals&gt;</div><div class="line">                 &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">             &lt;/goals&gt;</div><div class="line">             &lt;phase&gt;validate&lt;/phase&gt;</div><div class="line">         &lt;/execution&gt;</div><div class="line">     &lt;/executions&gt;--&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-pmd-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failurePriority</span>&gt;</span>5<span class="tag">&lt;/<span class="name">failurePriority</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">targetJdk</span>&gt;</span>$&#123;jdk.version&#125;<span class="tag">&lt;/<span class="name">targetJdk</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">rulesets</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">ruleset</span>&gt;</span>pmd.xml<span class="tag">&lt;/<span class="name">ruleset</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">rulesets</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/package\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/otherpackage\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--   &lt;executions&gt;</span></div><div class="line">         &lt;execution&gt;</div><div class="line">             &lt;phase&gt;package&lt;/phase&gt;</div><div class="line">             &lt;goals&gt;</div><div class="line">                 &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">             &lt;/goals&gt;</div><div class="line">         &lt;/execution&gt;</div><div class="line">     &lt;/executions&gt;--&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>findbugs-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">onlyAnalyze</span>&gt;</span></div><div class="line">            cn.shenyanchao.package.*,</div><div class="line">            cn.shenyanchao.otherpackage.*,</div><div class="line">        <span class="tag">&lt;/<span class="name">onlyAnalyze</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">includeFilterFile</span>&gt;</span>findbugs.xml<span class="tag">&lt;/<span class="name">includeFilterFile</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">failOnError</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnError</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"> <span class="comment">&lt;!--   &lt;executions&gt;</span></div><div class="line">        &lt;execution&gt;</div><div class="line">            &lt;phase&gt;package&lt;/phase&gt;</div><div class="line">            &lt;goals&gt;</div><div class="line">                &lt;goal&gt;check&lt;/goal&gt;</div><div class="line">            &lt;/goals&gt;</div><div class="line">        &lt;/execution&gt;</div><div class="line">    &lt;/executions&gt;--&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 静态代码检查 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-checkstyle-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configLocation</span>&gt;</span>checkstyle.xml<span class="tag">&lt;/<span class="name">configLocation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includeResources</span>&gt;</span>false<span class="tag">&lt;/<span class="name">includeResources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">violationSeverity</span>&gt;</span>info<span class="tag">&lt;/<span class="name">violationSeverity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">maxAllowedViolations</span>&gt;</span>0<span class="tag">&lt;/<span class="name">maxAllowedViolations</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">consoleOutput</span>&gt;</span>true<span class="tag">&lt;/<span class="name">consoleOutput</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            **\/package\/**.java,**\/otherpackage\/**.java</span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--     &lt;executions&gt;</span></span><br><span class="line"><span class="comment">         &lt;execution&gt;</span></span><br><span class="line"><span class="comment">             &lt;goals&gt;</span></span><br><span class="line"><span class="comment">                 &lt;goal&gt;check&lt;/goal&gt;</span></span><br><span class="line"><span class="comment">             &lt;/goals&gt;</span></span><br><span class="line"><span class="comment">             &lt;phase&gt;validate&lt;/phase&gt;</span></span><br><span class="line"><span class="comment">         &lt;/execution&gt;</span></span><br><span class="line"><span class="comment">     &lt;/executions&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-pmd-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">failurePriority</span>&gt;</span>5<span class="tag">&lt;/<span class="name">failurePriority</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">failOnViolation</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnViolation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetJdk</span>&gt;</span>$&#123;jdk.version&#125;<span class="tag">&lt;/<span class="name">targetJdk</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rulesets</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ruleset</span>&gt;</span>pmd.xml<span class="tag">&lt;/<span class="name">ruleset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rulesets</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/package\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/otherpackage\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--   &lt;executions&gt;</span></span><br><span class="line"><span class="comment">         &lt;execution&gt;</span></span><br><span class="line"><span class="comment">             &lt;phase&gt;package&lt;/phase&gt;</span></span><br><span class="line"><span class="comment">             &lt;goals&gt;</span></span><br><span class="line"><span class="comment">                 &lt;goal&gt;check&lt;/goal&gt;</span></span><br><span class="line"><span class="comment">             &lt;/goals&gt;</span></span><br><span class="line"><span class="comment">         &lt;/execution&gt;</span></span><br><span class="line"><span class="comment">     &lt;/executions&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>findbugs-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">onlyAnalyze</span>&gt;</span></span><br><span class="line">            cn.shenyanchao.package.*,</span><br><span class="line">            cn.shenyanchao.otherpackage.*,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">onlyAnalyze</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includeFilterFile</span>&gt;</span>findbugs.xml<span class="tag">&lt;/<span class="name">includeFilterFile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">failOnError</span>&gt;</span>true<span class="tag">&lt;/<span class="name">failOnError</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">outputEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--   &lt;executions&gt;</span></span><br><span class="line"><span class="comment">        &lt;execution&gt;</span></span><br><span class="line"><span class="comment">            &lt;phase&gt;package&lt;/phase&gt;</span></span><br><span class="line"><span class="comment">            &lt;goals&gt;</span></span><br><span class="line"><span class="comment">                &lt;goal&gt;check&lt;/goal&gt;</span></span><br><span class="line"><span class="comment">            &lt;/goals&gt;</span></span><br><span class="line"><span class="comment">        &lt;/execution&gt;</span></span><br><span class="line"><span class="comment">    &lt;/executions&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这些配置集成了checkstyle,pmd,findbugs的插件。并指明了要使用的规则集合（checkstyle.xml,pmd.xml,findbugs.xml）。<br><a id="more"></a></p>
 <h5 id="那么能否指定只扫描特定的包或者文件呢？"><a href="#那么能否指定只扫描特定的包或者文件呢？" class="headerlink" title="那么能否指定只扫描特定的包或者文件呢？"></a>那么能否指定只扫描特定的包或者文件呢？</h5><p>上面checkstyle用的是：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">    **\/package\/**.java,**\/otherpackage\/**.java</div><div class="line"><span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">    **\/package\/**.java,**\/otherpackage\/**.java</span><br><span class="line"><span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>pmd是：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">includes</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/package\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/otherpackage\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">includes</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/package\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span>&gt;</span>**\/otherpackage\/**.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>findbugs则使用的是：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">onlyAnalyze</span>&gt;</span></div><div class="line">    cn.shenyanchao.package.*,</div><div class="line">    cn.shenyanchao.otherpackage.*,</div><div class="line"><span class="tag">&lt;/<span class="name">onlyAnalyze</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">onlyAnalyze</span>&gt;</span></span><br><span class="line">    cn.shenyanchao.package.*,</span><br><span class="line">    cn.shenyanchao.otherpackage.*,</span><br><span class="line"><span class="tag">&lt;/<span class="name">onlyAnalyze</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h5 id="如何在编译期间或打包期间执行检查？"><a href="#如何在编译期间或打包期间执行检查？" class="headerlink" title="如何在编译期间或打包期间执行检查？"></a>如何在编译期间或打包期间执行检查？</h5><p>如上所示的注释掉部分，添加就可以了：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">             <span class="tag">&lt;<span class="name">goal</span>&gt;</span>check<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">         <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">goal</span>&gt;</span>check<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里的意思是在mvn 执行打包package的时候进行check操作。因此如果check不通过，那么将不会编译打包成功。</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/04/use-sonar/" title="Sonar的安装与使用" rel="bookmark">Sonar的安装与使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/11/pmd/" title="PMD静态代码检查" rel="bookmark">PMD静态代码检查</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/25/custome-checkstyle-rule/" title="自定义CheckStyle规则" rel="bookmark">自定义CheckStyle规则</a></h3></div></li></ul>
     
     
     
@@ -474,14 +474,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -618,11 +618,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -747,7 +745,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="spring,quartz,集群," />
+  <meta name="keywords" content="spring,quartz,集群,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
-1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
+<meta name="description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置 1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
+<meta name="keywords" content="spring,quartz,集群">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring中配置quartz集群">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
-1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
+<meta property="og:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置 1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-24T06:14:32.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring中配置quartz集群">
-<meta name="twitter:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置
-1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
+<meta name="twitter:description" content="为什么使用quartz集群？在服务部署一个节点的时候，quartz任务是可以正常运行的。但是如果你业务上需要部署2个或者以上的集群时，就需要处理集群之间的定时任务执行问题了。而quartz集群就是为了解决这个问题的。前提是集群的时间同步，以及共用同一个数据库。quartz集群在spring中的配置 1.导入数据库表以mysql为例，下载quartz发行版，在/docs/dbTables下找到tab">
 
 
 
@@ -123,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/">
 
 
 
@@ -151,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/06/24/quartz-cluster-with-spring/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Java/" itemprop="url" rel="index">
                     <span itemprop="name">Java</span>
                   </a>
@@ -390,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -556,10 +555,11 @@ public class TestTask extends QuartzJobBean {
 }
 </code></pre><p>由于使用MethodInvokingFactoryBean总是报seriziable错误，因此本例使用的是JobDetailBean。那这也意味着要继承QuartzJobBean。同时由于配置了JobFactory，使得可以直接注入UserService等实例。</p>
 <h4 id="5-quartz在mysql5-6下报错"><a href="#5-quartz在mysql5-6下报错" class="headerlink" title="5.quartz在mysql5.6下报错"></a>5.quartz在mysql5.6下报错</h4><pre><code>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;OPTION SQL_SELECT_LIMIT=5&apos; at line 1
-</code></pre><p>这个错误是由于mysql connector的版本太低导致的，可以通过升级版本来解决。 参见<a href="http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1" target="_blank" rel="external">http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1</a></p>
+</code></pre><p>这个错误是由于mysql connector的版本太低导致的，可以通过升级版本来解决。 参见<a href="http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1" target="_blank" rel="noopener">http://stackoverflow.com/questions/13023548/mysql-server-version-for-the-right-syntax-to-use-near-option-sql-select-limit-1</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2016/03/20/about-interface-define/" title="关于接口定义的一些想法" rel="bookmark">关于接口定义的一些想法</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/03/31/velocity-study-summary/" title="Velocity学习小结" rel="bookmark">Velocity学习小结</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/07/23/spring-cache-redis-annotation/" title="Spring Redis 注解式Cache那些事" rel="bookmark">Spring Redis 注解式Cache那些事</a></h3></div></li></ul>
     
     
     
@@ -577,14 +577,14 @@ public class TestTask extends QuartzJobBean {
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -717,11 +717,9 @@ public class TestTask extends QuartzJobBean {
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -846,7 +844,7 @@ public class TestTask extends QuartzJobBean {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

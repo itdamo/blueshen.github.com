@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,27 +68,27 @@
 
 
 
-  <meta name="keywords" content="lucene,FST,FSM,FSA," />
+  <meta name="keywords" content="lucene,FST,FSM,FSA,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
-那么开源的搜索引擎包Luce">
+<meta name="description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。 那么开源的搜索引擎包Luce">
+<meta name="keywords" content="lucene,FST,FSM,FSA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Lucene的词典FST深入剖析">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
-那么开源的搜索引擎包Luce">
+<meta property="og:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。 那么开源的搜索引擎包Luce">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-cauchy.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-set1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-set2.png">
@@ -112,8 +112,7 @@
 <meta property="og:updated_time" content="2018-12-20T11:59:20.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
-<meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。
-那么开源的搜索引擎包Luce">
+<meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。 那么开源的搜索引擎包Luce">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-cauchy.png">
 
 
@@ -144,7 +143,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/">
 
 
 
@@ -172,7 +171,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -182,13 +181,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -218,7 +217,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -228,7 +227,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -238,7 +237,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -248,7 +247,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -258,7 +257,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -268,7 +267,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -278,7 +277,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -312,20 +311,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-fst/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -357,7 +356,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -368,7 +367,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/lucene/" itemprop="url" rel="index">
                     <span itemprop="name">lucene</span>
                   </a>
@@ -411,7 +410,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -426,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,734
+                  3,810
                 </span>
               
 
@@ -611,7 +610,7 @@
 <p><img src="/images/lucene-fst/fst/lucene-fst-builder.png" alt="fst builder lucene">   </p>
 <p>Builder通过泛型T，从而可以构建包含不同类型的FST。我们重点关注属性。</p>
 <p>从其中插入数据<code>add()</code>方法看起： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Add the next input/output pair.  The provided input</span></div><div class="line">   *  must be sorted after the previous one according to</div><div class="line">   *  &#123;<span class="doctag">@link</span> IntsRef#compareTo&#125;.  It's also OK to add the same</div><div class="line">   *  input twice in a row with different outputs, as long</div><div class="line">   *  as &#123;<span class="doctag">@link</span> Outputs&#125; implements the &#123;<span class="doctag">@link</span> Outputs#merge&#125;</div><div class="line">   *  method. Note that input is fully consumed after this</div><div class="line">   *  method is returned (so caller is free to reuse), but</div><div class="line">   *  output is not.  So if your outputs are changeable (eg</div><div class="line">   *  &#123;<span class="doctag">@link</span> ByteSequenceOutputs&#125; or &#123;<span class="doctag">@link</span></div><div class="line">   *  IntSequenceOutputs&#125;) then you cannot reuse across</div><div class="line">   *  calls. */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(IntsRef input, T output)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">    <span class="comment">// prefixLenPlus1是计算出input和lastInput具有公共前缀的位置</span></div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> prefixLenPlus1 = pos1+<span class="number">1</span>;</div><div class="line"></div><div class="line">     <span class="comment">// 1.新插入的节点放到frontier数组，UnCompileNode表明是新插入的，以后还可能会变化，还未放入FST内。</span></div><div class="line">    <span class="keyword">if</span> (frontier.length &lt; input.length+<span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt;[] next = ArrayUtil.grow(frontier, input.length+<span class="number">1</span>);</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> idx=frontier.length;idx&lt;next.length;idx++) &#123;</div><div class="line">        next[idx] = <span class="keyword">new</span> UnCompiledNode&lt;&gt;(<span class="keyword">this</span>, idx);</div><div class="line">      &#125;</div><div class="line">      frontier = next;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// minimize/compile states from previous input's</span></div><div class="line">    <span class="comment">// orphan'd suffix</span></div><div class="line"></div><div class="line">    <span class="comment">// 2.从prefixLenPlus1, 进行freeze冰冻操作, 添加并构建最小FST</span></div><div class="line">    freezeTail(prefixLenPlus1);</div><div class="line"></div><div class="line">    <span class="comment">// init tail states for current input</span></div><div class="line">    <span class="comment">// 3.将当前input剩下的部分插入，构建arc转移（前缀是共用的，不用添加新的状态）。</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=prefixLenPlus1;idx&lt;=input.length;idx++) &#123;</div><div class="line">      frontier[idx-<span class="number">1</span>].addArc(input.ints[input.offset + idx - <span class="number">1</span>],</div><div class="line">                             frontier[idx]);</div><div class="line">      frontier[idx].inputCount++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">final</span> UnCompiledNode&lt;T&gt; lastNode = frontier[input.length];</div><div class="line">    <span class="keyword">if</span> (lastInput.length() != input.length || prefixLenPlus1 != input.length + <span class="number">1</span>) &#123;</div><div class="line">      lastNode.isFinal = <span class="keyword">true</span>;</div><div class="line">      lastNode.output = NO_OUTPUT;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// push conflicting outputs forward, only as far as</span></div><div class="line">    <span class="comment">// needed</span></div><div class="line">    <span class="comment">// 4.如果有冲突的话，重新分配output值</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=<span class="number">1</span>;idx&lt;prefixLenPlus1;idx++) &#123;</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; node = frontier[idx];</div><div class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; parentNode = frontier[idx-<span class="number">1</span>];</div><div class="line"></div><div class="line">      <span class="keyword">final</span> T lastOutput = parentNode.getLastOutput(input.ints[input.offset + idx - <span class="number">1</span>]);</div><div class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(lastOutput)</span></span>;</div><div class="line"></div><div class="line">      <span class="keyword">final</span> T commonOutputPrefix;</div><div class="line">      <span class="keyword">final</span> T wordSuffix;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (lastOutput != NO_OUTPUT) &#123;</div><div class="line">        <span class="comment">// 使用common方法，计算output的共同前缀</span></div><div class="line">        commonOutputPrefix = fst.outputs.common(output, lastOutput);</div><div class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(commonOutputPrefix)</span></span>;</div><div class="line">        <span class="comment">// 使用subtract方法，计算重新分配的output</span></div><div class="line">        wordSuffix = fst.outputs.subtract(lastOutput, commonOutputPrefix);</div><div class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(wordSuffix)</span></span>;</div><div class="line">        parentNode.setLastOutput(input.ints[input.offset + idx - <span class="number">1</span>], commonOutputPrefix);</div><div class="line">        node.prependOutput(wordSuffix);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        commonOutputPrefix = wordSuffix = NO_OUTPUT;</div><div class="line">      &#125;</div><div class="line">      output = fst.outputs.subtract(output, commonOutputPrefix);</div><div class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(output)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ...</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Add the next input/output pair.  The provided input</span></span><br><span class="line"><span class="comment">   *  must be sorted after the previous one according to</span></span><br><span class="line"><span class="comment">   *  &#123;<span class="doctag">@link</span> IntsRef#compareTo&#125;.  It's also OK to add the same</span></span><br><span class="line"><span class="comment">   *  input twice in a row with different outputs, as long</span></span><br><span class="line"><span class="comment">   *  as &#123;<span class="doctag">@link</span> Outputs&#125; implements the &#123;<span class="doctag">@link</span> Outputs#merge&#125;</span></span><br><span class="line"><span class="comment">   *  method. Note that input is fully consumed after this</span></span><br><span class="line"><span class="comment">   *  method is returned (so caller is free to reuse), but</span></span><br><span class="line"><span class="comment">   *  output is not.  So if your outputs are changeable (eg</span></span><br><span class="line"><span class="comment">   *  &#123;<span class="doctag">@link</span> ByteSequenceOutputs&#125; or &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment">   *  IntSequenceOutputs&#125;) then you cannot reuse across</span></span><br><span class="line"><span class="comment">   *  calls. */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(IntsRef input, T output)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// prefixLenPlus1是计算出input和lastInput具有公共前缀的位置</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> prefixLenPlus1 = pos1+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// 1.新插入的节点放到frontier数组，UnCompileNode表明是新插入的，以后还可能会变化，还未放入FST内。</span></span><br><span class="line">    <span class="keyword">if</span> (frontier.length &lt; input.length+<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt;[] next = ArrayUtil.grow(frontier, input.length+<span class="number">1</span>);</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> idx=frontier.length;idx&lt;next.length;idx++) &#123;</span><br><span class="line">        next[idx] = <span class="keyword">new</span> UnCompiledNode&lt;&gt;(<span class="keyword">this</span>, idx);</span><br><span class="line">      &#125;</span><br><span class="line">      frontier = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// minimize/compile states from previous input's</span></span><br><span class="line">    <span class="comment">// orphan'd suffix</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.从prefixLenPlus1, 进行freeze冰冻操作, 添加并构建最小FST</span></span><br><span class="line">    freezeTail(prefixLenPlus1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// init tail states for current input</span></span><br><span class="line">    <span class="comment">// 3.将当前input剩下的部分插入，构建arc转移（前缀是共用的，不用添加新的状态）。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=prefixLenPlus1;idx&lt;=input.length;idx++) &#123;</span><br><span class="line">      frontier[idx-<span class="number">1</span>].addArc(input.ints[input.offset + idx - <span class="number">1</span>],</span><br><span class="line">                             frontier[idx]);</span><br><span class="line">      frontier[idx].inputCount++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> UnCompiledNode&lt;T&gt; lastNode = frontier[input.length];</span><br><span class="line">    <span class="keyword">if</span> (lastInput.length() != input.length || prefixLenPlus1 != input.length + <span class="number">1</span>) &#123;</span><br><span class="line">      lastNode.isFinal = <span class="keyword">true</span>;</span><br><span class="line">      lastNode.output = NO_OUTPUT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// push conflicting outputs forward, only as far as</span></span><br><span class="line">    <span class="comment">// needed</span></span><br><span class="line">    <span class="comment">// 4.如果有冲突的话，重新分配output值</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> idx=<span class="number">1</span>;idx&lt;prefixLenPlus1;idx++) &#123;</span><br><span class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; node = frontier[idx];</span><br><span class="line">      <span class="keyword">final</span> UnCompiledNode&lt;T&gt; parentNode = frontier[idx-<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> T lastOutput = parentNode.getLastOutput(input.ints[input.offset + idx - <span class="number">1</span>]);</span><br><span class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(lastOutput)</span></span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> T commonOutputPrefix;</span><br><span class="line">      <span class="keyword">final</span> T wordSuffix;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (lastOutput != NO_OUTPUT) &#123;</span><br><span class="line">        <span class="comment">// 使用common方法，计算output的共同前缀</span></span><br><span class="line">        commonOutputPrefix = fst.outputs.common(output, lastOutput);</span><br><span class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(commonOutputPrefix)</span></span>;</span><br><span class="line">        <span class="comment">// 使用subtract方法，计算重新分配的output</span></span><br><span class="line">        wordSuffix = fst.outputs.subtract(lastOutput, commonOutputPrefix);</span><br><span class="line">        <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(wordSuffix)</span></span>;</span><br><span class="line">        parentNode.setLastOutput(input.ints[input.offset + idx - <span class="number">1</span>], commonOutputPrefix);</span><br><span class="line">        node.prependOutput(wordSuffix);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        commonOutputPrefix = wordSuffix = NO_OUTPUT;</span><br><span class="line">      &#125;</span><br><span class="line">      output = fst.outputs.subtract(output, commonOutputPrefix);</span><br><span class="line">      <span class="function"><span class="keyword">assert</span> <span class="title">validOutput</span><span class="params">(output)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>通过注释，我们看到input是经过排序的，也就是ordered。否则生成的就不是最小的FST。另外如果NO_OUTPUT就退化为FSA了，不用执行第4步重新分配output了。</p>
 <p>其中<code>freezeTail</code> 方法就是将不再变化的部分进行冰冻，又叫compile，把UnCompileNode，给构建进FST里。进入到FST是先进行compileNode, 然后addNode进去的。</p>
 <p>总结以下，加入节点过程：</p>
@@ -620,15 +619,15 @@
 <li>新插入input放入frontier，这里还没有加入FST</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="2">
 <li>依据当前input, 对上次插入数据进行freezeTail操作, 放入FST内</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="3">
 <li>构建input的转移（Arc）关系</li>
 </ol>
 </li>
-<li><ol>
+<li><ol start="4">
 <li>解决Output冲突，重新分配output，保证路径统一(NO_OUTPUT,不执行)</li>
 </ol>
 </li>
@@ -653,10 +652,11 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>FST，不但能<strong>共享前缀</strong>还能<strong>共享后缀</strong>。不但能判断查找的key是否存在，还能给出响应的输入output。 它在时间复杂度和空间复杂度上都做了最大程度的优化，使得Lucene能够将Term Dictionary完全加载到内存，快速的定位Term找到响应的output（posting倒排列表）。</p>
 <hr>
 <p>参考文档：   </p>
-<p><a href="http://www.cs.uvm.edu/~xwu/wie/CourseSlides/Schips-BurstTries.pdf" target="_blank" rel="external">Burst Tries</a><br><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698" target="_blank" rel="external">Direct Construction of Minimal Acyclic Subsequential Transducers</a><br><a href="https://blog.burntsushi.net/transducers/" target="_blank" rel="external">Index 1,600,000,000 Keys with Automata and Rust</a><br><a href="https://en.wikipedia.org/wiki/DFA_minimization" target="_blank" rel="external">DFA minimization WikiPedia</a><br><a href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf" target="_blank" rel="external">Smaller Representation of Finite State Automata</a><br><a href="http://blog.mikemccandless.com/2010/12/using-finite-state-transducers-in.html" target="_blank" rel="external">Using Finite State Transducers in Lucene</a></p>
+<p><a href="http://www.cs.uvm.edu/~xwu/wie/CourseSlides/Schips-BurstTries.pdf" target="_blank" rel="noopener">Burst Tries</a><br><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698" target="_blank" rel="noopener">Direct Construction of Minimal Acyclic Subsequential Transducers</a><br><a href="https://blog.burntsushi.net/transducers/" target="_blank" rel="noopener">Index 1,600,000,000 Keys with Automata and Rust</a><br><a href="https://en.wikipedia.org/wiki/DFA_minimization" target="_blank" rel="noopener">DFA minimization WikiPedia</a><br><a href="http://www.cs.put.poznan.pl/dweiss/site/publications/download/fsacomp.pdf" target="_blank" rel="noopener">Smaller Representation of Finite State Automata</a><br><a href="http://blog.mikemccandless.com/2010/12/using-finite-state-transducers-in.html" target="_blank" rel="noopener">Using Finite State Transducers in Lucene</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/04/lucene-numberic/" title="Lucene数字类型处理" rel="bookmark">Lucene数字类型处理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/10/22/tie-breaker-in-solr/" title="solr中的tie breaker" rel="bookmark">solr中的tie breaker</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/11/25/better-synonym-handling-in-solr/" title="如何在Solr中更好的处理同义词" rel="bookmark">如何在Solr中更好的处理同义词</a></h3></div></li></ul>
     
     
     
@@ -674,14 +674,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -816,11 +816,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -945,7 +943,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

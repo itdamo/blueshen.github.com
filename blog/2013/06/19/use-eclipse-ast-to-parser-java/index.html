@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="eclipse,ast," />
+  <meta name="keywords" content="eclipse,ast,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,11 +82,13 @@
 
 
 <meta name="description" content="Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。另外，Eclipse有一个AST View插件，使用这个能更加的清楚的看到解析后的效果。">
+<meta name="keywords" content="eclipse,ast">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Eclipse AST来解析Java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/06/19/use-eclipse-ast-to-parser-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。另外，Eclipse有一个AST View插件，使用这个能更加的清楚的看到解析后的效果。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/eclipse-ast-view.png">
 <meta property="og:updated_time" content="2018-10-23T08:55:34.863Z">
 <meta name="twitter:card" content="summary">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/06/19/use-eclipse-ast-to-parser-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/06/19/use-eclipse-ast-to-parser-java/">
 
 
 
@@ -150,7 +152,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -160,13 +162,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -196,7 +198,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -206,7 +208,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -216,7 +218,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -226,7 +228,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -236,7 +238,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -246,7 +248,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -256,7 +258,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -290,20 +292,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/06/19/use-eclipse-ast-to-parser-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -335,7 +337,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -346,7 +348,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
@@ -389,7 +391,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -441,7 +443,7 @@
       
 
       
-        <p>Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。<br>另外，Eclipse有一个<a href="http://www.eclipse.org/jdt/ui/astview/" target="_blank" rel="external">AST View</a>插件，使用这个能更加的清楚的看到解析后的效果。</p>
+        <p>Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。<br>另外，Eclipse有一个<a href="http://www.eclipse.org/jdt/ui/astview/" target="_blank" rel="noopener">AST View</a>插件，使用这个能更加的清楚的看到解析后的效果。</p>
 <p><img src="/images/blog/eclipse-ast-view.png" alt="Eclipse AST View"></p>
 <a id="more"></a>
 <h4 id="依赖的jar包"><a href="#依赖的jar包" class="headerlink" title="依赖的jar包"></a>依赖的jar包</h4><ul>
@@ -599,6 +601,7 @@ public class AstHelloWorld {
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/07/eclipse-ast/" title="Eclipse AST抽象语法树API" rel="bookmark">Eclipse AST抽象语法树API</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/11/pmd/" title="PMD静态代码检查" rel="bookmark">PMD静态代码检查</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/12/14/ut-maven-plugin/" title="ut-maven-plugin" rel="bookmark">ut-maven-plugin</a></h3></div></li></ul>
     
     
     
@@ -616,14 +619,14 @@ public class AstHelloWorld {
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -754,11 +757,9 @@ public class AstHelloWorld {
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -883,7 +884,7 @@ public class AstHelloWorld {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

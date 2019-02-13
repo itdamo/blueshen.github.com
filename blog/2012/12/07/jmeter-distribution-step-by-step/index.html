@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,51 +68,32 @@
 
 
 
-  <meta name="keywords" content="jmeter,分布式,压力测试," />
+  <meta name="keywords" content="jmeter,分布式,压力测试,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="环境准备
-Jmeter(本文以2.8为例)
-jdk 1.5+
-多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)
-
-工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：
-
-总控机为client，我们（用户）只与这太机器打交道。或者称">
+<meta name="description" content="环境准备 Jmeter(本文以2.8为例) jdk 1.5+ 多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)  工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：  总控机为client，我们（用户）只与这太机器打交道。或者称">
+<meta name="keywords" content="jmeter,分布式,压力测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jmeter 分布式 step by step">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/12/07/jmeter-distribution-step-by-step/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="环境准备
-Jmeter(本文以2.8为例)
-jdk 1.5+
-多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)
-
-工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：
-
-总控机为client，我们（用户）只与这太机器打交道。或者称">
+<meta property="og:description" content="环境准备 Jmeter(本文以2.8为例) jdk 1.5+ 多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)  工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：  总控机为client，我们（用户）只与这太机器打交道。或者称">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/jmeter-remote.png">
 <meta property="og:updated_time" content="2018-12-24T06:49:42.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jmeter 分布式 step by step">
-<meta name="twitter:description" content="环境准备
-Jmeter(本文以2.8为例)
-jdk 1.5+
-多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)
-
-工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：
-
-总控机为client，我们（用户）只与这太机器打交道。或者称">
+<meta name="twitter:description" content="环境准备 Jmeter(本文以2.8为例) jdk 1.5+ 多台机器(假设3台，IP分别为：10.81.14.170，10.81.14.180，10.81.14.190)  工作原理1台机器做为总控机，其他机器作为节点机。总控机器，负责将JMX脚本分发到节点机上，各个节点同时独立运行，向服务发出压力，总控机可以获取并汇总报告。定义：  总控机为client，我们（用户）只与这太机器打交道。或者称">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/blog/jmeter-remote.png">
 
 
@@ -143,7 +124,7 @@ jdk 1.5+
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/12/07/jmeter-distribution-step-by-step/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/12/07/jmeter-distribution-step-by-step/">
 
 
 
@@ -171,7 +152,7 @@ jdk 1.5+
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -181,13 +162,13 @@ jdk 1.5+
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +198,7 @@ jdk 1.5+
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +208,7 @@ jdk 1.5+
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -237,7 +218,7 @@ jdk 1.5+
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -247,7 +228,7 @@ jdk 1.5+
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -257,7 +238,7 @@ jdk 1.5+
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -267,7 +248,7 @@ jdk 1.5+
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -277,7 +258,7 @@ jdk 1.5+
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -311,20 +292,20 @@ jdk 1.5+
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/12/07/jmeter-distribution-step-by-step/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -356,7 +337,7 @@ jdk 1.5+
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -367,7 +348,7 @@ jdk 1.5+
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/jmeter/" itemprop="url" rel="index">
                     <span itemprop="name">jmeter</span>
                   </a>
@@ -410,7 +391,7 @@ jdk 1.5+
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -425,7 +406,7 @@ jdk 1.5+
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  543
+                  546
                 </span>
               
 
@@ -473,19 +454,20 @@ jdk 1.5+
 </blockquote>
 <a id="more"></a>
 <p>这个只是角度不一样，就是一个总分结构。</p>
-<h3 id="Slave配置"><a href="#Slave配置" class="headerlink" title="Slave配置"></a>Slave配置</h3><p>假设这3台机器都作为slave，那么分别在各个机器上，<br>进入%JMETER HOME%/bin/目录<br>运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">jmeter-server.bat（windows）</div><div class="line">jmeter-server.sh (linux)</div></pre></td></tr></table></figure></p>
-<h3 id="Master配置"><a href="#Master配置" class="headerlink" title="Master配置"></a>Master配置</h3><p>这里，我们以10.81.14.170作为Master,<br>进入%JMETER HOME%/bin/ 目录<br>找到jmeter.properties文件，打开并找到remote_hosts=127.0.0.1这一行，修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">remote_hosts=127.0.0.1,10.81.14.180,10.81.14.190</div></pre></td></tr></table></figure></p>
-<p>其中，IP部分指向slave,并以逗号分割。由于170这台机器同时也是slave而存在，因此直接写为127.0.0.1了。<br>在目录下执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">jmeter.bat (windows)</div><div class="line">jmeter.sh (linux)</div></pre></td></tr></table></figure></p>
+<h3 id="Slave配置"><a href="#Slave配置" class="headerlink" title="Slave配置"></a>Slave配置</h3><p>假设这3台机器都作为slave，那么分别在各个机器上，<br>进入%JMETER HOME%/bin/目录<br>运行:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jmeter-server.bat（windows）</span><br><span class="line">jmeter-server.sh (linux)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Master配置"><a href="#Master配置" class="headerlink" title="Master配置"></a>Master配置</h3><p>这里，我们以10.81.14.170作为Master,<br>进入%JMETER HOME%/bin/ 目录<br>找到jmeter.properties文件，打开并找到remote_hosts=127.0.0.1这一行，修改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remote_hosts=127.0.0.1,10.81.14.180,10.81.14.190</span><br></pre></td></tr></table></figure></p>
+<p>其中，IP部分指向slave,并以逗号分割。由于170这台机器同时也是slave而存在，因此直接写为127.0.0.1了。<br>在目录下执行：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jmeter.bat (windows)</span><br><span class="line">jmeter.sh (linux)</span><br></pre></td></tr></table></figure></p>
 <p>用来打开GUI界面。<br>点开运行-&gt;远程启动，将会看到这样的界面：</p>
 <p><img src="/images/blog/jmeter-remote.png" alt="Jmeter远程启动"></p>
 <p>从这里就可以指定哪台slave来发压力了。当然也可以选择远程全部启动了。</p>
 <h3 id="为什么要分布式发压力？"><a href="#为什么要分布式发压力？" class="headerlink" title="为什么要分布式发压力？"></a>为什么要分布式发压力？</h3><p>1.单机运行受限，网络、CPU、内存读可能是瓶颈所在；<br>2.Jmeter是纯Java的程序，受JVM的一些限制；<br>一般情况下，依据机器配置，单机的发压量为300～600，如果需要更大的并发，就需要使用分布式的多台机器同时加压。</p>
 <h3 id="配置注意事项"><a href="#配置注意事项" class="headerlink" title="配置注意事项"></a>配置注意事项</h3><p>1.尽量保证各台机器之间的jmeter版本一致<br>2.JDK／JRE要正确安装<br>3.启动端口有可能被占用了，这个需要在启动时间指定SERVER_PORT</p>
 <hr>
-<p>参考文献：<br><a href="http://jmeter.apache.org/usermanual/remote-test.html" target="_blank" rel="external">http://jmeter.apache.org/usermanual/remote-test.html</a><br><a href="http://jmeter.apache.org/usermanual/jmeter_distributed_testing_step_by_step.pdf" target="_blank" rel="external">http://jmeter.apache.org/usermanual/jmeter_distributed_testing_step_by_step.pdf</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>参考文献：<br><a href="http://jmeter.apache.org/usermanual/remote-test.html" target="_blank" rel="noopener">http://jmeter.apache.org/usermanual/remote-test.html</a><br><a href="http://jmeter.apache.org/usermanual/jmeter_distributed_testing_step_by_step.pdf" target="_blank" rel="noopener">http://jmeter.apache.org/usermanual/jmeter_distributed_testing_step_by_step.pdf</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/12/31/build-jmeter-from-sources/" title="从源码编译构建Jmeter" rel="bookmark">从源码编译构建Jmeter</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/27/raft-paper/" title="寻找一种易于理解的一致性算法(论文)" rel="bookmark">寻找一种易于理解的一致性算法(论文)</a></h3></div></li></ul>
     
     
     
@@ -503,14 +485,14 @@ jdk 1.5+
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -643,11 +625,9 @@ jdk 1.5+
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -772,7 +752,7 @@ jdk 1.5+
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

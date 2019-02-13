@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,41 +68,31 @@
 
 
 
-  <meta name="keywords" content="jenkins,hudson,ci,plugins," />
+  <meta name="keywords" content="jenkins,hudson,ci,plugins,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
-123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources)
-说明：
-
-1.插件的后缀为”.hpi”,文件名">
+<meta name="description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下： 123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources) 说明：  1.插件的后缀为”.hpi”,文件名">
+<meta name="keywords" content="jenkins,hudson,ci,plugins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开始第一个Jenkins Plugin">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
-123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources)
-说明：
-
-1.插件的后缀为”.hpi”,文件名">
-<meta property="og:updated_time" content="2018-12-24T06:47:59.943Z">
+<meta property="og:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下： 123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources) 说明：  1.插件的后缀为”.hpi”,文件名">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-24T06:47:59.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开始第一个Jenkins Plugin">
-<meta name="twitter:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：
-123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources)
-说明：
-
-1.插件的后缀为”.hpi”,文件名">
+<meta name="twitter:description" content="一 Jenkins插件的结构Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下： 123456789xxx.hpi+- META-INF|	+-MANIFEST.MF+- WEB-INF|	+- classes|		+- index.jelly|		+- XXXX.class|	+- lib+-	(static resources) 说明：  1.插件的后缀为”.hpi”,文件名">
 
 
 
@@ -132,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/">
 
 
 
@@ -160,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -170,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -226,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -236,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -246,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -256,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -266,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -300,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/03/22/jenkins-plugin-start/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -345,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -356,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/jenkins/" itemprop="url" rel="index">
                     <span itemprop="name">jenkins</span>
                   </a>
@@ -399,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -414,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,400
+                  1,450
                 </span>
               
 
@@ -452,7 +442,7 @@
 
       
         <h2 id="一-Jenkins插件的结构"><a href="#一-Jenkins插件的结构" class="headerlink" title="一 Jenkins插件的结构"></a>一 Jenkins插件的结构</h2><p>Jenkins插件实际上是一个按照一定规则组织的jar包，其结构如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">xxx.hpi</div><div class="line">+- META-INF</div><div class="line">|	+-MANIFEST.MF</div><div class="line">+- WEB-INF</div><div class="line">|	+- classes</div><div class="line">|		+- index.jelly</div><div class="line">|		+- XXXX.class</div><div class="line">|	+- lib</div><div class="line">+-	(static resources)</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">xxx.hpi</span><br><span class="line">+- META-INF</span><br><span class="line">|	+-MANIFEST.MF</span><br><span class="line">+- WEB-INF</span><br><span class="line">|	+- classes</span><br><span class="line">|		+- index.jelly</span><br><span class="line">|		+- XXXX.class</span><br><span class="line">|	+- lib</span><br><span class="line">+-	(static resources)</span><br></pre></td></tr></table></figure>
 <p>说明：</p>
 <ul>
 <li>1.插件的后缀为”.hpi”,文件名（xxx部分）是插件的简写名字，用来区分插件。</li>
@@ -476,7 +466,7 @@ CLASSPATH = ...;%M2%
 PATH = ...;%M2%
 </code></pre><p>可以通过<code>mvn --version</code>,查看maven是否配置成功。</p>
 <h4 id="2-1-3-Maven开发环境的配置"><a href="#2-1-3-Maven开发环境的配置" class="headerlink" title="2.1.3 Maven开发环境的配置"></a>2.1.3 Maven开发环境的配置</h4><p>在~/.m2/settings.xml中，或者/maven/conf/settings.xml中，配置如下的Jenkins库依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.jenkins-ci.tools<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- Give access to Jenkins plugins --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>jenkins<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span> <span class="comment">&lt;!-- change this to false, if you don't like to have it on per default --&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>m.g.o-public<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.jenkins-ci.tools<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Give access to Jenkins plugins --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>jenkins<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span> <span class="comment">&lt;!-- change this to false, if you don't like to have it on per default --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo.jenkins-ci.org<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.jenkins-ci.org/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>m.g.o-public<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="2-2-生成插件的框架程序"><a href="#2-2-生成插件的框架程序" class="headerlink" title="2.2 生成插件的框架程序"></a>2.2 生成插件的框架程序</h3><p>配置好maven后，即可使用maven命令建立插件的框架，并且命令行会提示你输入groupId和artifactId：</p>
 <pre><code>mvn hpi:create
 
@@ -519,7 +509,7 @@ public boolean perform(AbstractBuild build, Launcher launcher, BuildListener lis
     return true;
 }
 </code></pre><p>根据注释可以了解：该处是你在Job进行构建时进行操作的地方，并且这里可以根据你在配置中的设置执行你需要的工作。通常，根据需要修改perform函数即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">传入数据的检查</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">public</span> FormValidation <span class="title">doCheckName</span><span class="params">(@QueryParameter String value)</span></span></div><div class="line">                <span class="keyword">throws</span> IOException, ServletException &#123;</div><div class="line">            <span class="keyword">if</span> (value.length() == <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> FormValidation.error(<span class="string">"Please set a name"</span>);</div><div class="line">            <span class="keyword">if</span> (value.length() &lt; <span class="number">4</span>)</div><div class="line">                <span class="keyword">return</span> FormValidation.warning(<span class="string">"Isn't the name too short?"</span>);</div><div class="line">            <span class="keyword">return</span> FormValidation.ok();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">传入数据的检查</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> FormValidation <span class="title">doCheckName</span><span class="params">(@QueryParameter String value)</span></span></span><br><span class="line"><span class="function">                <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (value.length() == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> FormValidation.error(<span class="string">"Please set a name"</span>);</span><br><span class="line">            <span class="keyword">if</span> (value.length() &lt; <span class="number">4</span>)</span><br><span class="line">                <span class="keyword">return</span> FormValidation.warning(<span class="string">"Isn't the name too short?"</span>);</span><br><span class="line">            <span class="keyword">return</span> FormValidation.ok();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>在该函数中，实现在配置页面中填写内容时，进行校验的过程。如函数所述，当填入内容为空时，提示：Please set a name。你可以根据你的需要进行逻辑的控制。</p>
 <h3 id="2-3-转换为eclipse工程"><a href="#2-3-转换为eclipse工程" class="headerlink" title="2.3 转换为eclipse工程"></a>2.3 转换为eclipse工程</h3><p>为了便于在编辑器中进行修改，我们需要将生成的maven代码转化为eclipse工程，使用的命令如下：</p>
 <pre><code>mvn eclipse:eclipse
@@ -532,15 +522,16 @@ mvn -DdownloadSources=true -DdownloadJavadocs=true -DoutputDirectory=target/ecli
 mvn package
 </code></pre><p>其中mvn install 生成hpi文件，并放置到本地maven仓库中，mvn package只进行打包操作。</p>
 <h3 id="2-5-使用-hpl进行调试"><a href="#2-5-使用-hpl进行调试" class="headerlink" title="2.5 使用.hpl进行调试"></a>2.5 使用.hpl进行调试</h3><p>maven中使用<code>.hpl（hudson plugin link）</code>格式来进行插件的调试。hpl文件中只包含一个链接，链接到类似<code>META-INF/MANIFEST.MF</code>的说明文件<code>../path/to/your/plugin/workspace/manifest-debug.mf</code>。该文件其中额外定义了一些属性来指定文件目录位置,这样资源的修改可以立即生效（需要配置stapler.jelly.noCache=true），不需要重新打包安装。<br>在maven中可以使用命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn hpi:hpl -DhudsonHome=/...</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn hpi:hpl -DhudsonHome=/...</span><br></pre></td></tr></table></figure>
 <h3 id="2-6-使用-hpi进行测试"><a href="#2-6-使用-hpi进行测试" class="headerlink" title="2.6 使用.hpi进行测试"></a>2.6 使用.hpi进行测试</h3><p>在调试通过后，可以使用.hpi文件来启动jenkins,查看结果，命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn hpi:run -DhudsonHome=/...</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn hpi:run -DhudsonHome=/...</span><br></pre></td></tr></table></figure>
 <p>说明：-DhudsonHome可以不选，默认Jenkins安装到工程的./target目录中。</p>
 <hr>
 <p>致谢:lizejun</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/03/27/java-encode-error-again/" title="又见Java乱码" rel="bookmark">又见Java乱码</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/04/01/run-karma-in-jenkins-ci/" title="Karma与Jenkins-CI集成" rel="bookmark">Karma与Jenkins-CI集成</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/03/12/testacular-in-brief/" title="Karma  or Testacular 简介" rel="bookmark">Karma  or Testacular 简介</a></h3></div></li></ul>
     
     
     
@@ -558,14 +549,14 @@ mvn package
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -700,11 +691,9 @@ mvn package
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -829,7 +818,7 @@ mvn package
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

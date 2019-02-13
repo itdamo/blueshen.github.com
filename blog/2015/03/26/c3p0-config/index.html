@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="c3p0,dhcp," />
+  <meta name="keywords" content="c3p0,dhcp,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。
-C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
+<meta name="description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。 C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
+<meta name="keywords" content="c3p0,dhcp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于C3P0容错和自动重连特性的研究">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。
-C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
+<meta property="og:description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。 C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-27T07:42:28.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于C3P0容错和自动重连特性的研究">
-<meta name="twitter:description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。
-C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
+<meta name="twitter:description" content="最近常有数据库和网络设备升级和搬迁等事情，而各个应用都是基于数据库连接池做的，大部分都是基于C3P0，数据库或网络状况的变动都会导致客户端连接池中的connection失效，如何剔除这些blocked connection就和C3P0的各个配置息息相关。 C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure ：true表示pool向数据库请求连接失败后标记整个">
 
 
 
@@ -123,7 +122,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/">
 
 
 
@@ -151,7 +150,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2015/03/26/c3p0-config/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/c3p0/" itemprop="url" rel="index">
                     <span itemprop="name">c3p0</span>
                   </a>
@@ -390,7 +389,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,101
+                  1,111
                 </span>
               
 
@@ -451,7 +450,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 <p><code>maxIdleTime 和 maxConnectionAge</code> ：表示connection的时效性，maxIdleTime和maxConnectionAge不同之处在于， maxIdleTime表示idle状态的connection能存活的最大时间，而 maxConnectionAge表示connection能存活的绝对时间</p>
 <h4 id="应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"><a href="#应用端getConnection抛出exception时，-C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。" class="headerlink" title="应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。"></a>应用端getConnection抛出exception时， C3P0会测试其connection的有效性，并根据状态处理此connection，但应用端不会重调。</h4><h4 id="无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"><a href="#无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection" class="headerlink" title="无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection"></a>无论是网络问题还是远端数据库服务器，就算恢复正常后，客户端pool内其已存在的connection都会失效，要保证应用端调用无误，必须在checkout到应用端之前刷新这些无效connection</h4><h4 id="breakAfterAcquireFailure-false是关键。"><a href="#breakAfterAcquireFailure-false是关键。" class="headerlink" title="breakAfterAcquireFailure=false是关键。"></a>breakAfterAcquireFailure=false是关键。</h4><p>如果 breakAfterAcquireFailure=true ，一旦pool向数据库请求连接失败，就会标记pool block并关闭pool，这样无论数据库是否恢复正常，应用端都无法从pool拿到连接</p>
 <h4 id="要想保证网络和数据库瞬间的失效100-不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。"><a href="#要想保证网络和数据库瞬间的失效100-不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。" class="headerlink" title="要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。"></a>要想保证网络和数据库瞬间的失效100%不会造成应用端getConnection失败必须开启testConnectionOnCheckout。但此特性的代价巨大，建议在应用端做容错。</h4><h4 id="推荐使用-idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性"><a href="#推荐使用-idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性" class="headerlink" title="推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性"></a>推荐使用 idleConnectionTestPeriod。可以根据应用调用频率权衡一个检查pool的频率，这样可以在保证性能损耗不大情况下，尽可能的保证pool内connection的有效性</h4><h4 id="若嫌DatabaseMetaData-getTables-性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行"><a href="#若嫌DatabaseMetaData-getTables-性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行" class="headerlink" title="若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行"></a>若嫌DatabaseMetaData.getTables()性能不好，可以尝试通过配置automaticTestTable、connectionTesterClassName、preferredTestQuery来找到一个性能最好的测试语句，只要能验证connection有效就行</h4><p>综上所述，要想保证性能的前提下，本人推荐的配置组合如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">break</span>AfterAcquireFailure: <span class="literal">false</span></div><div class="line"><span class="built_in">test</span>ConnectionOnCheckout: <span class="literal">false</span></div><div class="line"><span class="built_in">test</span>ConnectionOnCheckin: <span class="literal">false</span></div><div class="line">idleConnectionTestPeriod: 60</div><div class="line">acquireRetryAttempts: 10</div><div class="line">acquireRetryDelay: 1000</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">breakAfterAcquireFailure: <span class="literal">false</span></span><br><span class="line">testConnectionOnCheckout: <span class="literal">false</span></span><br><span class="line">testConnectionOnCheckin: <span class="literal">false</span></span><br><span class="line">idleConnectionTestPeriod: 60</span><br><span class="line">acquireRetryAttempts: 10</span><br><span class="line">acquireRetryDelay: 1000</span><br></pre></td></tr></table></figure>
 <p>但需要注意的是以上的配置不能保证100%应用端getConnection无误，如果应用端不能发生getConnection错误，需要自行考虑容错和重试机制。</p>
 <p>在以上配置下，当网络或数据库发生瞬间变动的情况下，会有如下事情发生：</p>
 <ul>
@@ -465,6 +464,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 
       
     </div>
+    
     
     
     
@@ -482,14 +482,14 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -620,11 +620,9 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -749,7 +747,7 @@ C3P0容错和自动重连与以下配置参数有关：breakAfterAcquireFailure 
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

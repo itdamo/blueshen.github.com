@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,44 +68,31 @@
 
 
 
-  <meta name="keywords" content="java,mediator," />
+  <meta name="keywords" content="java,mediator,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互.
-相关角色
-
-Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信.
-Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色.
-Colleague同事角色每一个同事">
+<meta name="description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
+<meta name="keywords" content="java,mediator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：中介者（mediator） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互.
-相关角色
-
-Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信.
-Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色.
-Colleague同事角色每一个同事">
+<meta property="og:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-23T08:41:02.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：中介者（mediator） in java">
-<meta name="twitter:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互.
-相关角色
-
-Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信.
-Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色.
-Colleague同事角色每一个同事">
+<meta name="twitter:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
 
 
 
@@ -135,7 +122,7 @@ Colleague同事角色每一个同事">
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/">
 
 
 
@@ -163,7 +150,7 @@ Colleague同事角色每一个同事">
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -173,13 +160,13 @@ Colleague同事角色每一个同事">
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +196,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +206,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -229,7 +216,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -239,7 +226,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -249,7 +236,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -259,7 +246,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -269,7 +256,7 @@ Colleague同事角色每一个同事">
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -303,20 +290,20 @@ Colleague同事角色每一个同事">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -348,7 +335,7 @@ Colleague同事角色每一个同事">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -359,7 +346,7 @@ Colleague同事角色每一个同事">
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/" itemprop="url" rel="index">
                     <span itemprop="name">设计模式</span>
                   </a>
@@ -402,7 +389,7 @@ Colleague同事角色每一个同事">
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -464,6 +451,7 @@ Colleague同事角色每一个同事">
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/03/27/java-encode-error-again/" title="又见Java乱码" rel="bookmark">又见Java乱码</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/10/29/mat-for-java/" title="利用MAT来分析JAVA内存泄露" rel="bookmark">利用MAT来分析JAVA内存泄露</a></h3></div></li></ul>
     
     
     
@@ -481,14 +469,14 @@ Colleague同事角色每一个同事">
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -610,11 +598,9 @@ Colleague同事角色每一个同事">
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -723,7 +709,7 @@ Colleague同事角色每一个同事">
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

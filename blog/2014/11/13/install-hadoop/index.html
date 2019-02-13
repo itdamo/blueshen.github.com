@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,53 +68,31 @@
 
 
 
-  <meta name="keywords" content="linux,hadoop," />
+  <meta name="keywords" content="hadoop,linux,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="安装需求
-Java 1.6
-ssh,sshd正常安装
-
-确保可以ssh到localhost，并且不需要密码
-1ssh localhost
- 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行：
-1ps -ef | grep sshd
-查看sshd进程是否存在，如果不存在，说明没有安装。">
+<meta name="description" content="安装需求 Java 1.6 ssh,sshd正常安装  确保可以ssh到localhost，并且不需要密码 1ssh localhost  如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行： 1ps -ef | grep sshd 查看sshd进程是否存在，如果不存在，说明没有安装。">
+<meta name="keywords" content="hadoop,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop1.2.1安装部署">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="安装需求
-Java 1.6
-ssh,sshd正常安装
-
-确保可以ssh到localhost，并且不需要密码
-1ssh localhost
- 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行：
-1ps -ef | grep sshd
-查看sshd进程是否存在，如果不存在，说明没有安装。">
+<meta property="og:description" content="安装需求 Java 1.6 ssh,sshd正常安装  确保可以ssh到localhost，并且不需要密码 1ssh localhost  如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行： 1ps -ef | grep sshd 查看sshd进程是否存在，如果不存在，说明没有安装。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-24T06:45:51.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop1.2.1安装部署">
-<meta name="twitter:description" content="安装需求
-Java 1.6
-ssh,sshd正常安装
-
-确保可以ssh到localhost，并且不需要密码
-1ssh localhost
- 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行：
-1ps -ef | grep sshd
-查看sshd进程是否存在，如果不存在，说明没有安装。">
+<meta name="twitter:description" content="安装需求 Java 1.6 ssh,sshd正常安装  确保可以ssh到localhost，并且不需要密码 1ssh localhost  如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。 运行： 1ps -ef | grep sshd 查看sshd进程是否存在，如果不存在，说明没有安装。">
 
 
 
@@ -144,7 +122,7 @@ ssh,sshd正常安装
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/">
 
 
 
@@ -172,7 +150,7 @@ ssh,sshd正常安装
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -182,13 +160,13 @@ ssh,sshd正常安装
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -218,7 +196,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -228,7 +206,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -238,7 +216,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -248,7 +226,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -258,7 +236,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -268,7 +246,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -278,7 +256,7 @@ ssh,sshd正常安装
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -312,20 +290,20 @@ ssh,sshd正常安装
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/11/13/install-hadoop/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -357,7 +335,7 @@ ssh,sshd正常安装
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -368,7 +346,7 @@ ssh,sshd正常安装
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/hadoop/" itemprop="url" rel="index">
                     <span itemprop="name">hadoop</span>
                   </a>
@@ -411,7 +389,7 @@ ssh,sshd正常安装
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -426,7 +404,7 @@ ssh,sshd正常安装
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  815
+                  868
                 </span>
               
 
@@ -442,7 +420,7 @@ ssh,sshd正常安装
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -468,22 +446,22 @@ ssh,sshd正常安装
 <li>ssh,sshd正常安装</li>
 </ul>
 <p>确保可以ssh到localhost，并且不需要密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh localhost</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br></pre></td></tr></table></figure>
 <p> 如果报错，connect to host localhost port 22:Connection refused。说明ssh-server未安装或者未启动。<br> 运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep sshd</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep sshd</span><br></pre></td></tr></table></figure>
 <p>查看sshd进程是否存在，如果不存在，说明没有安装。那么进行安装。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
 <p>然后再执行<code>ssh localhost</code>,如果不能无密码登陆，需要做一下操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa</div><div class="line">cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa</span><br><span class="line">cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="相关软件"><a href="#相关软件" class="headerlink" title="相关软件"></a>相关软件</h3><p>Ubuntu Linux为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install ssh</div><div class="line">sudo apt-get install rsync</div></pre></td></tr></table></figure>
-<h3 id="Hadoop下载"><a href="#Hadoop下载" class="headerlink" title="Hadoop下载"></a>Hadoop下载</h3><p>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="external">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br><span class="line">sudo apt-get install rsync</span><br></pre></td></tr></table></figure>
+<h3 id="Hadoop下载"><a href="#Hadoop下载" class="headerlink" title="Hadoop下载"></a>Hadoop下载</h3><p>从<a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">Hadoop官网</a>下载一个稳定版，这里就是1.2.1版本啦。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz</span><br></pre></td></tr></table></figure>
 <h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h3><p> 1.解压<code>tar -xzvf hadoop-1.2.1.tar.gz</code>，进入conf/hadoop-env.sh，设置JAVA_HOME为你的JDK目录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/path/to/java/home</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/path/to/java/home</span><br></pre></td></tr></table></figure>
 <p> 2.进入/hadoop-1.2.1目录，运行<code>bin\hadoop</code>,会显示hadoop的使用说明信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">  Usage: hadoop [--config confdir] COMMAND</div><div class="line">  where COMMAND is one of:</div><div class="line">  namenode -format     format the DFS filesystem</div><div class="line">  secondarynamenode    run the DFS secondary namenode</div><div class="line">  namenode             run the DFS namenode</div><div class="line">  datanode             run a DFS datanode</div><div class="line">  dfsadmin             run a DFS admin client</div><div class="line">  mradmin              run a Map-Reduce admin client</div><div class="line">  fsck                 run a DFS filesystem checking utility</div><div class="line">  fs                   run a generic filesystem user client</div><div class="line">  balancer             run a cluster balancing utility</div><div class="line">  oiv                  apply the offline fsimage viewer to an fsimage</div><div class="line">  fetchdt              fetch a delegation token from the NameNode</div><div class="line">  jobtracker           run the MapReduce job Tracker node</div><div class="line">  pipes                run a Pipes job</div><div class="line">  tasktracker          run a MapReduce task Tracker node</div><div class="line">  historyserver        run job history servers as a standalone daemon</div><div class="line">  job                  manipulate MapReduce jobs</div><div class="line">  queue                get information regarding JobQueues</div><div class="line">  version              print the version</div><div class="line">  jar &lt;jar&gt;            run a jar file</div><div class="line">  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively</div><div class="line">  distcp2 &lt;srcurl&gt; &lt;desturl&gt; DistCp version 2</div><div class="line">  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive</div><div class="line">  classpath            prints the class path needed to get the</div><div class="line">                       Hadoop jar and the required libraries</div><div class="line">  daemonlog            get/set the log level for each daemon</div><div class="line"> or</div><div class="line">  CLASSNAME            run the class named CLASSNAME</div><div class="line">Most commands print help when invoked w/o parameters.</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  Usage: hadoop [--config confdir] COMMAND</span><br><span class="line">  where COMMAND is one of:</span><br><span class="line">  namenode -format     format the DFS filesystem</span><br><span class="line">  secondarynamenode    run the DFS secondary namenode</span><br><span class="line">  namenode             run the DFS namenode</span><br><span class="line">  datanode             run a DFS datanode</span><br><span class="line">  dfsadmin             run a DFS admin client</span><br><span class="line">  mradmin              run a Map-Reduce admin client</span><br><span class="line">  fsck                 run a DFS filesystem checking utility</span><br><span class="line">  fs                   run a generic filesystem user client</span><br><span class="line">  balancer             run a cluster balancing utility</span><br><span class="line">  oiv                  apply the offline fsimage viewer to an fsimage</span><br><span class="line">  fetchdt              fetch a delegation token from the NameNode</span><br><span class="line">  jobtracker           run the MapReduce job Tracker node</span><br><span class="line">  pipes                run a Pipes job</span><br><span class="line">  tasktracker          run a MapReduce task Tracker node</span><br><span class="line">  historyserver        run job history servers as a standalone daemon</span><br><span class="line">  job                  manipulate MapReduce jobs</span><br><span class="line">  queue                get information regarding JobQueues</span><br><span class="line">  version              print the version</span><br><span class="line">  jar &lt;jar&gt;            run a jar file</span><br><span class="line">  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively</span><br><span class="line">  distcp2 &lt;srcurl&gt; &lt;desturl&gt; DistCp version 2</span><br><span class="line">  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive</span><br><span class="line">  classpath            prints the class path needed to get the</span><br><span class="line">                       Hadoop jar and the required libraries</span><br><span class="line">  daemonlog            get/set the log level for each daemon</span><br><span class="line"> or</span><br><span class="line">  CLASSNAME            run the class named CLASSNAME</span><br><span class="line">Most commands print help when invoked w/o parameters.</span><br></pre></td></tr></table></figure>
 <p>  你可以下3中模式来启动hadoop：</p>
 <ul>
 <li>本地(standalone)模式</li>
@@ -491,39 +469,40 @@ ssh,sshd正常安装
 <li>全分布(Full-Distributed)式</li>
 </ul>
 <h4 id="本地-Standalone-模式安装"><a href="#本地-Standalone-模式安装" class="headerlink" title="本地(Standalone)模式安装"></a>本地(Standalone)模式安装</h4><p>  默认情况下，Hadoop就是单机本地模式。方便调试。<br>  下面是一个样例，复制conf目录到input作为输入，找出符合正则的文件，输出到output目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir input</div><div class="line">$ cp conf/*.xml input</div><div class="line">$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;</div><div class="line">$ cat output/*</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir input</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cp conf/*.xml input</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> bin/hadoop jar hadoop-examples-*.jar grep input output <span class="string">'dfs[a-z.]+'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat output/*</span></span><br></pre></td></tr></table></figure>
 <h4 id="伪分布-Pseudo-Distributed-式"><a href="#伪分布-Pseudo-Distributed-式" class="headerlink" title="伪分布(Pseudo-Distributed)式"></a>伪分布(Pseudo-Distributed)式</h4><p>配置conf/core-site.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>配置conf/hdfs-site.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>配置conf/mapred-site.xml:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  格式化一个新的distributed-filesystem</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/hadoop namenode -format</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop namenode -format</span><br></pre></td></tr></table></figure>
 <p> 启动hadoop：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/start-all.sh</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/start-all.sh</span><br></pre></td></tr></table></figure>
 <p>  此时可以通过WEB UI控制台来监控NameNode，JobTracker，TaskTracker</p>
 <ul>
-<li>NameNode - <a href="http://localhost:50070/dfshealth.jsp/" target="_blank" rel="external">http://localhost:50070/dfshealth.jsp/</a></li>
-<li>JobTracker - <a href="http://localhost:50030/jobtracker.jsp/" target="_blank" rel="external">http://localhost:50030/jobtracker.jsp/</a></li>
-<li><p>TaskTracker - <a href="http://localhost:50060/tasktracker.jsp" target="_blank" rel="external">http://localhost:50060/tasktracker.jsp</a></p>
+<li>NameNode - <a href="http://localhost:50070/dfshealth.jsp/" target="_blank" rel="noopener">http://localhost:50070/dfshealth.jsp/</a></li>
+<li>JobTracker - <a href="http://localhost:50030/jobtracker.jsp/" target="_blank" rel="noopener">http://localhost:50030/jobtracker.jsp/</a></li>
+<li><p>TaskTracker - <a href="http://localhost:50060/tasktracker.jsp" target="_blank" rel="noopener">http://localhost:50060/tasktracker.jsp</a></p>
 <p>下面使用distributed filesystem来跑样例:<br>拷贝conf目录到hadoop的input目录，此时可以在控制台看到创建了目录。</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -put conf input</div></pre></td></tr></table></figure>
-<p>运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;</div></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bin/hadoop fs -put conf input</span></span><br></pre></td></tr></table></figure>
+<p>运行:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bin/hadoop jar hadoop-examples-*.jar grep input output <span class="string">'dfs[a-z.]+'</span></span></span><br></pre></td></tr></table></figure></p>
 <p>检查结果：</p>
-<p>拷贝output目录到本地并检查:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -get output output</div><div class="line">$ cat output/*</div></pre></td></tr></table></figure></p>
+<p>拷贝output目录到本地并检查:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bin/hadoop fs -get output output</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat output/*</span></span><br></pre></td></tr></table></figure></p>
 <p>或者直接在distributed filesystem查看:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/hadoop fs -cat output/*</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bin/hadoop fs -cat output/*</span></span><br></pre></td></tr></table></figure>
 <p>使用完，可以这样来关闭：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bin/stop-all.sh</div></pre></td></tr></table></figure>
-<h4 id="Hadoop分布式部署"><a href="#Hadoop分布式部署" class="headerlink" title="Hadoop分布式部署"></a>Hadoop分布式部署</h4><p> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bin/stop-all.sh</span></span><br></pre></td></tr></table></figure>
+<h4 id="Hadoop分布式部署"><a href="#Hadoop分布式部署" class="headerlink" title="Hadoop分布式部署"></a>Hadoop分布式部署</h4><p> 详见<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html</a></p>
 <hr>
-<p>参考文档：<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html" target="_blank" rel="external">http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html</a></p>
+<p>参考文档：<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/24/performance-tuning-in-web-test/" title="Web系统性能调优常用技巧" rel="bookmark">Web系统性能调优常用技巧</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/11/26/the-principle-of-ssh/" title="SSH原理" rel="bookmark">SSH原理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/25/epoll/" title="linux epoll模型" rel="bookmark">linux epoll模型</a></h3></div></li></ul>
     
     
     
@@ -541,14 +520,14 @@ ssh,sshd正常安装
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -585,9 +564,9 @@ ssh,sshd正常安装
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
             <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -679,11 +658,9 @@ ssh,sshd正常安装
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -808,7 +785,7 @@ ssh,sshd正常安装
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

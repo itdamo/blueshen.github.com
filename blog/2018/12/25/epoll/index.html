@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,45 +68,27 @@
 
 
 
-  <meta name="keywords" content="epoll,linux,io," />
+  <meta name="keywords" content="linux,io,epoll,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。
-这里主要讨论Linux环境下的network IO。
-一 概念说明在进行解释之前，首先要说明几个概念：
-
-用户空间和内核空间
-进程切换
-进程的阻塞
-文件描述符
-缓存 I/O
-
-用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
+<meta name="description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。 这里主要讨论Linux环境下的network IO。 一 概念说明在进行解释之前，首先要说明几个概念：  用户空间和内核空间 进程切换 进程的阻塞 文件描述符 缓存 I/O  用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
+<meta name="keywords" content="linux,io,epoll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux epoll模型">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/25/epoll/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。
-这里主要讨论Linux环境下的network IO。
-一 概念说明在进行解释之前，首先要说明几个概念：
-
-用户空间和内核空间
-进程切换
-进程的阻塞
-文件描述符
-缓存 I/O
-
-用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
+<meta property="og:description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。 这里主要讨论Linux环境下的network IO。 一 概念说明在进行解释之前，首先要说明几个概念：  用户空间和内核空间 进程切换 进程的阻塞 文件描述符 缓存 I/O  用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/epoll/blocking-io.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/epoll/non-blocking-io.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/epoll/io-multiplexing.png">
@@ -115,17 +97,7 @@
 <meta property="og:updated_time" content="2018-12-27T07:40:24.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux epoll模型">
-<meta name="twitter:description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。
-这里主要讨论Linux环境下的network IO。
-一 概念说明在进行解释之前，首先要说明几个概念：
-
-用户空间和内核空间
-进程切换
-进程的阻塞
-文件描述符
-缓存 I/O
-
-用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
+<meta name="twitter:description" content="同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。 这里主要讨论Linux环境下的network IO。 一 概念说明在进行解释之前，首先要说明几个概念：  用户空间和内核空间 进程切换 进程的阻塞 文件描述符 缓存 I/O  用户空间与内核空间现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/epoll/blocking-io.png">
 
 
@@ -156,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/25/epoll/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/25/epoll/">
 
 
 
@@ -184,7 +156,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -194,13 +166,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -230,7 +202,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -240,7 +212,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -250,7 +222,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -260,7 +232,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -270,7 +242,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -280,7 +252,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -290,7 +262,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -324,20 +296,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/25/epoll/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -369,7 +341,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -380,7 +352,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/epoll/" itemprop="url" rel="index">
                     <span itemprop="name">epoll</span>
                   </a>
@@ -423,7 +395,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -438,7 +410,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,515
+                  6,665
                 </span>
               
 
@@ -454,7 +426,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  25
+                  26
                 </span>
               
             </div>
@@ -499,7 +471,7 @@
 <li>更新内存管理的数据结构。</li>
 <li>恢复处理机上下文。</li>
 </ol>
-<p><strong>总而言之就是很耗资源</strong>，具体的可以参考这篇文章：<a href="http://guojing.me/linux-kernel-architecture/posts/process-switch/" target="_blank" rel="external">进程切换</a></p>
+<p><strong>总而言之就是很耗资源</strong>，具体的可以参考这篇文章：<a href="http://guojing.me/linux-kernel-architecture/posts/process-switch/" target="_blank" rel="noopener">进程切换</a></p>
 <h2 id="进程的阻塞"><a href="#进程的阻塞" class="headerlink" title="进程的阻塞"></a>进程的阻塞</h2><p>正在执行的进程，由于期待的某些事件未发生，如请求系统资源失败、等待某种操作的完成、新数据尚未到达或无新工作做等，则由系统自动执行阻塞原语(Block)，使自己由运行状态变为阻塞状态。可见，进程的阻塞是进程自身的一种主动行为，也因此只有处于运行态的进程（获得CPU），才可能将其转为阻塞状态。<code>当进程进入阻塞状态，是不占用CPU资源的</code>。</p>
 <h2 id="文件描述符fd"><a href="#文件描述符fd" class="headerlink" title="文件描述符fd"></a>文件描述符fd</h2><p>文件描述符（File descriptor）是计算机科学中的一个术语，是一个用于表述指向文件的引用的抽象化概念。</p>
 <p>文件描述符在形式上是一个非负整数。实际上，它是一个索引值，指向内核为每一个进程所维护的该进程打开文件的记录表。当程序打开一个现有文件或者创建一个新文件时，内核向进程返回一个文件描述符。在程序设计中，一些涉及底层的程序编写往往会围绕着文件描述符展开。但是文件描述符这一概念往往只适用于UNIX、Linux这样的操作系统。</p>
@@ -552,19 +524,19 @@
 <p><strong>各个IO Model的比较如图所示：</strong><br><img src="/images/epoll/io-model-pk.png" alt="IO模型对比"></p>
 <p>通过上面的图片，可以发现non-blocking IO和asynchronous IO的区别还是很明显的。在non-blocking IO中，虽然进程大部分时间都不会被block，但是它仍然要求进程去主动的check，并且当数据准备完成以后，也需要进程主动的再次调用recvfrom来将数据拷贝到用户内存。而asynchronous IO则完全不同。它就像是用户进程将整个IO操作交给了他人（kernel）完成，然后他人做完后发信号通知。在此期间，用户进程不需要去检查IO操作的状态，也不需要主动的去拷贝数据。</p>
 <h1 id="三-I-O-多路复用之select、poll、epoll详解"><a href="#三-I-O-多路复用之select、poll、epoll详解" class="headerlink" title="三 I/O 多路复用之select、poll、epoll详解"></a>三 I/O 多路复用之select、poll、epoll详解</h1><p>select，poll，epoll都是IO多路复用的机制。I/O多路复用就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。（这里啰嗦下）</p>
-<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span> <span class="params">(<span class="keyword">int</span> n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, <span class="keyword">struct</span> timeval *timeout)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">select</span> <span class="params">(<span class="keyword">int</span> n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>select 函数监视的文件描述符分3类，分别是writefds、readfds、和exceptfds。调用后select函数会阻塞，直到有描述副就绪（有数据 可读、可写、或者有except），或者超时（timeout指定等待时间，如果立即返回设为null即可），函数返回。当select函数返回后，可以 通过遍历fdset，来找到就绪的描述符。</p>
 <p>select目前几乎在所有的平台上支持，其良好跨平台支持也是它的一个优点。select的一 个缺点在于单个进程能够监视的文件描述符的数量存在最大限制，在Linux上一般为1024，可以通过修改宏定义甚至重新编译内核的方式提升这一限制，但 是这样也会造成效率的降低。</p>
-<h2 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span> <span class="params">(<span class="keyword">struct</span> pollfd *fds, <span class="keyword">unsigned</span> <span class="keyword">int</span> nfds, <span class="keyword">int</span> timeout)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">poll</span> <span class="params">(struct pollfd *fds, <span class="keyword">unsigned</span> <span class="keyword">int</span> nfds, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>不同与select使用三个位图来表示三个fdset的方式，poll使用一个 pollfd的指针实现。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> pollfd &#123;</div><div class="line">    <span class="keyword">int</span> fd; <span class="comment">/* file descriptor */</span></div><div class="line">    <span class="keyword">short</span> events; <span class="comment">/* requested events to watch */</span></div><div class="line">    <span class="keyword">short</span> revents; <span class="comment">/* returned events witnessed */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pollfd</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> fd; <span class="comment">/* file descriptor */</span></span><br><span class="line">    <span class="keyword">short</span> events; <span class="comment">/* requested events to watch */</span></span><br><span class="line">    <span class="keyword">short</span> revents; <span class="comment">/* returned events witnessed */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>pollfd结构包含了要监视的event和发生的event，不再使用select“参数-值”传递的方式。同时，pollfd并没有最大数量限制（但是数量过大后性能也是会下降）。 和select函数一样，poll返回后，需要轮询pollfd来获取就绪的描述符。</p>
 <blockquote>
 <p>从上面看，select和poll都需要在返回后，<code>通过遍历文件描述符来获取已经就绪的socket</code>。事实上，同时连接的大量客户端在一时刻可能只有很少的处于就绪状态，因此随着监视的描述符数量的增长，其效率也会线性下降。</p>
 </blockquote>
 <h2 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h2><p>epoll是在2.6内核中提出的，是之前的select和poll的增强版本。相对于select和poll来说，epoll更加灵活，没有描述符限制。epoll使用一个文件描述符管理多个描述符，将用户关系的文件描述符的事件存放到内核的一个事件表中，这样在用户空间和内核空间的copy只需一次。</p>
 <h3 id="epoll操作过程"><a href="#epoll操作过程" class="headerlink" title="epoll操作过程"></a>epoll操作过程</h3><p>epoll操作过程需要三个接口，分别如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int epoll_create(int size)；//创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大</div><div class="line">int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)；</div><div class="line">int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int epoll_create(int size)；//创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大</span><br><span class="line">int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)；</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">epoll_wait</span><span class="params">(<span class="keyword">int</span> epfd, struct epoll_event * events, <span class="keyword">int</span> maxevents, <span class="keyword">int</span> timeout)</span></span>;</span><br></pre></td></tr></table></figure>
 <p><strong>1. int epoll_create(int size);</strong><br>创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大，这个参数不同于select()中的第一个参数，给出最大监听的fd+1的值，<code>参数size并不是限制了epoll所能监听的描述符最大个数，只是对内核初始分配内部数据结构的一个建议</code>。<br>当创建好epoll句柄后，它就会占用一个fd值，在linux下如果查看/proc/进程id/fd/，是能够看到这个fd的，所以在使用完epoll后，必须调用close()关闭，否则可能导致fd被耗尽。</p>
 <p><strong>2. int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)；</strong><br>函数是对指定描述符fd执行op操作。</p>
 <ul>
@@ -573,7 +545,7 @@
 <li>fd：是需要监听的fd（文件描述符）</li>
 <li>epoll_event：是告诉内核需要监听什么事，struct epoll_event结构如下：</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> epoll_event &#123;</div><div class="line">  <span class="keyword">__uint32_t</span> events;  <span class="comment">/* Epoll events */</span></div><div class="line">  <span class="keyword">epoll_data_t</span> data;  <span class="comment">/* User data variable */</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> &#123;</span></span><br><span class="line">  <span class="keyword">__uint32_t</span> events;  <span class="comment">/* Epoll events */</span></span><br><span class="line">  <span class="keyword">epoll_data_t</span> data;  <span class="comment">/* User data variable */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>events可以是以下几个宏的集合：<br>EPOLLIN ：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；<br>EPOLLOUT：表示对应的文件描述符可以写；<br>EPOLLPRI：表示对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）；<br>EPOLLERR：表示对应的文件描述符发生错误；<br>EPOLLHUP：表示对应的文件描述符被挂断；<br>EPOLLET： 将EPOLL设为边缘触发(Edge Triggered)模式，这是相对于水平触发(Level Triggered)来说的。<br>EPOLLONESHOT：只监听一次事件，当监听完这次事件之后，如果还需要继续监听这个socket的话，需要再次把这个socket加入到EPOLL队列里</p>
 <p><strong>3. int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);</strong><br>等待epfd上的io事件，最多返回maxevents个事件。<br>参数events用来从内核得到事件的集合，maxevents告之内核这个events有多大，这个maxevents的值不能大于创建epoll_create()时的size，参数timeout是超时时间（毫秒，0会立即返回，-1将不确定，也有说法说是永久阻塞）。该函数返回需要处理的事件数目，如返回0表示已超时。</p>
 <h3 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h3><p>　epoll对文件描述符的操作有两种模式：<strong>LT（level trigger）</strong>和<strong>ET（edge trigger）</strong>。LT模式是默认模式，LT模式与ET模式的区别如下：<br>　　<strong>LT模式</strong>：当epoll_wait检测到描述符事件发生并将此事件通知应用程序，<code>应用程序可以不立即处理该事件</code>。下次调用epoll_wait时，会再次响应应用程序并通知此事件。<br>　　<strong>ET模式</strong>：当epoll_wait检测到描述符事件发生并将此事件通知应用程序，<code>应用程序必须立即处理该事件</code>。如果不处理，下次调用epoll_wait时，不会再次响应应用程序并通知此事件。</p>
@@ -591,12 +563,12 @@
 <p><strong>LT模式：</strong><br>如果是LT模式，那么在第5步调用epoll_wait(2)之后，仍然能受到通知。</p>
 <p><strong>ET模式：</strong><br>如果我们在第1步将RFD添加到epoll描述符的时候使用了EPOLLET标志，那么在第5步调用epoll_wait(2)之后将有可能会挂起，因为剩余的数据还存在于文件的输入缓冲区内，而且数据发出端还在等待一个针对已经发出数据的反馈信息。只有在监视的文件句柄上发生了某个事件的时候 ET 工作模式才会汇报事件。因此在第5步的时候，调用者可能会放弃等待仍在存在于文件输入缓冲区内的剩余数据。</p>
 <p>当使用epoll的ET模型来工作时，当产生了一个EPOLLIN事件后，<br>读数据的时候需要考虑的是当recv()返回的大小如果等于请求的大小，那么很有可能是缓冲区还有数据未读完，也意味着该次事件还没有处理完，所以还需要再次读取：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(rs)&#123;</div><div class="line">  buflen = recv(activeevents[i].data.fd, buf, <span class="keyword">sizeof</span>(buf), <span class="number">0</span>);</div><div class="line">  <span class="keyword">if</span>(buflen &lt; <span class="number">0</span>)&#123;</div><div class="line">    <span class="comment">// 由于是非阻塞的模式,所以当errno为EAGAIN时,表示当前缓冲区已无数据可读</span></div><div class="line">    <span class="comment">// 在这里就当作是该次事件已处理处.</span></div><div class="line">    <span class="keyword">if</span>(errno == EAGAIN)&#123;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(buflen == <span class="number">0</span>)&#123;</div><div class="line">     <span class="comment">// 这里表示对端的socket已正常关闭.</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line"> <span class="keyword">if</span>(buflen == <span class="keyword">sizeof</span>(buf)&#123;</div><div class="line">      rs = <span class="number">1</span>;   <span class="comment">// 需要再次读取</span></div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span>&#123;</div><div class="line">      rs = <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(rs)&#123;</span><br><span class="line">  buflen = recv(activeevents[i].data.fd, buf, <span class="keyword">sizeof</span>(buf), <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span>(buflen &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// 由于是非阻塞的模式,所以当errno为EAGAIN时,表示当前缓冲区已无数据可读</span></span><br><span class="line">    <span class="comment">// 在这里就当作是该次事件已处理处.</span></span><br><span class="line">    <span class="keyword">if</span>(errno == EAGAIN)&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(buflen == <span class="number">0</span>)&#123;</span><br><span class="line">     <span class="comment">// 这里表示对端的socket已正常关闭.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>(buflen == <span class="keyword">sizeof</span>(buf)&#123;</span><br><span class="line">      rs = <span class="number">1</span>;   <span class="comment">// 需要再次读取</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span>&#123;</span><br><span class="line">      rs = <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Linux中的EAGAIN含义</strong></p>
 <p>Linux环境下开发经常会碰到很多错误(设置errno)，其中EAGAIN是其中比较常见的一个错误(比如用在非阻塞操作中)。<br>从字面上来看，是提示再试一次。这个错误经常出现在当应用程序进行一些非阻塞(non-blocking)操作(对文件或socket)的时候。</p>
 <p>例如，以 O_NONBLOCK的标志打开文件/socket/FIFO，如果你连续做read操作而没有数据可读。此时程序不会阻塞起来等待数据准备就绪返回，read函数会返回一个错误EAGAIN，提示你的应用程序现在没有数据可读请稍后再试。<br>又例如，当一个系统调用(比如fork)因为没有足够的资源(比如虚拟内存)而执行失败，返回EAGAIN提示其再调用一次(也许下次就能成功)。</p>
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>下面是一段不完整的代码且格式不对，意在表述上面的过程，去掉了一些模板代码。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IPADDRESS   <span class="meta-string">"127.0.0.1"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PORT        8787</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE     1024</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LISTENQ     5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FDSIZE      1000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EPOLLEVENTS 100</span></div><div class="line"></div><div class="line">listenfd = socket_bind(IPADDRESS,PORT);</div><div class="line"></div><div class="line"><span class="keyword">struct</span> epoll_event events[EPOLLEVENTS];</div><div class="line"></div><div class="line"><span class="comment">//创建一个描述符</span></div><div class="line">epollfd = epoll_create(FDSIZE);</div><div class="line"></div><div class="line"><span class="comment">//添加监听描述符事件</span></div><div class="line">add_event(epollfd,listenfd,EPOLLIN);</div><div class="line"></div><div class="line"><span class="comment">//循环等待</span></div><div class="line"><span class="keyword">for</span> ( ; ; )&#123;</div><div class="line">    <span class="comment">//该函数返回已经准备好的描述符事件数目</span></div><div class="line">    ret = epoll_wait(epollfd,events,EPOLLEVENTS,<span class="number">-1</span>);</div><div class="line">    <span class="comment">//处理接收到的连接</span></div><div class="line">    handle_events(epollfd,events,ret,listenfd,buf);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//事件处理函数</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_events</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">struct</span> epoll_event *events,<span class="keyword">int</span> num,<span class="keyword">int</span> listenfd,<span class="keyword">char</span> *buf)</span></span></div><div class="line">&#123;</div><div class="line">     <span class="keyword">int</span> i;</div><div class="line">     <span class="keyword">int</span> fd;</div><div class="line">     <span class="comment">//进行遍历;这里只要遍历已经准备好的io事件。num并不是当初epoll_create时的FDSIZE。</span></div><div class="line">     <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; num;i++)</div><div class="line">     &#123;</div><div class="line">         fd = events[i].data.fd;</div><div class="line">        <span class="comment">//根据描述符的类型和事件类型进行处理</span></div><div class="line">         <span class="keyword">if</span> ((fd == listenfd) &amp;&amp;(events[i].events &amp; EPOLLIN))</div><div class="line">            handle_accpet(epollfd,listenfd);</div><div class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (events[i].events &amp; EPOLLIN)</div><div class="line">            do_read(epollfd,fd,buf);</div><div class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (events[i].events &amp; EPOLLOUT)</div><div class="line">            do_write(epollfd,fd,buf);</div><div class="line">     &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//添加事件</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span></span>&#123;</div><div class="line">    <span class="keyword">struct</span> epoll_event ev;</div><div class="line">    ev.events = state;</div><div class="line">    ev.data.fd = fd;</div><div class="line">    epoll_ctl(epollfd,EPOLL_CTL_ADD,fd,&amp;ev);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//处理接收到的连接</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_accpet</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> listenfd)</span></span>&#123;</div><div class="line">     <span class="keyword">int</span> clifd;     </div><div class="line">     <span class="keyword">struct</span> sockaddr_in cliaddr;     </div><div class="line">     <span class="keyword">socklen_t</span>  cliaddrlen;     </div><div class="line">     clifd = accept(listenfd,(<span class="keyword">struct</span> sockaddr*)&amp;cliaddr,&amp;cliaddrlen);     </div><div class="line">     <span class="keyword">if</span> (clifd == <span class="number">-1</span>)         </div><div class="line">     perror(<span class="string">"accpet error:"</span>);     </div><div class="line">     <span class="keyword">else</span> &#123;         </div><div class="line">         <span class="built_in">printf</span>(<span class="string">"accept a new client: %s:%d\n"</span>,inet_ntoa(cliaddr.sin_addr),cliaddr.sin_port);                       <span class="comment">//添加一个客户描述符和事件         </span></div><div class="line">         add_event(epollfd,clifd,EPOLLIN);     </div><div class="line">     &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//读处理</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_read</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">char</span> *buf)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> nread;</div><div class="line">    nread = read(fd,buf,MAXSIZE);</div><div class="line">    <span class="keyword">if</span> (nread == <span class="number">-1</span>)     &#123;         </div><div class="line">        perror(<span class="string">"read error:"</span>);         </div><div class="line">        close(fd); <span class="comment">//记住close fd        </span></div><div class="line">        delete_event(epollfd,fd,EPOLLIN); <span class="comment">//删除监听 </span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)     &#123;         </div><div class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"client close.\n"</span>);</div><div class="line">        close(fd); <span class="comment">//记住close fd       </span></div><div class="line">        delete_event(epollfd,fd,EPOLLIN); <span class="comment">//删除监听 </span></div><div class="line">    &#125;     </div><div class="line">    <span class="keyword">else</span> &#123;         </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"read message is : %s"</span>,buf);        </div><div class="line">        <span class="comment">//修改描述符对应的事件，由读改为写         </span></div><div class="line">        modify_event(epollfd,fd,EPOLLOUT);     </div><div class="line">    &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//写处理</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_write</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">char</span> *buf)</span> </span>&#123;     </div><div class="line">    <span class="keyword">int</span> nwrite;     </div><div class="line">    nwrite = write(fd,buf,<span class="built_in">strlen</span>(buf));     </div><div class="line">    <span class="keyword">if</span> (nwrite == <span class="number">-1</span>)&#123;         </div><div class="line">        perror(<span class="string">"write error:"</span>);        </div><div class="line">        close(fd);   <span class="comment">//记住close fd       </span></div><div class="line">        delete_event(epollfd,fd,EPOLLOUT);  <span class="comment">//删除监听    </span></div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        modify_event(epollfd,fd,EPOLLIN); </div><div class="line">    &#125;    </div><div class="line">    <span class="built_in">memset</span>(buf,<span class="number">0</span>,MAXSIZE); </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//删除事件</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">delete_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span> </span>&#123;</div><div class="line">    <span class="keyword">struct</span> epoll_event ev;</div><div class="line">    ev.events = state;</div><div class="line">    ev.data.fd = fd;</div><div class="line">    epoll_ctl(epollfd,EPOLL_CTL_DEL,fd,&amp;ev);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//修改事件</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">modify_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span></span>&#123;     </div><div class="line">    <span class="keyword">struct</span> epoll_event ev;</div><div class="line">    ev.events = state;</div><div class="line">    ev.data.fd = fd;</div><div class="line">    epoll_ctl(epollfd,EPOLL_CTL_MOD,fd,&amp;ev);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//注：另外一端我就省了</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IPADDRESS   <span class="meta-string">"127.0.0.1"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PORT        8787</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE     1024</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LISTENQ     5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FDSIZE      1000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EPOLLEVENTS 100</span></span><br><span class="line"></span><br><span class="line">listenfd = socket_bind(IPADDRESS,PORT);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> <span class="title">events</span>[<span class="title">EPOLLEVENTS</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个描述符</span></span><br><span class="line">epollfd = epoll_create(FDSIZE);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加监听描述符事件</span></span><br><span class="line">add_event(epollfd,listenfd,EPOLLIN);</span><br><span class="line"></span><br><span class="line"><span class="comment">//循环等待</span></span><br><span class="line"><span class="keyword">for</span> ( ; ; )&#123;</span><br><span class="line">    <span class="comment">//该函数返回已经准备好的描述符事件数目</span></span><br><span class="line">    ret = epoll_wait(epollfd,events,EPOLLEVENTS,<span class="number">-1</span>);</span><br><span class="line">    <span class="comment">//处理接收到的连接</span></span><br><span class="line">    handle_events(epollfd,events,ret,listenfd,buf);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//事件处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_events</span><span class="params">(<span class="keyword">int</span> epollfd,struct epoll_event *events,<span class="keyword">int</span> num,<span class="keyword">int</span> listenfd,<span class="keyword">char</span> *buf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> i;</span><br><span class="line">     <span class="keyword">int</span> fd;</span><br><span class="line">     <span class="comment">//进行遍历;这里只要遍历已经准备好的io事件。num并不是当初epoll_create时的FDSIZE。</span></span><br><span class="line">     <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; num;i++)</span><br><span class="line">     &#123;</span><br><span class="line">         fd = events[i].data.fd;</span><br><span class="line">        <span class="comment">//根据描述符的类型和事件类型进行处理</span></span><br><span class="line">         <span class="keyword">if</span> ((fd == listenfd) &amp;&amp;(events[i].events &amp; EPOLLIN))</span><br><span class="line">            handle_accpet(epollfd,listenfd);</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (events[i].events &amp; EPOLLIN)</span><br><span class="line">            do_read(epollfd,fd,buf);</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span> (events[i].events &amp; EPOLLOUT)</span><br><span class="line">            do_write(epollfd,fd,buf);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加事件</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> <span class="title">ev</span>;</span></span><br><span class="line">    ev.events = state;</span><br><span class="line">    ev.data.fd = fd;</span><br><span class="line">    epoll_ctl(epollfd,EPOLL_CTL_ADD,fd,&amp;ev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理接收到的连接</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handle_accpet</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> listenfd)</span></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> clifd;     </span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">cliaddr</span>;</span>     </span><br><span class="line">     <span class="keyword">socklen_t</span>  cliaddrlen;     </span><br><span class="line">     clifd = accept(listenfd,(struct sockaddr*)&amp;cliaddr,&amp;cliaddrlen);     </span><br><span class="line">     <span class="keyword">if</span> (clifd == <span class="number">-1</span>)         </span><br><span class="line">     perror(<span class="string">"accpet error:"</span>);     </span><br><span class="line">     <span class="keyword">else</span> &#123;         </span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"accept a new client: %s:%d\n"</span>,inet_ntoa(cliaddr.sin_addr),cliaddr.sin_port);                       <span class="comment">//添加一个客户描述符和事件         </span></span><br><span class="line">         add_event(epollfd,clifd,EPOLLIN);     </span><br><span class="line">     &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读处理</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_read</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">char</span> *buf)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nread;</span><br><span class="line">    nread = read(fd,buf,MAXSIZE);</span><br><span class="line">    <span class="keyword">if</span> (nread == <span class="number">-1</span>)     &#123;         </span><br><span class="line">        perror(<span class="string">"read error:"</span>);         </span><br><span class="line">        close(fd); <span class="comment">//记住close fd        </span></span><br><span class="line">        delete_event(epollfd,fd,EPOLLIN); <span class="comment">//删除监听 </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)     &#123;         </span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"client close.\n"</span>);</span><br><span class="line">        close(fd); <span class="comment">//记住close fd       </span></span><br><span class="line">        delete_event(epollfd,fd,EPOLLIN); <span class="comment">//删除监听 </span></span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">else</span> &#123;         </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"read message is : %s"</span>,buf);        </span><br><span class="line">        <span class="comment">//修改描述符对应的事件，由读改为写         </span></span><br><span class="line">        modify_event(epollfd,fd,EPOLLOUT);     </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//写处理</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">do_write</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">char</span> *buf)</span> </span>&#123;     </span><br><span class="line">    <span class="keyword">int</span> nwrite;     </span><br><span class="line">    nwrite = write(fd,buf,<span class="built_in">strlen</span>(buf));     </span><br><span class="line">    <span class="keyword">if</span> (nwrite == <span class="number">-1</span>)&#123;         </span><br><span class="line">        perror(<span class="string">"write error:"</span>);        </span><br><span class="line">        close(fd);   <span class="comment">//记住close fd       </span></span><br><span class="line">        delete_event(epollfd,fd,EPOLLOUT);  <span class="comment">//删除监听    </span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        modify_event(epollfd,fd,EPOLLIN); </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="built_in">memset</span>(buf,<span class="number">0</span>,MAXSIZE); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除事件</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">delete_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> <span class="title">ev</span>;</span></span><br><span class="line">    ev.events = state;</span><br><span class="line">    ev.data.fd = fd;</span><br><span class="line">    epoll_ctl(epollfd,EPOLL_CTL_DEL,fd,&amp;ev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改事件</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">modify_event</span><span class="params">(<span class="keyword">int</span> epollfd,<span class="keyword">int</span> fd,<span class="keyword">int</span> state)</span></span>&#123;     </span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">epoll_event</span> <span class="title">ev</span>;</span></span><br><span class="line">    ev.events = state;</span><br><span class="line">    ev.data.fd = fd;</span><br><span class="line">    epoll_ctl(epollfd,EPOLL_CTL_MOD,fd,&amp;ev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注：另外一端我就省了</span></span><br></pre></td></tr></table></figure>
 <h3 id="epoll总结"><a href="#epoll总结" class="headerlink" title="epoll总结"></a>epoll总结</h3><p>在 select/poll中，进程只有在调用一定的方法后，内核才对所有监视的文件描述符进行扫描，而<strong>epoll事先通过epoll_ctl()来注册一 个文件描述符，一旦基于某个文件描述符就绪时，内核会采用类似callback的回调机制，迅速激活这个文件描述符，当进程调用epoll_wait() 时便得到通知</strong>。(<code>此处去掉了遍历文件描述符，而是通过监听回调的的机制</code>。这正是epoll的魅力所在。)</p>
 <p><strong>epoll的优点主要是以下几个方面：</strong></p>
 <ol>
@@ -609,6 +581,7 @@
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/26/redis-io/" title="Redis-IO模型" rel="bookmark">Redis-IO模型</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/11/13/install-hadoop/" title="Hadoop1.2.1安装部署" rel="bookmark">Hadoop1.2.1安装部署</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/24/performance-tuning-in-web-test/" title="Web系统性能调优常用技巧" rel="bookmark">Web系统性能调优常用技巧</a></h3></div></li></ul>
     
     
     
@@ -626,14 +599,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -670,11 +643,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/epoll/" rel="tag"># epoll</a>
-          
             <a href="/tags/linux/" rel="tag"># linux</a>
           
             <a href="/tags/io/" rel="tag"># io</a>
+          
+            <a href="/tags/epoll/" rel="tag"># epoll</a>
           
         </div>
       
@@ -766,11 +739,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -895,7 +866,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

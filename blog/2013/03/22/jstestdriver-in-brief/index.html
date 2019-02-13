@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="nodejs,jsTestDriver,test-runner," />
+  <meta name="keywords" content="nodejs,jsTestDriver,test-runner,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
@@ -82,18 +82,20 @@
 
 
 <meta name="description" content="jsTestDriverjsTestDriver是一个JavaScript单元测试工具，易于与持续构建系统相集成并能够在多个浏览器上执行运行测试，轻松实现TDD（测试驱动开发）风格的开发。当在项目中配置好js-test-driver以后，如同junit测试java文件一般，js-test-driver可以直接通过直接运行js文件，来对js文件单元测试。">
+<meta name="keywords" content="nodejs,jsTestDriver,test-runner">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JsTestDriver 简介">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="jsTestDriverjsTestDriver是一个JavaScript单元测试工具，易于与持续构建系统相集成并能够在多个浏览器上执行运行测试，轻松实现TDD（测试驱动开发）风格的开发。当在项目中配置好js-test-driver以后，如同junit测试java文件一般，js-test-driver可以直接通过直接运行js文件，来对js文件单元测试。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/jsTestDriver-framework.jpg">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/idea-install-jstestdriver-plugin-dialog.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/jsTestDriver-server.jpg">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/eclipse-jstestDriver.jpg">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog//eclipse-test.jpg">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog//eclipse-js-setting.jpg">
-<meta property="og:updated_time" content="2018-12-24T06:50:54.170Z">
+<meta property="og:updated_time" content="2018-12-24T06:50:54.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JsTestDriver 简介">
 <meta name="twitter:description" content="jsTestDriverjsTestDriver是一个JavaScript单元测试工具，易于与持续构建系统相集成并能够在多个浏览器上执行运行测试，轻松实现TDD（测试驱动开发）风格的开发。当在项目中配置好js-test-driver以后，如同junit测试java文件一般，js-test-driver可以直接通过直接运行js文件，来对js文件单元测试。">
@@ -127,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/">
 
 
 
@@ -155,7 +157,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -165,13 +167,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -201,7 +203,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -211,7 +213,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -221,7 +223,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -231,7 +233,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -241,7 +243,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -251,7 +253,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -261,7 +263,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -295,20 +297,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2013/03/22/jstestdriver-in-brief/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -340,7 +342,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -351,7 +353,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/nodejs/" itemprop="url" rel="index">
                     <span itemprop="name">nodejs</span>
                   </a>
@@ -394,7 +396,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -409,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  546
+                  562
                 </span>
               
 
@@ -462,10 +464,10 @@
 <li><p>在src代码包中新建Greeter.js代码如下：</p>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">myapp = &#123;&#125;;</div><div class="line">myapp.Greeter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; &#125;;</div><div class="line">myapp.Greeter.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="string">"Hello "</span> + name + <span class="string">"!"</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">myapp = &#123;&#125;;</span><br><span class="line">myapp.Greeter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; &#125;;</span><br><span class="line">myapp.Greeter.prototype.greet = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">"Hello "</span> + name + <span class="string">"!"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>在test代码包中新建GreeterTest.js,代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GGdTestCase(<span class="string">"GreeterTest"</span>, &#123;</div><div class="line"><span class="string">"test greet"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">​    <span class="keyword">var</span> greeter = <span class="keyword">new</span> myapp.Greeter();</div><div class="line">​    assertEquals(<span class="string">"Hello World!"</span>, greeter.greet(<span class="string">"World"</span>));</div><div class="line">&#125;,</div><div class="line"><span class="string">"test greet null"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">​    <span class="keyword">var</span> greeter = <span class="keyword">new</span> myapp.Greeter();</div><div class="line">​    <span class="comment">//assertNull(greeter.greet(null));</span></div><div class="line">​    assertTrue(<span class="literal">true</span>);</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GGdTestCase(<span class="string">"GreeterTest"</span>, &#123;</span><br><span class="line"><span class="string">"test greet"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">​    <span class="keyword">var</span> greeter = <span class="keyword">new</span> myapp.Greeter();</span><br><span class="line">​    assertEquals(<span class="string">"Hello World!"</span>, greeter.greet(<span class="string">"World"</span>));</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"test greet null"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">​    <span class="keyword">var</span> greeter = <span class="keyword">new</span> myapp.Greeter();</span><br><span class="line">​    <span class="comment">//assertNull(greeter.greet(null));</span></span><br><span class="line">​    assertTrue(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在项目主文件夹中新建配置文件greeter.jstd,文件内容如下：</p>
 <p>  load:</p>
@@ -474,29 +476,30 @@
 </code></pre></li>
 <li><p>启动jsTestDriver Server<br><img src="/images/blog/jsTestDriver-server.jpg" alt="alt jsTestDriver server"></p>
 </li>
-<li><p>打开本地浏览器，访问url <a href="http://localhost:9876/capture" target="_blank" rel="external">http://localhost:9876/capture</a></p>
+<li><p>打开本地浏览器，访问url <a href="http://localhost:9876/capture" target="_blank" rel="noopener">http://localhost:9876/capture</a></p>
 </li>
 <li><p>运行greeter.jstd</p>
 </li>
 </ul>
 <h5 id="在Eclipse中安装jsTestDriver"><a href="#在Eclipse中安装jsTestDriver" class="headerlink" title="在Eclipse中安装jsTestDriver"></a>在Eclipse中安装jsTestDriver</h5><ul>
-<li>在<strong>Help</strong>中的<strong>Install new software</strong>中，添加一个update site ：<a href="http://js-test-driver.googlecode.com/svn/update/" target="_blank" rel="external">http://js-test-driver.googlecode.com/svn/update/</a></li>
+<li>在<strong>Help</strong>中的<strong>Install new software</strong>中，添加一个update site ：<a href="http://js-test-driver.googlecode.com/svn/update/" target="_blank" rel="noopener">http://js-test-driver.googlecode.com/svn/update/</a></li>
 <li>安装完毕后，重启Eclipse，新建一个空的java项目</li>
 <li>在java项目中添加test代码包，在src中新建src.js,其代码如IDEA中的Greeter.js一样。</li>
 <li>在test中添加test.js，其代码和IDEA中GreeterTest.js一样。</li>
-<li>在项目目录中添加配置文件jsTestDriver.conf，其内容为<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">load:</div><div class="line">-- src/*.js</div><div class="line">-- test/*.js</div></pre></td></tr></table></figure>
+<li>在项目目录中添加配置文件jsTestDriver.conf，其内容为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">load:</span><br><span class="line">-- src/*.js</span><br><span class="line">-- test/*.js</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>目录结构如图：<br><img src="/images/blog/eclipse-jstestDriver.jpg" alt="jasimine 目录结构"></p>
 <ul>
 <li>配置Run Configuration，新建一个Js Test Driver Test, 选择好项目和相应的配置文件。</li>
-<li>启动jsTestDriver服务器，然后用浏览器去访问<a href="http://127.0.0.1:4244/capture，这样就可以在" target="_blank" rel="external">http://127.0.0.1:4244/capture，这样就可以在</a><br>浏览器中执行我们的js测试脚本了。<br><img src="/images/blog//eclipse-test.jpg" alt="eclipse执行结果"><br>我们可以再eclipse中配置jsTestDriver的相关项，如图：<br><img src="/images/blog//eclipse-js-setting.jpg" alt="alt eclipse配置jsTestDriver"></li>
+<li>启动jsTestDriver服务器，然后用浏览器去访问<a href="http://127.0.0.1:4244/capture，这样就可以在" target="_blank" rel="noopener">http://127.0.0.1:4244/capture，这样就可以在</a><br>浏览器中执行我们的js测试脚本了。<br><img src="/images/blog//eclipse-test.jpg" alt="eclipse执行结果"><br>我们可以再eclipse中配置jsTestDriver的相关项，如图：<br><img src="/images/blog//eclipse-js-setting.jpg" alt="alt eclipse配置jsTestDriver"></li>
 </ul>
 <hr>
-<p>参考文献：<a href="http://code.google.com/p/js-test-driver/" target="_blank" rel="external">http://code.google.com/p/js-test-driver/</a><br>感谢：youthflies</p>
+<p>参考文献：<a href="http://code.google.com/p/js-test-driver/" target="_blank" rel="noopener">http://code.google.com/p/js-test-driver/</a><br>感谢：youthflies</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/03/22/jasmine-in-brief/" title="Jasmine 简介" rel="bookmark">Jasmine 简介</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/03/12/testacular-in-brief/" title="Karma  or Testacular 简介" rel="bookmark">Karma  or Testacular 简介</a></h3></div></li></ul>
     
     
     
@@ -514,14 +517,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -654,11 +657,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -749,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jsTestDriver"><span class="nav-number">1.</span> <span class="nav-text">jsTestDriver</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Intellij-IDEA中安装JsTestDriver"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">在Intellij IDEA中安装JsTestDriver</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在IDEA中使用jsTestDriver运行js测试代码"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">在IDEA中使用jsTestDriver运行js测试代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在Eclipse中安装jsTestDriver"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">在Eclipse中安装jsTestDriver</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jsTestDriver"><span class="nav-number">1.</span> <span class="nav-text">jsTestDriver</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Intellij-IDEA中安装JsTestDriver"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">在Intellij IDEA中安装JsTestDriver</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在IDEA中使用jsTestDriver运行js测试代码"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">在IDEA中使用jsTestDriver运行js测试代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在Eclipse中安装jsTestDriver"><span class="nav-number">1.0.0.0.3.</span> <span class="nav-text">在Eclipse中安装jsTestDriver</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -783,7 +784,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,32 +68,31 @@
 
 
 
-  <meta name="keywords" content="jstl,el," />
+  <meta name="keywords" content="jstl,el,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。
-Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
+<meta name="description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。 Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
+<meta name="keywords" content="jstl,el">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSTL介绍">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。
-Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
+<meta property="og:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。 Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-24T06:23:08.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSTL介绍">
-<meta name="twitter:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。
-Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
+<meta name="twitter:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。 Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
 
 
 
@@ -123,7 +122,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/">
 
 
 
@@ -151,7 +150,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -161,13 +160,13 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +196,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -207,7 +206,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -217,7 +216,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -227,7 +226,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -237,7 +236,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -247,7 +246,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -257,7 +256,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -291,20 +290,20 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2014/03/18/use-jstl/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -336,7 +335,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +346,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/java/" itemprop="url" rel="index">
                     <span itemprop="name">java</span>
                   </a>
@@ -390,7 +389,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -405,7 +404,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10,515
+                  10,558
                 </span>
               
 
@@ -421,7 +420,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  41
+                  42
                 </span>
               
             </div>
@@ -446,7 +445,7 @@ Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开�
 <p>Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准技术，它一直在不断地完善。JSTL的发布包有两个版本：Standard-1.0 Taglib、Standard-1.1 Taglib，它们在使用时是不同的。</p>
 <p>Standard-1.0 Taglib（JSTL1.0）支持Servlet2.3和JSP1.2规范，Web应用服务器Tomcat4支持这些规范，而它的发布也在Tomcat 4.1.24测试通过了。</p>
 <p>Standard-1.1 Taglib（JSTL1.1）支持Servlet2.4和JSP2.0规范，Web应用服务器Tomcat5支持这些规范，它的发布在Tomcat 5.0.3测试通过了。</p>
-<p>本文将以由Sun发布的Standard-1.1 Taglib标签库为主，而apache jakarta组织发布的开源标签库，可以从<a href="http://jakarta.apache.org/taglibs/找到所需要的帮助。Sun发布的标准JSTL1.1标签库有以下几个标签：" target="_blank" rel="external">http://jakarta.apache.org/taglibs/找到所需要的帮助。Sun发布的标准JSTL1.1标签库有以下几个标签：</a></p>
+<p>本文将以由Sun发布的Standard-1.1 Taglib标签库为主，而apache jakarta组织发布的开源标签库，可以从<a href="http://jakarta.apache.org/taglibs/找到所需要的帮助。Sun发布的标准JSTL1.1标签库有以下几个标签：" target="_blank" rel="noopener">http://jakarta.apache.org/taglibs/找到所需要的帮助。Sun发布的标准JSTL1.1标签库有以下几个标签：</a></p>
 <ul>
 <li>核心标签库：包含Web应用的常见工作，比如：循环、表达式赋值、基本输入输出等。</li>
 <li>国际化标签库：用来格式化显示数据的工作，比如：对不同区域的日期格式化等。</li>
@@ -521,7 +520,7 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 </code></pre><p>可以看到，对于这些示例，程序设计者完全无需管理它们的类型转换，在表达式内部都已经处理了。有了EL表达式，在JSP页面的编程变得更灵活，也更容易。</p>
 <h3 id="标签库介绍"><a href="#标签库介绍" class="headerlink" title="标签库介绍"></a>标签库介绍</h3><p>在JSTL1.1中有以下这些标签库是被支持的：Core标签库、XML processing标签库、I18N formatting标签库、Database access标签库、Functions标签库。<br>对应的标识符见表9.2所示：</p>
 <p>表9.2 标签库的标识符</p>
-<table cellspacing="0" cellpadding="0" width="360" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">标签库</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left">URI</p><br>                                </td><br>                                <td width="50"><br>                                <p align="center">前缀</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Core</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/core" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">c</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">XML processing</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/xml" target="_blank" rel="external">http://java.sun.com/jsp/jstl/xml</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">x</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">I18N formatting</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/fmt" target="_blank" rel="external">http://java.sun.com/jsp/jstl/fmt</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fmt</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Database access</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/sql" target="_blank" rel="external">http://java.sun.com/jsp/jstl/sql</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">sql</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Functions</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/functions" target="_blank" rel="external">http://java.sun.com/jsp/jstl/functions</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fn</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
+<table cellspacing="0" cellpadding="0" width="360" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">标签库</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left">URI</p><br>                                </td><br>                                <td width="50"><br>                                <p align="center">前缀</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Core</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/core" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/core</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">c</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">XML processing</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/xml" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/xml</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">x</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">I18N formatting</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/fmt" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/fmt</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fmt</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Database access</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/sql" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/sql</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">sql</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="107"><br>                                <p align="left">Functions</p><br>                                </td><br>                                <td width="202"><br>                                <p align="left"><a href="http://java.sun.com/jsp/jstl/functions" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/functions</a></p><br>                                </td><br>                                <td width="50"><br>                                <p align="left">fn</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
 
 <p>下面看例9.5，简单使用标签库的示例。</p>
@@ -534,13 +533,13 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
     &lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;10&quot; step=&quot;1&quot;&gt; ${i} &lt;br /&gt;&lt;/c:forEach&gt;
  &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>在该示例的JSP页面中声明了将使用Core标签库，它的URI为“<a href="http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中</a><c:foreach>标签就是使用了JSTL的标签进行了工作。对于该标签的功能，这里暂时不作具体讲解，只是让读者能够有个简单的概念，了解怎样定义和使用标签库。</c:foreach></p>
+</code></pre><p>在该示例的JSP页面中声明了将使用Core标签库，它的URI为“<a href="http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中" target="_blank" rel="noopener">http://java.sun.com/jsp/jstl/core”，前缀为“c”。之后，页面中</a>&lt;c:forEach&gt;标签就是使用了JSTL的标签进行了工作。对于该标签的功能，这里暂时不作具体讲解，只是让读者能够有个简单的概念，了解怎样定义和使用标签库。</p>
 <h3 id="标签库"><a href="#标签库" class="headerlink" title="标签库"></a>标签库</h3><p>Core标签库，又被称为核心标签库，该标签库的工作是对于JSP页面一般处理的封装。在该标签库中的标签一共有14个，被分为了四类，分别是：</p>
 <ul>
-<li>多用途核心标签：<c:out>、<c:set>、<c:remove>、<c:catch>。</c:catch></c:remove></c:set></c:out></li>
-<li>条件控制标签：<c:if>、<c:choose>、<c:when>、<c:otherwise>。</c:otherwise></c:when></c:choose></c:if></li>
-<li>循环控制标签：<c:foreach>、<c:fortokens>。</c:fortokens></c:foreach></li>
-<li>URL相关标签：<c:import>、<c:url>、<c:redirect>、<c:param>。</c:param></c:redirect></c:url></c:import></li>
+<li>多用途核心标签：&lt;c:out&gt;、&lt;c:set&gt;、&lt;c:remove&gt;、&lt;c:catch&gt;。</li>
+<li>条件控制标签：&lt;c:if&gt;、&lt;c:choose&gt;、&lt;c:when&gt;、&lt;c:otherwise&gt;。</li>
+<li>循环控制标签：&lt;c:forEach&gt;、&lt;c:forTokens&gt;。</li>
+<li>URL相关标签：&lt;c:import&gt;、&lt;c:url&gt;、&lt;c:redirect&gt;、&lt;c:param&gt;。</li>
 </ul>
 <p>以下是各个标签的用途和属性以及简单示例。</p>
 <h3 id="用于显示的-lt-c-out-gt-标签"><a href="#用于显示的-lt-c-out-gt-标签" class="headerlink" title="用于显示的&lt;c:out&gt; 标签"></a>用于显示的<code>&lt;c:out&gt;</code> 标签</h3><p><code>&lt;c:out&gt;</code>标签是一个最常用的标签，用于在JSP中显示数据。它的属性和描述如表9.3所示：</p>
@@ -548,10 +547,10 @@ ${(pageScope.sampleValue + 12) /3&gt;=5} &lt;br&gt;         //显示false
 <table cellspacing="0" cellpadding="0" width="535" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">value</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">输出到页面的数据，可以是EL表达式或常量（必须）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">default</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">当value为null时显示的数据（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td width="79"><br>                                <p align="left">escapeXml</p><br>                                </td><br>                                <td width="456"><br>                                <p align="left">当设置为true时会主动更换特殊字符，比如&ldquo;&amp;lt;,&amp;gt;,&amp;amp;&rdquo;（可选，默认为true）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
 
-<p>在JSTL1.0的时候，在页面显示数据必须使用<c:out>来进行。然而，在JSTL1.1中，由于JSP2.0规范已经默认支持了EL表达式，因此可以直接在JSP页面使用表达式。下面看一个示例。</c:out></p>
+<p>在JSTL1.0的时候，在页面显示数据必须使用&lt;c:out&gt;来进行。然而，在JSTL1.1中，由于JSP2.0规范已经默认支持了EL表达式，因此可以直接在JSP页面使用表达式。下面看一个示例。</p>
 <pre><code>&lt;c:out value=&quot;${sessionScope.anyValue}&quot; default=&quot;no value&quot; escapeXml=&quot;false&quot;/&gt;
 </code></pre><p>该示例将从Session查找名为“anyValue”的参数，并显示在页面，若没有找到则显示“no value”。</p>
-<h3 id="lt-c-gt-标签"><a href="#lt-c-gt-标签" class="headerlink" title="&lt;c: &gt; 标签"></a><code>&lt;c: &gt;</code> 标签</h3><h4 id="用于赋值的标签"><a href="#用于赋值的标签" class="headerlink" title="用于赋值的标签"></a>用于赋值的<c:set>标签</c:set></h4><p><code>&lt;c:set&gt;</code>标签用于为变量或JavaBean中的变量属性赋值的工作。它的属性和描述如表9.4所示：</p>
+<h3 id="lt-c-gt-标签"><a href="#lt-c-gt-标签" class="headerlink" title="&lt;c: &gt; 标签"></a><code>&lt;c: &gt;</code> 标签</h3><h4 id="用于赋值的-lt-c-set-gt-标签"><a href="#用于赋值的-lt-c-set-gt-标签" class="headerlink" title="用于赋值的&lt;c:set&gt;标签"></a>用于赋值的&lt;c:set&gt;标签</h4><p><code>&lt;c:set&gt;</code>标签用于为变量或JavaBean中的变量属性赋值的工作。它的属性和描述如表9.4所示：</p>
 <p>表9.4　<code>&lt;c:set&gt;</code>标签属性和说明</p>
 <table cellpadding="0" width="393" border="1"><br>                        <tbody><br>                            <tr><br>                                <td width="72"><br>                                <p align="left">属性</p><br>                                </td><br>                                <td width="311"><br>                                <p align="left">描述</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">value</p><br>                                </td><br>                                <td><br>                                <p align="left">值的信息，可以是EL表达式或常量</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">target</p><br>                                </td><br>                                <td><br>                                <p align="left">被赋值的JavaBean实例的名称，若存在该属性则必须<br><br>                                存在property属性（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">property</p><br>                                </td><br>                                <td><br>                                <p align="left">JavaBean实例的变量属性名称（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">var</p><br>                                </td><br>                                <td><br>                                <p align="left">被赋值的变量名（可选）</p><br>                                </td><br>                            </tr><br>                            <tr><br>                                <td><br>                                <p align="left">scope</p><br>                                </td><br>                                <td><br>                                <p align="left">变量的作用范围，若没有指定，默认为page（可选）</p><br>                                </td><br>                            </tr><br>                        </tbody><br>                    </table>
 
@@ -605,8 +604,7 @@ ${visits} &lt;br&gt;
 
 
 <p>下面看一个集合循环的示例。</p>
-<p>&lt;%ArrayList arrayList = new ArrayList();<br>                   arrayList.add(“aa”);<br>                   arrayList.add(“bb”);<br>                   arrayList.add(“cc”);<br>%&gt;<br>&lt;%request.getSession().setAttribute(“arrayList”, arrayList);%&gt;</p>
-<p><c:foreach items="${sessionScope.arrayList}" var="arrayListI"><br>         ${arrayListI}<br></c:foreach></p>
+<p>&lt;%ArrayList arrayList = new ArrayList();<br>                   arrayList.add(“aa”);<br>                   arrayList.add(“bb”);<br>                   arrayList.add(“cc”);<br>%&gt;<br>&lt;%request.getSession().setAttribute(“arrayList”, arrayList);%&gt;<br>&lt;c:forEach items=”${sessionScope.arrayList}” var=”arrayListI”&gt;<br>         ${arrayListI}<br>&lt;/c:forEach&gt;</p>
 <p>该示例将保存在Session中的名为“arrayList”的ArrayList类型集合参数中的对象依次读取出来，items属性指向了ArrayList类型集合参数，var属性定义了一个新的变量来接收集合中的对象。最后直接通过EL表达式显示在页面上。下面看一个简单循环的示例。</p>
 <pre><code>&lt;c:forEach var=&quot;i&quot; begin=&quot;1&quot; end=&quot;10&quot; step=&quot;1&quot;&gt;
       ${i}&lt;br /&gt;
@@ -871,10 +869,11 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 <h4 id="9-7-17空格删除函数-fn-trim-函数"><a href="#9-7-17空格删除函数-fn-trim-函数" class="headerlink" title="9.7.17空格删除函数 fn:trim 函数"></a>9.7.17空格删除函数 fn:trim 函数</h4><p>fn:trim函数将删除源字符串中结尾部分的“空格”以产生一个新的字符串。它与fn:toLowerCase函数相同，只有一个String参数，并返回一个String类型的值。下面看一个示例。</p>
 <pre><code>${fn:trim(&quot;AB C &quot;)}D&lt;br&gt;
 </code></pre><p>转换的结果为“ AB CD ”，注意，它将只删除词尾的空格而不是全部，因此“ B ”和“ C ”之间仍然留有一个空格。</p>
-<p>参考文档<a href="http://www.javawind.net/help/html/jstl_el.htm" target="_blank" rel="external">http://www.javawind.net/help/html/jstl_el.htm</a></p>
+<p>参考文档<a href="http://www.javawind.net/help/html/jstl_el.htm" target="_blank" rel="noopener">http://www.javawind.net/help/html/jstl_el.htm</a></p>
 
       
     </div>
+    
     
     
     
@@ -892,14 +891,14 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -1030,11 +1029,9 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -1125,7 +1122,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式"><span class="nav-number">1.</span> <span class="nav-text">EL 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-1JSTL-EL-表达式语言简介"><span class="nav-number">1.1.</span> <span class="nav-text">9.2.1JSTL EL 表达式语言简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-2-EL-表达式的默认变量"><span class="nav-number">1.2.</span> <span class="nav-text">9.2.2 EL 表达式的默认变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式的操作符"><span class="nav-number">2.</span> <span class="nav-text">表达式的操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库介绍"><span class="nav-number">3.</span> <span class="nav-text">标签库介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库"><span class="nav-number">4.</span> <span class="nav-text">标签库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于显示的-lt-c-out-gt-标签"><span class="nav-number">5.</span> <span class="nav-text">用于显示的<c:out> 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-c-gt-标签"><span class="nav-number">6.</span> <span class="nav-text"><c: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用于赋值的标签"><span class="nav-number">6.1.</span> <span class="nav-text">用于赋值的标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-3-用于删除的-lt-c-remove-gt-标签"><span class="nav-number">6.2.</span> <span class="nav-text">9.3.3 用于删除的 <c:remove>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-4-用于异常捕获的-lt-c-catch-gt-标签"><span class="nav-number">6.3.</span> <span class="nav-text">9.3.4 用于异常捕获的 <c:catch> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-5-用于判断的-lt-c-if-gt-标签"><span class="nav-number">6.4.</span> <span class="nav-text">9.3.5 用于判断的 <c:if> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-6-用于复杂判断的-lt-c-choose-gt-、-lt-c-when-gt-、-lt-c-otherwise-gt-标签"><span class="nav-number">6.5.</span> <span class="nav-text">9.3.6 用于复杂判断的 <c:choose> 、 <c:when> 、 <c:otherwise> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-7-用于循环的-lt-c-forEach-gt-标签"><span class="nav-number">6.6.</span> <span class="nav-text">9.3.7 用于循环的 <c:forEach> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-8-用于分隔字符的-lt-c-forTokens-gt-标签"><span class="nav-number">6.7.</span> <span class="nav-text">9.3.8 用于分隔字符的 <c:forTokens> 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-x-gt-标签"><span class="nav-number">7.</span> <span class="nav-text"><x: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-9-用于包含页面的-lt-c-import-gt"><span class="nav-number">7.1.</span> <span class="nav-text">9.3.9 用于包含页面的<c:import></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-10-用于得到URL地址的-lt-c-url-gt-标签"><span class="nav-number">7.2.</span> <span class="nav-text">9.3.10 用于得到URL地址的<c:url>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-11-用于页面重定向的-lt-c-redirect-gt-标签"><span class="nav-number">7.3.</span> <span class="nav-text">9.3.11 用于页面重定向的<c:redirect>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-12-用于包含传递参数的-lt-c-param-gt-标签"><span class="nav-number">7.4.</span> <span class="nav-text">9.3.12 用于包含传递参数的<c:param>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-JSTL-XML-processing标签库"><span class="nav-number">8.</span> <span class="nav-text">9.4 JSTL XML processing标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-1-用于解析XML文件的-lt-x-parse-gt-标签"><span class="nav-number">8.1.</span> <span class="nav-text">9.4.1 用于解析XML文件的<x:parse>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fmt-gt-标签"><span class="nav-number">9.</span> <span class="nav-text"><fmt: > 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-1-用于设置本地化环境的-lt-fmt-setLocale-gt-标签"><span class="nav-number">9.1.</span> <span class="nav-text">9.5.1 用于设置本地化环境的<fmt:setLocale>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-2-用于资源文件绑定的-lt-fmt-bundle-gt-、-lt-fmt-setBundle-gt-标签"><span class="nav-number">9.2.</span> <span class="nav-text">9.5.2 用于资源文件绑定的<fmt:bundle>、<fmt:setBundle>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-3-用于显示资源配置文件信息的-lt-fmt-message-gt-标签"><span class="nav-number">9.3.</span> <span class="nav-text">9.5.3  用于显示资源配置文件信息的<fmt:message>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-4-用于参数传递的-lt-fmt-param-gt-标签"><span class="nav-number">9.4.</span> <span class="nav-text">9.5.4  用于参数传递的<fmt:param>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-6-用于为请求设置字符编码的-lt-fmt-requestEncoding-gt-标签"><span class="nav-number">9.5.</span> <span class="nav-text">9.5.6  用于为请求设置字符编码的<fmt:requestEncoding>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-7-用于设定时区的-lt-fmt-timeZone-gt-、-lt-fmt-setTimeZone-gt-标签"><span class="nav-number">9.6.</span> <span class="nav-text">9.5.7  用于设定时区的<fmt:timeZone>、<fmt:setTimeZone>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-8-用于格式化数字的-lt-fmt-formatNumber-gt-标签"><span class="nav-number">9.7.</span> <span class="nav-text">9.5.8  用于格式化数字的<fmt:formatNumber>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-9-用于解析数字的-lt-fmt-parseNumber-gt-标签"><span class="nav-number">9.8.</span> <span class="nav-text">9.5.9  用于解析数字的<fmt:parseNumber>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-10-用于格式化日期的-lt-fmt-formatDate-gt-标签"><span class="nav-number">9.9.</span> <span class="nav-text">9.5.10  用于格式化日期的<fmt:formatDate>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-11-用于解析日期的-lt-fmt-parseDate-gt-标签"><span class="nav-number">9.10.</span> <span class="nav-text">9.5.11  用于解析日期的<fmt:parseDate>标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-Database-access-标签库"><span class="nav-number">10.</span> <span class="nav-text">9.6  Database access 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-1-用于设置数据源的-lt-sql-setDataSource-gt-标签"><span class="nav-number">10.1.</span> <span class="nav-text">9.6.1 用于设置数据源的 <sql:setDataSource> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-用于查询的-lt-sql-query-gt-标签"><span class="nav-number">10.2.</span> <span class="nav-text">9.6.2 用于查询的 <sql:query>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-3-用于更新的-lt-sql-update-gt-标签"><span class="nav-number">10.3.</span> <span class="nav-text">9.6.3 用于更新的 <sql:update> 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-4-用于事务处理的-lt-sql-transaction-gt-标签"><span class="nav-number">10.4.</span> <span class="nav-text">9.6.4 用于事务处理的<sql:transaction>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-5-用于事务处理的-lt-sql-param-gt-、-lt-sql-dateParam-gt-标签"><span class="nav-number">10.5.</span> <span class="nav-text">9.6.5 用于事务处理的<sql:param> 、 <sql:dateParam> 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fn-gt-标签"><span class="nav-number">11.</span> <span class="nav-text"><fn:> 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7-Functions-标签库"><span class="nav-number">12.</span> <span class="nav-text">9.7 Functions 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-1-长度函数-fn-length-函数"><span class="nav-number">12.1.</span> <span class="nav-text">9.7.1 长度函数 fn:length 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-2-判断函数-fn-contains-函数"><span class="nav-number">12.2.</span> <span class="nav-text">9.7.2 判断函数 fn:contains 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-3-fn-containsIgnoreCase函数"><span class="nav-number">12.3.</span> <span class="nav-text">9.7.3 fn:containsIgnoreCase函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-4-词头判断函数-fn-startsWith-函数"><span class="nav-number">12.4.</span> <span class="nav-text">9.7.4 词头判断函数 fn:startsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-5-词尾判断函数-fn-endsWith-函数"><span class="nav-number">12.5.</span> <span class="nav-text">9.7.5 词尾判断函数 fn:endsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-6-字符实体转换函数-fn-escapeXml-函数"><span class="nav-number">12.6.</span> <span class="nav-text">9.7.6 字符实体转换函数 fn:escapeXml 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-8-字符匹配函数-fn-indexOf-函数"><span class="nav-number">12.7.</span> <span class="nav-text">9.7.8 字符匹配函数 fn:indexOf 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-9-分隔符函数-fn-join-函数"><span class="nav-number">12.8.</span> <span class="nav-text">9.7.9 分隔符函数 fn:join 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-10-替换函数-fn-replace-函数"><span class="nav-number">12.9.</span> <span class="nav-text">9.7.10 替换函数 fn:replace 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-11-分隔符转换数组函数-fn-split-函数"><span class="nav-number">12.10.</span> <span class="nav-text">9.7.11 分隔符转换数组函数 fn:split 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-12-字符串截取函数-fn-substring-函数"><span class="nav-number">12.11.</span> <span class="nav-text">9.7.12 字符串截取函数 fn:substring 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-14-起始到定位截取字符串函数-fn-substringBefore-函数"><span class="nav-number">12.12.</span> <span class="nav-text">9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-15-小写转换函数-fn-toLowerCase-函数"><span class="nav-number">12.13.</span> <span class="nav-text">9.7.15 小写转换函数 fn:toLowerCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-16大写转换函数-fn-toUpperCase-函数"><span class="nav-number">12.14.</span> <span class="nav-text">9.7.16大写转换函数 fn:toUpperCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-17空格删除函数-fn-trim-函数"><span class="nav-number">12.15.</span> <span class="nav-text">9.7.17空格删除函数 fn:trim 函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式"><span class="nav-number">1.</span> <span class="nav-text">EL 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-1JSTL-EL-表达式语言简介"><span class="nav-number">1.1.</span> <span class="nav-text">9.2.1JSTL EL 表达式语言简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-2-EL-表达式的默认变量"><span class="nav-number">1.2.</span> <span class="nav-text">9.2.2 EL 表达式的默认变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式的操作符"><span class="nav-number">2.</span> <span class="nav-text">表达式的操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库介绍"><span class="nav-number">3.</span> <span class="nav-text">标签库介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签库"><span class="nav-number">4.</span> <span class="nav-text">标签库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用于显示的-lt-c-out-gt-标签"><span class="nav-number">5.</span> <span class="nav-text">用于显示的&lt;c:out&gt; 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-c-gt-标签"><span class="nav-number">6.</span> <span class="nav-text">&lt;c: &gt; 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用于赋值的-lt-c-set-gt-标签"><span class="nav-number">6.1.</span> <span class="nav-text">用于赋值的&lt;c:set&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-3-用于删除的-lt-c-remove-gt-标签"><span class="nav-number">6.2.</span> <span class="nav-text">9.3.3 用于删除的 &lt;c:remove&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-4-用于异常捕获的-lt-c-catch-gt-标签"><span class="nav-number">6.3.</span> <span class="nav-text">9.3.4 用于异常捕获的 &lt;c:catch&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-5-用于判断的-lt-c-if-gt-标签"><span class="nav-number">6.4.</span> <span class="nav-text">9.3.5 用于判断的 &lt;c:if&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-6-用于复杂判断的-lt-c-choose-gt-、-lt-c-when-gt-、-lt-c-otherwise-gt-标签"><span class="nav-number">6.5.</span> <span class="nav-text">9.3.6 用于复杂判断的 &lt;c:choose&gt; 、 &lt;c:when&gt; 、 &lt;c:otherwise&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-7-用于循环的-lt-c-forEach-gt-标签"><span class="nav-number">6.6.</span> <span class="nav-text">9.3.7 用于循环的 &lt;c:forEach&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-8-用于分隔字符的-lt-c-forTokens-gt-标签"><span class="nav-number">6.7.</span> <span class="nav-text">9.3.8 用于分隔字符的 &lt;c:forTokens&gt; 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-x-gt-标签"><span class="nav-number">7.</span> <span class="nav-text">&lt;x: &gt; 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-9-用于包含页面的-lt-c-import-gt"><span class="nav-number">7.1.</span> <span class="nav-text">9.3.9 用于包含页面的&lt;c:import&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-10-用于得到URL地址的-lt-c-url-gt-标签"><span class="nav-number">7.2.</span> <span class="nav-text">9.3.10 用于得到URL地址的&lt;c:url&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-11-用于页面重定向的-lt-c-redirect-gt-标签"><span class="nav-number">7.3.</span> <span class="nav-text">9.3.11 用于页面重定向的&lt;c:redirect&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-12-用于包含传递参数的-lt-c-param-gt-标签"><span class="nav-number">7.4.</span> <span class="nav-text">9.3.12 用于包含传递参数的&lt;c:param&gt;标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-JSTL-XML-processing标签库"><span class="nav-number">8.</span> <span class="nav-text">9.4 JSTL XML processing标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-1-用于解析XML文件的-lt-x-parse-gt-标签"><span class="nav-number">8.1.</span> <span class="nav-text">9.4.1 用于解析XML文件的&lt;x:parse&gt;标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fmt-gt-标签"><span class="nav-number">9.</span> <span class="nav-text">&lt;fmt: &gt; 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-1-用于设置本地化环境的-lt-fmt-setLocale-gt-标签"><span class="nav-number">9.1.</span> <span class="nav-text">9.5.1 用于设置本地化环境的&lt;fmt:setLocale&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-2-用于资源文件绑定的-lt-fmt-bundle-gt-、-lt-fmt-setBundle-gt-标签"><span class="nav-number">9.2.</span> <span class="nav-text">9.5.2 用于资源文件绑定的&lt;fmt:bundle&gt;、&lt;fmt:setBundle&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-3-用于显示资源配置文件信息的-lt-fmt-message-gt-标签"><span class="nav-number">9.3.</span> <span class="nav-text">9.5.3  用于显示资源配置文件信息的&lt;fmt:message&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-4-用于参数传递的-lt-fmt-param-gt-标签"><span class="nav-number">9.4.</span> <span class="nav-text">9.5.4  用于参数传递的&lt;fmt:param&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-6-用于为请求设置字符编码的-lt-fmt-requestEncoding-gt-标签"><span class="nav-number">9.5.</span> <span class="nav-text">9.5.6  用于为请求设置字符编码的&lt;fmt:requestEncoding&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-7-用于设定时区的-lt-fmt-timeZone-gt-、-lt-fmt-setTimeZone-gt-标签"><span class="nav-number">9.6.</span> <span class="nav-text">9.5.7  用于设定时区的&lt;fmt:timeZone&gt;、&lt;fmt:setTimeZone&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-8-用于格式化数字的-lt-fmt-formatNumber-gt-标签"><span class="nav-number">9.7.</span> <span class="nav-text">9.5.8  用于格式化数字的&lt;fmt:formatNumber&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-9-用于解析数字的-lt-fmt-parseNumber-gt-标签"><span class="nav-number">9.8.</span> <span class="nav-text">9.5.9  用于解析数字的&lt;fmt:parseNumber&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-10-用于格式化日期的-lt-fmt-formatDate-gt-标签"><span class="nav-number">9.9.</span> <span class="nav-text">9.5.10  用于格式化日期的&lt;fmt:formatDate&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-11-用于解析日期的-lt-fmt-parseDate-gt-标签"><span class="nav-number">9.10.</span> <span class="nav-text">9.5.11  用于解析日期的&lt;fmt:parseDate&gt;标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-Database-access-标签库"><span class="nav-number">10.</span> <span class="nav-text">9.6  Database access 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-1-用于设置数据源的-lt-sql-setDataSource-gt-标签"><span class="nav-number">10.1.</span> <span class="nav-text">9.6.1 用于设置数据源的 &lt;sql:setDataSource&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-用于查询的-lt-sql-query-gt-标签"><span class="nav-number">10.2.</span> <span class="nav-text">9.6.2 用于查询的 &lt;sql:query&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-3-用于更新的-lt-sql-update-gt-标签"><span class="nav-number">10.3.</span> <span class="nav-text">9.6.3 用于更新的 &lt;sql:update&gt; 标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-4-用于事务处理的-lt-sql-transaction-gt-标签"><span class="nav-number">10.4.</span> <span class="nav-text">9.6.4 用于事务处理的&lt;sql:transaction&gt;标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-5-用于事务处理的-lt-sql-param-gt-、-lt-sql-dateParam-gt-标签"><span class="nav-number">10.5.</span> <span class="nav-text">9.6.5 用于事务处理的&lt;sql:param&gt; 、 &lt;sql:dateParam&gt; 标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-fn-gt-标签"><span class="nav-number">11.</span> <span class="nav-text">&lt;fn:&gt; 标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7-Functions-标签库"><span class="nav-number">12.</span> <span class="nav-text">9.7 Functions 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-1-长度函数-fn-length-函数"><span class="nav-number">12.1.</span> <span class="nav-text">9.7.1 长度函数 fn:length 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-2-判断函数-fn-contains-函数"><span class="nav-number">12.2.</span> <span class="nav-text">9.7.2 判断函数 fn:contains 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-3-fn-containsIgnoreCase函数"><span class="nav-number">12.3.</span> <span class="nav-text">9.7.3 fn:containsIgnoreCase函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-4-词头判断函数-fn-startsWith-函数"><span class="nav-number">12.4.</span> <span class="nav-text">9.7.4 词头判断函数 fn:startsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-5-词尾判断函数-fn-endsWith-函数"><span class="nav-number">12.5.</span> <span class="nav-text">9.7.5 词尾判断函数 fn:endsWith 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-6-字符实体转换函数-fn-escapeXml-函数"><span class="nav-number">12.6.</span> <span class="nav-text">9.7.6 字符实体转换函数 fn:escapeXml 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-8-字符匹配函数-fn-indexOf-函数"><span class="nav-number">12.7.</span> <span class="nav-text">9.7.8 字符匹配函数 fn:indexOf 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-9-分隔符函数-fn-join-函数"><span class="nav-number">12.8.</span> <span class="nav-text">9.7.9 分隔符函数 fn:join 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-10-替换函数-fn-replace-函数"><span class="nav-number">12.9.</span> <span class="nav-text">9.7.10 替换函数 fn:replace 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-11-分隔符转换数组函数-fn-split-函数"><span class="nav-number">12.10.</span> <span class="nav-text">9.7.11 分隔符转换数组函数 fn:split 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-12-字符串截取函数-fn-substring-函数"><span class="nav-number">12.11.</span> <span class="nav-text">9.7.12 字符串截取函数 fn:substring 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-14-起始到定位截取字符串函数-fn-substringBefore-函数"><span class="nav-number">12.12.</span> <span class="nav-text">9.7.14 起始到定位截取字符串函数 fn:substringBefore 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-15-小写转换函数-fn-toLowerCase-函数"><span class="nav-number">12.13.</span> <span class="nav-text">9.7.15 小写转换函数 fn:toLowerCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-16大写转换函数-fn-toUpperCase-函数"><span class="nav-number">12.14.</span> <span class="nav-text">9.7.16大写转换函数 fn:toUpperCase 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-7-17空格删除函数-fn-trim-函数"><span class="nav-number">12.15.</span> <span class="nav-text">9.7.17空格删除函数 fn:trim 函数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1159,7 +1156,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

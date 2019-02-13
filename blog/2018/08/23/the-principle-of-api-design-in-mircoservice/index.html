@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,35 +68,31 @@
 
 
 
-  <meta name="keywords" content="微服务,API,设计," />
+  <meta name="keywords" content="微服务,API,设计,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API
-1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。
-2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
+<meta name="description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API 1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。 2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
+<meta name="keywords" content="微服务,API,设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务下的API设计原则">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API
-1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。
-2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
+<meta property="og:description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API 1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。 2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-10-23T08:57:54.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务下的API设计原则">
-<meta name="twitter:description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API
-1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。
-2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
+<meta name="twitter:description" content="微服务下的API设计原则目的：规范团队乃至公司的API设计。主要参考： Github API 1. 为了安全，请使用HTTPS与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。 2. API 地址和版本在 url 中指定 API 的版本是个很好地做法。如果 API 变化比较大，可以把API设计为子域名，比如 https://api.ke.com/v3">
 
 
 
@@ -126,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/">
 
 
 
@@ -154,7 +150,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -164,13 +160,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -200,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -210,7 +206,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -220,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -230,7 +226,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -240,7 +236,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -250,7 +246,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -260,7 +256,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -294,20 +290,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/08/23/the-principle-of-api-design-in-mircoservice/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -339,7 +335,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -350,7 +346,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/微服务/" itemprop="url" rel="index">
                     <span itemprop="name">微服务</span>
                   </a>
@@ -393,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -408,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,519
+                  3,531
                 </span>
               
 
@@ -445,14 +441,14 @@
       
 
       
-        <h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/" target="_blank" rel="external">Github API</a></p>
+        <h1 id="微服务下的API设计原则"><a href="#微服务下的API设计原则" class="headerlink" title="微服务下的API设计原则"></a>微服务下的API设计原则</h1><p>目的：<br>规范团队乃至公司的API设计。<br>主要参考： <a href="https://developer.github.com/v3/" target="_blank" rel="noopener">Github API</a></p>
 <h2 id="1-为了安全，请使用HTTPS"><a href="#1-为了安全，请使用HTTPS" class="headerlink" title="1. 为了安全，请使用HTTPS"></a>1. 为了安全，请使用HTTPS</h2><p>与API设计无关、为了安全请使用HTTPS。公网API,强制使用HTTPS。内网API可酌情选择。</p>
 <h2 id="2-API-地址和版本"><a href="#2-API-地址和版本" class="headerlink" title="2. API 地址和版本"></a>2. API 地址和版本</h2><p>在 <code>url</code> 中指定 API 的版本是个很好地做法。<br>如果 API 变化比较大，可以把API设计为子域名，比如 <code>https://api.ke.com/v3</code>；<br>也可以简单地把版本放在路径中，比如 <code>https://ke.com/api/v1</code>。<br><strong>不建议放入Header</strong>，不直观。</p>
 <h2 id="3-schema请使用JSON"><a href="#3-schema请使用JSON" class="headerlink" title="3. schema请使用JSON"></a>3. schema请使用JSON</h2><p>对于响应返回的格式，JSON 因为它的可读性、紧凑性以及多种语言支持等优点，成为了 HTTP API 最常用的返回格式。因此，最好采用<strong>JSON</strong>作为返回内容的格式。</p>
 <p><strong>不推荐其他格式</strong>，如果必须使用，比如 <code>xml</code>，应该在请求头部 <code>Accept</code> 中指定。<br>对于不支持的格式，服务端需要返回正确的 <code>status code</code>，并给出详细的说明。</p>
 <a id="more"></a>
 <h2 id="4-以资源为中心的URL设计"><a href="#4-以资源为中心的URL设计" class="headerlink" title="4. 以资源为中心的URL设计"></a>4. 以资源为中心的URL设计</h2><p>资源是 <code>Restful API</code> 的核心元素，所有的操作都是针对特定资源进行的。而资源就是 <code>URL</code>（Uniform Resoure Locator）表示的，所以简洁、清晰、结构化的 URL 设计是至关重要的。Github 可以说是这方面的典范，下面我们就拿 <code>repository</code> 来说明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/users/:username/repos</div><div class="line">/users/:org/repos</div><div class="line">/repos/:owner/:repo</div><div class="line">/repos/:owner/:repo/tags</div><div class="line">/repos/:owner/:repo/branches/:branch</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/users/:username/repos</span><br><span class="line">/users/:org/repos</span><br><span class="line">/repos/:owner/:repo</span><br><span class="line">/repos/:owner/:repo/tags</span><br><span class="line">/repos/:owner/:repo/branches/:branch</span><br></pre></td></tr></table></figure>
 <p>我们可以看到几个特性：</p>
 <ul>
 <li>资源分为单个文档和集合，尽量使用复数来表示资源，单个资源通过添加 id 或者 name 等来表示</li>
@@ -496,7 +492,7 @@
 </tbody>
 </table>
 <p>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">GET /repos/:owner/:repo/issues</div><div class="line">GET /repos/:owner/:repo/issues/:number</div><div class="line">POST /repos/:owner/:repo/issues</div><div class="line">PATCH /repos/:owner/:repo/issues/:number</div><div class="line">DELETE /repos/:owner/:repo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET /repos/:owner/:repo/issues</span><br><span class="line">GET /repos/:owner/:repo/issues/:number</span><br><span class="line">POST /repos/:owner/:repo/issues</span><br><span class="line">PATCH /repos/:owner/:repo/issues/:number</span><br><span class="line">DELETE /repos/:owner/:repo</span><br></pre></td></tr></table></figure>
 <p>建议：依据公司的实际情况，不可能所有的服务都能符合RESTFUL标准。请重点学习使用<code>GET,POST,DELETE</code></p>
 <h3 id="不符合-CRUD-的情况"><a href="#不符合-CRUD-的情况" class="headerlink" title="不符合 CRUD 的情况"></a>不符合 CRUD 的情况</h3><p>在实际资源操作中，总会有一些不符合 <code>CRUD</code>（Create-Read-Update-Delete） 的情况，一般有几种处理方法。</p>
 <h4 id="使用-POST"><a href="#使用-POST" class="headerlink" title="使用 POST"></a>使用 POST</h4><p>为需要的动作增加一个 endpoint，使用 POST 来执行动作，比如 <code>POST /resend</code> 重新发送邮件。</p>
@@ -642,7 +638,7 @@
 </tr>
 </tbody>
 </table>
-<p>上面这些状态码覆盖了 API 设计中大部分的情况，如果对某个状态码不清楚或者希望查看更完整的列表，可以参考 <a href="https://httpstatuses.com/" target="_blank" rel="external">HTTP Status Code</a> 这个网站，或者 <a href="https://tools.ietf.org/html/rfc7231#section-6" target="_blank" rel="external">RFC7231 Response Status Codes</a> 的内容。<br>在实际应用中，<strong>不建议再使用更多的状态码</strong>。</p>
+<p>上面这些状态码覆盖了 API 设计中大部分的情况，如果对某个状态码不清楚或者希望查看更完整的列表，可以参考 <a href="https://httpstatuses.com/" target="_blank" rel="noopener">HTTP Status Code</a> 这个网站，或者 <a href="https://tools.ietf.org/html/rfc7231#section-6" target="_blank" rel="noopener">RFC7231 Response Status Codes</a> 的内容。<br>在实际应用中，<strong>不建议再使用更多的状态码</strong>。</p>
 <h2 id="9-错误处理码设计"><a href="#9-错误处理码设计" class="headerlink" title="9. 错误处理码设计"></a>9. 错误处理码设计</h2><p>除了使用好HTTP状态码，必须有良好的错误码设计。一个良好的状态码设计应同事给出<code>状态码</code>和对应<code>错误消息</code>。<br>HTTP请求返回格式(建议)：</p>
 <pre><code>{
     &quot;code&quot;:XXX,
@@ -747,22 +743,23 @@
 <li>验证（Authentication）是为了确定用户是其申明的身份，比如提供账户的密码。不然的话，任何人伪造成其他身份（比如其他用户或者管理员）是非常危险的</li>
 <li>授权（Authorization）是为了保证用户有对请求资源特定操作的权限。比如用户的私人信息只能自己能访问，其他人无法看到；有些特殊的操作只能管理员可以操作，其他用户有只读的权限等等</li>
 </ul>
-<p>如果没有通过验证（提供的用户名和密码不匹配，token 不正确等），需要返回 <a href="https://httpstatuses.com/401" target="_blank" rel="external"><strong>401 Unauthorized</strong></a>状态码，并在 body 中说明具体的错误信息；而没有被授权访问的资源操作，需要返回 <a href="https://httpstatuses.com/403" target="_blank" rel="external"><strong>403 Forbidden</strong></a> 状态码，还有详细的错误信息。</p>
-<p><strong>NOTE</strong>：Github API 对某些用户未被授权访问的资源操作返回 <a href="https://httpstatuses.com/404" target="_blank" rel="external"><strong>404 Not Found</strong></a>，目的是为了防止私有资源的泄露（比如黑客可以自动化试探用户的私有资源，返回 403 的话，就等于告诉黑客用户有这些私有的资源）。</p>
-<h2 id="11-限流rate-limit"><a href="#11-限流rate-limit" class="headerlink" title="11. 限流rate limit"></a>11. 限流rate limit</h2><p>如果对访问的次数不加控制，很可能会造成 API 被滥用，甚至被 <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" target="_blank" rel="external">DDos 攻击</a>。根据使用者不同的身份对其进行限流，可以防止这些情况，减少服务器的压力。</p>
+<p>如果没有通过验证（提供的用户名和密码不匹配，token 不正确等），需要返回 <a href="https://httpstatuses.com/401" target="_blank" rel="noopener"><strong>401 Unauthorized</strong></a>状态码，并在 body 中说明具体的错误信息；而没有被授权访问的资源操作，需要返回 <a href="https://httpstatuses.com/403" target="_blank" rel="noopener"><strong>403 Forbidden</strong></a> 状态码，还有详细的错误信息。</p>
+<p><strong>NOTE</strong>：Github API 对某些用户未被授权访问的资源操作返回 <a href="https://httpstatuses.com/404" target="_blank" rel="noopener"><strong>404 Not Found</strong></a>，目的是为了防止私有资源的泄露（比如黑客可以自动化试探用户的私有资源，返回 403 的话，就等于告诉黑客用户有这些私有的资源）。</p>
+<h2 id="11-限流rate-limit"><a href="#11-限流rate-limit" class="headerlink" title="11. 限流rate limit"></a>11. 限流rate limit</h2><p>如果对访问的次数不加控制，很可能会造成 API 被滥用，甚至被 <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" target="_blank" rel="noopener">DDos 攻击</a>。根据使用者不同的身份对其进行限流，可以防止这些情况，减少服务器的压力。</p>
 <p>对用户的请求限流之后，要有方法告诉用户它的请求使用情况，<code>Github API</code> 使用的三个相关的头部可以借鉴：</p>
 <ul>
 <li><code>X-RateLimit-Limit</code>: 用户每个小时允许发送请求的最大值</li>
 <li><code>X-RateLimit-Remaining</code>：当前时间窗口剩下的可用请求数目</li>
 <li><code>X-RateLimit-Rest</code>: 时间窗口重置的时候，到这个时间点可用的请求数量就会变成 X-RateLimit-Limit的值</li>
 </ul>
-<p>如果允许没有登录的用户使用 API（可以让用户试用），可以把 <code>X-RateLimit-Limit</code> 的值设置得很小，比如 Github 使用的 <code>60</code>。没有登录的用户是按照请求的 IP 来确定的，而登录的用户按照认证后的信息来确定身份。<br>对于超过流量的请求，可以返回 <a href="https://httpstatuses.com/429" target="_blank" rel="external"><strong>429 Too many requests</strong></a> 状态码，并附带错误信息。而 <code>Github API</code> 返回的是 <a href="https://httpstatuses.com/403" target="_blank" rel="external"><strong>403 Forbidden</strong></a>，虽然没有 <code>429</code> 更准确，也是可以理解的。</p>
-<h2 id="12-Hypermedia-API"><a href="#12-Hypermedia-API" class="headerlink" title="12. Hypermedia API"></a>12. Hypermedia API</h2><p>Restful API 的设计最好做到 Hypermedia：在返回结果中提供相关资源的链接。这种设计也被称为 <a href="http://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="external">HATEOAS</a>。这样做的好处是，用户可以根据返回结果就能得到后续操作需要访问的地址。<br>比如访问 <a href="https://api.github.com/" target="_blank" rel="external">api.github.com</a>，就可以看到 Github API 支持的资源操作。<br>Spring技术栈，可以使用<a href="https://spring.io/projects/spring-hateoas" target="_blank" rel="external">Spring Hateoas</a>；由于需要在返回body内增加内容，内部服务使用起来颇有难度，不建议。外部服务强烈推荐。</p>
+<p>如果允许没有登录的用户使用 API（可以让用户试用），可以把 <code>X-RateLimit-Limit</code> 的值设置得很小，比如 Github 使用的 <code>60</code>。没有登录的用户是按照请求的 IP 来确定的，而登录的用户按照认证后的信息来确定身份。<br>对于超过流量的请求，可以返回 <a href="https://httpstatuses.com/429" target="_blank" rel="noopener"><strong>429 Too many requests</strong></a> 状态码，并附带错误信息。而 <code>Github API</code> 返回的是 <a href="https://httpstatuses.com/403" target="_blank" rel="noopener"><strong>403 Forbidden</strong></a>，虽然没有 <code>429</code> 更准确，也是可以理解的。</p>
+<h2 id="12-Hypermedia-API"><a href="#12-Hypermedia-API" class="headerlink" title="12. Hypermedia API"></a>12. Hypermedia API</h2><p>Restful API 的设计最好做到 Hypermedia：在返回结果中提供相关资源的链接。这种设计也被称为 <a href="http://en.wikipedia.org/wiki/HATEOAS" target="_blank" rel="noopener">HATEOAS</a>。这样做的好处是，用户可以根据返回结果就能得到后续操作需要访问的地址。<br>比如访问 <a href="https://api.github.com/" target="_blank" rel="noopener">api.github.com</a>，就可以看到 Github API 支持的资源操作。<br>Spring技术栈，可以使用<a href="https://spring.io/projects/spring-hateoas" target="_blank" rel="noopener">Spring Hateoas</a>；由于需要在返回body内增加内容，内部服务使用起来颇有难度，不建议。外部服务强烈推荐。</p>
 <h2 id="13-编写优秀的文档"><a href="#13-编写优秀的文档" class="headerlink" title="13. 编写优秀的文档"></a>13. 编写优秀的文档</h2><p>API 最终是给人使用的，不管是公司内部，还是公开的 API 都是一样。即使我们遵循了上面提到的所有规范，设计的 API 非常优雅，用户还是不知道怎么使用我们的 API。最后一步，但非常重要的一步是：为你的 API 编写优秀的文档。</p>
-<p>对每个请求以及返回的参数给出说明，最好给出一个详细而完整地示例，提醒用户需要注意的地方……反正目标就是用户可以根据你的文档就能直接使用API，而不是要发邮件给你，或者跑到你的座位上问你一堆问题。<br>文档生成：<strong>建议使用<a href="https://swagger.io/" target="_blank" rel="external">SWAGGER</a></strong><br>与Spring集成：使用<a href="http://springfox.github.io/springfox/" target="_blank" rel="external">SpringFox</a></p>
+<p>对每个请求以及返回的参数给出说明，最好给出一个详细而完整地示例，提醒用户需要注意的地方……反正目标就是用户可以根据你的文档就能直接使用API，而不是要发邮件给你，或者跑到你的座位上问你一堆问题。<br>文档生成：<strong>建议使用<a href="https://swagger.io/" target="_blank" rel="noopener">SWAGGER</a></strong><br>与Spring集成：使用<a href="http://springfox.github.io/springfox/" target="_blank" rel="noopener">SpringFox</a></p>
 
       
     </div>
+    
     
     
     
@@ -780,14 +777,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -920,11 +917,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -1049,7 +1044,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

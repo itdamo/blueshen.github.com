@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,36 +68,35 @@
 
 
 
-  <meta name="keywords" content="elasticsearch,iperf," />
+  <meta name="keywords" content="elasticsearch,iperf,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。
-固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
+<meta name="description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。 固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
+<meta name="keywords" content="elasticsearch,iperf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch线上故障-持续Yellow状态">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。
-固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
+<meta property="og:description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。 固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-net-io.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-machine-dstat.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-net-io-1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-network.png">
-<meta property="og:updated_time" content="2018-12-26T10:09:28.017Z">
+<meta property="og:updated_time" content="2018-12-26T10:09:28.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch线上故障-持续Yellow状态">
-<meta name="twitter:description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。
-固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
+<meta name="twitter:description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。 固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-net-io.png">
 
 
@@ -128,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/">
 
 
 
@@ -156,7 +155,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -166,13 +165,13 @@
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -202,7 +201,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -212,7 +211,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -222,7 +221,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -232,7 +231,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -242,7 +241,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -252,7 +251,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -262,7 +261,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -296,20 +295,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -341,7 +340,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -352,7 +351,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/elasticsearch/" itemprop="url" rel="index">
                     <span itemprop="name">elasticsearch</span>
                   </a>
@@ -395,7 +394,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -410,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,060
+                  1,075
                 </span>
               
 
@@ -450,15 +449,15 @@
         <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。</p>
 <p>固定的几个ES节点（10.10.24.X网段），出现间歇性被<strong>踢出</strong>Cluster，随后又<strong>加入</strong>Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。</p>
 <a id="more"></a>
-<h3 id="日志排查"><a href="#日志排查" class="headerlink" title="日志排查"></a>日志排查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> [2018-12-08T19:25:29,993][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</div><div class="line">java.nio.channels.ClosedChannelException: null</div><div class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</div><div class="line"> [2018-12-08T19:25:29,994][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</div><div class="line"> java.nio.channels.ClosedChannelException: null</div><div class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</div><div class="line"> [2018-12-08T19:25:31,111][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [_TS9PjOLRke8j12-d59iGA]</div><div class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es39-search.mars.ljnode.com_node0][10.200.24.86:8309][cluster:monitor/nodes/info[n]] request_id [203863696] timed out after [5000ms]</div><div class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</div><div class="line">         at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:575) [elasticsearch-5.6.9.jar:5.6.9]</div><div class="line">         at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_172]</div><div class="line">         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_172]</div><div class="line">         at java.lang.Thread.run(Thread.java:748) [?:1.8.0_172]</div><div class="line"> [2018-12-08T19:25:32,305][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [yt3RGpgJStKwtOENBe5Trw]</div><div class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es38-search.mars.ljnode.com_node0][10.200.24.97:8309][cluster:monitor/nodes/info[n]] request_id [203863752] timed out after [5000ms]</div><div class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</div></pre></td></tr></table></figure>
+<h3 id="日志排查"><a href="#日志排查" class="headerlink" title="日志排查"></a>日志排查</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> [2018-12-08T19:25:29,993][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</span><br><span class="line">java.nio.channels.ClosedChannelException: null</span><br><span class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</span><br><span class="line"> [2018-12-08T19:25:29,994][WARN ][o.e.x.s.t.n.SecurityNetty4Transport] [es35-search.mars.ljnode.com] write and flush on the network layer failed (channel: [id: 0x0e6ac038, L:0.0.0.0/0.0.0.0:8309 ! R:/10.200.24.96:46802])</span><br><span class="line"> java.nio.channels.ClosedChannelException: null</span><br><span class="line">         at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source) ~[?:?]</span><br><span class="line"> [2018-12-08T19:25:31,111][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [_TS9PjOLRke8j12-d59iGA]</span><br><span class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es39-search.mars.ljnode.com_node0][10.200.24.86:8309][cluster:monitor/nodes/info[n]] request_id [203863696] timed out after [5000ms]</span><br><span class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</span><br><span class="line">         at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:575) [elasticsearch-5.6.9.jar:5.6.9]</span><br><span class="line">         at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_172]</span><br><span class="line">         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_172]</span><br><span class="line">         at java.lang.Thread.run(Thread.java:748) [?:1.8.0_172]</span><br><span class="line"> [2018-12-08T19:25:32,305][DEBUG][o.e.a.a.c.n.i.TransportNodesInfoAction] [es35-search.mars.ljnode.com] failed to execute on node [yt3RGpgJStKwtOENBe5Trw]</span><br><span class="line"> org.elasticsearch.transport.ReceiveTimeoutTransportException: [es38-search.mars.ljnode.com_node0][10.200.24.97:8309][cluster:monitor/nodes/info[n]] request_id [203863752] timed out after [5000ms]</span><br><span class="line">         at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:961) [elasticsearch-5.6.9.jar:5.6.9]</span><br></pre></td></tr></table></figure>
 <p>提示信息是底层的netty channel关闭，导致节点状态不可达，抛出ReceiveTimeoutTransportException，因此被踢出集群。</p>
 <h3 id="网络情况排查"><a href="#网络情况排查" class="headerlink" title="网络情况排查"></a>网络情况排查</h3><p>以上的情况，怀疑连接有问题，可能存在脑裂。找运维同学排查，查看网络状况。</p>
 <p><img src="/images/elasticsearch-yellow-exception/elasticsearch-net-io.png" alt="机器吞吐"></p>
 <p>通过监控图，首先可以排除网络断开。而整体的io吞吐，最高才只有150Mb(此处为bit)，网络流量也不大。</p>
 <h3 id="线上复现"><a href="#线上复现" class="headerlink" title="线上复现"></a>线上复现</h3><p>由于线上的集群规模较大，复现集群搭建了3台ES，并分布在2个不同的网段。</p>
 <p>那如何模拟高IO呢？</p>
-<p>选择了<a href="https://iperf.fr/" target="_blank" rel="external">iperf</a>命令，来模拟网络流量，其实iperf主要是用来测试网络带宽以及丢包测试用的，也许有其他更好的工具。</p>
-<p>具体使用方式参考<a href="http://man.linuxde.net/iperf" target="_blank" rel="external">iperf命令</a>。</p>
+<p>选择了<a href="https://iperf.fr/" target="_blank" rel="noopener">iperf</a>命令，来模拟网络流量，其实iperf主要是用来测试网络带宽以及丢包测试用的，也许有其他更好的工具。</p>
+<p>具体使用方式参考<a href="http://man.linuxde.net/iperf" target="_blank" rel="noopener">iperf命令</a>。</p>
 <p>果然在网络带宽被占满的时候，复现了上面的问题。但是当时线上并不高，这是什么原因。</p>
 <p>在测试的时候，调试调用dstat命令，来观察真实的带宽。</p>
 <p><img src="/images/elasticsearch-yellow-exception/elasticsearch-machine-dstat.png" alt="机器 dstat"></p>
@@ -469,12 +468,13 @@
 <p><img src="/images/elasticsearch-yellow-exception/elasticsearch-network.png" alt="elasticsearch network"></p>
 <p>网络拓扑图如上，其中交换机和机器直连的网卡进行升级来解决。</p>
 <h3 id="有没有优化的空间"><a href="#有没有优化的空间" class="headerlink" title="有没有优化的空间"></a>有没有优化的空间</h3><p>假如，机器硬件资源有限，有没有一些办法来尽可能规避。</p>
-<p>ElasticSearch针对recovery有速度限制，默认是40MB。如果一台机器部署多台（实际上，我们就是这样部署的），那这个值可能是倍增的，很容易打满。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">indices.recovery.max_bytes_per_sec: 10MB</div></pre></td></tr></table></figure></p>
+<p>ElasticSearch针对recovery有速度限制，默认是40MB。如果一台机器部署多台（实际上，我们就是这样部署的），那这个值可能是倍增的，很容易打满。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indices.recovery.max_bytes_per_sec: 10MB</span><br></pre></td></tr></table></figure></p>
 <p>减小上面的这个值，能够一定程度上缓解，由于recovery导致的持续带宽打满，并引起连锁反应。带宽满-&gt;节点掉-&gt;节点加入-&gt;recovery-&gt;带宽满-&gt;…</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>网络带宽，应该在部署之前就进行充分的考虑和论证。根据不同的业务场景，选择不同的硬件配置。</p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/01/10/elasticsearch-nested/" title="ElasticSearch-Nested嵌套类型解密" rel="bookmark">ElasticSearch-Nested嵌套类型解密</a></h3></div></li></ul>
     
     
     
@@ -492,14 +492,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -630,11 +630,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -725,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#现象"><span class="nav-number">1.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志排查"><span class="nav-number">2.</span> <span class="nav-text">日志排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络情况排查"><span class="nav-number">3.</span> <span class="nav-text">网络情况排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上复现"><span class="nav-number">4.</span> <span class="nav-text">线上复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因-amp-解决"><span class="nav-number">5.</span> <span class="nav-text">原因&解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有没有优化的空间"><span class="nav-number">6.</span> <span class="nav-text">有没有优化的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#现象"><span class="nav-number">1.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志排查"><span class="nav-number">2.</span> <span class="nav-text">日志排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络情况排查"><span class="nav-number">3.</span> <span class="nav-text">网络情况排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线上复现"><span class="nav-number">4.</span> <span class="nav-text">线上复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原因-amp-解决"><span class="nav-number">5.</span> <span class="nav-text">原因&amp;解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有没有优化的空间"><span class="nav-number">6.</span> <span class="nav-text">有没有优化的空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -759,7 +757,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,41 +68,31 @@
 
 
 
-  <meta name="keywords" content="pattern,interpreter,解释器," />
+  <meta name="keywords" content="pattern,interpreter,解释器,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。    
-解释器模式有以下几个角色：    
-
-AbstractExpression抽象解释器具体的解释任务由各个实现类完成。
-TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
+<meta name="description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。     解释器模式有以下几个角色：      AbstractExpression抽象解释器具体的解释任务由各个实现类完成。 TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
+<meta name="keywords" content="pattern,interpreter,解释器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：解释器（interpreter） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。    
-解释器模式有以下几个角色：    
-
-AbstractExpression抽象解释器具体的解释任务由各个实现类完成。
-TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.825Z">
+<meta property="og:description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。     解释器模式有以下几个角色：      AbstractExpression抽象解释器具体的解释任务由各个实现类完成。 TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-23T08:41:02.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：解释器（interpreter） in java">
-<meta name="twitter:description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。    
-解释器模式有以下几个角色：    
-
-AbstractExpression抽象解释器具体的解释任务由各个实现类完成。
-TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
+<meta name="twitter:description" content="定义：解释器模式是一种按照规定语法进行解析的方案，在现在项目中使用较少。正式定义：给定一门语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语句中的句子。     解释器模式有以下几个角色：      AbstractExpression抽象解释器具体的解释任务由各个实现类完成。 TerminalExpression终结符表达式实现与文法中的元素相关联的解释操作，通常一个解释">
 
 
 
@@ -132,7 +122,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/">
 
 
 
@@ -160,7 +150,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -170,13 +160,13 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -206,7 +196,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -216,7 +206,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -226,7 +216,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -236,7 +226,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -246,7 +236,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -256,7 +246,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -266,7 +256,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -300,20 +290,20 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2012/11/02/interpreter-in-java/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -345,7 +335,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -356,7 +346,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/设计模式/" itemprop="url" rel="index">
                     <span itemprop="name">设计模式</span>
                   </a>
@@ -399,7 +389,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -462,6 +452,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/bridge-in-java/" title="设计模式：桥接(bridge) in java" rel="bookmark">设计模式：桥接(bridge) in java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/chain-of-responsibility-in-java/" title="设计模式：责任链（chain of responsibility） in java" rel="bookmark">设计模式：责任链（chain of responsibility） in java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/composite-in-java/" title="设计模式：组合（composite） in java" rel="bookmark">设计模式：组合（composite） in java</a></h3></div></li></ul>
     
     
     
@@ -479,14 +470,14 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -540,8 +531,8 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2012/11/02/chain-of-responsibility-in-java/" rel="next" title="设计模式：责任链（chain of responsibility） in java">
-                <i class="fa fa-chevron-left"></i> 设计模式：责任链（chain of responsibility） in java
+              <a href="/blog/2012/11/02/composite-in-java/" rel="next" title="设计模式：组合（composite） in java">
+                <i class="fa fa-chevron-left"></i> 设计模式：组合（composite） in java
               </a>
             
           </div>
@@ -550,8 +541,8 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2012/11/02/memento-in-java/" rel="prev" title="设计模式:备忘录（memento） in java">
-                设计模式:备忘录（memento） in java <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2012/11/02/chain-of-responsibility-in-java/" rel="prev" title="设计模式：责任链（chain of responsibility） in java">
+                设计模式：责任链（chain of responsibility） in java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -610,11 +601,9 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -723,7 +712,7 @@ TerminalExpression终结符表达式实现与文法中的元素相关联的解�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 

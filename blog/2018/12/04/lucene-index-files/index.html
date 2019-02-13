@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,29 +68,27 @@
 
 
 
-  <meta name="keywords" content="lucene,index,lucene7," />
+  <meta name="keywords" content="lucene,index,lucene7,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="申艳超-博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
-本文，依Lucene 7.5.0（当时最新）版本描述。
-Luc">
+<meta name="description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。 本文，依Lucene 7.5.0（当时最新）版本描述。 Luc">
+<meta name="keywords" content="lucene,index,lucene7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lucene索引过程&索引文件格式详解">
+<meta property="og:title" content="Lucene索引过程&amp;索引文件格式详解">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
-本文，依Lucene 7.5.0（当时最新）版本描述。
-Luc">
+<meta property="og:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。 本文，依Lucene 7.5.0（当时最新）版本描述。 Luc">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-on-disk.jpg">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-process.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-segments-n.png">
@@ -104,12 +102,10 @@ Luc">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-liv.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-tvd.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-nvd.png">
-<meta property="og:updated_time" content="2018-12-07T13:56:26.089Z">
+<meta property="og:updated_time" content="2018-12-07T13:56:26.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lucene索引过程&索引文件格式详解">
-<meta name="twitter:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。
-本文，依Lucene 7.5.0（当时最新）版本描述。
-Luc">
+<meta name="twitter:title" content="Lucene索引过程&amp;索引文件格式详解">
+<meta name="twitter:description" content="最近2年，整个开源搜索引擎领域，发展迅速，版本迭代很快。 Lucene最近两年从4.0版本已经发布到最新的7.5.0版本，Solr和Elasticsearch也不断跟进升级。Lucene作为核心包，互联网上或者是书籍上关于它的介绍和分析都比较陈旧了，很多都是基于Lucene3.x来。是时候，从底层来分析下最新的Lucene发展情况了。 本文，依Lucene 7.5.0（当时最新）版本描述。 Luc">
 <meta name="twitter:image" content="https://www.shenyanchao.cn/images/lucene-index-files/lucene-index-on-disk.jpg">
 
 
@@ -140,7 +136,7 @@ Luc">
 
 
 
-  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/"/>
+  <link rel="canonical" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/">
 
 
 
@@ -168,7 +164,7 @@ Luc">
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -178,13 +174,13 @@ Luc">
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">申艳超-博客</span>
         <span class="logo-line-after"><i></i></span>
@@ -214,7 +210,7 @@ Luc">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -224,7 +220,7 @@ Luc">
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -234,7 +230,7 @@ Luc">
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -244,7 +240,7 @@ Luc">
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -254,7 +250,7 @@ Luc">
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -264,7 +260,7 @@ Luc">
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -274,7 +270,7 @@ Luc">
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -308,20 +304,20 @@ Luc">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.shenyanchao.cn/blog/2018/12/04/lucene-index-files/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="申艳超">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/shenyanchao.jpeg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="申艳超-博客">
     </span>
 
@@ -353,7 +349,7 @@ Luc">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -364,7 +360,7 @@ Luc">
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/lucene/" itemprop="url" rel="index">
                     <span itemprop="name">lucene</span>
                   </a>
@@ -407,7 +403,7 @@ Luc">
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
 
@@ -478,7 +474,7 @@ Luc">
 <li>MergePolicy触发</li>
 </ul>
 <p>经过以上的处理，就生成了一个最小的<strong>独立索引单元</strong>，称之为Segment。一个逻辑上的索引（表现为一个目录），是由N多个Segment构成的。</p>
-<h3 id="Lucene索引文件"><a href="#Lucene索引文件" class="headerlink" title="Lucene索引文件"></a>Lucene索引文件</h3><p>以下描述在<a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="external">Lucene JavaDoc</a>里有详细的介绍，为方便理解，介绍如下：</p>
+<h3 id="Lucene索引文件"><a href="#Lucene索引文件" class="headerlink" title="Lucene索引文件"></a>Lucene索引文件</h3><p>以下描述在<a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="noopener">Lucene JavaDoc</a>里有详细的介绍，为方便理解，介绍如下：</p>
 <table>
 <thead>
 <tr>
@@ -628,7 +624,7 @@ _8qh.si
 <p>由于fdt正排信息很多，在存到磁盘的时候，使用<strong>LZ4算法</strong>进行了压缩。每个Chunk大小16KB(<code>1&lt;&lt;14</code>), Doc个数不能超过128个。在fdx中每个Block有1024个Chunk。</p>
 <p>CompressDocs是压缩后进行存储的，为了方便理解，可以认为就是一系列的Doc构成的。每个Doc又包含FieldNumAndType和实际的Field Value。</p>
 <p>其中FieldNumAndType是一个VLong: <strong>低3位</strong>表示Field Type, 其余<strong>高位</strong>用来表示FieldNumber.  可见Lucene为了最大程度的节省空间，做了很多的Trick.</p>
-<h4 id="Term-Index格式（-tip-tim）"><a href="#Term-Index格式（-tip-tim）" class="headerlink" title="Term Index格式（.tip,.tim）"></a>Term Index格式（.tip,.tim）</h4><p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.html" target="_blank" rel="external">格式</a>如下：</p>
+<h4 id="Term-Index格式（-tip-tim）"><a href="#Term-Index格式（-tip-tim）" class="headerlink" title="Term Index格式（.tip,.tim）"></a>Term Index格式（.tip,.tim）</h4><p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.html" target="_blank" rel="noopener">格式</a>如下：</p>
 <p>.tip:</p>
 <p>​    Header, FSTIndex&lt; IndexStartFP&gt;…, DirOffset, Footer</p>
 <p>.tim</p>
@@ -663,13 +659,14 @@ _8qh.si
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lucene索引及其格式，是Solr以及ElasticSearch等分布式搜索引擎的根基。Lucene每一次核心功能的迭代与性能提升都是至关重要的。对Lucene索引过程以及索引文件格式的理解，有助于从更高层面来分析和看待生产环境出现的问题。</p>
 <hr>
 <p>参考文档：</p>
-<p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="external">Lucene Java DOC</a></p>
-<p><a href="http://blog.51cto.com/sbp810050504" target="_blank" rel="external">sbp810050504的blog</a></p>
-<p><a href="https://www.cnblogs.com/forfuture1978/" target="_blank" rel="external">刘超觉先的博客</a></p>
-<p><a href="https://www.manning.com/books/lucene-in-action-second-edition" target="_blank" rel="external">Lucene in Action</a></p>
+<p><a href="https://lucene.apache.org/core/7_5_0/core/org/apache/lucene/codecs/lucene70/package-summary.html" target="_blank" rel="noopener">Lucene Java DOC</a></p>
+<p><a href="http://blog.51cto.com/sbp810050504" target="_blank" rel="noopener">sbp810050504的blog</a></p>
+<p><a href="https://www.cnblogs.com/forfuture1978/" target="_blank" rel="noopener">刘超觉先的博客</a></p>
+<p><a href="https://www.manning.com/books/lucene-in-action-second-edition" target="_blank" rel="noopener">Lucene in Action</a></p>
 
       
     </div>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/04/lucene-numberic/" title="Lucene数字类型处理" rel="bookmark">Lucene数字类型处理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/10/22/tie-breaker-in-solr/" title="solr中的tie breaker" rel="bookmark">solr中的tie breaker</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/11/25/better-synonym-handling-in-solr/" title="如何在Solr中更好的处理同义词" rel="bookmark">如何在Solr中更好的处理同义词</a></h3></div></li></ul>
     
     
     
@@ -687,14 +684,14 @@ _8qh.si
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="申艳超 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="申艳超 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -827,11 +824,9 @@ _8qh.si
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/shenyanchao.jpeg"
-                alt="申艳超" />
+              <img class="site-author-image" itemprop="image" src="/images/shenyanchao.jpeg" alt="申艳超">
             
               <p class="site-author-name" itemprop="name">申艳超</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -956,7 +951,7 @@ _8qh.si
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">224.7k</span>
+    <span title="Site words total count">230.2k</span>
   
 </div>
 
