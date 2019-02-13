@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="elasticsearch,iperf,">
+  <meta name="keywords" content="elasticsearch,iperf,lucene,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。 固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
-<meta name="keywords" content="elasticsearch,iperf">
+<meta name="keywords" content="elasticsearch,iperf,lucene">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch线上故障-持续Yellow状态">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2018/12/13/elasticsearch-yellow-exception/index.html">
@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-machine-dstat.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-net-io-1.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-yellow-exception/elasticsearch-network.png">
-<meta property="og:updated_time" content="2018-12-26T10:09:28.018Z">
+<meta property="og:updated_time" content="2019-02-13T09:06:28.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch线上故障-持续Yellow状态">
 <meta name="twitter:description" content="现象ES集群，状态持续Yellow。出现部分replica一直在追primary的索引数据，追不上。线上提供服务出现慢查询，导致499量增大。 固定的几个ES节点（10.10.24.X网段），出现间歇性被踢出Cluster，随后又加入Cluster。这是导致出现yellow原因，并且一直不能恢复到Green状态。由于Master节点在10.10.19.X网段, 感觉起来就是2个网段之间不通了。">
@@ -105,7 +105,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -474,7 +474,7 @@
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/01/10/elasticsearch-nested/" title="ElasticSearch-Nested嵌套类型解密" rel="bookmark">ElasticSearch-Nested嵌套类型解密</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2019/01/10/elasticsearch-nested/" title="ElasticSearch-Nested嵌套类型解密" rel="bookmark">ElasticSearch-Nested嵌套类型解密</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/04/lucene-numberic/" title="Lucene数字类型处理" rel="bookmark">Lucene数字类型处理</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/10/22/tie-breaker-in-solr/" title="solr中的tie breaker" rel="bookmark">solr中的tie breaker</a></h3></div></li></ul>
     
     
     
@@ -539,6 +539,8 @@
             <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
           
             <a href="/tags/iperf/" rel="tag"># iperf</a>
+          
+            <a href="/tags/lucene/" rel="tag"># lucene</a>
           
         </div>
       
@@ -645,7 +647,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -656,7 +658,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -667,7 +669,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -757,7 +759,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -770,7 +772,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

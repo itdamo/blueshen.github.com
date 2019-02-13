@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="redis,bigkey,serializer,">
+  <meta name="keywords" content="redis,bigkey,serializer,cache,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="缘起公司业务由于广告以及导流的影响，对搜索服务的稳定以及性能提出了更苛刻的要求，为了应对可能的流量突增，特进行了大规模，全方位的性能测试。摸清线上服务的能力，以及定位瓶颈所在。 搜索服务采用了Master-Slave的Redis服务来缓存用户的搜索结果，过期时间在5~10分钟，通过缓存来提升响应时间和并发。key是用户的请求实体json字符串，value自然是搜索结果json串，并没有使用set,">
-<meta name="keywords" content="redis,bigkey,serializer">
+<meta name="keywords" content="redis,bigkey,serializer,cache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Redis序列化及压缩对性能的影响">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2019/02/13/redis-serializer/index.html">
@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-serializer/decompress-time.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-serializer/java-serializer-pk.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/redis-serializer/serializer-duration-pk.png">
-<meta property="og:updated_time" content="2019-02-13T07:26:25.133Z">
+<meta property="og:updated_time" content="2019-02-13T09:12:54.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Redis序列化及压缩对性能的影响">
 <meta name="twitter:description" content="缘起公司业务由于广告以及导流的影响，对搜索服务的稳定以及性能提出了更苛刻的要求，为了应对可能的流量突增，特进行了大规模，全方位的性能测试。摸清线上服务的能力，以及定位瓶颈所在。 搜索服务采用了Master-Slave的Redis服务来缓存用户的搜索结果，过期时间在5~10分钟，通过缓存来提升响应时间和并发。key是用户的请求实体json字符串，value自然是搜索结果json串，并没有使用set,">
@@ -110,7 +110,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -530,7 +530,7 @@
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/28/argument-on-Redis/" title="关于Redis RedLock算法的争论" rel="bookmark">关于Redis RedLock算法的争论</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/26/redis-expire/" title="Redis过期&淘汰机制" rel="bookmark">Redis过期&淘汰机制</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/26/redis-io/" title="Redis-IO模型" rel="bookmark">Redis-IO模型</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/07/23/spring-cache-redis-annotation/" title="Spring Redis 注解式Cache那些事" rel="bookmark">Spring Redis 注解式Cache那些事</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/28/argument-on-Redis/" title="关于Redis RedLock算法的争论" rel="bookmark">关于Redis RedLock算法的争论</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/12/26/redis-expire/" title="Redis过期&淘汰机制" rel="bookmark">Redis过期&淘汰机制</a></h3></div></li></ul>
     
     
     
@@ -597,6 +597,8 @@
             <a href="/tags/bigkey/" rel="tag"># bigkey</a>
           
             <a href="/tags/serializer/" rel="tag"># serializer</a>
+          
+            <a href="/tags/cache/" rel="tag"># cache</a>
           
         </div>
       
@@ -699,7 +701,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -710,7 +712,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -721,7 +723,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -811,7 +813,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -824,7 +826,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

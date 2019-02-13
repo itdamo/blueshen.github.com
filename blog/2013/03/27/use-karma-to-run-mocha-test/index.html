@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="karma,testacular,mocha,idea,">
+  <meta name="keywords" content="mocha,karma,testacular,idea,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="从Testacular到Karma的变化2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma 什么时候使用Karma？ 在真实浏览器里测">
-<meta name="keywords" content="karma,testacular,mocha,idea">
+<meta name="keywords" content="mocha,karma,testacular,idea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Karma来驱动mocha测试">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/03/27/use-karma-to-run-mocha-test/index.html">
@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-chrome.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-node-server.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/karma-node-run.png">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.868Z">
+<meta property="og:updated_time" content="2019-02-13T09:19:32.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Karma来驱动mocha测试">
 <meta name="twitter:description" content="从Testacular到Karma的变化2013年03月18日，Testacular正式被重命名为Karma。具体原因，讲起来缺也很滑稽。这里面不含有任何的商业成分，只是因为Testacular与Testicular很相似，因此令人感觉尴尬。仅仅此而已，谁让JsTestDriver已经被别人给拿走了。安装：    npm install -g karma 什么时候使用Karma？ 在真实浏览器里测">
@@ -104,7 +104,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,333
+                  1,435
                 </span>
               
 
@@ -497,112 +497,11 @@
 <li>cobertura (xml format supported by Jenkins)</li>
 </ul>
 <p>下面，需要安装依赖<code>npm install karma-coverage</code>。并在配置文件内添加：</p>
-<pre><code>plugins = [
-    &apos;karma-coverage&apos;
-];
-</code></pre><h2 id="创建一个样例"><a href="#创建一个样例" class="headerlink" title="创建一个样例"></a>创建一个样例</h2><p>1.执行‘karma init’,然后根据提示按Tab键进行相关选择。先生成一个默认的配置文件，这个是可以再修改的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins = [</span><br><span class="line">	<span class="string">'karma-coverage'</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="创建一个样例"><a href="#创建一个样例" class="headerlink" title="创建一个样例"></a>创建一个样例</h2><p>1.执行‘karma init’,然后根据提示按Tab键进行相关选择。先生成一个默认的配置文件，这个是可以再修改的。</p>
 <p>2.创建一个src文件夹，用于存放待测试的JS代码。然后在创建一个test文件夹，用于存放自己写的单元测试代码。</p>
-<p>3.以mocha为例，将mocha集成到karma中，使用karma来驱动测试。这需要在karma.conf.js里进行如下配置：</p>
-<pre><code>// Karma configuration
-// Generated on Tue Mar 19 2013 20:46:08 GMT+0800 (CST)
-
-// base path, that will be used to resolve files and exclude
-basePath = &apos;./&apos;;
-
-frameworks = [&apos;mocha&apos;];
-
-// list of files / patterns to load in the browser
-files = [
-    {pattern: &apos;node_modules/chai/chai.js&apos;,include: true},
-    &apos;src/*.js&apos;,
-    &apos;test/*.js&apos;
-];
-
-
-// list of files to exclude
-exclude = [
-    &apos;karma.conf.js&apos;
-];
-
-
-// use dots reporter, as travis terminal does not support escaping sequences
-// possible values: &apos;dots&apos;, &apos;progress&apos;, &apos;junit&apos;, &apos;teamcity&apos;
-// CLI --reporters progress
-reporters = [&apos;progress&apos;,&apos;junit&apos;,&apos;coverage&apos;];
-
-junitReporter = {
-    // will be resolved to basePath (in the same way as files/exclude patterns)
-    outputFile: &apos;junit-report/test-results.xml&apos;
-};
-
-preprocessors = {
-    &apos;src/*.js&apos;: &apos;coverage&apos;
-};
-
-//Code Coverage options. report type available:
-//- html (default)
-//- lcov (lcov and html)
-//- lcovonly
-//- text (standard output)
-//- text-summary (standard output)
-//- cobertura (xml format supported by Jenkins)
-coverageReporter = {
-    // cf. http://gotwarlost.github.com/istanbul/public/apidocs/
-    type : &apos;cobertura&apos;,
-    dir : &apos;coverage/&apos;
-};
-
-
-// web server port
-port = 9876;
-
-
-// cli runner port
-runnerPort = 9100;
-
-
-// enable / disable colors in the output (reporters and logs)
-colors = true;
-
-
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_DEBUG;
-
-
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = true;
-
-
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari (only Mac)
-// - PhantomJS
-// - IE (only Windows)
-// CLI --browsers Chrome,Firefox,Safari
-browsers = [&apos;Chrome&apos;];
-
-
-// If browser does not capture in given timeout [ms], kill it
-captureTimeout = 6000;
-
-
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun = true;
-
-
-plugins = [
-    &apos;karma-mocha&apos;,
-    &apos;karma-chrome-launcher&apos;,
-    &apos;karma-firefox-launcher&apos;,
-    &apos;karma-junit-reporter&apos;,
-    &apos;karma-coverage&apos;
-];
-</code></pre><p>4.放入相应的代码到src以及test目录里。执行’karma start’命令, 浏览器将会被打开，然后执行相应的Test。效果如下图：<br><img src="/images/blog/karma-chrome.png" alt="Karma in Chrome"></p>
+<p>3.以mocha为例，将mocha集成到karma中，使用karma来驱动测试。这需要在karma.conf.js里进行如下配置：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Karma configuration</span></span><br><span class="line"><span class="comment">// Generated on Tue Mar 19 2013 20:46:08 GMT+0800 (CST)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// base path, that will be used to resolve files and exclude</span></span><br><span class="line">basePath = <span class="string">'./'</span>;</span><br><span class="line"></span><br><span class="line">frameworks = [<span class="string">'mocha'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// list of files / patterns to load in the browser</span></span><br><span class="line">files = [</span><br><span class="line">	&#123;<span class="attr">pattern</span>: <span class="string">'node_modules/chai/chai.js'</span>,<span class="attr">include</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">	<span class="string">'src/*.js'</span>,</span><br><span class="line">	<span class="string">'test/*.js'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// list of files to exclude</span></span><br><span class="line">exclude = [</span><br><span class="line">	<span class="string">'karma.conf.js'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// use dots reporter, as travis terminal does not support escaping sequences</span></span><br><span class="line"><span class="comment">// possible values: 'dots', 'progress', 'junit', 'teamcity'</span></span><br><span class="line"><span class="comment">// CLI --reporters progress</span></span><br><span class="line">reporters = [<span class="string">'progress'</span>,<span class="string">'junit'</span>,<span class="string">'coverage'</span>];</span><br><span class="line"></span><br><span class="line">junitReporter = &#123;</span><br><span class="line">    <span class="comment">// will be resolved to basePath (in the same way as files/exclude patterns)</span></span><br><span class="line">    outputFile: <span class="string">'junit-report/test-results.xml'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">preprocessors = &#123;</span><br><span class="line">    <span class="string">'src/*.js'</span>: <span class="string">'coverage'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Code Coverage options. report type available:</span></span><br><span class="line"><span class="comment">//- html (default)</span></span><br><span class="line"><span class="comment">//- lcov (lcov and html)</span></span><br><span class="line"><span class="comment">//- lcovonly</span></span><br><span class="line"><span class="comment">//- text (standard output)</span></span><br><span class="line"><span class="comment">//- text-summary (standard output)</span></span><br><span class="line"><span class="comment">//- cobertura (xml format supported by Jenkins)</span></span><br><span class="line">coverageReporter = &#123;</span><br><span class="line">    <span class="comment">// cf. http://gotwarlost.github.com/istanbul/public/apidocs/</span></span><br><span class="line">    type : <span class="string">'cobertura'</span>,</span><br><span class="line">    dir : <span class="string">'coverage/'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// web server port</span></span><br><span class="line">port = <span class="number">9876</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// cli runner port</span></span><br><span class="line">runnerPort = <span class="number">9100</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// enable / disable colors in the output (reporters and logs)</span></span><br><span class="line">colors = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// level of logging</span></span><br><span class="line"><span class="comment">// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG</span></span><br><span class="line">logLevel = LOG_DEBUG;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// enable / disable watching file and executing tests whenever any file changes</span></span><br><span class="line">autoWatch = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Start these browsers, currently available:</span></span><br><span class="line"><span class="comment">// - Chrome</span></span><br><span class="line"><span class="comment">// - ChromeCanary</span></span><br><span class="line"><span class="comment">// - Firefox</span></span><br><span class="line"><span class="comment">// - Opera</span></span><br><span class="line"><span class="comment">// - Safari (only Mac)</span></span><br><span class="line"><span class="comment">// - PhantomJS</span></span><br><span class="line"><span class="comment">// - IE (only Windows)</span></span><br><span class="line"><span class="comment">// CLI --browsers Chrome,Firefox,Safari</span></span><br><span class="line">browsers = [<span class="string">'Chrome'</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// If browser does not capture in given timeout [ms], kill it</span></span><br><span class="line">captureTimeout = <span class="number">6000</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Continuous Integration mode</span></span><br><span class="line"><span class="comment">// if true, it capture browsers, run tests and exit</span></span><br><span class="line">singleRun = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plugins = [</span><br><span class="line">    <span class="string">'karma-mocha'</span>,</span><br><span class="line">    <span class="string">'karma-chrome-launcher'</span>,</span><br><span class="line">    <span class="string">'karma-firefox-launcher'</span>,</span><br><span class="line">    <span class="string">'karma-junit-reporter'</span>,</span><br><span class="line">    <span class="string">'karma-coverage'</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>4.放入相应的代码到src以及test目录里。执行’karma start’命令, 浏览器将会被打开，然后执行相应的Test。效果如下图：<br><img src="/images/blog/karma-chrome.png" alt="Karma in Chrome"></p>
 <p>完整样例代码：<br><a href="https://github.com/blueshen/Karma-mocha-example" target="_blank" rel="noopener">https://github.com/blueshen/Karma-mocha-example</a></p>
 <h2 id="IntelliJ-IDEA集成"><a href="#IntelliJ-IDEA集成" class="headerlink" title="IntelliJ IDEA集成"></a>IntelliJ IDEA集成</h2><p>为了在项目中开发方便，那么在开发中集成到IDE中，会节省N多时间的。下面就先来说说于IDEA的集成。<br>1.安装NodeJS插件： Settings –&gt; IDE Settings –&gt; Plugins –&gt; Browse repositories –&gt; NodeJS  选中，然后右键Download and Install进行安装。重启后成功安装。<br>2.配置Karma Server: 从菜单Run –&gt; Edit Configurations… –&gt;点击 ‘+’新建一个Node.js类型的配置。出现以下的界面：<br><img src="/images/blog/karma-node-server.png" alt="karma-node-server"></p>
 <p>其中：<br>Name： 任意，本处为Karma node Server<br>Path to Node: node可执行全路径。$NODE_PATH/bin/node<br>Working Directory: 当前项目的跟路径<br>Path to Node App JS File: 此处为karma的可执行全路径。<br>Application Parameters: 要执行的命令，此处为start<br>Environment variables: 就是环境变量了。此处我定义了CHROME_BIN来指出CHROME浏览器路径。</p>
@@ -612,7 +511,7 @@ plugins = [
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/04/01/run-karma-in-jenkins-ci/" title="Karma与Jenkins-CI集成" rel="bookmark">Karma与Jenkins-CI集成</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/04/01/run-karma-in-jenkins-ci/" title="Karma与Jenkins-CI集成" rel="bookmark">Karma与Jenkins-CI集成</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/03/18/mocha-in-brief/" title="Mocha简介" rel="bookmark">Mocha简介</a></h3></div></li></ul>
     
     
     
@@ -674,11 +573,11 @@ plugins = [
       
         <div class="post-tags">
           
+            <a href="/tags/mocha/" rel="tag"># mocha</a>
+          
             <a href="/tags/karma/" rel="tag"># karma</a>
           
             <a href="/tags/testacular/" rel="tag"># testacular</a>
-          
-            <a href="/tags/mocha/" rel="tag"># mocha</a>
           
             <a href="/tags/idea/" rel="tag"># idea</a>
           
@@ -787,7 +686,7 @@ plugins = [
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -798,7 +697,7 @@ plugins = [
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -809,7 +708,7 @@ plugins = [
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -899,7 +798,7 @@ plugins = [
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -912,7 +811,7 @@ plugins = [
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

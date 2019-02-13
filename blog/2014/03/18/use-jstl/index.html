@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。 Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T06:23:08.603Z">
+<meta property="og:updated_time" content="2019-02-13T09:18:27.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSTL介绍">
 <meta name="twitter:description" content="EL 表达式在JSP页面中，使用标签库代替传统的Java片段语言来实现页面的显示逻辑已经不是新技术了，然而，由自定义标签很容易造成重复定义和非标准的实现。鉴于此，出现了JSTL（JSP Standard Tag Library），为大多数JSP页面逻辑提供了实现的JSTL技术，该技术本身就是一个标签库。 Sun公司Java规范标准的JSTL由apache jakarta组织负责维护。作为开源的标准">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10,558
+                  10,579
                 </span>
               
 
@@ -474,29 +474,10 @@ ${sessionScope.sampleValue}
 </code></pre><p>取得保存在Session中参数的sessionScope变量的EL表达式，“.”是property访问操作符，在这里表示从Session中取得“键”为“sampleValue”的参数，并显示出来。显示结果为“10”。</p>
 <p>2．默认变量param、paramValues<br>      这两个默认变量包含请求参数的集合，param表明请求包含的参数为单一控件，paramValues表明请求包含的参数为控件数组。下面看一个简单示例9.3：</p>
 <p>例9.3：提交请求的页面和接受的页面</p>
-<pre><code>&lt;%@ page contentType=&quot;text/html; charset=UTF-8&quot;%&gt;
-&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-&lt;html&gt;
- &lt;body&gt;
-     &lt;form action=&quot;SampleJsp.jsp&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;sampleValue&quot; value=&quot;10&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;sampleValue&quot; value=&quot;11&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;sampleValue&quot; value=&quot;12&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;sampleSingleValue&quot; value=&quot;SingleValue&quot;&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
-    &lt;/form&gt;
- &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>在这个页面中定义了两组控件，控件名为“sampleValue”的是一套控件数组，控件名为“sampleSingleValue”的是单一控件，通过递交将请求参数传送到SampleJsp.jsp。</p>
-<pre><code>&lt;%@ page contentType=&quot;text/html; charset=UTF-8&quot;%&gt;
-&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
-&lt;html&gt;
- &lt;body&gt;
-    ${paramValues.sampleValue[2]} &lt;br&gt;
-    ${param.sampleSingleValue} &lt;br&gt;
- &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>这是请求转发到的页面，通过EL表达式的paramValues变量得到控件数组中最后一个控件的递交参数，通过EL表达式的param变量得到单一控件的递交参数。控件数组参数的EL表达式使用“[]”来指定数组下标。本示例将显示控件数组中最后一个控件的值“12”和单一控件的值“SingleValue”。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html; charset=UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">     &lt;form action=<span class="string">"SampleJsp.jsp"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"sampleValue"</span> value=<span class="string">"10"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"sampleValue"</span> value=<span class="string">"11"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"sampleValue"</span> value=<span class="string">"12"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"sampleSingleValue"</span> value=<span class="string">"SingleValue"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>在这个页面中定义了两组控件，控件名为“sampleValue”的是一套控件数组，控件名为“sampleSingleValue”的是单一控件，通过递交将请求参数传送到SampleJsp.jsp。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html; charset=UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;body&gt;</span><br><span class="line">    $&#123;paramValues.sampleValue[<span class="number">2</span>]&#125; &lt;br&gt;</span><br><span class="line">    $&#123;param.sampleSingleValue&#125; &lt;br&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这是请求转发到的页面，通过EL表达式的paramValues变量得到控件数组中最后一个控件的递交参数，通过EL表达式的param变量得到单一控件的递交参数。控件数组参数的EL表达式使用“[]”来指定数组下标。本示例将显示控件数组中最后一个控件的值“12”和单一控件的值“SingleValue”。</p>
 <p>3．默认变量header、headerValues</p>
 <p>这两个默认变量包含请求参数头部信息的集合，header变量表示单一头部信息，headerValues则表示数组型的头部信息。</p>
 <p>4．默认变量cookie</p>
@@ -1044,7 +1025,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1055,7 +1036,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1066,7 +1047,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1156,7 +1137,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -1169,7 +1150,7 @@ ${fn:join(sessionScope.stringArray,&quot;;&quot;)}&lt;br&gt;
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

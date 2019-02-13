@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,Factory,">
+  <meta name="keywords" content="设计模式,Java,Factory,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="工厂模式，直接按名字来说，就是负责专门生产产品的。大致分为3类：  工厂方法 简单工厂 抽象工厂  同时，也有人认为简单工厂只是工厂方法的一种特列，那么就分为两种了。本文就按3种分别进行介绍了。 工厂方法定义：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法让一个类的实例化延迟到其子类。">
-<meta name="keywords" content="Java,Factory">
+<meta name="keywords" content="设计模式,Java,Factory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式:工厂（factory） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/07/factory-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="工厂模式，直接按名字来说，就是负责专门生产产品的。大致分为3类：  工厂方法 简单工厂 抽象工厂  同时，也有人认为简单工厂只是工厂方法的一种特列，那么就分为两种了。本文就按3种分别进行介绍了。 工厂方法定义：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法让一个类的实例化延迟到其子类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-24T06:41:51.619Z">
+<meta property="og:updated_time" content="2019-02-13T09:07:22.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式:工厂（factory） in java">
 <meta name="twitter:description" content="工厂模式，直接按名字来说，就是负责专门生产产品的。大致分为3类：  工厂方法 简单工厂 抽象工厂  同时，也有人认为简单工厂只是工厂方法的一种特列，那么就分为两种了。本文就按3种分别进行介绍了。 工厂方法定义：定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法让一个类的实例化延迟到其子类。">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -545,6 +545,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
             <a href="/tags/Java/" rel="tag"># Java</a>
           
             <a href="/tags/Factory/" rel="tag"># Factory</a>
@@ -654,7 +656,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -665,7 +667,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -676,7 +678,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -766,7 +768,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -779,7 +781,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

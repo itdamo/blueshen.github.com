@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行 123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T12:02:35.224Z">
+<meta property="og:updated_time" content="2019-02-13T08:55:19.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql性能监控">
 <meta name="twitter:description" content="用mysqldumpslow分析mysql的slow query logmysql有一个功能就是可以log下来运行的比较慢的sql语句，默认是没有这个log的，为了开启这个功能，要修改my.cnf或者在mysql启动的时候加入一些参数。如果在my.cnf里面修改，需增加如下几行 123long_query_time = 1log-slow-queries = /var/youpath/slow.l">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,322
+                  1,330
                 </span>
               
 
@@ -450,22 +450,39 @@
 <p>上述命令可以看出访问次数最多的20个sql语句和返回记录集最多的20个sql。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -t 10 -s t -g “left join” host-slow.log</span><br></pre></td></tr></table></figure>
 <p>这个是按照时间返回前10条里面含有左连接的sql语句。<br>用了这个工具就可以查询出来那些sql语句是性能的瓶颈，进行优化，比如加索引，该应用的实现方式等。</p>
-<h2 id="linux-系统整体性能查看的方法"><a href="#linux-系统整体性能查看的方法" class="headerlink" title="linux 系统整体性能查看的方法:"></a>linux 系统整体性能查看的方法:</h2><p>vmstat 10 —–每10秒刷新一次<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------</span><br><span class="line">	r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</span><br><span class="line">0  0      0  56508  10968  68380    0    0   184    40 1021   88  3 14 78  5  0</span><br><span class="line">0  0      0  56508  10976  68376    0    0     0     3 1251   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10976  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     4 1251   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   48  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     2 1250   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br></pre></td></tr></table></figure></p>
-<p>procs:<br>r–&gt;;在运行队列中等待的进程数<br>b–&gt;;在等待io的进程数<br>w–&gt;;可以进入运行队列但被替换的进程</p>
-<p>memory<br>swap–&gt;;现时可用的交换内存（k表示）<br>free–&gt;;空闲的内存（k表示）</p>
-<p>pages<br>re－－》回收的页面<br>mf－－》非严重错误的页面<br>pi－－》进入页面数（k表示）<br>po－－》出页面数（k表示）<br>fr－－》空余的页面数（k表示）<br>de－－》提前读入的页面中的未命中数<br>sr－－》通过时钟算法扫描的页面</p>
+<h2 id="linux-系统整体性能查看的方法"><a href="#linux-系统整体性能查看的方法" class="headerlink" title="linux 系统整体性能查看的方法:"></a>linux 系统整体性能查看的方法:</h2><p><code>vmstat 10</code> —–每10秒刷新一次</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------</span><br><span class="line">	r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</span><br><span class="line">0  0      0  56508  10968  68380    0    0   184    40 1021   88  3 14 78  5  0</span><br><span class="line">0  0      0  56508  10976  68376    0    0     0     3 1251   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10976  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     4 1251   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   48  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   50  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10984  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     2 1250   49  0  0 100  0  0</span><br><span class="line">	0  0      0  56508  10992  68376    0    0     0     0 1250   51  0  0 100  0  0</span><br></pre></td></tr></table></figure>
+<p>procs:<br>    r–&gt;;在运行队列中等待的进程数<br>    b–&gt;;在等待io的进程数<br>    w–&gt;;可以进入运行队列但被替换的进程</p>
+<p>memory<br>    swap–&gt;;现时可用的交换内存（k表示）<br>    free–&gt;;空闲的内存（k表示）</p>
+<p>pages<br>    re－－》回收的页面<br>    mf－－》非严重错误的页面<br>    pi－－》进入页面数（k表示）<br>    po－－》出页面数（k表示）<br>    fr－－》空余的页面数（k表示）<br>    de－－》提前读入的页面中的未命中数<br>    sr－－》通过时钟算法扫描的页面</p>
 <p>disk 显示每秒的磁盘操作。 s表示scsi盘，0表示盘号</p>
-<p>fault 显示每秒的中断数<br>in－－》设备中断<br>sy－－》系统中断<br>cy－－》cpu交换</p>
-<p>cpu 表示cpu的使用状态<br>cs－－》用户进程使用的时间<br>sy－－》系统进程使用的时间<br>id－－》cpu空闲的时间</p>
+<p>​    fault 显示每秒的中断数<br>​    in－－》设备中断<br>​    sy－－》系统中断<br>​    cy－－》cpu交换</p>
+<p>cpu 表示cpu的使用状态<br>    cs－－》用户进程使用的时间<br>    sy－－》系统进程使用的时间<br>    id－－》cpu空闲的时间</p>
 <p>其中:<br>如果 r经常大于 4 ，且id经常少于40，表示cpu的负荷很重。<br>如果pi，po 长期不等于0，表示内存不足。<br>如果disk 经常不等于0， 且在 b中的队列 大于3， 表示 io性能不好。</p>
 <p>每100s显示一次mysql 运行的状态:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin extended -i 100 –r</span><br></pre></td></tr></table></figure>
 <p>显示mysql服务器的线程列表</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p process</span><br><span class="line">Enter password:</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br><span class="line">| Id | User | Host      | db | Command | Time | State | Info             |</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br><span class="line">| 12 | root | localhost |    | Query   | 0    |       | show processlist |</span><br><span class="line">+----+------+-----------+----+---------+------+-------+------------------+</span><br></pre></td></tr></table></figure>
-<p>相关命令：</p>
-<p>一，获取mysql用户下的进程总数<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | awk '&#123;print $1&#125;' | grep "mysql" | grep -v "grep" | wc-1</span><br></pre></td></tr></table></figure></p>
-<p>二，主机性能状态<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ ~]# uptime</span><br><span class="line">13:05:52 up 53 days, 52 min,  1 user,  load average: 0.00, 0.00, 0.00</span><br></pre></td></tr></table></figure></p>
-<p>三，CPU使用率<br>top 或 vmstat<br>四，磁盘IO量<br>vmstat 或  iostat<br>五，swap进出量[内存]<br>free<br>六，数据库性能状态<br>(1)QPS(每秒Query量)<br>QPS = Questions(or Queries) / seconds<br>mysql &gt; show status like ‘Question’;<br>(2)TPS(每秒事务量)<br>TPS = (Com_commit + Com_rollback) / seconds<br>mysql &gt; show status like ‘Com_commit’;<br>mysql &gt; show status like ‘Com_rollback’;<br>(3)key Buffer 命中率<br>key_buffer_read_hits = (1-key_reads / key_read_requests) <em> 100%<br>key_buffer_write_hits = (1-key_writes / key_write_requests) </em> 100%<br>mysql&gt; show status like ‘Key%’;<br>(4)InnoDB Buffer命中率<br>innodb_buffer_read_hits = (1 - innodb_buffer_pool_reads / innodb_buffer_pool_read_requests) <em> 100%<br>mysql&gt; show status like ‘innodb_buffer_pool_read%’;<br>(5)Query Cache命中率<br>Query_cache_hits = (Qcahce_hits / (Qcache_hits + Qcache_inserts )) </em> 100%;<br>mysql&gt; show status like ‘Qcache%’;<br>(6)Table Cache状态量<br>mysql&gt; show status like ‘open%’;<br>(7)Thread Cache 命中率<br>Thread_cache_hits = (1 - Threads_created / connections ) * 100%<br>mysql&gt; show status like ‘Thread%’;<br>mysql&gt; show status like ‘Connections’;<br>(8)锁定状态<br>mysql&gt; show status like ‘%lock%’;<br>(9)复制延时量<br>mysql &gt; show slave status<br>(10) Tmp Table 状况(临时表状况)<br>mysql &gt; show status like ‘Create_tmp%’;<br>(11) Binlog Cache 使用状况<br>mysql &gt; show status like ‘Binlog_cache%’;<br>(12) Innodb_log_waits 量<br>mysql &gt; show status like ‘innodb_log_waits’;</p>
+<h3 id="相关命令："><a href="#相关命令：" class="headerlink" title="相关命令："></a>相关命令：</h3><h4 id="获取mysql用户下的进程总数"><a href="#获取mysql用户下的进程总数" class="headerlink" title="获取mysql用户下的进程总数"></a>获取mysql用户下的进程总数</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | awk '&#123;print $1&#125;' | grep "mysql" | grep -v "grep" | wc-1</span><br></pre></td></tr></table></figure>
+<h4 id="主机性能状态"><a href="#主机性能状态" class="headerlink" title="主机性能状态"></a>主机性能状态</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ ~]# uptime</span><br><span class="line">13:05:52 up 53 days, 52 min,  1 user,  load average: 0.00, 0.00, 0.00</span><br></pre></td></tr></table></figure>
+<h4 id="CPU使用率"><a href="#CPU使用率" class="headerlink" title="CPU使用率"></a>CPU使用率</h4><p><code>top</code> 或<code>vmstat</code></p>
+<h4 id="磁盘IO量"><a href="#磁盘IO量" class="headerlink" title="磁盘IO量"></a>磁盘IO量</h4><p><code>vmstat</code> 或  <code>iostat</code></p>
+<h4 id="swap进出量-内存"><a href="#swap进出量-内存" class="headerlink" title="swap进出量[内存]"></a>swap进出量[内存]</h4><p><code>free</code></p>
+<h4 id="数据库性能状态"><a href="#数据库性能状态" class="headerlink" title="数据库性能状态"></a>数据库性能状态</h4><p>(1)QPS(每秒Query量)<br>QPS = Questions(or Queries) / seconds<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show status like &apos;Question&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(2)TPS(每秒事务量)<br>TPS = (Com_commit + Com_rollback) / seconds</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show status like &apos;Com_commit&apos;;</span><br><span class="line">mysql &gt; show status like &apos;Com_rollback&apos;;</span><br></pre></td></tr></table></figure>
+<p>(3)key Buffer 命中率<br>key_buffer_read_hits = (1-key_reads / key_read_requests) <em> 100%<br>key_buffer_write_hits = (1-key_writes / key_write_requests) </em> 100%<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;Key%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(4)InnoDB Buffer命中率<br>innodb_buffer_read_hits = (1 - innodb_buffer_pool_reads / innodb_buffer_pool_read_requests) * 100%</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;innodb_buffer_pool_read%&apos;;</span><br></pre></td></tr></table></figure>
+<p>(5)Query Cache命中率<br>Query_cache_hits = (Qcahce_hits / (Qcache_hits + Qcache_inserts )) * 100%;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;Qcache%&apos;;</span><br></pre></td></tr></table></figure>
+<p>(6)Table Cache状态量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;open%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(7)Thread Cache 命中率<br>Thread_cache_hits = (1 - Threads_created / connections ) * 100%<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;Thread%&apos;;</span><br><span class="line">mysql&gt; show status like &apos;Connections&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(8)锁定状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show status like &apos;%lock%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(9)复制延时量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show slave status</span><br></pre></td></tr></table></figure></p>
+<p>(10) Tmp Table 状况(临时表状况)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show status like &apos;Create_tmp%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(11) Binlog Cache 使用状况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show status like &apos;Binlog_cache%&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>(12) Innodb_log_waits 量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; show status like &apos;innodb_log_waits&apos;;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -642,7 +659,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -653,7 +670,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -664,7 +681,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -720,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用mysqldumpslow分析mysql的slow-query-log"><span class="nav-number">1.</span> <span class="nav-text">用mysqldumpslow分析mysql的slow query log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux-系统整体性能查看的方法"><span class="nav-number">2.</span> <span class="nav-text">linux 系统整体性能查看的方法:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用mysqldumpslow分析mysql的slow-query-log"><span class="nav-number">1.</span> <span class="nav-text">用mysqldumpslow分析mysql的slow query log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux-系统整体性能查看的方法"><span class="nav-number">2.</span> <span class="nav-text">linux 系统整体性能查看的方法:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令："><span class="nav-number">2.1.</span> <span class="nav-text">相关命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取mysql用户下的进程总数"><span class="nav-number">2.1.1.</span> <span class="nav-text">获取mysql用户下的进程总数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主机性能状态"><span class="nav-number">2.1.2.</span> <span class="nav-text">主机性能状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU使用率"><span class="nav-number">2.1.3.</span> <span class="nav-text">CPU使用率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘IO量"><span class="nav-number">2.1.4.</span> <span class="nav-text">磁盘IO量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swap进出量-内存"><span class="nav-number">2.1.5.</span> <span class="nav-text">swap进出量[内存]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库性能状态"><span class="nav-number">2.1.6.</span> <span class="nav-text">数据库性能状态</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -754,7 +771,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -767,7 +784,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

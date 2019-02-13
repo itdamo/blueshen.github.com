@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,mediator,">
+  <meta name="keywords" content="设计模式,java,mediator,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
-<meta name="keywords" content="java,mediator">
+<meta name="keywords" content="设计模式,java,mediator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式：中介者（mediator） in java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/11/02/mediator-in-java/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T08:41:02.834Z">
+<meta property="og:updated_time" content="2019-02-13T09:10:05.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式：中介者（mediator） in java">
 <meta name="twitter:description" content="定义:中介者模式,用一个中介对象封装一系列的对象交互,中介者使各对象不需要显式的相互作用,从而使其耦合松散,而且可以独立地改变它们之间的交互. 相关角色  Mediator抽象中介者角色抽象中介者角色定义统一的接口,用于各个角色之间的通信. Concrete Mediator具体中介者具体中介者角色通过协调各同事角色实现协作行为,因此它必须依赖于各个同事角色. Colleague同事角色每一个同事">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -451,7 +451,7 @@
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2014/03/27/java-encode-error-again/" title="又见Java乱码" rel="bookmark">又见Java乱码</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2018/10/29/mat-for-java/" title="利用MAT来分析JAVA内存泄露" rel="bookmark">利用MAT来分析JAVA内存泄露</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/30/adapter-in-java/" title="设计模式：适配器（Adapter）in Java" rel="bookmark">设计模式：适配器（Adapter）in Java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/02/bridge-in-java/" title="设计模式：桥接(bridge) in java" rel="bookmark">设计模式：桥接(bridge) in java</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/11/05/builder-in-java/" title="设计模式：构建者（builder） in java" rel="bookmark">设计模式：构建者（builder） in java</a></h3></div></li></ul>
     
     
     
@@ -512,6 +512,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
             <a href="/tags/java/" rel="tag"># java</a>
           
@@ -613,7 +615,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +626,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -635,7 +637,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -709,7 +711,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -722,7 +724,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

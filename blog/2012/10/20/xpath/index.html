@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。   XML 实例文档我们将在下面的例子中使用这个 XML 文档。&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;">
+<meta name="description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。  XML 实例文档我们将在下面的例子中使用这个 XML 文档。 12345678910111213&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;lt;title">
 <meta name="keywords" content="webdriver,selenium,xpath,DOM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xpath 详解">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2012/10/20/xpath/index.html">
 <meta property="og:site_name" content="申艳超-博客">
-<meta property="og:description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。   XML 实例文档我们将在下面的例子中使用这个 XML 文档。&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;">
+<meta property="og:description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。  XML 实例文档我们将在下面的例子中使用这个 XML 文档。 12345678910111213&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;lt;title">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T12:15:36.825Z">
+<meta property="og:updated_time" content="2019-02-13T09:27:53.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xpath 详解">
-<meta name="twitter:description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。   XML 实例文档我们将在下面的例子中使用这个 XML 文档。&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;">
+<meta name="twitter:description" content="XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。  XML 实例文档我们将在下面的例子中使用这个 XML 文档。 12345678910111213&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;lt;bookstore&amp;gt;&amp;lt;book&amp;gt;  &amp;lt;title">
 
 
 
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  911
+                  915
                 </span>
               
 
@@ -441,20 +441,202 @@
       
 
       
-        <div id="intro"><br><p><strong>XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。</strong></p><br></div>
-
-
-<div><br><h2>XML 实例文档</h2><br><p>我们将在下面的例子中使用这个 XML 文档。</p><br><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br><br>&lt;bookstore&gt;<br><br>&lt;book&gt;<br>  &lt;title lang=&quot;eng&quot;&gt;Harry Potter&lt;/title&gt;<br>  &lt;price&gt;29.99&lt;/price&gt;<br>&lt;/book&gt;<br><br>&lt;book&gt;<br>  &lt;title lang=&quot;eng&quot;&gt;Learning XML&lt;/title&gt;<br>  &lt;price&gt;39.95&lt;/price&gt;<br>&lt;/book&gt;<br><br>&lt;/bookstore&gt;</pre><br></div><br><a id="more"></a><br><br><div><br><h2>选取节点</h2><br><br><p>XPath 使用路径表达式在 XML 文档中选取节点。节点是通过沿着路径或者 step 来选取的。</p><br><br><h3>下面列出了最有用的路径表达式：</h3><br><br><table class="dataintable"><br><tr><br><th style="width:25%;">表达式</th><br><th>描述</th><br></tr><br><br><tr><br><td>nodename</td><br><td>选取此节点的所有子节点。</td><br></tr><br><br><tr><br><td>/</td><br><td>从根节点选取。</td><br></tr><br><br><tr><br><td>//</td><br><td>从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。</td><br></tr><br><br><tr><br><td>.</td><br><td>选取当前节点。</td><br></tr><br><br><tr><br><td>..</td><br><td>选取当前节点的父节点。</td><br></tr><br><br><tr><br><td>@</td><br><td>选取属性。</td><br></tr><br></table><br><br><h3>实例</h3><br><br><p>在下面的表格中，我们已列出了一些路径表达式以及表达式的结果：</p><br><br><table class="dataintable"><br><tr><br><th style="width:25%;">路径表达式</th><br><th>结果</th><br></tr><br><br><tr><br><td>bookstore</td><br><td>选取 bookstore 元素的所有子节点。</td><br></tr><br><br><tr><br><td>/bookstore</td><br><td><br><p>选取根元素 bookstore。</p><br><p>注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！</p><br></td><br></tr><br><br><tr><br><td>bookstore/book</td><br><td>选取属于 bookstore 的子元素的所有 book 元素。</td><br></tr><br><br><tr><br><td>//book</td><br><td>选取所有 book 子元素，而不管它们在文档中的位置。</td><br></tr><br><br><tr><br><td>bookstore//book</td><br><td>选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。</td><br></tr><br><br><tr><br><td>//@lang</td><br><td>选取名为 lang 的所有属性。</td><br></tr><br></table><br></div>
-
-
-<div><br><h2>谓语（Predicates）</h2><br><br><p>谓语用来查找某个特定的节点或者包含某个指定的值的节点。</p><br><p>谓语被嵌在方括号中。</p><br><br><h3>实例</h3><br><br><p>在下面的表格中，我们列出了带有谓语的一些路径表达式，以及表达式的结果：</p><br><br><table class="dataintable"><br><tr><br><th style="width:35%;">路径表达式</th><br><th>结果</th><br></tr><br><br><tr><br><td>/bookstore/book[1]</td><br><td>选取属于 bookstore 子元素的第一个 book 元素。</td><br></tr><br><br><tr><br><td>/bookstore/book[last()]</td><br><td>选取属于 bookstore 子元素的最后一个 book 元素。</td><br></tr><br><br><tr><br><td>/bookstore/book[last()-1]</td><br><td>选取属于 bookstore 子元素的倒数第二个 book 元素。</td><br></tr><br><br><tr><br><td>/bookstore/book[position()&lt;3]</td><br><td>选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td><br></tr><br><br><tr><br><td>//title[@lang]</td><br><td>选取所有拥有名为 lang 的属性的 title 元素。</td><br></tr><br><br><tr><br><td>//title[@lang=’eng’]</td><br><td>选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td><br></tr><br><br><tr><br><td>/bookstore/book[price&gt;35.00]</td><br><td>选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td><br></tr><br><br><tr><br><td>/bookstore/book[price&gt;35.00]/title</td><br><td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td><br></tr><br></table><br></div>
-
-
-<div><br><h2>选取未知节点</h2><br><br><p>XPath 通配符可用来选取未知的 XML 元素。</p><br><br><table class="dataintable"><br><tr><br><th style="width:25%;">通配符</th><br><th>描述</th><br></tr><br><br><tr><br><td><em></em></td><br><td>匹配任何元素节点。</td><br></tr><br><br><tr><br><td>@</td><br><td>匹配任何属性节点。</td><br></tr><br><br><tr><br><td>node()</td><br><td>匹配任何类型的节点。</td><br></tr><br></table><br><br><h3>实例</h3><br><br><p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：</p><br><br><table class="dataintable"><br><tr><br><th style="width:25%;">路径表达式</th><br><th>结果</th><br></tr><br><br><tr><br><td>/bookstore/<em></em></td><br><td>选取 bookstore 元素的所有子元素。</td><br></tr><br><br><tr><br><td>//</td><br><td>选取文档中的所有元素。</td><br></tr><br><br><tr><br><td>//title[@*]</td><br><td>选取所有带有属性的 title 元素。</td><br></tr><br></table><br></div>
-
-
-<div><br><h2>选取若干路径</h2><br><br><p>通过在路径表达式中使用“|”运算符，您可以选取若干个路径。</p><br><br><h3>实例</h3><br><br><p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：</p><br><br><table class="dataintable"><br><tr><br><th style="width:35%;">路径表达式</th><br><th>结果</th><br></tr><br><br><tr><br><td>//book/title | //book/price</td><br><td>选取 book 元素的所有 title 和 price 元素。</td><br></tr><br><br><tr><br><td>//title | //price</td><br><td>选取文档中的所有 title 和 price 元素。</td><br></tr><br><br><tr><br><td>/bookstore/book/title | //price</td><br><td>选取属于 bookstore 元素的 book 元素的所有 title 元素，以及文档中所有的 price 元素。</td><br></tr><br></table><br></div>
-
+        <p>XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。</p>
+<hr>
+<h2 id="XML-实例文档"><a href="#XML-实例文档" class="headerlink" title="XML 实例文档"></a>XML 实例文档</h2><p>我们将在下面的例子中使用这个 XML 文档。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">"eng"</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">"eng"</span>&gt;</span>Learning XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">price</span>&gt;</span>39.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="选取节点"><a href="#选取节点" class="headerlink" title="选取节点"></a>选取节点</h2><p>XPath 使用路径表达式在 XML 文档中选取节点。节点是通过沿着路径或者 step 来选取的。 下面列出了最有用的路径表达式：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nodename</td>
+<td>选取此节点的所有子节点。</td>
+</tr>
+<tr>
+<td>/</td>
+<td>从根节点选取。</td>
+</tr>
+<tr>
+<td>//</td>
+<td>从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>选取当前节点。</td>
+</tr>
+<tr>
+<td>..</td>
+<td>选取当前节点的父节点。</td>
+</tr>
+<tr>
+<td>@</td>
+<td>选取属性。</td>
+</tr>
+</tbody>
+</table>
+<p>在下面的表格中，我们已列出了一些路径表达式以及表达式的结果：</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bookstore</td>
+<td>选取 bookstore 元素的所有子节点。</td>
+</tr>
+<tr>
+<td>/bookstore</td>
+<td>选取根元素 bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！</td>
+</tr>
+<tr>
+<td>bookstore/book</td>
+<td>选取属于 bookstore 的子元素的所有 book 元素。</td>
+</tr>
+<tr>
+<td>//book</td>
+<td>选取所有 book 子元素，而不管它们在文档中的位置。</td>
+</tr>
+<tr>
+<td>bookstore//book</td>
+<td>选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。</td>
+</tr>
+<tr>
+<td>//@lang</td>
+<td>选取名为 lang 的所有属性。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="谓语（Predicates）"><a href="#谓语（Predicates）" class="headerlink" title="谓语（Predicates）"></a>谓语（Predicates）</h2><p>谓语用来查找某个特定的节点或者包含某个指定的值的节点。</p>
+<p>谓语被嵌在方括号中。</p>
+<p>在下面的表格中，我们列出了带有谓语的一些路径表达式，以及表达式的结果：</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bookstore/book[1]</td>
+<td>选取属于 bookstore 子元素的第一个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()]</td>
+<td>选取属于 bookstore 子元素的最后一个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[last()-1]</td>
+<td>选取属于 bookstore 子元素的倒数第二个 book 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book[position()&lt;3]</td>
+<td>选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
+</tr>
+<tr>
+<td>//title[@lang]</td>
+<td>选取所有拥有名为 lang 的属性的 title 元素。</td>
+</tr>
+<tr>
+<td>//title[@lang=’eng’]</td>
+<td>选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]</td>
+<td>选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+<tr>
+<td>/bookstore/book[price&gt;35.00]/title</td>
+<td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="选取未知节点"><a href="#选取未知节点" class="headerlink" title="选取未知节点"></a>选取未知节点</h2><p>XPath 通配符可用来选取未知的 XML 元素。</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>匹配任何元素节点。</td>
+</tr>
+<tr>
+<td>@*</td>
+<td>匹配任何属性节点。</td>
+</tr>
+<tr>
+<td>node()</td>
+<td>匹配任何类型的节点。</td>
+</tr>
+</tbody>
+</table>
+<p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bookstore/*</td>
+<td>选取 bookstore 元素的所有子元素。</td>
+</tr>
+<tr>
+<td>//*</td>
+<td>选取文档中的所有元素。</td>
+</tr>
+<tr>
+<td>//title[@*]</td>
+<td>选取所有带有属性的 title 元素。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="选取若干路径"><a href="#选取若干路径" class="headerlink" title="选取若干路径"></a>选取若干路径</h2><p>通过在路径表达式中使用”|”运算符，您可以选取若干个路径。</p>
+<p>在下面的表格中，我们列出了一些路径表达式，以及这些表达式的结果：</p>
+<table>
+<thead>
+<tr>
+<th>路径表达式</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>//book/title \</td>
+<td>//book/price</td>
+<td>选取 book 元素的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td>//title \</td>
+<td>//price</td>
+<td>选取文档中的所有 title 和 price 元素。</td>
+</tr>
+<tr>
+<td>/bookstore/book/title \</td>
+<td>//price</td>
+<td>选取属于 bookstore 元素的 book 元素的所有 title 元素，以及文档中所有的 price 元素。</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -633,7 +815,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -644,7 +826,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -655,7 +837,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -711,7 +893,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">XML 实例文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">选取节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">下面列出了最有用的路径表达式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">谓语（Predicates）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">选取未知节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">选取若干路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.1.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XML-实例文档"><span class="nav-number">1.</span> <span class="nav-text">XML 实例文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选取节点"><span class="nav-number">2.</span> <span class="nav-text">选取节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谓语（Predicates）"><span class="nav-number">3.</span> <span class="nav-text">谓语（Predicates）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选取未知节点"><span class="nav-number">4.</span> <span class="nav-text">选取未知节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选取若干路径"><span class="nav-number">5.</span> <span class="nav-text">选取若干路径</span></a></li></ol></div>
             
 
           </div>
@@ -745,7 +927,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -758,7 +940,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

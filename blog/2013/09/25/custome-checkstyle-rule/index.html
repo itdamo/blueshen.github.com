@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="checkstyle,antlr,">
+  <meta name="keywords" content="checkstyle,antlr,ast,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="CheckStyle基于antlr对源码进行处理 antlr对AST解析 使用Visitor模式  主要是通过： 1public int[] getDefaultTokens() 指定要访问的节点类型。 1public void visitToken(DetailAST assignAST) 指定如何处理节点，并进行规则校验。">
-<meta name="keywords" content="checkstyle,antlr">
+<meta name="keywords" content="checkstyle,antlr,ast">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义CheckStyle规则">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/09/25/custome-checkstyle-rule/index.html">
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="CheckStyle基于antlr对源码进行处理 antlr对AST解析 使用Visitor模式  主要是通过： 1public int[] getDefaultTokens() 指定要访问的节点类型。 1public void visitToken(DetailAST assignAST) 指定如何处理节点，并进行规则校验。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T02:55:23.256Z">
+<meta property="og:updated_time" content="2019-02-13T09:05:41.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义CheckStyle规则">
 <meta name="twitter:description" content="CheckStyle基于antlr对源码进行处理 antlr对AST解析 使用Visitor模式  主要是通过： 1public int[] getDefaultTokens() 指定要访问的节点类型。 1public void visitToken(DetailAST assignAST) 指定如何处理节点，并进行规则校验。">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/checkstyle/" itemprop="url" rel="index">
-                    <span itemprop="name">checkstyle</span>
+                  <a href="/categories/代码规范/" itemprop="url" rel="index">
+                    <span itemprop="name">代码规范</span>
                   </a>
                 </span>
 
@@ -456,7 +456,7 @@
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/" title="Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描" rel="bookmark">Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/04/use-sonar/" title="Sonar的安装与使用" rel="bookmark">Sonar的安装与使用</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/11/20/maven-project-integrate-checkstyle-pmd-findbugs/" title="Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描" rel="bookmark">Maven项目集成CheckStyle,PMD,FindBugs进行静态代码扫描</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/04/use-sonar/" title="Sonar的安装与使用" rel="bookmark">Sonar的安装与使用</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/19/use-eclipse-ast-to-parser-java/" title="使用Eclipse AST来解析Java" rel="bookmark">使用Eclipse AST来解析Java</a></h3></div></li></ul>
     
     
     
@@ -521,6 +521,8 @@
             <a href="/tags/checkstyle/" rel="tag"># checkstyle</a>
           
             <a href="/tags/antlr/" rel="tag"># antlr</a>
+          
+            <a href="/tags/ast/" rel="tag"># ast</a>
           
         </div>
       
@@ -627,7 +629,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -638,7 +640,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -649,7 +651,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -739,7 +741,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -752,7 +754,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

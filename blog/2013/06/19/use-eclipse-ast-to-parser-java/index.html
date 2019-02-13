@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="eclipse,ast,">
+  <meta name="keywords" content="ast,eclipse,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。另外，Eclipse有一个AST View插件，使用这个能更加的清楚的看到解析后的效果。">
-<meta name="keywords" content="eclipse,ast">
+<meta name="keywords" content="ast,eclipse">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Eclipse AST来解析Java">
 <meta property="og:url" content="https://www.shenyanchao.cn/blog/2013/06/19/use-eclipse-ast-to-parser-java/index.html">
@@ -90,7 +90,7 @@
 <meta property="og:description" content="Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。另外，Eclipse有一个AST View插件，使用这个能更加的清楚的看到解析后的效果。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/blog/eclipse-ast-view.png">
-<meta property="og:updated_time" content="2018-10-23T08:55:34.863Z">
+<meta property="og:updated_time" content="2019-02-13T09:18:10.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Eclipse AST来解析Java">
 <meta name="twitter:description" content="Eclipse中有个Outline视图，这个视图内可以显示类的各种信息，包括属性、方法等。同时在这个视图内点击哪里，就能定位的类什么地方。这是个神奇的东西，那么它是如何实现的呢？其实就是AST（Abstract Syntax Tree），抽象语法树了。利用这个来对Java源码进行解析。另外，Eclipse有一个AST View插件，使用这个能更加的清楚的看到解析后的效果。">
@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -406,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  740
+                  789
                 </span>
               
 
@@ -546,62 +546,12 @@ import org.eclipse.jdt.core.dom.*;
  *         Time:  11:27 AM
  */
 public class AstHelloWorld {
-
-
-    public static void main(String[] args) {
-        AST ast = AST.newAST(AST.JLS3);
-        CompilationUnit compilationUnit = ast.newCompilationUnit();
-
-        // 创建类
-        TypeDeclaration programClass = ast.newTypeDeclaration();
-        programClass.setName(ast.newSimpleName(&quot;HelloWorld&quot;));
-        programClass.modifiers().add(
-                ast.newModifier(Modifier.ModifierKeyword.PUBLIC_KEYWORD));
-        compilationUnit.types().add(programClass);
-
-        // 创建包
-        PackageDeclaration packageDeclaration = ast.newPackageDeclaration();
-        packageDeclaration.setName(ast.newName(&quot;cn.shenyanchao.hello&quot;));
-        compilationUnit.setPackage(packageDeclaration);
-
-        MethodDeclaration main = ast.newMethodDeclaration();
-        main.setName(ast.newSimpleName(&quot;main&quot;));
-        main.modifiers().add(
-                ast.newModifier(Modifier.ModifierKeyword.PUBLIC_KEYWORD));
-        main.modifiers().add(ast.newModifier(Modifier.ModifierKeyword.STATIC_KEYWORD));
-        main.setReturnType2(ast.newPrimitiveType(PrimitiveType.VOID));
-        programClass.bodyDeclarations().add(main);
-        Block mainBlock = ast.newBlock();
-        main.setBody(mainBlock);
-
-        // 给main方法定义String[]参数
-        SingleVariableDeclaration mainParameter = ast
-                .newSingleVariableDeclaration();
-        mainParameter.setName(ast.newSimpleName(&quot;arg&quot;));
-        mainParameter.setType(ast.newArrayType(ast.newSimpleType(ast
-                .newName(&quot;String&quot;))));
-        main.parameters().add(mainParameter);
-
-        MethodInvocation println = ast.newMethodInvocation();
-        println.setName(ast.newSimpleName(&quot;println&quot;));
-
-        //生成String类型的常量
-        StringLiteral s = ast.newStringLiteral();
-        s.setLiteralValue(&quot;Hello World&quot;);
-        println.arguments().add(s);
-
-        println.setExpression(ast.newName(&quot;System.out&quot;));
-
-        mainBlock.statements().add(ast.newExpressionStatement(println));
-
-        System.out.println(compilationUnit.toString());
-    }
-}
-</code></pre><p>具体的使用手册，参见<a href="http://www.shenyanchao.cn/blog/2013/06/07/eclipse-ast/">http://www.shenyanchao.cn/blog/2013/06/07/eclipse-ast/</a></p>
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        AST ast = AST.newAST(AST.JLS3);</span><br><span class="line">        CompilationUnit compilationUnit = ast.newCompilationUnit();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建类</span></span><br><span class="line">        TypeDeclaration programClass = ast.newTypeDeclaration();</span><br><span class="line">        programClass.setName(ast.newSimpleName(<span class="string">"HelloWorld"</span>));</span><br><span class="line">        programClass.modifiers().add(</span><br><span class="line">                ast.newModifier(Modifier.ModifierKeyword.PUBLIC_KEYWORD));</span><br><span class="line">        compilationUnit.types().add(programClass);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建包</span></span><br><span class="line">        PackageDeclaration packageDeclaration = ast.newPackageDeclaration();</span><br><span class="line">        packageDeclaration.setName(ast.newName(<span class="string">"cn.shenyanchao.hello"</span>));</span><br><span class="line">        compilationUnit.setPackage(packageDeclaration);</span><br><span class="line"></span><br><span class="line">        MethodDeclaration main = ast.newMethodDeclaration();</span><br><span class="line">        main.setName(ast.newSimpleName(<span class="string">"main"</span>));</span><br><span class="line">        main.modifiers().add(</span><br><span class="line">                ast.newModifier(Modifier.ModifierKeyword.PUBLIC_KEYWORD));</span><br><span class="line">        main.modifiers().add(ast.newModifier(Modifier.ModifierKeyword.STATIC_KEYWORD));</span><br><span class="line">        main.setReturnType2(ast.newPrimitiveType(PrimitiveType.VOID));</span><br><span class="line">        programClass.bodyDeclarations().add(main);</span><br><span class="line">        Block mainBlock = ast.newBlock();</span><br><span class="line">        main.setBody(mainBlock);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给main方法定义String[]参数</span></span><br><span class="line">        SingleVariableDeclaration mainParameter = ast</span><br><span class="line">                .newSingleVariableDeclaration();</span><br><span class="line">        mainParameter.setName(ast.newSimpleName(<span class="string">"arg"</span>));</span><br><span class="line">        mainParameter.setType(ast.newArrayType(ast.newSimpleType(ast</span><br><span class="line">                .newName(<span class="string">"String"</span>))));</span><br><span class="line">        main.parameters().add(mainParameter);</span><br><span class="line"></span><br><span class="line">        MethodInvocation println = ast.newMethodInvocation();</span><br><span class="line">        println.setName(ast.newSimpleName(<span class="string">"println"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//生成String类型的常量</span></span><br><span class="line">        StringLiteral s = ast.newStringLiteral();</span><br><span class="line">        s.setLiteralValue(<span class="string">"Hello World"</span>);</span><br><span class="line">        println.arguments().add(s);</span><br><span class="line"></span><br><span class="line">        println.setExpression(ast.newName(<span class="string">"System.out"</span>));</span><br><span class="line"></span><br><span class="line">        mainBlock.statements().add(ast.newExpressionStatement(println));</span><br><span class="line"></span><br><span class="line">        System.out.println(compilationUnit.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的使用手册，参见<a href="http://www.shenyanchao.cn/blog/2013/06/07/eclipse-ast/">http://www.shenyanchao.cn/blog/2013/06/07/eclipse-ast/</a></p>
 
       
     </div>
-    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/07/eclipse-ast/" title="Eclipse AST抽象语法树API" rel="bookmark">Eclipse AST抽象语法树API</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2012/10/11/pmd/" title="PMD静态代码检查" rel="bookmark">PMD静态代码检查</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/12/14/ut-maven-plugin/" title="ut-maven-plugin" rel="bookmark">ut-maven-plugin</a></h3></div></li></ul>
+    <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/06/07/eclipse-ast/" title="Eclipse AST抽象语法树API" rel="bookmark">Eclipse AST抽象语法树API</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/09/25/custome-checkstyle-rule/" title="自定义CheckStyle规则" rel="bookmark">自定义CheckStyle规则</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-title"><h3><a href="/blog/2013/12/14/ut-maven-plugin/" title="ut-maven-plugin" rel="bookmark">ut-maven-plugin</a></h3></div></li></ul>
     
     
     
@@ -663,9 +613,9 @@ public class AstHelloWorld {
       
         <div class="post-tags">
           
-            <a href="/tags/eclipse/" rel="tag"># eclipse</a>
-          
             <a href="/tags/ast/" rel="tag"># ast</a>
+          
+            <a href="/tags/eclipse/" rel="tag"># eclipse</a>
           
         </div>
       
@@ -678,8 +628,8 @@ public class AstHelloWorld {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2013/06/13/write-my-maven-plugin/" rel="next" title="write my maven plugin">
-                <i class="fa fa-chevron-left"></i> write my maven plugin
+              <a href="/blog/2013/06/13/write-my-maven-plugin/" rel="next" title="如何写一个自己的Maven Plugin">
+                <i class="fa fa-chevron-left"></i> 如何写一个自己的Maven Plugin
               </a>
             
           </div>
@@ -772,7 +722,7 @@ public class AstHelloWorld {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -783,7 +733,7 @@ public class AstHelloWorld {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -794,7 +744,7 @@ public class AstHelloWorld {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">226</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -884,7 +834,7 @@ public class AstHelloWorld {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">230.2k</span>
+    <span title="Site words total count">229.9k</span>
   
 </div>
 
@@ -897,7 +847,7 @@ public class AstHelloWorld {
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
