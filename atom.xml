@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shenyanchao.cn/"/>
-  <updated>2019-02-12T10:09:39.519Z</updated>
+  <updated>2019-02-13T06:21:56.011Z</updated>
   <id>https://www.shenyanchao.cn/</id>
   
   <author>
@@ -16,11 +16,112 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于Redis序列化及压缩对性能的影响</title>
+    <link href="https://www.shenyanchao.cn/blog/2019/02/13/redis-serializer/"/>
+    <id>https://www.shenyanchao.cn/blog/2019/02/13/redis-serializer/</id>
+    <published>2019-02-13T02:42:04.000Z</published>
+    <updated>2019-02-13T06:21:56.011Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>公司业务由于广告以及导流的影响，对搜索服务的稳定以及性能提出了更苛刻的要求，为了应对可能的流量突增，特进行了大规模，全方位的性能测试。摸清线上服务的能力，以及定位瓶颈所在。</p>
+<p>搜索服务采用了Master-Slave的Redis服务来缓存用户的搜索结果，过期时间在5~10分钟，通过缓存来提升响应时间和并发。key是用户的请求实体json字符串，value自然是搜索结果json串，并没有使用set,hash等类型。</p>
+<h3 id="Redis瓶颈"><a href="#Redis瓶颈" class="headerlink" title="Redis瓶颈"></a>Redis瓶颈</h3><p>经过一轮的性能测试，最终的瓶颈点落在了Redis上，如下图Grafana监控所示：</p>
+<p><img src="/images/redis-serializer/Redis11621-before.png" alt="redis "></p>
+<p>在请求和并发上去之后，redis item迅速增长到300W左右，每秒command数达到近10W。由于redis存储做了限制20G，图中可以看到内存已经满了，item肯定会被频繁置换出去，总数提升不上去。从network上看，output已经达到了近200MB/s，远超运维的限制的100MB/s(千兆网卡极限约100MB,万兆约1000MB)。</p>
+<p>核心瓶颈点：</p>
+<ul>
+<li>存储</li>
+<li>网络IO</li>
+</ul>
+<h3 id="Redis-bigkey解决"><a href="#Redis-bigkey解决" class="headerlink" title="Redis bigkey解决"></a>Redis bigkey解决</h3><p>所谓的BigKey，大概有以下的情况：</p>
+<ul>
+<li>String本身比较大</li>
+<li>set,hash内个数比较大</li>
+</ul>
+<p>在我们的这个场景下，主要是json串太大。这涉及到key, value的如果减小的问题。</p>
+<p>先来看key如何减小：</p>
+<p>我们是使用fastjson来对Request对象做序列化的，key就是这个json串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Request request = (Request) obj;</div><div class="line">String json = JSON.toJSONString(request);</div></pre></td></tr></table></figure>
+<p>直接想到的就是对key做编码，减小长度。使用了commons-codec里的md5加密摘要，作为key。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DigestUtils.md5Hex(json)</div></pre></td></tr></table></figure>
+<p>这样就保证了key的长度缩小，并且长度一致。需要注意的是MD5有一定的冲突率，在本场景下可以基本忽略。</p>
+<p>接下来，看value如何缩小：</p>
+<p>value的序列化，我们使用的是jackson2来做的，反序列化的时候直接就是对象，方便配合Spring Cache使用。核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> RedisSerializer <span class="title">getValueSerializer</span><span class="params">()</span> </span>&#123;</div><div class="line">    Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = <span class="keyword">new</span> Jackson2JsonRedisSerializer(Object.class);</div><div class="line">    ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</div><div class="line">    om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</div><div class="line">    om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</div><div class="line">    jackson2JsonRedisSerializer.setObjectMapper(om);</div><div class="line">    <span class="keyword">return</span> jackson2JsonRedisSerializer;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>redis里存储的就是jackson2转化后的字符串，其中包含了class等相关信息。</p>
+<p>当然，从业务上减小每次查询的搜索结果条数是一个办法，比如每次最多只能查询10条。但是，如果10条的数据仍旧比较大，我们想到的直接方法就是<strong>压缩</strong>。</p>
+<p>直接使用JDK自带的GZIP压缩来实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GzipSerializer</span> <span class="keyword">implements</span> <span class="title">RedisSerializer</span>&lt;<span class="title">Object</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUFFER_SIZE = <span class="number">4096</span>;</div><div class="line">    <span class="comment">// 这里组合方式，使用到了一个序列化器</span></div><div class="line">    <span class="keyword">private</span> RedisSerializer&lt;Object&gt; innerSerializer;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GzipSerializer</span><span class="params">(RedisSerializer&lt;Object&gt; innerSerializer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.innerSerializer = innerSerializer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] serialize(Object graph) <span class="keyword">throws</span> SerializationException &#123;</div><div class="line">        <span class="keyword">if</span> (graph == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        ByteArrayOutputStream bos = <span class="keyword">null</span>;</div><div class="line">        GZIPOutputStream gzip = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 先序列化</span></div><div class="line">            <span class="keyword">byte</span>[] bytes = innerSerializer.serialize(graph);</div><div class="line">            bos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">            gzip = <span class="keyword">new</span> GZIPOutputStream(bos);</div><div class="line">            <span class="comment">// 在压缩</span></div><div class="line">            gzip.write(bytes);</div><div class="line">            gzip.finish();</div><div class="line">            <span class="keyword">byte</span>[] result = bos.toByteArray();</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SerializationException(<span class="string">"Gzip Serialization Error"</span>, e);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            IOUtils.closeQuietly(bos);</div><div class="line">            IOUtils.closeQuietly(gzip);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">deserialize</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> SerializationException </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytes == <span class="keyword">null</span> || bytes.length == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ByteArrayOutputStream bos = <span class="keyword">null</span>;</div><div class="line">        ByteArrayInputStream bis = <span class="keyword">null</span>;</div><div class="line">        GZIPInputStream gzip = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            bos = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">            bis = <span class="keyword">new</span> ByteArrayInputStream(bytes);</div><div class="line">            gzip = <span class="keyword">new</span> GZIPInputStream(bis);</div><div class="line">            <span class="keyword">byte</span>[] buff = <span class="keyword">new</span> <span class="keyword">byte</span>[BUFFER_SIZE];</div><div class="line">            <span class="keyword">int</span> n;</div><div class="line">            <span class="comment">// 先解压</span></div><div class="line">            <span class="keyword">while</span> ((n = gzip.read(buff, <span class="number">0</span>, BUFFER_SIZE)) &gt; <span class="number">0</span>) &#123;</div><div class="line">                bos.write(buff, <span class="number">0</span>, n);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 再反序列化</span></div><div class="line">            Object result = innerSerializer.deserialize(bos.toByteArray());</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SerializationException(<span class="string">"Gzip deserizelie error"</span>, e);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            IOUtils.closeQuietly(bos);</div><div class="line">            IOUtils.closeQuietly(bis);</div><div class="line">            IOUtils.closeQuietly(gzip);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过这个GzipSerializer实现了压缩功能，并且最大可能的减少了对原始代码的改动。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Bean</span></div><div class="line"><span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, String&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> </span>&#123;</div><div class="line">    StringRedisTemplate template = <span class="keyword">new</span> StringRedisTemplate(redisConnectionFactory);</div><div class="line">    <span class="comment">// 在这里进行了功能增强，提供了压缩机制。</span></div><div class="line">    template.setValueSerializer(<span class="keyword">new</span> GzipSerializer(getValueSerializer()));</div><div class="line">    template.afterPropertiesSet();</div><div class="line">    <span class="keyword">return</span> template;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>更改之后，进行新一轮的性能压测。grafana监控效果如下：</p>
+<p><img src="/images/redis-serializer/redis-11621-after.png" alt="redis compress"></p>
+<p>可以看出，同样的压力情况下。内存占用不到5G，网络IO也在14M/S上下，<strong>效果显著</strong>。顺利的解决了Redis的瓶颈所在。</p>
+<p>至此压力测试到一个阶段，下面来看一下，功能在生产环境的使用情况如何。</p>
+<p><img src="/images/redis-serializer/redis11470-compress.png" alt="redis production"></p>
+<p>从上面看出，在1.16上线后，在整体流量基本不变的情况下，内存以及网络IO大幅度下降，经受住了生产环境的考验。</p>
+<h3 id="有没有更好的方案"><a href="#有没有更好的方案" class="headerlink" title="有没有更好的方案"></a>有没有更好的方案</h3><p>以上，为了解决Redis瓶颈，通过MD5摘要以及压缩快速而小改动的解决了问题，如果从长远来看，如何才能做到更好呢？</p>
+<h4 id="压缩方式-性能-amp-压缩比兼顾"><a href="#压缩方式-性能-amp-压缩比兼顾" class="headerlink" title="压缩方式-性能&amp;压缩比兼顾"></a>压缩方式-性能&amp;压缩比兼顾</h4><p>GZIP能取得不错的压缩比，但是对CPU要求较高，相当于把redis的存储瓶颈转移到了Java程序的解压缩上。是否有一个性能和压缩比兼得的压缩方案呢？</p>
+<p>从参考1中，可以一探究竟。</p>
+<p>文中以一个445M的文件对常见的压缩方式进行了比较。</p>
+<p>压缩后的大小：</p>
+<p><img src="/images/redis-serializer/compress-file-size.png" alt="compress"></p>
+<p>压缩比：</p>
+<p><img src="/images/redis-serializer/compress-ratio.png" alt="compress"></p>
+<p>压缩耗时：</p>
+<p><img src="/images/redis-serializer/compress-time.png" alt="compress"></p>
+<p>解压缩耗时：</p>
+<p><img src="/images/redis-serializer/decompress-time.png" alt="decompress"></p>
+<p>从以上的benchmark对比来看，不同压缩方式优劣不一样，大家可以根据实际情况来选择。</p>
+<p>个人推荐来看，也许<strong>LZ4</strong>是一个不错的选择，压缩比高一些，但是解压缩速度都比gzip要高。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</div><div class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.commons.io.IOUtils;</div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.serializer.RedisSerializer;</div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.serializer.SerializationException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> net.jpountz.lz4.LZ4BlockInputStream;</div><div class="line"><span class="keyword">import</span> net.jpountz.lz4.LZ4BlockOutputStream;</div><div class="line"><span class="keyword">import</span> net.jpountz.lz4.LZ4Compressor;</div><div class="line"><span class="keyword">import</span> net.jpountz.lz4.LZ4Factory;</div><div class="line"><span class="keyword">import</span> net.jpountz.lz4.LZ4FastDecompressor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * LZ4 压缩 Serializer</div><div class="line"> * <span class="doctag">@author</span> shenyanchao</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LZ4Serializer</span> <span class="keyword">implements</span> <span class="title">RedisSerializer</span>&lt;<span class="title">Object</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUFFER_SIZE = <span class="number">4096</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> RedisSerializer&lt;Object&gt; innerSerializer;</div><div class="line">    <span class="keyword">private</span> LZ4FastDecompressor decompresser;</div><div class="line">    <span class="keyword">private</span> LZ4Compressor compressor;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LZ4Serializer</span><span class="params">(RedisSerializer&lt;Object&gt; innerSerializer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.innerSerializer = innerSerializer;</div><div class="line">        LZ4Factory factory = LZ4Factory.fastestInstance();</div><div class="line">        <span class="keyword">this</span>.compressor = factory.fastCompressor();</div><div class="line">        <span class="keyword">this</span>.decompresser = factory.fastDecompressor();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] serialize(Object graph) <span class="keyword">throws</span> SerializationException &#123;</div><div class="line">        <span class="keyword">if</span> (graph == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line">        ByteArrayOutputStream byteOutput = <span class="keyword">null</span>;</div><div class="line">        LZ4BlockOutputStream compressedOutput = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">byte</span>[] bytes = innerSerializer.serialize(graph);</div><div class="line">            byteOutput = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">            compressedOutput = <span class="keyword">new</span> LZ4BlockOutputStream(byteOutput, BUFFER_SIZE, compressor);</div><div class="line">            compressedOutput.write(bytes);</div><div class="line">            compressedOutput.finish();</div><div class="line">            <span class="keyword">byte</span>[] compressBytes = byteOutput.toByteArray();</div><div class="line">            <span class="keyword">return</span> compressBytes;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SerializationException(<span class="string">"LZ4 Serialization Error"</span>, e);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            IOUtils.closeQuietly(compressedOutput);</div><div class="line">            IOUtils.closeQuietly(byteOutput);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">deserialize</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> SerializationException </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytes == <span class="keyword">null</span> || bytes.length == <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ByteArrayOutputStream baos = <span class="keyword">null</span>;</div><div class="line">        LZ4BlockInputStream lzis = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            baos = <span class="keyword">new</span> ByteArrayOutputStream(BUFFER_SIZE);</div><div class="line">            lzis = <span class="keyword">new</span> LZ4BlockInputStream(<span class="keyword">new</span> ByteArrayInputStream(bytes), decompresser);</div><div class="line">            <span class="keyword">int</span> count;</div><div class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[BUFFER_SIZE];</div><div class="line">            <span class="keyword">while</span> ((count = lzis.read(buffer)) != -<span class="number">1</span>) &#123;</div><div class="line">                baos.write(buffer, <span class="number">0</span>, count);</div><div class="line">            &#125;</div><div class="line">            Object result = innerSerializer.deserialize(baos.toByteArray());</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> SerializationException(<span class="string">"LZ4 deserizelie error"</span>, e);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            IOUtils.closeQuietly(lzis);</div><div class="line">            IOUtils.closeQuietly(baos);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="序列化方案"><a href="#序列化方案" class="headerlink" title="序列化方案"></a>序列化方案</h4><p>前面提到，我们的序列化方案是基于json的，那有没有更好的序列化方案，能够有更好的性能，更低的内存占用。</p>
+<p>序列化方案无论是在redis，还是在各种RPC解决方案里都是大家热烈讨论的话题。那我们来看一下主要序列化方案的一些对比。</p>
+<p>在参考2和3里都有提及。</p>
+<p>各种序列化方案字节大小对比(越小越好)：</p>
+<p><img src="/images/redis-serializer/java-serializer-pk.png" alt="java serializer"></p>
+<p>耗时对比(越小越好)：</p>
+<p><img src="/images/redis-serializer/serializer-duration-pk.png" alt="serializer"></p>
+<p>综合以上文章所述，再加上易用性的使用角度，个人推荐倾向于：</p>
+<ul>
+<li>kryo</li>
+<li>FST</li>
+</ul>
+<p>当然关于Java对象的序列化，不同方案也有一些差异，比如是否实现Serializable接口，是否支持嵌套内部类在选择的时候，也都是需要注意的。</p>
+<p>下面给一个kryo的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.springframework.data.redis.serializer.RedisSerializer;</div><div class="line"><span class="keyword">import</span> org.springframework.data.redis.serializer.SerializationException;</div><div class="line"><span class="keyword">import</span> com.esotericsoftware.kryo.Kryo;</div><div class="line"><span class="keyword">import</span> com.esotericsoftware.kryo.io.Input;</div><div class="line"><span class="keyword">import</span> com.esotericsoftware.kryo.io.Output;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * kryo 序列化</div><div class="line"> * <span class="doctag">@author</span> shenyanchao</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KryoSerializer</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">RedisSerializer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BUFFER_SIZE = <span class="number">2048</span>;</div><div class="line">    <span class="keyword">private</span> Kryo kryo = <span class="keyword">new</span> Kryo();</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] serialize(T t) <span class="keyword">throws</span> SerializationException &#123;</div><div class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[BUFFER_SIZE];</div><div class="line">        Output output = <span class="keyword">new</span> Output(buffer);</div><div class="line">        kryo.writeClassAndObject(output, t);</div><div class="line">        <span class="keyword">return</span> output.toBytes();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deserialize</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> <span class="keyword">throws</span> SerializationException </span>&#123;</div><div class="line">        Input input = <span class="keyword">new</span> Input(bytes);</div><div class="line">        T t = (T) kryo.readClassAndObject(input);</div><div class="line">        <span class="keyword">return</span> t;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用Redis-Cluster"><a href="#使用Redis-Cluster" class="headerlink" title="使用Redis Cluster"></a>使用Redis Cluster</h4><p>前面提到的，无论是压缩还是序列化都是基于Redis无法扩容，以及单机网络IO限制的。如果为了支持更大的并发和更快的响应，我们需要使用Redis Cluster，当然也可以从客户角度进行拆分，使用多个Redis实例，这里不予表述。</p>
+<p>Redis Cluster在3.0之后推出，用于解决Redis的分布式需求。自动的在不同节点之间均衡数据，充分利用多机的优势。</p>
+<hr>
+<p>参考：</p>
+<p>1.<a href="https://catchchallenger.first-world.info/wiki/Quick_Benchmark:_Gzip_vs_Bzip2_vs_LZMA_vs_XZ_vs_LZ4_vs_LZO" target="_blank" rel="external">Quick Benchmark: Gzip vs Bzip2 vs LZMA vs XZ vs LZ4 vs LZO</a></p>
+<p>2.<a href="https://github.com/eishay/jvm-serializers/wiki" target="_blank" rel="external">Jvm-serializers</a></p>
+<p>3.<a href="https://dangdangdotcom.github.io/dubbox/serialization.html" target="_blank" rel="external">在Dubbo中使用高效的Java序列化（Kryo和FST）</a></p>
+<p>4.<a href="https://redis.io/topics/cluster-spec" target="_blank" rel="external">Redis Cluster Specification</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;缘起&quot;&gt;&lt;a href=&quot;#缘起&quot; class=&quot;headerlink&quot; title=&quot;缘起&quot;&gt;&lt;/a&gt;缘起&lt;/h3&gt;&lt;p&gt;公司业务由于广告以及导流的影响，对搜索服务的稳定以及性能提出了更苛刻的要求，为了应对可能的流量突增，特进行了大规模，全方位的性能测试。摸清线
+    
+    </summary>
+    
+      <category term="redis" scheme="https://www.shenyanchao.cn/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://www.shenyanchao.cn/tags/redis/"/>
+    
+      <category term="bigkey" scheme="https://www.shenyanchao.cn/tags/bigkey/"/>
+    
+      <category term="serializer" scheme="https://www.shenyanchao.cn/tags/serializer/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ElasticSearch-Nested嵌套类型解密</title>
     <link href="https://www.shenyanchao.cn/blog/2019/01/10/elasticsearch-nested/"/>
     <id>https://www.shenyanchao.cn/blog/2019/01/10/elasticsearch-nested/</id>
     <published>2019-01-10T02:20:53.000Z</published>
-    <updated>2019-02-12T10:09:39.519Z</updated>
+    <updated>2019-02-13T06:23:00.939Z</updated>
     
     <content type="html"><![CDATA[<p>Lucene Field本身并不支持嵌套类型，最多也就支持多值类型。ElasticSearch进行了扩展，使得Field可以是object对象类型或者nested嵌套类型。</p>
 <p>object类型，本质上是把字段<strong>路径打平</strong>，最终在索引里还是一个正常的Field字段，object类型转化后，并不会保留<strong>对象内的属性对应关系</strong>，这在查询中可能需要特别注意。然后nested嵌套类型却实现的对应关系。</p>
@@ -32,10 +133,10 @@
 <p>Indexing a document with 100 nested fields actually indexes 101 documents as each nested document is indexed as a separate document. To safeguard against ill-defined mappings the number of nested fields that can be defined per index has been limited to 50. See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html#mapping-limit-settings" target="_blank" rel="external">Settings to prevent mappings explosion</a><a href="https://github.com/elastic/elasticsearch/edit/6.5/docs/reference/mapping.asciidoc" target="_blank" rel="external">edit</a>.</p>
 <p>从这里的介绍，我们所知有限。能得到的结论如下：</p>
 <ul>
-<li>nested字段在索引里是作为Document<strong>单独存储</strong>的</li>
+<li>nested类型在索引里是作为Document<strong>单独存储</strong>的。nested类型可能是1个包含100数据的数组，那就是100个Document。每多1个nested类型，就多增加对应length的Document.</li>
 <li>普通的query对nested字段查询无效，必须使用<strong>nested Query</strong></li>
-<li>highlight高亮也需要使用专门的</li>
-<li>对于nested类型的field个数是有限制的。</li>
+<li>highlight高亮也需要使用专门的Query</li>
+<li>对于nested类型的field个数是有限制的, 长度也是有限制的。</li>
 </ul>
 <h3 id="Nested类型怎么分开存储的"><a href="#Nested类型怎么分开存储的" class="headerlink" title="Nested类型怎么分开存储的"></a>Nested类型怎么分开存储的</h3><p><code>org.elasticsearch.index.mapper.DocumentParser</code>类是专门用于解析要索引的Document的。</p>
 <p>其中有这样一个方法来解析对象类型。</p>
@@ -45,14 +146,14 @@
 <p>总之，经过DocumentParser的处理，Nested Document多了这样的2个字段</p>
 <ul>
 <li>_id，值为父Document的id，用来关联</li>
-<li>_type，值为‘__’开头的，标志特定nested 类型。</li>
+<li>_type，值为”__”开头的，标识特定nested 类型。</li>
 </ul>
 <h3 id="Nested类型普通Query如何隐藏"><a href="#Nested类型普通Query如何隐藏" class="headerlink" title="Nested类型普通Query如何隐藏"></a>Nested类型普通Query如何隐藏</h3><p>从上面存储知道，nested document是和普通Document一起存在索引中的，但对外是隐藏的，甚至是MatchAllQuery。</p>
 <p>在<code>org.elasticsearch.common.lucene.search.Queries</code>类中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Creates a new non-nested docs query</div><div class="line"> * <span class="doctag">@param</span> indexVersionCreated the index version created since newer indices can identify a parent field more efficiently</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Query <span class="title">newNonNestedFilter</span><span class="params">(Version indexVersionCreated)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (indexVersionCreated.onOrAfter(Version.V_6_1_0)) &#123;</div><div class="line">        <span class="comment">// ES 6.1.0之后。 只保留有_primary_term这个元字段的，所有的父Document都带有这个Field</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DocValuesFieldExistsQuery(SeqNoFieldMapper.PRIMARY_TERM_NAME);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 老模式</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BooleanQuery.Builder()</div><div class="line">            .add(<span class="keyword">new</span> MatchAllDocsQuery(), Occur.FILTER)</div><div class="line">            .add(newNestedFilter(), Occur.MUST_NOT)  <span class="comment">//取非。过滤掉nested Document</span></div><div class="line">            .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Query <span class="title">newNestedFilter</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// _type以“__”为前缀</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PrefixQuery(<span class="keyword">new</span> Term(TypeFieldMapper.NAME, <span class="keyword">new</span> BytesRef(<span class="string">"__"</span>)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面来看一下<code>_primary_term</code>是如何放进去的。这里涉及到<code>org.elasticsearch.index.mapper.SeqNoFieldMapper</code>这个类。他主要是用来为Document添加<code>_seq_no</code>元字段的，附带着把<code>_primary_term</code>给加了进去。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">parseCreateField</span><span class="params">(ParseContext context, List&lt;IndexableField&gt; fields)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    <span class="comment">// see InternalEngine.innerIndex to see where the real version value is set</span></div><div class="line">    <span class="comment">// also see ParsedDocument.updateSeqID (called by innerIndex)</span></div><div class="line">    SequenceIDFields seqID = SequenceIDFields.emptySeqID(); <span class="comment">// 默认SeqID</span></div><div class="line">    context.seqID(seqID);</div><div class="line">    fields.add(seqID.seqNo);</div><div class="line">    fields.add(seqID.seqNoDocValue);</div><div class="line">    fields.add(seqID.primaryTerm); <span class="comment">// 添加到fields里</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SequenceIDFields <span class="title">emptySeqID</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SequenceIDFields(<span class="keyword">new</span> LongPoint(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="comment">// 主要这里把_primary_term=0复制为了primaryTerm Field</span></div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(PRIMARY_TERM_NAME, <span class="number">0</span>), <span class="keyword">new</span> NumericDocValuesField(TOMBSTONE_NAME, <span class="number">0</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SequenceIDFields <span class="title">emptySeqID</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SequenceIDFields(<span class="keyword">new</span> LongPoint(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="comment">// 主要这里把_primary_term=0赋值给了primaryTerm Field</span></div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(PRIMARY_TERM_NAME, <span class="number">0</span>), <span class="keyword">new</span> NumericDocValuesField(TOMBSTONE_NAME, <span class="number">0</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面，我们来看下，都什么地方使用到了<code>Queries.newNonNestedFilter</code>.这里我在IDEA里做了一个截图。</p>
 <p><img src="/images/elasticsearch-nested/elasticsearch-non-nested.png" alt="ElasticSearch Nested"></p>
 <p>从上可以看出，基本的正常查询都默认加了这个filter的，只有是nestedQuery才做特别的处理。</p>
@@ -3003,9 +3104,9 @@ _8qh.si
       <category term="spring" scheme="https://www.shenyanchao.cn/categories/spring/"/>
     
     
-      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
-    
       <category term="redis" scheme="https://www.shenyanchao.cn/tags/redis/"/>
+    
+      <category term="spring" scheme="https://www.shenyanchao.cn/tags/spring/"/>
     
       <category term="cache" scheme="https://www.shenyanchao.cn/tags/cache/"/>
     
@@ -3672,125 +3773,6 @@ public String findOwner(@PathVariable(&amp;quot;ownerId&amp;quot;) String theOwn
       <category term="c3p0" scheme="https://www.shenyanchao.cn/tags/c3p0/"/>
     
       <category term="dhcp" scheme="https://www.shenyanchao.cn/tags/dhcp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何在Solr中更好的处理同义词</title>
-    <link href="https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/"/>
-    <id>https://www.shenyanchao.cn/blog/2014/11/25/better-synonym-handling-in-solr/</id>
-    <published>2014-11-25T05:53:00.000Z</published>
-    <updated>2018-12-24T06:36:28.255Z</updated>
-    
-    <content type="html"><![CDATA[<p>当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?</p>
-<p><img src="/images/blog/2014/File-Licking_the_staffy_pup.JPG" alt="solr plugin 小狗"></p>
-<p>叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。</p>
-<p>事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。</p>
-<a id="more"></a>
-<h3 id="The-SynonymFilterFactory"><a href="#The-SynonymFilterFactory" class="headerlink" title="The SynonymFilterFactory"></a>The SynonymFilterFactory</h3><p>Solr提供了一个听起来很酷的SynonymFilterFactory,它可以接收一个逗号分割的同义词文本。你甚至可以选择同义词是相互扩展还是特定方向的替换。</p>
-<p>举例来说，你可以让“dog”，“hound”和“pooch”都扩展为“dog|hound|pooch”，或者你可以指定“dog”映射到“hound”，反过来却不可以，或者你可以把所有的词都转化为”dog“,Solr处理这部分是非常灵活的并且做的很棒。</p>
-<p>当你考虑是把SynonymFilterFactory放在查询分析器还是索引分析器时，这个问题就变得很复杂啦。</p>
-<h3 id="Index-time-vs-query-time"><a href="#Index-time-vs-query-time" class="headerlink" title="Index-time vs. query-time"></a>Index-time vs. query-time</h3><p>下图总结了查询时（query-time）和索引时（index-time）同义词扩展的基本差异。当然我们是为了解决solr中使用的问题，但是这2种方法适用于任何信息检索系统。</p>
-<p><img src="/images/blog/2014/index_vs_query_expansion2.png" alt="Index-time vs. query-time expansion."></p>
-<p>你的直观选择可能是将SynonymFilterFactory放在查询分析器内。理论上，这样做有以下优点：</p>
-<ul>
-<li>索引大小不会变化</li>
-<li>同义词可以随时更换，不用更新索引</li>
-<li>同义词实时生效，不需要重新索引</li>
-</ul>
-<p>然而，按<a href="http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory" target="_blank" rel="external">Solr Docs</a>所说，这是一个Very Bad Thing to Do(™)，显然的你应该把SynonymFilterFactory放在索引分析器里，而不是简单的依靠你的直觉来判断。文档里说，查询时的同义词扩展有以下的缺点：</p>
-<ul>
-<li>多字同义词并不能识别为短语查询</li>
-<li>罕见同义词的IDF会被加权，导致不可想象的搜索结果</li>
-<li>多字同义词不会匹配查询</li>
-</ul>
-<p>这有点复杂，因此也值得我们一一解决这些问题。</p>
-<h3 id="多字同义词并不能识别为短语查询"><a href="#多字同义词并不能识别为短语查询" class="headerlink" title="多字同义词并不能识别为短语查询"></a>多字同义词并不能识别为短语查询</h3><p>在Health On the Net,我们的搜索引擎使用MeSH来做查询扩展，MeSH是一个为健康领域提供优质同义词的医疗本体。例如”breast cancer“的同义词：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">breast neoplasm</div><div class="line">breast neoplasms</div><div class="line">breast tumor</div><div class="line">breast tumors</div><div class="line">cancer of breast</div><div class="line">cancer of the breast</div></pre></td></tr></table></figure>
-<p>因此在正常情况下，如果SynonymFilterFactory配置了<code>expand=&quot;true&quot;</code>,查询”breast cancer“就变成了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+((breast breast breast breast breast cancer cancer) (cancer neoplasm neoplasms tumor tumors) breast breast)</div></pre></td></tr></table></figure>
-<p>这将命中包含”breast neoplasms“,”cancer of the breast”等等的文档。</p>
-<p>然而，这也意味着，如果你正在做一个短语查询（比如”breast cancer“）,如果想生效，你的文档必须字面上匹配类似”breast cancer breast breast“这样的字符。</p>
-<p>啊？这里到底发生了什么？事实证明SynonymFilterFactory并没有按你所想来扩展多字同义词。直觉上，可能认为它表现为一个有限自动机，Solr构建出的结果可能类似这样(忽略复数)：</p>
-<p><img src="/images/blog/2014/graph11.png" alt="Lucene FSA"></p>
-<p>但是，它真正构建的是下面这样的：</p>
-<p><img src="/images/blog/2014/graph22.png" alt="Lucene FSA"></p>
-<p>简直是一碗意大利面。</p>
-<p>你可怜的文档必须依序包含所有的4个部分。让人惊讶。</p>
-<p>同样，DisMax和EDisMax查询分析器的mm(最小匹配)参数，并不能像你所想的那样工作。在上面的例子中，设置<code>mm=100%</code>将需要所有4个部分都匹配。</p>
-<pre><code>+((breast breast breast breast breast cancer cancer) (cancer neoplasm neoplasms tumor tumors) breast breast)~4
-</code></pre><h3 id="罕见同义词的IDF会被加权"><a href="#罕见同义词的IDF会被加权" class="headerlink" title="罕见同义词的IDF会被加权"></a>罕见同义词的IDF会被加权</h3><p>即使你没有多字同义词，Solr Docs也提到了第二个避免查询时扩展的原因：不正常的IDF加权。考虑我们的”dog”,”hound”,”pooch”例子，查询3个里面的任意一个都会被扩展为：</p>
-<pre><code>+(dog hound pooch)
-</code></pre><p>由于“hound”和”pooch“是比较少见的字，因此无论查询什么，包含这些字的文档会在查询结果中排名特别高。这对可怜的用户来说，简直是一个浩劫，为什么搜索”dog“的时候，会有那么多包含”hound“和”pooch“的怪异文档排名那么高。</p>
-<p>索引时扩展通过给”dog”,”hound”,”pooch”赋予相同的IDF值，而不管原始文档是什么。</p>
-<h3 id="多字同义词不会匹配查询"><a href="#多字同义词不会匹配查询" class="headerlink" title="多字同义词不会匹配查询"></a>多字同义词不会匹配查询</h3><p>最后，也是最严重的是，如果你对用户查询做任意类型的分词，SynonymFilterFactory并不会匹配多字同义词。这是因为分词器会将用户输入分开，然后才交给SynonymFilterFactory来转换。</p>
-<p>比如，查询“cancer of the breast”会被StandardTokenizationFactory分词为[“cancer”,”of”,”the”,”breast]，并且只有独立的词才会传给SynonymFilterFactory。因此，在这种情况下，如果分词后的单个词，比如‘cancer“和”breast“都没有同义词的情况下，同义词扩展就压根不会发生。</p>
-<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>最初，我按照Solr的建议，使用索引时扩展，但是我发现索引时同义词扩展有它自己的问题。显然，除了有索引爆炸的问题，我还发现一个关于高亮的有趣的bug。</p>
-<p>当我搜索”breast cancer“的时候，我发现高亮器会很神奇的把”breast cancer X Y“给高亮了，其中”X“和”Y“是文档中任何跟在”breast cancer“后面的2个字符。例如，它可能会高亮”breast cancer frauds are“或者”breast cancer is to“。</p>
-<p><img src="/images/blog/2014/breast_cancer_highlighting2.png" alt="solr highlight bug"></p>
-<p>看完这个<a href="https://issues.apache.org/jira/browse/SOLR-3390" target="_blank" rel="external">solr bug</a>,这和前面提到的Solr多字同义词扩展是一个原因。</p>
-<p>使用查询时扩展，你的查询被转换为像意大利面般的图已经足够的怪异了。但是在索引时扩展，假如你的文档包含”breast cancer treatment options“,会变成什么样子呢。</p>
-<p><img src="/images/blog/2014/graph33.png" alt=""></p>
-<p>这就是Lucene认为的你文档的样子。同义词扩展给你带来了比你要求更多的东西，类似”Dada-esque“的结果！”Breast tumor the options“确实是这样的。</p>
-<p>从根本上来说，Lucene认为一个查询”cancer of the breast“(4个Token)和你原始文档里的”breast cancer treatment options“(4个Token)是一样的。这是因为Tokens只是一个叠加另一个上面而已，丢失任何信息的部分都可以由它后面的部门来替代。</p>
-<p>查询时扩展不会引起这个问题，因为Solr只扩展了查询，而不是文档。因此Lucene仍然认为查询的”cancer of the breast“只会匹配文档里的”breast cancer“。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>所有这些古怪的问题，让我得出这样的结论：Solr内建的同义词扩展机制是及其糟糕的。我必须找出一个更好的方法来让Solr按我想的来运行。</p>
-<p>总之，无论是索引时扩展还是查询时扩展使用标准的SynonymFilterFactory都是不可行的，因为它们都有各自不同的问题。</p>
-<p><strong>Index-time</strong></p>
-<ul>
-<li>索引爆炸</li>
-<li>同义词不能立即生效，所有文档需重新索引</li>
-<li>同义词不能立即删除</li>
-<li>多字同义词导致多余的文字被高亮</li>
-</ul>
-<p><strong>Query-time</strong></p>
-<ul>
-<li>短语查询不支持</li>
-<li>罕见同义词被认为加权了</li>
-<li>多字同义词不匹配查询</li>
-</ul>
-<p>我开始假设理想的同义词扩展系统应该是基于查询时的，由于基于索引的扩展有那么多固有的缺点。同时，我也意识到在Solr实现同义词扩展之前，有一个更加根本的问题需要解决。</p>
-<p>回到”dog“/“hound”/“pooch”的例子，对待3个词对等的是不明智的。在特定的查询中，”dog“可能并不与”hound“和”pooch“是一样的，比如 (e.g. “The Hound of the Baskervilles,” “The Itchy &amp; Scratchy &amp; Poochy Show”). 一视同仁感觉是错误的。</p>
-<p>同样的，即使使用官方推荐的索引时扩展，IDF权重也被抛弃了。每个包含”dog“的文章现在也都包含”pooch“，这意味着我们将永久的丢失关于”pooch“的真实IDF值。</p>
-<p>在一个理想的系统里，搜索”dog“，返回的结果应该包含所有存在”hound“和”pooch“的文档，但是应该将所有包含真实查询的文档排的更靠前面，包含”dog“的应该得到更高的分。同样的，搜索“hound”应该把包含“hound”的排的更靠前面，搜索“pooch”就应该将包含“pooch”的更靠前。所有的3个搜索都返回相同的文档集，但是结果排序不一样。</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>我的解决方法是，把同义词扩展从分析器的Tokenizer链移动到QueryParser。不是把查询变成如上面的纵横交错的图，而是把它分为2个部分：主查询和同义词查询。然后我为每个部分独立配置权重，指定每个部分内部为“should occur”。最后将二者使用“must occur”的布尔查询包装起来。</p>
-<p>因此，搜索“dog”为被解析为类似这样：</p>
-<pre><code>+((dog)^1.2 (hound pooch)^1.1)
-</code></pre><p>1.2和1.1是独立的权重，可以配置。文档必须包含“dog”,”hound”或者“pooch”，但是“dog”更优先显示。</p>
-<p>这样来处理同义词，带来了另一个有趣的副作用：它消除了短语查询不支持的问题。如果是“breast cancer”(带引号)，将会被解析为这样：</p>
-<pre><code>+((&quot;breast cancer&quot;)^1.2 ((&quot;breast neoplasm&quot;) (&quot;breast tumor&quot;) (&quot;cancer ? breast&quot;) (&quot;cancer ? ? breast&quot;))^1.1)
-</code></pre><p>(问号?的出现是由于停用词“of”和“the”)</p>
-<p>这意味着查询带引号的“breast cancer”会匹配所有包含“breast neoplasm,” “breast tumor,” “cancer of the breast,” and “cancer of breast.“字符的文档。</p>
-<p>我比原始的SynonymFilterFactory更进一步，针对一个特定的查询构建了所有可能的同义词组合查询。比如查询”dog bite“,同义词文件是：</p>
-<pre><code>dog,hound,pooch
-bite,nibble
-</code></pre><p>… then the query will be expanded into:</p>
-<p>查询将会被扩展为：</p>
-<pre><code>dog bite
-hound bite
-pooch bite
-dog nibble
-hound nibble
-pooch nibble
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当使用Solr来构建搜索引擎的时候，你可能经常会遇到这样的场景：你有一个同义词列表，并且你想用户查询也能够命中到同义词。听起来很简单不是吗？为什么搜索“dog”的时候，不能命中包含“hound(猎犬)”或者“pooch(狗)”的文档呢？甚至包含“Rover(流浪者)”和“canis familiaris(犬)”?&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/blog/2014/File-Licking_the_staffy_pup.JPG&quot; alt=&quot;solr plugin 小狗&quot;&gt;&lt;/p&gt;
-&lt;p&gt;叫Rover或者其他名字，可能只是为了让小狗听起来很可爱。&lt;/p&gt;
-&lt;p&gt;事实证明，Solr的同义词扩展没有你想象的那么简单。但是我们有很多好的方法来搬石头砸自己的脚。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="solr" scheme="https://www.shenyanchao.cn/categories/solr/"/>
-    
-    
-      <category term="同义词" scheme="https://www.shenyanchao.cn/tags/%E5%90%8C%E4%B9%89%E8%AF%8D/"/>
-    
-      <category term="solr" scheme="https://www.shenyanchao.cn/tags/solr/"/>
-    
-      <category term="lucene" scheme="https://www.shenyanchao.cn/tags/lucene/"/>
     
   </entry>
   

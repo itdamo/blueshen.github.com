@@ -92,7 +92,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
 object类型，本质上是把字段路径打平，最终在索引里还是一个正常的Field字段，object类型转化后，并不会保留对象内的属性对应关系，这在查询中可能需要特别注意。然后nested嵌套类型却实现的对应关系。
 使用上的区别，">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/elasticsearch-nested/elasticsearch-non-nested.png">
-<meta property="og:updated_time" content="2019-02-12T10:09:39.519Z">
+<meta property="og:updated_time" content="2019-02-13T06:23:00.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch-Nested嵌套类型解密">
 <meta name="twitter:description" content="Lucene Field本身并不支持嵌套类型，最多也就支持多值类型。ElasticSearch进行了扩展，使得Field可以是object对象类型或者nested嵌套类型。
@@ -410,7 +410,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,388
+                  1,429
                 </span>
               
 
@@ -426,7 +426,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -457,10 +457,10 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
 <p>Indexing a document with 100 nested fields actually indexes 101 documents as each nested document is indexed as a separate document. To safeguard against ill-defined mappings the number of nested fields that can be defined per index has been limited to 50. See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html#mapping-limit-settings" target="_blank" rel="external">Settings to prevent mappings explosion</a><a href="https://github.com/elastic/elasticsearch/edit/6.5/docs/reference/mapping.asciidoc" target="_blank" rel="external">edit</a>.</p>
 <p>从这里的介绍，我们所知有限。能得到的结论如下：</p>
 <ul>
-<li>nested字段在索引里是作为Document<strong>单独存储</strong>的</li>
+<li>nested类型在索引里是作为Document<strong>单独存储</strong>的。nested类型可能是1个包含100数据的数组，那就是100个Document。每多1个nested类型，就多增加对应length的Document.</li>
 <li>普通的query对nested字段查询无效，必须使用<strong>nested Query</strong></li>
-<li>highlight高亮也需要使用专门的</li>
-<li>对于nested类型的field个数是有限制的。</li>
+<li>highlight高亮也需要使用专门的Query</li>
+<li>对于nested类型的field个数是有限制的, 长度也是有限制的。</li>
 </ul>
 <h3 id="Nested类型怎么分开存储的"><a href="#Nested类型怎么分开存储的" class="headerlink" title="Nested类型怎么分开存储的"></a>Nested类型怎么分开存储的</h3><p><code>org.elasticsearch.index.mapper.DocumentParser</code>类是专门用于解析要索引的Document的。</p>
 <p>其中有这样一个方法来解析对象类型。</p>
@@ -470,14 +470,14 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
 <p>总之，经过DocumentParser的处理，Nested Document多了这样的2个字段</p>
 <ul>
 <li>_id，值为父Document的id，用来关联</li>
-<li>_type，值为‘__’开头的，标志特定nested 类型。</li>
+<li>_type，值为”__”开头的，标识特定nested 类型。</li>
 </ul>
 <h3 id="Nested类型普通Query如何隐藏"><a href="#Nested类型普通Query如何隐藏" class="headerlink" title="Nested类型普通Query如何隐藏"></a>Nested类型普通Query如何隐藏</h3><p>从上面存储知道，nested document是和普通Document一起存在索引中的，但对外是隐藏的，甚至是MatchAllQuery。</p>
 <p>在<code>org.elasticsearch.common.lucene.search.Queries</code>类中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Creates a new non-nested docs query</div><div class="line"> * <span class="doctag">@param</span> indexVersionCreated the index version created since newer indices can identify a parent field more efficiently</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Query <span class="title">newNonNestedFilter</span><span class="params">(Version indexVersionCreated)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (indexVersionCreated.onOrAfter(Version.V_6_1_0)) &#123;</div><div class="line">        <span class="comment">// ES 6.1.0之后。 只保留有_primary_term这个元字段的，所有的父Document都带有这个Field</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DocValuesFieldExistsQuery(SeqNoFieldMapper.PRIMARY_TERM_NAME);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 老模式</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BooleanQuery.Builder()</div><div class="line">            .add(<span class="keyword">new</span> MatchAllDocsQuery(), Occur.FILTER)</div><div class="line">            .add(newNestedFilter(), Occur.MUST_NOT)  <span class="comment">//取非。过滤掉nested Document</span></div><div class="line">            .build();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Query <span class="title">newNestedFilter</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// _type以“__”为前缀</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PrefixQuery(<span class="keyword">new</span> Term(TypeFieldMapper.NAME, <span class="keyword">new</span> BytesRef(<span class="string">"__"</span>)));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面来看一下<code>_primary_term</code>是如何放进去的。这里涉及到<code>org.elasticsearch.index.mapper.SeqNoFieldMapper</code>这个类。他主要是用来为Document添加<code>_seq_no</code>元字段的，附带着把<code>_primary_term</code>给加了进去。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">parseCreateField</span><span class="params">(ParseContext context, List&lt;IndexableField&gt; fields)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">    <span class="comment">// see InternalEngine.innerIndex to see where the real version value is set</span></div><div class="line">    <span class="comment">// also see ParsedDocument.updateSeqID (called by innerIndex)</span></div><div class="line">    SequenceIDFields seqID = SequenceIDFields.emptySeqID(); <span class="comment">// 默认SeqID</span></div><div class="line">    context.seqID(seqID);</div><div class="line">    fields.add(seqID.seqNo);</div><div class="line">    fields.add(seqID.seqNoDocValue);</div><div class="line">    fields.add(seqID.primaryTerm); <span class="comment">// 添加到fields里</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SequenceIDFields <span class="title">emptySeqID</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SequenceIDFields(<span class="keyword">new</span> LongPoint(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="comment">// 主要这里把_primary_term=0复制为了primaryTerm Field</span></div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(PRIMARY_TERM_NAME, <span class="number">0</span>), <span class="keyword">new</span> NumericDocValuesField(TOMBSTONE_NAME, <span class="number">0</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SequenceIDFields <span class="title">emptySeqID</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SequenceIDFields(<span class="keyword">new</span> LongPoint(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(NAME, SequenceNumbers.UNASSIGNED_SEQ_NO),</div><div class="line">            <span class="comment">// 主要这里把_primary_term=0赋值给了primaryTerm Field</span></div><div class="line">            <span class="keyword">new</span> NumericDocValuesField(PRIMARY_TERM_NAME, <span class="number">0</span>), <span class="keyword">new</span> NumericDocValuesField(TOMBSTONE_NAME, <span class="number">0</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>下面，我们来看下，都什么地方使用到了<code>Queries.newNonNestedFilter</code>.这里我在IDEA里做了一个截图。</p>
 <p><img src="/images/elasticsearch-nested/elasticsearch-non-nested.png" alt="ElasticSearch Nested"></p>
 <p>从上可以看出，基本的正常查询都默认加了这个filter的，只有是nestedQuery才做特别的处理。</p>
@@ -597,6 +597,10 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2019/02/13/redis-serializer/" rel="prev" title="关于Redis序列化及压缩对性能的影响">
+                关于Redis序列化及压缩对性能的影响 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -679,7 +683,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -701,7 +705,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">219</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -791,7 +795,7 @@ object类型，本质上是把字段路径打平，最终在索引里还是一�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">222.6k</span>
+    <span title="Site words total count">224.7k</span>
   
 </div>
 
