@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-5.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-builder.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-outputs.png">
-<meta property="og:updated_time" content="2018-12-20T11:59:20.155Z">
+<meta property="og:updated_time" content="2019-02-19T10:23:41.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
 <meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。 那么开源的搜索引擎包Luce">
@@ -535,8 +535,8 @@
 <p>那么当我们查找key:”jul”的时候，大概流程如下：</p>
 <ul>
 <li>初始状态0 </li>
-<li>输入j, FST从0-&gt;1， value=7</li>
-<li>输入u， FST从1-&gt;2， value=7+0</li>
+<li>输入j,   FST从0-&gt;1， value=7</li>
+<li>输入u,  FST从1-&gt;2， value=7+0</li>
 <li>输入l，FST从2-&gt;3, value=7+0+0</li>
 </ul>
 <p>此时，FST处于final状态3，所以存在jul，并且给出output是7.</p>
@@ -615,22 +615,10 @@
 <p>其中<code>freezeTail</code> 方法就是将不再变化的部分进行冰冻，又叫compile，把UnCompileNode，给构建进FST里。进入到FST是先进行compileNode, 然后addNode进去的。</p>
 <p>总结以下，加入节点过程：</p>
 <ul>
-<li><ol>
-<li>新插入input放入frontier，这里还没有加入FST</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>依据当前input, 对上次插入数据进行freezeTail操作, 放入FST内</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>构建input的转移（Arc）关系</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>解决Output冲突，重新分配output，保证路径统一(NO_OUTPUT,不执行)</li>
-</ol>
-</li>
+<li>1)新插入input放入frontier，这里还没有加入FST</li>
+<li>2)依据当前input, 对上次插入数据进行freezeTail操作, 放入FST内</li>
+<li>3)构建input的转移（Arc）关系</li>
+<li>4)解决Output冲突，重新分配output，保证路径统一(NO_OUTPUT,不执行)</li>
 </ul>
 <p>最后在<code>finish</code>方法里，执行<code>freezeTail(0)</code>, 把所有的input构建进FST内。</p>
 <p>另外，值得注意的是Lucene里定义的<strong>Outputs</strong>类型：</p>
@@ -642,7 +630,7 @@
 <li><code>T common(T output1, T output2)</code> 前缀</li>
 </ul>
 <p>完全满足我们上个部分的限制，可见就是基于之前算法的一个完整的实现。    </p>
-<p>除了在Term词典这块有应用，FST在整个lucene内部使用的也是很广泛的，基本把hashmap记性了替换。<br>场景大概有以下：  </p>
+<p>除了在Term词典这块有应用，FST在整个lucene内部使用的也是很广泛的，基本把hashmap进行了替换。<br>场景大概有以下：  </p>
 <ul>
 <li>自动联想：suggester</li>
 <li>charFilter: mappingcharFilter</li>
@@ -850,7 +838,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -861,7 +849,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">229</span>
+                  <span class="site-state-item-count">230</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="申艳超-博客">
 <meta property="og:description" content="什么是MPM？MPM（Multi -Processing Modules，多路处理模块）是Apache2.x中影响性能的最核心特性。 是Apache 2.x才支持的一个可插入的并发模型，在编译的时候，我们只可以选择一个并发模型。 配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf 如果apache是默认安装的可能配置在httpd.conf文件中。根据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T12:16:32.534Z">
+<meta property="og:updated_time" content="2019-02-18T06:39:26.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="apache mpm介绍">
 <meta name="twitter:description" content="什么是MPM？MPM（Multi -Processing Modules，多路处理模块）是Apache2.x中影响性能的最核心特性。 是Apache 2.x才支持的一个可插入的并发模型，在编译的时候，我们只可以选择一个并发模型。 配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf 如果apache是默认安装的可能配置在httpd.conf文件中。根据">
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,254
+                  2,233
                 </span>
               
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  8
                 </span>
               
             </div>
@@ -446,7 +446,6 @@
 <p>配置文件：/usr/local/apache2/conf/extra/httpd-mpm.conf</p>
 <p>如果apache是默认安装的可能配置在httpd.conf文件中。根据实际情况查找配置。</p>
 <p>使用格式：<br>进入apache的目录，对apache进行如下编译：</p>
-<p>Linux代码</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --<span class="built_in">help</span>|grep mpm</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>显示内容如下：</p>
@@ -467,26 +466,21 @@
 <h2 id="如何判断当前的服务器使用那种MPM-模块"><a href="#如何判断当前的服务器使用那种MPM-模块" class="headerlink" title="如何判断当前的服务器使用那种MPM 模块"></a>如何判断当前的服务器使用那种MPM 模块</h2><p>若使用prefork，在make编译和make install安装后，使用“httpd -l”来确定当前使用的MPM，<br>如下示:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[aaron@webslave1 extra]$ /usr/<span class="built_in">local</span>/apache2/bin/httpd -l</span><br><span class="line">Compiled <span class="keyword">in</span> modules:</span><br><span class="line">core.c</span><br><span class="line">......</span><br><span class="line">prefork.c</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 <p>应该会看到prefork.c（如果看到worker.c说明使用的是worker MPM，依此类推）。再查看缺省生成的httpd.conf配置文件，里面包含如下配置段：</p>
-<p>Linux代码</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">prefork.c</span>&gt;</span></span><br><span class="line">StartServers 5</span><br><span class="line">MinSpareServers 5</span><br><span class="line">MaxSpareServers 10  最大的空闲进程数</span><br><span class="line">MaxClients 150  Apache可以同时处理的请求(最重要)--即为常说的并发连接数!!</span><br><span class="line">MaxRequestsPerChild 0  每个子进程可处理的请求数</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>MaxSpareServers设置了最大的空闲进程数，如果空闲进程数大于这个值，Apache会自动kill掉一些多余进程。这个值不要设得过大，但如果设的值比MinSpareServers小，Apache会自动把其调整为MinSpareServers+1。如果站点负载较大，可考虑同时加大MinSpareServers和MaxSpareServers。</p>
 <p>MaxRequestsPerChild设置的是每个子进程可处理的请求数。每个子进程在处理了“MaxRequestsPerChild”个请求后将自动销毁。0意味着无限，即子进程永不销毁。虽然缺省设为0可以使每个子进程处理更多的请求，但如果设成非零值也有两点重要的好处：</p>
 <p>可防止意外的内存泄漏；<br>在服务器负载下降的时侯会自动减少子进程数。</p>
 <p>因此，可根据服务器的负载来调整这个值。笔者认为10000左右比较合适。</p>
 <p>MaxClients是这些指令中最为重要的一个，设定的是Apache可以同时处理的请求，是对Apache性能影响最大的参数。<br>其缺省值150是远远不够的，如果请求总数已达到这个值（可通过ps -ef|grep http|wc -l来确认），那么后面的请求就要排队，直到某个已处理请求完毕。这就是系统资源还剩下很多而HTTP访问却很慢的主要原因。系统管理员可以根据硬件配置和负载情况来动态调整这个值。<br>虽然理论上这个值越大，可以处理的请求就越多，但Apache默认的限制不能大于256。如果把这个值设为大于256，那么Apache将无法起动。事实上，256对于负载稍重的站点也是不够的。在Apache 1.3中，这是个硬限制。如果要加大这个值，必须在“configure”前手工修改的源代码树下的src/include/httpd.h中查找256，就会发现“#define HARD_SERVER_LIMIT 256”这行。把256改为要增大的值（如4000），然后重新编译Apache即可。在Apache 2.0中新加入了ServerLimit指令，使得无须重编译Apache就可以加大MaxClients。下面是笔者的prefork配置段：</p>
-<p>Linux代码</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">prefork.c</span>&gt;</span></span><br><span class="line">StartServers 10</span><br><span class="line">MinSpareServers 10</span><br><span class="line">MaxSpareServers 15</span><br><span class="line">ServerLimit 20000</span><br><span class="line">MaxClients 1000</span><br><span class="line">MaxRequestsPerChild 10000</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>　上述配置中，ServerLimit的最大值是20000，对于大多数站点已经足够。如果一定要再加大这个数值，对位于源代码目录下<br>/httpd-2.2.15/server/mpm/prefork/prefork.c中以下两行做相应修改即可：<br>Linux代码</p>
+<p>上述配置中，ServerLimit的最大值是20000，对于大多数站点已经足够。如果一定要再加大这个数值，对位于源代码目录下<br>/httpd-2.2.15/server/mpm/prefork/prefork.c中以下两行做相应修改即可：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define DEFAULT_SERVER_LIMIT 256</span></span><br><span class="line"><span class="comment">#define MAX_SERVER_LIMIT 20000</span></span><br></pre></td></tr></table></figure>
 <p>worker的工作原理是，由主控制进程生成“StartServers”个子进程，每个子进程中包含固定的ThreadsPerChild线程数，各个线程独立地处理请求。同样，为了不在请求到来时再生成线程，MinSpareThreads和MaxSpareThreads设置了最少和最多的空闲线程数；而MaxClients设置了所有子进程中的线程总数。如果现有子进程中的线程总数不能满足负载，控制进程将派生新的子进程。</p>
 <p>MinSpareThreads和MaxSpareThreads的最大缺省值分别是75和250。这两个参数对Apache的性能影响并不大，可以按照实际情况相应调节。<br>ThreadsPerChild是worker MPM中与性能相关最密切的指令。ThreadsPerChild的最大缺省值是64，如果负载较大，64也是不够的。这时要显式使用ThreadLimit指令，它的最大缺省值是20000。上述两个值位于源码树server/mpm/worker/worker.c中的以下两行：</p>
-<p>Linux代码</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define DEFAULT_THREAD_LIMIT 64</span></span><br><span class="line"><span class="comment">#define MAX_THREAD_LIMIT 20000</span></span><br></pre></td></tr></table></figure>
 <p>这两行对应着ThreadsPerChild和ThreadLimit的限制数。最好在configure之前就把64改成所希望的值。注意，不要把这两个值设得太高，超过系统的处理能力，从而因Apache不起动使系统很不稳定。<br>Worker模式下所能同时处理的请求总数是由子进程总数乘以ThreadsPerChild值决定的，应该大于等于MaxClients。如果负载很大，现有的子进程数不能满足时，控制进程会派生新的子进程。默认最大的子进程总数是16，加大时也需要显式声明ServerLimit（最大值是20000）。这两个值位于源码树server/mpm/worker/worker.c中的以下两行：</p>
-<p>Linux代码</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define DEFAULT_SERVER_LIMIT 16</span></span><br><span class="line"><span class="comment">#define MAX_SERVER_LIMIT 20000</span></span><br></pre></td></tr></table></figure>
 <p>需要注意的是，如果显式声明了ServerLimit，那么它乘以ThreadsPerChild的值必须大于等于MaxClients，而且MaxClients必须是ThreadsPerChild的整数倍，否则Apache将会自动调节到一个相应值（可能是个非期望值）。下面是笔者的worker配置段：</p>
-<p>Linux代码</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">worker.c</span>&gt;</span></span><br><span class="line">StartServers 3</span><br><span class="line">MaxClients 2000</span><br><span class="line">ServerLimit 25</span><br><span class="line">MinSpareThreads 50</span><br><span class="line">MaxSpareThreads 200</span><br><span class="line">ThreadLimit 200</span><br><span class="line">ThreadsPerChild 100</span><br><span class="line">MaxRequestsPerChild 0</span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>硬性公式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ThreadLimit &gt;= ThreadsPerChild</span><br><span class="line">MaxClients &lt;= ServerLimit * ThreadsPerChild 必须是ThreadsPerChild的倍数</span><br><span class="line">MaxSpareThreads &gt;= MinSpareThreads+ThreadsPerChild</span><br></pre></td></tr></table></figure>
@@ -688,7 +682,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -699,7 +693,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">229</span>
+                  <span class="site-state-item-count">230</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
