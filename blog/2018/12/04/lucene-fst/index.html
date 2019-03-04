@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/fst-days3-fst-5.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-builder.png">
 <meta property="og:image" content="https://www.shenyanchao.cn/images/lucene-fst/fst/lucene-fst-outputs.png">
-<meta property="og:updated_time" content="2019-02-19T10:23:41.875Z">
+<meta property="og:updated_time" content="2019-03-04T12:57:15.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Lucene的词典FST深入剖析">
 <meta name="twitter:description" content="搜索引擎为什么能查询速度那么快？核心是在于如何快速的依据查询词快速的查找到所有的相关文档，这也是倒排索引（Inverted Index）的核心思想。那么如何设计一个快速的(常量，或者1)定位词典的数据结构就显得尤其重要。简单来说，我们可以采用HashMap， TRIE， Binary Search Tree， Tenary Search Tree等各种数据结构来实现。 那么开源的搜索引擎包Luce">
@@ -481,7 +481,7 @@
 <h4 id="Ordered-Sets"><a href="#Ordered-Sets" class="headerlink" title="Ordered Sets"></a>Ordered Sets</h4><p>Ordered Sets是一个有序集合。通常一个有序集合可以用二叉树、B树实现。无序的集合使用hash table来实现. 这里，我们用一个<strong>确定无环有限状态接收机（Deterministric acyclic finite state acceptor, FSA）</strong>来实现。</p>
 <p>FSA是一个FSM(有限状态机)的一种，特性如下:</p>
 <ul>
-<li>确定：意味着指定任何一个状态，只可能最多有一个转移可以遍历到?。</li>
+<li>确定：意味着指定任何一个状态，只可能最多有一个转移可以访问到。</li>
 <li>无环： 不可能重复遍历同一个状态</li>
 <li>接收机：有限状态机只“接受”特定的输入序列，并终止于final状态。</li>
 </ul>
@@ -838,7 +838,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -849,7 +849,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">230</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
